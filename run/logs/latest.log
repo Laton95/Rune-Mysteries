@@ -1,16 +1,15 @@
-[19:21:02] [main/INFO]: Setting user: Player107
-[19:21:04] [main/WARN]: Skipping bad option: lastServer:
-[19:21:04] [main/INFO]: LWJGL Version: 2.9.4
-[19:21:08] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Laton's Test Mod
-[19:21:09] [Sound Library Loader/INFO]: Starting up SoundSystem...
-[19:21:09] [Thread-5/INFO]: Initializing LWJGL OpenAL
-[19:21:09] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
-[19:21:09] [Thread-5/INFO]: OpenAL initialized.
-[19:21:10] [Sound Library Loader/INFO]: Sound engine started
-[19:21:12] [main/INFO]: Created: 512x512 textures-atlas
-[19:21:13] [main/WARN]: Skipping bad option: lastServer:
-[19:21:13] [main/INFO]: Narrator library for x64 successfully loaded
-[19:21:15] [Realms Notification Availability checker #1/INFO]: Could not authorize you against Realms server: Invalid session id
-[19:21:24] [main/INFO]: Stopping!
-[19:21:24] [main/INFO]: SoundSystem shutting down...
-[19:21:25] [main/WARN]: Author: Paul Lamb, www.paulscode.com
+[19:24:23] [main/INFO]: Setting user: Player123
+[19:24:26] [main/WARN]: Skipping bad option: lastServer:
+[19:24:26] [main/INFO]: LWJGL Version: 2.9.4
+[19:24:29] [main/INFO]: Reloading ResourceManager: Default, FMLFileResourcePack:Forge Mod Loader, FMLFileResourcePack:Minecraft Forge, FMLFileResourcePack:Laton's Test Mod
+[19:24:30] [Sound Library Loader/INFO]: Starting up SoundSystem...
+[19:24:31] [Thread-5/INFO]: Initializing LWJGL OpenAL
+[19:24:31] [Thread-5/INFO]: (The LWJGL binding of OpenAL.  For more information, see http://www.lwjgl.org)
+[19:24:31] [Thread-5/INFO]: OpenAL initialized.
+[19:24:31] [Sound Library Loader/INFO]: Sound engine started
+[19:24:33] [main/INFO]: Created: 512x512 textures-atlas
+[19:24:34] [main/WARN]: Skipping bad option: lastServer:
+[19:24:34] [main/INFO]: Narrator library for x64 successfully loaded
+[19:24:36] [main/INFO]: Stopping!
+[19:24:36] [main/INFO]: SoundSystem shutting down...
+[19:24:36] [main/WARN]: Author: Paul Lamb, www.paulscode.com
