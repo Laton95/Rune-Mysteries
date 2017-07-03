@@ -1,0 +1,40 @@
+package com.laton95.test.utility;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import com.laton95.test.reference.Reference;
+
+public class LogHelper {
+	private static Logger log = LogManager.getLogger();
+
+    public static void debug(Object object)
+    {
+    	log.debug(Reference.MOD_NAME, object);
+    }
+
+    public static void error(Object object)
+    {
+    	log.error(Reference.MOD_NAME, object);
+    }
+
+    public static void fatal(Object object)
+    {
+    	log.fatal(Reference.MOD_NAME, object);
+    }
+
+    public static void info(Object object)
+    {
+    	log.info(Reference.MOD_NAME, object);
+    }
+
+    public static void trace(Object object)
+    {
+    	log.trace(Reference.MOD_NAME, object);
+    }
+
+    public static void warn(Object object)
+    {
+    	log.warn(Reference.MOD_NAME, object);
+    }
+}

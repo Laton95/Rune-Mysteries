@@ -1,0 +1,17 @@
+package com.laton95.test.client.gui;
+
+import com.laton95.test.handler.ConfigurationHandler;
+import com.laton95.test.reference.Reference;
+
+import net.minecraft.client.gui.GuiScreen;
+import net.minecraftforge.common.config.ConfigElement;
+import net.minecraftforge.common.config.Configuration;
+import net.minecraftforge.fml.client.config.GuiConfig;
+
+public class ModGuiConfig extends GuiConfig{
+
+	public ModGuiConfig(GuiScreen parentScreen, String modID, boolean allRequireWorldRestart, boolean allRequireMcRestart, String title, Class<?>[] configClasses) {
+		super(parentScreen, modID, allRequireWorldRestart, allRequireMcRestart, title, configClasses);
+		// TODO Auto-generated constructor stub
+	}
+}

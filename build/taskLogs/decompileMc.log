@@ -1,10 +1,10 @@
 INFO:  Adding File to context from classpath: C:\Users\Hayden\.gradle\wrapper\dists\gradle-2.14-bin\76oc0mnc3ieqtsukq90mp0rxk\gradle-2.14\lib\gradle-launcher-2.14.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\resources.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\rt.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\jsse.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\jce.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\charsets.jar
-INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_101\jre\lib\jfr.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\resources.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\rt.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\jsse.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\jce.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\charsets.jar
+INFO:  Adding File to context from classpath: C:\Program Files\Java\jdk1.8.0_131\jre\lib\jfr.jar
 INFO:  Decompiling class net/minecraft/client/renderer/entity/layers/LayerHeldItem
 INFO:  ... done
 INFO:  Decompiling class net/minecraft/client/renderer/entity/layers/LayerMooshroomMushroom

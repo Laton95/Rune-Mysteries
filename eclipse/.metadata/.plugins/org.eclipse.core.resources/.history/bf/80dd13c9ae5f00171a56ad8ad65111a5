@@ -1,0 +1,5 @@
+package com.laton95.test.reference;
+
+public class Reference {
+	public static final String MOD_ID = "testmod";
+}

@@ -1,0 +1,17 @@
+[
+{
+  "modid": "testmod",
+  "name": "Laton's Test Mod",
+  "description": "Playing around with Minecraft modding!",
+  "version": "1.0",
+  "mcversion": "1.12",
+  "logoFile": "",
+  "url": "",
+  "updateUrl": "",
+  "authors": ["Laton95"],
+  "credits": "",
+  "parent": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]

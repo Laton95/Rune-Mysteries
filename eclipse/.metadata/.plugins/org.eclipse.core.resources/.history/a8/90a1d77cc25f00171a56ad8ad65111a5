@@ -1,0 +1,5 @@
+package com.laton95.test.utility;
+
+public class LogHelper {
+
+}

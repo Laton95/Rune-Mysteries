@@ -1,0 +1,5 @@
+package com.laton95.test.client.gui;
+
+public class GuiConfig extends ModGuiConfig{
+
+}
