@@ -1,0 +1,10 @@
+package com.laton95.test.item;
+
+public class ItemSpellbook extends ItemTest{
+
+	public ItemSpellbook() {
+		super("spellBook", true);
+		setMaxStackSize(16);
+	}
+
+}

@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": {"model": "testmod:rune_essence_block" }
+  }
+}

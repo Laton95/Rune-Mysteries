@@ -1,0 +1,19 @@
+{
+  "type": "crafting_shaped",
+  "pattern": [
+    "###"
+    "#@#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "testmod:fire_rune"
+    },
+    "@": {
+      "item": "minecraft:book"
+    }
+  },
+  "result": {
+    "item": "testmod:spellbook"
+  }
+}

@@ -1,0 +1,120 @@
+---- Minecraft Crash Report ----
+// You're mean.
+
+Time: 7/4/17 7:38 PM
+Description: Unexpected error
+
+java.lang.IllegalArgumentException: Cannot get property PropertyBool{name=north, clazz=class java.lang.Boolean, values=[true, false]} as it does not exist in BlockStateContainer{block=testmod:water_altar_block, properties=[]}
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.getValue(BlockStateContainer.java:204)
+	at com.laton95.test.block.BlockRuneAltar.getBoundingBoxIdx(BlockRuneAltar.java:111)
+	at com.laton95.test.block.BlockRuneAltar.getBoundingBox(BlockRuneAltar.java:101)
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.getBoundingBox(BlockStateContainer.java:468)
+	at net.minecraft.block.Block.collisionRayTrace(Block.java:786)
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.collisionRayTrace(BlockStateContainer.java:473)
+	at net.minecraft.world.World.rayTraceBlocks(World.java:1176)
+	at net.minecraft.entity.Entity.rayTrace(Entity.java:1772)
+	at net.minecraft.client.renderer.EntityRenderer.getMouseOver(EntityRenderer.java:389)
+	at net.minecraft.client.Minecraft.runTick(Minecraft.java:1820)
+	at net.minecraft.client.Minecraft.runGameLoop(Minecraft.java:1171)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:436)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Client thread
+Stacktrace:
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.getValue(BlockStateContainer.java:204)
+	at com.laton95.test.block.BlockRuneAltar.getBoundingBoxIdx(BlockRuneAltar.java:111)
+	at com.laton95.test.block.BlockRuneAltar.getBoundingBox(BlockRuneAltar.java:101)
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.getBoundingBox(BlockStateContainer.java:468)
+	at net.minecraft.block.Block.collisionRayTrace(Block.java:786)
+	at net.minecraft.block.state.BlockStateContainer$StateImplementation.collisionRayTrace(BlockStateContainer.java:473)
+	at net.minecraft.world.World.rayTraceBlocks(World.java:1176)
+	at net.minecraft.entity.Entity.rayTrace(Entity.java:1772)
+	at net.minecraft.client.renderer.EntityRenderer.getMouseOver(EntityRenderer.java:389)
+
+-- Affected level --
+Details:
+	Level name: MpServer
+	All players: 1 total; [EntityPlayerSP['Player815'/17, l='MpServer', x=1175.72, y=56.00, z=1553.00]]
+	Chunk stats: MultiplayerChunkCache: 600, 600
+	Level seed: 0
+	Level generator: ID 01 - flat, ver 0. Features enabled: false
+	Level generator options: 
+	Level spawn location: World: (1238,4,1474), Chunk: (at 6,0,2 in 77,92; contains blocks 1232,0,1472 to 1247,255,1487), Region: (2,2; contains chunks 64,64 to 95,95, blocks 1024,0,1024 to 1535,255,1535)
+	Level time: 240288 game time, 1000 day time
+	Level dimension: 0
+	Level storage version: 0x00000 - Unknown?
+	Level weather: Rain time: 0 (now: false), thunder time: 0 (now: false)
+	Level game mode: Game mode: creative (ID 1). Hardcore: false. Cheats: false
+	Forced entities: 18 total; [EntityItemFrame['entity.ItemFrame.name'/0, l='MpServer', x=1167.03, y=57.50, z=1551.50], EntityItemFrame['entity.ItemFrame.name'/1, l='MpServer', x=1167.03, y=57.50, z=1550.50], EntityPlayerSP['Player815'/17, l='MpServer', x=1175.72, y=56.00, z=1553.00], EntityItemFrame['entity.ItemFrame.name'/2, l='MpServer', x=1167.03, y=57.50, z=1549.50], EntityItemFrame['entity.ItemFrame.name'/3, l='MpServer', x=1167.03, y=57.50, z=1548.50], EntityItemFrame['entity.ItemFrame.name'/4, l='MpServer', x=1167.03, y=57.50, z=1547.50], EntityItemFrame['entity.ItemFrame.name'/5, l='MpServer', x=1167.03, y=57.50, z=1546.50], EntityItemFrame['entity.ItemFrame.name'/6, l='MpServer', x=1167.03, y=57.50, z=1545.50], EntityItemFrame['entity.ItemFrame.name'/7, l='MpServer', x=1167.03, y=57.50, z=1544.50], EntityItemFrame['entity.ItemFrame.name'/8, l='MpServer', x=1167.03, y=57.50, z=1543.50], EntityItemFrame['entity.ItemFrame.name'/9, l='MpServer', x=1167.03, y=57.50, z=1542.50], EntityItemFrame['entity.ItemFrame.name'/10, l='MpServer', x=1167.03, y=57.50, z=1541.50], EntityItemFrame['entity.ItemFrame.name'/11, l='MpServer', x=1167.03, y=57.50, z=1540.50], EntityItemFrame['entity.ItemFrame.name'/12, l='MpServer', x=1167.03, y=57.50, z=1539.50], EntityItemFrame['entity.ItemFrame.name'/13, l='MpServer', x=1165.97, y=57.50, z=1549.50], EntityItemFrame['entity.ItemFrame.name'/14, l='MpServer', x=1167.03, y=57.50, z=1553.50], EntityItemFrame['entity.ItemFrame.name'/15, l='MpServer', x=1167.03, y=57.50, z=1552.50], EntityItemFrame['entity.ItemFrame.name'/16, l='MpServer', x=1180.97, y=57.50, z=1542.50]]
+	Retry entities: 0 total; []
+	Server brand: fml,forge
+	Server type: Integrated singleplayer server
+Stacktrace:
+	at net.minecraft.client.multiplayer.WorldClient.addWorldInfoToCrashReport(WorldClient.java:456)
+	at net.minecraft.client.Minecraft.addGraphicsAndWorldToCrashReport(Minecraft.java:2863)
+	at net.minecraft.client.Minecraft.run(Minecraft.java:465)
+	at net.minecraft.client.main.Main.main(Main.java:118)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraft.launchwrapper.Launch.launch(Launch.java:135)
+	at net.minecraft.launchwrapper.Launch.main(Launch.java:28)
+	at sun.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at sun.reflect.NativeMethodAccessorImpl.invoke(Unknown Source)
+	at sun.reflect.DelegatingMethodAccessorImpl.invoke(Unknown Source)
+	at java.lang.reflect.Method.invoke(Unknown Source)
+	at net.minecraftforge.gradle.GradleStartCommon.launch(GradleStartCommon.java:97)
+	at GradleStart.main(GradleStart.java:26)
+
+-- System Details --
+Details:
+	Minecraft Version: 1.12
+	Operating System: Windows 7 (amd64) version 6.1
+	Java Version: 1.8.0_131, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode), Oracle Corporation
+	Memory: 831501312 bytes (792 MB) / 1289748480 bytes (1230 MB) up to 3808428032 bytes (3632 MB)
+	JVM Flags: 0 total; 
+	IntCache: cache: 0, tcache: 0, allocated: 0, tallocated: 0
+	FML: MCP 9.40 Powered by Forge 14.21.1.2387 5 mods loaded, 5 mods active
+	States: 'U' = Unloaded 'L' = Loaded 'C' = Constructed 'H' = Pre-initialized 'I' = Initialized 'J' = Post-initialized 'A' = Available 'D' = Disabled 'E' = Errored
+	UCHIJAAAA	minecraft{1.12} [Minecraft] (minecraft.jar) 
+	UCHIJAAAA	mcp{9.19} [Minecraft Coder Pack] (minecraft.jar) 
+	UCHIJAAAA	FML{8.0.99.99} [Forge Mod Loader] (forgeSrc-1.12-14.21.1.2387.jar) 
+	UCHIJAAAA	forge{14.21.1.2387} [Minecraft Forge] (forgeSrc-1.12-14.21.1.2387.jar) 
+	UCHIJAAAA	testmod{1.12-1.0} [Laton's Test Mod] (bin) 
+	Loaded coremods (and transformers): 
+	GL info: ' Vendor: 'NVIDIA Corporation' Version: '4.5.0 NVIDIA 382.53' Renderer: 'GeForce GTX 1060 6GB/PCIe/SSE2'
+	Launched Version: 1.12
+	LWJGL: 2.9.4
+	OpenGL: GeForce GTX 1060 6GB/PCIe/SSE2 GL version 4.5.0 NVIDIA 382.53, NVIDIA Corporation
+	GL Caps: Using GL 1.3 multitexturing.
+Using GL 1.3 texture combiners.
+Using framebuffer objects because OpenGL 3.0 is supported and separate blending is supported.
+Shaders are available because OpenGL 2.1 is supported.
+VBOs are available because OpenGL 1.5 is supported.
+
+	Using VBOs: Yes
+	Is Modded: Definitely; Client brand changed to 'fml,forge'
+	Type: Client (map_client.txt)
+	Resource Packs: 
+	Current Language: English (US)
+	Profiler Position: N/A (disabled)
+	CPU: 4x Intel(R) Core(TM) i5-6600K CPU @ 3.50GHz

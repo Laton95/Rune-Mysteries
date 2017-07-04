@@ -31,8 +31,7 @@ public class ConfigurationHandler {
 		try{
 			configuration.load();
 			
-			testValue = configuration.get(Configuration.CATEGORY_GENERAL, "configValue", true, "Example config.").getBoolean(true);
-			testValue2 = configuration.get(Configuration.CATEGORY_GENERAL, "configValue2", true, "Example config 2.").getBoolean(true);
+			//exampleValue = configuration.get(Configuration.CATEGORY_GENERAL, "exampleValue", true, "Example config.").getBoolean(true);
 		}
 		catch (Exception e){
 			

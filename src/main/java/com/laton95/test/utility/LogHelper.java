@@ -7,7 +7,7 @@ import org.apache.logging.log4j.Logger;
 import com.laton95.test.reference.Reference;
 
 public class LogHelper {
-	private static Logger log = LogManager.getLogger("Test Mod");
+	private static Logger log = LogManager.getLogger(Reference.MOD_NAME);
 	
 	public static void all(Object object)
     {

@@ -1,0 +1,43 @@
+package com.laton95.test.block;
+
+import com.laton95.test.init.ItemRegistry;
+import com.laton95.test.item.ItemRune;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.World;
+
+public class BlockRuneAltar extends BlockTest{
+	private ItemRune rune;
+	
+	public BlockRuneAltar(String name, ItemRune rune) {
+		super(name, CreativeTabs.BUILDING_BLOCKS, Material.ROCK,  0, null, 0);
+		this.rune = rune;
+		setBlockUnbreakable();
+	}
+	
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+    {
+		if(entityIn instanceof EntityItem && ((EntityItem) entityIn).getItem().getItem().equals(ItemRegistry.runeEssence)){
+			ItemStack itemstack = new ItemStack(rune);
+			spawnAsEntity(worldIn, entityIn.getPosition(), itemstack);
+			entityIn.setDead();
+		}
+    }
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state){
+		return false;
+	}
+	
+	@Override
+	public boolean iFullCube(IBlockState state){
+		return false;
+	}
+}

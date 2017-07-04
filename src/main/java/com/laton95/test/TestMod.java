@@ -1,21 +1,17 @@
 package com.laton95.test;
 import com.laton95.test.handler.ConfigurationHandler;
-import com.laton95.test.item.ItemRune_Essence;
+import com.laton95.test.init.Recipes;
 import com.laton95.test.proxy.IProxy;
 import com.laton95.test.reference.Reference;
 import com.laton95.test.utility.LogHelper;
 
-import net.minecraft.item.Item;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.RegistryEvent;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod(modid=Reference.MOD_ID, name=Reference.MOD_NAME, version=Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class TestMod {
@@ -34,6 +30,7 @@ public class TestMod {
 	
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event){
+		Recipes.init();
 		LogHelper.info("Initialization complete.");
 	}
 	

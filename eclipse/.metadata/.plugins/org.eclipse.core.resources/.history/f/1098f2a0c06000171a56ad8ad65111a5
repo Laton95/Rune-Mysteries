@@ -1,0 +1,10 @@
+package com.laton95.test.init;
+
+import net.minecraft.item.ItemStack;
+import net.minecraftforge.fml.common.registry.GameRegistry;
+
+public class Recipies {
+	public static void init() {
+		GameRegistry.addShapedRecipe(null, null, new ItemStack(ItemRegistry.spellbook), "sss", "s s", "sss", 's', new ItemStack(ItemRegistry.fireRune));
+	}
+}

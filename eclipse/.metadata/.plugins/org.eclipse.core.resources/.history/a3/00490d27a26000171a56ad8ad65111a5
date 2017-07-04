@@ -1,0 +1,12 @@
+package com.laton95.test.item;
+
+import net.minecraft.creativetab.CreativeTabs;
+
+public class ItemRune extends ItemTest{
+
+	public ItemRune(String name, CreativeTabs tab) {
+		super(name, tab);
+		setMaxStackSize(16);
+	}
+
+}

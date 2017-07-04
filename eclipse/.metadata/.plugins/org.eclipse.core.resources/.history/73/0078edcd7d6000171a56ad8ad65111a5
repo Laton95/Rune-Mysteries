@@ -1,0 +1,43 @@
+package com.laton95.test.init;
+
+import java.util.ArrayList;
+
+import com.laton95.test.block.BlockRune_Essence;
+import com.laton95.test.block.BlockTest;
+import com.laton95.test.reference.Reference;
+import com.laton95.test.utility.LogHelper;
+
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.ItemBlock;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+@Mod.EventBusSubscriber
+public class BlockRegistry {
+	private static ArrayList<BlockTest> blockList = new ArrayList<BlockTest>();
+	
+	@SubscribeEvent
+	public static void registerBlocks(RegistryEvent.Register<Block> event){		
+		LogHelper.info("Registering blocks...");
+		makeBlockList();
+		for(BlockTest block : blockList){
+
+			ItemBlock itemBlock = new ItemBlock(block);
+			itemBlock.setRegistryName(block.getRegistryName());
+			event.getRegistry().register(block);
+			//ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation(block.getRegistryName(), "inventory"));
+		    LogHelper.info(block.getRegistryName() + " registered");
+		}
+	    LogHelper.info("All blocks registered successfully");
+	}
+	
+	private static void makeBlockList(){
+		blockList.add(new BlockTest("rune_Essence_Block", CreativeTabs.BUILDING_BLOCKS, Material.ROCK));
+	}
+}

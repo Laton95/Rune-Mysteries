@@ -1,0 +1,11 @@
+{
+"forge_marker": 1,
+    "variants": {
+        "normal": {
+            "model": "testmod:water_altar_block"
+        },
+        "inventory": {
+            "model": "testmod:water_altar_block",
+        }
+    }
+}

@@ -1,23 +1,17 @@
 package com.laton95.test.item;
 
+import com.laton95.test.creativetab.CreativeTabTest;
 import com.laton95.test.reference.Reference;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ItemTest extends Item{
-	private String name;
 	
-	public ItemTest(){
+	public ItemTest(String name, boolean showInCreative) {
 		super();
-	}
-	
-	public void setName(String name){
-		this.name = name;
-	}
-	
-	public String getName(){
-		return this.name;
+		setUnlocalizedName(Reference.MOD_ID + ":" + name);
+		setRegistryName(Reference.MOD_ID, name.toLowerCase());
+		setCreativeTab(CreativeTabTest.Test_TAB);
 	}
 }

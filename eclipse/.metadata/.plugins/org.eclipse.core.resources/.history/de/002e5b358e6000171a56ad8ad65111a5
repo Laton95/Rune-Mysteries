@@ -1,0 +1,12 @@
+package com.laton95.test.block;
+
+import net.minecraft.block.material.Material;
+import net.minecraft.creativetab.CreativeTabs;
+
+public class BlockRuneAltar extends BlockTest{
+
+	public BlockRuneAltar() {
+		super("rune_Altar_Block", CreativeTabs.BUILDING_BLOCKS, Material.ROCK,  0, null, 0);
+	}
+
+}

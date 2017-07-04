@@ -1,0 +1,8 @@
+package com.laton95.test.block;
+
+public class BlockRune_Essence extends BlockTest{
+	public BlockRune_Essence(){
+		super();
+		setName("rune_Essence_Block");
+	}
+}
