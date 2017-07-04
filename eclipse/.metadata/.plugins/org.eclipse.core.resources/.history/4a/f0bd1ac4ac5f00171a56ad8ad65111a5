@@ -1,5 +1,0 @@
-package proxy.copy;
-
-public interface IProxy {
-
-}

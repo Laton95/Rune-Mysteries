@@ -1,7 +1,0 @@
-package com.laton95.test.init;
-
-public class Recipies {
-	public static void init() {
-		
-	}
-}

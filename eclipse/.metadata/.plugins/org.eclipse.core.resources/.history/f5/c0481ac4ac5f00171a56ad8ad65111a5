@@ -1,5 +1,0 @@
-package proxy.copy;
-
-public abstract class CommonProxy implements IProxy{
-
-}

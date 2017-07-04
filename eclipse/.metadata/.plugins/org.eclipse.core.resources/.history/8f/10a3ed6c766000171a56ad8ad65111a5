@@ -1,8 +1,0 @@
-package com.laton95.test.block;
-
-public class BlockRune_Essence extends BlockTest{
-	public BlockRune_Essence(){
-		super();
-		this.set
-	}
-}

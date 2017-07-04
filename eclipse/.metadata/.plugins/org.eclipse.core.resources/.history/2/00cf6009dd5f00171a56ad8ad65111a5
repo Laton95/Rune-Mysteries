@@ -1,7 +1,0 @@
-package com.laton95.test.item;
-
-public class ItemRuneEssence extends ItemTest{
-	public ItemRuneEssence(){
-		super();
-	}
-}

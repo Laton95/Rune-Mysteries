@@ -1,7 +1,0 @@
-package com.laton95.test;
-import net.minecraftforge.fml.common.Mod;
-
-@Mod(modid="LatonTestMod", name="Laton's Test Mod", version="1.12-1.0")
-public class TestMod {
-
-}

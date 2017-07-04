@@ -1,9 +1,0 @@
-{
-  "variants": {
-    "normal": {"model": "testmod:water_altar_block" },
-    "inventory": {
-            "model": "testmod:water_altar_block",
-            "transform": "forge:default-block"
-        }
-  }
-}

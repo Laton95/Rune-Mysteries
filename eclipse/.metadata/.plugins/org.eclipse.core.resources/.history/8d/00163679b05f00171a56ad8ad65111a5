@@ -1,7 +1,0 @@
-package com.laton95.test.reference;
-
-public class Reference {
-	public static final String MOD_ID = "testmod";
-	public static final String MOD_NAME = "Laton's Test Mod";
-	public static final String VERSION = "1.12-1.0";
-}
