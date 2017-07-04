@@ -1,1 +1,12 @@
 /bin/
+/.gradle/
+/.metadata/
+/build/
+/eclipse/
+/run/
+/.classpath/
+/.project/
+/MCMod-Testing_Client.launch/
+/MCMod-Testing_Server.launch/
+/build.gradle/
+/gradle.properties/
