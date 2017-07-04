@@ -1,0 +1,45 @@
+package com.laton95.test.init;
+
+import java.util.ArrayList;
+
+import com.laton95.test.item.ItemRuneEssence;
+import com.laton95.test.item.ItemTest;
+import com.laton95.test.reference.Reference;
+import com.laton95.test.utility.LogHelper;
+
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.item.Item;
+import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.client.model.ModelLoader;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+
+@Mod.EventBusSubscriber
+public class ItemRegistry {
+	
+	@SubscribeEvent
+	public static void registerItems(RegistryEvent.Register<Item> event){		
+		LogHelper.info("Registering items...");
+		for(ItemTest item : makeItemList()){
+			
+			item.setUnlocalizedName(Reference.MOD_ID+"."+item.getName());
+			item.setRegistryName(Reference.MOD_ID, item.getName().toLowerCase());
+			
+			event.getRegistry().register(item);
+			ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(new ResourceLocation(Reference.MOD_ID, item.getUnlocalizedName().substring(5)), "inventory"));
+		    LogHelper.info(item.getUnlocalizedName() + " registered");
+		    LogHelper.info(item.getRegistryName() + " registered");
+		}
+	    LogHelper.info("All items registered successfully");
+	}
+	
+	private static ArrayList<ItemTest> makeItemList(){
+		ArrayList<ItemTest> itemList = new ArrayList<ItemTest>();
+		
+		ItemTest runeEssence = new ItemRuneEssence();
+		itemList.add(runeEssence);
+		
+		return itemList;
+	}
+}

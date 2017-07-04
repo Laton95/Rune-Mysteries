@@ -1,0 +1,18 @@
+package com.laton95.test.item;
+
+import com.laton95.test.reference.Reference;
+
+import net.minecraft.item.Item;
+
+public class ItemTest extends Item{
+	public String name;
+	
+	public ItemTest(){
+		super();
+	}
+	
+	public void namingHelper(){
+		setUnlocalizedName(Reference.MOD_ID + ":" + name);
+		setRegistryName(name.toLowerCase());
+	}
+}

@@ -1,0 +1,14 @@
+package com.laton95.test.item;
+
+import com.laton95.test.reference.Reference;
+
+import net.minecraft.item.Item;
+
+public class ItemRuneEssence extends ItemTest{
+	public ItemRuneEssence(){
+		super();
+		setUnlocalizedName("runeEssence");
+		setUnlocalizedNameHelper("runeEssence");
+		setRegistryName("runeessence");
+	}
+}

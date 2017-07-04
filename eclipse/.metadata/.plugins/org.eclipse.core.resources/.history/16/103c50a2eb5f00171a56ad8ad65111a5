@@ -1,0 +1,20 @@
+package com.laton95.test.item;
+
+import org.omg.CORBA.PRIVATE_MEMBER;
+
+import com.laton95.test.reference.Reference;
+
+import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.item.Item;
+import net.minecraftforge.client.model.ModelLoader;
+
+static public class ItemRuneEssence extends ItemTest{
+	public ItemRuneEssence(){
+		super();
+		name = "runeEssence";
+		namingHelper();
+		setCreativeTab(CreativeTabs.MATERIALS);
+		ModelLoader.setCustomModelResourceLocation(this, 0, new ModelResourceLocation(Reference.MOD_ID + ":" + Item.getUnlocalizedName().substring(5)));
+	}
+}
