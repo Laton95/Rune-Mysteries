@@ -12,10 +12,10 @@ import net.minecraftforge.common.config.Configuration;
 import net.minecraftforge.fml.client.IModGuiFactory;
 
 public class GuiFactory implements IModGuiFactory {
-	
+
 	@Override
 	public void initialize(Minecraft minecraftInstance) {
-		
+
 	}
 
 	@Override
@@ -25,7 +25,10 @@ public class GuiFactory implements IModGuiFactory {
 
 	@Override
 	public GuiScreen createConfigGui(GuiScreen parentScreen) {
-		return new ModGuiConfig(parentScreen, new ConfigElement(ConfigurationHandler.configuration.getCategory(Configuration.CATEGORY_GENERAL)).getChildElements(), Reference.MOD_ID, false, false, "Test Mod Configuration");
+		return new ModGuiConfig(parentScreen,
+				new ConfigElement(ConfigurationHandler.configuration.getCategory("World Generation"))
+						.getChildElements(),
+				Reference.MOD_ID, false, true, Reference.MOD_NAME + " Configuration");
 	}
 
 	@Override

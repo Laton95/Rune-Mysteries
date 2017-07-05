@@ -6,9 +6,9 @@ import com.laton95.runemysteries.reference.Reference;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.ItemStack;
 
-public class CreativeTabTest {
-	public static final CreativeTabs Test_TAB = new CreativeTabs(Reference.MOD_ID) {
-		
+public class RMCreativeTab {
+	public static final CreativeTabs RM_TAB = new CreativeTabs(Reference.MOD_ID) {
+
 		@Override
 		public ItemStack getTabIconItem() {
 			return new ItemStack(ItemRegistry.fireRune);

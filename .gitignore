@@ -10,5 +10,4 @@ gradle.properties
 MCMod-Testing_Client.launch
 MCMod-Testing_Server.launch
 .settings/org.eclipse.jdt.core.prefs
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.properties
+*.launch

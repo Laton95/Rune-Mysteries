@@ -15,9 +15,11 @@ item.runemysteries:rune_Essence.name=Rune Essence
 item.runemysteries:soul_Rune.name=Soul Rune
 item.runemysteries:water_Rune.name=Water Rune
 item.runemysteries:spellbook.name=Spellbook
+item.runemysteries:altar_Spawner.name=Altar Spawner
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
+tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
 tile.runemysteries:air_Altar_Block.name=Air Altar
 tile.runemysteries:astral_Altar_Block.name=Astral Altar
 tile.runemysteries:blood_Altar_Block.name=Blood Altar
@@ -32,6 +34,8 @@ tile.runemysteries:mind_Altar_Block.name=Mind Altar
 tile.runemysteries:nature_Altar_Block.name=Nature Altar
 tile.runemysteries:soul_Altar_Block.name=Soul Altar
 tile.runemysteries:water_Altar_Block.name=Water Altar
+tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
+tile.runemysteries:ruin_Block.name=Ruined Stone
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries
