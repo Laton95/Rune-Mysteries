@@ -1,2 +1,2 @@
-# MCMod-Testing
-Playing around with Minecraft modding.
+# Rune Mysteries
+A RuneScape inspired Minecraft magic mod.
