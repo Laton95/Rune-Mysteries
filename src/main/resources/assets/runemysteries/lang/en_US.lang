@@ -1,0 +1,37 @@
+#Items
+item.runemysteries:air_Rune.name=Air Rune
+item.runemysteries:astral_Rune.name=Astral Rune
+item.runemysteries:blood_Rune.name=Blood Rune
+item.runemysteries:body_Rune.name=Body Rune
+item.runemysteries:chaos_Rune.name=Chaos Rune
+item.runemysteries:cosmic_Rune.name=Cosmic Rune
+item.runemysteries:death_Rune.name=Death Rune
+item.runemysteries:earth_Rune.name=Earth Rune
+item.runemysteries:fire_Rune.name=Fire Rune
+item.runemysteries:law_Rune.name=Law Rune
+item.runemysteries:mind_Rune.name=Mind Rune
+item.runemysteries:nature_Rune.name=Nature Rune
+item.runemysteries:rune_Essence.name=Rune Essence
+item.runemysteries:soul_Rune.name=Soul Rune
+item.runemysteries:water_Rune.name=Water Rune
+item.runemysteries:spellbook.name=Spellbook
+
+#Blocks
+tile.runemysteries:rune_Essence_Block.name=Rune Essence
+tile.runemysteries:air_Altar_Block.name=Air Altar
+tile.runemysteries:astral_Altar_Block.name=Astral Altar
+tile.runemysteries:blood_Altar_Block.name=Blood Altar
+tile.runemysteries:body_Altar_Block.name=Body Altar
+tile.runemysteries:chaos_Altar_Block.name=Chaos Altar
+tile.runemysteries:cosmic_Altar_Block.name=Cosmic Altar
+tile.runemysteries:death_Altar_Block.name=Death Altar
+tile.runemysteries:earth_Altar_Block.name=Earth Altar
+tile.runemysteries:fire_Altar_Block.name=Fire Altar
+tile.runemysteries:law_Altar_Block.name=Law Altar
+tile.runemysteries:mind_Altar_Block.name=Mind Altar
+tile.runemysteries:nature_Altar_Block.name=Nature Altar
+tile.runemysteries:soul_Altar_Block.name=Soul Altar
+tile.runemysteries:water_Altar_Block.name=Water Altar
+
+#Creative Tabs
+itemGroup.runemysteries=Rune Mysteries

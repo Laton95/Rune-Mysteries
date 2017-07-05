@@ -1,8 +1,8 @@
 [
 {
-  "modid": "testmod",
-  "name": "Laton's Test Mod",
-  "description": "Playing around with Minecraft modding!",
+  "modid": "runemysteries",
+  "name": "Rune Mysteries",
+  "description": "A RuneScape inspired Minecraft magic mod.",
   "version": "1.0",
   "mcversion": "1.12",
   "logoFile": "",
@@ -11,7 +11,7 @@
   "authorList": [
   "Laton95"
   ],
-  "credits": "A big thanks to Pahimar's Let's Mod Reboot YouTube series",
+  "credits": "Pahimar's Let's Mod Reboot YouTube series.",
   "parent": "",
   "screenshots": [],
   "dependencies": []
