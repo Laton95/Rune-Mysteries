@@ -6,7 +6,8 @@ import java.util.Map;
 
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
-import com.laton95.runemysteries.world.OreSpawner;
+import com.laton95.runemysteries.world.ChunkGenerator;
+import com.laton95.runemysteries.world.OreGenerator;
 import com.laton95.runemysteries.world.RuneAltar;
 
 import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
@@ -52,8 +53,7 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeGenList() {
-		genMap.put("Ores", new OreSpawner());
-		genMap.put("Altars", new RuneAltar());
+		genMap.put("Chunk Generator", new ChunkGenerator());
 	}
 	
 	private static void makeStructureList() {

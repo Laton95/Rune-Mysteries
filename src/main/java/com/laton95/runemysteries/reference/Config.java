@@ -8,4 +8,5 @@ public class Config {
 	public static int finiteEssenceMaxHeight;
 	
 	public static boolean generateRuneAltars;
+	public static int runeAltarRarity = 10;
 }

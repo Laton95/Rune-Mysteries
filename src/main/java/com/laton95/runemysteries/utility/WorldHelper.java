@@ -74,30 +74,43 @@ public class WorldHelper {
 	
 	public static float determineFlatness(World worldIn, BlockPos position, int xSize, int ySize, int zSize) {
 		int airBlocksBelow = 0;
-		int solidBlocksAbove = 0;
+		int solidBlocksFirstLayer = 0;
+		int solidBlocksOverhead = 0;
 		
-		for (int i = 0; i < xSize; i++) {
-			for (int j = 0; j < zSize; j++) {
-				int x = position.getX() + i;
-				int z = position.getZ() + j;
-				if (!worldIn.isBlockNormalCube(new BlockPos(x,position.getY(),z), true)) {
-					airBlocksBelow++;
-				}
-			}
-		}
-		for (int k = 1; k < ySize; k++) {
-			for (int i = 0; i < xSize; i++) {
-				for (int j = 0; j < zSize; j++) {
-					int x = position.getX() + i;
-					int z = position.getZ() + j;
-					int y = position.getY() + k;
-					if (worldIn.isBlockNormalCube(new BlockPos(x,y,z), true)) {
-						solidBlocksAbove++;
+		for (int y = 0; y < ySize + 1; y++) {
+			for (int x = 0; x < xSize; x++) {
+				for (int z = 0; z < zSize; z++) {
+					int xPos = position.getX() + x;
+					int zPos = position.getZ() + z;
+					int yPos = position.getY() + y;
+					BlockPos pos = new BlockPos(xPos,yPos,zPos);
+					Block block = worldIn.getBlockState(pos).getBlock();
+					if (y == 0 && (block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA))) {
+						airBlocksBelow++;
+					} else if (y == 1 && !(block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA))) {
+						solidBlocksFirstLayer++;
+					} else if (y > 1 && !(block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA))) {
+						solidBlocksOverhead++;
 					}
+//					if (y == 0) {
+//						worldIn.setBlockState(pos, Blocks.BEDROCK.getDefaultState());
+//					} else if (y == 1) {
+//						worldIn.setBlockState(pos, Blocks.STONE.getDefaultState());
+//					} else if (y > 1) {
+//						worldIn.setBlockState(pos, Blocks.WOOL.getDefaultState());
+//					}
 				}
 			}
 		}
 		
-		return 1 - ((airBlocksBelow*2 + solidBlocksAbove)/(xSize*zSize*ySize));
-		}
+		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
+		
+		if (solidBlocksFirstLayer > xSize*zSize*0.4) return 0;
+		if (airBlocksBelow > xSize*zSize*0.2) return 0;
+		
+		int airWeight = 3;
+		int solidWeight = 1;
+		
+		return 1 - ((airBlocksBelow*airWeight + solidBlocksAbove*solidWeight) / (xSize*zSize*airWeight + xSize*zSize*ySize*solidWeight));
+	}
 }

@@ -10,7 +10,7 @@ import net.minecraft.world.biome.Biome;
 public class WorldGen {
 	public static LinkedList<Block> surfaceBlocks = new LinkedList<Block>();
 	public static LinkedList<Biome> runeAltarSpawnBiomes = new LinkedList<Biome>() ;
-	public static float structureFlatnessTolerance = 0.0f;
+	public static float structureFlatnessTolerance = 0.8f;
 	
 	public static void init() {
 		setupSurfaceBlocks();
