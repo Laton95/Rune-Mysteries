@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.reference.Config;
-import com.laton95.runemysteries.utility.LogHelper;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -14,10 +13,10 @@ import net.minecraft.world.gen.feature.WorldGenMinable;
 import net.minecraft.world.gen.feature.WorldGenerator;
 import net.minecraftforge.fml.common.IWorldGenerator;
 
-public class OreGen implements IWorldGenerator {
+public class OreSpawner implements IWorldGenerator {
 	private WorldGenerator finiteEssenceGen;
 
-	public OreGen() {
+	public OreSpawner() {
 		finiteEssenceGen = new WorldGenMinable(BlockRegistry.runeEssenceFinite.getDefaultState(), Config.finiteEssenceVeinSize);
 	}
 

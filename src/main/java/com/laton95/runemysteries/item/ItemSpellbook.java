@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.utility.LogHelper;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityArrow;
 import net.minecraft.init.Items;

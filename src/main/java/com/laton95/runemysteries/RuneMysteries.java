@@ -2,12 +2,12 @@ package com.laton95.runemysteries;
 
 import com.laton95.runemysteries.handler.ConfigurationHandler;
 import com.laton95.runemysteries.init.RecipeRegistry;
+import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.proxy.IProxy;
 import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGen;
 import com.laton95.runemysteries.utility.LogHelper;
 
-import net.minecraft.block.Block;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
@@ -39,7 +39,8 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		WorldGen.setupSurfaceBlocks();
+		WorldGen.init();
+		WorldGenRegistry.registerWorldGen();
 		LogHelper.info("Post-initialization complete.");
 	}
 }

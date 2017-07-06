@@ -4,7 +4,6 @@ import java.util.Random;
 
 import com.laton95.runemysteries.creativetab.RMCreativeTab;
 import com.laton95.runemysteries.reference.Reference;
-import com.typesafe.config.ConfigException.Null;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;

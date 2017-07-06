@@ -1,35 +1,64 @@
 package com.laton95.runemysteries.init;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.world.OreGen;
-import com.laton95.runemysteries.world.RuneAltarGen;
+import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.world.OreSpawner;
+import com.laton95.runemysteries.world.RuneAltar;
 
-import net.minecraft.block.Block;
-import net.minecraftforge.event.RegistryEvent;
+import net.minecraft.world.gen.structure.ComponentScatteredFeaturePieces;
+import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.gen.structure.StructureComponent;
+import net.minecraft.world.gen.structure.StructureStart;
 import net.minecraftforge.fml.common.IWorldGenerator;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
-@Mod.EventBusSubscriber
 public class WorldGenRegistry {
-	private static ArrayList<IWorldGenerator> genList = new ArrayList<IWorldGenerator>();
+	private static Map<String, IWorldGenerator> genMap = new HashMap<String, IWorldGenerator>();
+	private static Map<String, Class <? extends StructureStart >> structureMap = new HashMap<String, Class <? extends StructureStart >>();
+	private static Map<String, Class <? extends StructureComponent >> componentMap = new HashMap<String, Class <? extends StructureComponent >>();
+	
+	
 
-	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+	public static void registerWorldGen() {
+		
 		LogHelper.info("Registering worldgen...");
 		makeGenList();
-		for (IWorldGenerator generator : genList) {
-			GameRegistry.registerWorldGenerator(generator, 0);
-			LogHelper.info("Rune essence registered to worldgen");
-		}
+		genMap.forEach((k,v)-> {
+			GameRegistry.registerWorldGenerator(v, 0);
+			LogHelper.info(k + " registered successfully");
+		});
+		
+		LogHelper.info("Registering structures...");
+		makeStructureList();
+		structureMap.forEach((k,v)-> {
+			MapGenStructureIO.registerStructure(v, k);
+			LogHelper.info(k + " registered successfully");
+		});
+		LogHelper.info("All structures registered successfully");
+		
+		LogHelper.info("Registering structure components...");
+		makeComponentList();
+		componentMap.forEach((k,v)-> {
+			MapGenStructureIO.registerStructureComponent(v, k);
+			LogHelper.info(k + " registered successfully");
+		});
+		LogHelper.info("All structures components registered successfully");
+		
 		LogHelper.info("All worldgen registered successfully");
 	}
 
 	private static void makeGenList() {
-		genList.add(new OreGen());
-		genList.add(new RuneAltarGen());
+		genMap.put("Ores", new OreSpawner());
+		genMap.put("Altars", new RuneAltar());
+	}
+	
+	private static void makeStructureList() {
+	}
+	
+	private static void makeComponentList() {
 	}
 }

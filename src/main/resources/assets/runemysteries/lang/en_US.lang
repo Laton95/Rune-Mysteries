@@ -15,7 +15,7 @@ item.runemysteries:rune_Essence.name=Rune Essence
 item.runemysteries:soul_Rune.name=Soul Rune
 item.runemysteries:water_Rune.name=Water Rune
 item.runemysteries:spellbook.name=Spellbook
-item.runemysteries:altar_Spawner.name=Altar Spawner
+item.runemysteries:altar_Spawner.name=Debug Altar Spawner
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
