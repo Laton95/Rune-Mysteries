@@ -11,7 +11,7 @@ public class RMModItem extends Item {
 		super();
 		setUnlocalizedName(Reference.MOD_ID + ":" + name);
 		setRegistryName(Reference.MOD_ID, name.toLowerCase());
-		if(showInCreative){
+		if (showInCreative) {
 			setCreativeTab(RMCreativeTab.RM_TAB);
 		}
 	}

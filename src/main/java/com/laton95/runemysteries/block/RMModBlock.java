@@ -12,7 +12,7 @@ import net.minecraft.item.Item;
 
 public class RMModBlock extends Block {
 	protected Item drop = null;
-	
+
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative) {
 		super(material);
@@ -24,7 +24,7 @@ public class RMModBlock extends Block {
 		setHarvestLevel(toolClass, harvestLevel);
 
 	}
-	
+
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative, Item drop) {
 		super(material);
@@ -37,12 +37,12 @@ public class RMModBlock extends Block {
 		this.drop = drop;
 
 	}
-	
+
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-    {
-		if(drop != null){
+	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+		if (drop != null) {
 			return drop;
-		} else return Item.getItemFromBlock(this);
-    }
+		} else
+			return Item.getItemFromBlock(this);
+	}
 }

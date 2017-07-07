@@ -18,12 +18,13 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class BlockRegistry {
 	private static ArrayList<RMModBlock> blockList = new ArrayList<RMModBlock>();
-	
-	//Blocks
-	public static RMModBlock runeEssenceFinite = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, ItemRegistry.runeEssence);
+
+	// Blocks
+	public static RMModBlock runeEssenceFinite = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f,
+			"pickaxe", 1, true, ItemRegistry.runeEssence);
 	public static RMModBlock ruinBlock = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	
-	//Tile Entities
+
+	// Tile Entities
 	public static BlockRuneEssence runeEssence = new BlockRuneEssence();
 	public static BlockRuneAltar airAltar = new BlockRuneAltar("air_Altar_Block", ItemRegistry.airRune);
 	public static BlockRuneAltar astralAltar = new BlockRuneAltar("astral_Altar_Block", ItemRegistry.astralRune);
@@ -40,7 +41,6 @@ public class BlockRegistry {
 	public static BlockRuneAltar soulAltar = new BlockRuneAltar("soul_Altar_Block", ItemRegistry.soulRune);
 	public static BlockRuneAltar waterAltar = new BlockRuneAltar("water_Altar_Block", ItemRegistry.waterRune);
 	public static BlockOuraniaAltar ouraniaAltar = new BlockOuraniaAltar();
-	
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -57,11 +57,11 @@ public class BlockRegistry {
 	}
 
 	private static void makeBlockList() {
-		//Blocks
+		// Blocks
 		blockList.add(runeEssenceFinite);
 		blockList.add(ruinBlock);
-		
-		//Tile Entities
+
+		// Tile Entities
 		blockList.add(runeEssence);
 		blockList.add(airAltar);
 		blockList.add(astralAltar);
@@ -78,6 +78,6 @@ public class BlockRegistry {
 		blockList.add(soulAltar);
 		blockList.add(waterAltar);
 		blockList.add(ouraniaAltar);
-		
+
 	}
 }

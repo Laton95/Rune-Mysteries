@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.init;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -13,8 +12,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
-import net.minecraftforge.fml.common.IWorldGenerator;
-import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class RecipeRegistry {
 	private static Map<String, ResourceLocation> recipeMap = new HashMap<String, ResourceLocation>();
@@ -22,7 +19,7 @@ public class RecipeRegistry {
 	public static void registerRecipes() {
 		LogHelper.info("Registering recipes...");
 		makeRecipeList();
-		recipeMap.forEach((k,v)-> {
+		recipeMap.forEach((k, v) -> {
 			CraftingHelper.register(v, new IRecipeFactory() {
 
 				@Override

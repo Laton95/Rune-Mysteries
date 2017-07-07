@@ -7,6 +7,7 @@ import com.laton95.runemysteries.proxy.IProxy;
 import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGen;
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.world.RuneAltarSpawner;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import scala.reflect.internal.Trees.New;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
 public class RuneMysteries {
@@ -41,6 +43,7 @@ public class RuneMysteries {
 	public void postInit(FMLPostInitializationEvent event) {
 		WorldGen.init();
 		WorldGenRegistry.registerWorldGen();
+		MinecraftForge.TERRAIN_GEN_BUS.register(new RuneAltarSpawner());
 		LogHelper.info("Post-initialization complete.");
 	}
 }
