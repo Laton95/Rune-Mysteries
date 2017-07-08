@@ -13,6 +13,7 @@ import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -101,6 +102,15 @@ public class WorldHelper {
 				/ (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight));
 	}
 
+	public static boolean isNearby(ChunkPos chunkA, ChunkPos chunkB, int range) {
+		int x = Math.abs(chunkA.x - chunkB.x);
+		int z = Math.abs(chunkA.z - chunkB.z);
+		
+		if (x < range && z < range) {
+			return true;
+		} else return false;
+	}
+	
 	public abstract static class ModFeature extends StructureComponent {
 		/** The size of the bounding box for this feature in the X axis */
 		protected int width;

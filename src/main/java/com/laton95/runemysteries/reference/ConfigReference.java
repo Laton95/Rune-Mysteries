@@ -9,4 +9,5 @@ public class ConfigReference {
 
 	public static boolean generateRuneAltars;
 	public static int runeAltarRarity = 10;
+	public static int runeAltarRange = 3000;
 }

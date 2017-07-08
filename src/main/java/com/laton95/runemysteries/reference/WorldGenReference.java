@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.reference;
 
 import java.util.LinkedList;
+import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Biomes;
@@ -20,7 +21,7 @@ public class WorldGenReference {
 	public static LinkedList<Biome> astralAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> natureAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> deathAltarSpawnBiomes = new LinkedList<Biome>();
-	
+
 	public static LinkedList<Biome> allAltarSpawnBiomes = new LinkedList<Biome>();
 
 	public static void init() {
@@ -45,7 +46,7 @@ public class WorldGenReference {
 		setupAstralAltarSpawnBiomes();
 		setupNatureAltarSpawnBiomes();
 		setupDeathAltarSpawnBiomes();
-		
+
 		allAltarSpawnBiomes.addAll(genericAltarSpawnBiomes);
 		allAltarSpawnBiomes.addAll(swampAltarSpawnBiomes);
 		allAltarSpawnBiomes.addAll(desertAltarSpawnBiomes);
@@ -54,6 +55,37 @@ public class WorldGenReference {
 		allAltarSpawnBiomes.addAll(astralAltarSpawnBiomes);
 		allAltarSpawnBiomes.addAll(natureAltarSpawnBiomes);
 		allAltarSpawnBiomes.addAll(deathAltarSpawnBiomes);
+	}
+
+	public static List<Biome> getBiomeList(String altar) {
+		switch (altar) {
+		case "airaltar":
+			return genericAltarSpawnBiomes;
+		case "astralaltar":
+			return astralAltarSpawnBiomes;
+		case "bloodaltar":
+			return swampAltarSpawnBiomes;
+		case "bodyaltar":
+			return genericAltarSpawnBiomes;
+		case "deathaltar":
+			return deathAltarSpawnBiomes;
+		case "earthaltar":
+			return genericAltarSpawnBiomes;
+		case "firealtar":
+			return desertAltarSpawnBiomes;
+		case "lawaltar":
+			return genericAltarSpawnBiomes;
+		case "mindaltar":
+			return genericAltarSpawnBiomes;
+		case "naturealtar":
+			return natureAltarSpawnBiomes;
+		case "soulaltar":
+			return desertAltarSpawnBiomes;
+		case "wateraltar":
+			return swampAltarSpawnBiomes;
+		default:
+			return allAltarSpawnBiomes;
+		}
 	}
 
 	public static void setupGenericAltarSpawnBiomes() {
@@ -65,14 +97,8 @@ public class WorldGenReference {
 		genericAltarSpawnBiomes.add(Biomes.MUTATED_BIRCH_FOREST_HILLS);
 		genericAltarSpawnBiomes.add(Biomes.MUTATED_FOREST);
 		genericAltarSpawnBiomes.add(Biomes.MUTATED_PLAINS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_REDWOOD_TAIGA);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_REDWOOD_TAIGA_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_ROOFED_FOREST);
 		genericAltarSpawnBiomes.add(Biomes.MUTATED_SAVANNA);
 		genericAltarSpawnBiomes.add(Biomes.PLAINS);
-		genericAltarSpawnBiomes.add(Biomes.REDWOOD_TAIGA);
-		genericAltarSpawnBiomes.add(Biomes.REDWOOD_TAIGA_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.ROOFED_FOREST);
 		genericAltarSpawnBiomes.add(Biomes.SAVANNA);
 		genericAltarSpawnBiomes.add(Biomes.SAVANNA_PLATEAU);
 	}

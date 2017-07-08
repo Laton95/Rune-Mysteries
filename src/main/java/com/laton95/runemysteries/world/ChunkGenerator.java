@@ -19,6 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class ChunkGenerator implements IWorldGenerator {
 	private MapGenRuneAltar runeAltarGenerator;
+	public static AltarTracker altarTracker;
 
 	public ChunkGenerator() {
 		LogHelper.info("Finite essence generator registered successfully");
@@ -74,6 +75,7 @@ public class ChunkGenerator implements IWorldGenerator {
 	
 	@SubscribeEvent
 	public void setupGen(InitMapGenEvent event) {
+		altarTracker = new AltarTracker();
 		runeAltarGenerator = new MapGenRuneAltar();
 	}
 }

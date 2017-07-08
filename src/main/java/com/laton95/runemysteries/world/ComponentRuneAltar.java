@@ -15,12 +15,14 @@ import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
 public class ComponentRuneAltar extends WorldHelper.ModFeature {
-
+	private String name;
+	
 	public ComponentRuneAltar() {
 	}
 
-	public ComponentRuneAltar(Random rand, int x, int z) {
+	public ComponentRuneAltar(Random rand, int x, int z, String name) {
 		super(rand, x, 64, z, 12, 3, 12);
+		this.name = name;
 	}
 
 	/**
@@ -33,30 +35,6 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 		} else {
 			StructureBoundingBox structureboundingbox = this.getBoundingBox();
 			BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
-			
-			String name = "airaltar";
-			String[] genericAltarNames = { "airaltar", "mindaltar", "earthaltar", "bodyaltar", "lawaltar" };
-			String[] swampAltarNames = { "wateraltar", "bloodaltar" };
-			String[] desertAltarNames = { "firealtar", "soulaltar" };
-			
-			Biome biome = worldIn.getBiome(blockpos);
-			if (WorldGenReference.genericAltarSpawnBiomes.contains(biome)) {
-				name = genericAltarNames[randomIn.nextInt(genericAltarNames.length)];
-			} else if (WorldGenReference.swampAltarSpawnBiomes.contains(biome)) {
-				name = swampAltarNames[randomIn.nextInt(swampAltarNames.length)];
-			} else if (WorldGenReference.desertAltarSpawnBiomes.contains(biome)) {
-				name = desertAltarNames[randomIn.nextInt(desertAltarNames.length)];
-			} else if (WorldGenReference.cosmicAltarSpawnBiomes.contains(biome)) {
-				name = "cosmicaltar";
-			} else if (WorldGenReference.chaosAltarSpawnBiomes.contains(biome)) {
-				name = "chaosaltar";
-			} else if (WorldGenReference.natureAltarSpawnBiomes.contains(biome)) {
-				name = "naturealtar";
-			} else if (WorldGenReference.astralAltarSpawnBiomes.contains(biome)) {
-				name = "astralaltar";
-			} else if (WorldGenReference.deathAltarSpawnBiomes.contains(biome)) {
-				name = "deathaltar";
-			}
 
 			Template structure = WorldHelper.getTemplate(worldIn, name);
 			BlockPos structureSize = structure.getSize();
