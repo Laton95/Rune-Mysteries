@@ -7,7 +7,7 @@ import net.minecraft.init.Biomes;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 
-public class WorldGen {
+public class WorldGenReference {
 	public static LinkedList<Block> surfaceBlocks = new LinkedList<Block>();
 	public static float structureFlatnessTolerance = 0.8f;
 
@@ -20,6 +20,8 @@ public class WorldGen {
 	public static LinkedList<Biome> astralAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> natureAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> deathAltarSpawnBiomes = new LinkedList<Biome>();
+	
+	public static LinkedList<Biome> allAltarSpawnBiomes = new LinkedList<Biome>();
 
 	public static void init() {
 		setupSurfaceBlocks();
@@ -43,6 +45,15 @@ public class WorldGen {
 		setupAstralAltarSpawnBiomes();
 		setupNatureAltarSpawnBiomes();
 		setupDeathAltarSpawnBiomes();
+		
+		allAltarSpawnBiomes.addAll(genericAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(swampAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(desertAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(cosmicAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(chaosAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(astralAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(natureAltarSpawnBiomes);
+		allAltarSpawnBiomes.addAll(deathAltarSpawnBiomes);
 	}
 
 	public static void setupGenericAltarSpawnBiomes() {

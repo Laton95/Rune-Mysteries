@@ -11,6 +11,7 @@ import com.laton95.runemysteries.world.MapGenRuneAltar;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.StructureStart;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
@@ -48,7 +49,9 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeGenMap() {
-		genMap.put("Chunk Generator", new ChunkGenerator());
+		ChunkGenerator chunkGenerator = new ChunkGenerator();
+		genMap.put("Chunk Generator", chunkGenerator);
+		MinecraftForge.TERRAIN_GEN_BUS.register(chunkGenerator);
 	}
 
 	private static void makeStructureMap() {

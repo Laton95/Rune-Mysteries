@@ -2,7 +2,7 @@ package com.laton95.runemysteries.handler;
 
 import java.io.File;
 
-import com.laton95.runemysteries.reference.Config;
+import com.laton95.runemysteries.reference.ConfigReference;
 import com.laton95.runemysteries.reference.Reference;
 
 import net.minecraftforge.common.config.Configuration;
@@ -32,20 +32,20 @@ public class ConfigurationHandler {
 
 			// exampleValue = configuration.get(Configuration.CATEGORY_GENERAL,
 			// "exampleValue", true, "Example config.").getBoolean(true);
-			Config.generateFiniteEssence = configuration
+			ConfigReference.generateFiniteEssence = configuration
 					.get("World Generation", "generateFiniteEssence", true, "Generate finite essence veins in world:")
 					.getBoolean(true);
-			Config.finiteEssenceVeinSize = configuration
+			ConfigReference.finiteEssenceVeinSize = configuration
 					.get("World Generation", "finiteEssenceVeinSize", 8, "Size of finite essence veins:").getInt(8);
-			Config.finiteEssenceVeinsPerChunk = configuration.get("World Generation", "finiteEssenceVeinsPerChunk", 6,
+			ConfigReference.finiteEssenceVeinsPerChunk = configuration.get("World Generation", "finiteEssenceVeinsPerChunk", 6,
 					"Number of finite essence veins per chunk:").getInt(6);
-			Config.finiteEssenceMaxHeight = configuration
+			ConfigReference.finiteEssenceMaxHeight = configuration
 					.get("World Generation", "finiteEssenceMaxHeight", 60, "Maximum height of finite essence veins:")
 					.getInt(60);
-			Config.finiteEssenceMinHeight = configuration
+			ConfigReference.finiteEssenceMinHeight = configuration
 					.get("World Generation", "finiteEssenceMinHeight", 10, "Minimum height of finite essence veins:")
 					.getInt(10);
-			Config.generateRuneAltars = configuration
+			ConfigReference.generateRuneAltars = configuration
 					.get("World Generation", "generateRuneAltars", true, "Generate rune altars in world:")
 					.getBoolean(true);
 		} catch (Exception e) {

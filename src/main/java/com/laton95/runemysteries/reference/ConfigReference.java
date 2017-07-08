@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.reference;
 
-public class Config {
+public class ConfigReference {
 	public static boolean generateFiniteEssence;
 	public static int finiteEssenceVeinSize;
 	public static int finiteEssenceVeinsPerChunk;

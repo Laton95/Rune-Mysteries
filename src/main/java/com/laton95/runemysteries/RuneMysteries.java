@@ -5,9 +5,9 @@ import com.laton95.runemysteries.init.RecipeRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.proxy.IProxy;
 import com.laton95.runemysteries.reference.Reference;
-import com.laton95.runemysteries.reference.WorldGen;
+import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.world.RuneAltarSpawner;
+import com.laton95.runemysteries.world.ChunkGenerator;
 
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.Mod;
@@ -41,9 +41,9 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		WorldGen.init();
+		WorldGenReference.init();
 		WorldGenRegistry.registerWorldGen();
-		MinecraftForge.TERRAIN_GEN_BUS.register(new RuneAltarSpawner());
+		
 		LogHelper.info("Post-initialization complete.");
 	}
 }

@@ -3,7 +3,7 @@ package com.laton95.runemysteries.utility;
 import java.util.Random;
 
 import com.laton95.runemysteries.reference.Reference;
-import com.laton95.runemysteries.reference.WorldGen;
+import com.laton95.runemysteries.reference.WorldGenReference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -41,6 +41,7 @@ public class WorldHelper {
 		return null;
 	}
 
+	@Deprecated
 	public static BlockPos findSurface(World worldIn, int x, int z) {
 		for (int i = worldIn.getActualHeight(); i > 0; i--) {
 			IBlockState currentBlockState = worldIn.getBlockState(new BlockPos(x, i, z));
@@ -48,7 +49,7 @@ public class WorldHelper {
 			if (!currentBlock.equals(Blocks.AIR)) {
 				if (currentBlockState.getMaterial().isLiquid()) {
 					return null;
-				} else if (WorldGen.surfaceBlocks.contains(currentBlock)) {
+				} else if (WorldGenReference.surfaceBlocks.contains(currentBlock)) {
 					return new BlockPos(x, i, z);
 				} else
 					return null;
@@ -150,7 +151,7 @@ public class WorldHelper {
 		 * Calculates and offsets this structure boundingbox to average ground
 		 * level
 		 */
-		protected boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset) {
+		public boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset) {
 			if (this.horizontalPos >= 0) {
 				return true;
 			} else {
