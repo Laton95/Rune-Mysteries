@@ -21,7 +21,7 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 	}
 
 	public ComponentRuneAltar(Random rand, int x, int z, String name) {
-		super(rand, x, 64, z, 12, 3, 12);
+		super(rand, x, 64, z, 10, 3, 10);
 		this.name = name;
 	}
 
@@ -30,18 +30,14 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 	 * Mob Spawners, it closes Mineshafts at the end, it adds Fences...
 	 */
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		if (!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -1)) {
-			return false;
-		} else {
-			StructureBoundingBox structureboundingbox = this.getBoundingBox();
-			BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
+		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
 
-			Template structure = WorldHelper.getTemplate(worldIn, name);
-			BlockPos structureSize = structure.getSize();
-			PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
-			WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
-			//LogHelper.info("Generated " + name + " at: [" + blockpos.getX() + "," + blockpos.getY() + "," + blockpos.getZ() + "]");
-			return true;
-		}
+		Template structure = WorldHelper.getTemplate(worldIn, name);
+		BlockPos structureSize = structure.getSize();
+		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
+		WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
+		//LogHelper.info("Generated " + name + " at: [" + blockpos.getX() + "," + blockpos.getY() + "," + blockpos.getZ() + "]");
+		return true;
 	}
 }

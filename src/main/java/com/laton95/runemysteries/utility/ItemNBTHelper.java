@@ -6,7 +6,7 @@ package com.laton95.runemysteries.utility;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
-public class NBTHelper {
+public class ItemNBTHelper {
 	public static boolean hasTag(ItemStack itemStack, String keyName) {
 		return itemStack != null && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(keyName);
 	}

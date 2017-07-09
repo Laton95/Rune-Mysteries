@@ -9,9 +9,6 @@ import net.minecraft.init.Blocks;
 import net.minecraft.world.biome.Biome;
 
 public class WorldGenReference {
-	public static LinkedList<Block> surfaceBlocks = new LinkedList<Block>();
-	public static float structureFlatnessTolerance = 0.8f;
-
 	public static LinkedList<Biome> genericAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> swampAltarSpawnBiomes = new LinkedList<Biome>();
 	public static LinkedList<Biome> desertAltarSpawnBiomes = new LinkedList<Biome>();
@@ -25,16 +22,7 @@ public class WorldGenReference {
 	public static LinkedList<Biome> allAltarSpawnBiomes = new LinkedList<Biome>();
 
 	public static void init() {
-		setupSurfaceBlocks();
 		setupRuneAltarSpawnBiomes();
-	}
-
-	public static void setupSurfaceBlocks() {
-		surfaceBlocks.add(Blocks.SAND);
-		surfaceBlocks.add(Blocks.GRASS);
-		surfaceBlocks.add(Blocks.STONE);
-		surfaceBlocks.add(Blocks.GRAVEL);
-		surfaceBlocks.add(Blocks.DIRT);
 	}
 
 	public static void setupRuneAltarSpawnBiomes() {

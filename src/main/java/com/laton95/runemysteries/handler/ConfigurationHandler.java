@@ -48,6 +48,9 @@ public class ConfigurationHandler {
 			ConfigReference.generateRuneAltars = configuration
 					.get("World Generation", "generateRuneAltars", true, "Generate rune altars in world:")
 					.getBoolean(true);
+			ConfigReference.runeAltarRange = configuration
+					.get("World Generation", "runeAltarRange", 5000, "Maximum distance of rune altars from 0,0:")
+					.getInt(5000);
 		} catch (Exception e) {
 
 		} finally {

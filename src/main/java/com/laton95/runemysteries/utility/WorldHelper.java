@@ -5,6 +5,7 @@ import java.util.Random;
 import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGenReference;
 
+import it.unimi.dsi.fastutil.floats.Float2DoubleArrayMap;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -20,6 +21,7 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import scala.annotation.implicitNotFound;
 
 public class WorldHelper {
 
@@ -42,24 +44,7 @@ public class WorldHelper {
 		return null;
 	}
 
-	@Deprecated
-	public static BlockPos findSurface(World worldIn, int x, int z) {
-		for (int i = worldIn.getActualHeight(); i > 0; i--) {
-			IBlockState currentBlockState = worldIn.getBlockState(new BlockPos(x, i, z));
-			Block currentBlock = currentBlockState.getBlock();
-			if (!currentBlock.equals(Blocks.AIR)) {
-				if (currentBlockState.getMaterial().isLiquid()) {
-					return null;
-				} else if (WorldGenReference.surfaceBlocks.contains(currentBlock)) {
-					return new BlockPos(x, i, z);
-				} else
-					return null;
-			}
-		}
-		return null;
-	}
-
-	public static float determineFlatness(World worldIn, BlockPos position, int xSize, int ySize, int zSize) {
+	public static boolean isFlat(World worldIn, BlockPos position, int xSize, int ySize, int zSize, int airWeight, int solidWeight, float flatnessTolerance) {
 		int airBlocksBelow = 0;
 		int solidBlocksFirstLayer = 0;
 		int solidBlocksOverhead = 0;
@@ -89,17 +74,13 @@ public class WorldHelper {
 		
 
 		if (solidBlocksFirstLayer > xSize * zSize * 0.5)
-			return 0;
-		if (airBlocksBelow > xSize * zSize * 0.1)
-			return 0;
+			return false;
+		if (airBlocksBelow > xSize * zSize * 0.2)
+			return false;
 
-		int airWeight = 3;
-		int solidWeight = 1;
-		
 		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
 		
-		return 1 - ((airBlocksBelow * airWeight + solidBlocksAbove * solidWeight)
-				/ (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight));
+		return (1 - ((airBlocksBelow * airWeight + solidBlocksAbove * solidWeight) / (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight))) > flatnessTolerance;
 	}
 
 	public static boolean isNearby(ChunkPos chunkA, ChunkPos chunkB, int range) {

@@ -1,12 +1,12 @@
-Air altar: 		surface, plains				Surface gen
+Air altar: 		surface, plains, forest		Surface gen
 Mind altar: 	surface, plains, forest		Surface gen
 Water altar: 	surface, swamp				Surface gen
-Earth altar: 	surface, forest				Surface gen
+Earth altar: 	surface, plains, forest		Surface gen
 Fire altar: 	surface, desert				Surface gen
 Body altar: 	surface, plains, forest		Surface gen
 Cosmic altar: 	the end/zanaris				Custom gen
 Chaos altar: 	surface, nether				Custom gen
-Astral altar: 	surface, ??					Probably surface gen (detect islands in ocean?)
+Astral altar: 	surface, snowy biomes		Surface gen
 Nature altar: 	surface, jungle				Custom gen
 Law altar: 		surface, plains, forest		Surface gen
 Death altar: 	underground, extreme hills	Underground gen in cave (Temple of light?)
