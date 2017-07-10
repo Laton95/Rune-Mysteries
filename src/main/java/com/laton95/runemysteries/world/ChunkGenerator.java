@@ -17,17 +17,20 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import scala.reflect.internal.Trees.This;
 import scala.tools.nsc.doc.model.Public;
 
 @Mod.EventBusSubscriber
 public class ChunkGenerator implements IWorldGenerator {
-	private MapGenRuneAltar runeAltarGenerator;
-
+	private MapGenRuneAltar overworldAltarGenerator;
+	private MapGenRuneAltar netherAltarGenerator;
+	private MapGenRuneAltar endAltarGenerator;
+	
 	public ChunkGenerator() {
 		LogHelper.info("Finite essence generator registered successfully");
 		LogHelper.info("Rune altar generator registered successfully");
 	}
-
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
 			IChunkProvider chunkProvider) {
@@ -37,11 +40,8 @@ public class ChunkGenerator implements IWorldGenerator {
 			OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
 
 			// Structures
-			if (runeAltarGenerator == null) {
-				runeAltarGenerator = new MapGenRuneAltar(world);
-				runeAltarGenerator = (MapGenRuneAltar)net.minecraftforge.event.terraingen.TerrainGen.getModdedMapGen(runeAltarGenerator, net.minecraftforge.event.terraingen.InitMapGenEvent.EventType.CUSTOM);
-			}
-			runeAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+			overworldAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+			
 
 			break;
 		case NETHER:
@@ -67,9 +67,7 @@ public class ChunkGenerator implements IWorldGenerator {
 		switch (event.getWorld().provider.getDimensionType()) {
 		case OVERWORLD:
 			// Structures
-			if (runeAltarGenerator == null) {
-				//runeAltarGenerator = new MapGenRuneAltar(event.getWorld());
-			} else runeAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+			overworldAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 
 			break;
 		case NETHER:
@@ -79,5 +77,14 @@ public class ChunkGenerator implements IWorldGenerator {
 		default:
 			break;
 		}
+	}
+	
+	@SubscribeEvent
+	public void init(InitMapGenEvent event){
+		overworldAltarGenerator = new MapGenRuneAltar(dimType.OVERWORLD);
+	}
+	
+	public enum dimType {
+	    OVERWORLD, NETHER, END
 	}
 }

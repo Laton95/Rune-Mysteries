@@ -25,10 +25,6 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 		this.name = name;
 	}
 
-	/**
-	 * second Part of Structure generating, this for example places Spiderwebs,
-	 * Mob Spawners, it closes Mineshafts at the end, it adds Fences...
-	 */
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
 		StructureBoundingBox structureboundingbox = this.getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
@@ -37,7 +33,6 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 		BlockPos structureSize = structure.getSize();
 		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
-		//LogHelper.info("Generated " + name + " at: [" + blockpos.getX() + "," + blockpos.getY() + "," + blockpos.getZ() + "]");
 		return true;
 	}
 }

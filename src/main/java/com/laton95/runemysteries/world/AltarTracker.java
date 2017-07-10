@@ -7,14 +7,19 @@ import java.util.List;
 import java.util.Map;
 import java.util.Random;
 
+import javax.swing.text.html.HTMLDocument.RunElement;
+
 import com.laton95.runemysteries.reference.ConfigReference;
+import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.utility.WorldNBTHelper;
 import com.mojang.realmsclient.dto.WorldDownload;
 import com.sun.jna.platform.unix.X11;
 
 import net.minecraft.block.Block;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -22,269 +27,286 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.storage.MapStorage;
+import net.minecraft.world.storage.WorldSavedData;
+import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.common.util.Constants.NBT;
 import scala.collection.generic.BitOperations.Int;
+import scala.reflect.api.Trees.ReturnExtractor;
+import scala.sys.process.processInternal;
 
 public class AltarTracker {
-	private Map<String, BlockPos> altarLocations = new HashMap<>();
-	private Map<String, Boolean> altarPlaced = new HashMap<>();
-	private Map<String, Boolean> altarBiomeDependant = new HashMap<>();
-	private Map<String, Integer> altarRadius = new HashMap<>();
-	private Map<String, Float> altarFlatnessTolerance = new HashMap<>();
-	private Map<String, Integer> altarFailureCount = new HashMap<>();
+	protected List<RuneAltar> runeAltars = new ArrayList<>();
+	protected List<RuneAltar> generatedAltars = new ArrayList<>();
 	//Default radius an altar can spawn around the selected placement point, in chunks
-	private int defaultAltarRadius = 4;
-	private float defaultAltarFlatnessTolerance = 0.8f;
+	protected int defaultAltarRadius = 4;
+	protected float defaultAltarFlatnessTolerance = 0.8f;
+	//Minimum distance between altars, in chunks
+	protected int altarMinSpread = 10;
+	//Number of generation tries before altar placement tolerance is increased
+	public int warningFailureCount = 12;
+	//Number of generation tries before altar placement tolerance is set to maximum
+	public int panicFailureCount = 81;
+	//Number of generation tries before altar is placed on talisman right click
+	public int emergencyFailureCount = 30;
 	
-	private boolean flag;
-	private String altar;
-	private List<String> altars = new ArrayList<>();
+	protected World world;
+	protected boolean altarsGenerated = false;
 	
-	public AltarTracker() {
-		altarPlaced.put("astralaltar", false);
-		altarPlaced.put("deathaltar", false);
-		altarPlaced.put("bodyaltar", false);
-		altarPlaced.put("bloodaltar", false);
-		altarPlaced.put("airaltar", false);
-		altarPlaced.put("mindaltar", false);
-		altarPlaced.put("earthaltar", false);
-		altarPlaced.put("wateraltar", false);
-		altarPlaced.put("soulaltar", false);
-		altarPlaced.put("lawaltar", false);
-		altarPlaced.put("firealtar", false);
-		altarPlaced.put("naturealtar", false);
-		
-		altarBiomeDependant.put("astralaltar", true);
-		altarBiomeDependant.put("deathaltar", true);
-		altarBiomeDependant.put("bodyaltar", true);
-		altarBiomeDependant.put("bloodaltar", true);
-		altarBiomeDependant.put("airaltar", true);
-		altarBiomeDependant.put("mindaltar", true);
-		altarBiomeDependant.put("earthaltar", true);
-		altarBiomeDependant.put("wateraltar", true);
-		altarBiomeDependant.put("soulaltar", true);
-		altarBiomeDependant.put("lawaltar", true);
-		altarBiomeDependant.put("firealtar", true);
-		altarBiomeDependant.put("naturealtar", true);
-		
-		altarRadius.put("astralaltar", defaultAltarRadius);
-		altarRadius.put("deathaltar", defaultAltarRadius);
-		altarRadius.put("bodyaltar", defaultAltarRadius);
-		altarRadius.put("bloodaltar", defaultAltarRadius);
-		altarRadius.put("airaltar", defaultAltarRadius);
-		altarRadius.put("mindaltar", defaultAltarRadius);
-		altarRadius.put("earthaltar", defaultAltarRadius);
-		altarRadius.put("wateraltar", defaultAltarRadius);
-		altarRadius.put("soulaltar", defaultAltarRadius);
-		altarRadius.put("lawaltar", defaultAltarRadius);
-		altarRadius.put("firealtar", defaultAltarRadius);
-		altarRadius.put("naturealtar", defaultAltarRadius);
-		
-		altarFlatnessTolerance.put("astralaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("deathaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("bodyaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("bloodaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("airaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("mindaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("earthaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("wateraltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("soulaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("lawaltar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("firealtar", defaultAltarFlatnessTolerance);
-		altarFlatnessTolerance.put("naturealtar", defaultAltarFlatnessTolerance);
-		
-		altarFailureCount.put("astralaltar", 0);
-		altarFailureCount.put("deathaltar", 0);
-		altarFailureCount.put("bodyaltar", 0);
-		altarFailureCount.put("bloodaltar", 0);
-		altarFailureCount.put("airaltar", 0);
-		altarFailureCount.put("mindaltar", 0);
-		altarFailureCount.put("earthaltar", 0);
-		altarFailureCount.put("wateraltar", 0);
-		altarFailureCount.put("soulaltar", 0);
-		altarFailureCount.put("lawaltar", 0);
-		altarFailureCount.put("firealtar", 0);
-		altarFailureCount.put("naturealtar", 0);
+	public AltarTracker(World world){
+		this.world = world;
 	}
 	
-	public void printAltarChunks() {
-		altarLocations.forEach((k, v) -> {
-			ChunkPos vPos = new ChunkPos(v);
-			LogHelper.info(k + " at " + vPos.getXStart() + "," + vPos.getZStart());
-		});
-	}
-	
-	public void printAltar(String altar) {
-		BlockPos pos = altarLocations.get(altar);
-		LogHelper.info(altar + " at " + pos.getX() + "," + pos.getY() + "," + pos.getZ());
-	}
-	
-	public boolean isCloseToChunks(ChunkPos pos){
-		flag = false;
-		altarLocations.forEach((k, v) -> {
-			ChunkPos vPos = new ChunkPos(v);
-			if (WorldHelper.isNearby(vPos, pos, getAltarPlacementRadius(k))) {
-				flag = true;
+	public boolean inGenerationRange(ChunkPos pos){
+		for (RuneAltar altar : generatedAltars) {
+			if (WorldHelper.isNearby(pos, new ChunkPos(altar.getPosition()), altar.getPlacementRadius())) {
+				return true;
 			}
-		});
-		return flag;
+		}
+		return false;
 	}
 	
-	public String getAltar(ChunkPos pos) {
-		altar = "";
-		altars.clear();
-		altarLocations.forEach((k, v) -> {
-			ChunkPos vPos = new ChunkPos(v);
-			if (WorldHelper.isNearby(pos, vPos, getAltarPlacementRadius(k))) {
-				altars.add(k);
+	public RuneAltar getAltar(ChunkPos pos) {
+		List<RuneAltar> nearbyAltars = new ArrayList<>();
+		for (RuneAltar altar : generatedAltars) {
+			ChunkPos pos2 = new ChunkPos(altar.getPosition());
+			if (WorldHelper.isNearby(pos, pos2, altar.getPlacementRadius())) {
+				nearbyAltars.add(altar);
 			}
-		});
-		altar = altars.get(new Random().nextInt(altars.size()));
+		}
+		RuneAltar altar = nearbyAltars.get(new Random().nextInt(nearbyAltars.size()));
 		return altar;
 	}
 	
-	public void addAltar(String altar, ChunkPos chunkPos){
-		BlockPos pos = new BlockPos(chunkPos.getXStart(), 64, chunkPos.getZStart());
-		altarLocations.put(altar, pos);
+	public RuneAltar getAltar(String name) {
+		for (RuneAltar altar : generatedAltars) {
+			if (altar.getName().equals(name)) {
+				return altar;
+			}
+		}
+		return null;
 	}
 	
-	public void updateAltarPosition(String altar, BlockPos pos) {
-		altarLocations.put(altar, pos);
-	}
-	
-	public boolean isAltarPlaced(String altar) {
-		return altarPlaced.get(altar);
-	}
-	
-	public void setAltarPlaced(String altar, boolean placed) {
-		altarPlaced.put(altar, placed);
-	}
-	
-	public int getAltarPlacementRadius(String altar) {
-		return altarRadius.get(altar);
-	}
-	
-	public void setAltarPlacementRadius(String altar, int radius) {
-		altarRadius.put(altar, radius);
-	}
-	
-	public float getAltarFlatnessTolerance(String altar) {
-		return altarFlatnessTolerance.get(altar);
-	}
-	
-	public void setAltarFlatnessTolerance(String altar, Float tolerance) {
-		altarFlatnessTolerance.put(altar, tolerance);
-	}
-	
-	public boolean getBiomeDependancy(String altar) {
-		return altarBiomeDependant.get(altar);
-	}
-	
-	public void setBiomeDependancy(String altar, boolean dependancy) {
-		altarBiomeDependant.put(altar, dependancy);
-	}
-	
-	public void incrementFailureCount(String altar) {
-		altarFailureCount.put(altar, altarFailureCount.get(altar) + 1);
-	}	
-	
-	public int getFailureCount(String altar) {
-		return altarFailureCount.get(altar);
+	public void altarGenerated(RuneAltar altar) {
+		runeAltars.remove(altar);
 	}
 	
 	public void findLocations(World world) {
-		LinkedList<Biome> outStandingAltarSpawnBiomes = new LinkedList<Biome>();
-		outStandingAltarSpawnBiomes.addAll(WorldGenReference.allAltarSpawnBiomes);
-		outStandingAltarSpawnBiomes.removeAll(WorldGenReference.chaosAltarSpawnBiomes);
-		outStandingAltarSpawnBiomes.removeAll(WorldGenReference.cosmicAltarSpawnBiomes);
+		this.world = world;
 		
-		List<String> genericAltars = new ArrayList<>();
-		genericAltars.add("airaltar");
-		genericAltars.add("mindaltar");
-		genericAltars.add("earthaltar");
-		genericAltars.add("bodyaltar");
-		genericAltars.add("lawaltar");
+		if (world == null) {
+			LogHelper.info("Something went wrong, world is null");
+		}
 		
-		List<String> swampAltars = new ArrayList<>();
-		swampAltars.add("wateraltar");
-		swampAltars.add("bloodaltar");
+		WorldNBTHelper worldNBTHelper = WorldNBTHelper.get(world);
+		MapStorage storage = world.getMapStorage();
+		WorldSavedData data = storage.getOrLoadData(worldNBTHelper.getClass(), Reference.MOD_ID);
+		if (data == null) {
+			storage.setData(Reference.MOD_ID, worldNBTHelper);
+			data = storage.getOrLoadData(worldNBTHelper.getClass(), Reference.MOD_ID);
+		}
+		NBTTagCompound nbt = new NBTTagCompound();
+		data.readFromNBT(nbt);
+		altarsGenerated  = nbt.getBoolean("altarsGenerated");
 		
-		List<String> desertAltars = new ArrayList<>();
-		desertAltars.add("firealtar");
-		desertAltars.add("soulaltar");
+		if (!altarsGenerated) {
+			LogHelper.info("Finding locations");
+			nbt.setBoolean("altarsGenerated", true);
+			data.writeToNBT(nbt);
+			data.markDirty();
+			//save locations to nbt
+		} else {
+			//read locations from nbt
+		}
 		
-		List<String> outStandingAltars = new ArrayList<>();
-		outStandingAltars.addAll(genericAltars);
-		outStandingAltars.addAll(swampAltars);
-		outStandingAltars.addAll(desertAltars);
-		outStandingAltars.add("naturealtar");
-		outStandingAltars.add("astralaltar");
-		outStandingAltars.add("deathaltar");
-		
+		List<RuneAltar> outStandingAltars = new LinkedList<>();
+		List<BiomeDictionary.Type> allowedBiomes = new LinkedList<>();
 		Random random = new Random();
-		random.setSeed(world.getSeed() * 1337);
 		
-		while (!outStandingAltarSpawnBiomes.isEmpty()) {
-			BlockPos blockpos = world.getBiomeProvider().findBiomePosition(0,0, ConfigReference.runeAltarRange, outStandingAltarSpawnBiomes, random);
+		if (!altarsGenerated) {
+			outStandingAltars.addAll(runeAltars);
+			random.setSeed(world.getSeed() * 2845);
+			for (RuneAltar altar : outStandingAltars) {
+				allowedBiomes.addAll(altar.getBiomes());
+			}
+		}
+		
+		while (!outStandingAltars.isEmpty()) {
+			List<BiomeDictionary.Type> outStandingBiomes = new LinkedList<>();
+			for (RuneAltar altar : outStandingAltars) {
+				outStandingBiomes.addAll(altar.getBiomes());
+			}
 			
-			if (blockpos != null) {
-				Biome biome = world.getBiome(blockpos);
-				
-				if (WorldGenReference.genericAltarSpawnBiomes.contains(biome)) {
-					addAltar(genericAltars.get(0), new ChunkPos(blockpos));
-					LogHelper.info("Found " + genericAltars.get(0) + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(genericAltars.get(0));
-					genericAltars.remove(0);
-					if (genericAltars.isEmpty()) {
-						outStandingAltarSpawnBiomes.removeAll(WorldGenReference.genericAltarSpawnBiomes);
+			BlockPos pos = findBiomePosition(outStandingBiomes, random, ConfigReference.runeAltarTries, ConfigReference.runeAltarRange/16);
+			
+			if (pos != null) {
+				for (RuneAltar altar : outStandingAltars) {
+					if (altar.isBiomeViable(world.getBiome(pos))) {
+						altar.setPosition(pos);
+						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
+						outStandingAltars.remove(altar);
+						generatedAltars.add(altar);
+						break;
 					}
-				} else if (WorldGenReference.swampAltarSpawnBiomes.contains(biome)) {
-					addAltar(swampAltars.get(0), new ChunkPos(blockpos));
-					LogHelper.info("Found " + swampAltars.get(0) + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(swampAltars.get(0));
-					swampAltars.remove(0);
-					if (swampAltars.isEmpty()) {
-						outStandingAltarSpawnBiomes.removeAll(WorldGenReference.swampAltarSpawnBiomes);
-					}
-				} else if (WorldGenReference.desertAltarSpawnBiomes.contains(biome)) {
-					addAltar(desertAltars.get(0), new ChunkPos(blockpos));
-					LogHelper.info("Found " + desertAltars.get(0) + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(desertAltars.get(0));
-					desertAltars.remove(0);
-					if (desertAltars.isEmpty()) {
-						outStandingAltarSpawnBiomes.removeAll(WorldGenReference.desertAltarSpawnBiomes);
-					}
-				} else if (WorldGenReference.natureAltarSpawnBiomes.contains(biome)) {
-					String name = "naturealtar";
-					LogHelper.info("Found " + name + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(name);
-					addAltar(name, new ChunkPos(blockpos));
-					outStandingAltarSpawnBiomes.removeAll(WorldGenReference.natureAltarSpawnBiomes);
-				} else if (WorldGenReference.astralAltarSpawnBiomes.contains(biome)) {
-					String name = "astralaltar";
-					LogHelper.info("Found " + name + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(name);
-					addAltar(name, new ChunkPos(blockpos));
-					outStandingAltarSpawnBiomes.removeAll(WorldGenReference.astralAltarSpawnBiomes);
-				} else if (WorldGenReference.deathAltarSpawnBiomes.contains(biome)) {
-					String name = "deathaltar";
-					LogHelper.info("Found " + name + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-					outStandingAltars.remove(name);
-					addAltar(name, new ChunkPos(blockpos));
-					outStandingAltarSpawnBiomes.removeAll(WorldGenReference.deathAltarSpawnBiomes);
 				}
 			} else {
-				LogHelper.info("Could not find biome, placing " + outStandingAltars.get(0) + " randomly");
-				blockpos = world.getBiomeProvider().findBiomePosition(0,0, ConfigReference.runeAltarRange, WorldGenReference.allAltarSpawnBiomes, world.rand);
-				String name = outStandingAltars.get(0);
-				Biome biome = world.getBiomeProvider().getBiome(blockpos);
-				LogHelper.info("Found " + name + " in " + biome.getBiomeName() + " at " + blockpos.getX() + "," + blockpos.getZ());
-				outStandingAltars.remove(name);
-				addAltar(name, new ChunkPos(blockpos));
-				
-				if(outStandingAltars.isEmpty()) {
-					outStandingAltarSpawnBiomes.clear();
+				for (RuneAltar altar : outStandingAltars) {
+					LogHelper.info("Could not find biome, placing " + altar.getName() + " randomly");
+					pos = findBiomePosition(allowedBiomes, random, ConfigReference.runeAltarTries, ConfigReference.runeAltarRange/16);
+					if (pos != null) {
+						altar.setPosition(pos);
+						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
+						outStandingAltars.remove(altar);
+						generatedAltars.add(altar);
+					} else {
+						LogHelper.info("Unable to find compadible biome, but this altar is going down someplace goddammit!");
+						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random, ConfigReference.runeAltarTries, ConfigReference.runeAltarRange/16);
+						altar.setPosition(pos);
+						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
+						outStandingAltars.remove(altar);
+						generatedAltars.add(altar);
+					}
 				}
 			}
 		}
+		
+		altarsGenerated = true;
+	}
+	
+	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius) {
+		for (int i = 0; i < attempts; i++) {
+			ChunkPos pos = new ChunkPos(rand.nextInt(radius*2)-radius, rand.nextInt(radius*2)-radius);
+			BlockPos pos2 = new BlockPos(pos.getXStart(), 0, pos.getZStart());
+			Biome biome = world.getBiome(pos2);
+			if (!biomes.isEmpty()) {
+				for (BiomeDictionary.Type type : biomes) {
+					if (BiomeDictionary.hasType(biome, type)) {
+						return pos2;
+					}
+				}
+			} else return pos2;
+		}
+		return null;
+	}
+
+	@Override
+	public String toString() {
+		int placed = 0;
+		int total = 0;
+		for (RuneAltar altar : runeAltars) {
+			total++;
+			if (altar.isPlaced()) {
+				placed++;
+			}
+		}
+		
+		return placed + "/" + total;
+	}
+	
+	public class RuneAltar {
+		private final String name;
+		private boolean placed;
+		private boolean biomeDependant;
+		private int placementRadius;
+		private Float flatnessTolerance;
+		private int failureCount;
+		private BlockPos position;
+		private List<BiomeDictionary.Type> biomes;
+		private Type type;
+		
+		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes, Type type) {
+			this.name = name;
+			this.placed = false;
+			this.biomeDependant = true;
+			this.placementRadius = placementRadius;
+			this.flatnessTolerance = flatnessTolerance;
+			this.failureCount = 0;
+			this.biomes = biomes;
+			this.type = type;
+		}
+
+		public boolean isPlaced() {
+			return placed;
+		}
+
+		public void setPlaced(boolean placed) {
+			this.placed = placed;
+		}
+
+		public boolean isBiomeDependant() {
+			return biomeDependant;
+		}
+
+		public void setBiomeDependant(boolean biomeDependant) {
+			this.biomeDependant = biomeDependant;
+		}
+
+		public int getPlacementRadius() {
+			return placementRadius;
+		}
+
+		public void setPlacementRadius(int placementRadius) {
+			this.placementRadius = placementRadius;
+		}
+		
+		public void incrementPlacementRadius(int radius) {
+			this.placementRadius += radius;
+		}
+
+		public Float getFlatnessTolerance() {
+			return flatnessTolerance;
+		}
+
+		public void setFlatnessTolerance(Float flatnessTolerance) {
+			this.flatnessTolerance = flatnessTolerance;
+		}
+		
+		public void decrementFlatnessTolerance(Float tolerance) {
+			this.flatnessTolerance -= tolerance;
+		}
+
+		public int getFailureCount() {
+			return failureCount;
+		}
+
+		public void incrementFailureCount(int count) {
+			this.failureCount += count;
+		}
+
+		public String getName() {
+			return name;
+		}
+
+		public BlockPos getPosition() {
+			return position;
+		}
+
+		public void setPosition(BlockPos position) {
+			this.position = position;
+		}
+		
+		public List<BiomeDictionary.Type> getBiomes() {
+			return biomes;
+		}
+		
+		public boolean isBiomeViable(Biome biome) {
+			for (BiomeDictionary.Type type : biomes) {
+				if (BiomeDictionary.hasType(biome, type)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		@Override
+		public String toString() {
+			return name + " at " + position;
+		}
+		
+		
+	}
+
+	public enum Type {
+	    SURFACE, UNDERGROUND, SOUL, NETHER, END
 	}
 }

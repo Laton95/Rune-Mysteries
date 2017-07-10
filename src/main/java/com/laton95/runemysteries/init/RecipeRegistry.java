@@ -12,11 +12,16 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.common.crafting.IRecipeFactory;
 import net.minecraftforge.common.crafting.JsonContext;
+import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
+@Mod.EventBusSubscriber
 public class RecipeRegistry {
 	private static Map<String, ResourceLocation> recipeMap = new HashMap<String, ResourceLocation>();
-
-	public static void registerRecipes() {
+	
+	@SubscribeEvent
+	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 		LogHelper.info("Registering recipes...");
 		makeRecipeList();
 		recipeMap.forEach((k, v) -> {
@@ -34,5 +39,6 @@ public class RecipeRegistry {
 
 	private static void makeRecipeList() {
 		recipeMap.put("Ruin block", new ResourceLocation(Reference.MOD_ID + ":ruin_block.json"));
+		recipeMap.put("Temple block", new ResourceLocation(Reference.MOD_ID + ":temple_block.json"));
 	}
 }

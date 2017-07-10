@@ -51,6 +51,9 @@ public class ConfigurationHandler {
 			ConfigReference.runeAltarRange = configuration
 					.get("World Generation", "runeAltarRange", 5000, "Maximum distance of rune altars from 0,0:")
 					.getInt(5000);
+			ConfigReference.runeAltarTries = configuration
+					.get("World Generation", "runeAltarTries", 200, "Number of chunks the world generator searches to find the correct biome for rune altars, insanely high numbers will probably have an impact on performance at world creation:")
+					.getInt(200);
 		} catch (Exception e) {
 
 		} finally {

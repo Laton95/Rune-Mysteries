@@ -71,11 +71,9 @@ public class WorldHelper {
 			}
 		}
 
-		
-
-		if (solidBlocksFirstLayer > xSize * zSize * 0.5)
+		if (solidBlocksFirstLayer > xSize * zSize * (1 - flatnessTolerance/2))
 			return false;
-		if (airBlocksBelow > xSize * zSize * 0.2)
+		if (airBlocksBelow > xSize * zSize * (1 - flatnessTolerance))
 			return false;
 
 		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
@@ -87,7 +85,7 @@ public class WorldHelper {
 		int x = Math.abs(chunkA.x - chunkB.x);
 		int z = Math.abs(chunkA.z - chunkB.z);
 		
-		if (x < range && z < range) {
+		if (Math.max(z, x) < range) {
 			return true;
 		} else return false;
 	}

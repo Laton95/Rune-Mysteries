@@ -35,7 +35,6 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		RecipeRegistry.registerRecipes();
 		LogHelper.info("Initialization complete.");
 	}
 
@@ -43,7 +42,6 @@ public class RuneMysteries {
 	public void postInit(FMLPostInitializationEvent event) {
 		WorldGenReference.init();
 		WorldGenRegistry.registerWorldGen();
-		
 		LogHelper.info("Post-initialization complete.");
 	}
 }

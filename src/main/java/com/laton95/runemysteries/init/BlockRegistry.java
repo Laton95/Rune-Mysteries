@@ -23,6 +23,7 @@ public class BlockRegistry {
 	public static RMModBlock runeEssenceFinite = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f,
 			"pickaxe", 1, true, ItemRegistry.runeEssence);
 	public static RMModBlock ruinBlock = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static RMModBlock templeBlock = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 
 	// Tile Entities
 	public static BlockRuneEssence runeEssence = new BlockRuneEssence();
@@ -60,6 +61,7 @@ public class BlockRegistry {
 		// Blocks
 		blockList.add(runeEssenceFinite);
 		blockList.add(ruinBlock);
+		blockList.add(templeBlock);
 
 		// Tile Entities
 		blockList.add(runeEssence);

@@ -7,7 +7,7 @@ Body altar: 	surface, plains, forest		Surface gen
 Cosmic altar: 	the end/zanaris				Custom gen
 Chaos altar: 	surface, nether				Custom gen
 Astral altar: 	surface, snowy biomes		Surface gen
-Nature altar: 	surface, jungle				Custom gen
+Nature altar: 	surface, jungle				Surface gen
 Law altar: 		surface, plains, forest		Surface gen
 Death altar: 	underground, extreme hills	Underground gen in cave (Temple of light?)
 Blood altar: 	underground, swamp			Underground gen in cave

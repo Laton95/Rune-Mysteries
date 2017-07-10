@@ -36,6 +36,7 @@ tile.runemysteries:soul_Altar_Block.name=Soul Altar
 tile.runemysteries:water_Altar_Block.name=Water Altar
 tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
 tile.runemysteries:ruin_Block.name=Ruined Stone
+tile.runemysteries:temple_Block.name=Temple Brick
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries
