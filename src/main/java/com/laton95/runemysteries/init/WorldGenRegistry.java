@@ -19,6 +19,7 @@ public class WorldGenRegistry {
 	private static Map<String, IWorldGenerator> genMap = new HashMap<String, IWorldGenerator>();
 	private static Map<String, Class<? extends StructureStart>> structureMap = new HashMap<String, Class<? extends StructureStart>>();
 	private static Map<String, Class<? extends StructureComponent>> componentMap = new HashMap<String, Class<? extends StructureComponent>>();
+	public static ChunkGenerator chunkGenerator;
 
 	public static void registerWorldGen() {
 
@@ -49,16 +50,17 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeGenMap() {
-		ChunkGenerator chunkGenerator = new ChunkGenerator();
+		chunkGenerator = new ChunkGenerator();
 		genMap.put("Chunk Generator", chunkGenerator);
+		MinecraftForge.EVENT_BUS.register(chunkGenerator);
 		MinecraftForge.TERRAIN_GEN_BUS.register(chunkGenerator);
 	}
 
 	private static void makeStructureMap() {
-		structureMap.put("Rune Altar Generator", MapGenRuneAltar.Start.class);
+		structureMap.put("RuneAltar", MapGenRuneAltar.Start.class);
 	}
 
 	private static void makeComponentMap() {
-		componentMap.put("Rune Altar Component", ComponentRuneAltar.class);
+		componentMap.put("RuneAltar", ComponentRuneAltar.class);
 	}
 }

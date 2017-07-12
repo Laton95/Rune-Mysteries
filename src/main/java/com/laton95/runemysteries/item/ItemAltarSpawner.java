@@ -21,7 +21,7 @@ public class ItemAltarSpawner extends RMModItem {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack spawner = playerIn.getHeldItem(handIn);
 		
-		Template structure = WorldHelper.getTemplate(worldIn, "runealtar");
+		Template structure = WorldHelper.getTemplate(worldIn, "stone_circle");
 		if (structure != null) {
 			BlockPos pos = playerIn.getPosition();
 			BlockPos pos2 = new BlockPos(pos.getX(), pos.getY()-1, pos.getZ());

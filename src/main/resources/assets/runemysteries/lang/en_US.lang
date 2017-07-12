@@ -16,6 +16,35 @@ item.runemysteries:soul_Rune.name=Soul Rune
 item.runemysteries:water_Rune.name=Water Rune
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:altar_Spawner.name=Debug Altar Spawner
+item.runemysteries:air_talisman.name=Air Talisman
+item.runemysteries:astral_talisman.name=Astral Talisman
+item.runemysteries:blood_talisman.name=Blood Talisman
+item.runemysteries:body_talisman.name=Body Talisman
+item.runemysteries:chaos_talisman.name=Chaos Talisman
+item.runemysteries:cosmic_talisman.name=Cosmic Talisman
+item.runemysteries:death_talisman.name=Death Talisman
+item.runemysteries:earth_talisman.name=Earth Talisman
+item.runemysteries:fire_talisman.name=Fire Talisman
+item.runemysteries:law_talisman.name=Law Talisman
+item.runemysteries:mind_talisman.name=Mind Talisman
+item.runemysteries:nature_talisman.name=Nature Talisman
+item.runemysteries:soul_talisman.name=Soul Talisman
+item.runemysteries:water_talisman.name=Water Talisman
+
+item.runemysteries.talisman.pull.north=The talisman pulls to the North.
+item.runemysteries.talisman.pull.northEast=The talisman pulls to the North-East.
+item.runemysteries.talisman.pull.east=The talisman pulls to the East.
+item.runemysteries.talisman.pull.southEast=The talisman pulls to the South-East.
+item.runemysteries.talisman.pull.south=The talisman pulls to the South.
+item.runemysteries.talisman.pull.southWest=The talisman pulls to the South-West.
+item.runemysteries.talisman.pull.west=The talisman pulls to the West.
+item.runemysteries.talisman.pull.northWest=The talisman pulls to the North-West.
+item.runemysteries.talisman.pull.up=The talisman pulls upwards.
+item.runemysteries.talisman.pull.down=The talisman pulls downwards.
+item.runemysteries.talisman.pull.unknown=The talisman is unresponsive.
+item.runemysteries.talisman.pull.nearby=The talisman pulls toward the altar stone.
+
+item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence

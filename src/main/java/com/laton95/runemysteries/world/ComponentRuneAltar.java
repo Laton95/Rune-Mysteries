@@ -28,11 +28,13 @@ public class ComponentRuneAltar extends WorldHelper.ModFeature {
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
 		StructureBoundingBox structureboundingbox = this.getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
-
-		Template structure = WorldHelper.getTemplate(worldIn, name);
-		BlockPos structureSize = structure.getSize();
+		
+		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
+		Template altar = WorldHelper.getTemplate(worldIn, name);
+		BlockPos structureSize = altar.getSize();
 		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
-		WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
+		WorldHelper.loadStructure(blockpos, worldIn, circle, settings);
+		WorldHelper.loadStructure(blockpos, worldIn, altar, settings);
 		return true;
 	}
 }

@@ -13,10 +13,15 @@ import net.minecraft.world.gen.structure.MapGenStronghold;
 import net.minecraftforge.event.terraingen.ChunkGeneratorEvent;
 import net.minecraftforge.event.terraingen.InitMapGenEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
+import net.minecraftforge.event.world.ChunkDataEvent;
+import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.common.Mod.EventBusSubscriber;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.common.gameevent.TickEvent;
+import scala.reflect.internal.Trees.Return;
 import scala.reflect.internal.Trees.This;
 import scala.tools.nsc.doc.model.Public;
 
@@ -40,7 +45,10 @@ public class ChunkGenerator implements IWorldGenerator {
 			OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
 
 			// Structures
-			overworldAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+			if (overworldAltarGenerator != null) {
+				overworldAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+			}
+			
 			
 
 			break;
@@ -80,11 +88,50 @@ public class ChunkGenerator implements IWorldGenerator {
 	}
 	
 	@SubscribeEvent
-	public void init(InitMapGenEvent event){
-		overworldAltarGenerator = new MapGenRuneAltar(dimType.OVERWORLD);
+	public void start(WorldEvent.Load event){
+		switch (event.getWorld().provider.getDimensionType()) {
+		case OVERWORLD:
+			if (event.getWorld() != null && overworldAltarGenerator == null) {
+				LogHelper.info("Generator loaded");
+				overworldAltarGenerator = new MapGenRuneAltar(dimType.OVERWORLD, event.getWorld());
+			}
+			
+			break;
+		case NETHER:
+			break;
+		case THE_END:
+			break;
+		}
+	}
+	
+	@SubscribeEvent
+	public void end(WorldEvent.Unload event){
+		switch (event.getWorld().provider.getDimensionType()) {
+		case OVERWORLD:
+			LogHelper.info("Generator unloaded");
+			overworldAltarGenerator = null;
+			break;
+		case NETHER:
+			break;
+		case THE_END:
+			break;
+		}
 	}
 	
 	public enum dimType {
 	    OVERWORLD, NETHER, END
+	}
+	
+	public MapGenRuneAltar getAltarGenerator(dimType type) {
+		switch (type) {
+		case OVERWORLD:
+			return overworldAltarGenerator;
+		case NETHER:
+			return netherAltarGenerator;
+		case END:
+			return endAltarGenerator;
+		default:
+			return null;
+		}
 	}
 }

@@ -5,7 +5,9 @@ import java.util.Random;
 import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGenReference;
 
+import io.netty.handler.codec.http2.Http2FrameLogger.Direction;
 import it.unimi.dsi.fastutil.floats.Float2DoubleArrayMap;
+import jline.internal.Log;
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
@@ -88,6 +90,82 @@ public class WorldHelper {
 		if (Math.max(z, x) < range) {
 			return true;
 		} else return false;
+	}
+	
+	public static boolean isNearby(BlockPos blockA, BlockPos blockB, int range) {
+		int x = Math.abs(blockA.getX() - blockB.getX());
+		int z = Math.abs(blockA.getZ() - blockB.getZ());
+		int y = Math.abs(blockA.getY() - blockB.getY());
+		
+		if (Math.max(Math.max(z, x),y) < range) {
+			return true;
+		} else return false;
+	}
+	
+	public static Direction getDirection(BlockPos from, BlockPos too) {
+		int x = from.getX() - too.getX(); //East/West
+		int y = from.getY() - too.getY(); //Up/Down
+		int z = from.getZ() - too.getZ(); //North/South
+		
+		double horizontalTheta = Math.atan(Math.abs((double)x/z));
+		double verticalXTheta = Math.atan(Math.abs((double)x/y));
+		double verticalZTheta = Math.atan(Math.abs((double)z/y));
+		
+		if (Math.max(verticalXTheta, verticalZTheta) < 0.04*Math.PI) {
+			if (y < 0) {
+				return Direction.UP;
+			} else return Direction.DOWN;
+		}
+		if (z == 0) {
+			if (x < 0) {
+				return Direction.EAST;
+			} else return Direction.WEST;
+		}
+		if (x == 0) {
+			if (z < 0) {
+				return Direction.SOUTH;
+			} else return Direction.NORTH;
+		}
+		if (z > 0 && x > 0) {
+			//North-West quadrant
+			if (horizontalTheta < 0.125*Math.PI) {
+				return Direction.NORTH;
+			} else if (horizontalTheta < 0.365*Math.PI) {
+				return Direction.NORTH_WEST;
+			} else {
+				return Direction.WEST;
+			}
+		}
+		if (z > 0 && x < 0) {
+			//North-East quadrant
+			if (horizontalTheta < 0.125*Math.PI) {
+				return Direction.NORTH;
+			} else if (horizontalTheta < 0.365*Math.PI) {
+				return Direction.NORTH_EAST;
+			} else return Direction.EAST;
+		}
+		if (z < 0 && x > 0) {
+			//South-West quadrant
+			if (horizontalTheta < 0.125*Math.PI) {
+				return Direction.SOUTH;
+			} else if (horizontalTheta < 0.365*Math.PI) {
+				return Direction.SOUTH_WEST;
+			} else return Direction.WEST;
+		}
+		if (z < 0 && x < 0) {
+			//South-East quadrant
+			if (horizontalTheta < 0.125*Math.PI) {
+				return Direction.SOUTH;
+			} else if (horizontalTheta < 0.365*Math.PI) {
+				return Direction.SOUTH_EAST;
+			} else return Direction.EAST;
+		}
+		
+		return Direction.UNKNOWN;
+	}
+	
+	public enum Direction {
+	    UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, UNKNOWN
 	}
 	
 	public abstract static class ModFeature extends StructureComponent {

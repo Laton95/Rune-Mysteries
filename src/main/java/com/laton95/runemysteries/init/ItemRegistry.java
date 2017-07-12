@@ -5,8 +5,10 @@ import java.util.ArrayList;
 import com.laton95.runemysteries.item.ItemAltarSpawner;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemSpellbook;
+import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.world.ChunkGenerator;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -37,6 +39,20 @@ public class ItemRegistry {
 	public static RMModItem runeEssence = new RMModItem("rune_Essence", true);
 	public static ItemSpellbook spellbook = new ItemSpellbook();
 	public static ItemAltarSpawner altarSpawner = new ItemAltarSpawner();
+	public static ItemTalisman airTalisman = new ItemTalisman("air_talisman", "air_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman astralTalisman = new ItemTalisman("astral_talisman", "astral_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman bloodTalisman = new ItemTalisman("blood_talisman", "blood_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman bodyTalisman = new ItemTalisman("body_talisman", "body_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman chaosTalisman = new ItemTalisman("chaos_talisman", "chaos_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman cosmicTalisman = new ItemTalisman("cosmic_talisman", "cosmic_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman deathTalisman = new ItemTalisman("death_talisman", "death_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman earthTalisman = new ItemTalisman("earth_talisman", "earth_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman fireTalisman = new ItemTalisman("fire_talisman", "fire_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman lawTalisman = new ItemTalisman("law_talisman", "law_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman mindTalisman = new ItemTalisman("mind_talisman", "mind_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman natureTalisman = new ItemTalisman("nature_talisman", "nature_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman soulTalisman = new ItemTalisman("soul_talisman", "soul_altar", ChunkGenerator.dimType.OVERWORLD);
+	public static ItemTalisman waterTalisman = new ItemTalisman("water_talisman", "water_altar", ChunkGenerator.dimType.OVERWORLD);
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -67,8 +83,26 @@ public class ItemRegistry {
 		itemList.add(soulRune);
 		itemList.add(waterRune);
 		itemList.add(runeEssence);
+		
+		itemList.add(airTalisman);
+		itemList.add(astralTalisman);
+		itemList.add(bloodTalisman);
+		itemList.add(bodyTalisman);
+		itemList.add(chaosTalisman);
+		itemList.add(cosmicTalisman);
+		itemList.add(deathTalisman);
+		itemList.add(earthTalisman);
+		itemList.add(fireTalisman);
+		itemList.add(lawTalisman);
+		itemList.add(mindTalisman);
+		itemList.add(natureTalisman);
+		itemList.add(soulTalisman);
+		itemList.add(waterTalisman);
+		
 		itemList.add(spellbook);
 		itemList.add(altarSpawner);
+		
+		
 	}
 
 	public static void addItemBlock(ItemBlock itemBlock) {

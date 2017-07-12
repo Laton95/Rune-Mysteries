@@ -14,7 +14,7 @@ import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
-import com.laton95.runemysteries.utility.WorldNBTHelper;
+import com.laton95.runemysteries.utility.AltarNBTHelper;
 import com.mojang.realmsclient.dto.WorldDownload;
 import com.sun.jna.platform.unix.X11;
 
@@ -47,11 +47,9 @@ public class AltarTracker {
 	public int warningFailureCount = 12;
 	//Number of generation tries before altar placement tolerance is set to maximum
 	public int panicFailureCount = 81;
-	//Number of generation tries before altar is placed on talisman right click
-	public int emergencyFailureCount = 30;
 	
 	protected World world;
-	protected boolean altarsGenerated = false;
+	protected AltarNBTHelper altarNBTHelper;
 	
 	public AltarTracker(World world){
 		this.world = world;
@@ -93,45 +91,32 @@ public class AltarTracker {
 	
 	public void findLocations(World world) {
 		this.world = world;
-		
-		if (world == null) {
-			LogHelper.info("Something went wrong, world is null");
-		}
-		
-		WorldNBTHelper worldNBTHelper = WorldNBTHelper.get(world);
-		MapStorage storage = world.getMapStorage();
-		WorldSavedData data = storage.getOrLoadData(worldNBTHelper.getClass(), Reference.MOD_ID);
-		if (data == null) {
-			storage.setData(Reference.MOD_ID, worldNBTHelper);
-			data = storage.getOrLoadData(worldNBTHelper.getClass(), Reference.MOD_ID);
-		}
-		NBTTagCompound nbt = new NBTTagCompound();
-		data.readFromNBT(nbt);
-		altarsGenerated  = nbt.getBoolean("altarsGenerated");
-		
-		if (!altarsGenerated) {
-			LogHelper.info("Finding locations");
-			nbt.setBoolean("altarsGenerated", true);
-			data.writeToNBT(nbt);
-			data.markDirty();
-			//save locations to nbt
-		} else {
-			//read locations from nbt
-		}
+		altarNBTHelper = AltarNBTHelper.get(world);
 		
 		List<RuneAltar> outStandingAltars = new LinkedList<>();
 		List<BiomeDictionary.Type> allowedBiomes = new LinkedList<>();
 		Random random = new Random();
 		
-		if (!altarsGenerated) {
+		if (!altarNBTHelper.altarsGenerated) {
+			LogHelper.info("Finding altar locations");
 			outStandingAltars.addAll(runeAltars);
 			random.setSeed(world.getSeed() * 2845);
 			for (RuneAltar altar : outStandingAltars) {
 				allowedBiomes.addAll(altar.getBiomes());
 			}
+		} else {
+			LogHelper.info("Loading altar locations");
+			for (RuneAltar runeAltar : runeAltars) {
+				runeAltar.updatePosition();
+				if (runeAltar.position != null) {
+					generatedAltars.add(runeAltar);
+				}
+				
+			}
 		}
 		
 		while (!outStandingAltars.isEmpty()) {
+			RuneAltar pickedAltar = null;
 			List<BiomeDictionary.Type> outStandingBiomes = new LinkedList<>();
 			for (RuneAltar altar : outStandingAltars) {
 				outStandingBiomes.addAll(altar.getBiomes());
@@ -143,9 +128,9 @@ public class AltarTracker {
 				for (RuneAltar altar : outStandingAltars) {
 					if (altar.isBiomeViable(world.getBiome(pos))) {
 						altar.setPosition(pos);
-						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
-						outStandingAltars.remove(altar);
+						LogHelper.info(altar);
 						generatedAltars.add(altar);
+						pickedAltar = altar;
 						break;
 					}
 				}
@@ -155,22 +140,28 @@ public class AltarTracker {
 					pos = findBiomePosition(allowedBiomes, random, ConfigReference.runeAltarTries, ConfigReference.runeAltarRange/16);
 					if (pos != null) {
 						altar.setPosition(pos);
-						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
-						outStandingAltars.remove(altar);
+						LogHelper.info(altar);
 						generatedAltars.add(altar);
+						pickedAltar = altar;
+						break;
 					} else {
 						LogHelper.info("Unable to find compadible biome, but this altar is going down someplace goddammit!");
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random, ConfigReference.runeAltarTries, ConfigReference.runeAltarRange/16);
 						altar.setPosition(pos);
-						LogHelper.info("Found " + altar.getName() + " in " + world.getBiome(pos).getBiomeName() + " at " + pos);
-						outStandingAltars.remove(altar);
+						LogHelper.info(altar);
 						generatedAltars.add(altar);
+						pickedAltar = altar;
+						break;
 					}
 				}
 			}
+			if (pickedAltar != null) {
+				outStandingAltars.remove(pickedAltar);
+			}
 		}
 		
-		altarsGenerated = true;
+		altarNBTHelper.altarsGenerated = true;
+		altarNBTHelper.markDirty();
 	}
 	
 	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius) {
@@ -188,7 +179,7 @@ public class AltarTracker {
 		}
 		return null;
 	}
-
+	
 	@Override
 	public String toString() {
 		int placed = 0;
@@ -283,6 +274,12 @@ public class AltarTracker {
 
 		public void setPosition(BlockPos position) {
 			this.position = position;
+			altarNBTHelper.posMap.put(name, position);
+			altarNBTHelper.markDirty();
+		}
+		
+		public void updatePosition() {
+			this.position = altarNBTHelper.posMap.get(name);
 		}
 		
 		public List<BiomeDictionary.Type> getBiomes() {

@@ -16,13 +16,15 @@ import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.event.terraingen.InitMapGenEvent;
 
 public class MapGenRuneAltar extends MapGenStructure {
 	private final List<Biome.SpawnListEntry> runeAltarSpawnList;
 	private boolean foundLocations = false;
 	private AltarTracker altarTracker;
 
-	public MapGenRuneAltar(ChunkGenerator.dimType type) {
+	public MapGenRuneAltar(ChunkGenerator.dimType type, World world) {
+		this.world = world;
 		this.runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
 		
 		switch (type) {
@@ -37,21 +39,23 @@ public class MapGenRuneAltar extends MapGenStructure {
 	break;
 		}
 	}
+	
+	public void init() {
+		if (!foundLocations) {
+			altarTracker.findLocations(world);
+			foundLocations = true;
+		}
+	}
 
 	public String getStructureName() {
 		return "RuneAltar";
 	}
 
-	public AltarTracker getAltarTracker() {
-		return altarTracker;
-	}
-
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-		if (!this.foundLocations) {
+		if (!foundLocations) {
 			altarTracker.findLocations(world);
-			this.foundLocations = true;
+			foundLocations = true;
 		}
-
 		return altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ));
 	}
 
@@ -70,7 +74,7 @@ public class MapGenRuneAltar extends MapGenStructure {
 		return this.runeAltarSpawnList;
 	}
 	
-	public AltarTracker geTracker() {
+	public AltarTracker getAltarTracker() {
 		return altarTracker;
 	}
 
@@ -105,7 +109,7 @@ public class MapGenRuneAltar extends MapGenStructure {
 						// Altar generated
 						altarTracker.altarGenerated(altar);
 						altar.setPlaced(true);
-						altar.setPosition(altarPos);
+						altar.setPosition(new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
 						altar.setPlacementRadius(0);
 						LogHelper.info(altar.toString());
 						this.components.add(componentRuneAltar);
