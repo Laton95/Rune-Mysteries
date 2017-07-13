@@ -11,17 +11,29 @@ import net.minecraftforge.common.BiomeDictionary;
 
 public class WorldGenReference {
 	public static List<BiomeDictionary.Type> airAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> airAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> astralAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> astralAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> bloodAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bloodAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> bodyAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bodyAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> deathAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> deathAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> earthAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> earthAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> fireAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> fireAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> lawAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> lawAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> mindAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> mindAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> natureAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> natureAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> soulAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> soulAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> waterAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> waterAltarBiomesN = new LinkedList<>();
 	
 	public static List<BiomeDictionary.Type> cosmicAltarBiomes = new LinkedList<>();
 	public static List<BiomeDictionary.Type> chaosAltarBiomes = new LinkedList<>();
@@ -74,6 +86,7 @@ public class WorldGenReference {
 		natureAltarBiomes.add(BiomeDictionary.Type.JUNGLE);
 		
 		soulAltarBiomes.add(BiomeDictionary.Type.SANDY);
+		soulAltarBiomesN.add(BiomeDictionary.Type.MESA);
 		
 		waterAltarBiomes.add(BiomeDictionary.Type.SWAMP);
 		

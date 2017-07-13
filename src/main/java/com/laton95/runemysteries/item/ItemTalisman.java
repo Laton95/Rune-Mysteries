@@ -22,9 +22,9 @@ import net.minecraft.world.World;
 
 public class ItemTalisman extends RMModItem {
 	String altar;
-	ChunkGenerator.dimType type;
+	WorldHelper.dimType type;
 
-	public ItemTalisman(String name, String altar, ChunkGenerator.dimType type) {
+	public ItemTalisman(String name, String altar, WorldHelper.dimType type) {
 		super(name, true);
 		this.altar = altar;
 		this.type = type;

@@ -97,7 +97,7 @@ public class WorldHelper {
 		int z = Math.abs(blockA.getZ() - blockB.getZ());
 		int y = Math.abs(blockA.getY() - blockB.getY());
 		
-		if (Math.max(Math.max(z, x),y) < range) {
+		if (Math.max(Math.max(z, x),y*2) < range) {
 			return true;
 		} else return false;
 	}
@@ -111,7 +111,7 @@ public class WorldHelper {
 		double verticalXTheta = Math.atan(Math.abs((double)x/y));
 		double verticalZTheta = Math.atan(Math.abs((double)z/y));
 		
-		if (Math.max(verticalXTheta, verticalZTheta) < 0.04*Math.PI) {
+		if (Math.max(verticalXTheta, verticalZTheta) < 0.1*Math.PI) {
 			if (y < 0) {
 				return Direction.UP;
 			} else return Direction.DOWN;
@@ -168,6 +168,10 @@ public class WorldHelper {
 	    UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, UNKNOWN
 	}
 	
+	public enum dimType {
+	    OVERWORLD, NETHER, END
+	}
+	
 	public abstract static class ModFeature extends StructureComponent {
 		/** The size of the bounding box for this feature in the X axis */
 		protected int width;
@@ -212,6 +216,10 @@ public class WorldHelper {
 			this.height = tagCompound.getInteger("Height");
 			this.depth = tagCompound.getInteger("Depth");
 			this.horizontalPos = tagCompound.getInteger("HPos");
+		}
+		
+		public void setBoundingBox(StructureBoundingBox box) {
+			this.boundingBox = box;
 		}
 
 		/**

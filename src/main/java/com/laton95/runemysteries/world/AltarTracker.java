@@ -9,6 +9,8 @@ import java.util.Random;
 
 import javax.swing.text.html.HTMLDocument.RunElement;
 
+import org.w3c.dom.css.ElementCSSInlineStyle;
+
 import com.laton95.runemysteries.reference.ConfigReference;
 import com.laton95.runemysteries.reference.Reference;
 import com.laton95.runemysteries.reference.WorldGenReference;
@@ -27,6 +29,7 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.layer.GenLayer;
 import net.minecraft.world.gen.layer.IntCache;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
+import net.minecraft.world.gen.structure.StructureMineshaftPieces.Room;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.common.BiomeDictionary;
@@ -34,6 +37,7 @@ import net.minecraftforge.common.util.Constants.NBT;
 import scala.collection.generic.BitOperations.Int;
 import scala.reflect.api.Trees.ReturnExtractor;
 import scala.sys.process.processInternal;
+import scala.tools.nsc.interpreter.IMain.TruncatingWriter;
 
 public class AltarTracker {
 	protected List<RuneAltar> runeAltars = new ArrayList<>();
@@ -196,6 +200,7 @@ public class AltarTracker {
 	
 	public class RuneAltar {
 		private final String name;
+		private final String room;
 		private boolean placed;
 		private boolean biomeDependant;
 		private int placementRadius;
@@ -203,9 +208,10 @@ public class AltarTracker {
 		private int failureCount;
 		private BlockPos position;
 		private List<BiomeDictionary.Type> biomes;
+		private List<BiomeDictionary.Type> biomesN;
 		private Type type;
 		
-		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes, Type type) {
+		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes, List<BiomeDictionary.Type> biomesN, Type type) {
 			this.name = name;
 			this.placed = false;
 			this.biomeDependant = true;
@@ -214,6 +220,21 @@ public class AltarTracker {
 			this.failureCount = 0;
 			this.biomes = biomes;
 			this.type = type;
+			this.room = null;
+			this.biomesN = biomesN;
+		}
+		
+		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes, List<BiomeDictionary.Type> biomesN, Type type, String room) {
+			this.name = name;
+			this.placed = false;
+			this.biomeDependant = true;
+			this.placementRadius = placementRadius;
+			this.flatnessTolerance = flatnessTolerance;
+			this.failureCount = 0;
+			this.biomes = biomes;
+			this.type = type;
+			this.room = room;
+			this.biomesN = biomesN;
 		}
 
 		public boolean isPlaced() {
@@ -267,6 +288,10 @@ public class AltarTracker {
 		public String getName() {
 			return name;
 		}
+		
+		public String getRoom() {
+			return room;
+		}
 
 		public BlockPos getPosition() {
 			return position;
@@ -288,11 +313,22 @@ public class AltarTracker {
 		
 		public boolean isBiomeViable(Biome biome) {
 			for (BiomeDictionary.Type type : biomes) {
-				if (BiomeDictionary.hasType(biome, type)) {
+				if (!biomesN.isEmpty()) {
+					for (BiomeDictionary.Type typeN : biomesN) {
+						if (BiomeDictionary.hasType(biome, type) && !BiomeDictionary.hasType(biome, typeN)) {
+							return true;
+						}
+					}
+				} else if (BiomeDictionary.hasType(biome, type)) {
 					return true;
 				}
+				
 			}
 			return false;
+		}
+		
+		public Type getType() {
+			return this.type;
 		}
 
 		@Override

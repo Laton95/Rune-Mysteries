@@ -3,6 +3,7 @@ package com.laton95.runemysteries.world;
 import java.util.Random;
 
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.utility.WorldHelper;
 
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -75,7 +76,9 @@ public class ChunkGenerator implements IWorldGenerator {
 		switch (event.getWorld().provider.getDimensionType()) {
 		case OVERWORLD:
 			// Structures
-			overworldAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+			if (overworldAltarGenerator != null) {
+				overworldAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+			}
 
 			break;
 		case NETHER:
@@ -93,7 +96,7 @@ public class ChunkGenerator implements IWorldGenerator {
 		case OVERWORLD:
 			if (event.getWorld() != null && overworldAltarGenerator == null) {
 				LogHelper.info("Generator loaded");
-				overworldAltarGenerator = new MapGenRuneAltar(dimType.OVERWORLD, event.getWorld());
+				overworldAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.OVERWORLD, event.getWorld());
 			}
 			
 			break;
@@ -118,11 +121,9 @@ public class ChunkGenerator implements IWorldGenerator {
 		}
 	}
 	
-	public enum dimType {
-	    OVERWORLD, NETHER, END
-	}
 	
-	public MapGenRuneAltar getAltarGenerator(dimType type) {
+	
+	public MapGenRuneAltar getAltarGenerator(WorldHelper.dimType type) {
 		switch (type) {
 		case OVERWORLD:
 			return overworldAltarGenerator;
