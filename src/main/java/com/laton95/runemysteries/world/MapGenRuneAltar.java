@@ -4,11 +4,10 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.world.AltarTracker.Type;
 
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -16,31 +15,31 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.event.terraingen.InitMapGenEvent;
 
 public class MapGenRuneAltar extends MapGenStructure {
 	private final List<Biome.SpawnListEntry> runeAltarSpawnList;
 	private boolean foundLocations = false;
 	private AltarTracker altarTracker;
 
+	public boolean loaded = false;;
+
 	public MapGenRuneAltar(WorldHelper.dimType type, World world) {
 		this.world = world;
 		this.runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
-		
+
 		switch (type) {
 		case OVERWORLD:
 			this.altarTracker = new OverworldAltarTracker(this.world);
 			break;
 		case NETHER:
-			
+			this.altarTracker = new NetherAltarTacker(this.world);
 			break;
 		case END:
-	
-	break;
+			this.altarTracker = new EndAltarTracker(this.world);
+			break;
 		}
 	}
-	
+
 	public void init() {
 		if (!foundLocations) {
 			altarTracker.findLocations(world);
@@ -74,7 +73,7 @@ public class MapGenRuneAltar extends MapGenStructure {
 	public List<Biome.SpawnListEntry> getSpawnList() {
 		return this.runeAltarSpawnList;
 	}
-	
+
 	public AltarTracker getAltarTracker() {
 		return altarTracker;
 	}
@@ -86,44 +85,70 @@ public class MapGenRuneAltar extends MapGenStructure {
 		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, AltarTracker altarTracker) {
-			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)), altarTracker);
-			
+			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)),
+					altarTracker);
+
 		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn, AltarTracker altarTracker) {
 			super(chunkX, chunkZ);
-			
+
 			this.altarTracker = altarTracker;
 
 			AltarTracker.RuneAltar altar = altarTracker.getAltar(new ChunkPos(chunkX, chunkZ));
 
-			if (altar != null && !altar.isPlaced()) {
+			boolean flag = false;
+			switch (worldIn.provider.getDimensionType()) {
+			case OVERWORLD:
+				if (altar.getType() == Type.SURFACE || altar.getType() == Type.UNDERGROUND
+						|| altar.getType() == Type.SOUL) {
+					flag = true;
+				}
+				break;
+			case NETHER:
+				if (altar.getType() == Type.NETHER) {
+					flag = true;
+				}
+				break;
+			case THE_END:
+				if (altar.getType() == Type.END) {
+					flag = true;
+				}
+				break;
+			default:
+				break;
+			}
+
+			if (altar != null && !altar.isPlaced() && flag) {
 				if (!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn)) {
 					StructureBoundingBox bBox;
 					BlockPos altarPos;
 					BlockPos altarPos2;
-					
+
 					switch (altar.getType()) {
 					case SURFACE:
 						ComponentSurfaceAltar componentRuneAltar = new ComponentSurfaceAltar(random,
-								chunkX * 16 + random.nextInt(4) + 1, chunkZ * 16 + random.nextInt(4) + 1, altar.getName());
+								chunkX * 16 + random.nextInt(4) + 1, chunkZ * 16 + random.nextInt(4) + 1,
+								altar.getName());
 						bBox = componentRuneAltar.getBoundingBox();
-						
+
 						componentRuneAltar.offsetToAverageGroundLevel(worldIn, bBox, -1);
 
 						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-						if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3, 1,
-								altar.getFlatnessTolerance())) {
-							
+						if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3,
+								1, altar.getFlatnessTolerance())) {
+
 							// Altar generated
 							altarTracker.altarGenerated(altar);
 							altar.setPlaced(true);
-							altar.setPosition(new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
+							altar.setPosition(
+									new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
 							altar.setPlacementRadius(0);
 							LogHelper.info(altar.toString());
 							this.components.add(componentRuneAltar);
 						} else {
-							// Altar failed to generate because ground was not flat
+							// Altar failed to generate because ground was not
+							// flat
 							panic(altar);
 							componentRuneAltar = null;
 						}
@@ -132,7 +157,7 @@ public class MapGenRuneAltar extends MapGenStructure {
 						ComponentUndergroundAltar componentRuneAltarU = new ComponentUndergroundAltar(random,
 								chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom());
 						bBox = componentRuneAltarU.getBoundingBox();
-						
+
 						altarPos = new BlockPos(bBox.minX, random.nextInt(30) + 15, bBox.minZ);
 						altarPos2 = new BlockPos(bBox.maxX, altarPos.getY() + bBox.getYSize(), bBox.maxZ);
 						componentRuneAltarU.setBoundingBox(new StructureBoundingBox(altarPos, altarPos2));
@@ -145,35 +170,75 @@ public class MapGenRuneAltar extends MapGenStructure {
 						this.components.add(componentRuneAltarU);
 						break;
 					case SOUL:
-						int depth = random.nextInt(10)+10;
+						int depth = random.nextInt(10) + 10;
 						ComponentSoulAltar componentRuneAltarS = new ComponentSoulAltar(random,
-								chunkX * 16 + random.nextInt(6) + 1, chunkZ * 16 + random.nextInt(6) + 1, altar.getName(), altar.getRoom(), depth);
+								chunkX * 16 + random.nextInt(6) + 1, chunkZ * 16 + random.nextInt(6) + 1,
+								altar.getName(), altar.getRoom(), depth);
 						bBox = componentRuneAltarS.getBoundingBox();
-						
+
 						componentRuneAltarS.offsetToAverageGroundLevel(worldIn, bBox, -1);
 
 						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-						if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3, 1,
-								altar.getFlatnessTolerance())) {
-							
+						if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3,
+								1, altar.getFlatnessTolerance())) {
+
 							// Altar generated
 							altarTracker.altarGenerated(altar);
 							altar.setPlaced(true);
-							altar.setPosition(new BlockPos(altarPos.getX()+2, altarPos.getY()-depth, altarPos.getZ()-8));
+							altar.setPosition(
+									new BlockPos(altarPos.getX() + 2, altarPos.getY() - depth, altarPos.getZ() - 8));
 							altar.setPlacementRadius(0);
 							LogHelper.info(altar.toString());
 							this.components.add(componentRuneAltarS);
 						} else {
-							// Altar failed to generate because ground was not flat
+							// Altar failed to generate because ground was not
+							// flat
 							panic(altar);
 							componentRuneAltarS = null;
 						}
 						break;
 					case NETHER:
+						ComponentNetherAltar componentRuneAltarN = new ComponentNetherAltar(random,
+								chunkX * 16 + random.nextInt(4) + 1, chunkZ * 16 + random.nextInt(4) + 1,
+								altar.getName());
+						bBox = componentRuneAltarN.getBoundingBox();
+						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
+						if (!WorldHelper.isInsideCave(worldIn, altarPos, bBox.getXSize(), bBox.getZSize())) {
+							// Altar generated
+							altarTracker.altarGenerated(altar);
+							altar.setPlaced(true);
+							altar.setPosition(
+									new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
+							altar.setPlacementRadius(0);
+							LogHelper.info(altar.toString());
+							this.components.add(componentRuneAltarN);
 
+						} else {
+							panic(altar);
+						}
 						break;
 					case END:
+						int randX = random.nextInt(4) + 1;
+						int randZ = random.nextInt(4) + 1;
+						boolean isFloating = !WorldHelper.isOverGround(worldIn,
+								new BlockPos(chunkX * 16 + randX, 0, chunkZ * 16 + randZ), 10, 10);
 
+						ComponentEndAltar componentRuneAltarE = new ComponentEndAltar(random, chunkX * 16 + randX,
+								chunkZ * 16 + randZ, altar.getName());
+						bBox = componentRuneAltarE.getBoundingBox();
+
+						if (!isFloating) {
+							componentRuneAltarE.offsetToAverageGroundLevel(worldIn, bBox, -1);
+						}
+
+						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
+						// Altar generated
+						altarTracker.altarGenerated(altar);
+						altar.setPlaced(true);
+						altar.setPosition(new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
+						altar.setPlacementRadius(0);
+						LogHelper.info(altar.toString());
+						this.components.add(componentRuneAltarE);
 						break;
 					}
 				} else {

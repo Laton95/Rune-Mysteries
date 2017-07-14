@@ -2,21 +2,18 @@ package com.laton95.runemysteries.world;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.reference.WorldGenReference;
-import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
 public class ComponentSurfaceAltar extends WorldHelper.ModFeature {
 	private String name;
-	
+
 	public ComponentSurfaceAltar() {
 	}
 
@@ -27,11 +24,13 @@ public class ComponentSurfaceAltar extends WorldHelper.ModFeature {
 
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
 		StructureBoundingBox structureboundingbox = this.getBoundingBox();
-		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
-		
+		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
+				structureboundingbox.minZ);
+
 		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
 		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
+		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, circle, settings);
 		WorldHelper.loadStructure(blockpos, worldIn, altar, settings);
 		return true;

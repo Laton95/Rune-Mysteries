@@ -3,25 +3,21 @@ package com.laton95.runemysteries.utility;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.apache.http.client.BackoffManager;
-
 import com.laton95.runemysteries.reference.Reference;
 
-import jline.internal.Log;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
-import net.minecraftforge.common.util.Constants.NBT;
-import scala.collection.generic.BitOperations.Int;
 
 public class AltarNBTHelper extends WorldSavedData {
 	private static final String DATA_NAME = Reference.MOD_ID;
-	
-	public boolean altarsGenerated;
-	
+
+	public boolean overworldAltarsGenerated;
+	public boolean netherAltarsGenerated;
+	public boolean endAltarsGenerated;
+
 	public Map<String, BlockPos> posMap = new HashMap<>();
 
 	// Required constructors
@@ -35,8 +31,10 @@ public class AltarNBTHelper extends WorldSavedData {
 
 	@Override
 	public void readFromNBT(NBTTagCompound nbt) {
-		altarsGenerated = nbt.getBoolean("altarsGenerated");
-		
+		overworldAltarsGenerated = nbt.getBoolean("overworldAltarsGenerated");
+		netherAltarsGenerated = nbt.getBoolean("netherAltarsGenerated");
+		endAltarsGenerated = nbt.getBoolean("endAltarsGenerated");
+
 		BlockPos airAltarPos = intArrayToBlockPos(nbt.getIntArray("airAltarPos"));
 		BlockPos astralAltarPos = intArrayToBlockPos(nbt.getIntArray("astralAltarPos"));
 		BlockPos bloodAltarPos = intArrayToBlockPos(nbt.getIntArray("bloodAltarPos"));
@@ -51,7 +49,7 @@ public class AltarNBTHelper extends WorldSavedData {
 		BlockPos natureAltarPos = intArrayToBlockPos(nbt.getIntArray("natureAltarPos"));
 		BlockPos soulAltarPos = intArrayToBlockPos(nbt.getIntArray("soulAltarPos"));
 		BlockPos waterAltarPos = intArrayToBlockPos(nbt.getIntArray("waterAltarPos"));
-		
+
 		posMap.put("air_altar", airAltarPos);
 		posMap.put("astral_altar", astralAltarPos);
 		posMap.put("blood_altar", bloodAltarPos);
@@ -70,7 +68,9 @@ public class AltarNBTHelper extends WorldSavedData {
 
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-		compound.setBoolean("altarsGenerated", altarsGenerated);
+		compound.setBoolean("overworldAltarsGenerated", overworldAltarsGenerated);
+		compound.setBoolean("netherAltarsGenerated", netherAltarsGenerated);
+		compound.setBoolean("endAltarsGenerated", endAltarsGenerated);
 		compound.setIntArray("airAltarPos", blockPosToIntArray(posMap.get("air_altar")));
 		compound.setIntArray("astralAltarPos", blockPosToIntArray(posMap.get("astral_altar")));
 		compound.setIntArray("bloodAltarPos", blockPosToIntArray(posMap.get("blood_altar")));
@@ -85,26 +85,26 @@ public class AltarNBTHelper extends WorldSavedData {
 		compound.setIntArray("natureAltarPos", blockPosToIntArray(posMap.get("nature_altar")));
 		compound.setIntArray("soulAltarPos", blockPosToIntArray(posMap.get("soul_altar")));
 		compound.setIntArray("waterAltarPos", blockPosToIntArray(posMap.get("water_altar")));
-		
+
 		return compound;
 	}
-	
-	public static AltarNBTHelper get(World world) {
-		  MapStorage storage = world.getMapStorage();
-		  AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
 
-		  if (instance == null) {
-		    instance = new AltarNBTHelper();
-		    storage.setData(DATA_NAME, instance);
-		    instance.markDirty();
-		  }
-		  return instance;
+	public static AltarNBTHelper get(World world) {
+		MapStorage storage = world.getMapStorage();
+		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
+
+		if (instance == null) {
+			instance = new AltarNBTHelper();
+			storage.setData(DATA_NAME, instance);
+			instance.markDirty();
 		}
-	
+		return instance;
+	}
+
 	private BlockPos intArrayToBlockPos(int[] array) {
 		return new BlockPos(array[0], array[1], array[2]);
 	}
-	
+
 	private int[] blockPosToIntArray(BlockPos pos) {
 		int[] array = new int[3];
 		if (pos != null & array != null) {

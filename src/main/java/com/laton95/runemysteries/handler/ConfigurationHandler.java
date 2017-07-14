@@ -37,8 +37,8 @@ public class ConfigurationHandler {
 					.getBoolean(true);
 			ConfigReference.finiteEssenceVeinSize = configuration
 					.get("World Generation", "finiteEssenceVeinSize", 8, "Size of finite essence veins:").getInt(8);
-			ConfigReference.finiteEssenceVeinsPerChunk = configuration.get("World Generation", "finiteEssenceVeinsPerChunk", 6,
-					"Number of finite essence veins per chunk:").getInt(6);
+			ConfigReference.finiteEssenceVeinsPerChunk = configuration.get("World Generation",
+					"finiteEssenceVeinsPerChunk", 6, "Number of finite essence veins per chunk:").getInt(6);
 			ConfigReference.finiteEssenceMaxHeight = configuration
 					.get("World Generation", "finiteEssenceMaxHeight", 60, "Maximum height of finite essence veins:")
 					.getInt(60);
@@ -52,7 +52,8 @@ public class ConfigurationHandler {
 					.get("World Generation", "runeAltarRange", 5000, "Maximum distance of rune altars from 0,0:")
 					.getInt(5000);
 			ConfigReference.runeAltarTries = configuration
-					.get("World Generation", "runeAltarTries", 200, "Number of chunks the world generator searches to find the correct biome for rune altars, insanely high numbers will probably have an impact on performance at world creation:")
+					.get("World Generation", "runeAltarTries", 200,
+							"Number of chunks the world generator searches to find the correct biome for rune altars, insanely high numbers will probably have an impact on performance at world creation:")
 					.getInt(200);
 		} catch (Exception e) {
 

@@ -5,6 +5,8 @@ import java.util.Map;
 
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.world.ChunkGenerator;
+import com.laton95.runemysteries.world.ComponentEndAltar;
+import com.laton95.runemysteries.world.ComponentNetherAltar;
 import com.laton95.runemysteries.world.ComponentSoulAltar;
 import com.laton95.runemysteries.world.ComponentSurfaceAltar;
 import com.laton95.runemysteries.world.ComponentUndergroundAltar;
@@ -66,5 +68,7 @@ public class WorldGenRegistry {
 		componentMap.put("SurfaceAltar", ComponentSurfaceAltar.class);
 		componentMap.put("UndergroundAltar", ComponentUndergroundAltar.class);
 		componentMap.put("SoulAltar", ComponentSoulAltar.class);
+		componentMap.put("EndAltar", ComponentEndAltar.class);
+		componentMap.put("NetherAltar", ComponentNetherAltar.class);
 	}
 }

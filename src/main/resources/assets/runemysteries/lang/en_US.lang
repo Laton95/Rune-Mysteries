@@ -31,6 +31,7 @@ item.runemysteries:nature_talisman.name=Nature Talisman
 item.runemysteries:soul_talisman.name=Soul Talisman
 item.runemysteries:water_talisman.name=Water Talisman
 
+#Use messages
 item.runemysteries.talisman.pull.north=The talisman pulls to the North.
 item.runemysteries.talisman.pull.northEast=The talisman pulls to the North-East.
 item.runemysteries.talisman.pull.east=The talisman pulls to the East.
@@ -43,8 +44,14 @@ item.runemysteries.talisman.pull.up=The talisman pulls upwards.
 item.runemysteries.talisman.pull.down=The talisman pulls downwards.
 item.runemysteries.talisman.pull.unknown=The talisman is unresponsive.
 item.runemysteries.talisman.pull.nearby=The talisman pulls toward the altar stone.
+item.runemysteries.talisman.pull.overworld=You feel sudden thoughts of home.
+item.runemysteries.talisman.pull.nether=The talisman throbs and burns your hand.
+item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+
+#Death messages
+death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence

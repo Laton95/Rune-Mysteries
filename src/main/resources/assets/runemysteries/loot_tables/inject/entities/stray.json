@@ -1,0 +1,93 @@
+{
+    "pools": [
+        {
+        "conditions": [
+                {
+                    "condition": "killed_by_player"
+                },
+                {
+                    "condition": "random_chance_with_looting",
+                    "chance": 0.025,
+                    "looting_multiplier": 0.01
+                }
+            ],
+            "name": "main",
+            "rolls": {
+                "min": 0,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "runemysteries:air_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:body_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:earth_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:fire_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:mind_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:water_talisman",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:astral_talisman",
+                    "weight": 40
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:nature_talisman",
+                    "weight": 2
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:death_talisman",
+                    "weight": 2
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:blood_talisman",
+                    "weight": 2
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:chaos_talisman",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:cosmic_talisman",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:law_talisman",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:soul_talisman",
+                    "weight": 1
+                }
+            ]
+        }
+    ]
+}

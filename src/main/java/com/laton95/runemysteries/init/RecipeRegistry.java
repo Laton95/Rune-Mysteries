@@ -19,7 +19,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class RecipeRegistry {
 	private static Map<String, ResourceLocation> recipeMap = new HashMap<String, ResourceLocation>();
-	
+
 	@SubscribeEvent
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
 		LogHelper.info("Registering recipes...");
