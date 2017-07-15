@@ -155,10 +155,10 @@ public class MapGenRuneAltar extends MapGenStructure {
 						break;
 					case UNDERGROUND:
 						ComponentUndergroundAltar componentRuneAltarU = new ComponentUndergroundAltar(random,
-								chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom());
+								chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom(),altar.getYOffset());
 						bBox = componentRuneAltarU.getBoundingBox();
 
-						altarPos = new BlockPos(bBox.minX, random.nextInt(30) + 15, bBox.minZ);
+						altarPos = new BlockPos(bBox.minX, random.nextInt(25) + 15, bBox.minZ);
 						altarPos2 = new BlockPos(bBox.maxX, altarPos.getY() + bBox.getYSize(), bBox.maxZ);
 						componentRuneAltarU.setBoundingBox(new StructureBoundingBox(altarPos, altarPos2));
 						// Altar generated

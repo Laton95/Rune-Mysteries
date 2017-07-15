@@ -45,16 +45,21 @@ public class ConfigurationHandler {
 			ConfigReference.finiteEssenceMinHeight = configuration
 					.get("World Generation", "finiteEssenceMinHeight", 10, "Minimum height of finite essence veins:")
 					.getInt(10);
+			
 			ConfigReference.generateRuneAltars = configuration
 					.get("World Generation", "generateRuneAltars", true, "Generate rune altars in world:")
 					.getBoolean(true);
-			ConfigReference.runeAltarRange = configuration
+			ConfigReference.maxRuneAltarRange = configuration
 					.get("World Generation", "runeAltarRange", 5000, "Maximum distance of rune altars from 0,0:")
 					.getInt(5000);
+			ConfigReference.minRuneAltarRange = configuration
+					.get("World Generation", "minRuneAltarRange", 0, "Minimum distance of rune altars from 0,0:")
+					.getInt(0);
 			ConfigReference.runeAltarTries = configuration
 					.get("World Generation", "runeAltarTries", 200,
 							"Number of chunks the world generator searches to find the correct biome for rune altars, insanely high numbers will probably have an impact on performance at world creation:")
 					.getInt(200);
+			
 		} catch (Exception e) {
 
 		} finally {

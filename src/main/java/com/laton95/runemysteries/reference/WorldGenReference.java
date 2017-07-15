@@ -35,6 +35,9 @@ public class WorldGenReference {
 	public static List<BiomeDictionary.Type> cosmicAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> chaosAltarBiomes = new LinkedList<>();
 	public static List<BiomeDictionary.Type> chaosAltarBiomesN = new LinkedList<>();
+	
+	public static List<BiomeDictionary.Type> ouraniaAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> ouraniaAltarBiomesN = new LinkedList<>();
 
 	public static void init() {
 		setupRuneAltarSpawnBiomes();
@@ -56,40 +59,56 @@ public class WorldGenReference {
 		airAltarBiomes.add(BiomeDictionary.Type.MESA);
 		airAltarBiomes.add(BiomeDictionary.Type.FOREST);
 		airAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		airAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		astralAltarBiomes.add(BiomeDictionary.Type.MUSHROOM);
 		astralAltarBiomes.add(BiomeDictionary.Type.SNOWY);
+		astralAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		bloodAltarBiomes.add(BiomeDictionary.Type.SWAMP);
+		bloodAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		bodyAltarBiomes.add(BiomeDictionary.Type.CONIFEROUS);
 		bodyAltarBiomes.add(BiomeDictionary.Type.FOREST);
 		bodyAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		bodyAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		deathAltarBiomes.add(BiomeDictionary.Type.MOUNTAIN);
+		deathAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		earthAltarBiomes.add(BiomeDictionary.Type.SAVANNA);
 		earthAltarBiomes.add(BiomeDictionary.Type.FOREST);
 		earthAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		earthAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		fireAltarBiomes.add(BiomeDictionary.Type.SANDY);
+		fireAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		lawAltarBiomes.add(BiomeDictionary.Type.FOREST);
 		lawAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		lawAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		mindAltarBiomes.add(BiomeDictionary.Type.PLAINS);
 		mindAltarBiomes.add(BiomeDictionary.Type.DEAD);
 		mindAltarBiomes.add(BiomeDictionary.Type.WASTELAND);
+		lawAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		natureAltarBiomes.add(BiomeDictionary.Type.JUNGLE);
+		natureAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		soulAltarBiomes.add(BiomeDictionary.Type.SANDY);
 		soulAltarBiomesN.add(BiomeDictionary.Type.MESA);
+		soulAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		waterAltarBiomes.add(BiomeDictionary.Type.SWAMP);
+		waterAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		cosmicAltarBiomes.add(BiomeDictionary.Type.END);
+		cosmicAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 
 		chaosAltarBiomes.add(BiomeDictionary.Type.NETHER);
+		chaosAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+		
+		ouraniaAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 	}
 }

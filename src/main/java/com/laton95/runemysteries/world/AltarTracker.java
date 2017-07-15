@@ -133,7 +133,7 @@ public class AltarTracker {
 			}
 
 			BlockPos pos = findBiomePosition(outStandingBiomes, random, ConfigReference.runeAltarTries,
-					ConfigReference.runeAltarRange / 16);
+					ConfigReference.maxRuneAltarRange / 16, ConfigReference.minRuneAltarRange / 16);
 
 			if (pos != null) {
 				for (RuneAltar altar : outStandingAltars) {
@@ -149,22 +149,24 @@ public class AltarTracker {
 				for (RuneAltar altar : outStandingAltars) {
 					LogHelper.info("Could not find biome, placing " + altar.getName() + " randomly");
 					pos = findBiomePosition(allowedBiomes, random, ConfigReference.runeAltarTries,
-							ConfigReference.runeAltarRange / 16);
+							ConfigReference.maxRuneAltarRange / 16, ConfigReference.minRuneAltarRange / 16);
 					if (pos != null) {
 						altar.setPosition(pos);
 						LogHelper.info(altar);
 						generatedAltars.add(altar);
 						pickedAltar = altar;
+						altar.setBiomeDependant(false);
 						break;
 					} else {
 						LogHelper.info(
 								"Unable to find compadible biome, but this altar is going down someplace goddammit!");
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random,
-								ConfigReference.runeAltarTries, ConfigReference.runeAltarRange / 16);
+								ConfigReference.runeAltarTries, ConfigReference.maxRuneAltarRange / 16, ConfigReference.minRuneAltarRange / 16);
 						altar.setPosition(pos);
 						LogHelper.info(altar);
 						generatedAltars.add(altar);
 						pickedAltar = altar;
+						altar.setBiomeDependant(false);
 						break;
 					}
 				}
@@ -175,9 +177,12 @@ public class AltarTracker {
 		}
 	}
 
-	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius) {
+	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius, int min) {
 		for (int i = 0; i < attempts; i++) {
-			ChunkPos pos = new ChunkPos(rand.nextInt(radius * 2) - radius, rand.nextInt(radius * 2) - radius);
+			int chunkX = (rand.nextInt(radius-min) + min)*(rand.nextBoolean() ? 1 : -1);
+			int chunkZ = (rand.nextInt(radius-min) + min)*(rand.nextBoolean() ? 1 : -1);
+			
+			ChunkPos pos = new ChunkPos(chunkX, chunkZ);
 			BlockPos pos2 = new BlockPos(pos.getXStart(), 0, pos.getZStart());
 			Biome biome = world.getBiome(pos2);
 			if (!biomes.isEmpty()) {
@@ -218,6 +223,7 @@ public class AltarTracker {
 		private List<BiomeDictionary.Type> biomes;
 		private List<BiomeDictionary.Type> biomesN;
 		private Type type;
+		private int yOffset;
 
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
 				List<BiomeDictionary.Type> biomesN, Type type) {
@@ -231,10 +237,11 @@ public class AltarTracker {
 			this.type = type;
 			this.room = null;
 			this.biomesN = biomesN;
+			this.yOffset = 0;
 		}
 
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
-				List<BiomeDictionary.Type> biomesN, Type type, String room) {
+				List<BiomeDictionary.Type> biomesN, Type type, String room, int yOffset) {
 			this.name = name;
 			this.placed = false;
 			this.biomeDependant = true;
@@ -245,6 +252,7 @@ public class AltarTracker {
 			this.type = type;
 			this.room = room;
 			this.biomesN = biomesN;
+			this.yOffset = yOffset;
 		}
 
 		public boolean isPlaced() {
@@ -302,6 +310,10 @@ public class AltarTracker {
 		public String getRoom() {
 			return room;
 		}
+		
+		public int getYOffset() {
+			return yOffset;
+		}
 
 		public BlockPos getPosition() {
 			return position;
@@ -322,6 +334,15 @@ public class AltarTracker {
 		}
 
 		public boolean isBiomeViable(Biome biome) {
+			if (biomes.isEmpty()) {
+				for (BiomeDictionary.Type typeN : biomesN) {
+					if (BiomeDictionary.hasType(biome, typeN)) {
+						return false;
+					}
+				}
+				return true;
+			}
+			
 			for (BiomeDictionary.Type type : biomes) {
 				if (!biomesN.isEmpty()) {
 					for (BiomeDictionary.Type typeN : biomesN) {
