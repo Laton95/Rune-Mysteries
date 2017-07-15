@@ -17,12 +17,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class BlockRegistry {
-	private static ArrayList<RMModBlock> blockList = new ArrayList<RMModBlock>();
+	private static ArrayList<Block> blockList = new ArrayList<Block>();
 
 	// Blocks
 	public static RMModBlock runeEssenceFinite = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f,
 			"pickaxe", 1, true, ItemRegistry.runeEssence);
 	public static RMModBlock ruinBlock = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static RMModBlock templeBlock = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
+			true);
 
 	// Tile Entities
 	public static BlockRuneEssence runeEssence = new BlockRuneEssence();
@@ -46,7 +48,7 @@ public class BlockRegistry {
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
 		LogHelper.info("Registering blocks...");
 		makeBlockList();
-		for (RMModBlock block : blockList) {
+		for (Block block : blockList) {
 			ItemBlock itemBlock = new ItemBlock(block);
 			itemBlock.setRegistryName(block.getRegistryName());
 			ItemRegistry.addItemBlock(itemBlock);
@@ -57,12 +59,11 @@ public class BlockRegistry {
 	}
 
 	private static void makeBlockList() {
-		// Blocks
+		blockList.add(runeEssence);
 		blockList.add(runeEssenceFinite);
 		blockList.add(ruinBlock);
+		blockList.add(templeBlock);
 
-		// Tile Entities
-		blockList.add(runeEssence);
 		blockList.add(airAltar);
 		blockList.add(astralAltar);
 		blockList.add(bloodAltar);

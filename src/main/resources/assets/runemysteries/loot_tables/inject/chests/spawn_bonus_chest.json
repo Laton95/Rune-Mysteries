@@ -1,0 +1,30 @@
+{
+    "pools": [
+        {
+            "name": "main",
+            "rolls": 1,
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "runemysteries:air_talisman",
+                    "weight": 10
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:earth_talisman",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:fire_talisman",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:water_talisman",
+                    "weight": 5
+                }
+            ]
+        }
+    ]
+}

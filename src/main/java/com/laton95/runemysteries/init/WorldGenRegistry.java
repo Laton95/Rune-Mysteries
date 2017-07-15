@@ -5,7 +5,11 @@ import java.util.Map;
 
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.world.ChunkGenerator;
-import com.laton95.runemysteries.world.ComponentRuneAltar;
+import com.laton95.runemysteries.world.ComponentEndAltar;
+import com.laton95.runemysteries.world.ComponentNetherAltar;
+import com.laton95.runemysteries.world.ComponentSoulAltar;
+import com.laton95.runemysteries.world.ComponentSurfaceAltar;
+import com.laton95.runemysteries.world.ComponentUndergroundAltar;
 import com.laton95.runemysteries.world.MapGenRuneAltar;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
@@ -19,6 +23,7 @@ public class WorldGenRegistry {
 	private static Map<String, IWorldGenerator> genMap = new HashMap<String, IWorldGenerator>();
 	private static Map<String, Class<? extends StructureStart>> structureMap = new HashMap<String, Class<? extends StructureStart>>();
 	private static Map<String, Class<? extends StructureComponent>> componentMap = new HashMap<String, Class<? extends StructureComponent>>();
+	public static ChunkGenerator chunkGenerator;
 
 	public static void registerWorldGen() {
 
@@ -49,16 +54,21 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeGenMap() {
-		ChunkGenerator chunkGenerator = new ChunkGenerator();
+		chunkGenerator = new ChunkGenerator();
 		genMap.put("Chunk Generator", chunkGenerator);
+		MinecraftForge.EVENT_BUS.register(chunkGenerator);
 		MinecraftForge.TERRAIN_GEN_BUS.register(chunkGenerator);
 	}
 
 	private static void makeStructureMap() {
-		structureMap.put("Rune Altar Generator", MapGenRuneAltar.Start.class);
+		structureMap.put("RuneAltar", MapGenRuneAltar.Start.class);
 	}
 
 	private static void makeComponentMap() {
-		componentMap.put("Rune Altar Component", ComponentRuneAltar.class);
+		componentMap.put("SurfaceAltar", ComponentSurfaceAltar.class);
+		componentMap.put("UndergroundAltar", ComponentUndergroundAltar.class);
+		componentMap.put("SoulAltar", ComponentSoulAltar.class);
+		componentMap.put("EndAltar", ComponentEndAltar.class);
+		componentMap.put("NetherAltar", ComponentNetherAltar.class);
 	}
 }

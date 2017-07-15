@@ -8,5 +8,7 @@ public class ConfigReference {
 	public static int finiteEssenceMaxHeight;
 
 	public static boolean generateRuneAltars;
-	public static int runeAltarRarity = 10;
+	public static int maxRuneAltarRange;
+	public static int minRuneAltarRange;
+	public static int runeAltarTries;
 }

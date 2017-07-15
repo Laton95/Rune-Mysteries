@@ -1,0 +1,79 @@
+Chests
+Elemental talismans only, air more common
+minecraft:chests/spawn_bonus_chest
+
+All talismans
+minecraft:chests/simple_dungeon
+minecraft:chests/village_blacksmith
+
+All talismans, earth more common
+minecraft:chests/abandoned_mineshaft
+
+All talismans, nature more common
+minecraft:chests/jungle_temple
+
+All talismans, fire more common
+minecraft:chests/desert_pyramid
+
+All talismans, cosmic more common
+minecraft:chests/stronghold_corridor	
+minecraft:chests/stronghold_crossing
+minecraft:chests/stronghold_library
+
+Chaos taliaman
+minecraft:chests/nether_bridge	
+
+Astral taliaman
+minecraft:chests/igloo_chest	
+
+All talismans
+minecraft:chests/woodland_mansion
+
+All talismans, cosmic more common
+minecraft:chests/end_city_treasure
+
+
+Monsters
+All talismans
+minecraft:entities/skeleton	
+minecraft:entities/zombie
+minecraft:entities/zombie_villager
+
+All talismans, astral more common
+minecraft:entities/stray
+
+All talismans, fire more common
+minecraft:entities/husk
+
+Earth taliaman
+minecraft:entities/slime
+
+Chaos taliaman
+minecraft:entities/zombie_pigman
+minecraft:entities/magma_cube
+minecraft:entities/blaze
+minecraft:entities/ghast
+minecraft:entities/wither_skeleton
+
+Water taliaman
+minecraft:entities/elder_guardian
+minecraft:entities/guardian
+
+All talismans
+minecraft:entities/vex
+minecraft:entities/vindication_illager
+minecraft:entities/evocation_illager
+
+Cosmic taliaman
+minecraft:entities/silverfish
+minecraft:entities/enderman
+minecraft:entities/endermite
+
+Animals
+Water talisman
+minecraft:entities/squid	
+
+	
+Fishing			
+All talismans, water more common		
+minecraft:gameplay/fishing/treasure

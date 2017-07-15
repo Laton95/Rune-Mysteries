@@ -1,126 +1,114 @@
 package com.laton95.runemysteries.reference;
 
 import java.util.LinkedList;
+import java.util.List;
 
-import net.minecraft.block.Block;
-import net.minecraft.init.Biomes;
-import net.minecraft.init.Blocks;
-import net.minecraft.world.biome.Biome;
+import net.minecraftforge.common.BiomeDictionary;
 
 public class WorldGenReference {
-	public static LinkedList<Block> surfaceBlocks = new LinkedList<Block>();
-	public static float structureFlatnessTolerance = 0.8f;
+	public static List<BiomeDictionary.Type> airAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> airAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> astralAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> astralAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bloodAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bloodAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bodyAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> bodyAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> deathAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> deathAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> earthAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> earthAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> fireAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> fireAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> lawAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> lawAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> mindAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> mindAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> natureAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> natureAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> soulAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> soulAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> waterAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> waterAltarBiomesN = new LinkedList<>();
 
-	public static LinkedList<Biome> genericAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> swampAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> desertAltarSpawnBiomes = new LinkedList<Biome>();
-
-	public static LinkedList<Biome> cosmicAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> chaosAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> astralAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> natureAltarSpawnBiomes = new LinkedList<Biome>();
-	public static LinkedList<Biome> deathAltarSpawnBiomes = new LinkedList<Biome>();
+	public static List<BiomeDictionary.Type> cosmicAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> cosmicAltarBiomesN = new LinkedList<>();
+	public static List<BiomeDictionary.Type> chaosAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> chaosAltarBiomesN = new LinkedList<>();
 	
-	public static LinkedList<Biome> allAltarSpawnBiomes = new LinkedList<Biome>();
+	public static List<BiomeDictionary.Type> ouraniaAltarBiomes = new LinkedList<>();
+	public static List<BiomeDictionary.Type> ouraniaAltarBiomesN = new LinkedList<>();
 
 	public static void init() {
-		setupSurfaceBlocks();
 		setupRuneAltarSpawnBiomes();
 	}
 
-	public static void setupSurfaceBlocks() {
-		surfaceBlocks.add(Blocks.SAND);
-		surfaceBlocks.add(Blocks.GRASS);
-		surfaceBlocks.add(Blocks.STONE);
-		surfaceBlocks.add(Blocks.GRAVEL);
-		surfaceBlocks.add(Blocks.DIRT);
-	}
-
 	public static void setupRuneAltarSpawnBiomes() {
-		setupGenericAltarSpawnBiomes();
-		setupSwampAltarSpawnBiomes();
-		setupDesertAltarSpawnBiomes();
-		setupCosmicAltarSpawnBiomes();
-		setupChaosAltarSpawnBiomes();
-		setupAstralAltarSpawnBiomes();
-		setupNatureAltarSpawnBiomes();
-		setupDeathAltarSpawnBiomes();
+		// BiomeDictionary.Type.CONIFEROUS
+		// BiomeDictionary.Type.FOREST
+		// BiomeDictionary.Type.JUNGLE
+		// BiomeDictionary.Type.MESA
+		// BiomeDictionary.Type.MOUNTAIN
+		// BiomeDictionary.Type.MUSHROOM
+		// BiomeDictionary.Type.PLAINS
+		// BiomeDictionary.Type.SANDY
+		// BiomeDictionary.Type.SAVANNA
+		// BiomeDictionary.Type.SNOWY
+		// BiomeDictionary.Type.SWAMP
+
+		airAltarBiomes.add(BiomeDictionary.Type.MESA);
+		airAltarBiomes.add(BiomeDictionary.Type.FOREST);
+		airAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		airAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		astralAltarBiomes.add(BiomeDictionary.Type.MUSHROOM);
+		astralAltarBiomes.add(BiomeDictionary.Type.SNOWY);
+		astralAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		bloodAltarBiomes.add(BiomeDictionary.Type.SWAMP);
+		bloodAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		bodyAltarBiomes.add(BiomeDictionary.Type.CONIFEROUS);
+		bodyAltarBiomes.add(BiomeDictionary.Type.FOREST);
+		bodyAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		bodyAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		deathAltarBiomes.add(BiomeDictionary.Type.MOUNTAIN);
+		deathAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		earthAltarBiomes.add(BiomeDictionary.Type.SAVANNA);
+		earthAltarBiomes.add(BiomeDictionary.Type.FOREST);
+		earthAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		earthAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		fireAltarBiomes.add(BiomeDictionary.Type.SANDY);
+		fireAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		lawAltarBiomes.add(BiomeDictionary.Type.FOREST);
+		lawAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		lawAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		mindAltarBiomes.add(BiomeDictionary.Type.PLAINS);
+		mindAltarBiomes.add(BiomeDictionary.Type.DEAD);
+		mindAltarBiomes.add(BiomeDictionary.Type.WASTELAND);
+		lawAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		natureAltarBiomes.add(BiomeDictionary.Type.JUNGLE);
+		natureAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		soulAltarBiomes.add(BiomeDictionary.Type.SANDY);
+		soulAltarBiomesN.add(BiomeDictionary.Type.MESA);
+		soulAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		waterAltarBiomes.add(BiomeDictionary.Type.SWAMP);
+		waterAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		cosmicAltarBiomes.add(BiomeDictionary.Type.END);
+		cosmicAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
+
+		chaosAltarBiomes.add(BiomeDictionary.Type.NETHER);
+		chaosAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 		
-		allAltarSpawnBiomes.addAll(genericAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(swampAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(desertAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(cosmicAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(chaosAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(astralAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(natureAltarSpawnBiomes);
-		allAltarSpawnBiomes.addAll(deathAltarSpawnBiomes);
-	}
-
-	public static void setupGenericAltarSpawnBiomes() {
-		genericAltarSpawnBiomes.add(Biomes.BIRCH_FOREST);
-		genericAltarSpawnBiomes.add(Biomes.BIRCH_FOREST_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.FOREST);
-		genericAltarSpawnBiomes.add(Biomes.FOREST_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_BIRCH_FOREST);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_BIRCH_FOREST_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_FOREST);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_PLAINS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_REDWOOD_TAIGA);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_REDWOOD_TAIGA_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_ROOFED_FOREST);
-		genericAltarSpawnBiomes.add(Biomes.MUTATED_SAVANNA);
-		genericAltarSpawnBiomes.add(Biomes.PLAINS);
-		genericAltarSpawnBiomes.add(Biomes.REDWOOD_TAIGA);
-		genericAltarSpawnBiomes.add(Biomes.REDWOOD_TAIGA_HILLS);
-		genericAltarSpawnBiomes.add(Biomes.ROOFED_FOREST);
-		genericAltarSpawnBiomes.add(Biomes.SAVANNA);
-		genericAltarSpawnBiomes.add(Biomes.SAVANNA_PLATEAU);
-	}
-
-	public static void setupSwampAltarSpawnBiomes() {
-		swampAltarSpawnBiomes.add(Biomes.MUTATED_SWAMPLAND);
-		swampAltarSpawnBiomes.add(Biomes.SWAMPLAND);
-	}
-
-	public static void setupDesertAltarSpawnBiomes() {
-		desertAltarSpawnBiomes.add(Biomes.DESERT);
-		desertAltarSpawnBiomes.add(Biomes.DESERT_HILLS);
-		desertAltarSpawnBiomes.add(Biomes.MUTATED_DESERT);
-	}
-
-	public static void setupCosmicAltarSpawnBiomes() {
-		cosmicAltarSpawnBiomes.add(Biomes.SKY);
-	}
-
-	public static void setupChaosAltarSpawnBiomes() {
-		chaosAltarSpawnBiomes.add(Biomes.HELL);
-	}
-
-	public static void setupAstralAltarSpawnBiomes() {
-		astralAltarSpawnBiomes.add(Biomes.COLD_TAIGA);
-		astralAltarSpawnBiomes.add(Biomes.COLD_TAIGA_HILLS);
-		astralAltarSpawnBiomes.add(Biomes.ICE_MOUNTAINS);
-		astralAltarSpawnBiomes.add(Biomes.ICE_PLAINS);
-		astralAltarSpawnBiomes.add(Biomes.MUTATED_ICE_FLATS);
-		astralAltarSpawnBiomes.add(Biomes.TAIGA);
-		astralAltarSpawnBiomes.add(Biomes.TAIGA_HILLS);
-		astralAltarSpawnBiomes.add(Biomes.MUTATED_TAIGA);
-		astralAltarSpawnBiomes.add(Biomes.MUTATED_TAIGA_COLD);
-	}
-
-	public static void setupNatureAltarSpawnBiomes() {
-		natureAltarSpawnBiomes.add(Biomes.JUNGLE);
-		natureAltarSpawnBiomes.add(Biomes.JUNGLE_EDGE);
-		natureAltarSpawnBiomes.add(Biomes.JUNGLE_HILLS);
-		natureAltarSpawnBiomes.add(Biomes.MUTATED_JUNGLE);
-		natureAltarSpawnBiomes.add(Biomes.MUTATED_JUNGLE_EDGE);
-	}
-
-	public static void setupDeathAltarSpawnBiomes() {
-		deathAltarSpawnBiomes.add(Biomes.EXTREME_HILLS);
-		deathAltarSpawnBiomes.add(Biomes.EXTREME_HILLS_EDGE);
-		deathAltarSpawnBiomes.add(Biomes.EXTREME_HILLS_WITH_TREES);
-		deathAltarSpawnBiomes.add(Biomes.MUTATED_EXTREME_HILLS);
-		deathAltarSpawnBiomes.add(Biomes.MUTATED_EXTREME_HILLS_WITH_TREES);
+		ouraniaAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 	}
 }
