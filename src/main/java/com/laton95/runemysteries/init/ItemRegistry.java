@@ -8,7 +8,6 @@ import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
 import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.utility.WorldHelper;
 
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
@@ -39,46 +38,30 @@ public class ItemRegistry {
 	public static RMModItem runeEssence = new RMModItem("rune_Essence", true);
 	public static ItemSpellbook spellbook = new ItemSpellbook();
 	public static ItemAltarSpawner altarSpawner = new ItemAltarSpawner();
-	public static ItemTalisman airTalisman = new ItemTalisman("air_talisman", "air_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman astralTalisman = new ItemTalisman("astral_talisman", "astral_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman bloodTalisman = new ItemTalisman("blood_talisman", "blood_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman bodyTalisman = new ItemTalisman("body_talisman", "body_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman chaosTalisman = new ItemTalisman("chaos_talisman", "chaos_altar",
-			WorldHelper.dimType.NETHER);
-	public static ItemTalisman cosmicTalisman = new ItemTalisman("cosmic_talisman", "cosmic_altar",
-			WorldHelper.dimType.END);
-	public static ItemTalisman deathTalisman = new ItemTalisman("death_talisman", "death_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman earthTalisman = new ItemTalisman("earth_talisman", "earth_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman fireTalisman = new ItemTalisman("fire_talisman", "fire_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman lawTalisman = new ItemTalisman("law_talisman", "law_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman mindTalisman = new ItemTalisman("mind_talisman", "mind_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman natureTalisman = new ItemTalisman("nature_talisman", "nature_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman soulTalisman = new ItemTalisman("soul_talisman", "soul_altar",
-			WorldHelper.dimType.OVERWORLD);
-	public static ItemTalisman waterTalisman = new ItemTalisman("water_talisman", "water_altar",
-			WorldHelper.dimType.OVERWORLD);
+	public static ItemTalisman airTalisman = new ItemTalisman("air_talisman", "air_altar", 0);
+	public static ItemTalisman astralTalisman = new ItemTalisman("astral_talisman", "astral_altar", 0);
+	public static ItemTalisman bloodTalisman = new ItemTalisman("blood_talisman", "blood_altar", 0);
+	public static ItemTalisman bodyTalisman = new ItemTalisman("body_talisman", "body_altar", 0);
+	public static ItemTalisman chaosTalisman = new ItemTalisman("chaos_talisman", "chaos_altar", -1);
+	public static ItemTalisman cosmicTalisman = new ItemTalisman("cosmic_talisman", "cosmic_altar", 1);
+	public static ItemTalisman deathTalisman = new ItemTalisman("death_talisman", "death_altar", 0);
+	public static ItemTalisman earthTalisman = new ItemTalisman("earth_talisman", "earth_altar", 0);
+	public static ItemTalisman fireTalisman = new ItemTalisman("fire_talisman", "fire_altar", 0);
+	public static ItemTalisman lawTalisman = new ItemTalisman("law_talisman", "law_altar", 0);
+	public static ItemTalisman mindTalisman = new ItemTalisman("mind_talisman", "mind_altar", 0);
+	public static ItemTalisman natureTalisman = new ItemTalisman("nature_talisman", "nature_altar", 0);
+	public static ItemTalisman soulTalisman = new ItemTalisman("soul_talisman", "soul_altar", 0);
+	public static ItemTalisman waterTalisman = new ItemTalisman("water_talisman", "water_altar", 0);
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
-		LogHelper.info("Registering items...");
+		LogHelper.info("Registering items");
 		makeItemList();
 		for (Item item : itemList) {
 			event.getRegistry().register(item);
 			ModelLoader.setCustomModelResourceLocation(item, 0,
 					new ModelResourceLocation(item.getRegistryName(), "inventory"));
-			LogHelper.info(item.getRegistryName() + " registered");
 		}
-		LogHelper.info("All items registered successfully");
 	}
 
 	private static void makeItemList() {

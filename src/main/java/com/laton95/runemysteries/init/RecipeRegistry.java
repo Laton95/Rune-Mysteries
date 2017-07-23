@@ -22,7 +22,7 @@ public class RecipeRegistry {
 
 	@SubscribeEvent
 	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
-		LogHelper.info("Registering recipes...");
+		LogHelper.info("Registering recipies");
 		makeRecipeList();
 		recipeMap.forEach((k, v) -> {
 			CraftingHelper.register(v, new IRecipeFactory() {
@@ -32,13 +32,17 @@ public class RecipeRegistry {
 					return CraftingHelper.getRecipe(json, context);
 				}
 			});
-			LogHelper.info(k + " recipe registered successfully");
 		});
-		LogHelper.info("All recipes registered successfully");
 	}
 
 	private static void makeRecipeList() {
 		recipeMap.put("Ruin block", new ResourceLocation(Reference.MOD_ID + ":ruin_block.json"));
 		recipeMap.put("Temple block", new ResourceLocation(Reference.MOD_ID + ":temple_block.json"));
+		recipeMap.put("Blood block", new ResourceLocation(Reference.MOD_ID + ":blood_block.json"));
+		recipeMap.put("Flesh block", new ResourceLocation(Reference.MOD_ID + ":flesh_block.json"));
+		recipeMap.put("Temple block stairs", new ResourceLocation(Reference.MOD_ID + ":temple_block_stairs.json"));
+		recipeMap.put("Blood block stairs", new ResourceLocation(Reference.MOD_ID + ":blood_block_stairs.json"));
+		recipeMap.put("Temple block slab", new ResourceLocation(Reference.MOD_ID + ":temple_block_slab.json"));
+		recipeMap.put("Blood block slab", new ResourceLocation(Reference.MOD_ID + ":blood_block_slab.json"));
 	}
 }

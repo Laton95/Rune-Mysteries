@@ -23,31 +23,19 @@ public final class LootRegistry {
 			"inject/chests/desert_pyramid", "inject/chests/jungle_temple", "inject/chests/simple_dungeon",
 			"inject/chests/spawn_bonus_chest", "inject/chests/village_blacksmith", "inject/chests/stronghold_corridor",
 			"inject/chests/nether_bridge", "inject/chests/igloo_chest", "inject/chests/stronghold_crossing",
-			"inject/chests/stronghold_library", "inject/chests/woodland_mansion", "inject/chests/end_city_treasure", "inject/gameplay/fishing/treasure", 
-			"inject/entities/blaze",
-			"inject/entities/elder_guardian",
-			"inject/entities/enderman",
-			"inject/entities/endermite",
-			"inject/entities/evocation_illager",
-			"inject/entities/ghast",
-			"inject/entities/guardian",
-			"inject/entities/husk",
-			"inject/entities/magma_cube",
-			"inject/entities/silverfish",
-			"inject/entities/skeleton",
-			"inject/entities/slime",
-			"inject/entities/squid",
-			"inject/entities/stray",
-			"inject/entities/vex",
-			"inject/entities/vindication_illager",
-			"inject/entities/wither_skeleton",
-			"inject/entities/zombie_pigman",
-			"inject/entities/zombie_villager",
+			"inject/chests/stronghold_library", "inject/chests/woodland_mansion", "inject/chests/end_city_treasure",
+			"inject/gameplay/fishing/treasure", "inject/entities/blaze", "inject/entities/elder_guardian",
+			"inject/entities/enderman", "inject/entities/endermite", "inject/entities/evocation_illager",
+			"inject/entities/ghast", "inject/entities/guardian", "inject/entities/husk", "inject/entities/magma_cube",
+			"inject/entities/silverfish", "inject/entities/skeleton", "inject/entities/slime", "inject/entities/squid",
+			"inject/entities/stray", "inject/entities/vex", "inject/entities/vindication_illager",
+			"inject/entities/wither_skeleton", "inject/entities/zombie_pigman", "inject/entities/zombie_villager",
 			"inject/entities/zombie"
-			
-			);
+
+	);
 
 	public LootRegistry() {
+		LogHelper.info("Registering loot tables");
 		for (String s : TABLES) {
 			LootTableList.register(new ResourceLocation(Reference.MOD_ID, s));
 		}
@@ -62,135 +50,102 @@ public final class LootRegistry {
 			String file = name.substring(name.indexOf(prefix) + prefix.length());
 			switch (file) {
 			case "chests/abandoned_mineshaft":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/desert_pyramid":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/jungle_temple":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/simple_dungeon":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/spawn_bonus_chest":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/stronghold_corridor":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/nether_bridge":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/igloo_chest":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/stronghold_crossing":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/stronghold_library":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/woodland_mansion":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/end_city_treasure":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "chests/village_blacksmith":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "gameplay/fishing/treasure":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/blaze":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/elder_guardian":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/enderman":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/endermite":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/evocation_illager":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/ghast":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/guardian":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/husk":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/magma_cube":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/silverfish":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/skeleton":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/slime":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/squid":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/stray":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/vex":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/vindication_illager":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/wither_skeleton":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/zombie_pigman":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/zombie_villager":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/zombie":

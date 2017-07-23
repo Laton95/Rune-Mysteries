@@ -11,6 +11,10 @@ import com.laton95.runemysteries.world.ComponentSoulAltar;
 import com.laton95.runemysteries.world.ComponentSurfaceAltar;
 import com.laton95.runemysteries.world.ComponentUndergroundAltar;
 import com.laton95.runemysteries.world.MapGenRuneAltar;
+import com.laton95.runemysteries.world.altarStructures.ComponentAirTemple;
+import com.laton95.runemysteries.world.altarStructures.ComponentBloodTemple;
+import com.laton95.runemysteries.world.altarStructures.MapGenAirTemple;
+import com.laton95.runemysteries.world.altarStructures.MapGenBloodTemple;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -26,31 +30,21 @@ public class WorldGenRegistry {
 	public static ChunkGenerator chunkGenerator;
 
 	public static void registerWorldGen() {
-
-		LogHelper.info("Registering worldgen...");
+		LogHelper.info("Registering world-gen");
 		makeGenMap();
 		genMap.forEach((k, v) -> {
 			GameRegistry.registerWorldGenerator(v, 0);
-			LogHelper.info(k + " registered successfully");
 		});
 
-		LogHelper.info("Registering structures...");
 		makeStructureMap();
 		structureMap.forEach((k, v) -> {
 			MapGenStructureIO.registerStructure(v, k);
-			LogHelper.info(k + " registered successfully");
 		});
-		LogHelper.info("All structures registered successfully");
 
-		LogHelper.info("Registering structure components...");
 		makeComponentMap();
 		componentMap.forEach((k, v) -> {
 			MapGenStructureIO.registerStructureComponent(v, k);
-			LogHelper.info(k + " registered successfully");
 		});
-		LogHelper.info("All structures components registered successfully");
-
-		LogHelper.info("All worldgen registered successfully");
 	}
 
 	private static void makeGenMap() {
@@ -62,6 +56,8 @@ public class WorldGenRegistry {
 
 	private static void makeStructureMap() {
 		structureMap.put("RuneAltar", MapGenRuneAltar.Start.class);
+		structureMap.put("AirTemple", MapGenAirTemple.Start.class);
+		structureMap.put("BloodTemple", MapGenBloodTemple.Start.class);
 	}
 
 	private static void makeComponentMap() {
@@ -70,5 +66,7 @@ public class WorldGenRegistry {
 		componentMap.put("SoulAltar", ComponentSoulAltar.class);
 		componentMap.put("EndAltar", ComponentEndAltar.class);
 		componentMap.put("NetherAltar", ComponentNetherAltar.class);
+		componentMap.put("AirTemple", ComponentAirTemple.class);
+		componentMap.put("BloodTemple", ComponentBloodTemple.class);
 	}
 }

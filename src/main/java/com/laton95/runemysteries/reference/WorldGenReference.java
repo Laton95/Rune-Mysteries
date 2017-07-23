@@ -35,7 +35,7 @@ public class WorldGenReference {
 	public static List<BiomeDictionary.Type> cosmicAltarBiomesN = new LinkedList<>();
 	public static List<BiomeDictionary.Type> chaosAltarBiomes = new LinkedList<>();
 	public static List<BiomeDictionary.Type> chaosAltarBiomesN = new LinkedList<>();
-	
+
 	public static List<BiomeDictionary.Type> ouraniaAltarBiomes = new LinkedList<>();
 	public static List<BiomeDictionary.Type> ouraniaAltarBiomesN = new LinkedList<>();
 
@@ -108,7 +108,7 @@ public class WorldGenReference {
 
 		chaosAltarBiomes.add(BiomeDictionary.Type.NETHER);
 		chaosAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
-		
+
 		ouraniaAltarBiomesN.add(BiomeDictionary.Type.OCEAN);
 	}
 }

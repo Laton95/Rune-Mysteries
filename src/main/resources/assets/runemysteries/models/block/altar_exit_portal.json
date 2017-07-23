@@ -1,0 +1,12 @@
+{
+    "parent": "block/cube_directional",
+    "textures": {
+        "particle": "runemysteries:blocks/teleporter_side",
+        "down": "runemysteries:blocks/teleporter_side",
+        "up": "runemysteries:blocks/teleporter_top",
+        "north": "runemysteries:blocks/teleporter_side",
+        "east": "runemysteries:blocks/teleporter_side",
+        "south": "runemysteries:blocks/teleporter_side",
+        "west": "runemysteries:blocks/teleporter_side"
+    }
+}

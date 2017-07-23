@@ -19,6 +19,7 @@ public class AltarNBTHelper extends WorldSavedData {
 	public boolean endAltarsGenerated;
 
 	public Map<String, BlockPos> posMap = new HashMap<>();
+	public Map<String, Boolean> placedMap = new HashMap<>();
 
 	// Required constructors
 	public AltarNBTHelper() {
@@ -49,6 +50,23 @@ public class AltarNBTHelper extends WorldSavedData {
 		BlockPos natureAltarPos = intArrayToBlockPos(nbt.getIntArray("natureAltarPos"));
 		BlockPos soulAltarPos = intArrayToBlockPos(nbt.getIntArray("soulAltarPos"));
 		BlockPos waterAltarPos = intArrayToBlockPos(nbt.getIntArray("waterAltarPos"));
+		BlockPos ouraniaAltarPos = intArrayToBlockPos(nbt.getIntArray("ouraniaAltarPos"));
+
+		boolean airAltarPlaced = nbt.getBoolean("air_altar");
+		boolean astralAltarPlaced = nbt.getBoolean("astral_altar");
+		boolean bloodAltarPlaced = nbt.getBoolean("blood_altar");
+		boolean bodyAltarPlaced = nbt.getBoolean("body_altar");
+		boolean chaosAltarPlaced = nbt.getBoolean("chaos_altar");
+		boolean cosmicAltarPlaced = nbt.getBoolean("cosmic_altar");
+		boolean deathAltarPlaced = nbt.getBoolean("death_altar");
+		boolean earthAltarPlaced = nbt.getBoolean("earth_altar");
+		boolean fireAltarPlaced = nbt.getBoolean("fire_altar");
+		boolean lawAltarPlaced = nbt.getBoolean("law_altar");
+		boolean mindAltarPlaced = nbt.getBoolean("mind_altar");
+		boolean natureAltarPlaced = nbt.getBoolean("nature_altar");
+		boolean soulAltarPlaced = nbt.getBoolean("soul_altar");
+		boolean waterAltarPlaced = nbt.getBoolean("water_altar");
+		boolean ouraniaAltarPlaced = nbt.getBoolean("ourania_altar");
 
 		posMap.put("air_altar", airAltarPos);
 		posMap.put("astral_altar", astralAltarPos);
@@ -64,6 +82,23 @@ public class AltarNBTHelper extends WorldSavedData {
 		posMap.put("nature_altar", natureAltarPos);
 		posMap.put("soul_altar", soulAltarPos);
 		posMap.put("water_altar", waterAltarPos);
+		posMap.put("ourania_altar", ouraniaAltarPos);
+
+		placedMap.put("air_altar", airAltarPlaced);
+		placedMap.put("astral_altar", astralAltarPlaced);
+		placedMap.put("blood_altar", bloodAltarPlaced);
+		placedMap.put("body_altar", bodyAltarPlaced);
+		placedMap.put("chaos_altar", chaosAltarPlaced);
+		placedMap.put("cosmic_altar", cosmicAltarPlaced);
+		placedMap.put("death_altar", deathAltarPlaced);
+		placedMap.put("earth_altar", earthAltarPlaced);
+		placedMap.put("fire_altar", fireAltarPlaced);
+		placedMap.put("law_altar", lawAltarPlaced);
+		placedMap.put("mind_altar", mindAltarPlaced);
+		placedMap.put("nature_altar", natureAltarPlaced);
+		placedMap.put("soul_altar", soulAltarPlaced);
+		placedMap.put("water_altar", waterAltarPlaced);
+		placedMap.put("ourania_altar", ouraniaAltarPlaced);
 	}
 
 	@Override
@@ -71,6 +106,7 @@ public class AltarNBTHelper extends WorldSavedData {
 		compound.setBoolean("overworldAltarsGenerated", overworldAltarsGenerated);
 		compound.setBoolean("netherAltarsGenerated", netherAltarsGenerated);
 		compound.setBoolean("endAltarsGenerated", endAltarsGenerated);
+
 		compound.setIntArray("airAltarPos", blockPosToIntArray(posMap.get("air_altar")));
 		compound.setIntArray("astralAltarPos", blockPosToIntArray(posMap.get("astral_altar")));
 		compound.setIntArray("bloodAltarPos", blockPosToIntArray(posMap.get("blood_altar")));
@@ -85,6 +121,28 @@ public class AltarNBTHelper extends WorldSavedData {
 		compound.setIntArray("natureAltarPos", blockPosToIntArray(posMap.get("nature_altar")));
 		compound.setIntArray("soulAltarPos", blockPosToIntArray(posMap.get("soul_altar")));
 		compound.setIntArray("waterAltarPos", blockPosToIntArray(posMap.get("water_altar")));
+		compound.setIntArray("ouraniaAltarPos", blockPosToIntArray(posMap.get("ourania_altar")));
+
+		compound.setBoolean("air_altar", placedMap.get("air_altar"));
+		compound.setBoolean("astral_altar", placedMap.get("astral_altar"));
+		compound.setBoolean("blood_altar", placedMap.get("blood_altar"));
+		compound.setBoolean("body_altar", placedMap.get("body_altar"));
+		try {
+			compound.setBoolean("chaos_altar", placedMap.get("chaos_altar"));
+			compound.setBoolean("cosmic_altar", placedMap.get("cosmic_altar"));
+		} catch (NullPointerException e) {
+			// Nether and End generators have not been initialized yet, ignore
+			// these altars.
+		}
+		compound.setBoolean("death_altar", placedMap.get("death_altar"));
+		compound.setBoolean("earth_altar", placedMap.get("earth_altar"));
+		compound.setBoolean("fire_altar", placedMap.get("fire_altar"));
+		compound.setBoolean("law_altar", placedMap.get("law_altar"));
+		compound.setBoolean("mind_altar", placedMap.get("mind_altar"));
+		compound.setBoolean("nature_altar", placedMap.get("nature_altar"));
+		compound.setBoolean("soul_altar", placedMap.get("soul_altar"));
+		compound.setBoolean("water_altar", placedMap.get("water_altar"));
+		compound.setBoolean("ourania_altar", placedMap.get("ourania_altar"));
 
 		return compound;
 	}

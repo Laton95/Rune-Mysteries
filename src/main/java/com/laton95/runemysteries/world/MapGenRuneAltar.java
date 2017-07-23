@@ -18,33 +18,12 @@ import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenRuneAltar extends MapGenStructure {
 	private final List<Biome.SpawnListEntry> runeAltarSpawnList;
-	private boolean foundLocations = false;
-	private AltarTracker altarTracker;
-
-	public boolean loaded = false;;
+	private final WorldHelper.dimType type;
 
 	public MapGenRuneAltar(WorldHelper.dimType type, World world) {
 		this.world = world;
 		this.runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
-
-		switch (type) {
-		case OVERWORLD:
-			this.altarTracker = new OverworldAltarTracker(this.world);
-			break;
-		case NETHER:
-			this.altarTracker = new NetherAltarTacker(this.world);
-			break;
-		case END:
-			this.altarTracker = new EndAltarTracker(this.world);
-			break;
-		}
-	}
-
-	public void init() {
-		if (!foundLocations) {
-			altarTracker.findLocations(world);
-			foundLocations = true;
-		}
+		this.type = type;
 	}
 
 	public String getStructureName() {
@@ -52,11 +31,42 @@ public class MapGenRuneAltar extends MapGenStructure {
 	}
 
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-		if (!foundLocations) {
-			altarTracker.findLocations(world);
-			foundLocations = true;
+		LogHelper.info(chunkX + "," + chunkZ);
+		switch (type) {
+		case OVERWORLD:
+			if (ChunkGenerator.altarTracker != null) {
+				if (!ChunkGenerator.altarTracker.overworldAltarsFound) {
+					ChunkGenerator.altarTracker.findOverworldLocations(world);
+				}
+			} else {
+				ChunkGenerator.altarTracker = new AltarTracker();
+				ChunkGenerator.altarTracker.findOverworldLocations(world);
+			}
+			break;
+		case NETHER:
+			if (ChunkGenerator.altarTracker != null) {
+				if (!ChunkGenerator.altarTracker.netherAltarsFound) {
+					ChunkGenerator.altarTracker.findNetherLocations(world);
+				}
+			} else {
+				ChunkGenerator.altarTracker = new AltarTracker();
+				ChunkGenerator.altarTracker.findNetherLocations(world);
+			}
+			break;
+		case END:
+			if (ChunkGenerator.altarTracker != null) {
+				if (!ChunkGenerator.altarTracker.endAltarsFound) {
+					ChunkGenerator.altarTracker.findEndLocations(world);
+				}
+			} else {
+				ChunkGenerator.altarTracker = new AltarTracker();
+				ChunkGenerator.altarTracker.findEndLocations(world);
+			}
+			break;
 		}
-		return altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ));
+
+		return ChunkGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ),
+				world.provider.getDimension());
 	}
 
 	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored) {
@@ -64,7 +74,7 @@ public class MapGenRuneAltar extends MapGenStructure {
 	}
 
 	protected StructureStart getStructureStart(int chunkX, int chunkZ) {
-		return new MapGenRuneAltar.Start(this.world, this.rand, chunkX, chunkZ, this.altarTracker);
+		return new MapGenRuneAltar.Start(this.world, this.rand, chunkX, chunkZ);
 	}
 
 	/**
@@ -74,28 +84,20 @@ public class MapGenRuneAltar extends MapGenStructure {
 		return this.runeAltarSpawnList;
 	}
 
-	public AltarTracker getAltarTracker() {
-		return altarTracker;
-	}
-
 	public static class Start extends StructureStart {
-		private AltarTracker altarTracker;
-
 		public Start() {
 		}
 
-		public Start(World worldIn, Random random, int chunkX, int chunkZ, AltarTracker altarTracker) {
-			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)),
-					altarTracker);
+		public Start(World worldIn, Random random, int chunkX, int chunkZ) {
+			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
 
 		}
 
-		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn, AltarTracker altarTracker) {
+		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn) {
 			super(chunkX, chunkZ);
 
-			this.altarTracker = altarTracker;
-
-			AltarTracker.RuneAltar altar = altarTracker.getAltar(new ChunkPos(chunkX, chunkZ));
+			AltarTracker.RuneAltar altar = ChunkGenerator.altarTracker.getAltar(new ChunkPos(chunkX, chunkZ),
+					worldIn.provider.getDimension());
 
 			boolean flag = false;
 			switch (worldIn.provider.getDimensionType()) {
@@ -139,7 +141,6 @@ public class MapGenRuneAltar extends MapGenStructure {
 								1, altar.getFlatnessTolerance())) {
 
 							// Altar generated
-							altarTracker.altarGenerated(altar);
 							altar.setPlaced(true);
 							altar.setPosition(
 									new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
@@ -155,14 +156,13 @@ public class MapGenRuneAltar extends MapGenStructure {
 						break;
 					case UNDERGROUND:
 						ComponentUndergroundAltar componentRuneAltarU = new ComponentUndergroundAltar(random,
-								chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom(),altar.getYOffset());
+								chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
 						bBox = componentRuneAltarU.getBoundingBox();
 
 						altarPos = new BlockPos(bBox.minX, random.nextInt(25) + 15, bBox.minZ);
 						altarPos2 = new BlockPos(bBox.maxX, altarPos.getY() + bBox.getYSize(), bBox.maxZ);
 						componentRuneAltarU.setBoundingBox(new StructureBoundingBox(altarPos, altarPos2));
 						// Altar generated
-						altarTracker.altarGenerated(altar);
 						altar.setPlaced(true);
 						altar.setPosition(new BlockPos(altarPos.getX() + 7, altarPos.getY() + 2, altarPos.getZ() + 7));
 						altar.setPlacementRadius(0);
@@ -183,7 +183,6 @@ public class MapGenRuneAltar extends MapGenStructure {
 								1, altar.getFlatnessTolerance())) {
 
 							// Altar generated
-							altarTracker.altarGenerated(altar);
 							altar.setPlaced(true);
 							altar.setPosition(
 									new BlockPos(altarPos.getX() + 2, altarPos.getY() - depth, altarPos.getZ() - 8));
@@ -205,14 +204,12 @@ public class MapGenRuneAltar extends MapGenStructure {
 						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 						if (!WorldHelper.isInsideCave(worldIn, altarPos, bBox.getXSize(), bBox.getZSize())) {
 							// Altar generated
-							altarTracker.altarGenerated(altar);
 							altar.setPlaced(true);
 							altar.setPosition(
 									new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
 							altar.setPlacementRadius(0);
 							LogHelper.info(altar.toString());
 							this.components.add(componentRuneAltarN);
-
 						} else {
 							panic(altar);
 						}
@@ -233,7 +230,6 @@ public class MapGenRuneAltar extends MapGenStructure {
 
 						altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 						// Altar generated
-						altarTracker.altarGenerated(altar);
 						altar.setPlaced(true);
 						altar.setPosition(new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
 						altar.setPlacementRadius(0);
@@ -251,10 +247,10 @@ public class MapGenRuneAltar extends MapGenStructure {
 
 		private void panic(AltarTracker.RuneAltar altar) {
 			altar.incrementFailureCount(1);
-			if (altar.getFailureCount() > altarTracker.warningFailureCount) {
+			if (altar.getFailureCount() > ChunkGenerator.altarTracker.warningFailureCount) {
 				altar.incrementPlacementRadius(5);
 				altar.decrementFlatnessTolerance(0.02f);
-				if (altar.getFailureCount() > altarTracker.panicFailureCount) {
+				if (altar.getFailureCount() > ChunkGenerator.altarTracker.panicFailureCount) {
 					altar.incrementPlacementRadius(20);
 					altar.setBiomeDependant(false);
 					altar.setFlatnessTolerance(0.1f);

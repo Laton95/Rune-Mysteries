@@ -42,13 +42,16 @@ item.runemysteries.talisman.pull.west=The talisman pulls to the West.
 item.runemysteries.talisman.pull.northWest=The talisman pulls to the North-West.
 item.runemysteries.talisman.pull.up=The talisman pulls upwards.
 item.runemysteries.talisman.pull.down=The talisman pulls downwards.
-item.runemysteries.talisman.pull.unknown=The talisman is unresponsive.
 item.runemysteries.talisman.pull.nearby=The talisman pulls toward the altar stone.
 item.runemysteries.talisman.pull.overworld=You feel sudden thoughts of home.
 item.runemysteries.talisman.pull.nether=The talisman throbs and burns your hand.
 item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
+item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+
+tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
+tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
@@ -56,6 +59,17 @@ death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
 tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
+tile.runemysteries:ruin_Block.name=Ruined Stone
+tile.runemysteries:temple_Block.name=Temple Brick
+tile.runemysteries:temple_Block_Stairs.name=Temple Brick Stairs
+tile.runemysteries:temple_Block_Slab_Half.name=Temple Brick Slab
+tile.runemysteries:temple_Block_Slab_Double.name=Temple Brick Double Slab
+tile.runemysteries:blood_Block.name=Blood Brick
+tile.runemysteries:blood_Block_Stairs.name=Blood Brick Stairs
+tile.runemysteries:blood_Block_Slab_Half.name=Blood Brick Slab
+tile.runemysteries:blood_Block_Slab_Double.name=Blood Brick Double Slab
+tile.runemysteries:flesh_Block.name=Flesh
+
 tile.runemysteries:air_Altar_Block.name=Air Altar
 tile.runemysteries:astral_Altar_Block.name=Astral Altar
 tile.runemysteries:blood_Altar_Block.name=Blood Altar
@@ -71,8 +85,35 @@ tile.runemysteries:nature_Altar_Block.name=Nature Altar
 tile.runemysteries:soul_Altar_Block.name=Soul Altar
 tile.runemysteries:water_Altar_Block.name=Water Altar
 tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
-tile.runemysteries:ruin_Block.name=Ruined Stone
-tile.runemysteries:temple_Block.name=Temple Brick
+
+
+tile.runemysteries:air_Altar_Entrance_Block.name=Air Altar Ruin
+tile.runemysteries:blood_Altar_Entrance_Block.name=Blood Altar Ruin
+tile.runemysteries:body_Altar_Entrance_Block.name=Body Altar Ruin
+tile.runemysteries:chaos_Altar_Entrance_Block.name=Chaos Altar Ruin
+tile.runemysteries:cosmic_Altar_Entrance_Block.name=Cosmic Altar Ruin
+tile.runemysteries:death_Altar_Entrance_Block.name=Death Altar Ruin
+tile.runemysteries:earth_Altar_Entrance_Block.name=Earth Altar Ruin
+tile.runemysteries:fire_Altar_Entrance_Block.name=Fire Altar Ruin
+tile.runemysteries:law_Altar_Entrance_Block.name=Law Altar Ruin
+tile.runemysteries:mind_Altar_Entrance_Block.name=Mind Altar Ruin
+tile.runemysteries:nature_Altar_Entrance_Block.name=Nature Altar Ruin
+tile.runemysteries:soul_Altar_Entrance_Block.name=Soul Altar Ruin
+tile.runemysteries:water_Altar_Entrance_Block.name=Water Altar Ruin
+
+tile.runemysteries:air_Altar_Exit_Portal.name=Air Altar Exit Portal
+tile.runemysteries:blood_Altar_Exit_Portal.name=Blood Altar Exit Portal
+tile.runemysteries:body_Altar_Exit_Portal.name=Body Altar Exit Portal
+tile.runemysteries:chaos_Altar_Exit_Portal.name=Chaos Altar Exit Portal
+tile.runemysteries:cosmic_Altar_Exit_Portal.name=Cosmic Altar Exit Portal
+tile.runemysteries:death_Altar_Exit_Portal.name=Death Altar Exit Portal
+tile.runemysteries:earth_Altar_Exit_Portal.name=Earth Altar Exit Portal
+tile.runemysteries:fire_Altar_Exit_Portal.name=Fire Altar Exit Portal
+tile.runemysteries:law_Altar_Exit_Portal.name=Law Altar Exit Portal
+tile.runemysteries:mind_Altar_Exit_Portal.name=Mind Altar Exit Portal
+tile.runemysteries:nature_Altar_Exit_Portal.name=Nature Altar Exit Portal
+tile.runemysteries:soul_Altar_Exit_Portal.name=Soul Altar Exit Portal
+tile.runemysteries:water_Altar_Exit_Portal.name=Water Altar Exit Portal
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries
