@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.world.altarStructures.MapGenAirTemple;
+import com.laton95.runemysteries.world.MapGenTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.BlockFlower;
@@ -49,7 +49,7 @@ public class ChunkGeneratorNature implements IChunkGenerator {
 	double[] depthRegion;
 	public WorldGenFlowers flowerGen = new WorldGenFlowers(Blocks.YELLOW_FLOWER, BlockFlower.EnumFlowerType.DANDELION);
 
-	private MapGenAirTemple airTemple;
+	private MapGenTemple temple;
 
 	private int seaLevel = 63;
 	private float mainNoiseScaleX = 80.0f;
@@ -90,7 +90,7 @@ public class ChunkGeneratorNature implements IChunkGenerator {
 			}
 		}
 
-		airTemple = new MapGenAirTemple(world);
+		temple = new MapGenTemple(world);
 
 		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld(
 				minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise,
@@ -123,7 +123,7 @@ public class ChunkGeneratorNature implements IChunkGenerator {
 			abyte[i] = (byte) Biome.getIdForBiome(biomesForGeneration[i]);
 		}
 
-		airTemple.generate(world, x, z, chunkprimer);
+		temple.generate(world, x, z, chunkprimer);
 
 		chunk.generateSkylightMap();
 		return chunk;
@@ -373,7 +373,7 @@ public class ChunkGeneratorNature implements IChunkGenerator {
 			}
 		}
 
-		airTemple.generateStructure(world, rand, chunkpos);
+		temple.generateStructure(world, rand, chunkpos);
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, flag);
 

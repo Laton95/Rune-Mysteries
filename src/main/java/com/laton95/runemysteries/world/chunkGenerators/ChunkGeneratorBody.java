@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.laton95.runemysteries.init.BlockRegistry;
-import com.laton95.runemysteries.world.altarStructures.MapGenBloodTemple;
+import com.laton95.runemysteries.world.MapGenTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -24,12 +24,12 @@ public class ChunkGeneratorBody implements IChunkGenerator {
 	private final Random rand;
 	private final World world;
 
-	private MapGenBloodTemple bloodTemple;
+	private MapGenTemple temple;
 
 	public ChunkGeneratorBody(World worldIn, long seed) {
 		world = worldIn;
 		rand = new Random(seed);
-		bloodTemple = new MapGenBloodTemple(worldIn);
+		temple = new MapGenTemple(worldIn);
 	}
 
 	/**
@@ -48,7 +48,7 @@ public class ChunkGeneratorBody implements IChunkGenerator {
 			}
 		}
 
-		bloodTemple.generate(world, x, z, chunkprimer);
+		temple.generate(world, x, z, chunkprimer);
 
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		chunk.generateSkylightMap();
@@ -71,7 +71,7 @@ public class ChunkGeneratorBody implements IChunkGenerator {
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 
-		bloodTemple.generateStructure(world, rand, chunkpos);
+		temple.generateStructure(world, rand, chunkpos);
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
 

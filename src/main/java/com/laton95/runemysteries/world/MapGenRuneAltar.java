@@ -7,6 +7,11 @@ import com.google.common.collect.Lists;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
 import com.laton95.runemysteries.world.AltarTracker.Type;
+import com.laton95.runemysteries.world.structureComponents.ComponentEndAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentNetherAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentSoulAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentSurfaceAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundAltar;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;

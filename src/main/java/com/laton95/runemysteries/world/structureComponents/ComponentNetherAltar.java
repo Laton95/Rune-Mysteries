@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world;
+package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
@@ -11,14 +11,14 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
-public class ComponentEndAltar extends WorldHelper.ModFeature {
+public class ComponentNetherAltar extends WorldHelper.ModFeature {
 	private String name;
 
-	public ComponentEndAltar() {
+	public ComponentNetherAltar() {
 	}
 
-	public ComponentEndAltar(Random rand, int x, int z, String name) {
-		super(rand, x, 64, z, 10, 3, 10);
+	public ComponentNetherAltar(Random rand, int x, int z, String name) {
+		super(rand, x, 45, z, 10, 3, 10);
 		this.name = name;
 	}
 
@@ -28,7 +28,7 @@ public class ComponentEndAltar extends WorldHelper.ModFeature {
 				structureboundingbox.minZ);
 		BlockPos blockpos2 = new BlockPos(blockpos.getX() - 1, blockpos.getY() - 6, blockpos.getZ() - 1);
 
-		Template island = WorldHelper.getTemplate(worldIn, "end_island");
+		Template island = WorldHelper.getTemplate(worldIn, "nether_island");
 		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
 		Template altar = WorldHelper.getTemplate(worldIn, name);
 		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)

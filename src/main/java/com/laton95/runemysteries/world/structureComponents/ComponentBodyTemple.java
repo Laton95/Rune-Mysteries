@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.altarStructures;
+package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
@@ -11,13 +11,13 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 
-public class ComponentAirTemple extends WorldHelper.ModFeature {
+public class ComponentBodyTemple extends WorldHelper.ModFeature {
 
-	public ComponentAirTemple() {
+	public ComponentBodyTemple() {
 	}
 
-	public ComponentAirTemple(Random rand, int x, int z) {
-		super(rand, x, 62, z, 32, 27, 32);
+	public ComponentBodyTemple(Random rand, int x, int z) {
+		super(rand, x, 85, z, 26, 7, 28);
 	}
 
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
@@ -25,7 +25,7 @@ public class ComponentAirTemple extends WorldHelper.ModFeature {
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 
-		Template temple = WorldHelper.getTemplate(worldIn, "air_temple");
+		Template temple = WorldHelper.getTemplate(worldIn, "body_temple");
 		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, temple, settings);

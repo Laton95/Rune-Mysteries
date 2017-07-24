@@ -3,6 +3,9 @@ package com.laton95.runemysteries.handler;
 import com.laton95.runemysteries.reference.Reference;
 
 import net.minecraftforge.common.config.Config;
+import net.minecraftforge.common.config.Config.Comment;
+import net.minecraftforge.common.config.Config.Name;
+import net.minecraftforge.common.config.Config.RangeInt;
 import net.minecraftforge.common.config.ConfigManager;
 import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,83 +14,133 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Config(modid = Reference.MOD_ID)
 @Config.LangKey("runemysteries.config.title")
 public class ModConfig {
+	@Name("World Gen")
+	@Comment("Worldgen options.")
 	public static final WorldGeneration world = new WorldGeneration();
+	@Name("Dimensions")
+	@Comment("Dimension options.")
 	public static final Dimensions dimensions = new Dimensions();
 
 	public static class WorldGeneration {
+		@Name("Rune Altar generation")
+		@Comment("Rune altar generation options.")
 		public final RuneAltars rune_altars = new RuneAltars();
+		@Name("Ore generation")
+		@Comment("Ore generation options.")
 		public final Ores ores = new Ores();
 		
 		public static class RuneAltars {
-			@Config.Comment("Generate rune altars in the world.")
+			@Name("Generate Altars")
+			@Comment("Generate rune altars in the world.")
 			public boolean generateRuneAltars = true;;
 			
-			@Config.Comment("Maximum distance from 0,0 rune altars will generate.")
+			@Name("Max Altar Distance")
+			@Comment("Maximum distance from 0,0 rune altars will generate.")
+			@RangeInt(min = 1000)
 			public int maxRuneAltarRange = 5000;
 			
-			@Config.Comment("Minimum distance from 0,0 rune altars will generate.")
+			@Name("Min Altar Distance")
+			@Comment("Minimum distance from 0,0 rune altars will generate.")
+			@RangeInt(min = 0)
 			public int minRuneAltarRange = 0;
 			
-			@Config.Comment("Number of attempts each altar makes to find a correct biome for generation, insanely high values may cause initial world creation to take more time.")
+			@Name("Location Attempts")
+			@Comment("Number of attempts each altar makes to find a correct biome for generation, insanely high values may cause initial world creation to take more time.")
+			@RangeInt(min = 1)
 			public int runeAltarTries = 300;
 		}
 		
 		public static class Ores {
-			@Config.Comment("Generate finite essence in the world.")
-			public static boolean generateFiniteEssence = true;
+			@Name("Generate Finite Essence")
+			@Comment("Generate finite essence in the world.")
+			public boolean generateFiniteEssence = true;
 			
-			@Config.Comment("Size of finite essence veins.")
+			@Name("Finite Essence Vein Size")
+			@Comment("Size of finite essence veins.")
+			@RangeInt(min = 0)
 			public int finiteEssenceVeinSize = 8;
 			
-			@Config.Comment("Number of generation tries per chunk for finite essence veins.")
+			@Name("Finite Essence Veins Per Chunk")
+			@Comment("Number of generation tries per chunk for finite essence veins.")
+			@RangeInt(min = 0)
 			public int finiteEssenceVeinsPerChunk = 10;
 			
-			@Config.Comment("Maximum height of finite essence veins.")
+			@Name("Finite Essence Max Height")
+			@Comment("Maximum height of finite essence veins.")
+			@RangeInt(min = 0, max = 255)
 			public int finiteEssenceMaxHeight = 65;
 			
-			@Config.Comment("Minimum height of finite essence veins.")
+			@Name("Finite Essence Min Height")
+			@Comment("Minimum height of finite essence veins.")
+			@RangeInt(min = 0, max = 255)
 			public int finiteEssenceMinHeight = 10;
 		}
 	}
 
 	public static class Dimensions {
-		@Config.Comment("Dimension ID for air temple.")
+		@Name("Air Temple Dimension ID")
+		@Comment("Dimension ID for air temple.")
+		@RangeInt(min = 10)
 		public int airTempleDimID = 169;
 		
-		@Config.Comment("Dimension ID for blood temple.")
+		@Name("Blood Temple Dimension ID")
+		@Comment("Dimension ID for blood temple.")
+		@RangeInt(min = 10)
 		public int bloodTempleDimID = 170;
 		
-		@Config.Comment("Dimension ID for body temple.")
+		@Name("Body Temple Dimension ID")
+		@Comment("Dimension ID for body temple.")
+		@RangeInt(min = 10)
 		public int bodyTempleDimID = 171;
 		
-		@Config.Comment("Dimension ID for chaos temple.")
+		@Name("Chaos Temple Dimension ID")
+		@Comment("Dimension ID for chaos temple.")
+		@RangeInt(min = 10)
 		public int chaosTempleDimID = 172;
 		
-		@Config.Comment("Dimension ID for cosmic temple.")
+		@Name("Cosmic Temple Dimension ID")
+		@Comment("Dimension ID for cosmic temple.")
+		@RangeInt(min = 10)
 		public int cosmicTempleDimID = 173;
 		
-		@Config.Comment("Dimension ID for death temple.")
+		@Name("Death Temple Dimension ID")
+		@Comment("Dimension ID for death temple.")
+		@RangeInt(min = 10)
 		public int deathTempleDimID = 174;
 		
-		@Config.Comment("Dimension ID for earth temple.")
+		@Name("Earth Temple Dimension ID")
+		@Comment("Dimension ID for earth temple.")
+		@RangeInt(min = 10)
 		public int earthTempleDimID = 175;
 		
-		@Config.Comment("Dimension ID for fire temple.")
+		@Name("Fire Temple Dimension ID")
+		@Comment("Dimension ID for fire temple.")
+		@RangeInt(min = 10)
 		public int fireTempleDimID = 176;
 		
-		@Config.Comment("Dimension ID for law temple.")
+		@Name("Law Temple Dimension ID")
+		@Comment("Dimension ID for law temple.")
+		@RangeInt(min = 10)
 		public int lawTempleDimID = 177;
 		
-		@Config.Comment("Dimension ID for mind temple.")
+		@Name("Mind Temple Dimension ID")
+		@Comment("Dimension ID for mind temple.")
+		@RangeInt(min = 10)
 		public int mindTempleDimID = 178;
 		
-		@Config.Comment("Dimension ID for nature temple.")
+		@Name("Nature Temple Dimension ID")
+		@Comment("Dimension ID for nature temple.")
+		@RangeInt(min = 10)
 		public int natureTempleDimID = 179;
 		
-		@Config.Comment("Dimension ID for soul temple.")
+		@Name("Soul Temple Dimension ID")
+		@Comment("Dimension ID for soul temple.")
+		@RangeInt(min = 10)
 		public int soulTempleDimID = 180;
 		
-		@Config.Comment("Dimension ID for water temple.")
+		@Name("Water Temple Dimension ID")
+		@Comment("Dimension ID for water temple.")
+		@RangeInt(min = 10)
 		public int waterTempleDimID = 181;
 	}
 	

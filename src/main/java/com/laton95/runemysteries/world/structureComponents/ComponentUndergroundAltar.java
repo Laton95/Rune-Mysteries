@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world;
+package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
