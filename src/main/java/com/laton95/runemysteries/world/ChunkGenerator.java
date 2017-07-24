@@ -2,6 +2,7 @@ package com.laton95.runemysteries.world;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
 
@@ -99,46 +100,53 @@ public class ChunkGenerator implements IWorldGenerator {
 
 	@SubscribeEvent
 	public void start(WorldEvent.Load event) {
-		switch (event.getWorld().provider.getDimensionType()) {
-		case OVERWORLD:
-			if (overworldAltarGenerator == null) {
-				LogHelper.info("Overworld altar generator loaded");
-				overworldAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.OVERWORLD, event.getWorld());
-			}
-			break;
-		case NETHER:
-			if (netherAltarGenerator == null) {
-				LogHelper.info("Nether altar generator loaded");
-				netherAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.NETHER, event.getWorld());
-			}
-			break;
-		case THE_END:
-			if (endAltarGenerator == null) {
-				LogHelper.info("End altar generator loaded");
-				endAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.END, event.getWorld());
-			}
-			break;
-		default:
+		if (ModConfig.world.rune_altars.generateRuneAltars) {
+			switch (event.getWorld().provider.getDimensionType()) {
+			case OVERWORLD:
+				if (overworldAltarGenerator == null) {
+					LogHelper.info("Overworld altar generator loaded");
+					overworldAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.OVERWORLD, event.getWorld());
+				}
+				break;
+			case NETHER:
+				if (netherAltarGenerator == null) {
+					LogHelper.info("Nether altar generator loaded");
+					netherAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.NETHER, event.getWorld());
+				}
+				break;
+			case THE_END:
+				if (endAltarGenerator == null) {
+					LogHelper.info("End altar generator loaded");
+					endAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.END, event.getWorld());
+				}
+				break;
+			default:
 
-			break;
+				break;
+			}
 		}
-
 	}
 
 	@SubscribeEvent
 	public void end(WorldEvent.Unload event) {
 		switch (event.getWorld().provider.getDimensionType()) {
 		case OVERWORLD:
-			LogHelper.info("Overworld altar generator unloaded");
-			overworldAltarGenerator = null;
+			if (overworldAltarGenerator != null) {
+				LogHelper.info("Overworld altar generator unloaded");
+				overworldAltarGenerator = null;
+			}
 			break;
 		case NETHER:
-			LogHelper.info("Nether altar generator unloaded");
-			netherAltarGenerator = null;
+			if (netherAltarGenerator != null) {
+				LogHelper.info("Nether altar generator unloaded");
+				netherAltarGenerator = null;
+			}
 			break;
 		case THE_END:
-			LogHelper.info("End altar generator unloaded");
-			endAltarGenerator = null;
+			if (endAltarGenerator != null) {
+				LogHelper.info("End altar generator unloaded");
+				endAltarGenerator = null;
+			}
 			break;
 		default:
 

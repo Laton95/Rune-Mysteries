@@ -11,7 +11,7 @@ import com.laton95.runemysteries.block.BlockRuneEssence;
 import com.laton95.runemysteries.block.RMModBlock;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMModStairs;
-import com.laton95.runemysteries.reference.ConfigReference;
+import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.utility.LogHelper;
 
 import net.minecraft.block.Block;
@@ -192,18 +192,18 @@ public class BlockRegistry {
 	}
 
 	public static void setupDimIDs() {
-		airAltarEntrance.setDimID(ConfigReference.airAltarDimensionID);
-		bloodAltarEntrance.setDimID(ConfigReference.bloodAltarDimensionID);
-		bodyAltarEntrance.setDimID(ConfigReference.bodyAltarDimensionID);
-		chaosAltarEntrance.setDimID(ConfigReference.chaosAltarDimensionID);
-		cosmicAltarEntrance.setDimID(ConfigReference.cosmicAltarDimensionID);
-		deathAltarEntrance.setDimID(ConfigReference.deathAltarDimensionID);
-		earthAltarEntrance.setDimID(ConfigReference.earthAltarDimensionID);
-		fireAltarEntrance.setDimID(ConfigReference.fireAltarDimensionID);
-		lawAltarEntrance.setDimID(ConfigReference.lawAltarDimensionID);
-		mindAltarEntrance.setDimID(ConfigReference.mindAltarDimensionID);
-		natureAltarEntrance.setDimID(ConfigReference.natureAltarDimensionID);
-		soulAltarEntrance.setDimID(ConfigReference.soulAltarDimensionID);
-		waterAltarEntrance.setDimID(ConfigReference.waterAltarDimensionID);
+		airAltarEntrance.setDimID(ModConfig.dimensions.airTempleDimID);
+		bloodAltarEntrance.setDimID(ModConfig.dimensions.bloodTempleDimID);
+		bodyAltarEntrance.setDimID(ModConfig.dimensions.bodyTempleDimID);
+		chaosAltarEntrance.setDimID(ModConfig.dimensions.chaosTempleDimID);
+		cosmicAltarEntrance.setDimID(ModConfig.dimensions.cosmicTempleDimID);
+		deathAltarEntrance.setDimID(ModConfig.dimensions.deathTempleDimID);
+		earthAltarEntrance.setDimID(ModConfig.dimensions.earthTempleDimID);
+		fireAltarEntrance.setDimID(ModConfig.dimensions.fireTempleDimID);
+		lawAltarEntrance.setDimID(ModConfig.dimensions.lawTempleDimID);
+		mindAltarEntrance.setDimID(ModConfig.dimensions.mindTempleDimID);
+		natureAltarEntrance.setDimID(ModConfig.dimensions.natureTempleDimID);
+		soulAltarEntrance.setDimID(ModConfig.dimensions.soulTempleDimID);
+		waterAltarEntrance.setDimID(ModConfig.dimensions.waterTempleDimID);
 	}
 }

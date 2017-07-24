@@ -1,6 +1,5 @@
 package com.laton95.runemysteries;
 
-import com.laton95.runemysteries.handler.ConfigurationHandler;
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
@@ -22,7 +21,7 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 
-@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION, guiFactory = Reference.GUI_FACTORY_CLASS)
+@Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class RuneMysteries {
 	@Instance(Reference.MOD_ID)
 	public static RuneMysteries instance;
@@ -32,8 +31,6 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		ConfigurationHandler.init(event.getSuggestedConfigurationFile());
-		MinecraftForge.EVENT_BUS.register(new ConfigurationHandler());
 		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 	}
 

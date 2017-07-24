@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.init;
 
-import com.laton95.runemysteries.reference.ConfigReference;
+import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.world.dimensionProviders.AirDimension;
 import com.laton95.runemysteries.world.dimensionProviders.BloodDimension;
 import com.laton95.runemysteries.world.dimensionProviders.BodyDimension;
@@ -59,43 +59,43 @@ public class DimensionRegistry {
 	public static DimensionType WATER;
 
 	public static void registerDimensions() {
-		airDimID = ConfigReference.airAltarDimensionID;
+		airDimID = ModConfig.dimensions.airTempleDimID;
 		AIR = DimensionType.register("air_altar", "_altar", airDimID, AirDimension.class, false);
 
-		bloodDimID = ConfigReference.bloodAltarDimensionID;
+		bloodDimID = ModConfig.dimensions.bloodTempleDimID;;
 		BLOOD = DimensionType.register("blood_altar", "_altar", bloodDimID, BloodDimension.class, false);
 
-		bodyDimID = ConfigReference.bodyAltarDimensionID;
+		bodyDimID = ModConfig.dimensions.bodyTempleDimID;
 		BODY = DimensionType.register("body_altar", "_altar", bodyDimID, BodyDimension.class, false);
 		
-		chaosDimID = ConfigReference.chaosAltarDimensionID;
+		chaosDimID = ModConfig.dimensions.chaosTempleDimID;;
 		CHAOS = DimensionType.register("chaos_altar", "_altar", chaosDimID, ChaosDimension.class, false);
 		
-		cosmicDimID = ConfigReference.cosmicAltarDimensionID;
+		cosmicDimID = ModConfig.dimensions.cosmicTempleDimID;
 		COSMIC = DimensionType.register("cosmic_altar", "_altar", cosmicDimID, CosmicDimension.class, false);
 
-		deathDimID = ConfigReference.deathAltarDimensionID;
+		deathDimID = ModConfig.dimensions.deathTempleDimID;
 		DEATH = DimensionType.register("death_altar", "_altar", deathDimID, DeathDimension.class, false);
 
-		earthDimID = ConfigReference.earthAltarDimensionID;
+		earthDimID = ModConfig.dimensions.earthTempleDimID;
 		EARTH = DimensionType.register("earth_altar", "_altar", earthDimID, EarthDimension.class, false);
 		
-		fireDimID = ConfigReference.fireAltarDimensionID;
+		fireDimID = ModConfig.dimensions.fireTempleDimID;
 		FIRE = DimensionType.register("fire_altar", "_altar", fireDimID, FireDimension.class, false);
 		
-		lawDimID = ConfigReference.lawAltarDimensionID;
+		lawDimID = ModConfig.dimensions.lawTempleDimID;
 		LAW = DimensionType.register("law_altar", "_altar", lawDimID, LawDimension.class, false);
 		
-		mindDimID = ConfigReference.mindAltarDimensionID;
+		mindDimID = ModConfig.dimensions.mindTempleDimID;
 		MIND = DimensionType.register("mind_altar", "_altar", mindDimID, MindDimension.class, false);
 		
-		natureDimID = ConfigReference.natureAltarDimensionID;
+		natureDimID = ModConfig.dimensions.natureTempleDimID;
 		NATURE = DimensionType.register("nature_altar", "_altar", natureDimID, NatureDimension.class, false);
 		
-		soulDimID = ConfigReference.soulAltarDimensionID;
+		soulDimID = ModConfig.dimensions.soulTempleDimID;
 		SOUL = DimensionType.register("soul_altar", "_altar", soulDimID, SoulDimension.class, false);
 		
-		waterDimID = ConfigReference.waterAltarDimensionID;
+		waterDimID = ModConfig.dimensions.waterTempleDimID;
 		WATER = DimensionType.register("water_altar", "_altar", waterDimID, WaterDimension.class, false);
 
 		DimensionManager.registerDimension(airDimID, AIR);

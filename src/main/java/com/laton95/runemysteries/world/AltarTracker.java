@@ -5,7 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.reference.ConfigReference;
+import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.AltarNBTHelper;
 import com.laton95.runemysteries.utility.LogHelper;
@@ -222,8 +222,8 @@ public class AltarTracker {
 				altarNBTHelper.placedMap.put(altar.getName(), false);
 			}
 
-			BlockPos pos = findBiomePosition(outStandingBiomes, random, ConfigReference.runeAltarTries,
-					ConfigReference.maxRuneAltarRange / 16, ConfigReference.minRuneAltarRange / 16);
+			BlockPos pos = findBiomePosition(outStandingBiomes, random, ModConfig.world.rune_altars.runeAltarTries,
+					ModConfig.world.rune_altars.maxRuneAltarRange / 16, ModConfig.world.rune_altars.minRuneAltarRange / 16);
 
 			if (pos != null) {
 				for (RuneAltar altar : outStandingAltars) {
@@ -236,8 +236,8 @@ public class AltarTracker {
 				}
 			} else {
 				for (RuneAltar altar : outStandingAltars) {
-					pos = findBiomePosition(allowedBiomes, random, ConfigReference.runeAltarTries,
-							ConfigReference.maxRuneAltarRange / 16, ConfigReference.minRuneAltarRange / 16);
+					pos = findBiomePosition(allowedBiomes, random, ModConfig.world.rune_altars.runeAltarTries,
+							ModConfig.world.rune_altars.maxRuneAltarRange / 16, ModConfig.world.rune_altars.minRuneAltarRange / 16);
 					if (pos != null) {
 						altar.setPosition(pos);
 						LogHelper.info(altar);
@@ -246,8 +246,8 @@ public class AltarTracker {
 						break;
 					} else {
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random,
-								ConfigReference.runeAltarTries, ConfigReference.maxRuneAltarRange / 16,
-								ConfigReference.minRuneAltarRange / 16);
+								ModConfig.world.rune_altars.runeAltarTries, ModConfig.world.rune_altars.maxRuneAltarRange / 16,
+								ModConfig.world.rune_altars.minRuneAltarRange / 16);
 						altar.setPosition(pos);
 						LogHelper.info(altar);
 						outStandingAltars.remove(altar);

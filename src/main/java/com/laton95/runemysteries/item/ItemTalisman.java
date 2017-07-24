@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.item;
 
+import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.WorldHelper;
 import com.laton95.runemysteries.world.ChunkGenerator;
@@ -33,6 +34,11 @@ public class ItemTalisman extends RMModItem {
 		playerIn.getCooldownTracker().setCooldown(this, 30);
 
 		if (!worldIn.isRemote) {
+			if (!ModConfig.world.rune_altars.generateRuneAltars) {
+				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
+				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+			}
+			
 			switch (worldIn.provider.getDimension()) {
 			case 0:
 				switch (dimID) {

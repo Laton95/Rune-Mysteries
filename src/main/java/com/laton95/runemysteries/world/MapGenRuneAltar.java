@@ -31,7 +31,6 @@ public class MapGenRuneAltar extends MapGenStructure {
 	}
 
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-		LogHelper.info(chunkX + "," + chunkZ);
 		switch (type) {
 		case OVERWORLD:
 			if (ChunkGenerator.altarTracker != null) {
