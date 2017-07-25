@@ -35,6 +35,7 @@ public class BlockRuneAltarEntrance extends RMModBlock {
 			if (playerIn.getHeldItemMainhand().getItem().equals(talisman)
 					|| playerIn.getHeldItemOffhand().getItem().equals(talisman)) {
 				playerIn.sendMessage(new TextComponentTranslation("tile.runemysteries:altar_entrance.enter"));
+				playerIn.setPosition(2, 87, 2);
 				FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().transferPlayerToDimension(
 						(EntityPlayerMP) playerIn, dimID,
 						new WorldTeleporter(playerIn.getServer().getWorld(dimID), pos, new BlockPos(2, 87, 2)));

@@ -73,7 +73,6 @@ public class ChunkGeneratorLaw implements IChunkGenerator {
 		temple.generateStructure(world, rand, chunkpos);
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
-
 		BlockFalling.fallInstantly = false;
 	}
 

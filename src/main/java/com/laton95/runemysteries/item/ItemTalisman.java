@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.utility.ModConfig;
 import com.laton95.runemysteries.utility.WorldHelper;
 import com.laton95.runemysteries.world.ChunkGenerator;
 

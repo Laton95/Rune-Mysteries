@@ -2,8 +2,8 @@ package com.laton95.runemysteries.world;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.utility.ModConfig;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

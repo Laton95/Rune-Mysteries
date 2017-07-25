@@ -10,8 +10,12 @@ import com.laton95.runemysteries.world.MapGenTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBodyTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentCosmicTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentDeathTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentEarthTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentEndAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentLawTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentNatureTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentNetherAltar;
 import com.laton95.runemysteries.world.structureComponents.ComponentSoulAltar;
 import com.laton95.runemysteries.world.structureComponents.ComponentSurfaceAltar;
@@ -70,7 +74,12 @@ public class WorldGenRegistry {
 		componentMap.put("BloodTemple", ComponentBloodTemple.class);
 		componentMap.put("BodyTemple", ComponentBodyTemple.class);
 		//componentMap.put("ChaosTemple", ComponentChaosTemple.class);
-		//componentMap.put("CosmicTemple", ComponentCosmicTemple.class);
+		componentMap.put("CosmicTemple", ComponentCosmicTemple.class);
 		componentMap.put("DeathTemple", ComponentDeathTemple.class);
+		componentMap.put("EarthTemple", ComponentEarthTemple.class);
+		//componentMap.put("FireTemple", ComponentFireTemple.class);
+		componentMap.put("LawTemple", ComponentLawTemple.class);
+		//componentMap.put("MindTemple", ComponentMindTemple.class);
+		componentMap.put("NatureTemple", ComponentNatureTemple.class);
 	}
 }

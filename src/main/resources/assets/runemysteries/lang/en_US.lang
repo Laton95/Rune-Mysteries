@@ -115,5 +115,21 @@ tile.runemysteries:nature_Altar_Exit_Portal.name=Nature Altar Exit Portal
 tile.runemysteries:soul_Altar_Exit_Portal.name=Soul Altar Exit Portal
 tile.runemysteries:water_Altar_Exit_Portal.name=Water Altar Exit Portal
 
+tile.runemysteries:particle_Light.name=Magic Light
+
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries
+
+#Advancements
+advancements.runemysteries.runecrafting.root.title=Runecrafting
+advancements.runemysteries.runecrafting.root.description=The forgotten art of runecrafting.
+advancements.runemysteries.runecrafting.rune_essence.title=Essentials
+advancements.runemysteries.runecrafting.rune_essence.description=Find some rune essence.
+advancements.runemysteries.runecrafting.craft_rune.title=Altaration
+advancements.runemysteries.runecrafting.craft_rune.description=Craft a rune at a rune altar.
+advancements.runemysteries.runecrafting.talisman.title=Sedridor's Gift
+advancements.runemysteries.runecrafting.talisman.description=Obtain a runecrafting talisman.
+advancements.runemysteries.runecrafting.get_all_talismans.title=Omni-Talisman
+advancements.runemysteries.runecrafting.get_all_talismans.description=Obtain all of the runecrafting talismans.
+advancements.runemysteries.runecrafting.altar.title=Mysterious Ruins
+advancements.runemysteries.runecrafting.altar.description=Follow the pull of a runecrafting talisman.

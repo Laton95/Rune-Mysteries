@@ -58,7 +58,7 @@ public class ChunkGeneratorNature implements IChunkGenerator {
 	private float depthNoiseScaleX = 200.0f;
 	private float depthNoiseScaleZ = 200.0f;
 	private float depthNoiseExponent = 0.5f;
-	private float depthBaseSize = 8.5f;
+	private float depthBaseSize = 11.0f;
 	private float coordinateScale = 684.412f;
 	private float heightScale = 1.0f;
 	private float heightStretch = 50.0f;

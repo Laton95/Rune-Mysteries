@@ -2,16 +2,23 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune;
+import com.laton95.runemysteries.utility.LogHelper;
 
+import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Items;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.DamageSource;
+import net.minecraft.util.datafix.DataFixesManager;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
@@ -27,8 +34,16 @@ public class BlockRuneAltar extends RMModBlock {
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (entityIn instanceof EntityItem) {
 			Item itemType = ((EntityItem) entityIn).getItem().getItem();
-
 			if (itemType.equals(ItemRegistry.runeEssence)) {
+				String thrower = ((EntityItem) entityIn).getThrower();
+				LogHelper.info(thrower);
+				if (thrower != null) {
+					EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
+					if (player instanceof EntityPlayerMP) {
+						player.sendMessage(new TextComponentTranslation("test"));
+						CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)player, new ItemStack(ItemRegistry.runeEssence));
+					}
+				}
 				spawnItem(worldIn, entityIn, rune);
 			}
 

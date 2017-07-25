@@ -24,6 +24,7 @@ public class BlockAltarPortal extends RMModBlock {
 		this.altar = altar;
 		this.returnID = returnID;
 		setBlockUnbreakable();
+		this.lightValue = 6;
 	}
 
 	@Override

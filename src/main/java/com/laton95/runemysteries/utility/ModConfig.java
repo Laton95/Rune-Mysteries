@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.handler;
+package com.laton95.runemysteries.utility;
 
 import com.laton95.runemysteries.reference.Reference;
 

@@ -12,6 +12,7 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
@@ -28,15 +29,26 @@ public class CosmicDimension extends WorldProvider {
 		this.biomeProvider = new BiomeProviderSingle(Biomes.VOID);
 		this.hasSkyLight = false;
 	}
+	
+	@Override
+	public IRenderHandler getSkyRenderer() {
+		// TODO Auto-generated method stub
+		return super.getSkyRenderer();
+	}
 
 	@Override
 	public DimensionType getDimensionType() {
 		return DimensionRegistry.COSMIC;
 	}
+	
+	@Override
+	public float getCloudHeight() {
+		return 0f;
+	}
 
 	@Override
 	public boolean isSurfaceWorld() {
-		return false;
+		return true;
 	}
 
 	@Override
@@ -57,7 +69,7 @@ public class CosmicDimension extends WorldProvider {
 
 	@Override
 	public long getWorldTime() {
-		return 6000;
+		return 18000;
 	}
 
 	@Override
@@ -70,12 +82,9 @@ public class CosmicDimension extends WorldProvider {
 	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
 		float f = MathHelper.cos(p_76562_1_ * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
-		float f1 = 0.7529412F;
-		float f2 = 0.84705883F;
-		float f3 = 1.0F;
-		f1 = f1 * (f * 0.94F + 0.06F);
-		f2 = f2 * (f * 0.94F + 0.06F);
-		f3 = f3 * (f * 0.91F + 0.09F);
+		float f1 = 0F;
+		float f2 = 0F;
+		float f3 = 0F;
 		return new Vec3d((double) f1, (double) f2, (double) f3);
 	}
 

@@ -5,10 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.AltarNBTHelper;
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.utility.ModConfig;
 import com.laton95.runemysteries.utility.WorldHelper;
 
 import net.minecraft.util.math.BlockPos;

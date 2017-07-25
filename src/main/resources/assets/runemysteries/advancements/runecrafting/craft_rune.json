@@ -1,0 +1,24 @@
+{
+    "display": {
+        "icon": {
+            "item": "runemysteries:air_rune"
+        },
+        "title": {
+            "translate": "advancements.runemysteries.runecrafting.craft_rune.title"
+        },
+        "description": {
+            "translate": "advancements.runemysteries.runecrafting.craft_rune.description"
+        }
+    },
+    "parent": "runemysteries:runecrafting/altar",
+    "criteria": {
+        "craft_rune": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "runemysteries:rune_essence"
+                }
+            }
+        }
+    }
+}}

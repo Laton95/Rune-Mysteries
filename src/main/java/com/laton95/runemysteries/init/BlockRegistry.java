@@ -5,14 +5,15 @@ import java.util.Map;
 
 import com.laton95.runemysteries.block.BlockAltarPortal;
 import com.laton95.runemysteries.block.BlockOuraniaAltar;
+import com.laton95.runemysteries.block.BlockParticleLight;
 import com.laton95.runemysteries.block.BlockRuneAltar;
 import com.laton95.runemysteries.block.BlockRuneAltarEntrance;
 import com.laton95.runemysteries.block.BlockRuneEssence;
 import com.laton95.runemysteries.block.RMModBlock;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMModStairs;
-import com.laton95.runemysteries.handler.ModConfig;
 import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.utility.ModConfig;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockSlab;
@@ -104,6 +105,8 @@ public class BlockRegistry {
 	public static BlockAltarPortal soulAltarPortal = new BlockAltarPortal("soul_Altar_Exit_Portal", "soul", 0);
 	public static BlockAltarPortal waterAltarPortal = new BlockAltarPortal("water_Altar_Exit_Portal", "water", 0);
 	
+	public static BlockParticleLight particleLight = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f, "pickaxe", 0, true);
+	
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -189,6 +192,8 @@ public class BlockRegistry {
 		blockList.add(natureAltarPortal);
 		blockList.add(soulAltarPortal);
 		blockList.add(waterAltarPortal);
+		
+		blockList.add(particleLight);
 	}
 
 	public static void setupDimIDs() {

@@ -31,12 +31,11 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 	}
 
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event) {
-		WorldGenReference.init();
+		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 		WorldGenRegistry.registerWorldGen();
 		DimensionRegistry.registerDimensions();
 		BlockRegistry.setupDimIDs();
