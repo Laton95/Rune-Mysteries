@@ -2,7 +2,6 @@ package com.laton95.runemysteries.init;
 
 import java.util.ArrayList;
 
-import com.laton95.runemysteries.item.ItemAltarSpawner;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
@@ -16,8 +15,6 @@ import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.registries.ForgeRegistry;
 
 @Mod.EventBusSubscriber
 public class ItemRegistry {
@@ -39,7 +36,6 @@ public class ItemRegistry {
 	public static ItemRune waterRune = new ItemRune("water_Rune");
 	public static RMModItem runeEssence = new RMModItem("rune_Essence", true);
 	public static ItemSpellbook spellbook = new ItemSpellbook();
-	public static ItemAltarSpawner altarSpawner = new ItemAltarSpawner();
 	public static ItemTalisman airTalisman = new ItemTalisman("air_talisman", "air_altar", 0);
 	public static ItemTalisman astralTalisman = new ItemTalisman("astral_talisman", "astral_altar", 0);
 	public static ItemTalisman bloodTalisman = new ItemTalisman("blood_talisman", "blood_altar", 0);
@@ -99,7 +95,6 @@ public class ItemRegistry {
 		itemList.add(waterTalisman);
 
 		itemList.add(spellbook);
-		itemList.add(altarSpawner);
 
 	}
 

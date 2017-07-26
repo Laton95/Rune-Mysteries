@@ -8,11 +8,16 @@ import com.laton95.runemysteries.utility.ModConfig;
 import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBodyTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentChaosTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentCosmicTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentDeathTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentEarthTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentFireTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentLawTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentMindTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentNatureTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentSoulTemple;
+import com.laton95.runemysteries.world.structureComponents.ComponentWaterTemple;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -20,10 +25,10 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
 
-public class MapGenTemple extends MapGenStructure {
+public class MapGenRuneTemple extends MapGenStructure {
 	private final List<Biome.SpawnListEntry> runeTempleSpawnList;
 
-	public MapGenTemple(World world) {
+	public MapGenRuneTemple(World world) {
 		this.world = world;
 		this.runeTempleSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
 	}
@@ -44,7 +49,7 @@ public class MapGenTemple extends MapGenStructure {
 	}
 
 	protected StructureStart getStructureStart(int chunkX, int chunkZ) {
-		return new MapGenTemple.Start(this.world, this.rand, chunkX, chunkZ);
+		return new MapGenRuneTemple.Start(this.world, this.rand, chunkX, chunkZ);
 	}
 
 	/**
@@ -76,8 +81,8 @@ public class MapGenTemple extends MapGenStructure {
 				ComponentBodyTemple componentBodyTemple = new ComponentBodyTemple(random, -13, -14);
 				this.components.add(componentBodyTemple);
 			} else if (dimensionID == ModConfig.dimensions.chaosTempleDimID) {
-				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
-				this.components.add(componentBloodTemple);
+				ComponentChaosTemple componentChaosTemple = new ComponentChaosTemple(random, -4, -4);
+				this.components.add(componentChaosTemple);
 			} else if (dimensionID == ModConfig.dimensions.cosmicTempleDimID) {
 				ComponentCosmicTemple componentCosmicTemple = new ComponentCosmicTemple(random);
 				this.components.add(componentCosmicTemple);
@@ -88,23 +93,23 @@ public class MapGenTemple extends MapGenStructure {
 				ComponentEarthTemple componentEarthTemple = new ComponentEarthTemple(random, -16, -16);
 				this.components.add(componentEarthTemple);
 			} else if (dimensionID == ModConfig.dimensions.fireTempleDimID) {
-				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
-				this.components.add(componentBloodTemple);
+				ComponentFireTemple componentFireTemple = new ComponentFireTemple(random, -16, -16);
+				this.components.add(componentFireTemple);
 			} else if (dimensionID == ModConfig.dimensions.lawTempleDimID) {
 				ComponentLawTemple componentLawTemple = new ComponentLawTemple(random, -14, -14);
 				this.components.add(componentLawTemple);
 			} else if (dimensionID == ModConfig.dimensions.mindTempleDimID) {
-				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
-				this.components.add(componentBloodTemple);
+				ComponentMindTemple componentMindTemple = new ComponentMindTemple(random, -16, -16);
+				this.components.add(componentMindTemple);
 			} else if (dimensionID == ModConfig.dimensions.natureTempleDimID) {
 				ComponentNatureTemple componentNatureTemple = new ComponentNatureTemple(random, -11, -11);
 				this.components.add(componentNatureTemple);
 			} else if (dimensionID == ModConfig.dimensions.soulTempleDimID) {
-				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
-				this.components.add(componentBloodTemple);
+				ComponentSoulTemple componentSoulTemple = new ComponentSoulTemple(random, -16, -16);
+				this.components.add(componentSoulTemple);
 			} else if (dimensionID == ModConfig.dimensions.waterTempleDimID) {
-				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
-				this.components.add(componentBloodTemple);
+				ComponentWaterTemple componentWaterTemple = new ComponentWaterTemple(random, -16, -16);
+				this.components.add(componentWaterTemple);
 			}
 			
 			this.updateBoundingBox();

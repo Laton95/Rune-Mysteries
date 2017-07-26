@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.world.MapGenTemple;
+import com.laton95.runemysteries.world.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -23,12 +23,12 @@ public class ChunkGeneratorMind implements IChunkGenerator {
 	private final Random rand;
 	private final World world;
 
-	private MapGenTemple temple;
+	private MapGenRuneTemple temple;
 
 	public ChunkGeneratorMind(World worldIn, long seed) {
 		world = worldIn;
 		rand = new Random(seed);
-		temple = new MapGenTemple(worldIn);
+		temple = new MapGenRuneTemple(worldIn);
 	}
 
 	/**
@@ -39,7 +39,7 @@ public class ChunkGeneratorMind implements IChunkGenerator {
 		rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
 
-		for (int y = 0; y < world.getActualHeight(); y++) {
+		for (int y = 0; y < 97; y++) {
 			for (int xPos = 0; xPos < 16; xPos++) {
 				for (int zPos = 0; zPos < 16; zPos++) {
 					chunkprimer.setBlockState(xPos, y, zPos, WORLDBLOCK);

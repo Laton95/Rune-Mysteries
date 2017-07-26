@@ -26,7 +26,7 @@ public class ChaosDimension extends WorldProvider {
 	@Override
 	public void init() {
 		this.biomeProvider = new BiomeProviderSingle(Biomes.VOID);
-		this.hasSkyLight = false;
+		this.hasSkyLight = true;
 	}
 
 	@Override

@@ -2,6 +2,7 @@ package com.laton95.runemysteries;
 
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.LiquidRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.proxy.IProxy;
@@ -43,7 +44,7 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-
+		LiquidRegistry.registerFluidContainers();
 	}
 
 	@Mod.EventHandler

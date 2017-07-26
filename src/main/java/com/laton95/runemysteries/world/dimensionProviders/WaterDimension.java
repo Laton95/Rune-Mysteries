@@ -26,7 +26,7 @@ public class WaterDimension extends WorldProvider {
 	 */
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(Biomes.VOID);
+		this.biomeProvider = new BiomeProviderSingle(Biomes.SWAMPLAND);
 		this.hasSkyLight = true;
 	}
 

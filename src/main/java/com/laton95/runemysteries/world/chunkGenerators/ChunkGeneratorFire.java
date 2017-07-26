@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.world.MapGenTemple;
+import com.laton95.runemysteries.world.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -25,12 +25,12 @@ public class ChunkGeneratorFire implements IChunkGenerator {
 	private final Random rand;
 	private final World world;
 
-	private MapGenTemple temple;
+	private MapGenRuneTemple temple;
 
 	public ChunkGeneratorFire(World worldIn, long seed) {
 		world = worldIn;
 		rand = new Random(seed);
-		temple = new MapGenTemple(worldIn);
+		temple = new MapGenRuneTemple(worldIn);
 	}
 
 	/**

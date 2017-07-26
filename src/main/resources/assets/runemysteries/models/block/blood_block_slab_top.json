@@ -1,8 +1,8 @@
 {
   "parent": "block/upper_slab",
   "textures": {
-    "bottom": "minecraft:blocks/stonebrick",
-        "top": "minecraft:blocks/stonebrick",
-        "side": "minecraft:blocks/stonebrick"
+    "bottom": "runemysteries:blocks/blood_block",
+        "top": "runemysteries:blocks/blood_block",
+        "side": "runemysteries:blocks/blood_block"
   }
 }

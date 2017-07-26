@@ -22,7 +22,7 @@ public class BlockRuneAltarEntrance extends RMModBlock {
 	private String altar;
 
 	public BlockRuneAltarEntrance(String name, ItemTalisman talisman, String altar) {
-		super(name, Material.ROCK, 0, 2000f, null, 0, true);
+		super(name, Material.ROCK, 0, 2000f, null, 0, false);
 		this.talisman = talisman;
 		this.altar = altar;
 		setBlockUnbreakable();

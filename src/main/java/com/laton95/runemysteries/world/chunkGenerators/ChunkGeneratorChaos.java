@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.world.MapGenTemple;
+import com.laton95.runemysteries.world.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -22,12 +22,12 @@ public class ChunkGeneratorChaos implements IChunkGenerator {
 	private final Random rand;
 	private final World world;
 
-	private MapGenTemple temple;
+	private MapGenRuneTemple temple;
 
 	public ChunkGeneratorChaos(World worldIn, long seed) {
 		world = worldIn;
 		rand = new Random(seed);
-		temple = new MapGenTemple(worldIn);
+		temple = new MapGenRuneTemple(worldIn);
 	}
 
 	/**
@@ -37,6 +37,24 @@ public class ChunkGeneratorChaos implements IChunkGenerator {
 	public Chunk generateChunk(int x, int z) {
 		rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
+
+		for (int y = 0; y < 86; y++) {
+			for (int xPos = 0; xPos < 16; xPos++) {
+				for (int zPos = 0; zPos < 16; zPos++) {
+					chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getStateFromMeta(rand.nextInt(16)));
+				}
+			}
+		}
+		
+		for (int y = 86; y < world.getActualHeight(); y++) {
+			for (int xPos = 0; xPos < 16; xPos++) {
+				for (int zPos = 0; zPos < 16; zPos++) {
+					if (rand.nextInt(300) > 295) {
+						chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getStateFromMeta(rand.nextInt(16)));
+					}
+				}
+			}
+		}
 
 		temple.generate(world, x, z, chunkprimer);
 

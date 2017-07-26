@@ -1,0 +1,6 @@
+{
+    "parent": "runemysteries:block/rail_inventory",
+    "textures": {
+        "texture": "runemysteries:blocks/blood_block"
+    }
+}

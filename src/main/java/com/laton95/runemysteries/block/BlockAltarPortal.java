@@ -20,11 +20,11 @@ public class BlockAltarPortal extends RMModBlock {
 	private String altar;
 
 	public BlockAltarPortal(String name, String altar, int returnID) {
-		super(name, Material.ROCK, 0, 2000f, null, 0, true);
+		super(name, Material.ROCK, 0, 2000f, null, 0, false);
 		this.altar = altar;
 		this.returnID = returnID;
 		setBlockUnbreakable();
-		this.lightValue = 6;
+		this.lightValue = 12;
 	}
 
 	@Override

@@ -18,7 +18,9 @@ public class RMModBlock extends Block {
 		super(material);
 		setUnlocalizedName(Reference.MOD_ID + ":" + name);
 		setRegistryName(Reference.MOD_ID, name.toLowerCase());
-		setCreativeTab(RMCreativeTab.RM_TAB);
+		if (showInCreative) {
+			setCreativeTab(RMCreativeTab.RM_TAB);
+		}
 		setHardness(hardness);
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);
@@ -30,7 +32,9 @@ public class RMModBlock extends Block {
 		super(material);
 		setUnlocalizedName(Reference.MOD_ID + ":" + name);
 		setRegistryName(Reference.MOD_ID, name.toLowerCase());
-		setCreativeTab(RMCreativeTab.RM_TAB);
+		if (showInCreative) {
+			setCreativeTab(RMCreativeTab.RM_TAB);
+		}
 		setHardness(hardness);
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);
