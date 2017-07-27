@@ -23,8 +23,8 @@ public class AltarTracker {
 	private List<RuneAltar> endAltars = new ArrayList<>();
 	private float defaultAltarFlatnessTolerance = 0.8f;
 	private int defaultAltarRadius = 4;
-	public int warningFailureCount = 12;
-	public int panicFailureCount = 81;
+	public int warningFailureCount = 8;
+	public int panicFailureCount = 36;
 	public boolean overworldAltarsFound = false;
 	public boolean netherAltarsFound = false;
 	public boolean endAltarsFound = false;
@@ -68,7 +68,7 @@ public class AltarTracker {
 				WorldGenReference.cosmicAltarBiomes, WorldGenReference.cosmicAltarBiomesN, Type.END));
 	}
 
-	public boolean inGenerationRange(ChunkPos pos, int dimID) {
+	public boolean inGenerationRange(ChunkPos pos, int dimID, Type type) {
 		List<RuneAltar> list = new ArrayList<>();
 		switch (dimID) {
 		case 0:
@@ -83,7 +83,9 @@ public class AltarTracker {
 		}
 		for (RuneAltar altar : list) {
 			if (WorldHelper.isNearby(pos, new ChunkPos(altar.getPosition()), altar.getPlacementRadius())) {
-				return true;
+				if (altar.getType().equals(type)) {
+					return true;
+				}
 			}
 		}
 		return false;

@@ -5,6 +5,7 @@ import java.util.Random;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.ModConfig;
 import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.utility.WorldHelper.dimType;
 
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -20,9 +21,11 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class ChunkGenerator implements IWorldGenerator {
-	private MapGenRuneAltar overworldAltarGenerator;
-	private MapGenRuneAltar netherAltarGenerator;
-	private MapGenRuneAltar endAltarGenerator;
+	private MapGenRuneAltar_SURFACE surfaceAltarGenerator = new MapGenRuneAltar_SURFACE();
+	private MapGenRuneAltar_UNDERGROUND undergroundAltarGenerator = new MapGenRuneAltar_UNDERGROUND();
+	private MapGenRuneAltar_SOUL soulAltarGenerator = new MapGenRuneAltar_SOUL();
+	private MapGenRuneAltar_NETHER netherAltarGenerator = new MapGenRuneAltar_NETHER();
+	private MapGenRuneAltar_END endAltarGenerator = new MapGenRuneAltar_END();
 	public static AltarTracker altarTracker;
 
 	@Override
@@ -35,25 +38,21 @@ public class ChunkGenerator implements IWorldGenerator {
 				OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
 
 				// Structures
-				if (overworldAltarGenerator != null) {
-					overworldAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-				}
+				surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 				break;
 			case NETHER:
 				// Ores
 
 				// Structures
-				if (netherAltarGenerator != null) {
-					netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-				}
+				netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 				break;
 			case THE_END:
 				// Ores
 
 				// Structures
-				if (endAltarGenerator != null) {
-					endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-				}
+				endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 				break;
 			default:
 				break;
@@ -67,16 +66,16 @@ public class ChunkGenerator implements IWorldGenerator {
 			switch (event.getWorld().provider.getDimensionType()) {
 			case OVERWORLD:
 				// Structures
-				if (overworldAltarGenerator != null) {
-					overworldAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+				surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
 							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-				}
+				undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
 				break;
 			case NETHER:
-				if (netherAltarGenerator != null) {
-					netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+				netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
 							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-				}
 				break;
 			default:
 				break;
@@ -88,68 +87,10 @@ public class ChunkGenerator implements IWorldGenerator {
 	public void populateEnd(PopulateChunkEvent.Post event) {
 		switch (event.getWorld().provider.getDimensionType()) {
 		case THE_END:
-			if (endAltarGenerator != null) {
-				endAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+			endAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
 						new ChunkPos(event.getChunkX(), event.getChunkZ()));
-			}
 			break;
 		default:
-			break;
-		}
-	}
-
-	@SubscribeEvent
-	public void start(WorldEvent.Load event) {
-		if (ModConfig.world.rune_altars.generateRuneAltars) {
-			switch (event.getWorld().provider.getDimensionType()) {
-			case OVERWORLD:
-				if (overworldAltarGenerator == null) {
-					LogHelper.info("Overworld altar generator loaded");
-					overworldAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.OVERWORLD, event.getWorld());
-				}
-				break;
-			case NETHER:
-				if (netherAltarGenerator == null) {
-					LogHelper.info("Nether altar generator loaded");
-					netherAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.NETHER, event.getWorld());
-				}
-				break;
-			case THE_END:
-				if (endAltarGenerator == null) {
-					LogHelper.info("End altar generator loaded");
-					endAltarGenerator = new MapGenRuneAltar(WorldHelper.dimType.END, event.getWorld());
-				}
-				break;
-			default:
-
-				break;
-			}
-		}
-	}
-
-	@SubscribeEvent
-	public void end(WorldEvent.Unload event) {
-		switch (event.getWorld().provider.getDimensionType()) {
-		case OVERWORLD:
-			if (overworldAltarGenerator != null) {
-				LogHelper.info("Overworld altar generator unloaded");
-				overworldAltarGenerator = null;
-			}
-			break;
-		case NETHER:
-			if (netherAltarGenerator != null) {
-				LogHelper.info("Nether altar generator unloaded");
-				netherAltarGenerator = null;
-			}
-			break;
-		case THE_END:
-			if (endAltarGenerator != null) {
-				LogHelper.info("End altar generator unloaded");
-				endAltarGenerator = null;
-			}
-			break;
-		default:
-
 			break;
 		}
 	}

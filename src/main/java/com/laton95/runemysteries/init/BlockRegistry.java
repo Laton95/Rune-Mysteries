@@ -44,11 +44,12 @@ public class BlockRegistry {
 	public static RMModStairs templeBlockStairs = new RMModStairs("temple_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1, true, templeBlock.getDefaultState());
 	public static RMModSlab.Half templeBlockHalfSlab = new RMModSlab.Half("temple_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static RMModSlab.Double templeBlockDoubleSlab = new RMModSlab.Double("temple_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static BlockRail templeBlockRail = new BlockRail("temple_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static RMModBlock bloodBlock = new RMModBlock("blood_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static RMModStairs bloodBlockStairs = new RMModStairs("blood_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1, true, bloodBlock.getDefaultState());
 	public static RMModSlab.Half bloodBlockHalfSlab = new RMModSlab.Half("blood_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static RMModSlab.Double bloodBlockDoubleSlab = new RMModSlab.Double("blood_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRail bloodRail = new BlockRail("blood_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static BlockRail bloodBlockRail = new BlockRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static RMModBlock fleshBlock = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
 	private static BlockRail stonebrickRail = new BlockRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 
@@ -146,9 +147,10 @@ public class BlockRegistry {
 		blockList.add(stationStone);
 		blockList.add(templeBlock);
 		blockList.add(templeBlockStairs);
+		blockList.add(templeBlockRail);
 		blockList.add(bloodBlock);
 		blockList.add(bloodBlockStairs);
-		blockList.add(bloodRail);
+		blockList.add(bloodBlockRail);
 		blockList.add(fleshBlock);
 		blockList.add(stonebrickRail);
 		

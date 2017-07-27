@@ -65,11 +65,12 @@ tile.runemysteries:temple_Block.name=Temple Brick
 tile.runemysteries:temple_Block_Stairs.name=Temple Brick Stairs
 tile.runemysteries:temple_Block_Slab_Half.name=Temple Brick Slab
 tile.runemysteries:temple_Block_Slab_Double.name=Temple Brick Double Slab
+tile.runemysteries:temple_Block_Rail.name=Temple Rail
 tile.runemysteries:blood_Block.name=Blood Tile
 tile.runemysteries:blood_Block_Stairs.name=Blood Tile Stairs
 tile.runemysteries:blood_Block_Slab_Half.name=Blood Tile Slab
 tile.runemysteries:blood_Block_Slab_Double.name=Blood Tile Double Slab
-tile.runemysteries:blood_Rail.name=Blood Rail
+tile.runemysteries:blood_Block_Rail.name=Blood Rail
 tile.runemysteries:flesh_Block.name=Flesh
 tile.runemysteries:stonebrick_Rail.name=Stone Brick Rail
 

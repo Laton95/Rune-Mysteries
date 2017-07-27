@@ -44,5 +44,8 @@ public class RecipeRegistry {
 		recipeMap.put("Blood block stairs", new ResourceLocation(Reference.MOD_ID + ":blood_block_stairs.json"));
 		recipeMap.put("Temple block slab", new ResourceLocation(Reference.MOD_ID + ":temple_block_slab.json"));
 		recipeMap.put("Blood block slab", new ResourceLocation(Reference.MOD_ID + ":blood_block_slab.json"));
+		recipeMap.put("Temple block rail", new ResourceLocation(Reference.MOD_ID + ":temple_block_rail.json"));
+		recipeMap.put("Blood block rail", new ResourceLocation(Reference.MOD_ID + ":blood_block_rail.json"));
+		recipeMap.put("Stonebrick rail", new ResourceLocation(Reference.MOD_ID + ":stonebrick_rail.json"));
 	}
 }

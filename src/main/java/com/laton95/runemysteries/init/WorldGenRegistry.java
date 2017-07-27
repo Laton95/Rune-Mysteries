@@ -5,7 +5,11 @@ import java.util.Map;
 
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.world.ChunkGenerator;
-import com.laton95.runemysteries.world.MapGenRuneAltar;
+import com.laton95.runemysteries.world.MapGenRuneAltar_END;
+import com.laton95.runemysteries.world.MapGenRuneAltar_NETHER;
+import com.laton95.runemysteries.world.MapGenRuneAltar_SOUL;
+import com.laton95.runemysteries.world.MapGenRuneAltar_SURFACE;
+import com.laton95.runemysteries.world.MapGenRuneAltar_UNDERGROUND;
 import com.laton95.runemysteries.world.MapGenRuneTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
@@ -65,7 +69,11 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeStructureMap() {
-		structureMap.put("RuneAltar", MapGenRuneAltar.Start.class);
+		structureMap.put("RuneAltar_SURFACE", MapGenRuneAltar_SURFACE.Start.class);
+		structureMap.put("RuneAltar_UNDERGROUND", MapGenRuneAltar_UNDERGROUND.Start.class);
+		structureMap.put("RuneAltar_SOUL", MapGenRuneAltar_SOUL.Start.class);
+		structureMap.put("RuneAltar_NETHER", MapGenRuneAltar_NETHER.Start.class);
+		structureMap.put("RuneAltar_END", MapGenRuneAltar_END.Start.class);
 		structureMap.put("RuneTemple", MapGenRuneTemple.Start.class);
 	}
 

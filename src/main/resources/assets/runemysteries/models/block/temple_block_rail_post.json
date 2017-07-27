@@ -1,0 +1,6 @@
+{
+    "parent": "runemysteries:block/rail_post",
+    "textures": {
+        "rail": "runemysteries:blocks/temple_block"
+    }
+}

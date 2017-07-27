@@ -149,7 +149,6 @@ public final class LootRegistry {
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			case "entities/zombie":
-				LogHelper.info("Adding " + file + "loot");
 				evt.getTable().addPool(getInjectPool(file));
 				break;
 			default:
