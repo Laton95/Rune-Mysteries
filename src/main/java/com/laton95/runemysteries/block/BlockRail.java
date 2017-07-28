@@ -33,7 +33,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockRail extends Block {
+public class BlockRail extends RMModBlock {
 	    public static final PropertyBool UP = PropertyBool.create("up");
 	    public static final PropertyBool NORTH = PropertyBool.create("north");
 	    public static final PropertyBool EAST = PropertyBool.create("east");
@@ -44,16 +44,7 @@ public class BlockRail extends Block {
 
 	    public BlockRail(String name, Material material, float hardness, Float resistance, String toolClass,
 				int harvestLevel, boolean showInCreative) {
-			super(material);
-			setUnlocalizedName(Reference.MOD_ID + ":" + name);
-			setRegistryName(Reference.MOD_ID, name.toLowerCase());
-			if (showInCreative) {
-				setCreativeTab(RMCreativeTab.RM_TAB);
-			}
-			setHardness(hardness);
-			setResistance(resistance);
-			setHarvestLevel(toolClass, harvestLevel);
-
+			super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 	    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)

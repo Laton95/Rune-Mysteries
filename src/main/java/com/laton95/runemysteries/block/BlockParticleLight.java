@@ -2,6 +2,8 @@ package com.laton95.runemysteries.block;
 
 import java.util.Random;
 
+import javax.annotation.Nullable;
+
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
@@ -45,7 +47,19 @@ public class BlockParticleLight extends RMModBlock{
 		return EnumBlockRenderType.INVISIBLE;
 	}
 	
+	@Override
+    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+    {
+        return NULL_AABB;
+    }
+	
+	@Override
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
+		return true;
+	}
+	
 	@SideOnly(Side.CLIENT)
+	@Override
     public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
     {
         double d0 = (double)pos.getX() + 0.5D;

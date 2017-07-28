@@ -1,0 +1,83 @@
+{
+    "pools": [
+        {
+            "name": "main",
+            "rolls": {
+                "min": 1,
+                "max": 1
+            },
+            "entries": [
+                {
+                    "type": "item",
+                    "name": "runemysteries:air_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:body_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:earth_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:fire_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:mind_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:water_rune",
+                    "weight": 15
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:astral_rune",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:nature_rune",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:death_rune",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:blood_rune",
+                    "weight": 5
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:chaos_rune",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:cosmic_rune",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:law_rune",
+                    "weight": 1
+                },
+                {
+                    "type": "item",
+                    "name": "runemysteries:soul_rune",
+                    "weight": 1
+                }
+            ]
+        }
+    ]
+}

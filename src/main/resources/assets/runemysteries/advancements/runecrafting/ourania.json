@@ -1,0 +1,29 @@
+{
+    "display": {
+        "icon": {
+            "item": "runemysteries:air_rune"
+        },
+        "title": {
+            "translate": "advancements.runemysteries.runecrafting.ourania.title"
+        },
+        "description": {
+            "translate": "advancements.runemysteries.runecrafting.ourania.description"
+        },
+        "frame": "challenge",
+        "hidden": "true"
+    },
+    "rewards": {
+        "experience": 1000
+    },
+    "parent": "runemysteries:runecrafting/all_talismans",
+    "criteria": {
+        "craft_rune": {
+            "trigger": "minecraft:consume_item",
+            "conditions": {
+                "item": {
+                    "item": "runemysteries:ourania_altar_block"
+                }
+            }
+        }
+    }
+}}

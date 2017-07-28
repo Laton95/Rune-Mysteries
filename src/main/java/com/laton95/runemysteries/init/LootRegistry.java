@@ -11,6 +11,7 @@ import net.minecraft.world.storage.loot.LootEntry;
 import net.minecraft.world.storage.loot.LootEntryTable;
 import net.minecraft.world.storage.loot.LootPool;
 import net.minecraft.world.storage.loot.LootTableList;
+import net.minecraft.world.storage.loot.LootTableManager;
 import net.minecraft.world.storage.loot.RandomValueRange;
 import net.minecraft.world.storage.loot.conditions.LootCondition;
 import net.minecraftforge.event.LootTableLoadEvent;
@@ -19,6 +20,8 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public final class LootRegistry {
+	public static final ResourceLocation OURANIA_ALTAR = LootTableList.register(new ResourceLocation(Reference.MOD_ID, "altars/ourania_altar"));
+	
 	private static final List<String> TABLES = ImmutableList.of("inject/chests/abandoned_mineshaft",
 			"inject/chests/desert_pyramid", "inject/chests/jungle_temple", "inject/chests/simple_dungeon",
 			"inject/chests/spawn_bonus_chest", "inject/chests/village_blacksmith", "inject/chests/stronghold_corridor",

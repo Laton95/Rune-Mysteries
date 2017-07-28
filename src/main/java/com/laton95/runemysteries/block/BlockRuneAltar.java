@@ -35,20 +35,22 @@ public class BlockRuneAltar extends RMModBlock {
 		if (entityIn instanceof EntityItem) {
 			Item itemType = ((EntityItem) entityIn).getItem().getItem();
 			if (itemType.equals(ItemRegistry.runeEssence)) {
-				String thrower = ((EntityItem) entityIn).getThrower();
-				LogHelper.info(thrower);
-				if (thrower != null) {
-					EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
-					if (player instanceof EntityPlayerMP) {
-						player.sendMessage(new TextComponentTranslation("test"));
-						CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)player, new ItemStack(ItemRegistry.runeEssence));
-					}
-				}
+				giveAdvancements((EntityItem)entityIn, worldIn);
 				spawnItem(worldIn, entityIn, rune);
 			}
 
 			if (itemType.equals(Items.BOOK)) {
 				spawnItem(worldIn, entityIn, ItemRegistry.spellbook);
+			}
+		}
+	}
+	
+	protected void giveAdvancements(EntityItem entityIn, World worldIn) {
+		String thrower = entityIn.getThrower();
+		if (thrower != null) {
+			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
+			if (player instanceof EntityPlayerMP) {
+				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP)player, new ItemStack(ItemRegistry.runeEssence));
 			}
 		}
 	}
