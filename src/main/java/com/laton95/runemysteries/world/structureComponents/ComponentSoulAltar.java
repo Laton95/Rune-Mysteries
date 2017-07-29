@@ -27,8 +27,9 @@ public class ComponentSoulAltar extends WorldHelper.ModFeature {
 		this.depth = depth;
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY - 2,
 				structureboundingbox.minZ);
 		BlockPos blockpos2 = new BlockPos(blockpos.getX() - 1, blockpos.getY() - depth, blockpos.getZ() - 11);
@@ -37,7 +38,7 @@ public class ComponentSoulAltar extends WorldHelper.ModFeature {
 		Template well = WorldHelper.getTemplate(worldIn, "soul_altar_well");
 		Template structure = WorldHelper.getTemplate(worldIn, room);
 		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, well, settings);
 		WorldHelper.loadStructure(blockpos2, worldIn, structure, settings);

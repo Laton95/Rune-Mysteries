@@ -10,7 +10,6 @@ import com.laton95.runemysteries.world.MapGenRuneTemple;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
-import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -62,12 +61,11 @@ public class ChunkGeneratorBody implements IChunkGenerator {
 		int zPos = z * 16;
 		BlockPos chunkStart = new BlockPos(xPos, 0, zPos);
 		ChunkPos chunkpos = new ChunkPos(x, z);
-		Biome biome = world.getBiome(chunkStart);
+		world.getBiome(chunkStart);
 		rand.setSeed(world.getSeed());
 		long rand1 = rand.nextLong() / 2L * 2L + 1L;
 		long rand2 = rand.nextLong() / 2L * 2L + 1L;
 		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-		
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 

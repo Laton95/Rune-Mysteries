@@ -18,7 +18,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class ItemRegistry {
-	private static ArrayList<Item> itemList = new ArrayList<Item>();
+	private static ArrayList<Item> itemList = new ArrayList<>();
 
 	public static ItemRune airRune = new ItemRune("air_Rune");
 	public static ItemRune astralRune = new ItemRune("astral_Rune");

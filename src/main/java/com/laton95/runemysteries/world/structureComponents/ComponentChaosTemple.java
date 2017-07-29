@@ -20,13 +20,14 @@ public class ComponentChaosTemple extends WorldHelper.ModFeature {
 		super(rand, x, 84, z, 8, 4, 8);
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 
 		Template temple = WorldHelper.getTemplate(worldIn, "chaos_temple");
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, temple, settings);
 		return true;

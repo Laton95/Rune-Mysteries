@@ -26,8 +26,9 @@ public class ComponentUndergroundAltar extends WorldHelper.ModFeature {
 		this.yOffset = yOffset;
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 		BlockPos blockpos2 = new BlockPos(blockpos.getX() + 3, blockpos.getY() + yOffset, blockpos.getZ() + 3);
@@ -35,7 +36,7 @@ public class ComponentUndergroundAltar extends WorldHelper.ModFeature {
 		Template structure = WorldHelper.getTemplate(worldIn, room);
 		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
 		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
 		WorldHelper.loadStructure(blockpos2, worldIn, circle, settings);

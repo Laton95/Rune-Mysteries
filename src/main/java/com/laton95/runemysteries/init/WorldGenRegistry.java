@@ -38,9 +38,9 @@ import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 public class WorldGenRegistry {
-	private static Map<String, IWorldGenerator> genMap = new HashMap<String, IWorldGenerator>();
-	private static Map<String, Class<? extends StructureStart>> structureMap = new HashMap<String, Class<? extends StructureStart>>();
-	private static Map<String, Class<? extends StructureComponent>> componentMap = new HashMap<String, Class<? extends StructureComponent>>();
+	private static Map<String, IWorldGenerator> genMap = new HashMap<>();
+	private static Map<String, Class<? extends StructureStart>> structureMap = new HashMap<>();
+	private static Map<String, Class<? extends StructureComponent>> componentMap = new HashMap<>();
 	public static ChunkGenerator chunkGenerator;
 
 	public static void registerWorldGen() {

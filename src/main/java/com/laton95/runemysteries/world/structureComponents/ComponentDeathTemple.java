@@ -20,13 +20,14 @@ public class ComponentDeathTemple extends WorldHelper.ModFeature {
 		super(rand, x, 83, z, 32, 10, 32);
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 
 		Template temple = WorldHelper.getTemplate(worldIn, "death_temple");
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, temple, settings);
 		return true;

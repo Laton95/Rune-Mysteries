@@ -1,6 +1,11 @@
 package com.laton95.runemysteries.item;
 
-import net.minecraft.entity.item.EntityEnderPearl;
+import java.util.ArrayList;
+
+import com.laton95.runemysteries.spells.EnderpearlSpell;
+import com.laton95.runemysteries.spells.SnowballSpell;
+import com.laton95.runemysteries.spells.Spell;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -16,49 +21,81 @@ public class ItemSpellbook extends RMModItem {
 		setMaxStackSize(1);
 	}
 
-	private ItemStack findRunes(EntityPlayer player, ItemRune rune) {
-		for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-			ItemStack itemstack = player.inventory.getStackInSlot(i);
-
-			if (itemstack.getItem().equals(rune)) {
-				return itemstack;
-			} else if (rune == null && itemstack.getItem() instanceof ItemRune) {
-				return itemstack;
+	private boolean hasRunes(EntityPlayer player, ArrayList<Spell.SpellCost> costs) {
+		ArrayList<Spell.SpellCost> tempCosts = new ArrayList<>(costs);
+		for (Spell.SpellCost spellCost : costs) {
+			if (hasRune(player, spellCost)) {
+				tempCosts.remove(spellCost);
 			}
 		}
+		if (tempCosts.isEmpty()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 
-		return ItemStack.EMPTY;
+	private boolean hasRune(EntityPlayer player, Spell.SpellCost cost) {
+		int count = 0;
+		for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
+			ItemStack itemstack = player.inventory.getStackInSlot(i);
+			if (itemstack.getItem().equals(cost.getRune())) {
+				count += itemstack.getCount();
+			}
+		}
+		if (count >= cost.getCount()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	private void removeRunes(EntityPlayer player, ArrayList<Spell.SpellCost> costs) {
+		for (Spell.SpellCost spellCost : costs) {
+			removeRune(player, spellCost);
+		}
+	}
+
+	private void removeRune(EntityPlayer player, Spell.SpellCost cost) {
+		int count = cost.getCount();
+		int i = 0;
+		while (count > 0) {
+			ItemStack itemstack = player.inventory.getStackInSlot(i);
+			if (itemstack.getItem().equals(cost.getRune())) {
+				int temp = count;
+				count -= itemstack.getCount();
+				itemstack.shrink(temp);
+			}
+			i++;
+		}
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
-		ItemStack itemstack = playerIn.getHeldItem(handIn);
-		ItemStack rune = findRunes(playerIn, null);
-
-		if (!playerIn.capabilities.isCreativeMode && rune.getCount() > 0) {
-			rune.shrink(1);
-			playerIn.getCooldownTracker().setCooldown(this, 20);
-			fireSpell(worldIn, playerIn);
-		} else if (playerIn.capabilities.isCreativeMode) {
-			playerIn.getCooldownTracker().setCooldown(this, 20);
-			fireSpell(worldIn, playerIn);
+		ItemStack spellbook = playerIn.getHeldItem(handIn);
+		Spell spell;
+		if (playerIn.inventory.currentItem > 3) {
+			spell = new EnderpearlSpell();
 		} else {
-			if (!worldIn.isRemote) {
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.spellbook.norunes"));
-			}
-
-			return new ActionResult<ItemStack>(EnumActionResult.FAIL, itemstack);
+			spell = new SnowballSpell();
 		}
 
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, itemstack);
-	}
-
-	private void fireSpell(World worldIn, EntityPlayer playerIn) {
-		if (!worldIn.isRemote) {
-			EntityEnderPearl entityenderpearl = new EntityEnderPearl(worldIn, playerIn);
-			entityenderpearl.setHeadingFromThrower(playerIn, playerIn.rotationPitch, playerIn.rotationYaw, 0.0F, 1.5F,
-					1.0F);
-			worldIn.spawnEntity(entityenderpearl);
+		if (playerIn.isCreative()) {
+			spell.fireSpell(worldIn, playerIn);
+			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
+		} else {
+			if (hasRunes(playerIn, spell.getCosts())) {
+				removeRunes(playerIn, spell.getCosts());
+				spell.fireSpell(worldIn, playerIn);
+				playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
+			} else {
+				if (!worldIn.isRemote) {
+					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.spellbook.norunes"));
+				}
+				return new ActionResult<>(EnumActionResult.FAIL, spellbook);
+			}
 		}
 	}
 }

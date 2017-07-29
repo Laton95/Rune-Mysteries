@@ -47,7 +47,7 @@ public class ChunkGeneratorWater implements IChunkGenerator {
 		int oceanSurface = 85;
 		int crustSurface = 82;
 		int worldSurface = 80;
-		
+
 		for (int y = 0; y < world.getActualHeight(); y++) {
 			for (int xPos = 0; xPos < 16; xPos++) {
 				for (int zPos = 0; zPos < 16; zPos++) {
@@ -78,44 +78,39 @@ public class ChunkGeneratorWater implements IChunkGenerator {
 		int zPos = z * 16;
 		BlockPos chunkStart = new BlockPos(xPos, 0, zPos);
 		ChunkPos chunkpos = new ChunkPos(x, z);
-		Biome biome = world.getBiome(chunkStart);
+		world.getBiome(chunkStart);
 		rand.setSeed(world.getSeed());
 		long rand1 = rand.nextLong() / 2L * 2L + 1L;
 		long rand2 = rand.nextLong() / 2L * 2L + 1L;
 		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-		
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 
 		temple.generateStructure(world, rand, chunkpos);
-		
+
 		int waterlilyPerChunk = 5;
-		for (int k3 = 0; k3 < waterlilyPerChunk; ++k3)
-        {
-            int l7 = rand.nextInt(16) + 8;
-            int k11 = rand.nextInt(16) + 8;
-            BlockPos chunkBlockPos = new BlockPos(chunkpos.getXStart(), 0, chunkpos.getZStart());
-            int i15 = world.getHeight(chunkBlockPos.add(l7, 0, k11)).getY() * 2;
+		for (int k3 = 0; k3 < waterlilyPerChunk; ++k3) {
+			int l7 = rand.nextInt(16) + 8;
+			int k11 = rand.nextInt(16) + 8;
+			BlockPos chunkBlockPos = new BlockPos(chunkpos.getXStart(), 0, chunkpos.getZStart());
+			int i15 = world.getHeight(chunkBlockPos.add(l7, 0, k11)).getY() * 2;
 
-            if (i15 > 0)
-            {
-                int j18 = rand.nextInt(i15);
-                BlockPos blockpos4;
-                BlockPos blockpos7;
+			if (i15 > 0) {
+				int j18 = rand.nextInt(i15);
+				BlockPos blockpos4;
+				BlockPos blockpos7;
 
-                for (blockpos4 = chunkBlockPos.add(l7, j18, k11); blockpos4.getY() > 0; blockpos4 = blockpos7)
-                {
-                    blockpos7 = blockpos4.down();
+				for (blockpos4 = chunkBlockPos.add(l7, j18, k11); blockpos4.getY() > 0; blockpos4 = blockpos7) {
+					blockpos7 = blockpos4.down();
 
-                    if (!world.isAirBlock(blockpos7))
-                    {
-                        break;
-                    }
-                }
+					if (!world.isAirBlock(blockpos7)) {
+						break;
+					}
+				}
 
-                this.waterlilyGen.generate(world, rand, blockpos4);
-            }
-        }
+				waterlilyGen.generate(world, rand, blockpos4);
+			}
+		}
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
 

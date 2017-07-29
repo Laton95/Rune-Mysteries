@@ -28,6 +28,7 @@ public class ItemTalisman extends RMModItem {
 		setMaxStackSize(1);
 	}
 
+	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack talisman = playerIn.getHeldItem(handIn);
 
@@ -36,62 +37,62 @@ public class ItemTalisman extends RMModItem {
 		if (!worldIn.isRemote) {
 			if (!ModConfig.world.rune_altars.generateRuneAltars) {
 				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
-			
+
 			switch (worldIn.provider.getDimension()) {
 			case 0:
 				switch (dimID) {
 				case 0:
 					printDirection(playerIn, worldIn);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case -1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nether"));
 					playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.end"));
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			case -1:
 				switch (dimID) {
 				case -1:
 					printDirection(playerIn, worldIn);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.overworld"));
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.end"));
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			case 1:
 				switch (dimID) {
 				case 1:
 					printDirection(playerIn, worldIn);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.overworld"));
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case -1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
 					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nether"));
 					playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
-					return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			default:
 				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
-				return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, talisman);
+				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.FAIL, talisman);
+		return new ActionResult<>(EnumActionResult.FAIL, talisman);
 	}
 
 	private void printDirection(EntityPlayer playerIn, World worldIn) {

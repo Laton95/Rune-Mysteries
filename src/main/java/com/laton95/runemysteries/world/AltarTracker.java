@@ -225,7 +225,8 @@ public class AltarTracker {
 			}
 
 			BlockPos pos = findBiomePosition(outStandingBiomes, random, ModConfig.world.rune_altars.runeAltarTries,
-					ModConfig.world.rune_altars.maxRuneAltarRange / 16, ModConfig.world.rune_altars.minRuneAltarRange / 16);
+					ModConfig.world.rune_altars.maxRuneAltarRange / 16,
+					ModConfig.world.rune_altars.minRuneAltarRange / 16);
 
 			if (pos != null) {
 				for (RuneAltar altar : outStandingAltars) {
@@ -239,7 +240,8 @@ public class AltarTracker {
 			} else {
 				for (RuneAltar altar : outStandingAltars) {
 					pos = findBiomePosition(allowedBiomes, random, ModConfig.world.rune_altars.runeAltarTries,
-							ModConfig.world.rune_altars.maxRuneAltarRange / 16, ModConfig.world.rune_altars.minRuneAltarRange / 16);
+							ModConfig.world.rune_altars.maxRuneAltarRange / 16,
+							ModConfig.world.rune_altars.minRuneAltarRange / 16);
 					if (pos != null) {
 						altar.setPosition(pos);
 						LogHelper.info(altar);
@@ -248,7 +250,8 @@ public class AltarTracker {
 						break;
 					} else {
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random,
-								ModConfig.world.rune_altars.runeAltarTries, ModConfig.world.rune_altars.maxRuneAltarRange / 16,
+								ModConfig.world.rune_altars.runeAltarTries,
+								ModConfig.world.rune_altars.maxRuneAltarRange / 16,
 								ModConfig.world.rune_altars.minRuneAltarRange / 16);
 						altar.setPosition(pos);
 						LogHelper.info(altar);
@@ -276,8 +279,9 @@ public class AltarTracker {
 						return pos2;
 					}
 				}
-			} else
+			} else {
 				return pos2;
+			}
 		}
 		return null;
 	}
@@ -313,26 +317,26 @@ public class AltarTracker {
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
 				List<BiomeDictionary.Type> biomesN, Type type) {
 			this.name = name;
-			this.placed = false;
-			this.biomeDependant = true;
+			placed = false;
+			biomeDependant = true;
 			this.placementRadius = placementRadius;
 			this.flatnessTolerance = flatnessTolerance;
-			this.failureCount = 0;
+			failureCount = 0;
 			this.biomes = biomes;
 			this.type = type;
-			this.room = null;
+			room = null;
 			this.biomesN = biomesN;
-			this.yOffset = 0;
+			yOffset = 0;
 		}
 
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
 				List<BiomeDictionary.Type> biomesN, Type type, String room, int yOffset) {
 			this.name = name;
-			this.placed = false;
-			this.biomeDependant = true;
+			placed = false;
+			biomeDependant = true;
 			this.placementRadius = placementRadius;
 			this.flatnessTolerance = flatnessTolerance;
-			this.failureCount = 0;
+			failureCount = 0;
 			this.biomes = biomes;
 			this.type = type;
 			this.room = room;
@@ -369,7 +373,7 @@ public class AltarTracker {
 		}
 
 		public void incrementPlacementRadius(int radius) {
-			this.placementRadius += radius;
+			placementRadius += radius;
 		}
 
 		public Float getFlatnessTolerance() {
@@ -381,7 +385,7 @@ public class AltarTracker {
 		}
 
 		public void decrementFlatnessTolerance(Float tolerance) {
-			this.flatnessTolerance -= tolerance;
+			flatnessTolerance -= tolerance;
 		}
 
 		public int getFailureCount() {
@@ -389,7 +393,7 @@ public class AltarTracker {
 		}
 
 		public void incrementFailureCount(int count) {
-			this.failureCount += count;
+			failureCount += count;
 		}
 
 		public String getName() {
@@ -415,8 +419,8 @@ public class AltarTracker {
 		}
 
 		public void updatePosition() {
-			this.position = altarNBTHelper.posMap.get(name);
-			this.placed = altarNBTHelper.placedMap.get(name);
+			position = altarNBTHelper.posMap.get(name);
+			placed = altarNBTHelper.placedMap.get(name);
 		}
 
 		public List<BiomeDictionary.Type> getBiomes() {
@@ -449,7 +453,7 @@ public class AltarTracker {
 		}
 
 		public Type getType() {
-			return this.type;
+			return type;
 		}
 
 		@Override

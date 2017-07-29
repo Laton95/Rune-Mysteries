@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package com.laton95.runemysteries.utility;
 

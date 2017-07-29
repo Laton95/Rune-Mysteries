@@ -1,6 +1,0 @@
-{
-    "parent": "runemysteries:block/rail_gate_open",
-    "textures": {
-        "texture": "runemysteries:blocks/blood_block"
-    }
-}

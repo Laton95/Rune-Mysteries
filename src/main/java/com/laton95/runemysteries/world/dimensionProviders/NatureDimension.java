@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
 import com.laton95.runemysteries.init.DimensionRegistry;
-import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorAir;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorNature;
 
 import net.minecraft.init.Biomes;
@@ -19,14 +18,14 @@ public class NatureDimension extends WorldProvider {
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
-	 * 
+	 *
 	 * Note that subclasses generally override this method without calling the
 	 * parent version.
 	 */
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(Biomes.JUNGLE);
-		this.hasSkyLight = true;
+		biomeProvider = new BiomeProviderSingle(Biomes.JUNGLE);
+		hasSkyLight = true;
 	}
 
 	@Override
@@ -76,7 +75,7 @@ public class NatureDimension extends WorldProvider {
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
-		return new Vec3d((double) f1, (double) f2, (double) f3);
+		return new Vec3d(f1, f2, f3);
 	}
 
 	@Override

@@ -2,11 +2,6 @@ package com.laton95.runemysteries.world;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.utility.ModConfig;
-import com.laton95.runemysteries.utility.WorldHelper;
-import com.laton95.runemysteries.utility.WorldHelper.dimType;
-
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -14,7 +9,6 @@ import net.minecraft.world.chunk.IChunkProvider;
 import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent;
 import net.minecraftforge.event.terraingen.PopulateChunkEvent.Populate.EventType;
-import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.fml.common.IWorldGenerator;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -67,7 +61,7 @@ public class ChunkGenerator implements IWorldGenerator {
 			case OVERWORLD:
 				// Structures
 				surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
 				undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
 						new ChunkPos(event.getChunkX(), event.getChunkZ()));
 				soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
@@ -75,7 +69,7 @@ public class ChunkGenerator implements IWorldGenerator {
 				break;
 			case NETHER:
 				netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
 				break;
 			default:
 				break;
@@ -88,7 +82,7 @@ public class ChunkGenerator implements IWorldGenerator {
 		switch (event.getWorld().provider.getDimensionType()) {
 		case THE_END:
 			endAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					new ChunkPos(event.getChunkX(), event.getChunkZ()));
 			break;
 		default:
 			break;

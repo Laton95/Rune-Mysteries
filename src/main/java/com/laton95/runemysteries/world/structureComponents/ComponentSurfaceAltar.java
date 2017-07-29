@@ -22,14 +22,15 @@ public class ComponentSurfaceAltar extends WorldHelper.ModFeature {
 		this.name = name;
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 
 		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
 		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, circle, settings);
 		WorldHelper.loadStructure(blockpos, worldIn, altar, settings);

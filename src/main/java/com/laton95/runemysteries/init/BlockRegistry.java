@@ -1,13 +1,11 @@
 package com.laton95.runemysteries.init;
 
 import java.util.ArrayList;
-import java.util.Map;
 
 import com.laton95.runemysteries.block.BlockAltarPortal;
 import com.laton95.runemysteries.block.BlockOuraniaAltar;
 import com.laton95.runemysteries.block.BlockParticleLight;
 import com.laton95.runemysteries.block.BlockRail;
-import com.laton95.runemysteries.block.BlockRailGate;
 import com.laton95.runemysteries.block.BlockRuneAltar;
 import com.laton95.runemysteries.block.BlockRuneAltarEntrance;
 import com.laton95.runemysteries.block.BlockRuneEssence;
@@ -19,10 +17,7 @@ import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.utility.ModConfig;
 
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockSlab;
-import net.minecraft.block.BlockWall;
 import net.minecraft.block.material.Material;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
 import net.minecraftforge.event.RegistryEvent;
@@ -31,9 +26,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
 public class BlockRegistry {
-	private static ArrayList<Block> blockList = new ArrayList<Block>();
-	private static ArrayList<RMModSlab> halfSlabList = new ArrayList<RMModSlab>();
-	private static ArrayList<RMModSlab> doubleSlabList = new ArrayList<RMModSlab>();
+	private static ArrayList<Block> blockList = new ArrayList<>();
+	private static ArrayList<RMModSlab> halfSlabList = new ArrayList<>();
+	private static ArrayList<RMModSlab> doubleSlabList = new ArrayList<>();
 
 	public static RMModBlock runeEssenceFinite = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f,
 			"pickaxe", 1, true, ItemRegistry.runeEssence);
@@ -41,20 +36,26 @@ public class BlockRegistry {
 	public static BlockStationStone stationStone = new BlockStationStone();
 	public static RMModBlock templeBlock = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
 			true);
-	public static RMModStairs templeBlockStairs = new RMModStairs("temple_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1, true, templeBlock.getDefaultState());
-	public static RMModSlab.Half templeBlockHalfSlab = new RMModSlab.Half("temple_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static RMModSlab.Double templeBlockDoubleSlab = new RMModSlab.Double("temple_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRail templeBlockRail = new BlockRail("temple_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRailGate templeBlockRailGate = new BlockRailGate("temple_Block_Rail Gate", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static RMModStairs templeBlockStairs = new RMModStairs("temple_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1,
+			true, templeBlock.getDefaultState());
+	public static RMModSlab.Half templeBlockHalfSlab = new RMModSlab.Half("temple_Block_Slab_Half", Material.ROCK, 1.5f,
+			10.0f, "pickaxe", 1, true);
+	public static RMModSlab.Double templeBlockDoubleSlab = new RMModSlab.Double("temple_Block_Slab_Double",
+			Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static BlockRail templeBlockRail = new BlockRail("temple_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe",
+			1, true);
 	public static RMModBlock bloodBlock = new RMModBlock("blood_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static RMModStairs bloodBlockStairs = new RMModStairs("blood_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1, true, bloodBlock.getDefaultState());
-	public static RMModSlab.Half bloodBlockHalfSlab = new RMModSlab.Half("blood_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static RMModSlab.Double bloodBlockDoubleSlab = new RMModSlab.Double("blood_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRail bloodBlockRail = new BlockRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRailGate bloodBlockRailGate = new BlockRailGate("blood_Block_Rail_Gate", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static RMModStairs bloodBlockStairs = new RMModStairs("blood_Block_Stairs", 1.5f, 10.0f, "pickaxe", 1, true,
+			bloodBlock.getDefaultState());
+	public static RMModSlab.Half bloodBlockHalfSlab = new RMModSlab.Half("blood_Block_Slab_Half", Material.ROCK, 1.5f,
+			10.0f, "pickaxe", 1, true);
+	public static RMModSlab.Double bloodBlockDoubleSlab = new RMModSlab.Double("blood_Block_Slab_Double", Material.ROCK,
+			1.5f, 10.0f, "pickaxe", 1, true);
+	public static BlockRail bloodBlockRail = new BlockRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
+			true);
 	public static RMModBlock fleshBlock = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
-	private static BlockRail stonebrickRail = new BlockRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static BlockRailGate stonebrickBlockRailGate = new BlockRailGate("stonebrick_Block_Rail_Gate", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	private static BlockRail stonebrickRail = new BlockRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
+			true);
 
 	public static BlockRuneEssence runeEssence = new BlockRuneEssence();
 	public static BlockRuneAltar airAltar = new BlockRuneAltar("air_Altar_Block", ItemRegistry.airRune);
@@ -113,9 +114,9 @@ public class BlockRegistry {
 	public static BlockAltarPortal natureAltarPortal = new BlockAltarPortal("nature_Altar_Exit_Portal", "nature", 0);
 	public static BlockAltarPortal soulAltarPortal = new BlockAltarPortal("soul_Altar_Exit_Portal", "soul", 0);
 	public static BlockAltarPortal waterAltarPortal = new BlockAltarPortal("water_Altar_Exit_Portal", "water", 0);
-	
-	public static BlockParticleLight particleLight = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f, "pickaxe", 0, true);
-	
+
+	public static BlockParticleLight particleLight = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f,
+			"pickaxe", 0, true);
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -127,7 +128,7 @@ public class BlockRegistry {
 			ItemRegistry.addItemBlock(itemBlock);
 			event.getRegistry().register(block);
 		}
-		
+
 		int i = 0;
 		for (RMModSlab slab : halfSlabList) {
 			RMModSlab doubleSlab = doubleSlabList.get(i);
@@ -150,18 +151,15 @@ public class BlockRegistry {
 		blockList.add(templeBlock);
 		blockList.add(templeBlockStairs);
 		blockList.add(templeBlockRail);
-		blockList.add(templeBlockRailGate);
 		blockList.add(bloodBlock);
 		blockList.add(bloodBlockStairs);
 		blockList.add(bloodBlockRail);
-		blockList.add(bloodBlockRailGate);
 		blockList.add(fleshBlock);
 		blockList.add(stonebrickRail);
-		blockList.add(stonebrickBlockRailGate);
-		
+
 		halfSlabList.add(bloodBlockHalfSlab);
 		doubleSlabList.add(bloodBlockDoubleSlab);
-		
+
 		halfSlabList.add(templeBlockHalfSlab);
 		doubleSlabList.add(templeBlockDoubleSlab);
 
@@ -208,7 +206,7 @@ public class BlockRegistry {
 		blockList.add(natureAltarPortal);
 		blockList.add(soulAltarPortal);
 		blockList.add(waterAltarPortal);
-		
+
 		blockList.add(particleLight);
 	}
 

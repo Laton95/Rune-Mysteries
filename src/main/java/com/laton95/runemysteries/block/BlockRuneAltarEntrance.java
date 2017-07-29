@@ -19,12 +19,10 @@ import net.minecraftforge.fml.common.FMLCommonHandler;
 public class BlockRuneAltarEntrance extends RMModBlock {
 	private int dimID;
 	private ItemTalisman talisman;
-	private String altar;
 
 	public BlockRuneAltarEntrance(String name, ItemTalisman talisman, String altar) {
 		super(name, Material.ROCK, 0, 2000f, null, 0, false);
 		this.talisman = talisman;
-		this.altar = altar;
 		setBlockUnbreakable();
 	}
 

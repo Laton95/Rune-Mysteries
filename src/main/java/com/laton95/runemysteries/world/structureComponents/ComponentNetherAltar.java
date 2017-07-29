@@ -22,8 +22,9 @@ public class ComponentNetherAltar extends WorldHelper.ModFeature {
 		this.name = name;
 	}
 
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = this.getBoundingBox();
+		StructureBoundingBox structureboundingbox = getBoundingBox();
 		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
 				structureboundingbox.minZ);
 		BlockPos blockpos2 = new BlockPos(blockpos.getX() - 1, blockpos.getY() - 6, blockpos.getZ() - 1);
@@ -31,7 +32,7 @@ public class ComponentNetherAltar extends WorldHelper.ModFeature {
 		Template island = WorldHelper.getTemplate(worldIn, "nether_island");
 		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
 		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID)
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos2, worldIn, island);
 		WorldHelper.loadStructure(blockpos, worldIn, circle, settings);

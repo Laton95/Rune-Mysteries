@@ -7,7 +7,6 @@ import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.proxy.CommonProxy;
 import com.laton95.runemysteries.reference.Reference;
-import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.utility.LogHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.ChunkGenerator;
@@ -21,7 +20,6 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = Reference.MOD_ID, name = Reference.MOD_NAME, version = Reference.VERSION)
 public class RuneMysteries {
@@ -30,8 +28,8 @@ public class RuneMysteries {
 
 	@SidedProxy(clientSide = Reference.CLIENT_PROXY_CLASS, serverSide = Reference.SERVER_PROXY_CLASS)
 	public static CommonProxy proxy;
-	
-	/** This is used to keep track of GUIs that we make*/
+
+	/** This is used to keep track of GUIs that we make */
 	private static int modGuiIndex = 0;
 
 	/** Set our custom inventory Gui index to the next available Gui index */

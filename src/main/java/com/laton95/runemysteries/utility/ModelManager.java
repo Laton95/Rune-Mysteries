@@ -18,12 +18,12 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public class ModelManager {
 	public static final ModelManager INSTANCE = new ModelManager();
-	
+
 	@SubscribeEvent
 	public static void registerAllModels(ModelRegistryEvent event) {
 		INSTANCE.registerFluidModels();
 	}
-	
+
 	private void registerFluidModels() {
 		LiquidRegistry.MOD_FLUID_BLOCKS.forEach(this::registerFluidModel);
 	}
@@ -34,7 +34,8 @@ public class ModelManager {
 
 		ModelBakery.registerItemVariants(item);
 
-		final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(Reference.MOD_ID + ":" + "fluid", fluidBlock.getFluid().getName());
+		final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(Reference.MOD_ID + ":" + "fluid",
+				fluidBlock.getFluid().getName());
 
 		ModelLoader.setCustomStateMapper((Block) fluidBlock, new StateMapperBase() {
 			@Override

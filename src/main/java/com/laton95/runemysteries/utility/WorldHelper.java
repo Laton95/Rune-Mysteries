@@ -22,7 +22,7 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 public class WorldHelper {
 
 	public static void loadStructure(BlockPos pos, World world, Template template) {
-		PlacementSettings settings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID);
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID);
 		template.addBlocksToWorldChunk(world, pos.add(0, 1, 0), settings);
 	}
 
@@ -68,15 +68,17 @@ public class WorldHelper {
 			}
 		}
 
-		if (solidBlocksFirstLayer > xSize * zSize * (1 - flatnessTolerance / 2))
+		if (solidBlocksFirstLayer > xSize * zSize * (1 - flatnessTolerance / 2)) {
 			return false;
-		if (airBlocksBelow > xSize * zSize * (1 - flatnessTolerance))
+		}
+		if (airBlocksBelow > xSize * zSize * (1 - flatnessTolerance)) {
 			return false;
+		}
 
 		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
 
-		return (1 - ((airBlocksBelow * airWeight + solidBlocksAbove * solidWeight)
-				/ (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight))) > flatnessTolerance;
+		return 1 - (airBlocksBelow * airWeight + solidBlocksAbove * solidWeight)
+				/ (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight) > flatnessTolerance;
 	}
 
 	public static boolean isOverGround(World world, BlockPos pos, int xSize, int zSize) {
@@ -122,8 +124,9 @@ public class WorldHelper {
 
 		if (Math.max(z, x) < range) {
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	public static boolean isNearby(BlockPos blockA, BlockPos blockB, int range) {
@@ -133,8 +136,9 @@ public class WorldHelper {
 
 		if (Math.max(Math.max(z, x), y * 2) < range) {
 			return true;
-		} else
+		} else {
 			return false;
+		}
 	}
 
 	public static Direction getDirection(BlockPos from, BlockPos too) {
@@ -149,20 +153,23 @@ public class WorldHelper {
 		if (Math.max(verticalXTheta, verticalZTheta) < 0.1 * Math.PI) {
 			if (y < 0) {
 				return Direction.UP;
-			} else
+			} else {
 				return Direction.DOWN;
+			}
 		}
 		if (z == 0) {
 			if (x < 0) {
 				return Direction.EAST;
-			} else
+			} else {
 				return Direction.WEST;
+			}
 		}
 		if (x == 0) {
 			if (z < 0) {
 				return Direction.SOUTH;
-			} else
+			} else {
 				return Direction.NORTH;
+			}
 		}
 		if (z > 0 && x > 0) {
 			// North-West quadrant
@@ -180,8 +187,9 @@ public class WorldHelper {
 				return Direction.NORTH;
 			} else if (horizontalTheta < 0.365 * Math.PI) {
 				return Direction.NORTH_EAST;
-			} else
+			} else {
 				return Direction.EAST;
+			}
 		}
 		if (z < 0 && x > 0) {
 			// South-West quadrant
@@ -189,8 +197,9 @@ public class WorldHelper {
 				return Direction.SOUTH;
 			} else if (horizontalTheta < 0.365 * Math.PI) {
 				return Direction.SOUTH_WEST;
-			} else
+			} else {
 				return Direction.WEST;
+			}
 		}
 		if (z < 0 && x < 0) {
 			// South-East quadrant
@@ -198,8 +207,9 @@ public class WorldHelper {
 				return Direction.SOUTH;
 			} else if (horizontalTheta < 0.365 * Math.PI) {
 				return Direction.SOUTH_EAST;
-			} else
+			} else {
 				return Direction.EAST;
+			}
 		}
 
 		return Direction.UNKNOWN;
@@ -227,40 +237,42 @@ public class WorldHelper {
 
 		protected ModFeature(Random rand, int x, int y, int z, int sizeX, int sizeY, int sizeZ) {
 			super(0);
-			this.width = sizeX;
-			this.height = sizeY;
-			this.depth = sizeZ;
-			this.setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
+			width = sizeX;
+			height = sizeY;
+			depth = sizeZ;
+			setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
 
-			if (this.getCoordBaseMode().getAxis() == EnumFacing.Axis.Z) {
-				this.boundingBox = new StructureBoundingBox(x, y, z, x + sizeX - 1, y + sizeY - 1, z + sizeZ - 1);
+			if (getCoordBaseMode().getAxis() == EnumFacing.Axis.Z) {
+				boundingBox = new StructureBoundingBox(x, y, z, x + sizeX - 1, y + sizeY - 1, z + sizeZ - 1);
 			} else {
-				this.boundingBox = new StructureBoundingBox(x, y, z, x + sizeZ - 1, y + sizeY - 1, z + sizeX - 1);
+				boundingBox = new StructureBoundingBox(x, y, z, x + sizeZ - 1, y + sizeY - 1, z + sizeX - 1);
 			}
 		}
 
 		/**
 		 * (abstract) Helper method to write subclass data to NBT
 		 */
+		@Override
 		protected void writeStructureToNBT(NBTTagCompound tagCompound) {
-			tagCompound.setInteger("Width", this.width);
-			tagCompound.setInteger("Height", this.height);
-			tagCompound.setInteger("Depth", this.depth);
-			tagCompound.setInteger("HPos", this.horizontalPos);
+			tagCompound.setInteger("Width", width);
+			tagCompound.setInteger("Height", height);
+			tagCompound.setInteger("Depth", depth);
+			tagCompound.setInteger("HPos", horizontalPos);
 		}
 
 		/**
 		 * (abstract) Helper method to read subclass data from NBT
 		 */
+		@Override
 		protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
-			this.width = tagCompound.getInteger("Width");
-			this.height = tagCompound.getInteger("Height");
-			this.depth = tagCompound.getInteger("Depth");
-			this.horizontalPos = tagCompound.getInteger("HPos");
+			width = tagCompound.getInteger("Width");
+			height = tagCompound.getInteger("Height");
+			depth = tagCompound.getInteger("Depth");
+			horizontalPos = tagCompound.getInteger("HPos");
 		}
 
 		public void setBoundingBox(StructureBoundingBox box) {
-			this.boundingBox = box;
+			boundingBox = box;
 		}
 
 		/**
@@ -268,15 +280,15 @@ public class WorldHelper {
 		 * level
 		 */
 		public boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset) {
-			if (this.horizontalPos >= 0) {
+			if (horizontalPos >= 0) {
 				return true;
 			} else {
 				int i = 0;
 				int j = 0;
 				BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
-				for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k) {
-					for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l) {
+				for (int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k) {
+					for (int l = boundingBox.minX; l <= boundingBox.maxX; ++l) {
 						blockpos$mutableblockpos.setPos(l, 64, k);
 
 						if (structurebb.isVecInside(blockpos$mutableblockpos)) {
@@ -290,8 +302,8 @@ public class WorldHelper {
 				if (j == 0) {
 					return false;
 				} else {
-					this.horizontalPos = i / j;
-					this.boundingBox.offset(0, this.horizontalPos - this.boundingBox.minY + yOffset, 0);
+					horizontalPos = i / j;
+					boundingBox.offset(0, horizontalPos - boundingBox.minY + yOffset, 0);
 					return true;
 				}
 			}

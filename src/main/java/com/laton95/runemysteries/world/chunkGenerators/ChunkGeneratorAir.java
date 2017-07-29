@@ -320,7 +320,7 @@ public class ChunkGeneratorAir implements IChunkGenerator {
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, flag);
 
-		//Place trees
+		// Place trees
 		int treesPerChunk = 5;
 
 		for (int i = 0; i < treesPerChunk; ++i) {
@@ -336,7 +336,7 @@ public class ChunkGeneratorAir implements IChunkGenerator {
 			}
 		}
 
-		//Place flowers
+		// Place flowers
 		int flowersPerChunk = 7;
 
 		for (int i = 0; i < flowersPerChunk; ++i) {
@@ -358,7 +358,7 @@ public class ChunkGeneratorAir implements IChunkGenerator {
 			}
 		}
 
-		//Place tallgrass
+		// Place tallgrass
 		int grassPerChunk = 14;
 
 		for (int i = 0; i < grassPerChunk; ++i) {

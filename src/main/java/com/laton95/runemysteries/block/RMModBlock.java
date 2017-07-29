@@ -46,7 +46,8 @@ public class RMModBlock extends Block {
 	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
 		if (drop != null) {
 			return drop;
-		} else
+		} else {
 			return Item.getItemFromBlock(this);
+		}
 	}
 }

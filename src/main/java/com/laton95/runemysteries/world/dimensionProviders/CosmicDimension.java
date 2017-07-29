@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
 import com.laton95.runemysteries.init.DimensionRegistry;
-import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorBody;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorCosmic;
 
 import net.minecraft.init.Biomes;
@@ -20,16 +19,16 @@ public class CosmicDimension extends WorldProvider {
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
-	 * 
+	 *
 	 * Note that subclasses generally override this method without calling the
 	 * parent version.
 	 */
 	@Override
 	public void init() {
-		this.biomeProvider = new BiomeProviderSingle(Biomes.VOID);
-		this.hasSkyLight = false;
+		biomeProvider = new BiomeProviderSingle(Biomes.VOID);
+		hasSkyLight = false;
 	}
-	
+
 	@Override
 	public IRenderHandler getSkyRenderer() {
 		// TODO Auto-generated method stub
@@ -40,7 +39,7 @@ public class CosmicDimension extends WorldProvider {
 	public DimensionType getDimensionType() {
 		return DimensionRegistry.COSMIC;
 	}
-	
+
 	@Override
 	public float getCloudHeight() {
 		return 0f;
@@ -85,7 +84,7 @@ public class CosmicDimension extends WorldProvider {
 		float f1 = 0F;
 		float f2 = 0F;
 		float f3 = 0F;
-		return new Vec3d((double) f1, (double) f2, (double) f3);
+		return new Vec3d(f1, f2, f3);
 	}
 
 	@Override

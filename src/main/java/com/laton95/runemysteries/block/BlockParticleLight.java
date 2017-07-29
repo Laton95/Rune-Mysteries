@@ -2,12 +2,9 @@ package com.laton95.runemysteries.block;
 
 import java.util.Random;
 
-import javax.annotation.Nullable;
-
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.util.EnumBlockRenderType;
-import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
@@ -16,13 +13,13 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockParticleLight extends RMModBlock{
+public class BlockParticleLight extends RMModBlock {
 
 	public BlockParticleLight(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative) {
 		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
-		this.lightValue = 15;
-		this.translucent = true;
+		lightValue = 15;
+		translucent = true;
 	}
 
 	@Override
@@ -41,30 +38,28 @@ public class BlockParticleLight extends RMModBlock{
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return BoundingBox;
 	}
-	
+
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state) {
 		return EnumBlockRenderType.INVISIBLE;
 	}
-	
+
 	@Override
-    public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-    {
-        return NULL_AABB;
-    }
-	
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos) {
+		return NULL_AABB;
+	}
+
 	@Override
 	public boolean isPassable(IBlockAccess worldIn, BlockPos pos) {
 		return true;
 	}
-	
+
 	@SideOnly(Side.CLIENT)
 	@Override
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-    {
-        double d0 = (double)pos.getX() + 0.5D;
-        double d1 = (double)pos.getY() + 0.5D;
-        double d2 = (double)pos.getZ() + 0.5D;
-        worldIn.spawnParticle(EnumParticleTypes.CLOUD, d0, d1, d2, 0.01, 0.01, 0.01);
-    }
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		double d0 = pos.getX() + 0.5D;
+		double d1 = pos.getY() + 0.5D;
+		double d2 = pos.getZ() + 0.5D;
+		worldIn.spawnParticle(EnumParticleTypes.CLOUD, d0, d1, d2, 0.01, 0.01, 0.01);
+	}
 }

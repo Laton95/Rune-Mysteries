@@ -13,7 +13,6 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
-import scala.tools.nsc.transform.Delambdafy.ThisReferringMethodsTraverser;
 
 public class BlockAltarPortal extends RMModBlock {
 	private int returnID;
@@ -24,7 +23,7 @@ public class BlockAltarPortal extends RMModBlock {
 		this.altar = altar;
 		this.returnID = returnID;
 		setBlockUnbreakable();
-		this.lightValue = 12;
+		lightValue = 12;
 	}
 
 	@Override
@@ -49,7 +48,7 @@ public class BlockAltarPortal extends RMModBlock {
 			}
 
 			BlockPos altarPos = ChunkGenerator.altarTracker.getAltar(altar + "_altar").getPosition();
-			
+
 			if (altarPos == null) {
 				altarPos = new BlockPos(0, 100, 0);
 			}

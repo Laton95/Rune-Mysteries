@@ -44,7 +44,7 @@ public class ChunkGeneratorFire implements IChunkGenerator {
 		int oceanSurface = 85;
 		int crustSurface = 82;
 		int worldSurface = 80;
-		
+
 		for (int y = 0; y < world.getActualHeight(); y++) {
 			for (int xPos = 0; xPos < 16; xPos++) {
 				for (int zPos = 0; zPos < 16; zPos++) {
@@ -75,12 +75,11 @@ public class ChunkGeneratorFire implements IChunkGenerator {
 		int zPos = z * 16;
 		BlockPos chunkStart = new BlockPos(xPos, 0, zPos);
 		ChunkPos chunkpos = new ChunkPos(x, z);
-		Biome biome = world.getBiome(chunkStart);
+		world.getBiome(chunkStart);
 		rand.setSeed(world.getSeed());
 		long rand1 = rand.nextLong() / 2L * 2L + 1L;
 		long rand2 = rand.nextLong() / 2L * 2L + 1L;
 		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-		
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 
