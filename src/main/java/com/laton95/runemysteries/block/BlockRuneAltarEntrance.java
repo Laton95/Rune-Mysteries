@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.item.ItemTalisman;
-import com.laton95.runemysteries.utility.WorldTeleporter;
+import com.laton95.runemysteries.util.WorldTeleporter;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;

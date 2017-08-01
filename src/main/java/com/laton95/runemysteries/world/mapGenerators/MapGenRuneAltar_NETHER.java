@@ -1,11 +1,15 @@
-package com.laton95.runemysteries.world;
+package com.laton95.runemysteries.world.mapGenerators;
 
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.util.WorldHelper;
+import com.laton95.runemysteries.world.AltarTracker;
+import com.laton95.runemysteries.world.WorldGenerator;
+import com.laton95.runemysteries.world.AltarTracker.RuneAltar;
+import com.laton95.runemysteries.world.AltarTracker.Type;
 import com.laton95.runemysteries.world.structureComponents.ComponentNetherAltar;
 
 import net.minecraft.util.math.BlockPos;
@@ -30,16 +34,16 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure {
 
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-		if (ChunkGenerator.altarTracker != null) {
-			if (!ChunkGenerator.altarTracker.netherAltarsFound) {
-				ChunkGenerator.altarTracker.findNetherLocations(world);
+		if (WorldGenerator.altarTracker != null) {
+			if (!WorldGenerator.altarTracker.netherAltarsFound) {
+				WorldGenerator.altarTracker.findNetherLocations(world);
 			}
 		} else {
-			ChunkGenerator.altarTracker = new AltarTracker();
-			ChunkGenerator.altarTracker.findNetherLocations(world);
+			WorldGenerator.altarTracker = new AltarTracker();
+			WorldGenerator.altarTracker.findNetherLocations(world);
 		}
 
-		return ChunkGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1,
+		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1,
 				AltarTracker.Type.NETHER);
 	}
 
@@ -69,7 +73,7 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure {
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn) {
 			super(chunkX, chunkZ);
 
-			AltarTracker.RuneAltar altar = ChunkGenerator.altarTracker.getAltar("chaos_altar");
+			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar("chaos_altar");
 
 			if (altar != null && !altar.isPlaced()) {
 				StructureBoundingBox bBox;
@@ -95,10 +99,10 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure {
 
 		private void panic(AltarTracker.RuneAltar altar) {
 			altar.incrementFailureCount(1);
-			if (altar.getFailureCount() > ChunkGenerator.altarTracker.warningFailureCount) {
+			if (altar.getFailureCount() > WorldGenerator.altarTracker.warningFailureCount) {
 				altar.incrementPlacementRadius(5);
 				altar.decrementFlatnessTolerance(0.02f);
-				if (altar.getFailureCount() > ChunkGenerator.altarTracker.panicFailureCount) {
+				if (altar.getFailureCount() > WorldGenerator.altarTracker.panicFailureCount) {
 					altar.incrementPlacementRadius(20);
 					altar.setBiomeDependant(false);
 					altar.setFlatnessTolerance(0.1f);

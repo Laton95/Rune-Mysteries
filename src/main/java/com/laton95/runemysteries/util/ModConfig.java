@@ -1,6 +1,6 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraftforge.common.config.Config;
 import net.minecraftforge.common.config.Config.Comment;
@@ -11,15 +11,15 @@ import net.minecraftforge.fml.client.event.ConfigChangedEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Config(modid = Reference.MOD_ID)
+@Config(modid = ModReference.MOD_ID)
 @Config.LangKey("runemysteries.config.title")
 public class ModConfig {
 	@Name("World Gen")
 	@Comment("Worldgen options.")
-	public static final WorldGeneration world = new WorldGeneration();
+	public static final WorldGeneration WORLD_GENERATION = new WorldGeneration();
 	@Name("Dimensions")
 	@Comment("Dimension options.")
-	public static final Dimensions dimensions = new Dimensions();
+	public static final Dimensions DIMENSIONS = new Dimensions();
 
 	public static class WorldGeneration {
 		@Name("Rune Altar generation")
@@ -144,12 +144,12 @@ public class ModConfig {
 		public int waterTempleDimID = 181;
 	}
 
-	@Mod.EventBusSubscriber(modid = Reference.MOD_ID)
+	@Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
 	private static class EventHandler {
 		@SubscribeEvent
 		public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
-			if (event.getModID().equals(Reference.MOD_ID)) {
-				ConfigManager.sync(Reference.MOD_ID, Config.Type.INSTANCE);
+			if (event.getModID().equals(ModReference.MOD_ID)) {
+				ConfigManager.sync(ModReference.MOD_ID, Config.Type.INSTANCE);
 			}
 		}
 	}

@@ -11,7 +11,7 @@ import net.minecraft.world.World;
 public class EnderpearlSpell extends Spell {
 
 	public EnderpearlSpell() {
-		costs.add(new SpellCost(ItemRegistry.lawRune, 3));
+		costs.add(new SpellCost(ItemRegistry.LAW_RUNE, 3));
 		cooldown = 20;
 	}
 

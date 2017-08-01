@@ -1,7 +1,7 @@
 /**
  *
  */
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;

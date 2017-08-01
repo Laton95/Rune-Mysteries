@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.util.math.BlockPos;

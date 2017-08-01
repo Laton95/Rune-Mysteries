@@ -3,8 +3,8 @@ package com.laton95.runemysteries.init;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.reference.Reference;
-import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.storage.loot.LootEntry;
@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 @Mod.EventBusSubscriber
 public final class LootRegistry {
 	public static final ResourceLocation OURANIA_ALTAR = LootTableList
-			.register(new ResourceLocation(Reference.MOD_ID, "altars/ourania_altar"));
+			.register(new ResourceLocation(ModReference.MOD_ID, "altars/ourania_altar"));
 
 	private static final List<String> TABLES = ImmutableList.of("inject/chests/abandoned_mineshaft",
 			"inject/chests/desert_pyramid", "inject/chests/jungle_temple", "inject/chests/simple_dungeon",
@@ -40,7 +40,7 @@ public final class LootRegistry {
 	public LootRegistry() {
 		LogHelper.info("Registering loot tables");
 		for (String s : TABLES) {
-			LootTableList.register(new ResourceLocation(Reference.MOD_ID, s));
+			LootTableList.register(new ResourceLocation(ModReference.MOD_ID, s));
 		}
 	}
 
@@ -166,7 +166,7 @@ public final class LootRegistry {
 	}
 
 	private LootEntryTable getInjectEntry(String name, int weight) {
-		return new LootEntryTable(new ResourceLocation(Reference.MOD_ID, "inject/" + name), weight, 0,
+		return new LootEntryTable(new ResourceLocation(ModReference.MOD_ID, "inject/" + name), weight, 0,
 				new LootCondition[0], "runemysteries_inject_entry");
 	}
 }

@@ -2,9 +2,10 @@ package com.laton95.runemysteries.spells;
 
 import java.util.ArrayList;
 
-import com.laton95.runemysteries.item.ItemRune;
+//import com.laton95.runemysteries.item.ItemRune;
 
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public abstract class Spell {
@@ -30,16 +31,16 @@ public abstract class Spell {
 	}
 
 	public class SpellCost {
-		private final ItemRune rune;
+		private final Item item;
 		private final int count;
 
-		public SpellCost(ItemRune rune, int count) {
-			this.rune = rune;
+		public SpellCost(Item item, int count) {
+			this.item = item;
 			this.count = count;
 		}
 
-		public ItemRune getRune() {
-			return rune;
+		public Item getItem() {
+			return item;
 		}
 
 		public int getCount() {

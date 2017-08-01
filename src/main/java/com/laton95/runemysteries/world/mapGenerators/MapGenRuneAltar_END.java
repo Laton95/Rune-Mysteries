@@ -1,11 +1,15 @@
-package com.laton95.runemysteries.world;
+package com.laton95.runemysteries.world.mapGenerators;
 
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.utility.WorldHelper;
+import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.util.WorldHelper;
+import com.laton95.runemysteries.world.AltarTracker;
+import com.laton95.runemysteries.world.WorldGenerator;
+import com.laton95.runemysteries.world.AltarTracker.RuneAltar;
+import com.laton95.runemysteries.world.AltarTracker.Type;
 import com.laton95.runemysteries.world.structureComponents.ComponentEndAltar;
 
 import net.minecraft.util.math.BlockPos;
@@ -30,16 +34,16 @@ public class MapGenRuneAltar_END extends MapGenStructure {
 
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ) {
-		if (ChunkGenerator.altarTracker != null) {
-			if (!ChunkGenerator.altarTracker.endAltarsFound) {
-				ChunkGenerator.altarTracker.findEndLocations(world);
+		if (WorldGenerator.altarTracker != null) {
+			if (!WorldGenerator.altarTracker.endAltarsFound) {
+				WorldGenerator.altarTracker.findEndLocations(world);
 			}
 		} else {
-			ChunkGenerator.altarTracker = new AltarTracker();
-			ChunkGenerator.altarTracker.findEndLocations(world);
+			WorldGenerator.altarTracker = new AltarTracker();
+			WorldGenerator.altarTracker.findEndLocations(world);
 		}
 
-		return ChunkGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), 1, AltarTracker.Type.END);
+		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), 1, AltarTracker.Type.END);
 	}
 
 	@Override
@@ -69,7 +73,7 @@ public class MapGenRuneAltar_END extends MapGenStructure {
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn) {
 			super(chunkX, chunkZ);
 
-			AltarTracker.RuneAltar altar = ChunkGenerator.altarTracker.getAltar("cosmic_altar");
+			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar("cosmic_altar");
 
 			if (altar != null && !altar.isPlaced()) {
 				StructureBoundingBox bBox;

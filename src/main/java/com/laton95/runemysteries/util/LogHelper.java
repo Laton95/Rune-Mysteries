@@ -1,13 +1,13 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 public class LogHelper {
-	private static Logger log = LogManager.getLogger(Reference.MOD_NAME);
+	private static Logger log = LogManager.getLogger(ModReference.MOD_NAME);
 
 	public static void all(Object object) {
 		log.log(Level.ALL, object);

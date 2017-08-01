@@ -3,7 +3,7 @@ package com.laton95.runemysteries.block;
 import java.util.Random;
 
 import com.laton95.runemysteries.creativetab.RMCreativeTab;
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
@@ -16,8 +16,8 @@ public class RMModBlock extends Block {
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative) {
 		super(material);
-		setUnlocalizedName(Reference.MOD_ID + ":" + name);
-		setRegistryName(Reference.MOD_ID, name.toLowerCase());
+		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
+		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
 		if (showInCreative) {
 			setCreativeTab(RMCreativeTab.RM_TAB);
 		}
@@ -30,8 +30,8 @@ public class RMModBlock extends Block {
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative, Item drop) {
 		super(material);
-		setUnlocalizedName(Reference.MOD_ID + ":" + name);
-		setRegistryName(Reference.MOD_ID, name.toLowerCase());
+		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
+		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
 		if (showInCreative) {
 			setCreativeTab(RMCreativeTab.RM_TAB);
 		}

@@ -1,9 +1,9 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.utility.ModConfig;
-import com.laton95.runemysteries.utility.WorldHelper;
-import com.laton95.runemysteries.world.ChunkGenerator;
+import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.util.WorldHelper;
+import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
@@ -35,7 +35,7 @@ public class ItemTalisman extends RMModItem {
 		playerIn.getCooldownTracker().setCooldown(this, 30);
 
 		if (!worldIn.isRemote) {
-			if (!ModConfig.world.rune_altars.generateRuneAltars) {
+			if (!ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars) {
 				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
 				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
@@ -98,24 +98,24 @@ public class ItemTalisman extends RMModItem {
 	private void printDirection(EntityPlayer playerIn, World worldIn) {
 		switch (dimID) {
 		case 0:
-			if (!ChunkGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
-				ChunkGenerator.altarTracker.findOverworldLocations(worldIn);
+			if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findOverworldLocations(worldIn);
 			}
 			break;
 		case -1:
-			if (!ChunkGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
-				ChunkGenerator.altarTracker.findNetherLocations(worldIn);
+			if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findNetherLocations(worldIn);
 			}
 			break;
 		case 1:
-			if (!ChunkGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
-				ChunkGenerator.altarTracker.findEndLocations(worldIn);
+			if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findEndLocations(worldIn);
 			}
 			break;
 		}
 
 		BlockPos pos;
-		pos = ChunkGenerator.altarTracker.getAltar(altar).getPosition();
+		pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
 
 		if (WorldHelper.isNearby(playerIn.getPosition(), pos, 5)) {
 			playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nearby"));

@@ -55,6 +55,7 @@ tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from th
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
+death.attack.runeMagicDamageProjectile=%1$s was blasted by %2$s
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
@@ -120,6 +121,7 @@ tile.runemysteries:soul_Altar_Exit_Portal.name=Soul Altar Exit Portal
 tile.runemysteries:water_Altar_Exit_Portal.name=Water Altar Exit Portal
 
 tile.runemysteries:particle_Light.name=Magic Light
+tile.runemysteries:camo_mine.name=Camo Mine
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries
@@ -137,5 +139,9 @@ advancements.runemysteries.runecrafting.get_all_talismans.title=Omni-Talisman
 advancements.runemysteries.runecrafting.get_all_talismans.description=Obtain all of the runecrafting talismans.
 advancements.runemysteries.runecrafting.altar.title=Mysterious Ruins
 advancements.runemysteries.runecrafting.altar.description=Follow the pull of a runecrafting talisman.
-advancements.runemysteries.runecrafting.ourania.title=ZMI Patron
+advancements.runemysteries.runecrafting.ourania.title=ZMI Associate
 advancements.runemysteries.runecrafting.ourania.description=Find and use the legendary Ourania altar.
+
+#Keybindings
+keys.runemysteries.category=Rune Mysteries
+keys.runemysteries.test=Test

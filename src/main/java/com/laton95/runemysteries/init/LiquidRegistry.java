@@ -6,8 +6,8 @@ import java.util.function.Consumer;
 import java.util.function.Function;
 
 import com.laton95.runemysteries.creativetab.RMCreativeTab;
-import com.laton95.runemysteries.reference.Reference;
-import com.laton95.runemysteries.utility.LogHelper;
+import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.material.MapColor;
@@ -38,7 +38,7 @@ public class LiquidRegistry {
 	 */
 	public static final Set<IFluidBlock> MOD_FLUID_BLOCKS = new HashSet<>();
 
-	public static final Fluid blood = createFluid("blood", true,
+	public static final Fluid BLOOD = createFluid("blood", true,
 			fluid -> fluid.setLuminosity(10).setDensity(1600).setViscosity(100),
 			fluid -> new BlockFluidClassic(fluid, new MaterialLiquid(MapColor.RED)));
 
@@ -58,7 +58,7 @@ public class LiquidRegistry {
 	 */
 	private static <T extends Block & IFluidBlock> Fluid createFluid(String name, boolean hasFlowIcon,
 			Consumer<Fluid> fluidPropertyApplier, Function<Fluid, T> blockFactory) {
-		final String texturePrefix = Reference.MOD_ID + ":" + "blocks/fluid_";
+		final String texturePrefix = ModReference.MOD_ID + ":" + "blocks/fluid_";
 
 		final ResourceLocation still = new ResourceLocation(texturePrefix + name + "_still");
 		final ResourceLocation flowing = hasFlowIcon ? new ResourceLocation(texturePrefix + name + "_flow") : still;
@@ -93,8 +93,8 @@ public class LiquidRegistry {
 
 			for (final IFluidBlock fluidBlock : MOD_FLUID_BLOCKS) {
 				final Block block = (Block) fluidBlock;
-				block.setRegistryName(Reference.MOD_ID, "fluid." + fluidBlock.getFluid().getName());
-				block.setUnlocalizedName(Reference.MOD_ID + ":" + fluidBlock.getFluid().getUnlocalizedName());
+				block.setRegistryName(ModReference.MOD_ID, "fluid." + fluidBlock.getFluid().getName());
+				block.setUnlocalizedName(ModReference.MOD_ID + ":" + fluidBlock.getFluid().getUnlocalizedName());
 				block.setCreativeTab(RMCreativeTab.RM_TAB);
 				registry.register(block);
 			}

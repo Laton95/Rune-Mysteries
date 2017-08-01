@@ -2,6 +2,13 @@ package com.laton95.runemysteries.world;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_END;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_NETHER;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SOUL;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SURFACE;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_UNDERGROUND;
+import com.laton95.runemysteries.world.mapGenerators.OreGenerator;
+
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.ChunkPrimer;
@@ -14,7 +21,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class ChunkGenerator implements IWorldGenerator {
+public class WorldGenerator implements IWorldGenerator {
 	private MapGenRuneAltar_SURFACE surfaceAltarGenerator = new MapGenRuneAltar_SURFACE();
 	private MapGenRuneAltar_UNDERGROUND undergroundAltarGenerator = new MapGenRuneAltar_UNDERGROUND();
 	private MapGenRuneAltar_SOUL soulAltarGenerator = new MapGenRuneAltar_SOUL();

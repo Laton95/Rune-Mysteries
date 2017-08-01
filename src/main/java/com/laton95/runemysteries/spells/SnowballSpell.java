@@ -13,8 +13,8 @@ import net.minecraft.world.World;
 public class SnowballSpell extends Spell {
 
 	public SnowballSpell() {
-		costs.add(new SpellCost(ItemRegistry.waterRune, 2));
-		costs.add(new SpellCost(ItemRegistry.airRune, 1));
+		costs.add(new SpellCost(ItemRegistry.WATER_RUNE, 2));
+		costs.add(new SpellCost(ItemRegistry.AIR_RUNE, 1));
 		cooldown = 5;
 	}
 

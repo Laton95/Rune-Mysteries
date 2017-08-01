@@ -53,7 +53,7 @@ public class BlockOuraniaAltar extends BlockRuneAltar {
 			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
 			if (player instanceof EntityPlayerMP) {
 				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player,
-						new ItemStack(BlockRegistry.ouraniaAltar));
+						new ItemStack(BlockRegistry.OURANIA_ALTAR));
 			}
 		}
 	}

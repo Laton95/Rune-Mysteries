@@ -1,7 +1,7 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import com.laton95.runemysteries.init.LiquidRegistry;
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
@@ -34,7 +34,7 @@ public class ModelManager {
 
 		ModelBakery.registerItemVariants(item);
 
-		final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(Reference.MOD_ID + ":" + "fluid",
+		final ModelResourceLocation modelResourceLocation = new ModelResourceLocation(ModReference.MOD_ID + ":" + "fluid",
 				fluidBlock.getFluid().getName());
 
 		ModelLoader.setCustomStateMapper((Block) fluidBlock, new StateMapperBase() {

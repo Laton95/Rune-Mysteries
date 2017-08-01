@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
-import com.laton95.runemysteries.world.MapGenRuneTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;

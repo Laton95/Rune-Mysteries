@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.utility.WorldTeleporter;
-import com.laton95.runemysteries.world.ChunkGenerator;
+import com.laton95.runemysteries.util.WorldTeleporter;
+import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -31,23 +31,23 @@ public class BlockAltarPortal extends RMModBlock {
 		if (entityIn instanceof EntityPlayer && !worldIn.isRemote && worldIn.provider.getDimension() != returnID) {
 			switch (returnID) {
 			case 0:
-				if (!ChunkGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
-					ChunkGenerator.altarTracker.findOverworldLocations(worldIn);
+				if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
+					WorldGenerator.altarTracker.findOverworldLocations(worldIn);
 				}
 				break;
 			case -1:
-				if (!ChunkGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
-					ChunkGenerator.altarTracker.findNetherLocations(worldIn);
+				if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
+					WorldGenerator.altarTracker.findNetherLocations(worldIn);
 				}
 				break;
 			case 1:
-				if (!ChunkGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
-					ChunkGenerator.altarTracker.findEndLocations(worldIn);
+				if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
+					WorldGenerator.altarTracker.findEndLocations(worldIn);
 				}
 				break;
 			}
 
-			BlockPos altarPos = ChunkGenerator.altarTracker.getAltar(altar + "_altar").getPosition();
+			BlockPos altarPos = WorldGenerator.altarTracker.getAltar(altar + "_altar").getPosition();
 
 			if (altarPos == null) {
 				altarPos = new BlockPos(0, 100, 0);

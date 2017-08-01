@@ -1,8 +1,8 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.block.Block;
 import net.minecraft.init.Blocks;
@@ -23,18 +23,18 @@ public class WorldHelper {
 
 	public static void loadStructure(BlockPos pos, World world, Template template) {
 		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID);
-		template.addBlocksToWorldChunk(world, pos.add(0, 1, 0), settings);
+		template.addBlocksToWorld(world, pos.add(0, 1, 0), settings);
 	}
 
 	public static void loadStructure(BlockPos pos, World world, Template template, PlacementSettings settings) {
-		template.addBlocksToWorldChunk(world, pos.add(0, 1, 0), settings);
+		template.addBlocksToWorld(world, pos.add(0, 1, 0), settings);
 	}
 
 	public static Template getTemplate(World world, String name) {
 		if (!world.isRemote) {
 			MinecraftServer minecraftserver = world.getMinecraftServer();
 			TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
-			ResourceLocation loc = new ResourceLocation(Reference.MOD_ID, name);
+			ResourceLocation loc = new ResourceLocation(ModReference.MOD_ID, name);
 			return templatemanager.getTemplate(minecraftserver, loc);
 		}
 		return null;
@@ -134,11 +134,7 @@ public class WorldHelper {
 		int z = Math.abs(blockA.getZ() - blockB.getZ());
 		int y = Math.abs(blockA.getY() - blockB.getY());
 
-		if (Math.max(Math.max(z, x), y * 2) < range) {
-			return true;
-		} else {
-			return false;
-		}
+		return Math.max(Math.max(z, x), y * 2) < range;
 	}
 
 	public static Direction getDirection(BlockPos from, BlockPos too) {

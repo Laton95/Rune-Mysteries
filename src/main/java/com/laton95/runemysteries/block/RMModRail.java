@@ -6,6 +6,7 @@ import javax.annotation.Nullable;
 
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
@@ -22,7 +23,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class BlockRail extends RMModBlock {
+public class RMModRail extends RMModBlock {
 	public static final PropertyBool UP = PropertyBool.create("up");
 	public static final PropertyBool NORTH = PropertyBool.create("north");
 	public static final PropertyBool EAST = PropertyBool.create("east");
@@ -52,7 +53,7 @@ public class BlockRail extends RMModBlock {
 			AABB_BY_INDEX[10].setMaxY(1.5D), AABB_BY_INDEX[11].setMaxY(1.5D), AABB_BY_INDEX[12].setMaxY(1.5D),
 			AABB_BY_INDEX[13].setMaxY(1.5D), AABB_BY_INDEX[14].setMaxY(1.5D), AABB_BY_INDEX[15].setMaxY(1.5D) };
 
-	public BlockRail(String name, Material material, float hardness, Float resistance, String toolClass,
+	public RMModRail(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative) {
 		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 	}
@@ -209,7 +210,7 @@ public class BlockRail extends RMModBlock {
 	@Override
 	public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {
 		Block connector = world.getBlockState(pos.offset(facing)).getBlock();
-		return connector instanceof BlockRail || connector instanceof BlockFenceGate;
+		return connector instanceof RMModRail || connector instanceof BlockFenceGate;
 	}
 
 	private boolean canWallConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing) {

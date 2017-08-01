@@ -31,13 +31,13 @@ public class BlockRuneAltar extends RMModBlock {
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn) {
 		if (entityIn instanceof EntityItem) {
 			Item itemType = ((EntityItem) entityIn).getItem().getItem();
-			if (itemType.equals(ItemRegistry.runeEssence)) {
+			if (itemType.equals(ItemRegistry.RUNE_ESSENCE)) {
 				giveAdvancements((EntityItem) entityIn, worldIn);
 				spawnItem(worldIn, entityIn, rune);
 			}
 
 			if (itemType.equals(Items.BOOK)) {
-				spawnItem(worldIn, entityIn, ItemRegistry.spellbook);
+				spawnItem(worldIn, entityIn, ItemRegistry.SPELLBOOK);
 			}
 		}
 	}
@@ -47,7 +47,7 @@ public class BlockRuneAltar extends RMModBlock {
 		if (thrower != null) {
 			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
 			if (player instanceof EntityPlayerMP) {
-				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(ItemRegistry.runeEssence));
+				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(ItemRegistry.RUNE_ESSENCE));
 			}
 		}
 	}

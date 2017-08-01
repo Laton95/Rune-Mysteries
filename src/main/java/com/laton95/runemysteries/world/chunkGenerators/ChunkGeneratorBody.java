@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.laton95.runemysteries.init.BlockRegistry;
-import com.laton95.runemysteries.world.MapGenRuneTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
@@ -19,7 +19,7 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public class ChunkGeneratorBody implements IChunkGenerator {
-	protected static final IBlockState WORLDBLOCK = BlockRegistry.fleshBlock.getDefaultState();
+	protected static final IBlockState WORLDBLOCK = BlockRegistry.FLESH_BLOCK.getDefaultState();
 	private final Random rand;
 	private final World world;
 

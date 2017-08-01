@@ -1,9 +1,9 @@
-package com.laton95.runemysteries.utility;
+package com.laton95.runemysteries.util;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import com.laton95.runemysteries.reference.Reference;
+import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
@@ -12,7 +12,7 @@ import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
 public class AltarNBTHelper extends WorldSavedData {
-	private static final String DATA_NAME = Reference.MOD_ID;
+	private static final String DATA_NAME = ModReference.MOD_ID;
 
 	public boolean overworldAltarsGenerated;
 	public boolean netherAltarsGenerated;

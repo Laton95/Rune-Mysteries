@@ -3,14 +3,14 @@ package com.laton95.runemysteries.init;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.laton95.runemysteries.utility.LogHelper;
-import com.laton95.runemysteries.world.ChunkGenerator;
-import com.laton95.runemysteries.world.MapGenRuneAltar_END;
-import com.laton95.runemysteries.world.MapGenRuneAltar_NETHER;
-import com.laton95.runemysteries.world.MapGenRuneAltar_SOUL;
-import com.laton95.runemysteries.world.MapGenRuneAltar_SURFACE;
-import com.laton95.runemysteries.world.MapGenRuneAltar_UNDERGROUND;
-import com.laton95.runemysteries.world.MapGenRuneTemple;
+import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.world.WorldGenerator;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_END;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_NETHER;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SOUL;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SURFACE;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_UNDERGROUND;
+import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBodyTemple;
@@ -41,7 +41,7 @@ public class WorldGenRegistry {
 	private static Map<String, IWorldGenerator> genMap = new HashMap<>();
 	private static Map<String, Class<? extends StructureStart>> structureMap = new HashMap<>();
 	private static Map<String, Class<? extends StructureComponent>> componentMap = new HashMap<>();
-	public static ChunkGenerator chunkGenerator;
+	public static WorldGenerator chunkGenerator;
 
 	public static void registerWorldGen() {
 		LogHelper.info("Registering world-gen");
@@ -62,7 +62,7 @@ public class WorldGenRegistry {
 	}
 
 	private static void makeGenMap() {
-		chunkGenerator = new ChunkGenerator();
+		chunkGenerator = new WorldGenerator();
 		genMap.put("Chunk Generator", chunkGenerator);
 		MinecraftForge.EVENT_BUS.register(chunkGenerator);
 		MinecraftForge.TERRAIN_GEN_BUS.register(chunkGenerator);

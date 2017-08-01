@@ -1,10 +1,10 @@
-package com.laton95.runemysteries.world;
+package com.laton95.runemysteries.world.mapGenerators;
 
 import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
-import com.laton95.runemysteries.utility.ModConfig;
+import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentBodyTemple;
@@ -76,43 +76,43 @@ public class MapGenRuneTemple extends MapGenStructure {
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn) {
 			super(chunkX, chunkZ);
 			int dimensionID = worldIn.provider.getDimension();
-			if (dimensionID == ModConfig.dimensions.airTempleDimID) {
+			if (dimensionID == ModConfig.DIMENSIONS.airTempleDimID) {
 				ComponentAirTemple componentAirTemple = new ComponentAirTemple(random, -16, -16);
 				components.add(componentAirTemple);
-			} else if (dimensionID == ModConfig.dimensions.bloodTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.bloodTempleDimID) {
 				ComponentBloodTemple componentBloodTemple = new ComponentBloodTemple(random, -16, -16);
 				components.add(componentBloodTemple);
-			} else if (dimensionID == ModConfig.dimensions.bodyTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.bodyTempleDimID) {
 				ComponentBodyTemple componentBodyTemple = new ComponentBodyTemple(random, -13, -14);
 				components.add(componentBodyTemple);
-			} else if (dimensionID == ModConfig.dimensions.chaosTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.chaosTempleDimID) {
 				ComponentChaosTemple componentChaosTemple = new ComponentChaosTemple(random, -4, -4);
 				components.add(componentChaosTemple);
-			} else if (dimensionID == ModConfig.dimensions.cosmicTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.cosmicTempleDimID) {
 				ComponentCosmicTemple componentCosmicTemple = new ComponentCosmicTemple(random);
 				components.add(componentCosmicTemple);
-			} else if (dimensionID == ModConfig.dimensions.deathTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.deathTempleDimID) {
 				ComponentDeathTemple componentDeathTemple = new ComponentDeathTemple(random, -16, -16);
 				components.add(componentDeathTemple);
-			} else if (dimensionID == ModConfig.dimensions.earthTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.earthTempleDimID) {
 				ComponentEarthTemple componentEarthTemple = new ComponentEarthTemple(random, -16, -16);
 				components.add(componentEarthTemple);
-			} else if (dimensionID == ModConfig.dimensions.fireTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.fireTempleDimID) {
 				ComponentFireTemple componentFireTemple = new ComponentFireTemple(random, -16, -16);
 				components.add(componentFireTemple);
-			} else if (dimensionID == ModConfig.dimensions.lawTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.lawTempleDimID) {
 				ComponentLawTemple componentLawTemple = new ComponentLawTemple(random, -14, -14);
 				components.add(componentLawTemple);
-			} else if (dimensionID == ModConfig.dimensions.mindTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.mindTempleDimID) {
 				ComponentMindTemple componentMindTemple = new ComponentMindTemple(random, -16, -16);
 				components.add(componentMindTemple);
-			} else if (dimensionID == ModConfig.dimensions.natureTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.natureTempleDimID) {
 				ComponentNatureTemple componentNatureTemple = new ComponentNatureTemple(random, -11, -11);
 				components.add(componentNatureTemple);
-			} else if (dimensionID == ModConfig.dimensions.soulTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.soulTempleDimID) {
 				ComponentSoulTemple componentSoulTemple = new ComponentSoulTemple(random, -16, -16);
 				components.add(componentSoulTemple);
-			} else if (dimensionID == ModConfig.dimensions.waterTempleDimID) {
+			} else if (dimensionID == ModConfig.DIMENSIONS.waterTempleDimID) {
 				ComponentWaterTemple componentWaterTemple = new ComponentWaterTemple(random, -16, -16);
 				components.add(componentWaterTemple);
 			}

@@ -7,55 +7,55 @@ import com.google.common.collect.ImmutableList;
 import net.minecraftforge.common.BiomeDictionary;
 
 public class WorldGenReference {
-	public static final List<BiomeDictionary.Type> airAltarBiomes = ImmutableList.of(BiomeDictionary.Type.MESA,
+	public static final List<BiomeDictionary.Type> AIR_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.MESA,
 			BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS);
-	public static List<BiomeDictionary.Type> airAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> AIR_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> astralAltarBiomes = ImmutableList.of(BiomeDictionary.Type.MUSHROOM,
+	public static final List<BiomeDictionary.Type> ASTRAL_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.MUSHROOM,
 			BiomeDictionary.Type.SNOWY);
-	public static List<BiomeDictionary.Type> astralAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> ASTRAL_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> bloodAltarBiomes = ImmutableList.of(BiomeDictionary.Type.SWAMP);
-	public static List<BiomeDictionary.Type> bloodAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> BLOOD_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.SWAMP);
+	public static final List<BiomeDictionary.Type> BLOOD_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> bodyAltarBiomes = ImmutableList.of(BiomeDictionary.Type.CONIFEROUS,
+	public static final List<BiomeDictionary.Type> BODY_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.CONIFEROUS,
 			BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS);
-	public static List<BiomeDictionary.Type> bodyAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> BODY_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> deathAltarBiomes = ImmutableList.of(BiomeDictionary.Type.MOUNTAIN);
-	public static List<BiomeDictionary.Type> deathAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> DEATH_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.MOUNTAIN);
+	public static final List<BiomeDictionary.Type> DEATH_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> earthAltarBiomes = ImmutableList.of(BiomeDictionary.Type.SAVANNA,
+	public static final List<BiomeDictionary.Type> EARTH_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.SAVANNA,
 			BiomeDictionary.Type.FOREST, BiomeDictionary.Type.PLAINS);
-	public static List<BiomeDictionary.Type> earthAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> EARTH_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> fireAltarBiomes = ImmutableList.of(BiomeDictionary.Type.SANDY);
-	public static List<BiomeDictionary.Type> fireAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> FIRE_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.SANDY);
+	public static final List<BiomeDictionary.Type> FIRE_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> lawAltarBiomes = ImmutableList.of(BiomeDictionary.Type.FOREST,
+	public static final List<BiomeDictionary.Type> LAW_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.FOREST,
 			BiomeDictionary.Type.PLAINS);
-	public static List<BiomeDictionary.Type> lawAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> LAW_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> mindAltarBiomes = ImmutableList.of(BiomeDictionary.Type.PLAINS,
+	public static final List<BiomeDictionary.Type> MIND_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.PLAINS,
 			BiomeDictionary.Type.DEAD, BiomeDictionary.Type.WASTELAND);
-	public static List<BiomeDictionary.Type> mindAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> MIND_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> natureAltarBiomes = ImmutableList.of(BiomeDictionary.Type.JUNGLE);
-	public static List<BiomeDictionary.Type> natureAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> NATURE_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.JUNGLE);
+	public static final List<BiomeDictionary.Type> NATURE_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> soulAltarBiomes = ImmutableList.of(BiomeDictionary.Type.SANDY);
-	public static List<BiomeDictionary.Type> soulAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.MESA,
+	public static final List<BiomeDictionary.Type> SOUL_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.SANDY);
+	public static final List<BiomeDictionary.Type> SOUL_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.MESA,
 			BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> waterAltarBiomes = ImmutableList.of(BiomeDictionary.Type.SWAMP);
-	public static List<BiomeDictionary.Type> waterAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> WATER_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.SWAMP);
+	public static final List<BiomeDictionary.Type> WATER_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> cosmicAltarBiomes = ImmutableList.of(BiomeDictionary.Type.END);
-	public static List<BiomeDictionary.Type> cosmicAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> COSMIC_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.END);
+	public static final List<BiomeDictionary.Type> COSMIC_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> chaosAltarBiomes = ImmutableList.of(BiomeDictionary.Type.NETHER);
-	public static List<BiomeDictionary.Type> chaosAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> CHAOS_ALTAR_BIOMES = ImmutableList.of(BiomeDictionary.Type.NETHER);
+	public static final List<BiomeDictionary.Type> CHAOS_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 
-	public static List<BiomeDictionary.Type> ouraniaAltarBiomes = ImmutableList.of();
-	public static List<BiomeDictionary.Type> ouraniaAltarBiomesN = ImmutableList.of(BiomeDictionary.Type.OCEAN);
+	public static final List<BiomeDictionary.Type> OURANIA_ALTAR_BIOMES = ImmutableList.of();
+	public static final List<BiomeDictionary.Type> OURANIA_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 }

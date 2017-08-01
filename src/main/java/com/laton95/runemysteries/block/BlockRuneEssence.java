@@ -29,7 +29,7 @@ public class BlockRuneEssence extends RMModBlock {
 		if (!player.isCreative()) {
 			player.addExhaustion(0.005F);
 
-			ItemStack itemstack = new ItemStack(ItemRegistry.runeEssence);
+			ItemStack itemstack = new ItemStack(ItemRegistry.RUNE_ESSENCE);
 			spawnAsEntity(worldIn, pos, itemstack);
 
 			worldIn.setBlockState(pos, state);
