@@ -2,6 +2,7 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.init.Blocks;
@@ -42,6 +43,10 @@ public class ComponentCosmicTemple extends WorldHelper.ModFeature {
 		WorldHelper.loadStructure(blockposNE, worldIn, templeNE, settings);
 		WorldHelper.loadStructure(blockposSW, worldIn, templeSW, settings);
 		WorldHelper.loadStructure(blockposSE, worldIn, templeSE, settings);
+		worldIn.setBlockState(new BlockPos(-1, 87, 22), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+		worldIn.setBlockState(new BlockPos(-23, 87, -1), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+		worldIn.setBlockState(new BlockPos(0, 87, -23), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+		worldIn.setBlockState(new BlockPos(22, 87, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
 		return true;
 	}
 }

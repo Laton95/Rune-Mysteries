@@ -3,7 +3,6 @@ package com.laton95.runemysteries.init;
 import java.util.ArrayList;
 
 import com.laton95.runemysteries.block.BlockAltarPortal;
-import com.laton95.runemysteries.block.BlockCamoMine;
 import com.laton95.runemysteries.block.BlockOuraniaAltar;
 import com.laton95.runemysteries.block.BlockParticleLight;
 import com.laton95.runemysteries.block.RMModRail;
@@ -67,7 +66,7 @@ public class BlockRegistry {
 	public static final BlockRuneAltar COSMIC_ALTAR = new BlockRuneAltar("cosmic_Altar_Block", ItemRegistry.COSMIC_RUNE);
 	public static final BlockRuneAltar DEATH_ALTAR = new BlockRuneAltar("death_Altar_Block", ItemRegistry.DEATH_RUNE);
 	public static final BlockRuneAltar EARTH_ALTAR = new BlockRuneAltar("earth_Altar_Block", ItemRegistry.EARTH_RUNE);
-	public static final BlockRuneAltar FIRE__ALTAR = new BlockRuneAltar("fire_Altar_Block", ItemRegistry.FIRE_RUNE);
+	public static final BlockRuneAltar FIRE_ALTAR = new BlockRuneAltar("fire_Altar_Block", ItemRegistry.FIRE_RUNE);
 	public static final BlockRuneAltar LAW_ALTAR = new BlockRuneAltar("law_Altar_Block", ItemRegistry.LAW_RUNE);
 	public static final BlockRuneAltar MIND_ALTAR = new BlockRuneAltar("mind_Altar_Block", ItemRegistry.MIND_RUNE);
 	public static final BlockRuneAltar NATURE_ALTAR = new BlockRuneAltar("nature_Altar_Block", ItemRegistry.NATURE_RUNE);
@@ -102,24 +101,10 @@ public class BlockRegistry {
 	public static final BlockRuneAltarEntrance WATER_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("water_Altar_Entrance_Block",
 			ItemRegistry.WATER_TALISMAN, "water");
 
-	public static final BlockAltarPortal AIR_ALTAR_PORTAL = new BlockAltarPortal("air_Altar_Exit_Portal", "air", 0);
-	public static final BlockAltarPortal BLOOD_ALTAR_PORTAL = new BlockAltarPortal("blood_Altar_Exit_Portal", "blood", 0);
-	public static final BlockAltarPortal BODY_ALTAR_PORTAL = new BlockAltarPortal("body_Altar_Exit_Portal", "body", 0);
-	public static final BlockAltarPortal CHAOS_ALTAR_PORTAL = new BlockAltarPortal("chaos_Altar_Exit_Portal", "chaos", -1);
-	public static final BlockAltarPortal COSMIC_ALTAR_PORTAL = new BlockAltarPortal("cosmic_Altar_Exit_Portal", "cosmic", 1);
-	public static final BlockAltarPortal DEATH_ALTAR_PORTAL = new BlockAltarPortal("death_Altar_Exit_Portal", "death", 0);
-	public static final BlockAltarPortal EARTH__ALTAR_PORTAL = new BlockAltarPortal("earth_Altar_Exit_Portal", "earth", 0);
-	public static final BlockAltarPortal FIRE_ALTAR_PORTAL = new BlockAltarPortal("fire_Altar_Exit_Portal", "fire", 0);
-	public static final BlockAltarPortal LAW_ALTAR_PORTAL = new BlockAltarPortal("law_Altar_Exit_Portal", "law", 0);
-	public static final BlockAltarPortal MIND_ALTAR_PORTAL = new BlockAltarPortal("mind_Altar_Exit_Portal", "mind", 0);
-	public static final BlockAltarPortal NATURE_ALTAR_PORTAL = new BlockAltarPortal("nature_Altar_Exit_Portal", "nature", 0);
-	public static final BlockAltarPortal SOUL_ALTAR_PORTAL = new BlockAltarPortal("soul_Altar_Exit_Portal", "soul", 0);
-	public static final BlockAltarPortal WATER_ALTAR_PORTAL = new BlockAltarPortal("water_Altar_Exit_Portal", "water", 0);
+	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal("altar_Exit_Portal");
 
 	public static final BlockParticleLight PARTICLE_LIGHT = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f,
 			"pickaxe", 0, true);
-	
-	public static final BlockCamoMine CAMO_MINE = new BlockCamoMine("camo_mine", Material.TNT, 0f, 0f, "shovel", 0, true);
 
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event) {
@@ -174,7 +159,7 @@ public class BlockRegistry {
 		blockList.add(COSMIC_ALTAR);
 		blockList.add(DEATH_ALTAR);
 		blockList.add(EARTH_ALTAR);
-		blockList.add(FIRE__ALTAR);
+		blockList.add(FIRE_ALTAR);
 		blockList.add(LAW_ALTAR);
 		blockList.add(MIND_ALTAR);
 		blockList.add(NATURE_ALTAR);
@@ -196,23 +181,9 @@ public class BlockRegistry {
 		blockList.add(SOUL_ALTAR_ENTRANCE);
 		blockList.add(WATER_ALTAR_ENTRANCE);
 
-		blockList.add(AIR_ALTAR_PORTAL);
-		blockList.add(BLOOD_ALTAR_PORTAL);
-		blockList.add(BODY_ALTAR_PORTAL);
-		blockList.add(CHAOS_ALTAR_PORTAL);
-		blockList.add(COSMIC_ALTAR_PORTAL);
-		blockList.add(DEATH_ALTAR_PORTAL);
-		blockList.add(EARTH__ALTAR_PORTAL);
-		blockList.add(FIRE_ALTAR_PORTAL);
-		blockList.add(LAW_ALTAR_PORTAL);
-		blockList.add(MIND_ALTAR_PORTAL);
-		blockList.add(NATURE_ALTAR_PORTAL);
-		blockList.add(SOUL_ALTAR_PORTAL);
-		blockList.add(WATER_ALTAR_PORTAL);
+		blockList.add(ALTAR_PORTAL);
 
 		blockList.add(PARTICLE_LIGHT);
-		
-		blockList.add(CAMO_MINE);
 	}
 
 	public static void setupDimIDs() {

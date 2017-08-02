@@ -2,6 +2,7 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.init.Blocks;
@@ -30,6 +31,7 @@ public class ComponentEarthTemple extends WorldHelper.ModFeature {
 		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, temple, settings);
+		worldIn.setBlockState(new BlockPos(9, 87, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
 		return true;
 	}
 }

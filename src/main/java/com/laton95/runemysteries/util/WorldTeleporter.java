@@ -7,13 +7,11 @@ import net.minecraft.world.WorldServer;
 
 public class WorldTeleporter extends Teleporter {
 
-	BlockPos pos;
 	BlockPos exit;
 	WorldServer world;
 
-	public WorldTeleporter(WorldServer worldIn, BlockPos pos, BlockPos exit) {
+	public WorldTeleporter(WorldServer worldIn, BlockPos exit) {
 		super(worldIn);
-		this.pos = pos;
 		this.exit = exit;
 		world = worldIn;
 	}

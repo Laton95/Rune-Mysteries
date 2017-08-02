@@ -52,6 +52,7 @@ item.runemysteries.spellbook.norunes=You do not have enough runes to cast this s
 
 tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
+tile.runemysteries:altar_portal.item=The item is torn apart by the teleportation magic of the portal.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
@@ -106,22 +107,9 @@ tile.runemysteries:nature_Altar_Entrance_Block.name=Nature Altar Ruin
 tile.runemysteries:soul_Altar_Entrance_Block.name=Soul Altar Ruin
 tile.runemysteries:water_Altar_Entrance_Block.name=Water Altar Ruin
 
-tile.runemysteries:air_Altar_Exit_Portal.name=Air Altar Exit Portal
-tile.runemysteries:blood_Altar_Exit_Portal.name=Blood Altar Exit Portal
-tile.runemysteries:body_Altar_Exit_Portal.name=Body Altar Exit Portal
-tile.runemysteries:chaos_Altar_Exit_Portal.name=Chaos Altar Exit Portal
-tile.runemysteries:cosmic_Altar_Exit_Portal.name=Cosmic Altar Exit Portal
-tile.runemysteries:death_Altar_Exit_Portal.name=Death Altar Exit Portal
-tile.runemysteries:earth_Altar_Exit_Portal.name=Earth Altar Exit Portal
-tile.runemysteries:fire_Altar_Exit_Portal.name=Fire Altar Exit Portal
-tile.runemysteries:law_Altar_Exit_Portal.name=Law Altar Exit Portal
-tile.runemysteries:mind_Altar_Exit_Portal.name=Mind Altar Exit Portal
-tile.runemysteries:nature_Altar_Exit_Portal.name=Nature Altar Exit Portal
-tile.runemysteries:soul_Altar_Exit_Portal.name=Soul Altar Exit Portal
-tile.runemysteries:water_Altar_Exit_Portal.name=Water Altar Exit Portal
+tile.runemysteries:altar_Exit_Portal.name=Altar Exit Portal
 
 tile.runemysteries:particle_Light.name=Magic Light
-tile.runemysteries:camo_mine.name=Camo Mine
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries

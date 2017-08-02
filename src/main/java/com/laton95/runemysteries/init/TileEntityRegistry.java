@@ -5,7 +5,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 import com.laton95.runemysteries.block.BlockAltarPortal;
-import com.laton95.runemysteries.block.BlockCamoMine;
 import com.laton95.runemysteries.block.BlockOuraniaAltar;
 import com.laton95.runemysteries.block.BlockParticleLight;
 import com.laton95.runemysteries.block.RMModRail;
@@ -17,7 +16,7 @@ import com.laton95.runemysteries.block.RMModBlock;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMModStairs;
 import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.tileentity.TileEntityCamoMine;
+import com.laton95.runemysteries.tileentity.TileEntityAltarPortal;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 
@@ -46,6 +45,6 @@ public class TileEntityRegistry {
 	}
 
 	private static void makeTileEntityMap() {
-		tileEntityMap.put(ModReference.MOD_ID + ":" + "camo_mine", TileEntityCamoMine.class);
+		tileEntityMap.put(ModReference.MOD_ID + ":" + "altar_portal", TileEntityAltarPortal.class);
 	}
 }

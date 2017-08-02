@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.item.ItemTalisman;
+import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.util.WorldTeleporter;
 
 import net.minecraft.block.material.Material;
@@ -33,10 +34,7 @@ public class BlockRuneAltarEntrance extends RMModBlock {
 			if (playerIn.getHeldItemMainhand().getItem().equals(talisman)
 					|| playerIn.getHeldItemOffhand().getItem().equals(talisman)) {
 				playerIn.sendMessage(new TextComponentTranslation("tile.runemysteries:altar_entrance.enter"));
-				playerIn.setPosition(2, 87, 2);
-				FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().transferPlayerToDimension(
-						(EntityPlayerMP) playerIn, dimID,
-						new WorldTeleporter(playerIn.getServer().getWorld(dimID), pos, new BlockPos(2, 87, 2)));
+				WorldHelper.TeleportEntityToDimension(playerIn, worldIn, dimID, 2, 87, 2);
 			} else {
 				playerIn.sendMessage(new TextComponentTranslation("tile.runemysteries:altar_entrance.rightClick"));
 			}

@@ -1,10 +1,17 @@
 package com.laton95.runemysteries.util;
 
 import java.util.Random;
+import java.util.UUID;
 
 import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityList;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.server.MinecraftServer;
@@ -12,12 +19,16 @@ import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
+import net.minecraft.util.math.MathHelper;
+import net.minecraft.world.Teleporter;
 import net.minecraft.world.World;
+import net.minecraft.world.WorldServer;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class WorldHelper {
 
@@ -210,6 +221,72 @@ public class WorldHelper {
 
 		return Direction.UNKNOWN;
 	}
+	
+	public static void TeleportEntityToDimension(Entity entityIn, World worldIn, int dimID, float x, float y, float z){
+		if (!worldIn.isRemote && worldIn.provider.getDimension() != dimID) {
+			WorldTeleporter teleporter = new WorldTeleporter(entityIn.getServer().getWorld(dimID), new BlockPos(x, y, z));
+			if (entityIn instanceof EntityPlayerMP) {
+				entityIn.setPosition(x, y, z);
+				entityIn.getServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entityIn, dimID, teleporter);
+			} else {
+				changeDimension(entityIn, dimID, teleporter);
+			}
+		}
+	}
+	
+	private static void changeDimension(Entity entity, int dimID, WorldTeleporter teleporter)
+    {
+        if (!entity.world.isRemote && !entity.isDead)
+        {
+            if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, dimID)) return;
+            entity.world.profiler.startSection("changeDimension");
+            MinecraftServer minecraftserver = entity.getServer();
+            int i = entity.dimension;
+            WorldServer worldserver = minecraftserver.getWorld(i);
+            WorldServer worldserver1 = minecraftserver.getWorld(dimID);
+            entity.dimension = dimID;
+
+            entity.world.removeEntity(entity);
+            entity.isDead = false;
+            entity.world.profiler.startSection("reposition");
+
+            teleporter.placeInPortal(entity, entity.rotationYaw);
+            BlockPos blockpos = new BlockPos(entity);
+
+            worldserver.updateEntityWithOptionalForce(entity, false);
+            entity.world.profiler.endStartSection("reloading");
+            Entity entity2 = EntityList.newEntity(entity.getClass(), worldserver1);
+
+            if (entity2 != null)
+            {
+            	NBTTagCompound nbttagcompound = entity.writeToNBT(new NBTTagCompound());
+                nbttagcompound.removeTag("Dimension");
+                entity.readFromNBT(nbttagcompound);
+
+                if (i == 1 && dimID == 1)
+                {
+                    BlockPos blockpos1 = worldserver1.getTopSolidOrLiquidBlock(worldserver1.getSpawnPoint());
+                    entity2.moveToBlockPosAndAngles(blockpos1, entity2.rotationYaw, entity2.rotationPitch);
+                }
+                else
+                {
+                    entity2.moveToBlockPosAndAngles(blockpos, entity2.rotationYaw, entity2.rotationPitch);
+                }
+
+                boolean flag = entity2.forceSpawn;
+                entity2.forceSpawn = true;
+                worldserver1.spawnEntity(entity2);
+                entity2.forceSpawn = flag;
+                worldserver1.updateEntityWithOptionalForce(entity2, false);
+            }
+
+            entity.isDead = true;
+            entity.world.profiler.endSection();
+            worldserver.resetUpdateEntityTick();
+            worldserver1.resetUpdateEntityTick();
+            entity.world.profiler.endSection();
+        }
+    }
 
 	public enum Direction {
 		UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, UNKNOWN
