@@ -40,6 +40,11 @@ public class WorldHelper {
 	public static void loadStructure(BlockPos pos, World world, Template template, PlacementSettings settings) {
 		template.addBlocksToWorld(world, pos.add(0, 1, 0), settings);
 	}
+	
+	public static void loadStructureWithBlockUpdates(BlockPos pos, World world, Template template) {
+		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID);
+		template.addBlocksToWorldChunk(world, pos, settings);
+	}
 
 	public static Template getTemplate(World world, String name) {
 		if (!world.isRemote) {

@@ -13,6 +13,9 @@ import net.minecraft.world.gen.feature.WorldGenerator;
 public class OreGenerator {
 
 	public static void finiteEssenceGen(World world, Random random, int chunkX, int chunkZ) {
+		if (!ModConfig.WORLD_GENERATION.ores.generateFiniteEssence) {
+			return;
+		}
 		int minHeight = ModConfig.WORLD_GENERATION.ores.finiteEssenceMinHeight;
 		int maxHeight = ModConfig.WORLD_GENERATION.ores.finiteEssenceMaxHeight;
 		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight) {

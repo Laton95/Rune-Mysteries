@@ -40,9 +40,9 @@ public class ComponentSoulAltar extends WorldHelper.ModFeature {
 		Template altar = WorldHelper.getTemplate(worldIn, name);
 		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
-		WorldHelper.loadStructure(blockpos, worldIn, well, settings);
-		WorldHelper.loadStructure(blockpos2, worldIn, structure, settings);
-		WorldHelper.loadStructure(blockpos3, worldIn, altar, settings);
+		WorldHelper.loadStructureWithBlockUpdates(blockpos, worldIn, well);
+		WorldHelper.loadStructureWithBlockUpdates(blockpos2, worldIn, structure);
+		WorldHelper.loadStructureWithBlockUpdates(blockpos3, worldIn, altar);
 
 		for (int i = 0; i < depth - 4; i++) {
 			worldIn.setBlockState(new BlockPos(blockpos.getX() + 2, blockpos.getY() - i + 1, blockpos.getZ() + 2),

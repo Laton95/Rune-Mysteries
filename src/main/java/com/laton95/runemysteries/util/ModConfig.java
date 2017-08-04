@@ -51,6 +51,7 @@ public class ModConfig {
 		}
 
 		public static class Ores {
+			//Finite essence
 			@Name("Generate Finite Essence")
 			@Comment("Generate finite essence in the world.")
 			public boolean generateFiniteEssence = true;
