@@ -18,7 +18,7 @@ public class ComponentCosmicTemple extends WorldHelper.ModFeature {
 	}
 
 	public ComponentCosmicTemple(Random rand) {
-		super(rand, -26, 85, -26, 52, 4, 52);
+		super(rand, -26, 85, -26, 52, 5, 52);
 	}
 
 	@Override

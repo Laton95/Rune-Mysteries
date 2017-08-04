@@ -2,6 +2,7 @@ package com.laton95.runemysteries.item;
 
 import java.util.ArrayList;
 
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.DeathSpell;
 import com.laton95.runemysteries.spells.EnderpearlSpell;
 import com.laton95.runemysteries.spells.ExplosionSpell;
@@ -91,7 +92,7 @@ public class ItemSpellbook extends RMModItem {
 				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 			} else {
 				if (!worldIn.isRemote) {
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.spellbook.norunes"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
 				}
 				return new ActionResult<>(EnumActionResult.FAIL, spellbook);
 			}

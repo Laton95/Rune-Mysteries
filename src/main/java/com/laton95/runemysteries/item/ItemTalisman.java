@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.item;
 
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.util.WorldHelper;
@@ -36,7 +37,7 @@ public class ItemTalisman extends RMModItem {
 
 		if (!worldIn.isRemote) {
 			if (!ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars) {
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
 
@@ -49,13 +50,13 @@ public class ItemTalisman extends RMModItem {
 				case -1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nether"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
 					playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.end"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			case -1:
@@ -64,12 +65,12 @@ public class ItemTalisman extends RMModItem {
 					printDirection(playerIn, worldIn);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.overworld"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.end"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			case 1:
@@ -78,17 +79,17 @@ public class ItemTalisman extends RMModItem {
 					printDirection(playerIn, worldIn);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.overworld"));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case -1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
 							SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
-					playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nether"));
-					playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
+					playerIn.attackEntityFrom(new DamageSource(NamesReference.Talisman.NETHER_DAMAGE), 2f);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				}
 			default:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
 		}
@@ -118,44 +119,45 @@ public class ItemTalisman extends RMModItem {
 		pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
 
 		if (WorldHelper.isNearby(playerIn.getPosition(), pos, 5)) {
-			playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.nearby"));
+			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NEARBY));
 		} else {
 			switch (WorldHelper.getDirection(playerIn.getPosition(), pos)) {
 			case NORTH:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.north"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH));
 				break;
 			case NORTH_EAST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.northEast"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH_EAST));
 				break;
 			case EAST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.east"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.EAST));
 				break;
 			case SOUTH_EAST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.southEast"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH_EAST));
 				break;
 			case SOUTH:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.south"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH));
 				break;
 			case SOUTH_WEST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.southWest"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH_WEST));
 				break;
 			case WEST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.west"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.WEST));
 				break;
 			case NORTH_WEST:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.northWest"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH_WEST));
 				break;
 			case UP:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.up"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.UP));
 				break;
 			case DOWN:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.down"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.DOWN));
 				break;
 			case UNKNOWN:
-				playerIn.sendMessage(new TextComponentTranslation("item.runemysteries.talisman.pull.fail"));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 				break;
 			default:
-				LogHelper.info("Failed to find direction");
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
+				LogHelper.info("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
 				break;
 			}
 		}

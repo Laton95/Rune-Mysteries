@@ -6,9 +6,11 @@ import java.util.Random;
 
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 
+import net.minecraft.block.BlockColored;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.entity.EnumCreatureType;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumDyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -17,16 +19,9 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
-public class ChunkGeneratorChaos implements IChunkGenerator {
-	private final Random rand;
-	private final World world;
-
-	private MapGenRuneTemple temple;
-
+public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld {
 	public ChunkGeneratorChaos(World worldIn, long seed) {
-		world = worldIn;
-		rand = new Random(seed);
-		temple = new MapGenRuneTemple(worldIn);
+		super(worldIn, seed, 84, Blocks.STONE.getDefaultState());
 	}
 
 	/**
@@ -34,79 +29,43 @@ public class ChunkGeneratorChaos implements IChunkGenerator {
 	 */
 	@Override
 	public Chunk generateChunk(int x, int z) {
-		rand.setSeed(x * 341873128712L + z * 132897987541L);
 		ChunkPrimer chunkprimer = new ChunkPrimer();
+		if (Math.max(Math.abs(x), Math.abs(z)) < 16) {
+			rand.setSeed(x * 341873128712L + z * 132897987541L);
 
-		for (int y = 0; y < 86; y++) {
-			for (int xPos = 0; xPos < 16; xPos++) {
-				for (int zPos = 0; zPos < 16; zPos++) {
-					chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getStateFromMeta(rand.nextInt(16)));
-				}
-			}
-		}
-
-		for (int y = 86; y < world.getActualHeight(); y++) {
-			for (int xPos = 0; xPos < 16; xPos++) {
-				for (int zPos = 0; zPos < 16; zPos++) {
-					if (rand.nextInt(300) > 295) {
-						chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getStateFromMeta(rand.nextInt(16)));
+			for (int y = 0; y < world.getActualHeight(); y++) {
+				for (int xPos = 0; xPos < 16; xPos++) {
+					for (int zPos = 0; zPos < 16; zPos++) {
+						if (y == 0) {
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
+						} else if (y == 85) {
+							int colour = rand.nextInt(EnumDyeColor.values().length);
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
+						} else if (y == 92) {
+							int colour = rand.nextInt(EnumDyeColor.values().length);
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
+						} else if (y > 92) {
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.STONE.getDefaultState());
+						} else if (y > surfaceLevel) {
+							if (rand.nextFloat() <= 0.015) {
+								int colour = rand.nextInt(EnumDyeColor.values().length);
+								chunkprimer.setBlockState(xPos, y, zPos, Blocks.WOOL.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
+							} else if (rand.nextFloat() <= 0.005) {
+								chunkprimer.setBlockState(xPos, y, zPos, Blocks.GLOWSTONE.getDefaultState());
+							}
+						} else {
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.STONE.getDefaultState());
+						}
 					}
 				}
 			}
 		}
+		
+		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 
 		temple.generate(world, x, z, chunkprimer);
 
-		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		chunk.generateSkylightMap();
 		return chunk;
-	}
-
-	@Override
-	public void populate(int x, int z) {
-		BlockFalling.fallInstantly = true;
-		int xPos = x * 16;
-		int zPos = z * 16;
-		BlockPos chunkStart = new BlockPos(xPos, 0, zPos);
-		ChunkPos chunkpos = new ChunkPos(x, z);
-		world.getBiome(chunkStart);
-		rand.setSeed(world.getSeed());
-		long rand1 = rand.nextLong() / 2L * 2L + 1L;
-		long rand2 = rand.nextLong() / 2L * 2L + 1L;
-		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-
-		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
-
-		temple.generateStructure(world, rand, chunkpos);
-
-		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
-
-		BlockFalling.fallInstantly = false;
-	}
-
-	@Override
-	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos) {
-		return new LinkedList<>();
-	}
-
-	@Override
-	public boolean generateStructures(Chunk chunkIn, int x, int z) {
-		return true;
-	}
-
-	@Override
-	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
-			boolean findUnexplored) {
-		return null;
-	}
-
-	@Override
-	public void recreateStructures(Chunk chunkIn, int x, int z) {
-
-	}
-
-	@Override
-	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos) {
-		return false;
 	}
 }

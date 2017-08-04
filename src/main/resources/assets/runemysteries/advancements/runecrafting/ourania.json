@@ -15,7 +15,7 @@
     "rewards": {
         "experience": 1000
     },
-    "parent": "runemysteries:runecrafting/all_talismans",
+    "parent": "runemysteries:runecrafting/craft_rune",
     "criteria": {
         "craft_rune": {
             "trigger": "minecraft:consume_item",

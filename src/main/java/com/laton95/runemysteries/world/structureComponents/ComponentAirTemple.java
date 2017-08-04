@@ -18,7 +18,7 @@ public class ComponentAirTemple extends WorldHelper.ModFeature {
 	}
 
 	public ComponentAirTemple(Random rand, int x, int z) {
-		super(rand, x, 62, z, 32, 27, 32);
+		super(rand, x, 62, z, 32, 28, 32);
 	}
 
 	@Override

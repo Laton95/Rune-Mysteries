@@ -18,7 +18,7 @@ public class ComponentNatureTemple extends WorldHelper.ModFeature {
 	}
 
 	public ComponentNatureTemple(Random rand, int x, int z) {
-		super(rand, x, 83, z, 22, 6, 22);
+		super(rand, x, 83, z, 22, 7, 22);
 	}
 
 	@Override

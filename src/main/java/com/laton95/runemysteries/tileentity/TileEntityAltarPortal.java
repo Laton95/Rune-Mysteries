@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import javax.swing.text.html.HTML.Tag;
 
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.util.WorldHelper;
@@ -68,24 +69,15 @@ public class TileEntityAltarPortal extends TileEntity implements ITickable{
 				}
 				break;
 			}
-
-			BlockPos altarPos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
-
-			if (altarPos == null) {
-				altarPos = new BlockPos(0, 100, 0);
-			}
-			BlockPos landing = new BlockPos(altarPos.getX() - 1, altarPos.getY(), altarPos.getZ() - 1);
 			
-			if (entityIn instanceof EntityItem) {
-				EntityPlayer player;
-				try {
-					player = worldIn.getPlayerEntityByName(((EntityItem) entityIn).getThrower());
-				} catch (NullPointerException e) {
-					player = worldIn.getClosestPlayer(pos.getX(), pos.getY(), pos.getZ(), 20, false);
+			if (entityIn.world.provider.getDimension() != returnID && altar != null) {
+				BlockPos altarPos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
+
+				if (altarPos == null) {
+					altarPos = new BlockPos(0, 100, 0);
 				}
-				player.sendMessage(new TextComponentTranslation("tile.runemysteries:altar_portal.item"));
-				entityIn.setDead();
-			} else {
+				BlockPos landing = new BlockPos(altarPos.getX() - 1, altarPos.getY(), altarPos.getZ() - 1);
+				
 				WorldHelper.TeleportEntityToDimension(entityIn, worldIn, returnID, landing.getX()+0.5f, landing.getY()+0.5f, landing.getZ()+0.5f);
 			}
 		}
@@ -107,8 +99,6 @@ public class TileEntityAltarPortal extends TileEntity implements ITickable{
 	
 	@Override
 	public void onLoad() {
-		altar = "air_altar";
-		returnID = 0;
 		int dimID = world.provider.getDimension();
 		if (dimID == ModConfig.DIMENSIONS.airTempleDimID) {
 			returnID = 0;

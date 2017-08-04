@@ -18,7 +18,7 @@ public class ComponentSurfaceAltar extends WorldHelper.ModFeature {
 	}
 
 	public ComponentSurfaceAltar(Random rand, int x, int z, String name) {
-		super(rand, x, 64, z, 10, 3, 10);
+		super(rand, x, 64, z, 10, 4, 10);
 		this.name = name;
 	}
 

@@ -31,7 +31,7 @@ public class ComponentFireTemple extends WorldHelper.ModFeature {
 		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
 				.setBoundingBox(structureboundingbox);
 		WorldHelper.loadStructure(blockpos, worldIn, temple, settings);
-		worldIn.setBlockState(new BlockPos(0, 85, -9), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+		worldIn.setBlockState(new BlockPos(0, 86, -9), BlockRegistry.ALTAR_PORTAL.getDefaultState());
 		return true;
 	}
 }
