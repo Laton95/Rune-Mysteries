@@ -47,5 +47,6 @@ public class RecipeRegistry {
 		recipeMap.put("Temple block rail", new ResourceLocation(ModReference.MOD_ID + ":temple_block_rail.json"));
 		recipeMap.put("Blood block rail", new ResourceLocation(ModReference.MOD_ID + ":blood_block_rail.json"));
 		recipeMap.put("Stonebrick rail", new ResourceLocation(ModReference.MOD_ID + ":stonebrick_rail.json"));
+		recipeMap.put("rune_bag", new ResourceLocation(ModReference.MOD_ID + ":rune_bag.json"));
 	}
 }

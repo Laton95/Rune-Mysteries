@@ -26,7 +26,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class TileEntityAltarPortal extends TileEntity implements ITickable{
+public class TileEntityAltarPortal extends RMModTileEntity implements ITickable{
 	private int timer = 20;
 	private String altar;
 	private int returnID;

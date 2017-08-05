@@ -3,7 +3,7 @@ package com.laton95.runemysteries.network;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 
-public class MessageExplode extends MessageBase<MessageExplode> {
+public class MessageExplode extends RMModMessageBase<MessageExplode> {
 
 	private float explosionSize = 0;
 	private boolean destroysBlocks = false;

@@ -5,7 +5,7 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import com.laton95.runemysteries.creativetab.RMCreativeTab;
+import com.laton95.runemysteries.creativetab.RMModCreativeTab;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
 
@@ -95,7 +95,7 @@ public class LiquidRegistry {
 				final Block block = (Block) fluidBlock;
 				block.setRegistryName(ModReference.MOD_ID, "fluid." + fluidBlock.getFluid().getName());
 				block.setUnlocalizedName(ModReference.MOD_ID + ":" + fluidBlock.getFluid().getUnlocalizedName());
-				block.setCreativeTab(RMCreativeTab.RM_TAB);
+				block.setCreativeTab(RMModCreativeTab.RM_TAB);
 				registry.register(block);
 			}
 		}

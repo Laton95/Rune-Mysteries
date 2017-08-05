@@ -5,8 +5,10 @@ import java.time.Month;
 
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.init.LiquidRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
+import com.laton95.runemysteries.init.OreDictRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.proxy.CommonProxy;
@@ -25,6 +27,8 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = ModReference.MOD_ID, name = ModReference.MOD_NAME, version = ModReference.VERSION)
 public class RuneMysteries {
@@ -44,7 +48,8 @@ public class RuneMysteries {
 	public void preInit(FMLPreInitializationEvent event) {
 		proxy.registerKeyBindings();
 		NetworkHandler.init();
-
+		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		
 		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1) {
 			LogHelper.info("It's April Fools!");
 			MiscReference.isAprilFools = true;
@@ -61,11 +66,13 @@ public class RuneMysteries {
 		WorldGenRegistry.registerWorldGen();
 		DimensionRegistry.registerDimensions();
 		BlockRegistry.setupDimIDs();
+		OreDictRegistry.registerOres();
+		LiquidRegistry.registerFluidContainers();
 	}
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		LiquidRegistry.registerFluidContainers();
+		
 	}
 
 	@Mod.EventHandler

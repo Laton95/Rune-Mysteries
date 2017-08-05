@@ -34,6 +34,10 @@ public final class NamesReference {
 		public static final String NO_RUNES = "item.runemysteries.spellbook.norunes";
 	}
 	
+	public static final class Gui {
+		public static final String RUNE_BAG = "gui.runemysteries.rune_bag.name";
+	}
+	
 	public static final class worldGenStrings {
 		public static final String AIR = "{\"coordinateScale\":684.412,"
 										+ "\"heightScale\":1.0,"

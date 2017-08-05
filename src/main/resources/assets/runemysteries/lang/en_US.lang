@@ -14,8 +14,7 @@ item.runemysteries:nature_Rune.name=Nature Rune
 item.runemysteries:rune_Essence.name=Rune Essence
 item.runemysteries:soul_Rune.name=Soul Rune
 item.runemysteries:water_Rune.name=Water Rune
-item.runemysteries:spellbook.name=Spellbook
-item.runemysteries:altar_Spawner.name=Debug Altar Spawner
+
 item.runemysteries:air_talisman.name=Air Talisman
 item.runemysteries:astral_talisman.name=Astral Talisman
 item.runemysteries:blood_talisman.name=Blood Talisman
@@ -30,6 +29,9 @@ item.runemysteries:mind_talisman.name=Mind Talisman
 item.runemysteries:nature_talisman.name=Nature Talisman
 item.runemysteries:soul_talisman.name=Soul Talisman
 item.runemysteries:water_talisman.name=Water Talisman
+
+item.runemysteries:spellbook.name=Spellbook
+item.runemysteries:rune_bag.name=Rune Pouch
 
 #Use messages
 item.runemysteries.talisman.pull.north=The talisman pulls to the North.

@@ -2,7 +2,7 @@ package com.laton95.runemysteries.block;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.creativetab.RMCreativeTab;
+import com.laton95.runemysteries.creativetab.RMModCreativeTab;
 import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.block.BlockSlab;
@@ -25,7 +25,7 @@ public abstract class RMModSlab extends BlockSlab {
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		setCreativeTab(RMCreativeTab.RM_TAB);
+		setCreativeTab(RMModCreativeTab.RM_TAB);
 		setHardness(hardness);
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);

@@ -2,7 +2,9 @@ package com.laton95.runemysteries.init;
 
 import java.util.ArrayList;
 
+import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.item.ItemRune;
+import com.laton95.runemysteries.item.ItemRuneBag;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
@@ -52,6 +54,7 @@ public class ItemRegistry {
 	public static final ItemTalisman WATER_TALISMAN = new ItemTalisman("water_talisman", "water_altar", 0);
 	
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
+	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -97,6 +100,7 @@ public class ItemRegistry {
 		itemList.add(WATER_TALISMAN);
 
 		itemList.add(SPELLBOOK);
+		itemList.add(RUNE_BAG);
 
 	}
 

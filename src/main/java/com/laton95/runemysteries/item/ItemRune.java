@@ -4,7 +4,6 @@ public class ItemRune extends RMModItem {
 
 	public ItemRune(String name) {
 		super(name, true);
-		setMaxStackSize(16);
 	}
 
 }
