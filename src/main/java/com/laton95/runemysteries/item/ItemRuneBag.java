@@ -52,7 +52,6 @@ public class ItemRuneBag extends RMModItem {
 				NBTTagCompound tagCompound = stack.getTagCompound();
 				if (tagCompound.getBoolean("autoPickup")) {
 					tagCompound.setBoolean("autoPickup", false);
-					tagCompound.setString("Lore", "test");
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
 				} else {
 					tagCompound.setBoolean("autoPickup", true);

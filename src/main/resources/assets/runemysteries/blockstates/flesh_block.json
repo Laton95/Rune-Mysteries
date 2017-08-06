@@ -5,7 +5,11 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{}],
+    "normal": [
+            { "model": "runemysteries:flesh_block" },
+            { "model": "runemysteries:flesh_block_mirrored" },
+            { "model": "runemysteries:flesh_block", "y": 180 },
+            { "model": "runemysteries:flesh_block_mirrored", "y": 180 }],
     "inventory": [{}]
   }
 }

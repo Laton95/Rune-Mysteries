@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
@@ -21,7 +22,7 @@ import net.minecraft.world.gen.IChunkGenerator;
 public class ChunkGeneratorBody extends ChunkGeneratorSolidWorld {
 
 	public ChunkGeneratorBody(World worldIn, long seed) {
-		super(worldIn, seed, 256, Blocks.STONE.getDefaultState());
+		super(worldIn, seed, 256, BlockRegistry.FLESH_BLOCK.getDefaultState());
 	}
 	
 }
