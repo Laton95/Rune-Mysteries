@@ -1,7 +1,6 @@
 package com.laton95.runemysteries;
 
 import com.laton95.runemysteries.gui.GuiRuneBag;
-import com.laton95.runemysteries.gui.RMModGui;
 import com.laton95.runemysteries.inventory.ContainerRuneBag;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.item.ItemRuneBag;
@@ -9,7 +8,6 @@ import com.laton95.runemysteries.item.ItemRuneBag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.network.IGuiHandler;
-import scala.reflect.internal.Trees.New;
 
 public class GuiHandler implements IGuiHandler {
 

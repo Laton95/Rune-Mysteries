@@ -33,6 +33,13 @@ item.runemysteries:water_talisman.name=Water Talisman
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
 
+#Spells
+spell.runemysteries.enderpearlSpell.name=Blink
+spell.runemysteries.snowballSpell.name=Snowball
+spell.runemysteries.explosionSpell.name=Explosion
+spell.runemysteries.deathSpell.name=Damage
+spell.runemysteries.noSpell.name=None
+
 #Use messages
 item.runemysteries.talisman.pull.north=The talisman pulls to the North.
 item.runemysteries.talisman.pull.northEast=The talisman pulls to the North-East.
@@ -51,6 +58,11 @@ item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+
+item.runemysteries.rune_bag.autoTurnOn=The pouch will now auto-pickup runes.
+item.runemysteries.rune_bag.autoTurnOff=The pouch will no longer auto-pickup runes.
+item.runemysteries.rune_bag.autoOn=Auto rune-pickup on.
+item.runemysteries.rune_bag.autoOff=Auto rune-pickup off.
 
 tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.

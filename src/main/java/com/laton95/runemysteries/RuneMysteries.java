@@ -5,7 +5,6 @@ import java.time.Month;
 
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
-import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.init.LiquidRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.OreDictRegistry;
@@ -28,7 +27,6 @@ import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLServerStartedEvent;
 import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
-import net.minecraftforge.oredict.OreDictionary;
 
 @Mod(modid = ModReference.MOD_ID, name = ModReference.MOD_NAME, version = ModReference.VERSION)
 public class RuneMysteries {

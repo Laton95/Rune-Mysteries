@@ -1,19 +1,25 @@
 package com.laton95.runemysteries.spells;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.world.World;
+import net.minecraftforge.common.BiomeDictionary;
 
 public class DeathSpell extends Spell {
+	private final static List<SpellCost> costs = ImmutableList.of(
+			new SpellCost(ItemRegistry.DEATH_RUNE, 3)
+			);
 
 	public DeathSpell() {
-		costs.add(new SpellCost(ItemRegistry.LAW_RUNE, 3));
-		cooldown = 20;
+		super(costs, 20, NamesReference.Spells.DEATH_SPELL);
 	}
 
 	@Override

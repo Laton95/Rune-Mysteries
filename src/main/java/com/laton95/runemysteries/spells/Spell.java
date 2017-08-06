@@ -1,36 +1,38 @@
 package com.laton95.runemysteries.spells;
 
 import java.util.ArrayList;
-
-//import com.laton95.runemysteries.item.ItemRune;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;
 
 public abstract class Spell {
-	protected ArrayList<Spell.SpellCost> costs = new ArrayList<>();;
+	protected List<Spell.SpellCost> costs = new ArrayList<Spell.SpellCost>();;
 	protected int cooldown = 0;
+	protected String name;
 
-	public Spell() {
-	}
-
-	public Spell(ArrayList<Spell.SpellCost> costs, int cooldown) {
+	public Spell(List<Spell.SpellCost> costs, int cooldown, String name) {
 		this.costs = costs;
 		this.cooldown = cooldown;
+		this.name = name;
 	}
 
 	public abstract void fireSpell(World world, EntityPlayer player);
 
-	public ArrayList<Spell.SpellCost> getCosts() {
+	public List<Spell.SpellCost> getCosts() {
 		return costs;
 	}
 
 	public int getCooldown() {
 		return cooldown;
 	}
+	
+	public String getName() {
+		return name;
+	}
 
-	public class SpellCost {
+	public static class SpellCost {
 		private final Item item;
 		private final int count;
 

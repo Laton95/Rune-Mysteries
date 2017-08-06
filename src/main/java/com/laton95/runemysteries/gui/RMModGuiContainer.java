@@ -7,9 +7,9 @@ import net.minecraft.client.gui.inventory.GuiContainer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 
-public abstract class RMModGui extends GuiContainer {
+public abstract class RMModGuiContainer extends GuiContainer {
 
-	public RMModGui(Container inventorySlotsIn) {
+	public RMModGuiContainer(Container inventorySlotsIn) {
 		super(inventorySlotsIn);
 	}
 }

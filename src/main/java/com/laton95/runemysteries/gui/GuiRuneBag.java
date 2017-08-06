@@ -11,7 +11,7 @@ import net.minecraft.inventory.ContainerHopper;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.util.ResourceLocation;
 
-public class GuiRuneBag extends RMModGui {
+public class GuiRuneBag extends RMModGuiContainer {
 	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/rune_bag.png");
 	private final IInventory playerInventory;
 	private final IInventory bagInventory;

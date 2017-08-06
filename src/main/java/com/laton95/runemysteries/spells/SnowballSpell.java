@@ -1,21 +1,28 @@
 package com.laton95.runemysteries.spells;
 
 import java.util.ArrayList;
+import java.util.List;
 
+import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.reference.NamesReference;
+import com.laton95.runemysteries.spells.Spell.SpellCost;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntitySnowball;
+import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
 public class SnowballSpell extends Spell {
+	private final static List<SpellCost> costs = ImmutableList.of(
+			new SpellCost(ItemRegistry.WATER_RUNE, 2),
+			new SpellCost(ItemRegistry.AIR_RUNE, 1)
+			);
 
 	public SnowballSpell() {
-		costs.add(new SpellCost(ItemRegistry.WATER_RUNE, 2));
-		costs.add(new SpellCost(ItemRegistry.AIR_RUNE, 1));
-		cooldown = 5;
+		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL);
 	}
 
 	@Override

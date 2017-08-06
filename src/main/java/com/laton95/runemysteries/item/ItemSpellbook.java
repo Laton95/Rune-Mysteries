@@ -11,12 +11,15 @@ import com.laton95.runemysteries.spells.ExplosionSpell;
 import com.laton95.runemysteries.spells.SnowballSpell;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
+import com.laton95.runemysteries.spells.Spells.EnumSpell;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
+import com.laton95.runemysteries.util.ItemHelper;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
@@ -32,11 +35,11 @@ public class ItemSpellbook extends RMModItem {
 		setMaxStackSize(1);
 	}
 
-	private boolean hasItems(EntityPlayer player, ArrayList<Spell.SpellCost> costs, boolean hasBag, NonNullList<ItemStack> bagContents) {
+	private boolean hasItems(EntityPlayer player, List<Spell.SpellCost> costs, InventoryRuneBag bag) {
 		ArrayList<Spell.SpellCost> tempCosts = new ArrayList<>(costs);
 		
 		for (Spell.SpellCost spellCost : costs) {
-			if (hasItem(player, spellCost, hasBag, bagContents)) {
+			if (hasItem(player, spellCost, bag)) {
 				tempCosts.remove(spellCost);
 			}
 		}
@@ -47,18 +50,10 @@ public class ItemSpellbook extends RMModItem {
 		}
 	}
 
-	private boolean hasItem(EntityPlayer player, Spell.SpellCost cost, boolean hasBag, NonNullList<ItemStack> bagContents) {
+	private boolean hasItem(EntityPlayer player, Spell.SpellCost cost, InventoryRuneBag bag) {
 		int count = 0;
-		if (hasBag && cost.getItem() instanceof ItemRune) {
-			for (ItemStack itemStack : bagContents) {
-				if (itemStack.getItem().equals(cost.getItem())) {
-					count += itemStack.getCount();
-				}
-			}
-			
-			if (count >= cost.getCount()) {
-				return true;
-			}
+		if (bag != null && cost.getItem() instanceof ItemRune) {
+			count = bag.getRuneCount((ItemRune) cost.getItem());
 		}
 		
 		for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
@@ -67,96 +62,89 @@ public class ItemSpellbook extends RMModItem {
 				count += itemstack.getCount();
 			}
 		}
-		if (count >= cost.getCount()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-	
-	private ItemStack getRuneBag(EntityPlayer player) {
-		for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
-			if (player.inventory.getStackInSlot(i).getItem() instanceof ItemRuneBag) {
-				return player.inventory.getStackInSlot(i);
-			}
-		}
-		return null;
+		return count >= cost.getCount();
 	}
 
-	private void removeItems(EntityPlayer player, ArrayList<Spell.SpellCost> costs, boolean hasBag, NonNullList<ItemStack> bagContents) {
+	private void removeItems(EntityPlayer player, List<Spell.SpellCost> costs, InventoryRuneBag bag) {
 		for (Spell.SpellCost spellCost : costs) {
-			removeItem(player, spellCost, hasBag, bagContents);
+			removeItem(player, spellCost, bag);
 		}
 	}
 
-	private void removeItem(EntityPlayer player, Spell.SpellCost cost, boolean hasBag, NonNullList<ItemStack> bagContents) {
+	private void removeItem(EntityPlayer player, Spell.SpellCost cost, InventoryRuneBag bag) {
 		int count = cost.getCount();
 		
-		if (hasBag && cost.getItem() instanceof ItemRune) {
-			int i = 0;
-			while (count > 0 && i < bagContents.size()) {
-				ItemStack itemstack = bagContents.get(i);
-				if (itemstack.getItem().equals(cost.getItem())) {
-					int temp = count;
-					count -= itemstack.getCount();
-					itemstack.shrink(temp);
-				}
-				i++;
-			}
-			
-			if (count <= 0) {
-				return;
-			}
+		if (bag != null && cost.getItem() instanceof ItemRune) {
+			count = bag.removeRune((ItemRune) cost.getItem(), count);
 		}
 		
-		int j = 0;
-		LogHelper.info(count);
-		while (count > 0 && j < player.inventory.getSizeInventory()) {
-			ItemStack itemstack = player.inventory.getStackInSlot(j);
+		int i = 0;
+		while (count > 0 && i < player.inventory.getSizeInventory()) {
+			ItemStack itemstack = player.inventory.getStackInSlot(i);
 			if (itemstack.getItem().equals(cost.getItem())) {
 				int temp = count;
 				count -= itemstack.getCount();
 				itemstack.shrink(temp);
 			}
-			j++;
+			i++;
 		}
 		
 		if (count > 0) {
 			LogHelper.info("Error: Spell cost not fully paid");
 		}
 	}
+	
+	public static Spells.EnumSpell getCurrentSpell(ItemStack spellbook) {
+		if (spellbook.hasTagCompound()) {
+			return EnumSpell.values()[spellbook.getTagCompound().getInteger("spell")];
+		} else {
+			return EnumSpell.NONE;
+		}
+	}
+	
+	public static void setCurrentSpell(ItemStack spellbook, EnumSpell spell) {
+		if (!spellbook.hasTagCompound()) {
+			spellbook.setTagCompound(new NBTTagCompound());
+		}
+		spellbook.getTagCompound().setInteger("spell", spell.ordinal());
+	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack spellbook = playerIn.getHeldItem(handIn);
-		Spell spell = Spells.DEATH_SPELL;
-
-		if (playerIn.isCreative()) {
-			spell.fireSpell(worldIn, playerIn);
-			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+		if (playerIn.isSneaking()) {
+			setCurrentSpell(spellbook, EnumSpell.EXPLOSION_SPELL);
 			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 		} else {
-			ItemStack bag = getRuneBag(playerIn);
-			NonNullList<ItemStack> bagContents = NonNullList.<ItemStack>withSize(InventoryRuneBag.INVENTORY_SIZE, ItemStack.EMPTY);
-			if (bag != null) {
-				ItemStackHelper.loadAllItems(bag.getTagCompound(), bagContents);
-			}
+			Spell spell = Spells.getSpellFromEnum(getCurrentSpell(spellbook));
 			
-			if (hasItems(playerIn, spell.getCosts(), bag != null, bagContents)) {
-				removeItems(playerIn, spell.getCosts(), bag != null, bagContents);
+			if (spell == null) {
+				LogHelper.info("No spell");
+				return new ActionResult<>(EnumActionResult.FAIL, spellbook);
+			}
+
+			if (playerIn.isCreative()) {
 				spell.fireSpell(worldIn, playerIn);
 				playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
-				
-				if (bag != null) {
-					ItemStackHelper.saveAllItems(bag.getTagCompound(), bagContents);
-				}
-				
 				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 			} else {
-				if (!worldIn.isRemote) {
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
+				ItemStack bag = ItemHelper.getRuneBag(playerIn);
+				InventoryRuneBag bagInventory = null;
+				if (bag != null) {
+					bagInventory = new InventoryRuneBag(bag);
 				}
-				return new ActionResult<>(EnumActionResult.FAIL, spellbook);
+				
+				if (hasItems(playerIn, spell.getCosts(), bagInventory)) {
+					removeItems(playerIn, spell.getCosts(), bagInventory);
+					spell.fireSpell(worldIn, playerIn);
+					playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());	
+					return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
+				} else {
+					if (!worldIn.isRemote) {
+						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
+					}
+					return new ActionResult<>(EnumActionResult.FAIL, spellbook);
+				}
 			}
 		}
 	}

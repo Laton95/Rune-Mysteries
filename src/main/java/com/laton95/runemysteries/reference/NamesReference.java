@@ -34,8 +34,19 @@ public final class NamesReference {
 		public static final String NO_RUNES = "item.runemysteries.spellbook.norunes";
 	}
 	
-	public static final class Gui {
-		public static final String RUNE_BAG = "gui.runemysteries.rune_bag.name";
+	public static final class RuneBag {
+		public static final String AUTO_TURN_ON = "item.runemysteries.rune_bag.autoTurnOn";
+		public static final String AUTO_TURN_OFF = "item.runemysteries.rune_bag.autoTurnOff";
+		public static final String AUTO_ON = "item.runemysteries.rune_bag.autoOn";
+		public static final String AUTO_OFF = "item.runemysteries.rune_bag.autoOff";
+	}
+	
+	public static final class Spells {
+		public static final String ENDERPEARL_SPELL = "spell.runemysteries.enderpearlSpell.name";
+		public static final String SNOWBALL_SPELL = "spell.runemysteries.snowballSpell.name";
+		public static final String EXPLOSION_SPELL = "spell.runemysteries.explosionSpell.name";
+		public static final String DEATH_SPELL = "spell.runemysteries.deathSpell.name";
+		public static final String NO_SPELL = "spell.runemysteries.noSpell.name";
 	}
 	
 	public static final class worldGenStrings {

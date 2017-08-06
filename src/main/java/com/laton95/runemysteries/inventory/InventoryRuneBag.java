@@ -6,6 +6,8 @@ import com.laton95.runemysteries.GuiHandler.GuiIDs;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.reference.NamesReference;
+import com.laton95.runemysteries.spells.Spell.SpellCost;
+import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.IInventory;
@@ -38,6 +40,59 @@ public class InventoryRuneBag implements IInventory {
 		} else {
 			ItemStackHelper.loadAllItems(bagItemStack.getTagCompound(), inventory);
 		}
+	}
+	
+	public int mergeStack(ItemStack stack) {
+		int index = 0;
+		for (ItemStack itemStack : inventory) {
+			if (itemStack.getItem() == stack.getItem()) {
+				int temp = itemStack.getCount() + stack.getCount() - getInventoryStackLimit();
+				if (temp > 0) {
+					//Resulting stacksize over 64
+					itemStack.setCount(getInventoryStackLimit());
+					stack.setCount(temp);
+					markDirty();
+				} else if (temp <= 0) {
+					//Resulting stacksize under 64
+					itemStack.grow(stack.getCount());
+					markDirty();
+					return 0;
+				}
+			} else if (!(itemStack.getItem() instanceof ItemRune)) {
+				setInventorySlotContents(index, stack);
+				markDirty();
+				return 0;
+			}
+			index++;
+		}
+		return stack.getCount();
+	}
+	
+	public int getRuneCount(ItemRune rune) {
+		int count = 0;
+		for (ItemStack itemStack : inventory) {
+			if (itemStack.getItem().equals(rune)) {
+				count += itemStack.getCount();
+			}
+		}
+		
+		return count;
+	}
+	
+	public int removeRune(ItemRune rune, int count) {
+		int i = 0;
+		while (count > 0 && i < inventory.size()) {
+			ItemStack itemstack = inventory.get(i);
+			if (itemstack.getItem().equals(rune)) {
+				int temp = count;
+				count -= itemstack.getCount();
+				itemstack.shrink(temp);
+			}
+			i++;
+		}
+		
+		markDirty();
+		return count;
 	}
 
 	@Override
@@ -116,7 +171,7 @@ public class InventoryRuneBag implements IInventory {
 
 	@Override
 	public int getInventoryStackLimit() {
-		return 80;
+		return 64;
 	}
 
 	@Override
