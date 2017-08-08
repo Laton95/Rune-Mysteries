@@ -226,62 +226,6 @@ public class WorldHelper {
 
 		return Direction.UNKNOWN;
 	}
-	
-	public static void TeleportEntityToDimension(Entity entityIn, World worldIn, int dimID, float x, float y, float z){
-		if (!worldIn.isRemote && worldIn.provider.getDimension() != dimID) {
-			WorldTeleporter teleporter = new WorldTeleporter(entityIn.getServer().getWorld(dimID), new BlockPos(x, y, z));
-			if (entityIn instanceof EntityPlayerMP) {
-				entityIn.setPosition(x, y, z);
-				entityIn.getServer().getPlayerList().transferPlayerToDimension((EntityPlayerMP) entityIn, dimID, teleporter);
-			} else {
-				changeDimension(entityIn, dimID, teleporter);
-			}
-		}
-	}
-	
-	private static void changeDimension(Entity entity, int toDimID, WorldTeleporter teleporter)
-    {
-        if (!entity.world.isRemote && !entity.isDead)
-        {
-            if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(entity, toDimID)) return;
-            entity.world.profiler.startSection("changeDimension");
-            MinecraftServer minecraftserver = entity.getServer();
-            int fromDimID = entity.dimension;
-            WorldServer fromWorldserver = minecraftserver.getWorld(fromDimID);
-            WorldServer toWorldServer = minecraftserver.getWorld(toDimID);
-            entity.dimension = toDimID;
-
-            entity.world.removeEntity(entity);
-            entity.isDead = false;
-            entity.world.profiler.startSection("reposition");
-
-            teleporter.placeInPortal(entity, entity.rotationYaw);
-
-            fromWorldserver.updateEntityWithOptionalForce(entity, false);
-            entity.world.profiler.endStartSection("reloading");
-            Entity entity2 = EntityList.newEntity(entity.getClass(), toWorldServer);
-            
-            if (entity2 != null)
-            {
-            	NBTTagCompound compound = entity.writeToNBT(new NBTTagCompound());
-                entity2.readFromNBT(compound);
-                compound.removeTag("Dimension");
-                entity.readFromNBT(compound);
-
-                boolean flag = entity2.forceSpawn;
-                entity2.forceSpawn = true;
-                toWorldServer.spawnEntity(entity2);
-                entity2.forceSpawn = flag;
-                toWorldServer.updateEntityWithOptionalForce(entity2, false);
-            }
-
-            entity.isDead = true;
-            entity.world.profiler.endSection();
-            fromWorldserver.resetUpdateEntityTick();
-            toWorldServer.resetUpdateEntityTick();
-            entity.world.profiler.endSection();
-        }
-    }
 
 	public enum Direction {
 		UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, UNKNOWN

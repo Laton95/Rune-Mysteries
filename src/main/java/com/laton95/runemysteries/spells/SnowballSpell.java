@@ -22,7 +22,7 @@ public class SnowballSpell extends Spell {
 			);
 
 	public SnowballSpell() {
-		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL);
+		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL_NAME, NamesReference.Spells.SNOWBALL_SPELL_DESCRIPTION);
 	}
 
 	@Override

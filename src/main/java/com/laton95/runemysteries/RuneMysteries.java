@@ -5,7 +5,6 @@ import java.time.Month;
 
 import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
-import com.laton95.runemysteries.init.LiquidRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.OreDictRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
@@ -65,7 +64,6 @@ public class RuneMysteries {
 		DimensionRegistry.registerDimensions();
 		BlockRegistry.setupDimIDs();
 		OreDictRegistry.registerOres();
-		LiquidRegistry.registerFluidContainers();
 	}
 
 	@Mod.EventHandler

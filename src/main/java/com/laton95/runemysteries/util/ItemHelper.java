@@ -11,6 +11,7 @@ import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.spells.Spells.EnumSpell;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -52,6 +53,7 @@ public class ItemHelper {
 				bag.getTagCompound().setBoolean("autoPickup", true);
 			}
 			if (bag.getTagCompound().getBoolean("autoPickup")) {
+				Minecraft.getMinecraft().displayGuiScreen(null);
 				InventoryRuneBag bagInventory = new InventoryRuneBag(bag);
 				event.getItem().getItem().setCount(bagInventory.mergeStack(event.getItem().getItem()));
 				event.getEntityPlayer().getEntityWorld().playSound((EntityPlayer) null, event.getEntityPlayer().posX, event.getEntityPlayer().posY, event.getEntityPlayer().posZ,
@@ -79,14 +81,14 @@ public class ItemHelper {
 			TextComponentTranslation string;
 			if (event.getItemStack().hasTagCompound()) {
 				EnumSpell spell = ItemSpellbook.getCurrentSpell(event.getItemStack());
-				if (spell != null) {
+				if (spell != null && spell != EnumSpell.NONE) {
 					string = new TextComponentTranslation(Spells.getSpellFromEnum(spell).getName());
 				} else {
-					string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL);
+					string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
 				}
 				
 			} else {
-				string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL);
+				string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
 			}
 			event.getToolTip().add("Spell: " + string.getFormattedText());
 		}

@@ -9,6 +9,7 @@ import javax.swing.text.html.HTML.Tag;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.util.WorldTeleporter;
 import com.laton95.runemysteries.world.WorldGenerator;
@@ -76,9 +77,7 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable{
 				if (altarPos == null) {
 					altarPos = new BlockPos(0, 100, 0);
 				}
-				BlockPos landing = new BlockPos(altarPos.getX() - 1, altarPos.getY(), altarPos.getZ() - 1);
-				
-				WorldHelper.TeleportEntityToDimension(entityIn, worldIn, returnID, landing.getX()+0.5f, landing.getY()+0.5f, landing.getZ()+0.5f);
+				TeleportHelper.teleportEntity(entityIn, returnID, altarPos.getX() - 1, altarPos.getY(), altarPos.getZ() - 1);
 			}
 		}
 	}

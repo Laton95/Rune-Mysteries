@@ -35,10 +35,15 @@ item.runemysteries:rune_bag.name=Rune Pouch
 
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
+spell.runemysteries.enderpearlSpell.desc=Throw an ender pearl.
 spell.runemysteries.snowballSpell.name=Snowball
+spell.runemysteries.snowballSpell.desc=Throw a snowball.
 spell.runemysteries.explosionSpell.name=Explosion
+spell.runemysteries.explosionSpell.desc=Creates an explosion centered on the caster which hurts nearby creatures and breaks no blocks. The caster is immune to the explosion.
 spell.runemysteries.deathSpell.name=Damage
+spell.runemysteries.deathSpell.desc=Hurls a deadly projectile.
 spell.runemysteries.noSpell.name=None
+spell.runemysteries.noSpell.desc=No spell selected.
 
 #Use messages
 item.runemysteries.talisman.pull.north=The talisman pulls to the North.

@@ -5,12 +5,12 @@ import java.util.ArrayList;
 import com.laton95.runemysteries.block.BlockAltarPortal;
 import com.laton95.runemysteries.block.BlockOuraniaAltar;
 import com.laton95.runemysteries.block.BlockParticleLight;
-import com.laton95.runemysteries.block.RMModRail;
 import com.laton95.runemysteries.block.BlockRuneAltar;
 import com.laton95.runemysteries.block.BlockRuneAltarEntrance;
 import com.laton95.runemysteries.block.BlockRuneEssence;
 import com.laton95.runemysteries.block.BlockStationStone;
 import com.laton95.runemysteries.block.RMModBlock;
+import com.laton95.runemysteries.block.RMModRail;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMModStairs;
 import com.laton95.runemysteries.util.LogHelper;
@@ -34,6 +34,7 @@ public class BlockRegistry {
 			"pickaxe", 1, true, ItemRegistry.RUNE_ESSENCE);
 	public static final RMModBlock RUIN_BLOCK = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final BlockStationStone STATION_STONE = new BlockStationStone();
+	public static final RMModBlock FLESH_BLOCK = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModBlock TEMPLE_BLOCK = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
 			true);
 	public static final RMModStairs TEMPLE_BLOCK_STAIRS = new RMModStairs("temple_Block_Stairs", "pickaxe", 1,
@@ -53,7 +54,6 @@ public class BlockRegistry {
 			1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModRail BLOOD_BLOCK_RAIL = new RMModRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
 			true);
-	public static final RMModBlock FLESH_BLOCK = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
 			true);
 

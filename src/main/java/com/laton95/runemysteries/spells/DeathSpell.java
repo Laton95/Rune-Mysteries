@@ -19,7 +19,7 @@ public class DeathSpell extends Spell {
 			);
 
 	public DeathSpell() {
-		super(costs, 20, NamesReference.Spells.DEATH_SPELL);
+		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION);
 	}
 
 	@Override

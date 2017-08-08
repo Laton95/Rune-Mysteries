@@ -42,11 +42,16 @@ public final class NamesReference {
 	}
 	
 	public static final class Spells {
-		public static final String ENDERPEARL_SPELL = "spell.runemysteries.enderpearlSpell.name";
-		public static final String SNOWBALL_SPELL = "spell.runemysteries.snowballSpell.name";
-		public static final String EXPLOSION_SPELL = "spell.runemysteries.explosionSpell.name";
-		public static final String DEATH_SPELL = "spell.runemysteries.deathSpell.name";
-		public static final String NO_SPELL = "spell.runemysteries.noSpell.name";
+		public static final String ENDERPEARL_SPELL_NAME = "spell.runemysteries.enderpearlSpell.name";
+		public static final String ENDERPEARL_SPELL_DESCRIPTION = "spell.runemysteries.enderpearlSpell.desc";
+		public static final String SNOWBALL_SPELL_NAME = "spell.runemysteries.snowballSpell.name";
+		public static final String SNOWBALL_SPELL_DESCRIPTION = "spell.runemysteries.snowballSpell.desc";
+		public static final String EXPLOSION_SPELL_NAME = "spell.runemysteries.explosionSpell.name";
+		public static final String EXPLOSION_SPELL_DESCRIPTION = "spell.runemysteries.explosionSpell.desc";
+		public static final String DEATH_SPELL_NAME = "spell.runemysteries.deathSpell.name";
+		public static final String DEATH_SPELL_DESCRIPTION = "spell.runemysteries.deathSpell.desc";
+		public static final String NO_SPELL_NAME = "spell.runemysteries.noSpell.name";
+		public static final String NO_SPELL_DESCRIPTION = "spell.runemysteries.noSpell.desc";
 	}
 	
 	public static final class worldGenStrings {

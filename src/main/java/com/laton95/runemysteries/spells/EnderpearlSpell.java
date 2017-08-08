@@ -18,7 +18,7 @@ public class EnderpearlSpell extends Spell {
 			);
 	
 	public EnderpearlSpell() {
-		super(costs, 20, NamesReference.Spells.ENDERPEARL_SPELL);
+		super(costs, 20, NamesReference.Spells.ENDERPEARL_SPELL_NAME, NamesReference.Spells.ENDERPEARL_SPELL_DESCRIPTION);
 	}
 
 	@Override

@@ -3,6 +3,8 @@ package com.laton95.runemysteries.item;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.GuiHandler.GuiIDs;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.DeathSpell;
@@ -113,14 +115,14 @@ public class ItemSpellbook extends RMModItem {
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack spellbook = playerIn.getHeldItem(handIn);
 		if (playerIn.isSneaking()) {
-			setCurrentSpell(spellbook, EnumSpell.EXPLOSION_SPELL);
+			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
 			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 		} else {
 			Spell spell = Spells.getSpellFromEnum(getCurrentSpell(spellbook));
 			
 			if (spell == null) {
-				LogHelper.info("No spell");
-				return new ActionResult<>(EnumActionResult.FAIL, spellbook);
+				playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
+				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 			}
 
 			if (playerIn.isCreative()) {

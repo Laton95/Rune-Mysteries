@@ -2,6 +2,7 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.reference.NamesReference;
+import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.util.WorldTeleporter;
 
@@ -35,7 +36,7 @@ public class BlockRuneAltarEntrance extends RMModBlock {
 			if (playerIn.getHeldItemMainhand().getItem().equals(talisman)
 					|| playerIn.getHeldItemOffhand().getItem().equals(talisman)) {
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
-				WorldHelper.TeleportEntityToDimension(playerIn, worldIn, dimID, 2, 87, 2);
+				TeleportHelper.teleportEntity(playerIn, dimID, 2, 87, 2);
 			} else {
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.INTERACT));
 			}
