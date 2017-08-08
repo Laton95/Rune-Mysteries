@@ -152,3 +152,6 @@ advancements.runemysteries.runecrafting.ourania.description=Find and use the leg
 #Keybindings
 keys.runemysteries.category=Rune Mysteries
 keys.runemysteries.test=Test
+
+#Gui
+gui.runemysteries.button.extraCosts=Items

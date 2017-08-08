@@ -3,6 +3,8 @@ package com.laton95.runemysteries.spells;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.laton95.runemysteries.util.LogHelper;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.world.World;

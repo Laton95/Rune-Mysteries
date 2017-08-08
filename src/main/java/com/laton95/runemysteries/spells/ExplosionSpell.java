@@ -18,11 +18,7 @@ import net.minecraft.world.World;
 public class ExplosionSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
 			new SpellCost(Items.GUNPOWDER, 1),
-			new SpellCost(ItemRegistry.FIRE_RUNE, 2),
-			new SpellCost(Items.APPLE, 2),
-			new SpellCost(Items.JUNGLE_BOAT, 2),
-			new SpellCost(Items.FEATHER, 2),
-			new SpellCost(Items.MUSHROOM_STEW, 2)
+			new SpellCost(ItemRegistry.FIRE_RUNE, 2)
 			);
 	
 	public ExplosionSpell() {

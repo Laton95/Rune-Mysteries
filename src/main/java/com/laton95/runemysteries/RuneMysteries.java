@@ -12,6 +12,7 @@ import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.proxy.CommonProxy;
 import com.laton95.runemysteries.reference.MiscReference;
 import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
@@ -68,7 +69,7 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event) {
-		
+		Spells.checkSpells();
 	}
 
 	@Mod.EventHandler

@@ -32,6 +32,7 @@ public final class NamesReference {
 	
 	public static final class Spellbook {
 		public static final String NO_RUNES = "item.runemysteries.spellbook.norunes";
+		public static final String COST_BUTTON = "gui.runemysteries.button.extraCosts";
 	}
 	
 	public static final class RuneBag {
