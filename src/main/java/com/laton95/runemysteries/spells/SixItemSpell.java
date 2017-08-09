@@ -14,13 +14,18 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EnderpearlSpell extends Spell {
+public class SixItemSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.LAW_RUNE, 3)
+			new SpellCost(ItemRegistry.AIR_RUNE, 1),
+			new SpellCost(ItemRegistry.ASTRAL_RUNE, 7),
+			new SpellCost(ItemRegistry.BLOOD_RUNE, 8),
+			new SpellCost(ItemRegistry.BODY_RUNE, 2),
+			new SpellCost(ItemRegistry.CHAOS_RUNE, 5),
+			new SpellCost(ItemRegistry.COSMIC_RUNE, 1)
 			);
 	
-	public EnderpearlSpell() {
-		super(costs, 20, NamesReference.Spells.ENDERPEARL_SPELL_NAME, NamesReference.Spells.ENDERPEARL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+	public SixItemSpell() {
+		super(costs, 20, "Test Spell 2", "Test", new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override

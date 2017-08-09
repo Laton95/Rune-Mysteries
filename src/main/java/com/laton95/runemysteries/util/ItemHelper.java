@@ -9,7 +9,6 @@ import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.spells.Spells.EnumSpell;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
@@ -80,9 +79,10 @@ public class ItemHelper {
 		} else if (event.getItemStack().getItem() instanceof ItemSpellbook) {
 			TextComponentTranslation string;
 			if (event.getItemStack().hasTagCompound()) {
-				EnumSpell spell = ItemSpellbook.getCurrentSpell(event.getItemStack());
-				if (spell != null && spell != EnumSpell.NONE) {
-					string = new TextComponentTranslation(Spells.getSpellFromEnum(spell).getName());
+				Spell spell = ItemSpellbook.getCurrentSpell(event.getItemStack());
+				Spell spell2 = ItemSpellbook.getCurrentSpell(event.getItemStack());
+				if (spell != null && spell != Spells.NONE_SPELL) {
+					string = new TextComponentTranslation(spell.getName());
 				} else {
 					string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
 				}

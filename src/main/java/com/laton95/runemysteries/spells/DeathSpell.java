@@ -5,21 +5,24 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 
 import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.BiomeDictionary;
+import net.minecraftforge.fml.common.Mod;
 
 public class DeathSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
 			new SpellCost(ItemRegistry.DEATH_RUNE, 3)
 			);
-
+	
 	public DeathSpell() {
-		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION);
+		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override

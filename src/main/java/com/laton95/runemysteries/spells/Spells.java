@@ -5,42 +5,42 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.inventory.InventoryRuneBag;
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
 import com.laton95.runemysteries.util.LogHelper;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.world.World;
+import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 
 public class Spells {
-	public enum EnumSpell {
-		ENDERPEARL_SPELL, SNOWBALL_SPELL, EXPLOSION_SPELL, DEATH_SPELL, NONE
-	}
+	public static final Spell NONE_SPELL = new Spell(new ArrayList<>(), 0, NamesReference.Spells.NO_SPELL_NAME, NamesReference.Spells.NO_SPELL_DESCRIPTION, null) {	
+		@Override
+		public void fireSpell(World world, EntityPlayer player) {
+		}
+	};
 	
-	public static final EnderpearlSpell ENDERPEARL_SPELL = new EnderpearlSpell();
-	public static final SnowballSpell SNOWBALL_SPELL = new SnowballSpell();
-	public static final ExplosionSpell EXPLOSION_SPELL = new ExplosionSpell();
-	public static final DeathSpell DEATH_SPELL = new DeathSpell();
-	
-	private final static List<Spell> SPELL_LIST = ImmutableList.of(
-			ENDERPEARL_SPELL, SNOWBALL_SPELL, EXPLOSION_SPELL, DEATH_SPELL
+	public static List<Spell> spellList = ImmutableList.of(
+			new EnderpearlSpell(),
+			new SnowballSpell(),
+			new ExplosionSpell(),
+			new DeathSpell(),
+			new TestSpell(),
+			new SixItemSpell(),
+			new ManyItemSpell()
 			);
 	
-	public static Spell getSpellFromEnum(EnumSpell enumSpell) {
-		switch (enumSpell) {
-		case ENDERPEARL_SPELL:
-			return ENDERPEARL_SPELL;
-		case SNOWBALL_SPELL:
-			return SNOWBALL_SPELL;
-		case EXPLOSION_SPELL:
-			return EXPLOSION_SPELL;
-		case DEATH_SPELL:
-			return DEATH_SPELL;
-		default:
-			return null;
-		}
+	public Spell registerSpell(Spell spell) {
+		spellList.add(spell);
+		return spell;
 	}
 	
 	public static void checkSpells() {
-		for (Spell spell : SPELL_LIST) {
+		for (Spell spell : spellList) {
 			List<Item> items = new ArrayList<>();
 			for (SpellCost spellCost : spell.getCosts()) {
 				if (items.contains(spellCost.getItem())) {
@@ -48,6 +48,9 @@ public class Spells {
 				}
 				items.add(spellCost.getItem());
 				LogHelper.info(spellCost.getItem().getRegistryName());
+			}
+			if (spell.getCosts().size() > 40 + InventoryRuneBag.INVENTORY_SIZE) {
+				throw new IllegalArgumentException("Spell is uncastable, too many costs to fit in player inventory: " + spell.getName());
 			}
 		}
 	}

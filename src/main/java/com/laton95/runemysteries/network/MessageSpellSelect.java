@@ -5,7 +5,6 @@ import java.awt.Button;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.spells.Spells.EnumSpell;
 
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
@@ -17,8 +16,8 @@ public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect> {
 	
 	public MessageSpellSelect(){}
 	
-	public MessageSpellSelect(EnumSpell spell) {
-		spellID = spell.ordinal();
+	public MessageSpellSelect(Spell spell) {
+		spellID = Spells.spellList.indexOf(spell);
 	}
 	
 	@Override
@@ -41,9 +40,9 @@ public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect> {
 		ItemStack spellbook = player.getHeldItemMainhand();
 		ItemStack spellbook2 = player.getHeldItemOffhand();
 		if (spellbook.getItem() instanceof ItemSpellbook) {
-			ItemSpellbook.setCurrentSpell(spellbook, EnumSpell.values()[message.spellID]);
+			ItemSpellbook.setCurrentSpell(spellbook, Spells.spellList.get(message.spellID));
 		} else if (spellbook2.getItem() instanceof ItemSpellbook) {
-			ItemSpellbook.setCurrentSpell(spellbook2, EnumSpell.values()[message.spellID]);
+			ItemSpellbook.setCurrentSpell(spellbook2, Spells.spellList.get(message.spellID));
 		}
 	}
 

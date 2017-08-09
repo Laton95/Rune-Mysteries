@@ -13,7 +13,6 @@ import com.laton95.runemysteries.spells.ExplosionSpell;
 import com.laton95.runemysteries.spells.SnowballSpell;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.spells.Spells.EnumSpell;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 import com.laton95.runemysteries.util.ItemHelper;
 import com.laton95.runemysteries.util.LogHelper;
@@ -96,19 +95,19 @@ public class ItemSpellbook extends RMModItem {
 		}
 	}
 	
-	public static Spells.EnumSpell getCurrentSpell(ItemStack spellbook) {
+	public static Spell getCurrentSpell(ItemStack spellbook) {
 		if (spellbook.hasTagCompound()) {
-			return EnumSpell.values()[spellbook.getTagCompound().getInteger("spell")];
+			return Spells.spellList.get(spellbook.getTagCompound().getInteger("spell"));
 		} else {
-			return EnumSpell.NONE;
+			return Spells.NONE_SPELL;
 		}
 	}
 	
-	public static void setCurrentSpell(ItemStack spellbook, EnumSpell spell) {
+	public static void setCurrentSpell(ItemStack spellbook, Spell spell) {
 		if (!spellbook.hasTagCompound()) {
 			spellbook.setTagCompound(new NBTTagCompound());
 		}
-		spellbook.getTagCompound().setInteger("spell", spell.ordinal());
+		spellbook.getTagCompound().setInteger("spell", Spells.spellList.indexOf(spell));
 	}
 
 	@Override
@@ -118,9 +117,9 @@ public class ItemSpellbook extends RMModItem {
 			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
 			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 		} else {
-			Spell spell = Spells.getSpellFromEnum(getCurrentSpell(spellbook));
+			Spell spell = getCurrentSpell(spellbook);
 			
-			if (spell == null) {
+			if (spell == Spells.NONE_SPELL) {
 				playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
 				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 			}

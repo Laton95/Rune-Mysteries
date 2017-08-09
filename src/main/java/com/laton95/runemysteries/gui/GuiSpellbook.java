@@ -2,9 +2,11 @@ package com.laton95.runemysteries.gui;
 
 import java.io.IOException;
 
+import org.apache.commons.io.monitor.FileAlterationListener;
 import org.lwjgl.input.Keyboard;
 
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
+import com.google.common.base.Enums;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.network.MessageSpellSelect;
@@ -14,8 +16,10 @@ import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
 import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.spells.Spells.EnumSpell;
+import com.laton95.runemysteries.util.LogHelper;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -29,16 +33,12 @@ import net.minecraft.util.text.TextFormatting;
 public class GuiSpellbook extends RMModGuiScreen {
 	private final EntityPlayer player;
 	private final ItemStack spellbook;
-	private EnumSpell newSpell;
-	private EnumSpell oldSpell;
+	private Spell newSpell;
+	private Spell oldSpell;
 	private Spell costSpell;
 	private GuiButton buttonDone;
 	private GuiButton buttonCancel;
 	private GuiButton buttonExtra;
-	private GuiButton buttonEnderpearl;
-	private GuiButton buttonSnowball;
-	private GuiButton buttonExplosion;
-	private GuiButton buttonDeath;
 
 	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/spellbook.png");
 	private final ResourceLocation guiTexture2 = new ResourceLocation(ModReference.MOD_ID,
@@ -56,7 +56,7 @@ public class GuiSpellbook extends RMModGuiScreen {
 		if (spellbook.hasTagCompound()) {
 			oldSpell = ItemSpellbook.getCurrentSpell(spellbook);
 		} else {
-			oldSpell = EnumSpell.NONE;
+			oldSpell = Spells.NONE_SPELL;
 		}
 		newSpell = oldSpell;
 	}
@@ -71,17 +71,28 @@ public class GuiSpellbook extends RMModGuiScreen {
 				.addButton(new GuiButton(0, standardWidth - 50, standardHeight, 98, 20, I18n.format("gui.done")));
 		this.buttonCancel = this
 				.addButton(new GuiButton(1, standardWidth + 50, standardHeight, 98, 20, I18n.format("gui.cancel")));
-		this.buttonEnderpearl = this.addButton(new GuiButton(2, standardWidth - 64, standardHeight - 180, 98, 20,
-				I18n.format(NamesReference.Spells.ENDERPEARL_SPELL_NAME)));
-		this.buttonSnowball = this.addButton(new GuiButton(3, standardWidth - 64, standardHeight - 160, 98, 20,
-				I18n.format(NamesReference.Spells.SNOWBALL_SPELL_NAME)));
-		this.buttonExplosion = this.addButton(new GuiButton(4, standardWidth - 64, standardHeight - 140, 98, 20,
-				I18n.format(NamesReference.Spells.EXPLOSION_SPELL_NAME)));
-		this.buttonDeath = this.addButton(new GuiButton(5, standardWidth - 64, standardHeight - 120, 98, 20,
-				I18n.format(NamesReference.Spells.DEATH_SPELL_NAME)));
-		this.buttonExtra = this.addButton(new GuiButton(6, standardWidth + 64, standardHeight - 35, 98, 20,
+		this.buttonExtra = this.addButton(new GuiButton(2, standardWidth + 64, standardHeight - 35, 98, 20,
 				I18n.format(NamesReference.Spellbook.COST_BUTTON)));
 		this.buttonExtra.visible = false;
+		
+		int idIterator = 3;
+		int i = 0;
+		int j = 0;
+		int xStart = standardWidth - 73;
+		int yStart = standardHeight - 190;
+		int xInterval = 17;
+		int yInterval = 17;
+		for (Spell spell : Spells.spellList) {
+			if (!spell.equals(Spells.NONE_SPELL)) {
+				this.addButton(new SpellButton(idIterator, xStart + i*xInterval, yStart + j*yInterval, spell));
+				i++;
+				if (i > 6) {
+					i = 0;
+					j++;
+				}
+				idIterator++;
+			}
+		}
 	}
 
 	public void onGuiClosed() {
@@ -99,19 +110,10 @@ public class GuiSpellbook extends RMModGuiScreen {
 				this.mc.displayGuiScreen((GuiScreen) null);
 				break;
 			case 2:
-				newSpell = EnumSpell.ENDERPEARL_SPELL;
-				break;
-			case 3:
-				newSpell = EnumSpell.SNOWBALL_SPELL;
-				break;
-			case 4:
-				newSpell = EnumSpell.EXPLOSION_SPELL;
-				break;
-			case 5:
-				newSpell = EnumSpell.DEATH_SPELL;
-				break;
-			case 6:
 				this.mc.displayGuiScreen(new GuiExtraItems(player, spellbook, costSpell));
+				break;
+			default:
+				newSpell = ((SpellButton)buttonList.get(button.id)).getSpell();
 				break;
 			}
 		}
@@ -135,7 +137,7 @@ public class GuiSpellbook extends RMModGuiScreen {
 
 		TextComponentTranslation temp1;
 		TextComponentTranslation temp2;
-		Spell tempSpell = Spells.getSpellFromEnum(newSpell);
+		Spell tempSpell = newSpell;
 		if (tempSpell != null) {
 			temp1 = new TextComponentTranslation(tempSpell.getName());
 			temp2 = new TextComponentTranslation(tempSpell.getDescription());
@@ -215,7 +217,7 @@ public class GuiSpellbook extends RMModGuiScreen {
 			int xStart = (this.width - textureHeight / 2) / 2;
 			int yStart = (this.height - textureWidth) / 2 + offset;
 			this.drawTexturedModalRect(xStart, yStart, 0, 0, 128, 192);
-			Spell tempSpell = Spells.getSpellFromEnum(newSpell);
+			Spell tempSpell = newSpell;
 			if (tempSpell != null) {
 				// Render spell costs
 				int i = 0;
@@ -242,6 +244,68 @@ public class GuiSpellbook extends RMModGuiScreen {
 				}
 				super.drawScreen(mouseX, mouseY, partialTicks);
 			}
+		}
+	}
+	
+	private class SpellButton extends GuiButton{
+		private final ResourceLocation buttonTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/widgets.png");
+		private final ResourceLocation spellTexture;
+		private final Spell spell;
+		public SpellButton(int buttonId, int x, int y, Spell spell) {
+			super(buttonId, x, y, I18n.format(spell.getName()));
+			this.spell = spell;
+			this.width = 16;
+			this.height = 16;
+			this.spellTexture = spell.getGuiTexture();
+		}
+		
+		public Spell getSpell() {
+			return spell;
+		}
+		
+		@Override
+		public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {
+			if (this.visible)
+	        {
+	            FontRenderer fontrenderer = mc.fontRenderer;
+	            mc.getTextureManager().bindTexture(buttonTexture);
+	            GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
+	            this.hovered = mouseX >= this.x && mouseY >= this.y && mouseX < this.x + this.width && mouseY < this.y + this.height;
+	            int i = this.getHoverState(this.hovered);
+	            GlStateManager.enableBlend();
+	            GlStateManager.tryBlendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
+	            GlStateManager.blendFunc(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA);
+	            this.drawTexturedModalRect(this.x, this.y, 0, i * 16, this.width / 2, this.height);
+	            this.drawTexturedModalRect(this.x + this.width / 2, this.y, 200 - this.width / 2, i * 16, this.width / 2, this.height);
+	            this.mouseDragged(mc, mouseX, mouseY);
+	            int j = 14737632;
+	            
+	            mc.getTextureManager().bindTexture(spellTexture);
+	            drawModalRectWithCustomSizedTexture(this.x, this.y, 0, 0, this.width, this.height, this.width, this.height);
+
+	            if (packedFGColour != 0)
+	            {
+	                j = packedFGColour;
+	            }
+	            else
+	            if (!this.enabled)
+	            {
+	                j = 10526880;
+	            }
+	            else if (this.hovered)
+	            {
+	                j = 16777120;
+	            }
+
+	            //this.drawCenteredString(fontrenderer, this.displayString, this.x + this.width / 2, this.y + (this.height - 8) / 2, j);
+	        }
+		}
+		
+		@Override
+		protected int getHoverState(boolean mouseOver) {
+			if (mouseOver) {
+				return 1;
+			} else return 0;
 		}
 	}
 }
