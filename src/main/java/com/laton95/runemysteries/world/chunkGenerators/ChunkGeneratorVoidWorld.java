@@ -20,7 +20,7 @@ public class ChunkGeneratorVoidWorld implements IChunkGenerator {
 	private final Random rand;
 	private final World world;
 
-	private MapGenRuneTemple temple;
+	protected MapGenRuneTemple temple;
 
 	public ChunkGeneratorVoidWorld(World worldIn, long seed) {
 		world = worldIn;

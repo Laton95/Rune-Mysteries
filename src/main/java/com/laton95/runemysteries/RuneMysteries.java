@@ -7,6 +7,7 @@ import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.OreDictRegistry;
+import com.laton95.runemysteries.init.VillagerRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.proxy.CommonProxy;
@@ -65,6 +66,7 @@ public class RuneMysteries {
 		DimensionRegistry.registerDimensions();
 		BlockRegistry.setupDimIDs();
 		OreDictRegistry.registerOres();
+		VillagerRegistry.registerVillage();
 	}
 
 	@Mod.EventHandler

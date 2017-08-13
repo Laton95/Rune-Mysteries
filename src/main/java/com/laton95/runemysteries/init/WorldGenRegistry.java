@@ -5,30 +5,20 @@ import java.util.Map;
 
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
+import com.laton95.runemysteries.world.mapGenerators.MapGenCosmicTemple;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_END;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_NETHER;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SOUL;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_SURFACE;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneAltar_UNDERGROUND;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentAirTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentBloodTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentBodyTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentChaosTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentCosmicTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentDeathTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentEarthTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentEndAltar;
-import com.laton95.runemysteries.world.structureComponents.ComponentFireTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentLawTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentMindTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentNatureTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentNetherAltar;
 import com.laton95.runemysteries.world.structureComponents.ComponentSoulAltar;
-import com.laton95.runemysteries.world.structureComponents.ComponentSoulTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentSurfaceAltar;
+import com.laton95.runemysteries.world.structureComponents.ComponentTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundAltar;
-import com.laton95.runemysteries.world.structureComponents.ComponentWaterTemple;
 
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraft.world.gen.structure.StructureComponent;
@@ -75,6 +65,7 @@ public class WorldGenRegistry {
 		structureMap.put("RuneAltar_NETHER", MapGenRuneAltar_NETHER.Start.class);
 		structureMap.put("RuneAltar_END", MapGenRuneAltar_END.Start.class);
 		structureMap.put("RuneTemple", MapGenRuneTemple.Start.class);
+		structureMap.put("CosmicTemple", MapGenCosmicTemple.Start.class);
 	}
 
 	private static void makeComponentMap() {
@@ -83,18 +74,7 @@ public class WorldGenRegistry {
 		componentMap.put("SoulAltar", ComponentSoulAltar.class);
 		componentMap.put("EndAltar", ComponentEndAltar.class);
 		componentMap.put("NetherAltar", ComponentNetherAltar.class);
-		componentMap.put("AirTemple", ComponentAirTemple.class);
-		componentMap.put("BloodTemple", ComponentBloodTemple.class);
-		componentMap.put("BodyTemple", ComponentBodyTemple.class);
-		componentMap.put("ChaosTemple", ComponentChaosTemple.class);
+		componentMap.put("Temple", ComponentTemple.class);
 		componentMap.put("CosmicTemple", ComponentCosmicTemple.class);
-		componentMap.put("DeathTemple", ComponentDeathTemple.class);
-		componentMap.put("EarthTemple", ComponentEarthTemple.class);
-		componentMap.put("FireTemple", ComponentFireTemple.class);
-		componentMap.put("LawTemple", ComponentLawTemple.class);
-		componentMap.put("MindTemple", ComponentMindTemple.class);
-		componentMap.put("NatureTemple", ComponentNatureTemple.class);
-		componentMap.put("SoulTemple", ComponentSoulTemple.class);
-		componentMap.put("WaterTemple", ComponentWaterTemple.class);
 	}
 }

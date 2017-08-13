@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemRuneBag;
+import com.laton95.runemysteries.item.ItemScroll;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
@@ -55,6 +56,7 @@ public class ItemRegistry {
 	
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
+	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", true);
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event) {
@@ -101,7 +103,7 @@ public class ItemRegistry {
 
 		itemList.add(SPELLBOOK);
 		itemList.add(RUNE_BAG);
-
+		itemList.add(MINE_SCROLL);
 	}
 
 	public static void addItemBlock(ItemBlock itemBlock) {

@@ -47,7 +47,6 @@ public class Spells {
 					throw new IllegalArgumentException("Spell has multiple costs with the same item: " + spell.getName());
 				}
 				items.add(spellCost.getItem());
-				LogHelper.info(spellCost.getItem().getRegistryName());
 			}
 			if (spell.getCosts().size() > 40 + InventoryRuneBag.INVENTORY_SIZE) {
 				throw new IllegalArgumentException("Spell is uncastable, too many costs to fit in player inventory: " + spell.getName());

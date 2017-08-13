@@ -105,6 +105,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator {
 
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 
+		biome.decorator.clayPerChunk = 0;
 		biome.decorator.generateFalls = false;
 		biome.decorate(world, rand, new BlockPos(xPos, 0, zPos));
 		

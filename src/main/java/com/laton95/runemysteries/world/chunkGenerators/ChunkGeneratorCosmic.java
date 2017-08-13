@@ -4,6 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
+import com.laton95.runemysteries.world.mapGenerators.MapGenCosmicTemple;
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
 
 import net.minecraft.block.BlockFalling;
@@ -17,8 +18,10 @@ import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
 public class ChunkGeneratorCosmic extends ChunkGeneratorVoidWorld {
+	
 
 	public ChunkGeneratorCosmic(World worldIn, long seed) {
 		super(worldIn, seed);
+		temple = new MapGenCosmicTemple(worldIn);
 	}
 }

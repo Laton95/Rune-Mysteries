@@ -3,6 +3,7 @@ package com.laton95.runemysteries.item;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 
@@ -32,6 +33,38 @@ public class ItemTalisman extends RMModItem {
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack talisman = playerIn.getHeldItem(handIn);
+		
+		switch (dimID) {
+		case 0:
+			if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findOverworldLocations(worldIn);
+			}
+			break;
+		case -1:
+			if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findNetherLocations(worldIn);
+			}
+			break;
+		case 1:
+			if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
+				WorldGenerator.altarTracker.findEndLocations(worldIn);
+			}
+			break;
+		}
+
+		BlockPos pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
+		
+		if (playerIn.isCreative() && playerIn.isSneaking()) {
+			try {
+				if (pos.getY() != 0) {
+					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), pos.getY(), pos.getZ());
+				} else {
+					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), 100, pos.getZ());
+				}
+			} catch (NullPointerException e) {
+				TeleportHelper.teleportEntity(playerIn, dimID, playerIn.posX, playerIn.posY, playerIn.posZ);
+			}
+		}
 
 		playerIn.getCooldownTracker().setCooldown(this, 30);
 
@@ -45,7 +78,7 @@ public class ItemTalisman extends RMModItem {
 			case 0:
 				switch (dimID) {
 				case 0:
-					printDirection(playerIn, worldIn);
+					printDirection(playerIn, worldIn, pos);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case -1:
 					worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ,
@@ -62,7 +95,7 @@ public class ItemTalisman extends RMModItem {
 			case -1:
 				switch (dimID) {
 				case -1:
-					printDirection(playerIn, worldIn);
+					printDirection(playerIn, worldIn, pos);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
@@ -76,7 +109,7 @@ public class ItemTalisman extends RMModItem {
 			case 1:
 				switch (dimID) {
 				case 1:
-					printDirection(playerIn, worldIn);
+					printDirection(playerIn, worldIn, pos);
 					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 				case 0:
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
@@ -96,28 +129,7 @@ public class ItemTalisman extends RMModItem {
 		return new ActionResult<>(EnumActionResult.FAIL, talisman);
 	}
 
-	private void printDirection(EntityPlayer playerIn, World worldIn) {
-		switch (dimID) {
-		case 0:
-			if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote) {
-				WorldGenerator.altarTracker.findOverworldLocations(worldIn);
-			}
-			break;
-		case -1:
-			if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote) {
-				WorldGenerator.altarTracker.findNetherLocations(worldIn);
-			}
-			break;
-		case 1:
-			if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote) {
-				WorldGenerator.altarTracker.findEndLocations(worldIn);
-			}
-			break;
-		}
-
-		BlockPos pos;
-		pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
-
+	private void printDirection(EntityPlayer playerIn, World worldIn, BlockPos pos) {
 		if (WorldHelper.isNearby(playerIn.getPosition(), pos, 5)) {
 			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NEARBY));
 		} else {

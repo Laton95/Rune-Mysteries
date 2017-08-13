@@ -124,11 +124,9 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator {
 			biomesForGeneration = world.getBiomeProvider().getBiomes(biomesForGeneration, x * 16, z * 16, 16, 16);
 			replaceBiomeBlocks(x, z, chunkprimer, biomesForGeneration);
 		}
-
-		Chunk chunk = new Chunk(world, chunkprimer, x, z);
-
+		
 		temple.generate(world, x, z, chunkprimer);
-
+		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		chunk.generateSkylightMap();
 		return chunk;
 	}

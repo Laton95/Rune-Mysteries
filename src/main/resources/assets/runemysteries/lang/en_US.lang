@@ -32,6 +32,7 @@ item.runemysteries:water_talisman.name=Water Talisman
 
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
+item.runemysteries:mine_scroll.name=Rune Essence Mine Teleport Scroll
 
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
@@ -155,3 +156,6 @@ keys.runemysteries.test=Test
 
 #Gui
 gui.runemysteries.button.extraCosts=Items
+
+#Entity
+entity.Villager.runemysteries.runecrafter=Runecrafter
