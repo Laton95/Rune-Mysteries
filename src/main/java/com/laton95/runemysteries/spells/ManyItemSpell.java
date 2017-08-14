@@ -46,8 +46,7 @@ public class ManyItemSpell extends Spell {
 			new SpellCost(ItemRegistry.SOUL_TALISMAN, 5),
 			new SpellCost(ItemRegistry.WATER_TALISMAN, 5),
 			new SpellCost(Items.APPLE, 5),
-			new SpellCost(Items.IRON_CHESTPLATE, 1),
-			new SpellCost(Items.ELYTRA, 5)
+			new SpellCost(Items.IRON_CHESTPLATE, 1)
 			);
 	
 	public ManyItemSpell() {

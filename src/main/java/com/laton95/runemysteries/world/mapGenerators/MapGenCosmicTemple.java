@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Random;
 
 import com.google.common.collect.Lists;
+import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.world.structureComponents.ComponentCosmicTemple;
 import com.laton95.runemysteries.world.structureComponents.ComponentTemple;

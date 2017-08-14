@@ -27,7 +27,9 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 public class ComponentCosmicTemple extends StructureComponent {
 
 	public ComponentCosmicTemple(int x, int z) {
-		this.boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x*16, 86, z*16, 0, 0, 0, x*16+16, 86+32, z*16+16, EnumFacing.UP);
+		ChunkPos chunkPos = new ChunkPos(x, z);
+		BlockPos pos = chunkPos.getBlock(0, 0, 0);
+		this.boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(pos.getX(), 85, pos.getZ(), 0, 0, 0, 1, 1, 1, EnumFacing.UP);
 	}
 
 	private boolean generated = false;
@@ -67,10 +69,10 @@ public class ComponentCosmicTemple extends StructureComponent {
 			}
 			
 			structureHelper.generate();
-			worldIn.setBlockState(new BlockPos(0, 100, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(1, 100, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(0, 100, 1), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(1, 100, 1), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(-1, 87, 22), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(22, 87, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(-23, 87, -1), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(0, 87, -23), BlockRegistry.ALTAR_PORTAL.getDefaultState());
 			generated = true;
 		}
 		return true;
