@@ -16,6 +16,7 @@ import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
 import com.laton95.runemysteries.spells.Spells;
+import com.laton95.runemysteries.util.ItemNBTHelper;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.client.Minecraft;
@@ -23,6 +24,7 @@ import net.minecraft.client.gui.FontRenderer;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.resources.I18n;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
@@ -54,7 +56,7 @@ public class GuiSpellbook extends RMModGuiScreen {
 		this.spellbook = spellbook;
 
 		if (spellbook.hasTagCompound()) {
-			oldSpell = ItemSpellbook.getCurrentSpell(spellbook);
+			oldSpell = ItemNBTHelper.getSpell(spellbook);
 		} else {
 			oldSpell = Spells.NONE_SPELL;
 		}
@@ -121,7 +123,7 @@ public class GuiSpellbook extends RMModGuiScreen {
 
 	private void sendSpellToServer() {
 		if (oldSpell != newSpell) {
-			ItemSpellbook.setCurrentSpell(spellbook, newSpell);
+			ItemNBTHelper.setSpell(spellbook, newSpell);
 			NetworkHandler.sendToServer(new MessageSpellSelect(newSpell));
 		}
 	}
@@ -151,14 +153,10 @@ public class GuiSpellbook extends RMModGuiScreen {
 				int xInterval = 37;
 				int yInterval = 18;
 				for (SpellCost cost : tempSpell.getCosts()) {
-					String itemFullName = cost.getItem().getRegistryName().toString();
-					int colon = itemFullName.indexOf(":");
-					String domain = itemFullName.substring(0, colon);
-					String itemName = itemFullName.substring(colon + 1);
-					ResourceLocation itemTexture = new ResourceLocation(domain, "textures/items/" + itemName + ".png");
-					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-					this.mc.getTextureManager().bindTexture(itemTexture);
-					drawModalRectWithCustomSizedTexture(x + xInterval * j, yInterval * i + y, 16, 16, 16, 16, 16, 16);
+					RenderHelper.enableGUIStandardItemLighting();
+					ItemStack stack = new ItemStack(cost.getItem(), 1, cost.getMetadata());
+					mc.getRenderItem().renderItemIntoGUI(stack, x + xInterval * j, yInterval * i + y);
+					RenderHelper.disableStandardItemLighting();
 					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j, 3 + yInterval * i + y, 0);
 					i++;
 					if (i > 1) {
@@ -227,14 +225,10 @@ public class GuiSpellbook extends RMModGuiScreen {
 				int xInterval = 42;
 				int yInterval = 18;
 				for (SpellCost cost : tempSpell.getCosts()) {
-					String itemFullName = cost.getItem().getRegistryName().toString();
-					int colon = itemFullName.indexOf(":");
-					String domain = itemFullName.substring(0, colon);
-					String itemName = itemFullName.substring(colon + 1);
-					ResourceLocation itemTexture = new ResourceLocation(domain, "textures/items/" + itemName + ".png");
-					GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
-					this.mc.getTextureManager().bindTexture(itemTexture);
-					drawModalRectWithCustomSizedTexture(x + xInterval * j, yInterval * i + y, 16, 16, 16, 16, 16, 16);
+					RenderHelper.enableGUIStandardItemLighting();
+					ItemStack stack = new ItemStack(cost.getItem(), 1, cost.getMetadata());
+					mc.getRenderItem().renderItemIntoGUI(stack, x + xInterval * j, yInterval * i + y);
+					RenderHelper.disableStandardItemLighting();
 					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j, 3 + yInterval * i + y, 0);
 					i++;
 					if (i > 9) {

@@ -12,11 +12,13 @@ import com.laton95.runemysteries.spells.Spells;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.network.play.server.SPacketCombatEvent.Event;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.SoundEvent;
@@ -26,6 +28,8 @@ import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandler;
 
 @Mod.EventBusSubscriber
 public class ItemHelper {
@@ -39,57 +43,61 @@ public class ItemHelper {
 		return null;
 	}
 	
+	
 	@SubscribeEvent
 	public static void pickupHandler(EntityItemPickupEvent event) {
-		
-		if (event.getItem().getItem().getItem() instanceof ItemRune) {
-			
+		ItemStack stack = event.getItem().getItem();
+		if (stack.getItem() instanceof ItemRune && stack.getCount() > 0) {
 			ItemStack bag = getRuneBag(event.getEntityPlayer());
-			if (!bag.hasTagCompound()) {
-				bag.setTagCompound(new NBTTagCompound());
-			}
-			if (!bag.getTagCompound().hasKey("autoPickup")) {
-				bag.getTagCompound().setBoolean("autoPickup", true);
-			}
-			if (bag.getTagCompound().getBoolean("autoPickup")) {
-				Minecraft.getMinecraft().displayGuiScreen(null);
-				InventoryRuneBag bagInventory = new InventoryRuneBag(bag);
-				event.getItem().getItem().setCount(bagInventory.mergeStack(event.getItem().getItem()));
-				event.getEntityPlayer().getEntityWorld().playSound((EntityPlayer) null, event.getEntityPlayer().posX, event.getEntityPlayer().posY, event.getEntityPlayer().posZ,
-						SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2f, (random.nextFloat() - random.nextFloat()) * 1.4F + 2.0F);
+			if (bag != null && ItemNBTHelper.getBoolean(bag, "autoPickup", true)) {
+				IItemHandler bagInventory = bag.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+				ItemStack result = null;
+				for (int i = 0; i < bagInventory.getSlots(); i++) {
+					if (result == null) {
+						result = bagInventory.insertItem(i, stack, false);
+					} else {
+						result = bagInventory.insertItem(i, result, false);
+					}
+				}
+				
+				/*
+				 * Rest of method taken from Vaskii's Botania mod under the Botania licence
+				 * */
+				int numPickedUp = stack.getCount() - result.getCount();
+
+				event.getItem().setItem(result);
+
+				if(numPickedUp > 0) {
+					event.setCanceled(true);
+					if (!event.getItem().isSilent()) {
+						event.getItem().world.playSound(null, event.getEntityPlayer().posX, event.getEntityPlayer().posY, event.getEntityPlayer().posZ,
+								SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F,
+								((event.getItem().world.rand.nextFloat() - event.getItem().world.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+					}
+					((EntityPlayerMP) event.getEntityPlayer()).connection.sendPacket(new SPacketCollectItem(event.getItem().getEntityId(), event.getEntityPlayer().getEntityId(), numPickedUp));
+					event.getEntityPlayer().openContainer.detectAndSendChanges();
+
+					return;
+				}
 			}
 		}
 	}
 	
 	@SubscribeEvent
 	public static void tooltipHandler(ItemTooltipEvent event) {
-		if (event.getItemStack().getItem() instanceof ItemRuneBag) {
-			if (event.getItemStack().hasTagCompound()) {
-				if (event.getItemStack().getTagCompound().getBoolean("autoPickup")) {
-					TextComponentTranslation string = new TextComponentTranslation(NamesReference.RuneBag.AUTO_ON);
-					event.getToolTip().add(string.getFormattedText());
-				} else {
-					TextComponentTranslation string = new TextComponentTranslation(NamesReference.RuneBag.AUTO_OFF);
-					event.getToolTip().add(string.getFormattedText());
-				}
-			} else {
+		ItemStack stack = event.getItemStack();
+		//Rune bag tooltip
+		if (stack.getItem() instanceof ItemRuneBag) {
+			if (ItemNBTHelper.getBoolean(stack, "autoPickup", true)) {
 				TextComponentTranslation string = new TextComponentTranslation(NamesReference.RuneBag.AUTO_ON);
 				event.getToolTip().add(string.getFormattedText());
-			}
-		} else if (event.getItemStack().getItem() instanceof ItemSpellbook) {
-			TextComponentTranslation string;
-			if (event.getItemStack().hasTagCompound()) {
-				Spell spell = ItemSpellbook.getCurrentSpell(event.getItemStack());
-				Spell spell2 = ItemSpellbook.getCurrentSpell(event.getItemStack());
-				if (spell != null && spell != Spells.NONE_SPELL) {
-					string = new TextComponentTranslation(spell.getName());
-				} else {
-					string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
-				}
-				
 			} else {
-				string = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
+				TextComponentTranslation string = new TextComponentTranslation(NamesReference.RuneBag.AUTO_OFF);
+				event.getToolTip().add(string.getFormattedText());
 			}
+		} else if (stack.getItem() instanceof ItemSpellbook) {
+			//Spellbook tooltip
+			TextComponentTranslation string = new TextComponentTranslation(ItemNBTHelper.getSpell(stack).getName());
 			event.getToolTip().add("Spell: " + string.getFormattedText());
 		}
 	}

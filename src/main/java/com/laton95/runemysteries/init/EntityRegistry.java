@@ -6,7 +6,6 @@ import java.util.List;
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemSpellbook;
-import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 import com.laton95.runemysteries.util.LogHelper;

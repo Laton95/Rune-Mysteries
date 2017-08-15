@@ -8,14 +8,13 @@ import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.SlotItemHandler;
 
 public class ContainerRuneBag extends RMModContainer {
 	private final InventoryRuneBag bag;
 	
-	private static final int INV_START = InventoryRuneBag.INVENTORY_SIZE;
-	private static final int INV_END = INV_START+26;
-	private static final int HOTBAR_START = INV_END+1;
-	private static final int HOTBAR_END = HOTBAR_START+8;
+	
 
 	public ContainerRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bag) {
 		this.bag = bag;
@@ -33,7 +32,7 @@ public class ContainerRuneBag extends RMModContainer {
 	
 	@Override
 	public boolean canInteractWith(EntityPlayer playerIn) {
-		return bag.isUsableByPlayer(playerIn);
+		return true;
 	}
 
 	//Thanks to CoolAlias for this implementation!
@@ -41,46 +40,38 @@ public class ContainerRuneBag extends RMModContainer {
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = (Slot) this.inventorySlots.get(index);
+		
+		int invStart = bag.getSlots();
+		int invEnd = invStart+26;
+		int hotbarStart = invEnd+1;
+		int hotbarEnd = hotbarStart+8;
 
 		if (slot != null && slot.getHasStack())
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 
-			// If item is in our custom Inventory or armor slot
-			if (index < INV_START)
+			// If item is in our custom inventory
+			if (index < invStart)
 			{
 				// try to place in player inventory / action bar
-				if (!this.mergeItemStack(itemstack1, INV_START, HOTBAR_END+1, true))
+				if (!this.mergeItemStack(itemstack1, invStart, hotbarEnd+1, true))
 				{
 					return ItemStack.EMPTY;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			// Item is in inventory / hotbar, try to place in custom inventory or armor slots
+			// Item is in inventory / hotbar, try to place in custom inventory
 			else
 			{
-				/*you have basically 2 choices:
-				1. shift-clicking between player inventory and custom inventory
-				2. shift-clicking between action bar and inventory
-				 
-				Be sure to choose only ONE of the following implementations!!!
-				*/
-				/**
-				 * Implementation number 1: Shift-click into your custom inventory
-				 */
-				if (index >= INV_START)
+				if (!this.mergeItemStack(itemstack1, 0, invStart, false))
 				{
-					// place in custom inventory
-					if (!this.mergeItemStack(itemstack1, 0, INV_START, false))
-					{
-						return ItemStack.EMPTY;
-					}
+					return ItemStack.EMPTY;
 				}
 			}
 
-			if (itemstack1.getCount() == 0)
+			if (itemstack1.isEmpty())
 			{
 				slot.putStack(ItemStack.EMPTY);
 			}
@@ -100,16 +91,16 @@ public class ContainerRuneBag extends RMModContainer {
 		return itemstack;
 	}
 	
-	private class RuneSlot extends Slot {
-
-		public RuneSlot(IInventory inventoryIn, int index, int xPosition, int yPosition) {
-			super(inventoryIn, index, xPosition, yPosition);
-		}
+	private class RuneSlot extends SlotItemHandler {
 		
+		public RuneSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+			super(itemHandler, index, xPosition, yPosition);
+		}
+
 		@Override
 		public boolean isItemValid(ItemStack stack) {
 			if (stack.getItem() instanceof ItemRune) {
-				return true;
+				return super.isItemValid(stack);
 			} else {
 				return false;
 			}

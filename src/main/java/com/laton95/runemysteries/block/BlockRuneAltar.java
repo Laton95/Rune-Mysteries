@@ -2,6 +2,7 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
@@ -19,11 +20,12 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
 public class BlockRuneAltar extends RMModBlock {
-	private ItemRune rune;
+	private EnumRuneType type;
+	protected Item item = ItemRegistry.RUNE;
 
-	public BlockRuneAltar(String name, ItemRune rune) {
+	public BlockRuneAltar(String name, EnumRuneType type) {
 		super(name, Material.ROCK, 0, 2000f, null, 0, true);
-		this.rune = rune;
+		this.type = type;
 		setBlockUnbreakable();
 	}
 
@@ -33,11 +35,11 @@ public class BlockRuneAltar extends RMModBlock {
 			Item itemType = ((EntityItem) entityIn).getItem().getItem();
 			if (itemType.equals(ItemRegistry.RUNE_ESSENCE)) {
 				giveAdvancements((EntityItem) entityIn, worldIn);
-				spawnItem(worldIn, entityIn, rune);
+				spawnItem(worldIn, entityIn, item, type.ordinal());
 			}
 
 			if (itemType.equals(Items.BOOK)) {
-				spawnItem(worldIn, entityIn, ItemRegistry.SPELLBOOK);
+				spawnItem(worldIn, entityIn, ItemRegistry.SPELLBOOK, 0);
 			}
 		}
 	}
@@ -52,9 +54,9 @@ public class BlockRuneAltar extends RMModBlock {
 		}
 	}
 
-	protected void spawnItem(World worldIn, Entity entityIn, Item item) {
+	protected void spawnItem(World worldIn, Entity entityIn, Item item, int metadata) {
 		while (((EntityItem) entityIn).getItem().getCount() > 0) {
-			ItemStack itemstack = new ItemStack(item);
+			ItemStack itemstack = new ItemStack(item, 1, metadata);
 			spawnAsEntity(worldIn, entityIn.getPosition(), itemstack);
 			((EntityItem) entityIn).getItem().setCount(((EntityItem) entityIn).getItem().getCount() - 1);
 		}

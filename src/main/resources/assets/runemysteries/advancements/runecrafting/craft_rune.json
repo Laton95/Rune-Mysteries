@@ -1,7 +1,8 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:air_rune"
+            "item": "runemysteries:rune",
+            "data": 0
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.craft_rune.title"

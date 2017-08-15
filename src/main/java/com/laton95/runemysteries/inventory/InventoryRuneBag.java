@@ -20,69 +20,43 @@ import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.Constants;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
 import scala.swing.TextComponent;
 
-public class InventoryRuneBag implements IInventory {
-	private String customName;
-	private final ItemStack bagItemStack;
+public class InventoryRuneBag implements IItemHandlerModifiable {
 	
-	public final static int INVENTORY_SIZE = 14;
-	private NonNullList<ItemStack> inventory = NonNullList.<ItemStack>withSize(INVENTORY_SIZE, ItemStack.EMPTY);
+	private final ItemStack bagItemStack;
+	private final IItemHandlerModifiable inventory;
 
 	public InventoryRuneBag(ItemStack stack) {
 		bagItemStack = stack;
-		
-		if (!stack.hasTagCompound()) {
-			stack.setTagCompound(new NBTTagCompound());
-		} else {
-			ItemStackHelper.loadAllItems(bagItemStack.getTagCompound(), inventory);
-		}
-	}
-	
-	public int mergeStack(ItemStack stack) {
-		int index = 0;
-		for (ItemStack itemStack : inventory) {
-			if (itemStack.getItem() == stack.getItem()) {
-				int temp = itemStack.getCount() + stack.getCount() - getInventoryStackLimit();
-				if (temp > 0) {
-					//Resulting stacksize over 64
-					itemStack.setCount(getInventoryStackLimit());
-					stack.setCount(temp);
-					markDirty();
-				} else if (temp <= 0) {
-					//Resulting stacksize under 64
-					itemStack.grow(stack.getCount());
-					markDirty();
-					return 0;
-				}
-			} else if (!(itemStack.getItem() instanceof ItemRune)) {
-				setInventorySlotContents(index, stack);
-				markDirty();
-				return 0;
-			}
-			index++;
-		}
-		return stack.getCount();
+		inventory = (IItemHandlerModifiable) bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
 	}
 	
 	public int getRuneCount(ItemRune rune) {
 		int count = 0;
-		for (ItemStack itemStack : inventory) {
-			if (itemStack.getItem().equals(rune)) {
-				count += itemStack.getCount();
+		for (int i = 0; i < getSlots(); i++) {
+			ItemStack stack = getStackInSlot(i);
+			if (stack.getItem().equals(rune)) {
+				count += stack.getCount();
 			}
 		}
-		
 		return count;
+	}
+	
+	public ITextComponent getDisplayName() {
+		return (ITextComponent)(new TextComponentString(bagItemStack.getDisplayName()));
 	}
 	
 	public int removeRune(ItemRune rune, int count) {
 		int i = 0;
-		while (count > 0 && i < inventory.size()) {
-			ItemStack itemstack = inventory.get(i);
+		while (count > 0 && i < getSlots()) {
+			ItemStack itemstack = getStackInSlot(i);
 			if (itemstack.getItem().equals(rune)) {
 				int temp = count;
 				count -= itemstack.getCount();
@@ -90,147 +64,36 @@ public class InventoryRuneBag implements IInventory {
 			}
 			i++;
 		}
-		
-		markDirty();
 		return count;
 	}
 
 	@Override
-	public String getName() {
-		return "rune_bag";
+	public void setStackInSlot(int slot, ItemStack stack) {
+		inventory.setStackInSlot(slot, stack);
+	}
+	
+	@Override
+	public ItemStack getStackInSlot(int slot) {
+		return inventory.getStackInSlot(slot);
 	}
 
 	@Override
-	public boolean hasCustomName() {
-		return customName != null;
+	public int getSlots() {
+		return inventory.getSlots();
 	}
 
 	@Override
-	public ITextComponent getDisplayName() {
-		return new TextComponentTranslation(bagItemStack.getDisplayName());
+	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate) {
+		return inventory.insertItem(slot, stack, simulate);
 	}
 
 	@Override
-	public int getSizeInventory() {
-		return inventory.size();
+	public ItemStack extractItem(int slot, int amount, boolean simulate) {
+		return inventory.extractItem(slot, amount, simulate);
 	}
 
 	@Override
-	public boolean isEmpty() {
-		for (ItemStack itemstack : inventory)
-        {
-            if (!itemstack.isEmpty())
-            {
-                return false;
-            }
-        }
-
-        return true;
+	public int getSlotLimit(int slot) {
+		return inventory.getSlotLimit(slot);
 	}
-
-	@Override
-	public ItemStack getStackInSlot(int index) {
-		return inventory.get(index);
-	}
-
-	@Override
-	public ItemStack decrStackSize(int index, int count) {
-		ItemStack itemstack = getStackInSlot(index);
-
-		if(itemstack != null)
-		{
-			if(itemstack.getCount() > count)
-			{
-				itemstack = itemstack.splitStack(count);
-				markDirty();
-			}
-			else
-			{
-				setInventorySlotContents(index, ItemStack.EMPTY);
-			}
-		}
-		return itemstack;
-	}
-
-	@Override
-	public ItemStack removeStackFromSlot(int index) {
-		return ItemStackHelper.getAndRemove(inventory, index);
-	}
-
-	@Override
-	public void setInventorySlotContents(int index, ItemStack stack) {
-		inventory.set(index, stack);
-
-        if (stack != null && stack.getCount() > this.getInventoryStackLimit())
-        {
-            stack.setCount(this.getInventoryStackLimit());
-        }
-
-        this.markDirty();
-	}
-
-	@Override
-	public int getInventoryStackLimit() {
-		return 64;
-	}
-
-	@Override
-	public void markDirty() {
-		for (int i = 0; i < getSizeInventory(); ++i)
-		{
-			if (getStackInSlot(i) != null && getStackInSlot(i).getCount() == 0) {
-				inventory.set(i, ItemStack.EMPTY);
-			}
-		}
-				
-		ItemStackHelper.saveAllItems(bagItemStack.getTagCompound(), inventory);
-	}
-
-	@Override
-	public boolean isUsableByPlayer(EntityPlayer player) {
-		return true;
-	}
-
-	@Override
-	public void openInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public void closeInventory(EntityPlayer player) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public boolean isItemValidForSlot(int index, ItemStack stack) {
-		if (stack.getItem() instanceof ItemRune) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
-	public int getField(int id) {
-		return 0;
-	}
-
-	@Override
-	public void setField(int id, int value) {
-		// TODO Auto-generated method stub
-
-	}
-
-	@Override
-	public int getFieldCount() {
-		return 0;
-	}
-
-	@Override
-	public void clear() {
-		inventory.clear();
-	}
-
 }

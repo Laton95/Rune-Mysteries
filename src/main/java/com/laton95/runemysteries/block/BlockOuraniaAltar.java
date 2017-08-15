@@ -3,8 +3,11 @@ package com.laton95.runemysteries.block;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.collect.TreeMultiset;
 import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.Entity;
@@ -23,12 +26,13 @@ import net.minecraft.world.storage.loot.LootTable;
 public class BlockOuraniaAltar extends BlockRuneAltar {
 
 	public BlockOuraniaAltar() {
-		super("ourania_Altar_Block", null);
+		super("ourania_Altar_Block", EnumRuneType.AIR);
 		setBlockUnbreakable();
+		this.item = null;
 	}
 
 	@Override
-	protected void spawnItem(World worldIn, Entity entityIn, Item item) {
+	protected void spawnItem(World worldIn, Entity entityIn, Item item, int metadata) {
 		while (((EntityItem) entityIn).getItem().getCount() > 0) {
 			if (item == null) {
 				List<ItemStack> items = getRandomRune(worldIn);

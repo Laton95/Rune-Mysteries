@@ -45,7 +45,6 @@ public class RuneMysteries {
 
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
-		proxy.registerKeyBindings();
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		
@@ -67,6 +66,7 @@ public class RuneMysteries {
 		BlockRegistry.setupDimIDs();
 		OreDictRegistry.registerOres();
 		VillagerRegistry.registerVillage();
+		proxy.registerKeyBindings();
 	}
 
 	@Mod.EventHandler

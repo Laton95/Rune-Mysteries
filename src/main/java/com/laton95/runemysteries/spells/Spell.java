@@ -50,10 +50,21 @@ public abstract class Spell {
 	public static class SpellCost {
 		private final Item item;
 		private final int count;
+		private final int damage;
+		private final boolean useMetadata;
 
+		public SpellCost(Item item, int count, int damage) {
+			this.item = item;
+			this.count = count;
+			this.damage = damage;
+			useMetadata = true;
+		}
+		
 		public SpellCost(Item item, int count) {
 			this.item = item;
 			this.count = count;
+			this.damage = 0;
+			useMetadata = false;
 		}
 
 		public Item getItem() {
@@ -62,6 +73,14 @@ public abstract class Spell {
 
 		public int getCount() {
 			return count;
+		}
+		
+		public int getMetadata() {
+			return damage;
+		}
+		
+		public boolean usesMetadata() {
+			return useMetadata;
 		}
 	}
 }

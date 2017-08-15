@@ -18,14 +18,14 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.world.World;
 
-public class SnowballSpell extends Spell {
+public class TalismanSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.RUNE, 2, EnumRuneType.WATER.ordinal()),
-			new SpellCost(ItemRegistry.RUNE, 1, EnumRuneType.AIR.ordinal())
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 1, EnumRuneType.AIR.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 1, EnumRuneType.WATER.ordinal())
 			);
 
-	public SnowballSpell() {
-		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL_NAME, NamesReference.Spells.SNOWBALL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+	public TalismanSpell() {
+		super(costs, 5, "Test spell 4", "To test that metadata spellcosts work", new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override

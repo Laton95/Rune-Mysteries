@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
@@ -16,7 +17,7 @@ import net.minecraft.world.World;
 
 public class EnderpearlSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.LAW_RUNE, 3)
+			new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.LAW.ordinal())
 			);
 	
 	public EnderpearlSpell() {

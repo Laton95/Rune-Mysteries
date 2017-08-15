@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
@@ -18,7 +19,7 @@ import net.minecraftforge.fml.common.Mod;
 
 public class DeathSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.DEATH_RUNE, 3)
+			new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.DEATH.ordinal())
 			);
 	
 	public DeathSpell() {

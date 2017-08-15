@@ -14,6 +14,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 
@@ -31,7 +32,8 @@ public class Spells {
 			new DeathSpell(),
 			new TestSpell(),
 			new SixItemSpell(),
-			new ManyItemSpell()
+			new ManyItemSpell(),
+			new TalismanSpell()
 			);
 	
 	public Spell registerSpell(Spell spell) {
@@ -41,14 +43,16 @@ public class Spells {
 	
 	public static void checkSpells() {
 		for (Spell spell : spellList) {
-			List<Item> items = new ArrayList<>();
+			List<ItemStack> items = new ArrayList<>();
 			for (SpellCost spellCost : spell.getCosts()) {
-				if (items.contains(spellCost.getItem())) {
-					throw new IllegalArgumentException("Spell has multiple costs with the same item: " + spell.getName());
+				for (ItemStack itemStack : items) {
+					if (itemStack.getItem() == spellCost.getItem() && (spellCost.getMetadata() == itemStack.getItemDamage())) {
+						throw new IllegalArgumentException("Spell has multiple costs with the same item: " + spell.getName());
+					}
 				}
-				items.add(spellCost.getItem());
+				items.add(new ItemStack(spellCost.getItem(), 1, spellCost.getMetadata()));
 			}
-			if (spell.getCosts().size() > 40 + InventoryRuneBag.INVENTORY_SIZE) {
+			if (spell.getCosts().size() > 40 + 14) {
 				throw new IllegalArgumentException("Spell is uncastable, too many costs to fit in player inventory: " + spell.getName());
 			}
 		}

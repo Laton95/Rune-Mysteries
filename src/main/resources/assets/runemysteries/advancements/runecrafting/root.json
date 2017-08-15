@@ -1,7 +1,8 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:fire_rune"
+            "item": "runemysteries:rune",
+            "data": 8
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.root.title"

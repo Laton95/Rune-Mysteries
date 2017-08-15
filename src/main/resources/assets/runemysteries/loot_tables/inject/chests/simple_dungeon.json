@@ -8,74 +8,172 @@
             },
             "entries": [
                 {
+                    "entryName": "air",
                     "type": "item",
-                    "name": "runemysteries:air_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 0
+                        }
+                    ]
                 },
                 {
+                    "entryName": "body",
                     "type": "item",
-                    "name": "runemysteries:body_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 3
+                        }
+                    ]
                 },
                 {
+                    "entryName": "earth",
                     "type": "item",
-                    "name": "runemysteries:earth_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 7
+                        }
+                    ]
                 },
                 {
+                    "entryName": "fire",
                     "type": "item",
-                    "name": "runemysteries:fire_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 8
+                        }
+                    ]
                 },
                 {
+                    "entryName": "mind",
                     "type": "item",
-                    "name": "runemysteries:mind_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 10
+                        }
+                    ]
                 },
                 {
+                    "entryName": "water",
                     "type": "item",
-                    "name": "runemysteries:water_talisman",
-                    "weight": 15
+                    "name": "runemysteries:talisman",
+                    "weight": 15,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 13
+                        }
+                    ]
                 },
                 {
+                    "entryName": "astral",
                     "type": "item",
-                    "name": "runemysteries:astral_talisman",
-                    "weight": 5
+                    "name": "runemysteries:talisman",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 1
+                        }
+                    ]
                 },
                 {
+                    "entryName": "nature",
                     "type": "item",
-                    "name": "runemysteries:nature_talisman",
-                    "weight": 5
+                    "name": "runemysteries:talisman",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 11
+                        }
+                    ]
                 },
                 {
+                    "entryName": "death",
                     "type": "item",
-                    "name": "runemysteries:death_talisman",
-                    "weight": 5
+                    "name": "runemysteries:talisman",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 6
+                        }
+                    ]
                 },
                 {
+                    "entryName": "blood",
                     "type": "item",
-                    "name": "runemysteries:blood_talisman",
-                    "weight": 5
+                    "name": "runemysteries:talisman",
+                    "weight": 5,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 2
+                        }
+                    ]
                 },
                 {
+                    "entryName": "chaos",
                     "type": "item",
-                    "name": "runemysteries:chaos_talisman",
-                    "weight": 1
+                    "name": "runemysteries:talisman",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 4
+                        }
+                    ]
                 },
                 {
+                    "entryName": "cosmic",
                     "type": "item",
-                    "name": "runemysteries:cosmic_talisman",
-                    "weight": 1
+                    "name": "runemysteries:talisman",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 5
+                        }
+                    ]
                 },
                 {
+                    "entryName": "law",
                     "type": "item",
-                    "name": "runemysteries:law_talisman",
-                    "weight": 1
+                    "name": "runemysteries:talisman",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 9
+                        }
+                    ]
                 },
                 {
+                    "entryName": "soul",
                     "type": "item",
-                    "name": "runemysteries:soul_talisman",
-                    "weight": 1
+                    "name": "runemysteries:talisman",
+                    "weight": 1,
+                    "functions": [
+                        {
+                            "function": "set_data",
+                            "data": 12
+                        }
+                    ]
                 }
             ]
         }

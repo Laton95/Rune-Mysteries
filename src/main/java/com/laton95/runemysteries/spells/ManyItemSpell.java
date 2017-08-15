@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
@@ -17,34 +18,34 @@ import net.minecraft.world.World;
 
 public class ManyItemSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.AIR_RUNE, 1),
-			new SpellCost(ItemRegistry.ASTRAL_RUNE, 7),
-			new SpellCost(ItemRegistry.BLOOD_RUNE, 8),
-			new SpellCost(ItemRegistry.BODY_RUNE, 2),
-			new SpellCost(ItemRegistry.CHAOS_RUNE, 5),
-			new SpellCost(ItemRegistry.COSMIC_RUNE, 1),
-			new SpellCost(ItemRegistry.DEATH_RUNE, 5),
-			new SpellCost(ItemRegistry.EARTH_RUNE, 5),
-			new SpellCost(ItemRegistry.FIRE_RUNE, 5),
-			new SpellCost(ItemRegistry.LAW_RUNE, 5),
-			new SpellCost(ItemRegistry.MIND_RUNE, 5),
-			new SpellCost(ItemRegistry.NATURE_RUNE, 5),
-			new SpellCost(ItemRegistry.SOUL_RUNE, 5),
-			new SpellCost(ItemRegistry.WATER_RUNE, 5),
-			new SpellCost(ItemRegistry.AIR_TALISMAN, 5),
-			new SpellCost(ItemRegistry.ASTRAL_TALISMAN, 5),
-			new SpellCost(ItemRegistry.BLOOD_TALISMAN, 5),
-			new SpellCost(ItemRegistry.BODY_TALISMAN, 5),
-			new SpellCost(ItemRegistry.CHAOS_TALISMAN, 5),
-			new SpellCost(ItemRegistry.COSMIC_TALISMAN, 5),
-			new SpellCost(ItemRegistry.DEATH_TALISMAN, 5),
-			new SpellCost(ItemRegistry.EARTH_TALISMAN, 5),
-			new SpellCost(ItemRegistry.FIRE_TALISMAN, 5),
-			new SpellCost(ItemRegistry.LAW_TALISMAN, 5),
-			new SpellCost(ItemRegistry.MIND_TALISMAN, 5),
-			new SpellCost(ItemRegistry.NATURE_TALISMAN, 5),
-			new SpellCost(ItemRegistry.SOUL_TALISMAN, 5),
-			new SpellCost(ItemRegistry.WATER_TALISMAN, 5),
+			new SpellCost(ItemRegistry.RUNE, 1, EnumRuneType.AIR.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 7, EnumRuneType.ASTRAL.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 8, EnumRuneType.BLOOD.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 2, EnumRuneType.BODY.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.CHAOS.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 1, EnumRuneType.COSMIC.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.DEATH.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.EARTH.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.FIRE.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.LAW.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.MIND.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.NATURE.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.SOUL.ordinal()),
+			new SpellCost(ItemRegistry.RUNE, 5, EnumRuneType.WATER.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.AIR.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.ASTRAL.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.BLOOD.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.BODY.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.CHAOS.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.COSMIC.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.DEATH.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.EARTH.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.FIRE.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.LAW.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.MIND.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.NATURE.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.SOUL.ordinal()),
+			new SpellCost(ItemRegistry.RUNE_TALISMAN, 5, EnumRuneType.WATER.ordinal()),
 			new SpellCost(Items.APPLE, 5),
 			new SpellCost(Items.IRON_CHESTPLATE, 1)
 			);

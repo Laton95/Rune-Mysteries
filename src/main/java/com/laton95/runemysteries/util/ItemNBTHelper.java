@@ -3,6 +3,9 @@
  */
 package com.laton95.runemysteries.util;
 
+import com.laton95.runemysteries.spells.Spell;
+import com.laton95.runemysteries.spells.Spells;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 
@@ -54,11 +57,11 @@ public class ItemNBTHelper {
 	}
 
 	// boolean
-	public static boolean getBoolean(ItemStack itemStack, String keyName) {
+	public static boolean getBoolean(ItemStack itemStack, String keyName, boolean defaultValue) {
 		initNBTTagCompound(itemStack);
 
 		if (!itemStack.getTagCompound().hasKey(keyName)) {
-			setBoolean(itemStack, keyName, false);
+			setBoolean(itemStack, keyName, defaultValue);
 		}
 
 		return itemStack.getTagCompound().getBoolean(keyName);
@@ -68,6 +71,12 @@ public class ItemNBTHelper {
 		initNBTTagCompound(itemStack);
 
 		itemStack.getTagCompound().setBoolean(keyName, keyValue);
+	}
+	
+	public static void toggleBoolean(ItemStack itemStack, String keyName) {
+		initNBTTagCompound(itemStack);
+
+		itemStack.getTagCompound().setBoolean(keyName, !itemStack.getTagCompound().getBoolean(keyName));
 	}
 
 	// byte
@@ -164,5 +173,28 @@ public class ItemNBTHelper {
 		initNBTTagCompound(itemStack);
 
 		itemStack.getTagCompound().setDouble(keyName, keyValue);
+	}
+	
+	//Spell
+	public static Spell getSpell(ItemStack itemStack) {
+		initNBTTagCompound(itemStack);
+
+		if (!itemStack.getTagCompound().hasKey("spell")) {
+			setSpell(itemStack, Spells.NONE_SPELL);
+		}
+
+		int spellID = ItemNBTHelper.getInt(itemStack, "spell");
+		if (spellID >= 0) {
+			return Spells.spellList.get(spellID);
+		} else {
+			return Spells.NONE_SPELL;
+		}
+		
+	}
+	
+	public static void setSpell(ItemStack itemStack, Spell spell) {
+		initNBTTagCompound(itemStack);
+		
+		itemStack.getTagCompound().setInteger("spell", Spells.spellList.indexOf(spell));
 	}
 }

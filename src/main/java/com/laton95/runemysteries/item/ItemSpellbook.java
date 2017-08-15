@@ -15,6 +15,7 @@ import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 import com.laton95.runemysteries.util.ItemHelper;
+import com.laton95.runemysteries.util.ItemNBTHelper;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
@@ -59,7 +60,7 @@ public class ItemSpellbook extends RMModItem {
 		
 		for (int i = 0; i < player.inventory.getSizeInventory(); ++i) {
 			ItemStack itemstack = player.inventory.getStackInSlot(i);
-			if (itemstack.getItem().equals(cost.getItem())) {
+			if (itemstack.getItem().equals(cost.getItem()) && (!cost.usesMetadata() || itemstack.getItemDamage() == cost.getMetadata())) {
 				count += itemstack.getCount();
 			}
 		}
@@ -94,21 +95,6 @@ public class ItemSpellbook extends RMModItem {
 			LogHelper.info("Error: Spell cost not fully paid");
 		}
 	}
-	
-	public static Spell getCurrentSpell(ItemStack spellbook) {
-		if (spellbook.hasTagCompound()) {
-			return Spells.spellList.get(spellbook.getTagCompound().getInteger("spell"));
-		} else {
-			return Spells.NONE_SPELL;
-		}
-	}
-	
-	public static void setCurrentSpell(ItemStack spellbook, Spell spell) {
-		if (!spellbook.hasTagCompound()) {
-			spellbook.setTagCompound(new NBTTagCompound());
-		}
-		spellbook.getTagCompound().setInteger("spell", Spells.spellList.indexOf(spell));
-	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
@@ -117,7 +103,7 @@ public class ItemSpellbook extends RMModItem {
 			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
 			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 		} else {
-			Spell spell = getCurrentSpell(spellbook);
+			Spell spell = ItemNBTHelper.getSpell(spellbook);
 			
 			if (spell == Spells.NONE_SPELL) {
 				playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);

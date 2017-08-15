@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.item;
 
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
@@ -7,6 +8,7 @@ import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
@@ -14,25 +16,24 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.DamageSource;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class ItemTalisman extends RMModItem {
-	String altar;
-	int dimID;
 
-	public ItemTalisman(String name, String altar, int dimID) {
-		super(name, true);
-		this.altar = altar;
-		this.dimID = dimID;
+	public ItemTalisman(String name, boolean showInCreative) {
+		super(name, showInCreative, EnumRuneType.class);
 		setMaxStackSize(1);
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
 		ItemStack talisman = playerIn.getHeldItem(handIn);
+		int dimID = getDimID(talisman);
+		String altar = EnumRuneType.values()[talisman.getItemDamage()].getName() + "_altar";
 		
 		switch (dimID) {
 		case 0:
@@ -53,7 +54,7 @@ public class ItemTalisman extends RMModItem {
 		}
 
 		BlockPos pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
-		
+
 		if (playerIn.isCreative() && playerIn.isSneaking()) {
 			try {
 				if (pos.getY() != 0) {
@@ -169,9 +170,21 @@ public class ItemTalisman extends RMModItem {
 				break;
 			default:
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-				LogHelper.info("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
+				LogHelper.info(
+						"Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
 				break;
 			}
+		}
+	}
+
+	private int getDimID(ItemStack talisman) {
+		switch (talisman.getItemDamage()) {
+		case 4:
+			return -1;
+		case 5:
+			return 1;
+		default:
+			return 0;
 		}
 	}
 }

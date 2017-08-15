@@ -13,6 +13,7 @@ import com.laton95.runemysteries.block.RMModBlock;
 import com.laton95.runemysteries.block.RMModRail;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMModStairs;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 
@@ -58,48 +59,48 @@ public class BlockRegistry {
 			true);
 
 	public static final BlockRuneEssence RUNE_ESSENCE = new BlockRuneEssence();
-	public static final BlockRuneAltar AIR_ALTAR = new BlockRuneAltar("air_Altar_Block", ItemRegistry.AIR_RUNE);
-	public static final BlockRuneAltar ASTRAL_ALTAR = new BlockRuneAltar("astral_Altar_Block", ItemRegistry.ASTRAL_RUNE);
-	public static final BlockRuneAltar BLOOD_ALTAR = new BlockRuneAltar("blood_Altar_Block", ItemRegistry.BLOOD_RUNE);
-	public static final BlockRuneAltar BODY_ALTAR = new BlockRuneAltar("body_Altar_Block", ItemRegistry.BODY_RUNE);
-	public static final BlockRuneAltar CHAOS_ALTAR = new BlockRuneAltar("chaos_Altar_Block", ItemRegistry.CHAOS_RUNE);
-	public static final BlockRuneAltar COSMIC_ALTAR = new BlockRuneAltar("cosmic_Altar_Block", ItemRegistry.COSMIC_RUNE);
-	public static final BlockRuneAltar DEATH_ALTAR = new BlockRuneAltar("death_Altar_Block", ItemRegistry.DEATH_RUNE);
-	public static final BlockRuneAltar EARTH_ALTAR = new BlockRuneAltar("earth_Altar_Block", ItemRegistry.EARTH_RUNE);
-	public static final BlockRuneAltar FIRE_ALTAR = new BlockRuneAltar("fire_Altar_Block", ItemRegistry.FIRE_RUNE);
-	public static final BlockRuneAltar LAW_ALTAR = new BlockRuneAltar("law_Altar_Block", ItemRegistry.LAW_RUNE);
-	public static final BlockRuneAltar MIND_ALTAR = new BlockRuneAltar("mind_Altar_Block", ItemRegistry.MIND_RUNE);
-	public static final BlockRuneAltar NATURE_ALTAR = new BlockRuneAltar("nature_Altar_Block", ItemRegistry.NATURE_RUNE);
-	public static final BlockRuneAltar SOUL_ALTAR = new BlockRuneAltar("soul_Altar_Block", ItemRegistry.SOUL_RUNE);
-	public static final BlockRuneAltar WATER_ALTAR = new BlockRuneAltar("water_Altar_Block", ItemRegistry.WATER_RUNE);
+	public static final BlockRuneAltar AIR_ALTAR = new BlockRuneAltar("air_Altar_Block", EnumRuneType.AIR);
+	public static final BlockRuneAltar ASTRAL_ALTAR = new BlockRuneAltar("astral_Altar_Block", EnumRuneType.ASTRAL);
+	public static final BlockRuneAltar BLOOD_ALTAR = new BlockRuneAltar("blood_Altar_Block", EnumRuneType.BLOOD);
+	public static final BlockRuneAltar BODY_ALTAR = new BlockRuneAltar("body_Altar_Block", EnumRuneType.BODY);
+	public static final BlockRuneAltar CHAOS_ALTAR = new BlockRuneAltar("chaos_Altar_Block", EnumRuneType.CHAOS);
+	public static final BlockRuneAltar COSMIC_ALTAR = new BlockRuneAltar("cosmic_Altar_Block", EnumRuneType.COSMIC);
+	public static final BlockRuneAltar DEATH_ALTAR = new BlockRuneAltar("death_Altar_Block", EnumRuneType.DEATH);
+	public static final BlockRuneAltar EARTH_ALTAR = new BlockRuneAltar("earth_Altar_Block", EnumRuneType.EARTH);
+	public static final BlockRuneAltar FIRE_ALTAR = new BlockRuneAltar("fire_Altar_Block", EnumRuneType.FIRE);
+	public static final BlockRuneAltar LAW_ALTAR = new BlockRuneAltar("law_Altar_Block", EnumRuneType.LAW);
+	public static final BlockRuneAltar MIND_ALTAR = new BlockRuneAltar("mind_Altar_Block", EnumRuneType.MIND);
+	public static final BlockRuneAltar NATURE_ALTAR = new BlockRuneAltar("nature_Altar_Block", EnumRuneType.NATURE);
+	public static final BlockRuneAltar SOUL_ALTAR = new BlockRuneAltar("soul_Altar_Block", EnumRuneType.SOUL);
+	public static final BlockRuneAltar WATER_ALTAR = new BlockRuneAltar("water_Altar_Block", EnumRuneType.WATER);
 	public static final BlockOuraniaAltar OURANIA_ALTAR = new BlockOuraniaAltar();
 
 	public static final BlockRuneAltarEntrance AIR_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("air_Altar_Entrance_Block",
-			ItemRegistry.AIR_TALISMAN, "air");
+			EnumRuneType.AIR, "air");
 	public static final BlockRuneAltarEntrance BLOOD_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("blood_Altar_Entrance_Block",
-			ItemRegistry.BLOOD_TALISMAN, "blood");
+			EnumRuneType.BLOOD, "blood");
 	public static final BlockRuneAltarEntrance BODY_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("body_Altar_Entrance_Block",
-			ItemRegistry.BODY_TALISMAN, "body");
+			EnumRuneType.BODY, "body");
 	public static final BlockRuneAltarEntrance CHAOS_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("chaos_Altar_Entrance_Block",
-			ItemRegistry.CHAOS_TALISMAN, "chaos");
+			EnumRuneType.CHAOS, "chaos");
 	public static final BlockRuneAltarEntrance COSMIC_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("cosmic_Altar_Entrance_Block",
-			ItemRegistry.COSMIC_TALISMAN, "cosmic");
+			EnumRuneType.COSMIC, "cosmic");
 	public static final BlockRuneAltarEntrance DEATH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("death_Altar_Entrance_Block",
-			ItemRegistry.DEATH_TALISMAN, "death");
+			EnumRuneType.DEATH, "death");
 	public static final BlockRuneAltarEntrance EARTH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("earth_Altar_Entrance_Block",
-			ItemRegistry.EARTH_TALISMAN, "earth");
+			EnumRuneType.EARTH, "earth");
 	public static final BlockRuneAltarEntrance FIRE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("fire_Altar_Entrance_Block",
-			ItemRegistry.FIRE_TALISMAN, "fire");
+			EnumRuneType.FIRE, "fire");
 	public static final BlockRuneAltarEntrance LAW_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("law_Altar_Entrance_Block",
-			ItemRegistry.LAW_TALISMAN, "law");
+			EnumRuneType.LAW, "law");
 	public static final BlockRuneAltarEntrance MIND_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("mind_Altar_Entrance_Block",
-			ItemRegistry.MIND_TALISMAN, "mind");
+			EnumRuneType.MIND, "mind");
 	public static final BlockRuneAltarEntrance NATURE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("nature_Altar_Entrance_Block",
-			ItemRegistry.NATURE_TALISMAN, "nature");
+			EnumRuneType.NATURE, "nature");
 	public static final BlockRuneAltarEntrance SOUL_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("soul_Altar_Entrance_Block",
-			ItemRegistry.SOUL_TALISMAN, "soul");
+			EnumRuneType.SOUL, "soul");
 	public static final BlockRuneAltarEntrance WATER_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("water_Altar_Entrance_Block",
-			ItemRegistry.WATER_TALISMAN, "water");
+			EnumRuneType.WATER, "water");
 
 	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal("altar_Exit_Portal");
 

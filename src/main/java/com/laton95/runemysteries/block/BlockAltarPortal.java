@@ -1,5 +1,7 @@
 package com.laton95.runemysteries.block;
 
+import java.util.Random;
+
 import com.laton95.runemysteries.tileentity.TileEntityAltarPortal;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
@@ -14,12 +16,15 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.FMLCommonHandler;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider{
 	public BlockAltarPortal(String name) {
@@ -59,5 +64,28 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider{
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
 		return BoundingBox;
+	}
+	
+	@SideOnly(Side.CLIENT)
+	@Override
+	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		double blockCenterX = pos.getX() + 0.5D;
+		double blockCenterY = pos.getY() + 0.2D;
+		double blockCenterZ = pos.getZ() + 0.5D;
+		double sideOffset = 0.4D;
+		double cornerOffset = 0.3D;
+		EnumParticleTypes particle = EnumParticleTypes.PORTAL;
+		//Sides
+		worldIn.spawnParticle(particle, blockCenterX + sideOffset, blockCenterY, blockCenterZ, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX - sideOffset, blockCenterY, blockCenterZ, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX, blockCenterY, blockCenterZ + sideOffset, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX, blockCenterY, blockCenterZ - sideOffset, 0.01, 0.01, 0.01);
+		
+		
+		//Corners
+		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
 	}
 }

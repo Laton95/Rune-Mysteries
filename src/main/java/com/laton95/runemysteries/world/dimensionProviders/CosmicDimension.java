@@ -3,6 +3,8 @@ package com.laton95.runemysteries.world.dimensionProviders;
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorCosmic;
 
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.multiplayer.WorldClient;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -16,6 +18,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class CosmicDimension extends WorldProvider {
+	IRenderHandler clouds = new NoClouds();
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
@@ -34,7 +37,27 @@ public class CosmicDimension extends WorldProvider {
 		// TODO Auto-generated method stub
 		return super.getSkyRenderer();
 	}
+	
+	@Override
+	public float getSunBrightness(float par1) {
+		return 0;
+	}
 
+	@Override
+	public IRenderHandler getCloudRenderer() {
+		return clouds;
+	}
+	
+	private class NoClouds extends IRenderHandler {
+
+		@Override
+		public void render(float partialTicks, WorldClient world, Minecraft mc) {
+			// TODO Auto-generated method stub
+			
+		}
+		
+	}
+	
 	@Override
 	public DimensionType getDimensionType() {
 		return DimensionRegistry.COSMIC;
