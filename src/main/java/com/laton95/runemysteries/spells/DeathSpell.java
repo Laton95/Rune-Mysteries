@@ -8,7 +8,9 @@ import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
+import com.laton95.runemysteries.util.LogHelper;
 
+import jline.internal.Log;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -24,11 +26,9 @@ public class DeathSpell extends Spell {
 
 	@Override
 	public void fireSpell(World world, EntityPlayer player) {
-		if (!world.isRemote) {
-			DamageProjectile entityenderpearl = new DamageProjectile(world, player,10);
-			entityenderpearl.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
-			world.spawnEntity(entityenderpearl);
-		}
+		DamageProjectile projectile = new DamageProjectile(world, player,10);
+		projectile.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+		world.spawnEntity(projectile);
 	}
 
 }

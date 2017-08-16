@@ -53,6 +53,7 @@ public class RuneMysteries {
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
+		proxy.registerProjectileRenders();
 		
 		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1) {
 			LogHelper.info("It's April Fools!");
