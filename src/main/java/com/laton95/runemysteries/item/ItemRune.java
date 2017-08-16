@@ -1,9 +1,6 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
-
 import net.minecraft.util.IStringSerializable;
-import scala.annotation.implicitNotFound;
 
 public class ItemRune extends RMModItem {
 

@@ -8,8 +8,6 @@ import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
-import com.laton95.runemysteries.world.AltarTracker.RuneAltar;
-import com.laton95.runemysteries.world.AltarTracker.Type;
 import com.laton95.runemysteries.world.structureComponents.ComponentSurfaceAltar;
 
 import net.minecraft.util.math.BlockPos;

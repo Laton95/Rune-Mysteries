@@ -4,11 +4,8 @@ import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.VillagerTradeHelper;
 import com.laton95.runemysteries.world.VillageWizardsHouse;
 
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.entity.passive.EntityVillager.PriceInfo;
 import net.minecraft.init.Items;
-import net.minecraft.item.ItemStack;
-import net.minecraft.village.Village;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;

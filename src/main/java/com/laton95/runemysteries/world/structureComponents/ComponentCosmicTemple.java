@@ -2,26 +2,19 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
-import com.jcraft.jorbis.Block;
 import com.laton95.runemysteries.init.BlockRegistry;
-import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
-import com.laton95.runemysteries.util.WorldHelper;
 
-import net.minecraft.client.gui.GuiPageButtonList;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.util.EnumFacing;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.structure.template.Template;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
 public class ComponentCosmicTemple extends StructureComponent {

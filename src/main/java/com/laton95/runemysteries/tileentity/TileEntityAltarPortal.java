@@ -1,31 +1,17 @@
 package com.laton95.runemysteries.tileentity;
 
-import java.awt.List;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import javax.swing.text.html.HTML.Tag;
-
-import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
-import com.laton95.runemysteries.util.WorldHelper;
-import com.laton95.runemysteries.util.WorldTeleporter;
 import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.ITickable;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 
 public class TileEntityAltarPortal extends RMModTileEntity implements ITickable{
 	private int timer = 20;

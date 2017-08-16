@@ -104,7 +104,7 @@ public class DimensionRegistry {
 		waterDimID = ModConfig.DIMENSIONS.waterTempleDimID;
 		WATER = DimensionType.register("water_temple", "_water", waterDimID, WaterDimension.class, false);
 		
-		mineDimID = 30;
+		mineDimID = ModConfig.DIMENSIONS.essenceMineDimID;
 		MINE = DimensionType.register("essence_mine", "_mine", mindDimID, MineDimension.class, false);
 
 		DimensionManager.registerDimension(airDimID, AIR);

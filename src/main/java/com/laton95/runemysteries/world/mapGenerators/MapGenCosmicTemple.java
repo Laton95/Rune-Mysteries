@@ -1,18 +1,12 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
-import java.util.List;
 import java.util.Random;
 
-import com.google.common.collect.Lists;
-import com.laton95.runemysteries.util.LogHelper;
-import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.world.structureComponents.ComponentCosmicTemple;
-import com.laton95.runemysteries.world.structureComponents.ComponentTemple;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenCosmicTemple extends MapGenRuneTemple {

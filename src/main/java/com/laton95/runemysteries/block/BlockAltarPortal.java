@@ -3,26 +3,17 @@ package com.laton95.runemysteries.block;
 import java.util.Random;
 
 import com.laton95.runemysteries.tileentity.TileEntityAltarPortal;
-import com.laton95.runemysteries.util.LogHelper;
-import com.laton95.runemysteries.util.ModConfig;
-import com.laton95.runemysteries.util.WorldTeleporter;
-import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.gui.spectator.categories.TeleportToPlayer;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.common.FMLCommonHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 

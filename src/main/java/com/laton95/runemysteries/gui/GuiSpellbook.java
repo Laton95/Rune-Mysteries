@@ -2,13 +2,10 @@ package com.laton95.runemysteries.gui;
 
 import java.io.IOException;
 
-import org.apache.commons.io.monitor.FileAlterationListener;
 import org.lwjgl.input.Keyboard;
 
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
-import com.google.common.base.Enums;
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.network.MessageSpellSelect;
 import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.reference.ModReference;
@@ -17,7 +14,6 @@ import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
 import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.util.ItemNBTHelper;
-import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.FontRenderer;

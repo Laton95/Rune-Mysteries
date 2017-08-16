@@ -143,6 +143,11 @@ public class ModConfig {
 		@Comment("Dimension ID for water temple.")
 		@RangeInt(min = 10)
 		public int waterTempleDimID = 181;
+		
+		@Name("Essence Mine Dimension ID")
+		@Comment("Dimension ID for essence mine.")
+		@RangeInt(min = 10)
+		public int essenceMineDimID = 182;
 	}
 
 	@Mod.EventBusSubscriber(modid = ModReference.MOD_ID)

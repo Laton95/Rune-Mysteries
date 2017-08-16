@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.network;
 
-import java.lang.ref.Reference;
-
 import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.entity.player.EntityPlayer;

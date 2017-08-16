@@ -7,8 +7,6 @@ import com.google.common.collect.Lists;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
-import com.laton95.runemysteries.world.AltarTracker.RuneAltar;
-import com.laton95.runemysteries.world.AltarTracker.Type;
 import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundAltar;
 
 import net.minecraft.util.math.BlockPos;

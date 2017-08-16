@@ -15,7 +15,7 @@ item.runemysteries:rune.soul.name=Soul Rune
 item.runemysteries:rune.water.name=Water Rune
 
 item.runemysteries:rune_Essence.name=Rune Essence
-1
+
 item.runemysteries:talisman.air.name=Air Talisman
 item.runemysteries:talisman.astral.name=Astral Talisman
 item.runemysteries:talisman.blood.name=Blood Talisman
@@ -65,6 +65,7 @@ item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+item.runemysteries.scroll.fail=You are already at the essence mine.
 
 item.runemysteries.rune_bag.autoTurnOn=The pouch will now auto-pickup runes.
 item.runemysteries.rune_bag.autoTurnOff=The pouch will no longer auto-pickup runes.
@@ -113,7 +114,6 @@ tile.runemysteries:soul_Altar_Block.name=Soul Altar
 tile.runemysteries:water_Altar_Block.name=Water Altar
 tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
 
-
 tile.runemysteries:air_Altar_Entrance_Block.name=Air Altar Ruin
 tile.runemysteries:blood_Altar_Entrance_Block.name=Blood Altar Ruin
 tile.runemysteries:body_Altar_Entrance_Block.name=Body Altar Ruin
@@ -131,6 +131,9 @@ tile.runemysteries:water_Altar_Entrance_Block.name=Water Altar Ruin
 tile.runemysteries:altar_Exit_Portal.name=Altar Exit Portal
 
 tile.runemysteries:particle_Light.name=Magic Light
+
+#Fluids
+fluid.runemysteries:fluid_Blood=Blood
 
 #Creative Tabs
 itemGroup.runemysteries=Rune Mysteries

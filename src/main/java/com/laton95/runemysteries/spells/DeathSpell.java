@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.spells;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
@@ -10,12 +9,9 @@ import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 
-import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.BiomeDictionary;
-import net.minecraftforge.fml.common.Mod;
 
 public class DeathSpell extends Spell {
 	private final static List<SpellCost> costs = ImmutableList.of(

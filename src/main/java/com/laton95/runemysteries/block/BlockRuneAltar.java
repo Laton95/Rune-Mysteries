@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.init.ItemRegistry;
-import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 
 import net.minecraft.advancements.CriteriaTriggers;

@@ -19,6 +19,7 @@ import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -43,6 +44,11 @@ public class RuneMysteries {
 	/** Set our custom inventory Gui index to the next available Gui index */
 	public static final int GUI_ITEM_INV = modGuiIndex++;
 
+	static {
+		FluidRegistry.enableUniversalBucket();
+		
+	}
+	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event) {
 		NetworkHandler.init();

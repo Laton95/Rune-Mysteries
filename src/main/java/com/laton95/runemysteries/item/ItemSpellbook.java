@@ -3,32 +3,23 @@ package com.laton95.runemysteries.item;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
+import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.spells.DeathSpell;
-import com.laton95.runemysteries.spells.EnderpearlSpell;
-import com.laton95.runemysteries.spells.ExplosionSpell;
-import com.laton95.runemysteries.spells.SnowballSpell;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
 import com.laton95.runemysteries.util.ItemHelper;
 import com.laton95.runemysteries.util.ItemNBTHelper;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import scala.swing.event.BackgroundChanged;
 
 public class ItemSpellbook extends RMModItem {
 

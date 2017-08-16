@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
 import com.laton95.runemysteries.init.DimensionRegistry;
-import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorMind;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorMine;
 
 import net.minecraft.init.Biomes;

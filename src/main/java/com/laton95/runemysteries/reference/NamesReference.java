@@ -30,6 +30,10 @@ public final class NamesReference {
 		public static final String NETHER_DAMAGE = "chaostalisman";	
 	}
 	
+	public static final class Scroll {
+		public static final String FAIL = "item.runemysteries.scroll.fail";
+	}
+	
 	public static final class Spellbook {
 		public static final String NO_RUNES = "item.runemysteries.spellbook.norunes";
 		public static final String COST_BUTTON = "gui.runemysteries.button.extraCosts";

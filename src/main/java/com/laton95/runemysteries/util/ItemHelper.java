@@ -2,31 +2,21 @@ package com.laton95.runemysteries.util;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemRuneBag;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.spells.Spell;
-import com.laton95.runemysteries.spells.Spells;
 
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.init.Blocks;
-import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.play.server.SPacketCollectItem;
-import net.minecraft.network.play.server.SPacketCombatEvent.Event;
 import net.minecraft.util.SoundCategory;
-import net.minecraft.util.SoundEvent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.Event.Result;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;

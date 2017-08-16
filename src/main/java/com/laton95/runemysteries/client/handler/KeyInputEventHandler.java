@@ -1,14 +1,11 @@
 package com.laton95.runemysteries.client.handler;
 
 import com.laton95.runemysteries.client.settings.Keybindings;
-import com.laton95.runemysteries.network.NetworkHandler;
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.network.MessageExplode;
+import com.laton95.runemysteries.network.NetworkHandler;
 
-import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
-import net.minecraftforge.fml.common.gameevent.InputEvent.KeyInputEvent;
 
 public class KeyInputEventHandler {
 	

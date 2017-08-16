@@ -9,7 +9,6 @@ import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.ItemNBTHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;

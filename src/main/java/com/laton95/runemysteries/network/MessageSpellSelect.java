@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.network;
 
-import java.awt.Button;
-
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.spells.Spell;
 import com.laton95.runemysteries.spells.Spells;
@@ -10,7 +8,6 @@ import com.laton95.runemysteries.util.ItemNBTHelper;
 import io.netty.buffer.ByteBuf;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumHand;
 
 public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect> {
 	private int spellID;

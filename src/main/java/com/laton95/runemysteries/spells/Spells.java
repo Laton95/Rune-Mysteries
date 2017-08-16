@@ -4,19 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.init.ItemRegistry;
-import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.Spell.SpellCost;
-import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.entity.player.InventoryPlayer;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.EntityViewRenderEvent.CameraSetup;
 
 public class Spells {
 	public static final Spell NONE_SPELL = new Spell(new ArrayList<>(), 0, NamesReference.Spells.NO_SPELL_NAME, NamesReference.Spells.NO_SPELL_DESCRIPTION, null) {	

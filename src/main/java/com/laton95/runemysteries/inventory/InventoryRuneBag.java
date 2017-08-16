@@ -1,32 +1,12 @@
 package com.laton95.runemysteries.inventory;
 
-import java.util.List;
-
-import com.laton95.runemysteries.GuiHandler.GuiIDs;
 import com.laton95.runemysteries.item.ItemRune;
-import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.spells.Spell.SpellCost;
-import com.laton95.runemysteries.util.LogHelper;
 
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.inventory.IInventory;
-import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.nbt.NBTTagList;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentString;
-import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.World;
-import net.minecraftforge.common.util.Constants;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
-import scala.swing.TextComponent;
 
 public class InventoryRuneBag implements IItemHandlerModifiable {
 	

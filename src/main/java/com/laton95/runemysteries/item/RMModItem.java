@@ -7,7 +7,6 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.NonNullList;
-import net.minecraft.world.gen.structure.StructureStart;
 
 public class RMModItem extends Item {
 	
@@ -30,7 +29,7 @@ public class RMModItem extends Item {
 	
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items) {
-		if (this.hasSubtypes && values != null) {
+		if (this.hasSubtypes && values != null && tab == this.getCreativeTab()) {
 			for (int i = 0; i < values.getEnumConstants().length; i++) {
 				items.add(new ItemStack(this, 1, i));
 			}
