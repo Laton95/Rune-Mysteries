@@ -5,7 +5,7 @@ import com.laton95.runemysteries.client.render.EntityRenderSpellProjectile;
 import com.laton95.runemysteries.client.settings.Keybindings;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
+import com.laton95.runemysteries.spells.projectiles.SpellProjectileBase;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraft.client.Minecraft;
@@ -33,7 +33,7 @@ public class ClientProxy extends CommonProxy {
 	@Override
 	public void registerProjectileRenders() {
 		LogHelper.info("Registering projectile renders");
-		RenderingRegistry.registerEntityRenderingHandler(DamageProjectile.class, new IRenderFactory<DamageProjectile>() {
+		RenderingRegistry.registerEntityRenderingHandler(SpellProjectileBase.class, new IRenderFactory<SpellProjectileBase>() {
 
 			@Override
 			public Render createRenderFor(RenderManager manager) {

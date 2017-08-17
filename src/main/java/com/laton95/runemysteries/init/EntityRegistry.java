@@ -3,7 +3,7 @@ package com.laton95.runemysteries.init;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.spells.projectiles.DamageProjectile;
+import com.laton95.runemysteries.spells.projectiles.SpellProjectileBase;
 import com.laton95.runemysteries.util.LogHelper;
 
 import net.minecraftforge.event.RegistryEvent;
@@ -14,7 +14,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 @Mod.EventBusSubscriber
 public class EntityRegistry {
 	public static final List<EntityEntry> entityList = ImmutableList.of(
-			new EntityEntry(DamageProjectile.class, "DamageProjectile").setRegistryName("DamageProjectile")
+			new EntityEntry(SpellProjectileBase.class, "DamageProjectile").setRegistryName("DamageProjectile")
 			);
 
 	@SubscribeEvent
