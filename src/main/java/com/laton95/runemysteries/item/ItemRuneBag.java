@@ -25,79 +25,110 @@ import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class ItemRuneBag extends RMModItem {
+public class ItemRuneBag extends RMModItem
+{
 
-	public ItemRuneBag() {
+	public ItemRuneBag()
+	{
 		super("rune_bag", true);
 		setMaxStackSize(1);
 	}
 
 	@Override
-	public int getMaxItemUseDuration(ItemStack stack) {
+	public int getMaxItemUseDuration(ItemStack stack)
+	{
 		return 1;
 	}
-	
+
 	/*
-	 * InvProvider class taken from Vaskii's Botania mod under the Botania licence 
-	 * modified to check for runes instead of flowers
-	 * */
+	 * InvProvider class taken from Vaskii's Botania mod under the Botania
+	 * licence modified to check for runes instead of flowers
+	 */
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound oldCapNbt) {
+	public ICapabilityProvider initCapabilities(ItemStack stack, NBTTagCompound oldCapNbt)
+	{
 		return new InvProvider();
 	}
 
-	private static class InvProvider implements ICapabilitySerializable<NBTBase> {
+	private static class InvProvider implements ICapabilitySerializable<NBTBase>
+	{
 
-		private final IItemHandler inv = new ItemStackHandler(14) {
+		private final IItemHandler inv = new ItemStackHandler(14)
+		{
+
 			@Nonnull
 			@Override
-			public ItemStack insertItem(int slot, @Nonnull ItemStack toInsert, boolean simulate) {
-				if(!toInsert.isEmpty() && toInsert.getItem() instanceof ItemRune){
+			public ItemStack insertItem(int slot, @Nonnull ItemStack toInsert, boolean simulate)
+			{
+				if (!toInsert.isEmpty() && toInsert.getItem() instanceof ItemRune)
+				{
 					return super.insertItem(slot, toInsert, simulate);
-				} else {
+				}
+				else
+				{
 					return toInsert;
 				}
 			}
 		};
 
 		@Override
-		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing) {
+		public boolean hasCapability(@Nonnull Capability<?> capability, @Nullable EnumFacing facing)
+		{
 			return capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY;
 		}
 
 		@Override
-		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing) {
-			if(capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+		public <T> T getCapability(@Nonnull Capability<T> capability, @Nullable EnumFacing facing)
+		{
+			if (capability == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY)
+			{
 				return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.cast(inv);
-			else return null;
+			}
+			else
+			{
+				return null;
+			}
 		}
 
 		@Override
-		public NBTBase serializeNBT() {
+		public NBTBase serializeNBT()
+		{
 			return CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.writeNBT(inv, null);
 		}
 
 		@Override
-		public void deserializeNBT(NBTBase nbt) {
+		public void deserializeNBT(NBTBase nbt)
+		{
 			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
 		}
 	}
-	
+
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	{
 		ItemStack stack = playerIn.getHeldItem(handIn);
-		if (!worldIn.isRemote) {
-			if (!playerIn.isSneaking()) {
-				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn, (int)playerIn.posX, (int)playerIn.posY, (int)playerIn.posZ);
-			} else {
+		if (!worldIn.isRemote)
+		{
+			if (!playerIn.isSneaking())
+			{
+				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn,
+						(int) playerIn.posX,
+						(int) playerIn.posY, (int) playerIn.posZ);
+			}
+			else
+			{
 				ItemNBTHelper.toggleBoolean(stack, "autoPickup");
-				if (ItemNBTHelper.getBoolean(stack, "autoPickup", true)) {
+				if (ItemNBTHelper.getBoolean(stack, "autoPickup", true))
+				{
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_ON));
-				} else {
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
+				}
+				else
+				{
+					playerIn.sendMessage(
+							new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
 				}
 			}
 		}
-		return new ActionResult<ItemStack>(EnumActionResult.SUCCESS, stack);
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 }

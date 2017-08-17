@@ -17,8 +17,11 @@ import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class CosmicDimension extends WorldProvider {
+public class CosmicDimension extends WorldProvider
+{
+
 	IRenderHandler clouds = new NoClouds();
+
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
@@ -27,81 +30,96 @@ public class CosmicDimension extends WorldProvider {
 	 * parent version.
 	 */
 	@Override
-	public void init() {
+	public void init()
+	{
 		biomeProvider = new BiomeProviderSingle(Biomes.VOID);
 		hasSkyLight = false;
 	}
 
 	@Override
-	public IRenderHandler getSkyRenderer() {
+	public IRenderHandler getSkyRenderer()
+	{
 		// TODO Auto-generated method stub
 		return super.getSkyRenderer();
 	}
-	
+
 	@Override
-	public float getSunBrightness(float par1) {
+	public float getSunBrightness(float par1)
+	{
 		return 0;
 	}
 
 	@Override
-	public IRenderHandler getCloudRenderer() {
+	public IRenderHandler getCloudRenderer()
+	{
 		return clouds;
 	}
-	
-	private class NoClouds extends IRenderHandler {
+
+	private class NoClouds extends IRenderHandler
+	{
 
 		@Override
-		public void render(float partialTicks, WorldClient world, Minecraft mc) {
+		public void render(float partialTicks, WorldClient world, Minecraft mc)
+		{
 			// TODO Auto-generated method stub
-			
+
 		}
-		
+
 	}
-	
+
 	@Override
-	public DimensionType getDimensionType() {
+	public DimensionType getDimensionType()
+	{
 		return DimensionRegistry.COSMIC;
 	}
 
 	@Override
-	public float getCloudHeight() {
+	public float getCloudHeight()
+	{
 		return 0f;
 	}
 
 	@Override
-	public boolean isSurfaceWorld() {
+	public boolean isSurfaceWorld()
+	{
 		return true;
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn(int x, int z) {
+	public boolean canCoordinateBeSpawn(int x, int z)
+	{
 		return false;
 	}
 
 	@Override
-	public boolean canRespawnHere() {
+	public boolean canRespawnHere()
+	{
 		return false;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int x, int z) {
+	public boolean doesXZShowFog(int x, int z)
+	{
 		return false;
 	}
 
 	@Override
-	public long getWorldTime() {
+	public long getWorldTime()
+	{
 		return 18000;
 	}
 
 	@Override
-	public boolean isDaytime() {
+	public boolean isDaytime()
+	{
 		return true;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
+	{
 		float f = MathHelper.cos(p_76562_1_ * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0F;
@@ -111,7 +129,8 @@ public class CosmicDimension extends WorldProvider {
 	}
 
 	@Override
-	public IChunkGenerator createChunkGenerator() {
+	public IChunkGenerator createChunkGenerator()
+	{
 		return new ChunkGeneratorCosmic(world, world.getSeed());
 	}
 }

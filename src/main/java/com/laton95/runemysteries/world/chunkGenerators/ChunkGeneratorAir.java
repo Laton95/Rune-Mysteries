@@ -11,13 +11,14 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biome.SpawnListEntry;
 
-public class ChunkGeneratorAir extends ChunkGeneratorSurfaceWorld {
+public class ChunkGeneratorAir extends ChunkGeneratorSurfaceWorld
+{
 
 	private final static List<Biome.SpawnListEntry> MOB_SPAWNS = ImmutableList.of(
-			new SpawnListEntry(EntityRabbit.class, 20, 2, 6)
-			);
-	
-	public ChunkGeneratorAir(World worldIn, long seed) {
+			new SpawnListEntry(EntityRabbit.class, 20, 2, 6));
+
+	public ChunkGeneratorAir(World worldIn, long seed)
+	{
 		super(worldIn, seed, Blocks.STONE.getDefaultState(), NamesReference.worldGenStrings.AIR, 5, 3, MOB_SPAWNS);
 	}
 }

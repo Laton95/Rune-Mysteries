@@ -31,7 +31,9 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = ModReference.MOD_ID, name = ModReference.MOD_NAME, version = ModReference.VERSION)
-public class RuneMysteries {
+public class RuneMysteries
+{
+
 	@Instance(ModReference.MOD_ID)
 	public static RuneMysteries instance;
 
@@ -44,29 +46,34 @@ public class RuneMysteries {
 	/** Set our custom inventory Gui index to the next available Gui index */
 	public static final int GUI_ITEM_INV = modGuiIndex++;
 
-	static {
+	static
+	{
 		FluidRegistry.enableUniversalBucket();
-		
+
 	}
-	
+
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
+	public void preInit(FMLPreInitializationEvent event)
+	{
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		proxy.registerProjectileRenders();
-		
-		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1) {
+
+		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
+		{
 			LogHelper.info("It's April Fools!");
 			MiscReference.isAprilFools = true;
 		}
-		if (LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25) {
+		if (LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25)
+		{
 			LogHelper.info("Merry Christmas!");
 			MiscReference.isChristmas = true;
 		}
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event)
+	{
 		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 		WorldGenRegistry.registerWorldGen();
 		DimensionRegistry.registerDimensions();
@@ -77,20 +84,24 @@ public class RuneMysteries {
 	}
 
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		Spells.checkSpells();
 	}
 
 	@Mod.EventHandler
-	public void serverStarting(FMLServerStartedEvent event) {
+	public void serverStarting(FMLServerStartedEvent event)
+	{
 		LogHelper.info("Loading altar tracker");
-		if (WorldGenerator.altarTracker == null) {
+		if (WorldGenerator.altarTracker == null)
+		{
 			WorldGenerator.altarTracker = new AltarTracker();
 		}
 	}
 
 	@Mod.EventHandler
-	public void serverStopping(FMLServerStoppingEvent event) {
+	public void serverStopping(FMLServerStoppingEvent event)
+	{
 		LogHelper.info("Unloading altar tracker");
 		WorldGenerator.altarTracker = null;
 	}

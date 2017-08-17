@@ -13,20 +13,25 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
 
-public class EnderpearlSpell extends Spell {
+public class EnderpearlSpell extends SpellBase
+{
+
 	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.LAW.ordinal())
-			);
-	
-	public EnderpearlSpell() {
+			new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.LAW.ordinal()));
+
+	public EnderpearlSpell()
+	{
 		super(costs, 20, NamesReference.Spells.ENDERPEARL_SPELL_NAME, NamesReference.Spells.ENDERPEARL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override
-	public void fireSpell(World world, EntityPlayer player) {
-		if (!world.isRemote) {
+	public void fireSpell(World world, EntityPlayer player)
+	{
+		if (!world.isRemote)
+		{
 			EntityEnderPearl entityenderpearl = new EntityEnderPearl(world, player);
-			entityenderpearl.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+			entityenderpearl.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F,
+					1.0F);
 			world.spawnEntity(entityenderpearl);
 		}
 	}

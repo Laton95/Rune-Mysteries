@@ -14,7 +14,9 @@ import net.minecraft.world.gen.IChunkGenerator;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class MineDimension extends WorldProvider {
+public class MineDimension extends WorldProvider
+{
+
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
@@ -23,50 +25,59 @@ public class MineDimension extends WorldProvider {
 	 * parent version.
 	 */
 	@Override
-	public void init() {
+	public void init()
+	{
 		biomeProvider = new BiomeProviderSingle(Biomes.ICE_PLAINS);
 		hasSkyLight = true;
 	}
 
 	@Override
-	public DimensionType getDimensionType() {
+	public DimensionType getDimensionType()
+	{
 		return DimensionRegistry.MIND;
 	}
 
 	@Override
-	public boolean isSurfaceWorld() {
+	public boolean isSurfaceWorld()
+	{
 		return true;
 	}
 
 	@Override
-	public boolean canCoordinateBeSpawn(int x, int z) {
+	public boolean canCoordinateBeSpawn(int x, int z)
+	{
 		return false;
 	}
 
 	@Override
-	public boolean canRespawnHere() {
+	public boolean canRespawnHere()
+	{
 		return false;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int x, int z) {
+	public boolean doesXZShowFog(int x, int z)
+	{
 		return false;
 	}
 
 	@Override
-	public long getWorldTime() {
+	public long getWorldTime()
+	{
 		return 6000;
 	}
 
 	@Override
-	public boolean isDaytime() {
+	public boolean isDaytime()
+	{
 		return true;
 	}
 
 	@Override
 	@SideOnly(Side.CLIENT)
-	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_) {
+	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
+	{
 		float f = MathHelper.cos(p_76562_1_ * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0.7529412F;
@@ -79,7 +90,8 @@ public class MineDimension extends WorldProvider {
 	}
 
 	@Override
-	public IChunkGenerator createChunkGenerator() {
+	public IChunkGenerator createChunkGenerator()
+	{
 		return new ChunkGeneratorMine(world, world.getSeed());
 	}
 }

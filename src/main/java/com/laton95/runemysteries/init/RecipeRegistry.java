@@ -17,25 +17,31 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class RecipeRegistry {
+public class RecipeRegistry
+{
+
 	private static Map<String, ResourceLocation> recipeMap = new HashMap<>();
 
 	@SubscribeEvent
-	public static void registerRecipes(RegistryEvent.Register<IRecipe> event) {
+	public static void registerRecipes(RegistryEvent.Register<IRecipe> event)
+	{
 		LogHelper.info("Registering recipies");
 		makeRecipeList();
 		recipeMap.forEach((k, v) -> {
-			CraftingHelper.register(v, new IRecipeFactory() {
+			CraftingHelper.register(v, new IRecipeFactory()
+			{
 
 				@Override
-				public IRecipe parse(JsonContext context, JsonObject json) {
+				public IRecipe parse(JsonContext context, JsonObject json)
+				{
 					return CraftingHelper.getRecipe(json, context);
 				}
 			});
 		});
 	}
 
-	private static void makeRecipeList() {
+	private static void makeRecipeList()
+	{
 		recipeMap.put("Ruin block", new ResourceLocation(ModReference.MOD_ID + ":ruin_block.json"));
 		recipeMap.put("Temple block", new ResourceLocation(ModReference.MOD_ID + ":temple_block.json"));
 		recipeMap.put("Blood block", new ResourceLocation(ModReference.MOD_ID + ":blood_block.json"));

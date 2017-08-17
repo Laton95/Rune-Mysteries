@@ -21,68 +21,79 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class LiquidRegistry {
-	
+public class LiquidRegistry
+{
+
 	public static final RMModFluid fluid_blood = new RMModFluid("fluid_Blood");
-	
-	public static List<RMModFluid> fluidList = ImmutableList.of(
-			fluid_blood
-			);
-	
+
+	public static List<RMModFluid> fluidList = ImmutableList.of(fluid_blood);
+
 	@SubscribeEvent
-	public static void registerFluids(RegistryEvent.Register<Block> event) {
-		for (RMModFluid fluid : fluidList) {
+	public static void registerFluids(RegistryEvent.Register<Block> event)
+	{
+		for (RMModFluid fluid : fluidList)
+		{
 			FluidRegistry.registerFluid(fluid);
 			RMModFluidBlock fluidBlock = new RMModFluidBlock(fluid.getFluidName(), fluid);
 			fluid.setFluidBlock(fluidBlock);
 			event.getRegistry().register(fluidBlock);
-			
-			ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase() {
-				
+
+			ModelLoader.setCustomStateMapper(fluidBlock, new StateMapperBase()
+			{
+
 				@Override
-				protected ModelResourceLocation getModelResourceLocation(IBlockState state) {
+				protected ModelResourceLocation getModelResourceLocation(IBlockState state)
+				{
 					return new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fluid.getFluidName()), "fluid");
 				}
 			});
 			FluidRegistry.addBucketForFluid(fluid);
 		}
-		
-		
+
 	}
-	
-	public static final class RMModFluid extends Fluid {
-		
+
+	public static final class RMModFluid extends Fluid
+	{
+
 		private final String name;
 		private RMModFluidBlock fluidBlock;
-		
-		public RMModFluid(String name) {
-			super(ModReference.MOD_ID + ":" + name, new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_still"), new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_flowing"));
+
+		public RMModFluid(String name)
+		{
+			super(ModReference.MOD_ID + ":" + name, new ResourceLocation(ModReference.MOD_ID, "fluids/" + name
+					+ "_still"), new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_flowing"));
 			this.name = name;
 		}
-		
-		public String getFluidName() {
+
+		public String getFluidName()
+		{
 			return name;
 		}
-		
-		public void setFluidBlock(RMModFluidBlock fluidBlock) {
+
+		public void setFluidBlock(RMModFluidBlock fluidBlock)
+		{
 			this.fluidBlock = fluidBlock;
 		}
-		
-		public RMModFluidBlock getFluidBlock() {
+
+		public RMModFluidBlock getFluidBlock()
+		{
 			return fluidBlock;
 		}
 	}
-	
-	public static final class RMModFluidBlock extends BlockFluidClassic {
-		
-		public RMModFluidBlock(String name, Fluid fluid) {
+
+	public static final class RMModFluidBlock extends BlockFluidClassic
+	{
+
+		public RMModFluidBlock(String name, Fluid fluid)
+		{
 			super(fluid, Material.WATER);
-			this.setUnlocalizedName(ModReference.MOD_ID + ":" + name);
+			setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 			this.setRegistryName(ModReference.MOD_ID, name.toLowerCase());
 		}
-		
+
 		@Override
-		public EnumBlockRenderType getRenderType(IBlockState state) {
+		public EnumBlockRenderType getRenderType(IBlockState state)
+		{
 			return EnumBlockRenderType.MODEL;
 		}
 	}

@@ -9,40 +9,43 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ContainerRuneBag extends RMModContainer {
-	private final InventoryRuneBag bag;
-	
-	
+public class ContainerRuneBag extends RMModContainer
+{
 
-	public ContainerRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bag) {
+	private final InventoryRuneBag bag;
+
+	public ContainerRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bag)
+	{
 		this.bag = bag;
-		
+
 		for (int i = 0; i < 2; ++i)
-        {
-            for (int j = 0; j < 7; ++j)
-            {
-                this.addSlotToContainer(new RuneSlot(bag, j + i * 7, 26 + j * 18, 35 + i * 18));
-            }
-        }
-		
-		this.addPlayerSlots(playerInventory, 8, 84);
+		{
+			for (int j = 0; j < 7; ++j)
+			{
+				addSlotToContainer(new RuneSlot(bag, j + i * 7, 26 + j * 18, 35 + i * 18));
+			}
+		}
+
+		addPlayerSlots(playerInventory, 8, 84);
 	}
-	
+
 	@Override
-	public boolean canInteractWith(EntityPlayer playerIn) {
+	public boolean canInteractWith(EntityPlayer playerIn)
+	{
 		return true;
 	}
 
-	//Thanks to CoolAlias for this implementation!
+	// Thanks to CoolAlias for this implementation!
 	@Override
-	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
+	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
+	{
 		ItemStack itemstack = ItemStack.EMPTY;
-		Slot slot = (Slot) this.inventorySlots.get(index);
-		
+		Slot slot = inventorySlots.get(index);
+
 		int invStart = bag.getSlots();
-		int invEnd = invStart+26;
-		int hotbarStart = invEnd+1;
-		int hotbarEnd = hotbarStart+8;
+		int invEnd = invStart + 26;
+		int hotbarStart = invEnd + 1;
+		int hotbarEnd = hotbarStart + 8;
 
 		if (slot != null && slot.getHasStack())
 		{
@@ -53,17 +56,18 @@ public class ContainerRuneBag extends RMModContainer {
 			if (index < invStart)
 			{
 				// try to place in player inventory / action bar
-				if (!this.mergeItemStack(itemstack1, invStart, hotbarEnd+1, true))
+				if (!mergeItemStack(itemstack1, invStart, hotbarEnd + 1, true))
 				{
 					return ItemStack.EMPTY;
 				}
 
 				slot.onSlotChange(itemstack1, itemstack);
 			}
-			// Item is in inventory / hotbar, try to place in custom inventory
+			// Item is in inventory / hotbar, try to place in custom
+			// inventory
 			else
 			{
-				if (!this.mergeItemStack(itemstack1, 0, invStart, false))
+				if (!mergeItemStack(itemstack1, 0, invStart, false))
 				{
 					return ItemStack.EMPTY;
 				}
@@ -88,21 +92,27 @@ public class ContainerRuneBag extends RMModContainer {
 
 		return itemstack;
 	}
-	
-	private class RuneSlot extends SlotItemHandler {
-		
-		public RuneSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
+
+	private class RuneSlot extends SlotItemHandler
+	{
+
+		public RuneSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition)
+		{
 			super(itemHandler, index, xPosition, yPosition);
 		}
 
 		@Override
-		public boolean isItemValid(ItemStack stack) {
-			if (stack.getItem() instanceof ItemRune) {
+		public boolean isItemValid(ItemStack stack)
+		{
+			if (stack.getItem() instanceof ItemRune)
+			{
 				return super.isItemValid(stack);
-			} else {
+			}
+			else
+			{
 				return false;
 			}
 		}
-		
+
 	}
 }

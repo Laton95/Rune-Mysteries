@@ -11,7 +11,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
-public class AltarNBTHelper extends WorldSavedData {
+public class AltarNBTHelper extends WorldSavedData
+{
+
 	private static final String DATA_NAME = ModReference.MOD_ID;
 
 	public boolean overworldAltarsGenerated;
@@ -22,16 +24,19 @@ public class AltarNBTHelper extends WorldSavedData {
 	public Map<String, Boolean> placedMap = new HashMap<>();
 
 	// Required constructors
-	public AltarNBTHelper() {
+	public AltarNBTHelper()
+	{
 		super(DATA_NAME);
 	}
 
-	public AltarNBTHelper(String s) {
+	public AltarNBTHelper(String s)
+	{
 		super(s);
 	}
 
 	@Override
-	public void readFromNBT(NBTTagCompound nbt) {
+	public void readFromNBT(NBTTagCompound nbt)
+	{
 		overworldAltarsGenerated = nbt.getBoolean("overworldAltarsGenerated");
 		netherAltarsGenerated = nbt.getBoolean("netherAltarsGenerated");
 		endAltarsGenerated = nbt.getBoolean("endAltarsGenerated");
@@ -102,7 +107,8 @@ public class AltarNBTHelper extends WorldSavedData {
 	}
 
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+	public NBTTagCompound writeToNBT(NBTTagCompound compound)
+	{
 		compound.setBoolean("overworldAltarsGenerated", overworldAltarsGenerated);
 		compound.setBoolean("netherAltarsGenerated", netherAltarsGenerated);
 		compound.setBoolean("endAltarsGenerated", endAltarsGenerated);
@@ -127,11 +133,15 @@ public class AltarNBTHelper extends WorldSavedData {
 		compound.setBoolean("astral_altar", placedMap.get("astral_altar"));
 		compound.setBoolean("blood_altar", placedMap.get("blood_altar"));
 		compound.setBoolean("body_altar", placedMap.get("body_altar"));
-		try {
+		try
+		{
 			compound.setBoolean("chaos_altar", placedMap.get("chaos_altar"));
 			compound.setBoolean("cosmic_altar", placedMap.get("cosmic_altar"));
-		} catch (NullPointerException e) {
-			// Nether and End generators have not been initialized yet, ignore
+		}
+		catch (NullPointerException e)
+		{
+			// Nether and End generators have not been initialized yet,
+			// ignore
 			// these altars.
 		}
 		compound.setBoolean("death_altar", placedMap.get("death_altar"));
@@ -147,11 +157,13 @@ public class AltarNBTHelper extends WorldSavedData {
 		return compound;
 	}
 
-	public static AltarNBTHelper get(World world) {
+	public static AltarNBTHelper get(World world)
+	{
 		MapStorage storage = world.getMapStorage();
 		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
 
-		if (instance == null) {
+		if (instance == null)
+		{
 			instance = new AltarNBTHelper();
 			storage.setData(DATA_NAME, instance);
 			instance.markDirty();
@@ -159,13 +171,16 @@ public class AltarNBTHelper extends WorldSavedData {
 		return instance;
 	}
 
-	private BlockPos intArrayToBlockPos(int[] array) {
+	private BlockPos intArrayToBlockPos(int[] array)
+	{
 		return new BlockPos(array[0], array[1], array[2]);
 	}
 
-	private int[] blockPosToIntArray(BlockPos pos) {
+	private int[] blockPosToIntArray(BlockPos pos)
+	{
 		int[] array = new int[3];
-		if (pos != null & array != null) {
+		if (pos != null & array != null)
+		{
 			array[0] = pos.getX();
 			array[1] = pos.getY();
 			array[2] = pos.getZ();

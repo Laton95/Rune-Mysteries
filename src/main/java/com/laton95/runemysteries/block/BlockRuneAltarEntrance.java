@@ -17,50 +17,63 @@ import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockRuneAltarEntrance extends RMModBlock {
+public class BlockRuneAltarEntrance extends RMModBlock
+{
+
 	private int dimID;
 	private EnumRuneType type;
 
-	public BlockRuneAltarEntrance(String name, EnumRuneType type, String altar) {
+	public BlockRuneAltarEntrance(String name, EnumRuneType type, String altar)
+	{
 		super(name, Material.ROCK, 0, 2000f, null, 0, false);
 		this.type = type;
 		setBlockUnbreakable();
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
-			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-		if (!worldIn.isRemote) {
-			ItemStack stack = new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, type.ordinal());
-			if (playerIn.getHeldItemMainhand().getItem().equals(ItemRegistry.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == type.ordinal()
-			 || playerIn.getHeldItemOffhand().getItem().equals(ItemRegistry.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == type.ordinal()) {
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if (!worldIn.isRemote)
+		{
+			new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, type.ordinal());
+			if (playerIn.getHeldItemMainhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
+					&& playerIn.getHeldItemMainhand().getItemDamage() == type.ordinal()
+					|| playerIn.getHeldItemOffhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
+							&& playerIn.getHeldItemOffhand().getItemDamage() == type.ordinal())
+			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
 				TeleportHelper.teleportEntity(playerIn, dimID, 2, 87, 2);
-			} else {
+			}
+			else
+			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.INTERACT));
 			}
 		}
 		return true;
 	}
 
-	public void setDimID(int dimID) {
+	public void setDimID(int dimID)
+	{
 		this.dimID = dimID;
 	}
 
 	@Override
-	public boolean isOpaqueCube(IBlockState state) {
+	public boolean isOpaqueCube(IBlockState state)
+	{
 		return false;
 	}
 
 	@Override
-	public boolean isFullCube(IBlockState state) {
+	public boolean isFullCube(IBlockState state)
+	{
 		return false;
 	}
 
 	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos) {
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
 		return BoundingBox;
 	}
 }

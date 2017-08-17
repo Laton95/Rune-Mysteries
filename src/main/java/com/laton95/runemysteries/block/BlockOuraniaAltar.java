@@ -21,23 +21,31 @@ import net.minecraft.world.WorldServer;
 import net.minecraft.world.storage.loot.LootContext;
 import net.minecraft.world.storage.loot.LootTable;
 
-public class BlockOuraniaAltar extends BlockRuneAltar {
+public class BlockOuraniaAltar extends BlockRuneAltar
+{
 
-	public BlockOuraniaAltar() {
+	public BlockOuraniaAltar()
+	{
 		super("ourania_Altar_Block", EnumRuneType.AIR);
 		setBlockUnbreakable();
-		this.item = null;
+		item = null;
 	}
 
 	@Override
-	protected void spawnItem(World worldIn, Entity entityIn, Item item, int metadata) {
-		while (((EntityItem) entityIn).getItem().getCount() > 0) {
-			if (item == null) {
+	protected void spawnItem(World worldIn, Entity entityIn, Item item, int metadata)
+	{
+		while (((EntityItem) entityIn).getItem().getCount() > 0)
+		{
+			if (item == null)
+			{
 				List<ItemStack> items = getRandomRune(worldIn);
-				for (ItemStack rune : items) {
+				for (ItemStack rune : items)
+				{
 					spawnAsEntity(worldIn, entityIn.getPosition(), rune);
 				}
-			} else {
+			}
+			else
+			{
 				ItemStack itemstack = new ItemStack(item);
 				spawnAsEntity(worldIn, entityIn.getPosition(), itemstack);
 
@@ -48,26 +56,33 @@ public class BlockOuraniaAltar extends BlockRuneAltar {
 	}
 
 	@Override
-	protected void giveAdvancements(EntityItem entityIn, World worldIn) {
+	protected void giveAdvancements(EntityItem entityIn, World worldIn)
+	{
 		super.giveAdvancements(entityIn, worldIn);
 		String thrower = entityIn.getThrower();
-		if (thrower != null) {
+		if (thrower != null)
+		{
 			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
-			if (player instanceof EntityPlayerMP) {
+			if (player instanceof EntityPlayerMP)
+			{
 				CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player,
 						new ItemStack(BlockRegistry.OURANIA_ALTAR));
 			}
 		}
 	}
 
-	private List<ItemStack> getRandomRune(World world) {
+	private List<ItemStack> getRandomRune(World world)
+	{
 		List<ItemStack> items = new ArrayList<>();
-		try {
+		try
+		{
 			ResourceLocation resourcelocation = LootRegistry.OURANIA_ALTAR;
 			LootTable loottable = world.getLootTableManager().getLootTableFromLocation(resourcelocation);
 			LootContext.Builder lootBuilder = new LootContext.Builder((WorldServer) world);
 			items = loottable.generateLootForPools(world.rand, lootBuilder.build());
-		} catch (NullPointerException e) {
+		}
+		catch (NullPointerException e)
+		{
 			items.add(new ItemStack(Blocks.DIRT));
 		}
 		return items;

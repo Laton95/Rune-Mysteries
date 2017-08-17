@@ -10,15 +10,19 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.item.Item;
 
-public class RMModBlock extends Block {
+public class RMModBlock extends Block
+{
+
 	protected Item drop = null;
 
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative) {
+			int harvestLevel, boolean showInCreative)
+	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative) {
+		if (showInCreative)
+		{
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}
 		setHardness(hardness);
@@ -28,11 +32,13 @@ public class RMModBlock extends Block {
 	}
 
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative, Item drop) {
+			int harvestLevel, boolean showInCreative, Item drop)
+	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative) {
+		if (showInCreative)
+		{
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}
 		setHardness(hardness);
@@ -43,10 +49,14 @@ public class RMModBlock extends Block {
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
-		if (drop != null) {
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
+		if (drop != null)
+		{
 			return drop;
-		} else {
+		}
+		else
+		{
 			return Item.getItemFromBlock(this);
 		}
 	}

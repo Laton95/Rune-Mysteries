@@ -13,7 +13,9 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Config(modid = ModReference.MOD_ID)
 @Config.LangKey("runemysteries.config.title")
-public class ModConfig {
+public class ModConfig
+{
+
 	@Name("World Gen")
 	@Comment("Worldgen options.")
 	public static final WorldGeneration WORLD_GENERATION = new WorldGeneration();
@@ -21,7 +23,9 @@ public class ModConfig {
 	@Comment("Dimension options.")
 	public static final Dimensions DIMENSIONS = new Dimensions();
 
-	public static class WorldGeneration {
+	public static class WorldGeneration
+	{
+
 		@Name("Rune Altar generation")
 		@Comment("Rune altar generation options.")
 		public final RuneAltars rune_altars = new RuneAltars();
@@ -29,7 +33,9 @@ public class ModConfig {
 		@Comment("Ore generation options.")
 		public final Ores ores = new Ores();
 
-		public static class RuneAltars {
+		public static class RuneAltars
+		{
+
 			@Name("Generate Altars")
 			@Comment("Generate rune altars in the world.")
 			public boolean generateRuneAltars = true;;
@@ -50,8 +56,10 @@ public class ModConfig {
 			public int runeAltarTries = 300;
 		}
 
-		public static class Ores {
-			//Finite essence
+		public static class Ores
+		{
+
+			// Finite essence
 			@Name("Generate Finite Essence")
 			@Comment("Generate finite essence in the world.")
 			public boolean generateFiniteEssence = true;
@@ -78,7 +86,9 @@ public class ModConfig {
 		}
 	}
 
-	public static class Dimensions {
+	public static class Dimensions
+	{
+
 		@Name("Air Temple Dimension ID")
 		@Comment("Dimension ID for air temple.")
 		@RangeInt(min = 10)
@@ -143,7 +153,7 @@ public class ModConfig {
 		@Comment("Dimension ID for water temple.")
 		@RangeInt(min = 10)
 		public int waterTempleDimID = 181;
-		
+
 		@Name("Essence Mine Dimension ID")
 		@Comment("Dimension ID for essence mine.")
 		@RangeInt(min = 10)
@@ -151,10 +161,14 @@ public class ModConfig {
 	}
 
 	@Mod.EventBusSubscriber(modid = ModReference.MOD_ID)
-	private static class EventHandler {
+	private static class EventHandler
+	{
+
 		@SubscribeEvent
-		public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event) {
-			if (event.getModID().equals(ModReference.MOD_ID)) {
+		public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event)
+		{
+			if (event.getModID().equals(ModReference.MOD_ID))
+			{
 				ConfigManager.sync(ModReference.MOD_ID, Config.Type.INSTANCE);
 			}
 		}

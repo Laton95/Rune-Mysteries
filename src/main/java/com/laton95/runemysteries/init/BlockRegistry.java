@@ -26,37 +26,28 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class BlockRegistry {
+public class BlockRegistry
+{
+
 	private static ArrayList<Block> blockList = new ArrayList<>();
 	private static ArrayList<RMModSlab> halfSlabList = new ArrayList<>();
 	private static ArrayList<RMModSlab> doubleSlabList = new ArrayList<>();
 
-	public static final RMModBlock RUNE_ESSENCE_FINITE = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f,
-			"pickaxe", 1, true, ItemRegistry.RUNE_ESSENCE);
+	public static final RMModBlock RUNE_ESSENCE_FINITE = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, ItemRegistry.RUNE_ESSENCE);
 	public static final RMModBlock RUIN_BLOCK = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final BlockStationStone STATION_STONE = new BlockStationStone();
 	public static final RMModBlock FLESH_BLOCK = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static final RMModBlock TEMPLE_BLOCK = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
-			true);
-	public static final RMModStairs TEMPLE_BLOCK_STAIRS = new RMModStairs("temple_Block_Stairs", "pickaxe", 1,
-			true, TEMPLE_BLOCK.getDefaultState());
-	public static final RMModSlab.Half TEMPLE_BLOCK_HALF_SLAB = new RMModSlab.Half("temple_Block_Slab_Half", Material.ROCK, 1.5f,
-			10.0f, "pickaxe", 1, true);
-	public static final RMModSlab.Double TEMPLE_BLOCK_DOUBLE_SLAB = new RMModSlab.Double("temple_Block_Slab_Double",
-			Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static final RMModRail TEMPLE_BLOCK_RAIL = new RMModRail("temple_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe",
-			1, true);
+	public static final RMModBlock TEMPLE_BLOCK = new RMModBlock("temple_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModStairs TEMPLE_BLOCK_STAIRS = new RMModStairs("temple_Block_Stairs", "pickaxe", 1, true, TEMPLE_BLOCK.getDefaultState());
+	public static final RMModSlab.Half TEMPLE_BLOCK_HALF_SLAB = new RMModSlab.Half("temple_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModSlab.Double TEMPLE_BLOCK_DOUBLE_SLAB = new RMModSlab.Double("temple_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail TEMPLE_BLOCK_RAIL = new RMModRail("temple_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModBlock BLOOD_BLOCK = new RMModBlock("blood_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	public static final RMModStairs BLOOD_BLOCK_STAIRS = new RMModStairs("blood_Block_Stairs", "pickaxe", 1, true,
-			BLOOD_BLOCK.getDefaultState());
-	public static final RMModSlab.Half BLOOD_BLOCK_HALF_SLAB = new RMModSlab.Half("blood_Block_Slab_Half", Material.ROCK, 1.5f,
-			10.0f, "pickaxe", 1, true);
-	public static final RMModSlab.Double BLOOD_BLOCK_DOUBLE_SLAB = new RMModSlab.Double("blood_Block_Slab_Double", Material.ROCK,
-			1.5f, 10.0f, "pickaxe", 1, true);
-	public static final RMModRail BLOOD_BLOCK_RAIL = new RMModRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
-			true);
-	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1,
-			true);
+	public static final RMModStairs BLOOD_BLOCK_STAIRS = new RMModStairs("blood_Block_Stairs", "pickaxe", 1, true, BLOOD_BLOCK.getDefaultState());
+	public static final RMModSlab.Half BLOOD_BLOCK_HALF_SLAB = new RMModSlab.Half("blood_Block_Slab_Half", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModSlab.Double BLOOD_BLOCK_DOUBLE_SLAB = new RMModSlab.Double("blood_Block_Slab_Double", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail BLOOD_BLOCK_RAIL = new RMModRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 
 	public static final BlockRuneEssence RUNE_ESSENCE = new BlockRuneEssence();
 	public static final BlockRuneAltar AIR_ALTAR = new BlockRuneAltar("air_Altar_Block", EnumRuneType.AIR);
@@ -75,43 +66,31 @@ public class BlockRegistry {
 	public static final BlockRuneAltar WATER_ALTAR = new BlockRuneAltar("water_Altar_Block", EnumRuneType.WATER);
 	public static final BlockOuraniaAltar OURANIA_ALTAR = new BlockOuraniaAltar();
 
-	public static final BlockRuneAltarEntrance AIR_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("air_Altar_Entrance_Block",
-			EnumRuneType.AIR, "air");
-	public static final BlockRuneAltarEntrance BLOOD_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("blood_Altar_Entrance_Block",
-			EnumRuneType.BLOOD, "blood");
-	public static final BlockRuneAltarEntrance BODY_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("body_Altar_Entrance_Block",
-			EnumRuneType.BODY, "body");
-	public static final BlockRuneAltarEntrance CHAOS_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("chaos_Altar_Entrance_Block",
-			EnumRuneType.CHAOS, "chaos");
-	public static final BlockRuneAltarEntrance COSMIC_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("cosmic_Altar_Entrance_Block",
-			EnumRuneType.COSMIC, "cosmic");
-	public static final BlockRuneAltarEntrance DEATH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("death_Altar_Entrance_Block",
-			EnumRuneType.DEATH, "death");
-	public static final BlockRuneAltarEntrance EARTH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("earth_Altar_Entrance_Block",
-			EnumRuneType.EARTH, "earth");
-	public static final BlockRuneAltarEntrance FIRE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("fire_Altar_Entrance_Block",
-			EnumRuneType.FIRE, "fire");
-	public static final BlockRuneAltarEntrance LAW_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("law_Altar_Entrance_Block",
-			EnumRuneType.LAW, "law");
-	public static final BlockRuneAltarEntrance MIND_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("mind_Altar_Entrance_Block",
-			EnumRuneType.MIND, "mind");
-	public static final BlockRuneAltarEntrance NATURE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("nature_Altar_Entrance_Block",
-			EnumRuneType.NATURE, "nature");
-	public static final BlockRuneAltarEntrance SOUL_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("soul_Altar_Entrance_Block",
-			EnumRuneType.SOUL, "soul");
-	public static final BlockRuneAltarEntrance WATER_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("water_Altar_Entrance_Block",
-			EnumRuneType.WATER, "water");
+	public static final BlockRuneAltarEntrance AIR_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("air_Altar_Entrance_Block", EnumRuneType.AIR, "air");
+	public static final BlockRuneAltarEntrance BLOOD_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("blood_Altar_Entrance_Block", EnumRuneType.BLOOD, "blood");
+	public static final BlockRuneAltarEntrance BODY_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("body_Altar_Entrance_Block", EnumRuneType.BODY, "body");
+	public static final BlockRuneAltarEntrance CHAOS_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("chaos_Altar_Entrance_Block", EnumRuneType.CHAOS, "chaos");
+	public static final BlockRuneAltarEntrance COSMIC_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("cosmic_Altar_Entrance_Block", EnumRuneType.COSMIC, "cosmic");
+	public static final BlockRuneAltarEntrance DEATH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("death_Altar_Entrance_Block", EnumRuneType.DEATH, "death");
+	public static final BlockRuneAltarEntrance EARTH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("earth_Altar_Entrance_Block", EnumRuneType.EARTH, "earth");
+	public static final BlockRuneAltarEntrance FIRE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("fire_Altar_Entrance_Block", EnumRuneType.FIRE, "fire");
+	public static final BlockRuneAltarEntrance LAW_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("law_Altar_Entrance_Block", EnumRuneType.LAW, "law");
+	public static final BlockRuneAltarEntrance MIND_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("mind_Altar_Entrance_Block", EnumRuneType.MIND, "mind");
+	public static final BlockRuneAltarEntrance NATURE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("nature_Altar_Entrance_Block", EnumRuneType.NATURE, "nature");
+	public static final BlockRuneAltarEntrance SOUL_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("soul_Altar_Entrance_Block", EnumRuneType.SOUL, "soul");
+	public static final BlockRuneAltarEntrance WATER_ALTAR_ENTRANCE = new BlockRuneAltarEntrance("water_Altar_Entrance_Block", EnumRuneType.WATER, "water");
 
 	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal("altar_Exit_Portal");
 
-	public static final BlockParticleLight PARTICLE_LIGHT = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f,
-			"pickaxe", 0, true);
+	public static final BlockParticleLight PARTICLE_LIGHT = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f, "pickaxe", 0, true);
 
 	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event) {
+	public static void registerBlocks(RegistryEvent.Register<Block> event)
+	{
 		LogHelper.info("Registering blocks");
 		makeBlockList();
-		for (Block block : blockList) {
+		for (Block block : blockList)
+		{
 			ItemBlock itemBlock = new ItemBlock(block);
 			itemBlock.setRegistryName(block.getRegistryName());
 			ItemRegistry.addItemBlock(itemBlock);
@@ -119,7 +98,8 @@ public class BlockRegistry {
 		}
 
 		int i = 0;
-		for (RMModSlab slab : halfSlabList) {
+		for (RMModSlab slab : halfSlabList)
+		{
 			RMModSlab doubleSlab = doubleSlabList.get(i);
 			ItemBlock itemBlock = new ItemSlab(slab, slab, doubleSlab);
 			itemBlock.setRegistryName(slab.getRegistryName());
@@ -132,7 +112,8 @@ public class BlockRegistry {
 		}
 	}
 
-	private static void makeBlockList() {
+	private static void makeBlockList()
+	{
 		blockList.add(RUNE_ESSENCE);
 		blockList.add(RUNE_ESSENCE_FINITE);
 		blockList.add(RUIN_BLOCK);
@@ -187,7 +168,8 @@ public class BlockRegistry {
 		blockList.add(PARTICLE_LIGHT);
 	}
 
-	public static void setupDimIDs() {
+	public static void setupDimIDs()
+	{
 		AIR_ALTAR_ENTRANCE.setDimID(ModConfig.DIMENSIONS.airTempleDimID);
 		BLOOD_ALTAR_ENTRANCE.setDimID(ModConfig.DIMENSIONS.bloodTempleDimID);
 		BODY_ALTAR_ENTRANCE.setDimID(ModConfig.DIMENSIONS.bodyTempleDimID);

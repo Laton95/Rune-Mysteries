@@ -19,7 +19,9 @@ import com.laton95.runemysteries.world.dimensionProviders.WaterDimension;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
-public class DimensionRegistry {
+public class DimensionRegistry
+{
+
 	public static int airDimID;
 	public static DimensionType AIR;
 
@@ -58,11 +60,12 @@ public class DimensionRegistry {
 
 	public static int waterDimID;
 	public static DimensionType WATER;
-	
+
 	public static int mineDimID;
 	public static DimensionType MINE;
 
-	public static void registerDimensions() {
+	public static void registerDimensions()
+	{
 		airDimID = ModConfig.DIMENSIONS.airTempleDimID;
 		AIR = DimensionType.register("air_temple", "_air", airDimID, AirDimension.class, false);
 
@@ -103,7 +106,7 @@ public class DimensionRegistry {
 
 		waterDimID = ModConfig.DIMENSIONS.waterTempleDimID;
 		WATER = DimensionType.register("water_temple", "_water", waterDimID, WaterDimension.class, false);
-		
+
 		mineDimID = ModConfig.DIMENSIONS.essenceMineDimID;
 		MINE = DimensionType.register("essence_mine", "_mine", mindDimID, MineDimension.class, false);
 

@@ -17,33 +17,48 @@ import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
-public class ComponentTemple extends StructureComponent {
+public class ComponentTemple extends StructureComponent
+{
+
 	private final String type;
 	private final BlockPos portalPos;
 
-	public ComponentTemple(int x, int z, String type, BlockPos portalPos, int yStart) {
-		this.boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x*16, yStart, z*16, 0, 0, 0, x*16+16, yStart+32, z*16+16, EnumFacing.UP);
+	public ComponentTemple(int x, int z, String type, BlockPos portalPos, int yStart)
+	{
+		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x * 16, yStart, z * 16, 0, 0, 0, x * 16
+				+ 16, yStart + 32, z * 16 + 16, EnumFacing.UP);
 		this.type = type;
 		this.portalPos = portalPos;
 	}
 
 	private boolean generated = false;
+
 	@Override
-	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		if (!generated) {
+	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
+	{
+		if (!generated)
+		{
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
-			LogHelper.info(bBox.minX/16 + "," + bBox.minZ/16);
+			LogHelper.info(bBox.minX / 16 + "," + bBox.minZ / 16);
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-			PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
+					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, type + "_temple_se", pos);
-			if (bBox.minX/16 == 0 && bBox.minZ/16 == 0) {
+			if (bBox.minX / 16 == 0 && bBox.minZ / 16 == 0)
+			{
 				structureHelper = new StructureHelper(worldIn, type + "_temple_se", pos);
-			} else if (bBox.minX/16 == -1 && bBox.minZ/16 == 0) {
+			}
+			else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == 0)
+			{
 				structureHelper = new StructureHelper(worldIn, type + "_temple_sw", pos);
-			} else if (bBox.minX/16 == 0 && bBox.minZ/16 == -1) {
+			}
+			else if (bBox.minX / 16 == 0 && bBox.minZ / 16 == -1)
+			{
 				structureHelper = new StructureHelper(worldIn, type + "_temple_ne", pos);
-			} else if (bBox.minX/16 == -1 && bBox.minZ/16 == -1) {
+			}
+			else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == -1)
+			{
 				structureHelper = new StructureHelper(worldIn, type + "_temple_nw", pos);
 			}
 			structureHelper.generate();
@@ -54,13 +69,15 @@ public class ComponentTemple extends StructureComponent {
 	}
 
 	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound) {
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
 		// TODO Auto-generated method stub
 	}
 }

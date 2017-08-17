@@ -17,7 +17,9 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraftforge.common.BiomeDictionary;
 
-public class AltarTracker {
+public class AltarTracker
+{
+
 	private List<RuneAltar> overworldAltars = new ArrayList<>();
 	private List<RuneAltar> netherAltars = new ArrayList<>();
 	private List<RuneAltar> endAltars = new ArrayList<>();
@@ -32,58 +34,63 @@ public class AltarTracker {
 	protected World world;
 	protected AltarNBTHelper altarNBTHelper;
 
-	public AltarTracker() {
-		overworldAltars.add(new RuneAltar("air_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.AIR_ALTAR_BIOMES, WorldGenReference.AIR_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("astral_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.ASTRAL_ALTAR_BIOMES, WorldGenReference.ASTRAL_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("death_altar", defaultAltarRadius, 0f, WorldGenReference.DEATH_ALTAR_BIOMES,
-				WorldGenReference.DEATH_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "death_altar_room", 1));
-		overworldAltars.add(new RuneAltar("body_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.BODY_ALTAR_BIOMES, WorldGenReference.BODY_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("blood_altar", defaultAltarRadius, 0f, WorldGenReference.BLOOD_ALTAR_BIOMES,
-				WorldGenReference.BLOOD_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "blood_altar_room", 1));
-		overworldAltars.add(new RuneAltar("mind_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.MIND_ALTAR_BIOMES, WorldGenReference.MIND_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("earth_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.EARTH_ALTAR_BIOMES, WorldGenReference.EARTH_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("water_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.WATER_ALTAR_BIOMES, WorldGenReference.WATER_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("soul_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.SOUL_ALTAR_BIOMES, WorldGenReference.SOUL_ALTAR_BIOMES_AVOID, Type.SOUL, "soul_altar_room",
-				0));
-		overworldAltars.add(new RuneAltar("law_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.LAW_ALTAR_BIOMES, WorldGenReference.LAW_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("fire_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.FIRE_ALTAR_BIOMES, WorldGenReference.FIRE_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("nature_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.NATURE_ALTAR_BIOMES, WorldGenReference.NATURE_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(new RuneAltar("ourania_altar", defaultAltarRadius, 0f, WorldGenReference.OURANIA_ALTAR_BIOMES,
-				WorldGenReference.OURANIA_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "ourania_altar_room", 2));
+	public AltarTracker()
+	{
+		overworldAltars.add(
+				new RuneAltar("air_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.AIR_ALTAR_BIOMES, WorldGenReference.AIR_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("astral_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.ASTRAL_ALTAR_BIOMES, WorldGenReference.ASTRAL_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("death_altar", defaultAltarRadius, 0f, WorldGenReference.DEATH_ALTAR_BIOMES, WorldGenReference.DEATH_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "death_altar_room", 1));
+		overworldAltars.add(
+				new RuneAltar("body_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.BODY_ALTAR_BIOMES, WorldGenReference.BODY_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("blood_altar", defaultAltarRadius, 0f, WorldGenReference.BLOOD_ALTAR_BIOMES, WorldGenReference.BLOOD_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "blood_altar_room", 1));
+		overworldAltars.add(
+				new RuneAltar("mind_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.MIND_ALTAR_BIOMES, WorldGenReference.MIND_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("earth_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.EARTH_ALTAR_BIOMES, WorldGenReference.EARTH_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("water_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.WATER_ALTAR_BIOMES, WorldGenReference.WATER_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("soul_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.SOUL_ALTAR_BIOMES, WorldGenReference.SOUL_ALTAR_BIOMES_AVOID, Type.SOUL, "soul_altar_room", 0));
+		overworldAltars.add(
+				new RuneAltar("law_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.LAW_ALTAR_BIOMES, WorldGenReference.LAW_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("fire_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.FIRE_ALTAR_BIOMES, WorldGenReference.FIRE_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("nature_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.NATURE_ALTAR_BIOMES, WorldGenReference.NATURE_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(
+				new RuneAltar("ourania_altar", defaultAltarRadius, 0f, WorldGenReference.OURANIA_ALTAR_BIOMES, WorldGenReference.OURANIA_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "ourania_altar_room", 2));
 
-		netherAltars.add(new RuneAltar("chaos_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.CHAOS_ALTAR_BIOMES, WorldGenReference.CHAOS_ALTAR_BIOMES_AVOID, Type.NETHER));
+		netherAltars.add(
+				new RuneAltar("chaos_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.CHAOS_ALTAR_BIOMES, WorldGenReference.CHAOS_ALTAR_BIOMES_AVOID, Type.NETHER));
 
-		endAltars.add(new RuneAltar("cosmic_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
-				WorldGenReference.COSMIC_ALTAR_BIOMES, WorldGenReference.COSMIC_ALTAR_BIOMES_AVOID, Type.END));
+		endAltars.add(
+				new RuneAltar("cosmic_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.COSMIC_ALTAR_BIOMES, WorldGenReference.COSMIC_ALTAR_BIOMES_AVOID, Type.END));
 	}
 
-	public boolean inGenerationRange(ChunkPos pos, int dimID, Type type) {
+	public boolean inGenerationRange(ChunkPos pos, int dimID, Type type)
+	{
 		List<RuneAltar> list = new ArrayList<>();
-		switch (dimID) {
-		case 0:
-			list = overworldAltars;
-			break;
-		case -1:
-			list = netherAltars;
-			break;
-		case 1:
-			list = endAltars;
-			break;
+		switch (dimID)
+		{
+			case 0:
+				list = overworldAltars;
+				break;
+			case -1:
+				list = netherAltars;
+				break;
+			case 1:
+				list = endAltars;
+				break;
 		}
-		for (RuneAltar altar : list) {
-			if (WorldHelper.isNearby(pos, new ChunkPos(altar.getPosition()), altar.getPlacementRadius())) {
-				if (altar.getType().equals(type)) {
+		for (RuneAltar altar : list)
+		{
+			if (WorldHelper.isNearby(pos, new ChunkPos(altar.getPosition()), altar.getPlacementRadius()))
+			{
+				if (altar.getType().equals(type))
+				{
 					return true;
 				}
 			}
@@ -91,23 +98,27 @@ public class AltarTracker {
 		return false;
 	}
 
-	public RuneAltar getAltar(ChunkPos pos, int dimID) {
+	public RuneAltar getAltar(ChunkPos pos, int dimID)
+	{
 		List<RuneAltar> list = new ArrayList<>();
-		switch (dimID) {
-		case 0:
-			list = overworldAltars;
-			break;
-		case -1:
-			list = netherAltars;
-			break;
-		case 1:
-			list = endAltars;
-			break;
+		switch (dimID)
+		{
+			case 0:
+				list = overworldAltars;
+				break;
+			case -1:
+				list = netherAltars;
+				break;
+			case 1:
+				list = endAltars;
+				break;
 		}
 		List<RuneAltar> nearbyAltars = new ArrayList<>();
-		for (RuneAltar altar : list) {
+		for (RuneAltar altar : list)
+		{
 			ChunkPos pos2 = new ChunkPos(altar.getPosition());
-			if (WorldHelper.isNearby(pos, pos2, altar.getPlacementRadius())) {
+			if (WorldHelper.isNearby(pos, pos2, altar.getPlacementRadius()))
+			{
 				nearbyAltars.add(altar);
 			}
 		}
@@ -115,26 +126,34 @@ public class AltarTracker {
 		return altar;
 	}
 
-	public RuneAltar getAltar(String name) {
-		for (RuneAltar altar : overworldAltars) {
-			if (altar.getName().equals(name)) {
+	public RuneAltar getAltar(String name)
+	{
+		for (RuneAltar altar : overworldAltars)
+		{
+			if (altar.getName().equals(name))
+			{
 				return altar;
 			}
 		}
-		for (RuneAltar altar : netherAltars) {
-			if (altar.getName().equals(name)) {
+		for (RuneAltar altar : netherAltars)
+		{
+			if (altar.getName().equals(name))
+			{
 				return altar;
 			}
 		}
-		for (RuneAltar altar : endAltars) {
-			if (altar.getName().equals(name)) {
+		for (RuneAltar altar : endAltars)
+		{
+			if (altar.getName().equals(name))
+			{
 				return altar;
 			}
 		}
 		return null;
 	}
 
-	public void findOverworldLocations(World world) {
+	public void findOverworldLocations(World world)
+	{
 		this.world = world.getMinecraftServer().getWorld(0);
 		altarNBTHelper = AltarNBTHelper.get(this.world);
 
@@ -142,26 +161,32 @@ public class AltarTracker {
 		List<BiomeDictionary.Type> allowedBiomes = new LinkedList<>();
 		Random random = new Random();
 
-		if (!altarNBTHelper.overworldAltarsGenerated) {
+		if (!altarNBTHelper.overworldAltarsGenerated)
+		{
 			LogHelper.info("Finding overworld altar locations");
 			outStandingAltars.addAll(overworldAltars);
 			random.setSeed(world.getSeed() * 1984);
-			for (RuneAltar altar : outStandingAltars) {
+			for (RuneAltar altar : outStandingAltars)
+			{
 				allowedBiomes.addAll(altar.getBiomes());
 			}
 			findLocations(outStandingAltars, allowedBiomes, random, world);
 			altarNBTHelper.overworldAltarsGenerated = true;
 			altarNBTHelper.markDirty();
-		} else {
+		}
+		else
+		{
 			LogHelper.info("Loading overworld altar locations");
-			for (RuneAltar runeAltar : overworldAltars) {
+			for (RuneAltar runeAltar : overworldAltars)
+			{
 				runeAltar.updatePosition();
 			}
 		}
 		overworldAltarsFound = true;
 	}
 
-	public void findNetherLocations(World world) {
+	public void findNetherLocations(World world)
+	{
 		this.world = world.getMinecraftServer().getWorld(0);
 		altarNBTHelper = AltarNBTHelper.get(this.world);
 
@@ -169,26 +194,32 @@ public class AltarTracker {
 		List<BiomeDictionary.Type> allowedBiomes = new LinkedList<>();
 		Random random = new Random();
 
-		if (!altarNBTHelper.netherAltarsGenerated) {
+		if (!altarNBTHelper.netherAltarsGenerated)
+		{
 			LogHelper.info("Finding nether altar locations");
 			outStandingAltars.addAll(netherAltars);
 			random.setSeed(world.getSeed() * 4331);
-			for (RuneAltar altar : outStandingAltars) {
+			for (RuneAltar altar : outStandingAltars)
+			{
 				allowedBiomes.addAll(altar.getBiomes());
 			}
 			findLocations(outStandingAltars, allowedBiomes, random, world);
 			altarNBTHelper.netherAltarsGenerated = true;
 			altarNBTHelper.markDirty();
-		} else {
+		}
+		else
+		{
 			LogHelper.info("Loading nether altar locations");
-			for (RuneAltar runeAltar : netherAltars) {
+			for (RuneAltar runeAltar : netherAltars)
+			{
 				runeAltar.updatePosition();
 			}
 		}
 		netherAltarsFound = true;
 	}
 
-	public void findEndLocations(World world) {
+	public void findEndLocations(World world)
+	{
 		this.world = world.getMinecraftServer().getWorld(0);
 		altarNBTHelper = AltarNBTHelper.get(this.world);
 
@@ -196,62 +227,83 @@ public class AltarTracker {
 		List<BiomeDictionary.Type> allowedBiomes = new LinkedList<>();
 		Random random = new Random();
 
-		if (!altarNBTHelper.endAltarsGenerated) {
+		if (!altarNBTHelper.endAltarsGenerated)
+		{
 			LogHelper.info("Finding end altar locations");
 			outStandingAltars.addAll(endAltars);
 			random.setSeed(world.getSeed() * 2849);
-			for (RuneAltar altar : outStandingAltars) {
+			for (RuneAltar altar : outStandingAltars)
+			{
 				allowedBiomes.addAll(altar.getBiomes());
 			}
 			findLocations(outStandingAltars, allowedBiomes, random, world);
 			altarNBTHelper.endAltarsGenerated = true;
 			altarNBTHelper.markDirty();
-		} else {
+		}
+		else
+		{
 			LogHelper.info("Loading end altar locations");
-			for (RuneAltar runeAltar : endAltars) {
+			for (RuneAltar runeAltar : endAltars)
+			{
 				runeAltar.updatePosition();
 			}
 		}
 		endAltarsFound = true;
 	}
 
-	public void findLocations(List<RuneAltar> outStandingAltars, List<BiomeDictionary.Type> allowedBiomes,
-			Random random, World world) {
-		while (!outStandingAltars.isEmpty()) {
+	public void findLocations(List<RuneAltar> outStandingAltars, List<BiomeDictionary.Type> allowedBiomes, Random random, World world)
+	{
+		while (!outStandingAltars.isEmpty())
+		{
 			List<BiomeDictionary.Type> outStandingBiomes = new LinkedList<>();
-			for (RuneAltar altar : outStandingAltars) {
+			for (RuneAltar altar : outStandingAltars)
+			{
 				outStandingBiomes.addAll(altar.getBiomes());
 				altarNBTHelper.placedMap.put(altar.getName(), false);
 			}
 
-			BlockPos pos = findBiomePosition(outStandingBiomes, random, ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-					ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
+			BlockPos pos = findBiomePosition(outStandingBiomes, random,
+					ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
+					ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
+							/ 16,
 					ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
 
-			if (pos != null) {
-				for (RuneAltar altar : outStandingAltars) {
-					if (altar.isBiomeViable(world.getBiome(pos))) {
+			if (pos != null)
+			{
+				for (RuneAltar altar : outStandingAltars)
+				{
+					if (altar.isBiomeViable(world.getBiome(pos)))
+					{
 						altar.setPosition(pos);
 						LogHelper.info(altar);
 						outStandingAltars.remove(altar);
 						break;
 					}
 				}
-			} else {
-				for (RuneAltar altar : outStandingAltars) {
-					pos = findBiomePosition(allowedBiomes, random, ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-							ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
+			}
+			else
+			{
+				for (RuneAltar altar : outStandingAltars)
+				{
+					pos = findBiomePosition(allowedBiomes, random,
+							ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
+							ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
+									/ 16,
 							ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
-					if (pos != null) {
+					if (pos != null)
+					{
 						altar.setPosition(pos);
 						LogHelper.info(altar);
 						outStandingAltars.remove(altar);
 						altar.setBiomeDependant(false);
 						break;
-					} else {
+					}
+					else
+					{
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random,
 								ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-								ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
+								ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
+										/ 16,
 								ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
 						altar.setPosition(pos);
 						LogHelper.info(altar);
@@ -264,22 +316,28 @@ public class AltarTracker {
 		}
 	}
 
-	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius,
-			int min) {
-		for (int i = 0; i < attempts; i++) {
+	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius, int min)
+	{
+		for (int i = 0; i < attempts; i++)
+		{
 			int chunkX = (rand.nextInt(radius - min) + min) * (rand.nextBoolean() ? 1 : -1);
 			int chunkZ = (rand.nextInt(radius - min) + min) * (rand.nextBoolean() ? 1 : -1);
 
 			ChunkPos pos = new ChunkPos(chunkX, chunkZ);
 			BlockPos pos2 = new BlockPos(pos.getXStart(), 0, pos.getZStart());
 			Biome biome = world.getBiome(pos2);
-			if (!biomes.isEmpty()) {
-				for (BiomeDictionary.Type type : biomes) {
-					if (BiomeDictionary.hasType(biome, type)) {
+			if (!biomes.isEmpty())
+			{
+				for (BiomeDictionary.Type type : biomes)
+				{
+					if (BiomeDictionary.hasType(biome, type))
+					{
 						return pos2;
 					}
 				}
-			} else {
+			}
+			else
+			{
 				return pos2;
 			}
 		}
@@ -287,12 +345,15 @@ public class AltarTracker {
 	}
 
 	@Override
-	public String toString() {
+	public String toString()
+	{
 		int placed = 0;
 		int total = 0;
-		for (RuneAltar altar : overworldAltars) {
+		for (RuneAltar altar : overworldAltars)
+		{
 			total++;
-			if (altar.isPlaced()) {
+			if (altar.isPlaced())
+			{
 				placed++;
 			}
 		}
@@ -300,7 +361,9 @@ public class AltarTracker {
 		return placed + "/" + total;
 	}
 
-	public class RuneAltar {
+	public class RuneAltar
+	{
+
 		private final String name;
 		private final String room;
 		private boolean placed;
@@ -315,7 +378,8 @@ public class AltarTracker {
 		private int yOffset;
 
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
-				List<BiomeDictionary.Type> biomesN, Type type) {
+				List<BiomeDictionary.Type> biomesN, Type type)
+		{
 			this.name = name;
 			placed = false;
 			biomeDependant = true;
@@ -330,7 +394,8 @@ public class AltarTracker {
 		}
 
 		public RuneAltar(String name, int placementRadius, Float flatnessTolerance, List<BiomeDictionary.Type> biomes,
-				List<BiomeDictionary.Type> biomesN, Type type, String room, int yOffset) {
+				List<BiomeDictionary.Type> biomesN, Type type, String room, int yOffset)
+		{
 			this.name = name;
 			placed = false;
 			biomeDependant = true;
@@ -344,107 +409,137 @@ public class AltarTracker {
 			this.yOffset = yOffset;
 		}
 
-		public boolean isPlaced() {
+		public boolean isPlaced()
+		{
 			return placed;
 		}
 
-		public void setPlaced(boolean placed) {
+		public void setPlaced(boolean placed)
+		{
 			this.placed = placed;
-			if (placed) {
+			if (placed)
+			{
 				altarNBTHelper.placedMap.put(name, true);
 				altarNBTHelper.markDirty();
 			}
 		}
 
-		public boolean isBiomeDependant() {
+		public boolean isBiomeDependant()
+		{
 			return biomeDependant;
 		}
 
-		public void setBiomeDependant(boolean biomeDependant) {
+		public void setBiomeDependant(boolean biomeDependant)
+		{
 			this.biomeDependant = biomeDependant;
 		}
 
-		public int getPlacementRadius() {
+		public int getPlacementRadius()
+		{
 			return placementRadius;
 		}
 
-		public void setPlacementRadius(int placementRadius) {
+		public void setPlacementRadius(int placementRadius)
+		{
 			this.placementRadius = placementRadius;
 		}
 
-		public void incrementPlacementRadius(int radius) {
+		public void incrementPlacementRadius(int radius)
+		{
 			placementRadius += radius;
 		}
 
-		public Float getFlatnessTolerance() {
+		public Float getFlatnessTolerance()
+		{
 			return flatnessTolerance;
 		}
 
-		public void setFlatnessTolerance(Float flatnessTolerance) {
+		public void setFlatnessTolerance(Float flatnessTolerance)
+		{
 			this.flatnessTolerance = flatnessTolerance;
 		}
 
-		public void decrementFlatnessTolerance(Float tolerance) {
+		public void decrementFlatnessTolerance(Float tolerance)
+		{
 			flatnessTolerance -= tolerance;
 		}
 
-		public int getFailureCount() {
+		public int getFailureCount()
+		{
 			return failureCount;
 		}
 
-		public void incrementFailureCount(int count) {
+		public void incrementFailureCount(int count)
+		{
 			failureCount += count;
 		}
 
-		public String getName() {
+		public String getName()
+		{
 			return name;
 		}
 
-		public String getRoom() {
+		public String getRoom()
+		{
 			return room;
 		}
 
-		public int getYOffset() {
+		public int getYOffset()
+		{
 			return yOffset;
 		}
 
-		public BlockPos getPosition() {
+		public BlockPos getPosition()
+		{
 			return position;
 		}
 
-		public void setPosition(BlockPos position) {
+		public void setPosition(BlockPos position)
+		{
 			this.position = position;
 			altarNBTHelper.posMap.put(name, position);
 			altarNBTHelper.markDirty();
 		}
 
-		public void updatePosition() {
+		public void updatePosition()
+		{
 			position = altarNBTHelper.posMap.get(name);
 			placed = altarNBTHelper.placedMap.get(name);
 		}
 
-		public List<BiomeDictionary.Type> getBiomes() {
+		public List<BiomeDictionary.Type> getBiomes()
+		{
 			return biomes;
 		}
 
-		public boolean isBiomeViable(Biome biome) {
-			if (biomes.isEmpty()) {
-				for (BiomeDictionary.Type typeN : biomesN) {
-					if (BiomeDictionary.hasType(biome, typeN)) {
+		public boolean isBiomeViable(Biome biome)
+		{
+			if (biomes.isEmpty())
+			{
+				for (BiomeDictionary.Type typeN : biomesN)
+				{
+					if (BiomeDictionary.hasType(biome, typeN))
+					{
 						return false;
 					}
 				}
 				return true;
 			}
 
-			for (BiomeDictionary.Type type : biomes) {
-				if (!biomesN.isEmpty()) {
-					for (BiomeDictionary.Type typeN : biomesN) {
-						if (BiomeDictionary.hasType(biome, type) && !BiomeDictionary.hasType(biome, typeN)) {
+			for (BiomeDictionary.Type type : biomes)
+			{
+				if (!biomesN.isEmpty())
+				{
+					for (BiomeDictionary.Type typeN : biomesN)
+					{
+						if (BiomeDictionary.hasType(biome, type) && !BiomeDictionary.hasType(biome, typeN))
+						{
 							return true;
 						}
 					}
-				} else if (BiomeDictionary.hasType(biome, type)) {
+				}
+				else if (BiomeDictionary.hasType(biome, type))
+				{
 					return true;
 				}
 
@@ -452,18 +547,21 @@ public class AltarTracker {
 			return false;
 		}
 
-		public Type getType() {
+		public Type getType()
+		{
 			return type;
 		}
 
 		@Override
-		public String toString() {
+		public String toString()
+		{
 			return name + " at " + position;
 		}
 
 	}
 
-	public enum Type {
+	public enum Type
+	{
 		SURFACE, UNDERGROUND, SOUL, NETHER, END
 	}
 }

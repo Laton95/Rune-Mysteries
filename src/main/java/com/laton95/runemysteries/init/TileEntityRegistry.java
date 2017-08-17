@@ -15,11 +15,14 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 
 @Mod.EventBusSubscriber
-public class TileEntityRegistry {
+public class TileEntityRegistry
+{
+
 	private static Map<String, Class<? extends TileEntity>> tileEntityMap = new HashMap<>();
-	
+
 	@SubscribeEvent
-	public static void registerTileEntities(RegistryEvent.Register<Block> event) {
+	public static void registerTileEntities(RegistryEvent.Register<Block> event)
+	{
 		LogHelper.info("Registering tile entities");
 		makeTileEntityMap();
 		tileEntityMap.forEach((k, v) -> {
@@ -27,7 +30,8 @@ public class TileEntityRegistry {
 		});
 	}
 
-	private static void makeTileEntityMap() {
+	private static void makeTileEntityMap()
+	{
 		tileEntityMap.put(ModReference.MOD_ID + ":" + "altar_portal", TileEntityAltarPortal.class);
 	}
 }

@@ -21,7 +21,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 @Mod.EventBusSubscriber
-public class ItemRegistry {
+public class ItemRegistry
+{
+
 	private static ArrayList<Item> itemList = new ArrayList<>();
 	public static final ItemRune RUNE = new ItemRune("rune");
 	public static final RMModItem RUNE_ESSENCE = new RMModItem("rune_Essence", true);
@@ -31,33 +33,46 @@ public class ItemRegistry {
 	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", true);
 
 	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event) {
+	public static void registerItems(RegistryEvent.Register<Item> event)
+	{
 		LogHelper.info("Registering items");
 		makeItemList();
-		for (Item item : itemList) {
+		for (Item item : itemList)
+		{
 			event.getRegistry().register(item);
 		}
 		registerRenders();
 	}
-	
-	public static void registerRenders() {
-		for (Item item : itemList) {
-			if (item.getHasSubtypes() && item instanceof RMModItem) {
+
+	public static void registerRenders()
+	{
+		for (Item item : itemList)
+		{
+			if (item.getHasSubtypes() && item instanceof RMModItem)
+			{
 				Class<? extends Enum<?>> values = ((RMModItem) item).getValues();
-				for (int i = 0; i < values.getEnumConstants().length; i++) {
-					registerRenderVariants(item, i, item.getRegistryName().getResourcePath() + "_" + values.getEnumConstants()[i]);
+				for (int i = 0; i < values.getEnumConstants().length; i++)
+				{
+					registerRenderVariants(item, i, item.getRegistryName().getResourcePath() + "_"
+							+ values.getEnumConstants()[i]);
 				}
-			} else {
-				ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
+			}
+			else
+			{
+				ModelLoader.setCustomModelResourceLocation(item, 0,
+						new ModelResourceLocation(item.getRegistryName(), "inventory"));
 			}
 		}
 	}
-	
-	public static void registerRenderVariants(Item item, int meta, String fileName) {
-		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fileName), "inventory"));
+
+	public static void registerRenderVariants(Item item, int meta, String fileName)
+	{
+		ModelLoader.setCustomModelResourceLocation(item, meta,
+				new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fileName), "inventory"));
 	}
 
-	private static void makeItemList() {
+	private static void makeItemList()
+	{
 		itemList.add(RUNE);
 		itemList.add(RUNE_ESSENCE);
 		itemList.add(RUNE_TALISMAN);
@@ -67,11 +82,13 @@ public class ItemRegistry {
 		itemList.add(MINE_SCROLL);
 	}
 
-	public static void addItemBlock(ItemBlock itemBlock) {
+	public static void addItemBlock(ItemBlock itemBlock)
+	{
 		itemList.add(itemBlock);
 	}
-	
-	public static void addItem(Item item) {
+
+	public static void addItem(Item item)
+	{
 		itemList.add(item);
 	}
 }
