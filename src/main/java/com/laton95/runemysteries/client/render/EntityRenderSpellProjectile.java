@@ -1,5 +1,8 @@
 package com.laton95.runemysteries.client.render;
 
+import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
+import com.laton95.runemysteries.reference.ModReference;
+
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -12,12 +15,11 @@ import net.minecraft.util.ResourceLocation;
 public class EntityRenderSpellProjectile extends Render
 {
 
-	private final ResourceLocation texture;
+	
 
-	public EntityRenderSpellProjectile(RenderManager renderManager, ResourceLocation texture)
+	public EntityRenderSpellProjectile(RenderManager renderManager)
 	{
 		super(renderManager);
-		this.texture = texture;
 	}
 
 	@Override
@@ -96,7 +98,11 @@ public class EntityRenderSpellProjectile extends Render
 	@Override
 	protected ResourceLocation getEntityTexture(Entity entity)
 	{
-		return texture;
+		if (entity instanceof SpellProjectileBase)
+		{
+			return ((SpellProjectileBase) entity).getTexture();
+		}
+		return new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/red-orange.png");
 	}
 
 }

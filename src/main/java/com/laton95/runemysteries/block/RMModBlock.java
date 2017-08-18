@@ -8,12 +8,18 @@ import com.laton95.runemysteries.reference.ModReference;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.init.Items;
 import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
 
 public class RMModBlock extends Block
 {
 
-	protected Item drop = null;
+	protected ItemStack drop = null;
 
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
 			int harvestLevel, boolean showInCreative)
@@ -32,7 +38,7 @@ public class RMModBlock extends Block
 	}
 
 	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative, Item drop)
+			int harvestLevel, boolean showInCreative, ItemStack drop)
 	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
@@ -47,17 +53,10 @@ public class RMModBlock extends Block
 		this.drop = drop;
 
 	}
-
+	
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{
-		if (drop != null)
-		{
-			return drop;
-		}
-		else
-		{
-			return Item.getItemFromBlock(this);
-		}
+		drops.add(drop);
 	}
 }

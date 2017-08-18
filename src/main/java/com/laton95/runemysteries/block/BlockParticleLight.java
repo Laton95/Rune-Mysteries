@@ -69,6 +69,6 @@ public class BlockParticleLight extends RMModBlock
 		double d0 = pos.getX() + 0.5D;
 		double d1 = pos.getY() + 0.5D;
 		double d2 = pos.getZ() + 0.5D;
-		worldIn.spawnParticle(EnumParticleTypes.CLOUD, d0, d1, d2, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(EnumParticleTypes.REDSTONE, d0, d1, d2, 0.01, 0.01, 0.01);
 	}
 }

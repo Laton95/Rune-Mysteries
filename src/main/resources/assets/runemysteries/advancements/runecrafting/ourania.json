@@ -22,7 +22,8 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "runemysteries:ourania_altar_block"
+                    "item": "runemysteries:rune_altar",
+                    "data": 14
                 }
             }
         }

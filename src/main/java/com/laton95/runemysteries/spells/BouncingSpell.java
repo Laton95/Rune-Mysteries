@@ -25,10 +25,12 @@ public class BouncingSpell extends SpellBase
 	}
 
 	@Override
-	public void fireSpell(World world, EntityPlayer player)
+	public boolean fireSpell(World world, EntityPlayer player)
 	{
 		SpellProjectileBase projectile = new SpellProjectileBouncing(world, player);
 		putProjectileInWorld(world, player, projectile);
+		
+		return true;
 	}
 
 }

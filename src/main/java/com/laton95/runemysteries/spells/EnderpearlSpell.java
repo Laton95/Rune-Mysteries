@@ -25,7 +25,7 @@ public class EnderpearlSpell extends SpellBase
 	}
 
 	@Override
-	public void fireSpell(World world, EntityPlayer player)
+	public boolean fireSpell(World world, EntityPlayer player)
 	{
 		if (!world.isRemote)
 		{
@@ -34,6 +34,8 @@ public class EnderpearlSpell extends SpellBase
 					1.0F);
 			world.spawnEntity(entityenderpearl);
 		}
+		
+		return true;
 	}
 
 }

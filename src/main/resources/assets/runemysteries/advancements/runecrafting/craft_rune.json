@@ -17,7 +17,8 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "runemysteries:rune_essence"
+                    "item": "runemysteries:rune",
+                    "data": 14
                 }
             }
         }

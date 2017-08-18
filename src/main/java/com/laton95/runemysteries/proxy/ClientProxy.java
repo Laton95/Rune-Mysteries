@@ -40,7 +40,7 @@ public class ClientProxy extends CommonProxy
 					@Override
 					public Render createRenderFor(RenderManager manager)
 					{
-						return new EntityRenderSpellProjectile(manager, new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/test_animated.png"));
+						return new EntityRenderSpellProjectile(manager);
 					}
 				});
 	}

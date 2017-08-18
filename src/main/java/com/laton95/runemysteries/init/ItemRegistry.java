@@ -8,6 +8,7 @@ import com.laton95.runemysteries.item.ItemScroll;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
 
@@ -25,8 +26,8 @@ public class ItemRegistry
 {
 
 	private static ArrayList<Item> itemList = new ArrayList<>();
+	
 	public static final ItemRune RUNE = new ItemRune("rune");
-	public static final RMModItem RUNE_ESSENCE = new RMModItem("rune_Essence", true);
 	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman("talisman", true);
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
@@ -56,6 +57,12 @@ public class ItemRegistry
 					registerRenderVariants(item, i, item.getRegistryName().getResourcePath() + "_"
 							+ values.getEnumConstants()[i]);
 				}
+			} 
+			else if (item.getHasSubtypes() && item instanceof ItemBlock) {
+				for (int i = 0; i < EnumRuneType.values().length; i++)
+				{
+					registerRenderVariants(item, i, item.getRegistryName().getResourcePath());
+				}
 			}
 			else
 			{
@@ -74,7 +81,6 @@ public class ItemRegistry
 	private static void makeItemList()
 	{
 		itemList.add(RUNE);
-		itemList.add(RUNE_ESSENCE);
 		itemList.add(RUNE_TALISMAN);
 
 		itemList.add(SPELLBOOK);

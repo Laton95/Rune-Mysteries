@@ -20,7 +20,8 @@
             "conditions": {
                 "items": [
                     {
-                        "item": "runemysteries:rune_essence"
+                        "item": "runemysteries:rune",
+                        "data": 14
                     }
                 ]
             }

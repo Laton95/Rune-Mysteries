@@ -18,8 +18,8 @@ public class Spells
 	{
 
 		@Override
-		public void fireSpell(World world, EntityPlayer player)
-		{}
+		public boolean fireSpell(World world, EntityPlayer player)
+		{return false;}
 	};
 
 	public static List<SpellBase> spellList = ImmutableList.of(

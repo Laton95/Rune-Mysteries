@@ -33,6 +33,12 @@ public class ItemTalisman extends RMModItem
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		ItemStack talisman = playerIn.getHeldItem(handIn);
+		
+		if (talisman.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+		{
+			return new ActionResult<>(EnumActionResult.PASS, talisman);
+		}
+		
 		int dimID = getDimID(talisman);
 		String altar = EnumRuneType.values()[talisman.getItemDamage()].getName() + "_altar";
 

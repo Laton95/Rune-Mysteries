@@ -1,7 +1,7 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:ourania_altar_block"
+            "item": "runemysteries:rune_altar"
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.altar.title"

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
+import com.ibm.icu.util.BytesTrie.Result;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.reference.NamesReference;
@@ -111,7 +112,8 @@ public class ItemSpellbook extends RMModItem
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
 		ItemStack spellbook = playerIn.getHeldItem(handIn);
-		if (playerIn.isSneaking())
+		SpellBase spell = ItemNBTHelper.getSpell(spellbook);
+		if (playerIn.isSneaking() || spell == Spells.NONE_SPELL)
 		{
 			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int) playerIn.posX,
 					(int) playerIn.posY, (int) playerIn.posZ);
@@ -119,20 +121,10 @@ public class ItemSpellbook extends RMModItem
 		}
 		else
 		{
-			SpellBase spell = ItemNBTHelper.getSpell(spellbook);
-
-			if (spell == Spells.NONE_SPELL)
-			{
-				playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn,
-						(int) playerIn.posX,
-						(int) playerIn.posY, (int) playerIn.posZ);
-				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
-			}
 
 			if (playerIn.isCreative())
 			{
-				spell.fireSpell(worldIn, playerIn);
-				playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+				CastSpell(worldIn, playerIn, spell);
 				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 			}
 			else
@@ -147,8 +139,7 @@ public class ItemSpellbook extends RMModItem
 				if (hasItems(playerIn, spell.getCosts(), bagInventory))
 				{
 					removeItems(playerIn, spell.getCosts(), bagInventory);
-					spell.fireSpell(worldIn, playerIn);
-					playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+					CastSpell(worldIn, playerIn, spell);
 					return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 				}
 				else
@@ -161,6 +152,18 @@ public class ItemSpellbook extends RMModItem
 					return new ActionResult<>(EnumActionResult.FAIL, spellbook);
 				}
 			}
+		}
+	}
+	
+	public void CastSpell(World worldIn, EntityPlayer playerIn, SpellBase spell) {
+		if (spell.fireSpell(worldIn, playerIn))
+		{
+			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+		} 
+		else 
+		{
+			playerIn.getCooldownTracker().setCooldown(this, 5);
+			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 		}
 	}
 }

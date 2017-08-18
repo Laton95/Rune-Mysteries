@@ -26,10 +26,12 @@ public class DeathSpell extends SpellBase
 	}
 
 	@Override
-	public void fireSpell(World world, EntityPlayer player)
+	public boolean fireSpell(World world, EntityPlayer player)
 	{
 		SpellProjectileBase projectile = new SpellProjectileDamage(world, player, 30);
 		putProjectileInWorld(world, player, projectile);
+		
+		return true;
 	}
 
 }

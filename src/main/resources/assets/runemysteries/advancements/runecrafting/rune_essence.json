@@ -1,7 +1,8 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:rune_essence"
+            "item": "runemysteries:rune",
+            "data": 14
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.rune_essence.title"
@@ -17,7 +18,8 @@
             "conditions": {
                 "items": [
                     {
-                        "item":  "runemysteries:rune_essence"
+                        "item": "runemysteries:rune",
+                        "data": 14
                     }
                 ]
             }

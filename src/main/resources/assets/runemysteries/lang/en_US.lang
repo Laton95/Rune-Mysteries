@@ -13,8 +13,7 @@ item.runemysteries:rune.mind.name=Mind Rune
 item.runemysteries:rune.nature.name=Nature Rune
 item.runemysteries:rune.soul.name=Soul Rune
 item.runemysteries:rune.water.name=Water Rune
-
-item.runemysteries:rune_Essence.name=Rune Essence
+item.runemysteries:rune.essence.name=Rune Essence
 
 item.runemysteries:talisman.air.name=Air Talisman
 item.runemysteries:talisman.astral.name=Astral Talisman
@@ -30,6 +29,7 @@ item.runemysteries:talisman.mind.name=Mind Talisman
 item.runemysteries:talisman.nature.name=Nature Talisman
 item.runemysteries:talisman.soul.name=Soul Talisman
 item.runemysteries:talisman.water.name=Water Talisman
+item.runemysteries:talisman.essence.name=Blank Talisman
 
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
@@ -102,21 +102,21 @@ tile.runemysteries:blood_Block_Rail.name=Blood Rail
 tile.runemysteries:flesh_Block.name=Flesh
 tile.runemysteries:stonebrick_Rail.name=Stone Brick Rail
 
-tile.runemysteries:air_Altar_Block.name=Air Altar
-tile.runemysteries:astral_Altar_Block.name=Astral Altar
-tile.runemysteries:blood_Altar_Block.name=Blood Altar
-tile.runemysteries:body_Altar_Block.name=Body Altar
-tile.runemysteries:chaos_Altar_Block.name=Chaos Altar
-tile.runemysteries:cosmic_Altar_Block.name=Cosmic Altar
-tile.runemysteries:death_Altar_Block.name=Death Altar
-tile.runemysteries:earth_Altar_Block.name=Earth Altar
-tile.runemysteries:fire_Altar_Block.name=Fire Altar
-tile.runemysteries:law_Altar_Block.name=Law Altar
-tile.runemysteries:mind_Altar_Block.name=Mind Altar
-tile.runemysteries:nature_Altar_Block.name=Nature Altar
-tile.runemysteries:soul_Altar_Block.name=Soul Altar
-tile.runemysteries:water_Altar_Block.name=Water Altar
-tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
+tile.runemysteries:rune_Altar.air.name=Air Altar
+tile.runemysteries:rune_Altar.astral.name=Astral Altar
+tile.runemysteries:rune_Altar.blood.name=Blood Altar
+tile.runemysteries:rune_Altar.body.name=Body Altar
+tile.runemysteries:rune_Altar.chaos.name=Chaos Altar
+tile.runemysteries:rune_Altar.cosmic.name=Cosmic Altar
+tile.runemysteries:rune_Altar.death.name=Death Altar
+tile.runemysteries:rune_Altar.earth.name=Earth Altar
+tile.runemysteries:rune_Altar.fire.name=Fire Altar
+tile.runemysteries:rune_Altar.law.name=Law Altar
+tile.runemysteries:rune_Altar.mind.name=Mind Altar
+tile.runemysteries:rune_Altar.nature.name=Nature Altar
+tile.runemysteries:rune_Altar.soul.name=Soul Altar
+tile.runemysteries:rune_Altar.water.name=Water Altar
+tile.runemysteries:rune_Altar.essence.name=Ourania Altar
 
 tile.runemysteries:air_Altar_Entrance_Block.name=Air Altar Ruin
 tile.runemysteries:blood_Altar_Entrance_Block.name=Blood Altar Ruin

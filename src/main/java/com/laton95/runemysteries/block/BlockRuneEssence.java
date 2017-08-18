@@ -3,6 +3,7 @@ package com.laton95.runemysteries.block;
 import javax.annotation.Nullable;
 
 import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -33,7 +34,7 @@ public class BlockRuneEssence extends RMModBlock
 		{
 			player.addExhaustion(0.005F);
 
-			ItemStack itemstack = new ItemStack(ItemRegistry.RUNE_ESSENCE);
+			ItemStack itemstack = new ItemStack(ItemRegistry.RUNE, 1, EnumRuneType.ESSENCE.ordinal());
 			spawnAsEntity(worldIn, pos, itemstack);
 
 			worldIn.setBlockState(pos, state);

@@ -28,7 +28,7 @@ public class SnowballSpell extends SpellBase
 	}
 
 	@Override
-	public void fireSpell(World world, EntityPlayer player)
+	public boolean fireSpell(World world, EntityPlayer player)
 	{
 		world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW,
 				SoundCategory.NEUTRAL, 0.5F, 0.4F
@@ -41,6 +41,8 @@ public class SnowballSpell extends SpellBase
 					1.0F);
 			world.spawnEntity(entitysnowball);
 		}
+		
+		return true;
 	}
 
 }

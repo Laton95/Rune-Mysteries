@@ -28,7 +28,7 @@ public abstract class SpellBase
 		this.guiTexture = guiTexture;
 	}
 
-	public abstract void fireSpell(World world, EntityPlayer player);
+	public abstract boolean fireSpell(World world, EntityPlayer player);
 
 	protected void putProjectileInWorld(World world, EntityPlayer player, SpellProjectileBase spellProjectile)
 	{
