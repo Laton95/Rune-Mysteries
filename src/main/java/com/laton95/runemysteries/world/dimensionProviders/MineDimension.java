@@ -34,7 +34,7 @@ public class MineDimension extends WorldProvider
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.MIND;
+		return DimensionRegistry.MINE;
 	}
 
 	@Override

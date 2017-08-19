@@ -27,11 +27,11 @@ public class ItemRegistry
 
 	private static ArrayList<Item> itemList = new ArrayList<>();
 	
-	public static final ItemRune RUNE = new ItemRune("rune");
-	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman("talisman", true);
+	public static final ItemRune RUNE = new ItemRune();
+	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman();
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
-	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", true);
+	public static final ItemScroll MINE_SCROLL = new ItemScroll();
 
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event)
@@ -82,7 +82,6 @@ public class ItemRegistry
 	{
 		itemList.add(RUNE);
 		itemList.add(RUNE_TALISMAN);
-
 		itemList.add(SPELLBOOK);
 		itemList.add(RUNE_BAG);
 		itemList.add(MINE_SCROLL);

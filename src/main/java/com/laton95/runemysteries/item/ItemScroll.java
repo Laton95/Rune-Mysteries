@@ -9,31 +9,58 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
 public class ItemScroll extends RMModItem
 {
 
-	public ItemScroll(String name, boolean showInCreative)
+	public static enum EnumScrollType implements IStringSerializable {
+		MINE("mine");
+
+		private final String name;
+		
+		
+		private EnumScrollType(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String getName()
+		{
+			return name;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return name;
+		}
+	}
+	
+	public ItemScroll()
 	{
-		super(name, showInCreative);
+		super("scroll", true, EnumScrollType.class);
 		maxStackSize = 16;
 	}
 
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
+		ItemStack scroll = playerIn.getHeldItem(handIn);
+		int dimID = getDimIDFromMetadata(scroll.getItemDamage());
 		if (!worldIn.isRemote)
 		{
-			if (worldIn.provider.getDimension() != ModConfig.DIMENSIONS.essenceMineDimID)
+			if (worldIn.provider.getDimension() != dimID)
 			{
 				if (!playerIn.isCreative())
 				{
 					playerIn.getHeldItem(handIn).shrink(1);
 				}
 				playerIn.getCooldownTracker().setCooldown(this, 500);
-				TeleportHelper.teleportEntity(playerIn, ModConfig.DIMENSIONS.essenceMineDimID, 0, 64, 0);
+				TeleportHelper.teleportEntity(playerIn, dimID, 0, 64, 0);
 			}
 			else
 			{
@@ -42,5 +69,16 @@ public class ItemScroll extends RMModItem
 
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+	}
+	
+	private int getDimIDFromMetadata(int metadata)
+	{
+		switch (EnumScrollType.values()[metadata])
+		{
+			case MINE:
+				return ModConfig.DIMENSIONS.essenceMineDimID;
+		}
+		
+		return 0;
 	}
 }

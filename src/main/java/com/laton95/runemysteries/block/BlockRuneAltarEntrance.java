@@ -46,7 +46,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	public int getMetaFromState(IBlockState state)
 	{
 		EnumRuneType type = (EnumRuneType) state.getValue(TYPE);
-		return type.getID();
+		return type.ordinal();
 	}
 	
 	@Override

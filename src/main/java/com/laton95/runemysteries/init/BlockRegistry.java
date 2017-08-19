@@ -59,6 +59,12 @@ public class BlockRegistry
 	
 	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	
+	public static final RMModRail NETHERBRICK_RAIL = new RMModRail("netherbrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail PRISMARINE_RAIL = new RMModRail("prismarine_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail PURPUR_RAIL = new RMModRail("purpur_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail QUARTZ_RAIL = new RMModRail("quartz_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMModRail SANDSTONE_RAIL = new RMModRail("sandstone_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	
 	public static final BlockParticleLight PARTICLE_LIGHT = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f, "pickaxe", 0, true);
 
 	@SubscribeEvent
@@ -123,6 +129,11 @@ public class BlockRegistry
 		blockList.add(FLESH_BLOCK);
 		
 		blockList.add(STONEBRICK_RAIL);
+		blockList.add(NETHERBRICK_RAIL);
+		blockList.add(PRISMARINE_RAIL);
+		blockList.add(PURPUR_RAIL);
+		blockList.add(QUARTZ_RAIL);
+		blockList.add(SANDSTONE_RAIL);
 
 		blockList.add(PARTICLE_LIGHT);
 	}

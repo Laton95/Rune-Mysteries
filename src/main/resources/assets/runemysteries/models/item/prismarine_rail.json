@@ -1,0 +1,6 @@
+{
+    "parent": "runemysteries:block/rail_inventory",
+    "textures": {
+        "texture": "minecraft:blocks/prismarine_dark"
+    }
+}

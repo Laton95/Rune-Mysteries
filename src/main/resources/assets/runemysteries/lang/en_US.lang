@@ -33,27 +33,35 @@ item.runemysteries:talisman.essence.name=Blank Talisman
 
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
-item.runemysteries:mine_scroll.name=Rune Essence Mine Teleport Scroll
-
-
+item.runemysteries:scroll.mine.name=Rune Essence Mine Teleport Scroll
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
 tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
+
 tile.runemysteries:ruin_Block.name=Ruined Stone
 tile.runemysteries:station_Stone_Block.name=Station Stone
+
 tile.runemysteries:temple_Block.name=Temple Brick
 tile.runemysteries:temple_Block_Stairs.name=Temple Brick Stairs
 tile.runemysteries:temple_Block_Slab_Half.name=Temple Brick Slab
 tile.runemysteries:temple_Block_Slab_Double.name=Temple Brick Double Slab
 tile.runemysteries:temple_Block_Rail.name=Temple Rail
+
 tile.runemysteries:blood_Block.name=Blood Tile
 tile.runemysteries:blood_Block_Stairs.name=Blood Tile Stairs
 tile.runemysteries:blood_Block_Slab_Half.name=Blood Tile Slab
 tile.runemysteries:blood_Block_Slab_Double.name=Blood Tile Double Slab
 tile.runemysteries:blood_Block_Rail.name=Blood Rail
+
 tile.runemysteries:flesh_Block.name=Flesh
+
 tile.runemysteries:stonebrick_Rail.name=Stone Brick Rail
+tile.runemysteries:netherbrick_Rail.name=Nether Brick Rail
+tile.runemysteries:prismarine_Rail.name=Prismarine Rail
+tile.runemysteries:purpur_Rail.name=Purpur Rail
+tile.runemysteries:quartz_Rail.name=Quartz Rail
+tile.runemysteries:sandstone_Rail.name=Sandstone Rail
 
 tile.runemysteries:rune_Altar.air.name=Air Altar
 tile.runemysteries:rune_Altar.astral.name=Astral Altar
@@ -145,7 +153,7 @@ item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
-item.runemysteries.scroll.fail=You are already at the essence mine.
+item.runemysteries.scroll.fail=You are already at the scroll's destination.
 
 item.runemysteries.rune_bag.autoTurnOn=The pouch will now auto-pickup runes.
 item.runemysteries.rune_bag.autoTurnOff=The pouch will no longer auto-pickup runes.
@@ -154,7 +162,6 @@ item.runemysteries.rune_bag.autoOff=Auto rune-pickup off.
 
 tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
-tile.runemysteries:altar_portal.item=The item is torn apart by the teleportation magic of the portal.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.

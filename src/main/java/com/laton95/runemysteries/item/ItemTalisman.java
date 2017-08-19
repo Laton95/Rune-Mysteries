@@ -23,9 +23,9 @@ import net.minecraft.world.World;
 public class ItemTalisman extends RMModItem
 {
 
-	public ItemTalisman(String name, boolean showInCreative)
+	public ItemTalisman()
 	{
-		super(name, showInCreative, EnumRuneType.class);
+		super("talisman", true, EnumRuneType.class);
 		setMaxStackSize(1);
 	}
 
