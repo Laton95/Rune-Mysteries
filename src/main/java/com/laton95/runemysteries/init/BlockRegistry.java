@@ -58,7 +58,6 @@ public class BlockRegistry
 	public static final RMModBlock FLESH_BLOCK = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
 	
 	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
-	
 	public static final RMModRail NETHERBRICK_RAIL = new RMModRail("netherbrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModRail PRISMARINE_RAIL = new RMModRail("prismarine_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final RMModRail PURPUR_RAIL = new RMModRail("purpur_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);

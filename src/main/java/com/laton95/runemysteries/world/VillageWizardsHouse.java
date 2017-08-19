@@ -40,32 +40,17 @@ public class VillageWizardsHouse extends Village
 	@Override
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox structureBoundingBoxIn)
 	{
+		StructureBoundingBox bBox = boundingBox;
+		structureBoundingBoxIn = boundingBox;
 		if (groundLevel < 0)
 		{
-			groundLevel = getAverageGroundLevel(worldIn, structureBoundingBoxIn);
+			groundLevel = getAverageGroundLevel(worldIn, bBox);
 			if (groundLevel < 0)
 			{
 				return true;
 			}
 			boundingBox.offset(0, groundLevel - boundingBox.maxY + 10 - 1, 0);
-			BlockPos pos = new BlockPos(structureBoundingBoxIn.minX, structureBoundingBoxIn.minY, structureBoundingBoxIn.minZ);
-			// for (int x = 0; x < structureBoundingBoxIn.getXSize();
-			// x++) {
-			// for (int z = 0; z < structureBoundingBoxIn.getZSize();
-			// z++) {
-			// setBlockState(worldIn,
-			// Blocks.IRON_BLOCK.getDefaultState(), x, 4, z,
-			// structureBoundingBoxIn);
-			// }
-			// }
-			//
-			// for (int x = 0; x < boundingBox.getXSize(); x++) {
-			// for (int z = 0; z < boundingBox.getZSize(); z++) {
-			// setBlockState(worldIn,
-			// Blocks.GOLD_BLOCK.getDefaultState(), x, 0, z,
-			// boundingBox);
-			// }
-			// }
+			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			PlacementSettings settings = new PlacementSettings().setBoundingBox(boundingBox).setReplacedBlock(
 					Blocks.STRUCTURE_VOID);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "wizard_house", pos, settings);
@@ -100,7 +85,7 @@ public class VillageWizardsHouse extends Village
 		@Override
 		public Village buildComponent(PieceWeight villagePiece, Start startPiece, List<StructureComponent> pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5)
 		{
-			StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 11, 10, 9,
+			StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 8, 6, 11,
 					facing);
 			return !canVillageGoDeeper(box) || StructureComponent.findIntersecting(pieces, box) != null ? null
 					: new VillageWizardsHouse(startPiece, p5, random, box, facing);

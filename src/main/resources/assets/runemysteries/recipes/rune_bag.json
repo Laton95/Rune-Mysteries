@@ -1,5 +1,5 @@
 {
-  "type": "forge:ore_shaped",
+  "type": "minecraft:crafting_shaped",
   "pattern": [
     "SWS",
     "WRW",
@@ -73,13 +73,66 @@
       }
     ],
     "S": {
-      "type": "minecraft:item",
       "item": "minecraft:string"
     },
-    "R": {
-      "type": "forge:ore_dict",
-      "ore": "RMRune"
-    }
+    "R": [
+      {
+        "item": "runemysteries:rune",
+        "data": 0
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 1
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 2
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 3
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 4
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 5
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 6
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 7
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 8
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 9
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 10
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 11
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 12
+      },
+      {
+        "item": "runemysteries:rune",
+        "data": 13
+      }
+    ]
   },
   "result": {
     "item": "runemysteries:rune_bag",

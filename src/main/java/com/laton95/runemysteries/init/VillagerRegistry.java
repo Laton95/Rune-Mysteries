@@ -29,28 +29,10 @@ public class VillagerRegistry
 		VillagerCareer career_Runecrafter = new VillagerCareer(villagerProfession_Wizard, ModReference.MOD_ID
 				+ ".runecrafter");
 		career_Runecrafter.addTrade(1,
-				new VillagerTradeHelper.Trade(Items.EMERALD, new PriceInfo(1, 2), ItemRegistry.MINE_SCROLL, new PriceInfo(2, 4)));
-		// career_Runecrafter.addTrade(2,
-		// new IEVillagerTrades.EmeraldForItemstack(new
-		// ItemStack(itemMaterial, 1, 1), new EntityVillager.PriceInfo(2,
-		// 6)),
-		// new IEVillagerTrades.ItemstackForEmerald(new
-		// ItemStack(blockMetalDecoration1, 1, 1), new
-		// EntityVillager.PriceInfo(-8, -4)),
-		// new IEVillagerTrades.ItemstackForEmerald(new
-		// ItemStack(blockMetalDecoration1, 1, 5), new
-		// EntityVillager.PriceInfo(-8, -4))
-		// );
-		// career_Runecrafter.addTrade(3,
-		// new IEVillagerTrades.EmeraldForItemstack(new
-		// ItemStack(itemMaterial, 1, 2), new EntityVillager.PriceInfo(2,
-		// 6)),
-		// new IEVillagerTrades.EmeraldForItemstack(new
-		// ItemStack(itemMaterial, 1, 7), new EntityVillager.PriceInfo(4,
-		// 8)),
-		// new IEVillagerTrades.ItemstackForEmerald(new
-		// ItemStack(blockStoneDecoration, 1, 5), new
-		// EntityVillager.PriceInfo(-6, -2))
-		// );
+				new VillagerTradeHelper.Trade(Items.EMERALD, new PriceInfo(1, 2), 0, ItemRegistry.MINE_SCROLL, new PriceInfo(2, 4), 0));
+		career_Runecrafter.addTrade(2,
+				new VillagerTradeHelper.Trade(ItemRegistry.RUNE_TALISMAN, new PriceInfo(1, 1), 13, Items.EMERALD, new PriceInfo(3, 6), 0));
+		career_Runecrafter.addTrade(3,
+				new VillagerTradeHelper.Trade(Items.EMERALD, new PriceInfo(8, 12), 0, ItemRegistry.RUNE_TALISMAN, new PriceInfo(1, 1), 13));
 	}
 }

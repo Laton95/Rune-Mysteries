@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:purpur_block",
+      "data": 0
+    },
+    "@": {
+      "item": "minecraft:purpur_slab",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "runemysteries:purpur_rail",
+    "data": 0,
+    "count": 5
+  }
+}
