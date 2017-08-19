@@ -118,7 +118,7 @@ public abstract class RMModSlab extends BlockSlab
 		public Double(String name, Material material, float hardness, Float resistance, String toolClass,
 				int harvestLevel, boolean showInCreative)
 		{
-			super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			super(name + "_Double", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 		@Override
@@ -130,11 +130,13 @@ public abstract class RMModSlab extends BlockSlab
 
 	public static class Half extends RMModSlab
 	{
+		public final RMModSlab.Double doubleSlab;
 
 		public Half(String name, Material material, float hardness, Float resistance, String toolClass,
 				int harvestLevel, boolean showInCreative)
 		{
-			super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			super(name + "_Half", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			this.doubleSlab = new Double(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 		@Override

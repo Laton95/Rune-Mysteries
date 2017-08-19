@@ -3,31 +3,68 @@ package com.laton95.runemysteries.block;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
+import com.laton95.runemysteries.util.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 
 import net.minecraft.block.material.Material;
+import net.minecraft.block.properties.IProperty;
+import net.minecraft.block.properties.PropertyEnum;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 
-public class BlockRuneAltarEntrance extends RMModBlock
+public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
+	
+	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumRuneType.class);
 
-	private int dimID;
-	private EnumRuneType type;
-
-	public BlockRuneAltarEntrance(String name, EnumRuneType type, String altar)
+	public BlockRuneAltarEntrance()
 	{
-		super(name, Material.ROCK, 0, 2000f, null, 0, false);
-		this.type = type;
+		super("rune_Altar_Entrance", Material.ROCK, 0, 2000f, null, 0, false);
 		setBlockUnbreakable();
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, new IProperty[] {TYPE});
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		EnumRuneType type = (EnumRuneType) state.getValue(TYPE);
+		return type.getID();
+	}
+	
+	@Override
+	public IBlockState getStateFromMeta(int meta)
+	{
+		return this.getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
+	}
+	
+	@Override
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
+	{
+		for (int i = 0; i < EnumRuneType.values().length; i++)
+		{
+			if (i != EnumRuneType.ASTRAL.ordinal() && i != EnumRuneType.ESSENCE.ordinal())
+			{
+				items.add(new ItemStack(this, 1, i));
+			}
+		}
 	}
 
 	@Override
@@ -35,14 +72,14 @@ public class BlockRuneAltarEntrance extends RMModBlock
 	{
 		if (!worldIn.isRemote)
 		{
-			new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, type.ordinal());
+			new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, getMetaFromState(state));
 			if (playerIn.getHeldItemMainhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
-					&& playerIn.getHeldItemMainhand().getItemDamage() == type.ordinal()
+					&& playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state)
 					|| playerIn.getHeldItemOffhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
-							&& playerIn.getHeldItemOffhand().getItemDamage() == type.ordinal())
+							&& playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
-				TeleportHelper.teleportEntity(playerIn, dimID, 2, 87, 2);
+				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
 			}
 			else
 			{
@@ -50,11 +87,6 @@ public class BlockRuneAltarEntrance extends RMModBlock
 			}
 		}
 		return true;
-	}
-
-	public void setDimID(int dimID)
-	{
-		this.dimID = dimID;
 	}
 
 	@Override
@@ -75,5 +107,51 @@ public class BlockRuneAltarEntrance extends RMModBlock
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
+	}
+
+	@Override
+	public String getSpecialName(ItemStack stack)
+	{
+		return EnumRuneType.values()[stack.getItemDamage()].toString();
+	}
+	
+	@Override
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	{
+		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
+	}
+	
+	private int getDimIDFromState(IBlockState state) {
+		switch (EnumRuneType.values()[getMetaFromState(state)])
+		{
+			case AIR:
+				return ModConfig.DIMENSIONS.airTempleDimID;
+			case BLOOD:
+				return ModConfig.DIMENSIONS.bloodTempleDimID;
+			case BODY:
+				return ModConfig.DIMENSIONS.bodyTempleDimID;
+			case CHAOS:
+				return ModConfig.DIMENSIONS.chaosTempleDimID;
+			case COSMIC:
+				return ModConfig.DIMENSIONS.cosmicTempleDimID;
+			case DEATH:
+				return ModConfig.DIMENSIONS.deathTempleDimID;
+			case EARTH:
+				return ModConfig.DIMENSIONS.earthTempleDimID;
+			case FIRE:
+				return ModConfig.DIMENSIONS.fireTempleDimID;
+			case LAW:
+				return ModConfig.DIMENSIONS.lawTempleDimID;
+			case MIND:
+				return ModConfig.DIMENSIONS.mindTempleDimID;
+			case NATURE:
+				return ModConfig.DIMENSIONS.natureTempleDimID;
+			case SOUL:
+				return ModConfig.DIMENSIONS.soulTempleDimID;
+			case WATER:
+				return ModConfig.DIMENSIONS.waterTempleDimID;
+			default:
+				return 0;
+		}
 	}
 }

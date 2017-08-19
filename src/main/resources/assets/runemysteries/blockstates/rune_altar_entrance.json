@@ -1,0 +1,23 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "runemysteries:rune_altar_block",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "type=air": { "model": "runemysteries:rune_altar_block" },
+    "type=blood": { "model": "runemysteries:rune_altar_block" },
+    "type=body": { "model": "runemysteries:rune_altar_block" },
+    "type=chaos": { "model": "runemysteries:rune_altar_block" },
+    "type=cosmic": { "model": "runemysteries:rune_altar_block" },
+    "type=death": { "model": "runemysteries:rune_altar_block" },
+    "type=earth": { "model": "runemysteries:rune_altar_block" },
+    "type=fire": { "model": "runemysteries:rune_altar_block" },
+    "type=law": { "model": "runemysteries:rune_altar_block" },
+    "type=mind": { "model": "runemysteries:rune_altar_block" },
+    "type=nature": { "model": "runemysteries:rune_altar_block" },
+    "type=soul": { "model": "runemysteries:rune_altar_block" },
+    "type=water": { "model": "runemysteries:rune_altar_block" },
+    "inventory": { "model": "runemysteries:rune_altar_block" }
+  }
+}

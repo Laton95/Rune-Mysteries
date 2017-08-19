@@ -77,7 +77,6 @@ public class RuneMysteries
 		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 		WorldGenRegistry.registerWorldGen();
 		DimensionRegistry.registerDimensions();
-		BlockRegistry.setupDimIDs();
 		OreDictRegistry.registerOres();
 		VillagerRegistry.registerVillage();
 		proxy.registerKeyBindings();
