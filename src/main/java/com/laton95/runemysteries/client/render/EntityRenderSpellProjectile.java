@@ -11,6 +11,7 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.entity.Entity;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.MathHelper;
 
 public class EntityRenderSpellProjectile extends Render
 {
@@ -37,15 +38,6 @@ public class EntityRenderSpellProjectile extends Render
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		GlStateManager.enableRescaleNormal();
-		// int wobbleIntensity = 100;
-		// float f9 = (float)entity.ticksExisted%wobbleIntensity -
-		// partialTicks;
-		//
-		// if (f9 > 0.0F)
-		// {
-		// float f10 = -MathHelper.sin(f9 * 3.0F) * f9;
-		// GlStateManager.rotate(f10, 0.0F, 0.0F, 1.0F);
-		// }
 
 		GlStateManager.rotate(45.0F, 1.0F, 0.0F, 0.0F);
 		GlStateManager.scale(0.05625F, 0.05625F, 0.05625F);

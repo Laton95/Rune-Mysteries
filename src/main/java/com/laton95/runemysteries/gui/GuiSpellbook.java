@@ -16,6 +16,7 @@ import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.util.ItemNBTHelper;
 
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,6 +27,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
+import net.minecraftforge.fml.client.config.HoverChecker;
+import scala.tools.nsc.interpreter.IMain.StrippingTruncatingWriter;
 
 public class GuiSpellbook extends RMModGuiScreen
 {
@@ -197,13 +200,26 @@ public class GuiSpellbook extends RMModGuiScreen
 			temp1 = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
 			temp2 = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_DESCRIPTION);
 		}
-
+		
 		fontRenderer.drawString(TextFormatting.BLACK + temp1.getFormattedText() + TextFormatting.UNDERLINE, xStart + 192
 				- fontRenderer.getStringWidth(temp1.getFormattedText()) / 2, yStart + 30, 0, false);
 		fontRenderer.drawSplitString(TextFormatting.BLACK + temp2.getFormattedText(), xStart + 140, yStart
 				+ 60, 107, 0);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
+		
+		for (GuiButton button : this.buttonList)
+		{
+			if (button instanceof SpellButton)
+			{
+				HoverChecker hoverChecker = new HoverChecker(button, 10);
+				if (hoverChecker.checkHover(mouseX, mouseY))
+				{
+					TextComponentTranslation tooltip = new TextComponentTranslation(((SpellButton) button).getSpell().getName());
+					drawHoveringText(tooltip.getFormattedText(), button.x, button.y);
+				}
+			}
+		}
 	}
 
 	private class GuiExtraItems extends RMModGuiScreen

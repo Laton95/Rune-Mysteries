@@ -22,6 +22,12 @@ public class SpellProjectileBouncing extends SpellProjectileBase
 	{
 		super(worldIn, throwerIn, TEXTURE, TRAIL_PARTICLE, IMPACT_PARTICLE);
 	}
+	
+	@Override
+	public void onEntityUpdate()
+	{
+		super.onEntityUpdate();
+	}
 
 	@Override
 	public void onImpact(RayTraceResult result)
@@ -66,6 +72,8 @@ public class SpellProjectileBouncing extends SpellProjectileBase
 		{
 			setDead();
 		}
+		
+		
 		
 		super.onImpact(result);
 	}
