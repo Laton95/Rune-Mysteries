@@ -23,7 +23,7 @@ public class Spells
 	};
 
 	public static List<SpellBase> spellList = ImmutableList.of(
-			new EnderpearlSpell(),
+			new TeleportBasicSpell(),
 			new SnowballSpell(),
 			new ExplosionSpell(),
 			new DeathSpell(),

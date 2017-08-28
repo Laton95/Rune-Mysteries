@@ -16,6 +16,8 @@ public class SpellProjectileBase extends EntityThrowable
 	private final ResourceLocation texture;
 	private final EnumParticleTypes trailParticles;
 	private final EnumParticleTypes impactParticles;
+	
+	private float impactParticleSpeed = 2;
 
 	public SpellProjectileBase(World worldIn)
 	{
@@ -67,9 +69,14 @@ public class SpellProjectileBase extends EntityThrowable
 
 		for (int i = 0; i < 16; ++i)
 		{
-			world.spawnParticle(impactParticles, posX, posY, posZ, rand.nextDouble() * 2
-					- 1, rand.nextDouble(), rand.nextDouble() * 2 - 1);
+			world.spawnParticle(impactParticles, posX, posY, posZ, rand.nextDouble() * impactParticleSpeed*2 - impactParticleSpeed, rand.nextDouble()  * impactParticleSpeed*2 - impactParticleSpeed, rand.nextDouble() * impactParticleSpeed*2 - impactParticleSpeed);
 		}
+	}
+	
+	
+	protected void setImpactParticleSpeed(float projectileSpeed)
+	{
+		this.impactParticleSpeed = projectileSpeed;
 	}
 
 	protected void setStationary(boolean value)

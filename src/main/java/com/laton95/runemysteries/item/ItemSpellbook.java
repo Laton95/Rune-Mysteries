@@ -163,7 +163,10 @@ public class ItemSpellbook extends RMModItem
 		else 
 		{
 			playerIn.getCooldownTracker().setCooldown(this, 5);
-			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
+			if (!worldIn.isRemote)
+			{
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
+			}
 		}
 	}
 }

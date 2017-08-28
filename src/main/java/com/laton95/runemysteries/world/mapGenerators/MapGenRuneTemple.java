@@ -122,7 +122,7 @@ public class MapGenRuneTemple extends MapGenStructure
 			}
 			else if (dimensionID == ModConfig.DIMENSIONS.mindTempleDimID)
 			{
-				ComponentTemple componentMindTemple = new ComponentTemple(chunkX, chunkZ, "mind", new BlockPos(-4, 87, 1), 86);
+				ComponentTemple componentMindTemple = new ComponentTemple(chunkX, chunkZ, "mind", new BlockPos(-4, 87, -1), 86);
 				components.add(componentMindTemple);
 			}
 			else if (dimensionID == ModConfig.DIMENSIONS.natureTempleDimID)

@@ -15,12 +15,13 @@ public class SpellProjectileBouncing extends SpellProjectileBase
 	private int landedTick;
 	
 	private final static ResourceLocation TEXTURE = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
-	private final static EnumParticleTypes TRAIL_PARTICLE = EnumParticleTypes.END_ROD;
-	private final static EnumParticleTypes IMPACT_PARTICLE = EnumParticleTypes.VILLAGER_HAPPY;
+	private final static EnumParticleTypes TRAIL_PARTICLE = EnumParticleTypes.CRIT;
+	private final static EnumParticleTypes IMPACT_PARTICLE = EnumParticleTypes.END_ROD;
 
 	public SpellProjectileBouncing(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn, TEXTURE, TRAIL_PARTICLE, IMPACT_PARTICLE);
+		setImpactParticleSpeed(0.15f);
 	}
 	
 	@Override
