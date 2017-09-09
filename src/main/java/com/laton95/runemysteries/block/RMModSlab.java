@@ -15,13 +15,16 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IStringSerializable;
 
-public abstract class RMModSlab extends BlockSlab {
+public abstract class RMModSlab extends BlockSlab
+{
+
 	private Item halfSlabItem;
 	public static final PropertyEnum<RMModSlab.Variant> VARIANT = PropertyEnum.<RMModSlab.Variant>create("variant",
 			RMModSlab.Variant.class);
 
 	public RMModSlab(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative) {
+			int harvestLevel, boolean showInCreative)
+	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
@@ -31,7 +34,8 @@ public abstract class RMModSlab extends BlockSlab {
 		setHarvestLevel(toolClass, harvestLevel);
 
 		IBlockState state = blockState.getBaseState();
-		if (!isDouble()) {
+		if (!isDouble())
+		{
 			state = state.withProperty(HALF, EnumBlockHalf.BOTTOM);
 		}
 
@@ -40,92 +44,115 @@ public abstract class RMModSlab extends BlockSlab {
 	}
 
 	@Override
-	public String getUnlocalizedName(int meta) {
+	public String getUnlocalizedName(int meta)
+	{
 		return this.getUnlocalizedName();
 	}
 
 	@Override
-	public IProperty<?> getVariantProperty() {
+	public IProperty<?> getVariantProperty()
+	{
 		return VARIANT;
 	}
 
 	@Override
-	public Comparable<?> getTypeForItem(ItemStack stack) {
+	public Comparable<?> getTypeForItem(ItemStack stack)
+	{
 		return RMModSlab.Variant.DEFAULT;
 	}
 
 	@Override
-	public int damageDropped(IBlockState state) {
+	public int damageDropped(IBlockState state)
+	{
 		return 0;
 	}
 
 	@Override
-	public IBlockState getStateFromMeta(int meta) {
+	public IBlockState getStateFromMeta(int meta)
+	{
 		IBlockState iblockstate = getDefaultState().withProperty(VARIANT, RMModSlab.Variant.DEFAULT);
 
-		if (!isDouble()) {
-			iblockstate = iblockstate.withProperty(HALF,
-					(meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
+		if (!isDouble())
+		{
+			iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM
+					: BlockSlab.EnumBlockHalf.TOP);
 		}
 
 		return iblockstate;
 	}
 
 	@Override
-	public int getMetaFromState(IBlockState state) {
+	public int getMetaFromState(IBlockState state)
+	{
 		int i = 0;
 
-		if (!isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP) {
+		if (!isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+		{
 			i |= 8;
 		}
 
 		return i;
 	}
 
-	public void setDroppedItem(Item item) {
+	public void setDroppedItem(Item item)
+	{
 		halfSlabItem = item;
 	}
 
 	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune) {
+	public Item getItemDropped(IBlockState state, Random rand, int fortune)
+	{
 		return halfSlabItem;
 	}
 
 	@Override
-	protected BlockStateContainer createBlockState() {
+	protected BlockStateContainer createBlockState()
+	{
 		return isDouble() ? new BlockStateContainer(this, new IProperty[] { VARIANT })
 				: new BlockStateContainer(this, new IProperty[] { HALF, VARIANT });
 	}
 
-	public static class Double extends RMModSlab {
+	public static class Double extends RMModSlab
+	{
+
 		public Double(String name, Material material, float hardness, Float resistance, String toolClass,
-				int harvestLevel, boolean showInCreative) {
-			super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+				int harvestLevel, boolean showInCreative)
+		{
+			super(name + "_Double", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 		@Override
-		public boolean isDouble() {
+		public boolean isDouble()
+		{
 			return true;
 		}
 	}
 
-	public static class Half extends RMModSlab {
+	public static class Half extends RMModSlab
+	{
+		public final RMModSlab.Double doubleSlab;
+
 		public Half(String name, Material material, float hardness, Float resistance, String toolClass,
-				int harvestLevel, boolean showInCreative) {
-			super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+				int harvestLevel, boolean showInCreative)
+		{
+			super(name + "_Half", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			this.doubleSlab = new Double(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 		@Override
-		public boolean isDouble() {
+		public boolean isDouble()
+		{
 			return false;
 		}
 	}
 
-	public static enum Variant implements IStringSerializable {
+	public static enum Variant implements IStringSerializable
+	{
 		DEFAULT;
 
 		@Override
-		public String getName() {
+		public String getName()
+		{
 			return "default";
 		}
 	}

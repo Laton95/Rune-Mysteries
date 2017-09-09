@@ -11,7 +11,8 @@
       "data": 0
     },
     "@": {
-      "item": "runemysteries:rune_essence"
+        "item": "runemysteries:rune",
+        "data": 14
     }
   },
   "result": {

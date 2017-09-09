@@ -1,37 +1,123 @@
 #Items
-item.runemysteries:air_Rune.name=Air Rune
-item.runemysteries:astral_Rune.name=Astral Rune
-item.runemysteries:blood_Rune.name=Blood Rune
-item.runemysteries:body_Rune.name=Body Rune
-item.runemysteries:chaos_Rune.name=Chaos Rune
-item.runemysteries:cosmic_Rune.name=Cosmic Rune
-item.runemysteries:death_Rune.name=Death Rune
-item.runemysteries:earth_Rune.name=Earth Rune
-item.runemysteries:fire_Rune.name=Fire Rune
-item.runemysteries:law_Rune.name=Law Rune
-item.runemysteries:mind_Rune.name=Mind Rune
-item.runemysteries:nature_Rune.name=Nature Rune
-item.runemysteries:rune_Essence.name=Rune Essence
-item.runemysteries:soul_Rune.name=Soul Rune
-item.runemysteries:water_Rune.name=Water Rune
+item.runemysteries:rune.air.name=Air Rune
+item.runemysteries:rune.astral.name=Astral Rune
+item.runemysteries:rune.blood.name=Blood Rune
+item.runemysteries:rune.body.name=Body Rune
+item.runemysteries:rune.chaos.name=Chaos Rune
+item.runemysteries:rune.cosmic.name=Cosmic Rune
+item.runemysteries:rune.death.name=Death Rune
+item.runemysteries:rune.earth.name=Earth Rune
+item.runemysteries:rune.fire.name=Fire Rune
+item.runemysteries:rune.law.name=Law Rune
+item.runemysteries:rune.mind.name=Mind Rune
+item.runemysteries:rune.nature.name=Nature Rune
+item.runemysteries:rune.soul.name=Soul Rune
+item.runemysteries:rune.water.name=Water Rune
+item.runemysteries:rune.essence.name=Rune Essence
 
-item.runemysteries:air_talisman.name=Air Talisman
-item.runemysteries:astral_talisman.name=Astral Talisman
-item.runemysteries:blood_talisman.name=Blood Talisman
-item.runemysteries:body_talisman.name=Body Talisman
-item.runemysteries:chaos_talisman.name=Chaos Talisman
-item.runemysteries:cosmic_talisman.name=Cosmic Talisman
-item.runemysteries:death_talisman.name=Death Talisman
-item.runemysteries:earth_talisman.name=Earth Talisman
-item.runemysteries:fire_talisman.name=Fire Talisman
-item.runemysteries:law_talisman.name=Law Talisman
-item.runemysteries:mind_talisman.name=Mind Talisman
-item.runemysteries:nature_talisman.name=Nature Talisman
-item.runemysteries:soul_talisman.name=Soul Talisman
-item.runemysteries:water_talisman.name=Water Talisman
+item.runemysteries:talisman.air.name=Air Talisman
+item.runemysteries:talisman.astral.name=Astral Talisman
+item.runemysteries:talisman.blood.name=Blood Talisman
+item.runemysteries:talisman.body.name=Body Talisman
+item.runemysteries:talisman.chaos.name=Chaos Talisman
+item.runemysteries:talisman.cosmic.name=Cosmic Talisman
+item.runemysteries:talisman.death.name=Death Talisman
+item.runemysteries:talisman.earth.name=Earth Talisman
+item.runemysteries:talisman.fire.name=Fire Talisman
+item.runemysteries:talisman.law.name=Law Talisman
+item.runemysteries:talisman.mind.name=Mind Talisman
+item.runemysteries:talisman.nature.name=Nature Talisman
+item.runemysteries:talisman.soul.name=Soul Talisman
+item.runemysteries:talisman.water.name=Water Talisman
+item.runemysteries:talisman.essence.name=Blank Talisman
 
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
+item.runemysteries:scroll.mine.name=Rune Essence Mine Teleport Scroll
+
+#Blocks
+tile.runemysteries:rune_Essence_Block.name=Rune Essence
+tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
+
+tile.runemysteries:ruin_Block.name=Ruined Stone
+tile.runemysteries:station_Stone_Block.name=Station Stone
+
+tile.runemysteries:temple_Block.name=Temple Brick
+tile.runemysteries:temple_Block_Stairs.name=Temple Brick Stairs
+tile.runemysteries:temple_Block_Slab_Half.name=Temple Brick Slab
+tile.runemysteries:temple_Block_Slab_Double.name=Temple Brick Double Slab
+tile.runemysteries:temple_Block_Rail.name=Temple Rail
+
+tile.runemysteries:blood_Block.name=Blood Tile
+tile.runemysteries:blood_Block_Stairs.name=Blood Tile Stairs
+tile.runemysteries:blood_Block_Slab_Half.name=Blood Tile Slab
+tile.runemysteries:blood_Block_Slab_Double.name=Blood Tile Double Slab
+tile.runemysteries:blood_Block_Rail.name=Blood Rail
+
+tile.runemysteries:flesh_Block.name=Flesh
+
+tile.runemysteries:stonebrick_Rail.name=Stone Brick Rail
+tile.runemysteries:netherbrick_Rail.name=Nether Brick Rail
+tile.runemysteries:prismarine_Rail.name=Prismarine Rail
+tile.runemysteries:purpur_Rail.name=Purpur Rail
+tile.runemysteries:quartz_Rail.name=Quartz Rail
+tile.runemysteries:sandstone_Rail.name=Sandstone Rail
+
+tile.runemysteries:rune_Altar.air.name=Air Altar
+tile.runemysteries:rune_Altar.astral.name=Astral Altar
+tile.runemysteries:rune_Altar.blood.name=Blood Altar
+tile.runemysteries:rune_Altar.body.name=Body Altar
+tile.runemysteries:rune_Altar.chaos.name=Chaos Altar
+tile.runemysteries:rune_Altar.cosmic.name=Cosmic Altar
+tile.runemysteries:rune_Altar.death.name=Death Altar
+tile.runemysteries:rune_Altar.earth.name=Earth Altar
+tile.runemysteries:rune_Altar.fire.name=Fire Altar
+tile.runemysteries:rune_Altar.law.name=Law Altar
+tile.runemysteries:rune_Altar.mind.name=Mind Altar
+tile.runemysteries:rune_Altar.nature.name=Nature Altar
+tile.runemysteries:rune_Altar.soul.name=Soul Altar
+tile.runemysteries:rune_Altar.water.name=Water Altar
+tile.runemysteries:rune_Altar.essence.name=Ourania Altar
+
+tile.runemysteries:rune_Altar_Entrance.air.name=Air Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.blood.name=Blood Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.body.name=Body Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.chaos.name=Chaos Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.cosmic.name=Cosmic Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.death.name=Death Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.earth.name=Earth Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.fire.name=Fire Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.law.name=Law Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.mind.name=Mind Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.nature.name=Nature Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.soul.name=Soul Altar Ruin
+tile.runemysteries:rune_Altar_Entrance.water.name=Water Altar Ruin
+
+tile.runemysteries:altar_Exit_Portal.name=Altar Exit Portal
+
+tile.runemysteries:particle_Light.name=Magic Light
+
+#Fluids
+fluid.runemysteries:fluid_Blood=Blood
+
+#Creative Tabs
+itemGroup.runemysteries=Rune Mysteries
+
+#Advancements
+advancements.runemysteries.runecrafting.root.title=Runecrafting
+advancements.runemysteries.runecrafting.root.description=The forgotten art of runecrafting.
+advancements.runemysteries.runecrafting.rune_essence.title=Essentials
+advancements.runemysteries.runecrafting.rune_essence.description=Find some rune essence.
+advancements.runemysteries.runecrafting.craft_rune.title=Altaration
+advancements.runemysteries.runecrafting.craft_rune.description=Craft a rune at a rune altar.
+advancements.runemysteries.runecrafting.talisman.title=Sedridor's Gift
+advancements.runemysteries.runecrafting.talisman.description=Obtain a runecrafting talisman.
+advancements.runemysteries.runecrafting.get_all_talismans.title=Omni-Talisman
+advancements.runemysteries.runecrafting.get_all_talismans.description=Obtain all of the runecrafting talismans.
+advancements.runemysteries.runecrafting.altar.title=Mysterious Ruins
+advancements.runemysteries.runecrafting.altar.description=Follow the pull of a runecrafting talisman.
+advancements.runemysteries.runecrafting.ourania.title=ZMI Associate
+advancements.runemysteries.runecrafting.ourania.description=Find and use the legendary Ourania altar.
 
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
@@ -39,9 +125,13 @@ spell.runemysteries.enderpearlSpell.desc=Throw an ender pearl.
 spell.runemysteries.snowballSpell.name=Snowball
 spell.runemysteries.snowballSpell.desc=Throw a snowball.
 spell.runemysteries.explosionSpell.name=Explosion
-spell.runemysteries.explosionSpell.desc=Creates an explosion centered on the caster which hurts nearby creatures and breaks no blocks. The caster is immune to the explosion.
+spell.runemysteries.explosionSpell.desc=Fire an orb of energy that explodes on impact.
 spell.runemysteries.deathSpell.name=Damage
 spell.runemysteries.deathSpell.desc=Hurls a deadly projectile.
+spell.runemysteries.bouncingSpell.name=Bounce
+spell.runemysteries.bouncingSpell.desc=A projectile that bounces around.
+spell.runemysteries.followingSpell.name=Tracking spell
+spell.runemysteries.followingSpell.desc=A spell that follows and damages a target.
 spell.runemysteries.noSpell.name=None
 spell.runemysteries.noSpell.desc=No spell selected.
 
@@ -63,6 +153,7 @@ item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+item.runemysteries.scroll.fail=You are already at the scroll's destination.
 
 item.runemysteries.rune_bag.autoTurnOn=The pouch will now auto-pickup runes.
 item.runemysteries.rune_bag.autoTurnOff=The pouch will no longer auto-pickup runes.
@@ -71,83 +162,10 @@ item.runemysteries.rune_bag.autoOff=Auto rune-pickup off.
 
 tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
-tile.runemysteries:altar_portal.item=The item is torn apart by the teleportation magic of the portal.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
 death.attack.runeMagicDamageProjectile=%1$s was blasted by %2$s
-
-#Blocks
-tile.runemysteries:rune_Essence_Block.name=Rune Essence
-tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
-tile.runemysteries:ruin_Block.name=Ruined Stone
-tile.runemysteries:station_Stone_Block.name=Station Stone
-tile.runemysteries:temple_Block.name=Temple Brick
-tile.runemysteries:temple_Block_Stairs.name=Temple Brick Stairs
-tile.runemysteries:temple_Block_Slab_Half.name=Temple Brick Slab
-tile.runemysteries:temple_Block_Slab_Double.name=Temple Brick Double Slab
-tile.runemysteries:temple_Block_Rail.name=Temple Rail
-tile.runemysteries:blood_Block.name=Blood Tile
-tile.runemysteries:blood_Block_Stairs.name=Blood Tile Stairs
-tile.runemysteries:blood_Block_Slab_Half.name=Blood Tile Slab
-tile.runemysteries:blood_Block_Slab_Double.name=Blood Tile Double Slab
-tile.runemysteries:blood_Block_Rail.name=Blood Rail
-tile.runemysteries:flesh_Block.name=Flesh
-tile.runemysteries:stonebrick_Rail.name=Stone Brick Rail
-
-tile.runemysteries:air_Altar_Block.name=Air Altar
-tile.runemysteries:astral_Altar_Block.name=Astral Altar
-tile.runemysteries:blood_Altar_Block.name=Blood Altar
-tile.runemysteries:body_Altar_Block.name=Body Altar
-tile.runemysteries:chaos_Altar_Block.name=Chaos Altar
-tile.runemysteries:cosmic_Altar_Block.name=Cosmic Altar
-tile.runemysteries:death_Altar_Block.name=Death Altar
-tile.runemysteries:earth_Altar_Block.name=Earth Altar
-tile.runemysteries:fire_Altar_Block.name=Fire Altar
-tile.runemysteries:law_Altar_Block.name=Law Altar
-tile.runemysteries:mind_Altar_Block.name=Mind Altar
-tile.runemysteries:nature_Altar_Block.name=Nature Altar
-tile.runemysteries:soul_Altar_Block.name=Soul Altar
-tile.runemysteries:water_Altar_Block.name=Water Altar
-tile.runemysteries:ourania_Altar_Block.name=Ourania Altar
-
-
-tile.runemysteries:air_Altar_Entrance_Block.name=Air Altar Ruin
-tile.runemysteries:blood_Altar_Entrance_Block.name=Blood Altar Ruin
-tile.runemysteries:body_Altar_Entrance_Block.name=Body Altar Ruin
-tile.runemysteries:chaos_Altar_Entrance_Block.name=Chaos Altar Ruin
-tile.runemysteries:cosmic_Altar_Entrance_Block.name=Cosmic Altar Ruin
-tile.runemysteries:death_Altar_Entrance_Block.name=Death Altar Ruin
-tile.runemysteries:earth_Altar_Entrance_Block.name=Earth Altar Ruin
-tile.runemysteries:fire_Altar_Entrance_Block.name=Fire Altar Ruin
-tile.runemysteries:law_Altar_Entrance_Block.name=Law Altar Ruin
-tile.runemysteries:mind_Altar_Entrance_Block.name=Mind Altar Ruin
-tile.runemysteries:nature_Altar_Entrance_Block.name=Nature Altar Ruin
-tile.runemysteries:soul_Altar_Entrance_Block.name=Soul Altar Ruin
-tile.runemysteries:water_Altar_Entrance_Block.name=Water Altar Ruin
-
-tile.runemysteries:altar_Exit_Portal.name=Altar Exit Portal
-
-tile.runemysteries:particle_Light.name=Magic Light
-
-#Creative Tabs
-itemGroup.runemysteries=Rune Mysteries
-
-#Advancements
-advancements.runemysteries.runecrafting.root.title=Runecrafting
-advancements.runemysteries.runecrafting.root.description=The forgotten art of runecrafting.
-advancements.runemysteries.runecrafting.rune_essence.title=Essentials
-advancements.runemysteries.runecrafting.rune_essence.description=Find some rune essence.
-advancements.runemysteries.runecrafting.craft_rune.title=Altaration
-advancements.runemysteries.runecrafting.craft_rune.description=Craft a rune at a rune altar.
-advancements.runemysteries.runecrafting.talisman.title=Sedridor's Gift
-advancements.runemysteries.runecrafting.talisman.description=Obtain a runecrafting talisman.
-advancements.runemysteries.runecrafting.get_all_talismans.title=Omni-Talisman
-advancements.runemysteries.runecrafting.get_all_talismans.description=Obtain all of the runecrafting talismans.
-advancements.runemysteries.runecrafting.altar.title=Mysterious Ruins
-advancements.runemysteries.runecrafting.altar.description=Follow the pull of a runecrafting talisman.
-advancements.runemysteries.runecrafting.ourania.title=ZMI Associate
-advancements.runemysteries.runecrafting.ourania.description=Find and use the legendary Ourania altar.
 
 #Keybindings
 keys.runemysteries.category=Rune Mysteries
@@ -155,3 +173,6 @@ keys.runemysteries.test=Test
 
 #Gui
 gui.runemysteries.button.extraCosts=Items
+
+#Entity
+entity.Villager.runemysteries.runecrafter=Runecrafter

@@ -11,7 +11,8 @@
       "data": 0
     },
     "@": {
-      "item": "runemysteries:blood_rune"
+      "item": "runemysteries:rune",
+            "data": 2
     }
   },
   "result": {

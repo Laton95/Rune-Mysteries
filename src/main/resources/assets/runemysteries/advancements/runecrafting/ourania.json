@@ -1,7 +1,8 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:air_rune"
+            "item": "runemysteries:rune",
+            "data": 0
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.ourania.title"
@@ -21,7 +22,8 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "runemysteries:ourania_altar_block"
+                    "item": "runemysteries:rune_altar",
+                    "data": 14
                 }
             }
         }

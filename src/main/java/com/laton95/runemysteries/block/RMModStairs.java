@@ -6,9 +6,11 @@ import com.laton95.runemysteries.reference.ModReference;
 import net.minecraft.block.BlockStairs;
 import net.minecraft.block.state.IBlockState;
 
-public class RMModStairs extends BlockStairs {
+public class RMModStairs extends BlockStairs
+{
 
-	public RMModStairs(String name, String toolClass, int harvestLevel, boolean showInCreative, IBlockState modelState) {
+	public RMModStairs(String name, String toolClass, int harvestLevel, boolean showInCreative, IBlockState modelState)
+	{
 		super(modelState);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());

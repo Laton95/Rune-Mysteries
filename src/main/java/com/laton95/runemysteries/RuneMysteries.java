@@ -7,6 +7,7 @@ import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.OreDictRegistry;
+import com.laton95.runemysteries.init.VillagerRegistry;
 import com.laton95.runemysteries.init.WorldGenRegistry;
 import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.proxy.CommonProxy;
@@ -18,6 +19,7 @@ import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
 
 import net.minecraftforge.common.MinecraftForge;
+import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.Instance;
 import net.minecraftforge.fml.common.SidedProxy;
@@ -29,7 +31,9 @@ import net.minecraftforge.fml.common.event.FMLServerStoppingEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 
 @Mod(modid = ModReference.MOD_ID, name = ModReference.MOD_NAME, version = ModReference.VERSION)
-public class RuneMysteries {
+public class RuneMysteries
+{
+
 	@Instance(ModReference.MOD_ID)
 	public static RuneMysteries instance;
 
@@ -42,46 +46,61 @@ public class RuneMysteries {
 	/** Set our custom inventory Gui index to the next available Gui index */
 	public static final int GUI_ITEM_INV = modGuiIndex++;
 
+	static
+	{
+		FluidRegistry.enableUniversalBucket();
+
+	}
+
 	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event) {
-		proxy.registerKeyBindings();
+	public void preInit(FMLPreInitializationEvent event)
+	{
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		
-		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1) {
+		proxy.registerProjectileRenders();
+
+		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
+		{
 			LogHelper.info("It's April Fools!");
 			MiscReference.isAprilFools = true;
 		}
-		if (LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25) {
+		if (LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25)
+		{
 			LogHelper.info("Merry Christmas!");
 			MiscReference.isChristmas = true;
 		}
 	}
 
 	@Mod.EventHandler
-	public void init(FMLInitializationEvent event) {
+	public void init(FMLInitializationEvent event)
+	{
 		MinecraftForge.EVENT_BUS.register(new LootRegistry());
 		WorldGenRegistry.registerWorldGen();
 		DimensionRegistry.registerDimensions();
-		BlockRegistry.setupDimIDs();
 		OreDictRegistry.registerOres();
+		VillagerRegistry.registerVillage();
+		proxy.registerKeyBindings();
 	}
 
 	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event) {
+	public void postInit(FMLPostInitializationEvent event)
+	{
 		Spells.checkSpells();
 	}
 
 	@Mod.EventHandler
-	public void serverStarting(FMLServerStartedEvent event) {
+	public void serverStarting(FMLServerStartedEvent event)
+	{
 		LogHelper.info("Loading altar tracker");
-		if (WorldGenerator.altarTracker == null) {
+		if (WorldGenerator.altarTracker == null)
+		{
 			WorldGenerator.altarTracker = new AltarTracker();
 		}
 	}
 
 	@Mod.EventHandler
-	public void serverStopping(FMLServerStoppingEvent event) {
+	public void serverStopping(FMLServerStoppingEvent event)
+	{
 		LogHelper.info("Unloading altar tracker");
 		WorldGenerator.altarTracker = null;
 	}

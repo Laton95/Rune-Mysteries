@@ -12,3 +12,4 @@ MCMod-Testing_Server.launch
 .settings/org.eclipse.jdt.core.prefs
 *.launch
 *.log
+*.prefs

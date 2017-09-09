@@ -1,7 +1,8 @@
 {
     "display": {
         "icon": {
-            "item": "runemysteries:air_rune"
+            "item": "runemysteries:rune",
+            "data": 0
         },
         "title": {
             "translate": "advancements.runemysteries.runecrafting.craft_rune.title"
@@ -16,7 +17,8 @@
             "trigger": "minecraft:consume_item",
             "conditions": {
                 "item": {
-                    "item": "runemysteries:rune_essence"
+                    "item": "runemysteries:rune",
+                    "data": 14
                 }
             }
         }

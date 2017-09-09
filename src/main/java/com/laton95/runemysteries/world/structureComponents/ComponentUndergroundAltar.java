@@ -2,24 +2,28 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.util.StructureHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.structure.template.Template;
 
-public class ComponentUndergroundAltar extends WorldHelper.ModFeature {
+public class ComponentUndergroundAltar extends WorldHelper.ModFeature
+{
+
 	private String name;
 	private String room;
 	private int yOffset;
 
-	public ComponentUndergroundAltar() {
-	}
+	public ComponentUndergroundAltar()
+	{}
 
-	public ComponentUndergroundAltar(Random rand, int x, int z, String name, String room, int yOffset) {
+	public ComponentUndergroundAltar(Random rand, int x, int z, String name, String room, int yOffset)
+	{
 		super(rand, x, 64, z, 16, 7, 16);
 		this.name = name;
 		this.room = room;
@@ -27,20 +31,20 @@ public class ComponentUndergroundAltar extends WorldHelper.ModFeature {
 	}
 
 	@Override
-	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = getBoundingBox();
-		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY,
-				structureboundingbox.minZ);
-		BlockPos blockpos2 = new BlockPos(blockpos.getX() + 3, blockpos.getY() + yOffset, blockpos.getZ() + 3);
+	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
+	{
+		BlockPos pos = new BlockPos(structureBoundingBoxIn.minX, structureBoundingBoxIn.minY, structureBoundingBoxIn.minZ);
+		BlockPos pos2 = new BlockPos(pos.getX() + 3, pos.getY() + yOffset, pos.getZ() + 3);
+		new PlacementSettings().setBoundingBox(structureBoundingBoxIn).setReplacedBlock(Blocks.STRUCTURE_VOID).setChunk(
+				new ChunkPos(pos));
+		StructureHelper structureHelper = new StructureHelper(worldIn, room, pos);
+		structureHelper.generate();
 
-		Template structure = WorldHelper.getTemplate(worldIn, room);
-		Template circle = WorldHelper.getTemplate(worldIn, "stone_circle");
-		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
-				.setBoundingBox(structureboundingbox);
-		WorldHelper.loadStructure(blockpos, worldIn, structure, settings);
-		WorldHelper.loadStructure(blockpos2, worldIn, circle, settings);
-		WorldHelper.loadStructure(blockpos2, worldIn, altar, settings);
+		structureHelper = new StructureHelper(worldIn, "stone_circle", pos2);
+		structureHelper.generate();
+
+		structureHelper = new StructureHelper(worldIn, name, pos2);
+		structureHelper.generate();
 		return true;
 	}
 }

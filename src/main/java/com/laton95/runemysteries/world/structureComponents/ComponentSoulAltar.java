@@ -2,25 +2,29 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
+import com.laton95.runemysteries.util.StructureHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.block.BlockSandStone;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.structure.template.Template;
 
-public class ComponentSoulAltar extends WorldHelper.ModFeature {
+public class ComponentSoulAltar extends WorldHelper.ModFeature
+{
+
 	private String name;
 	private String room;
 	private int depth;
 
-	public ComponentSoulAltar() {
-	}
+	public ComponentSoulAltar()
+	{}
 
-	public ComponentSoulAltar(Random rand, int x, int z, String name, String room, int depth) {
+	public ComponentSoulAltar(Random rand, int x, int z, String name, String room, int depth)
+	{
 		super(rand, x, 64, z, 5, 6, 5);
 		this.name = name;
 		this.room = room;
@@ -28,43 +32,46 @@ public class ComponentSoulAltar extends WorldHelper.ModFeature {
 	}
 
 	@Override
-	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn) {
-		StructureBoundingBox structureboundingbox = getBoundingBox();
-		BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY - 2,
-				structureboundingbox.minZ);
-		BlockPos blockpos2 = new BlockPos(blockpos.getX() - 1, blockpos.getY() - depth, blockpos.getZ() - 11);
-		BlockPos blockpos3 = new BlockPos(blockpos2.getX() - 1, blockpos2.getY() + 1, blockpos2.getZ() - 1);
+	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
+	{
+		BlockPos pos = new BlockPos(structureBoundingBoxIn.minX, structureBoundingBoxIn.minY, structureBoundingBoxIn.minZ);
+		BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - depth, pos.getZ() - 11);
+		BlockPos pos3 = new BlockPos(pos2.getX() - 1, pos2.getY() + 1, pos2.getZ() - 1);
+		new PlacementSettings().setBoundingBox(structureBoundingBoxIn).setReplacedBlock(Blocks.STRUCTURE_VOID).setChunk(
+				new ChunkPos(pos));
+		StructureHelper structureHelper = new StructureHelper(worldIn, "soul_altar_well", pos);
+		structureHelper.generate();
 
-		Template well = WorldHelper.getTemplate(worldIn, "soul_altar_well");
-		Template structure = WorldHelper.getTemplate(worldIn, room);
-		Template altar = WorldHelper.getTemplate(worldIn, name);
-		PlacementSettings settings = new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID)
-				.setBoundingBox(structureboundingbox);
-		WorldHelper.loadStructureWithBlockUpdates(blockpos, worldIn, well);
-		WorldHelper.loadStructureWithBlockUpdates(blockpos2, worldIn, structure);
-		WorldHelper.loadStructureWithBlockUpdates(blockpos3, worldIn, altar);
+		structureHelper = new StructureHelper(worldIn, room, pos2);
+		structureHelper.generate();
 
-		for (int i = 0; i < depth - 4; i++) {
-			worldIn.setBlockState(new BlockPos(blockpos.getX() + 2, blockpos.getY() - i + 1, blockpos.getZ() + 2),
-					Blocks.AIR.getDefaultState());
-			worldIn.setBlockState(new BlockPos(blockpos.getX() + 3, blockpos.getY() - i + 1, blockpos.getZ() + 2),
+		structureHelper = new StructureHelper(worldIn, name, pos3);
+		structureHelper.generate();
+
+		for (int i = 0; i < depth - 4; i++)
+		{
+			worldIn.setBlockState(pos.add(2, -i + 1, 2), Blocks.AIR.getDefaultState());
+			worldIn.setBlockState(pos.add(3, -i
+					+ 1, 2),
 					Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE,
 							BlockSandStone.EnumType.SMOOTH),
 					0);
-			worldIn.setBlockState(new BlockPos(blockpos.getX() + 1, blockpos.getY() - i + 1, blockpos.getZ() + 2),
+			worldIn.setBlockState(pos.add(1, -i
+					+ 1, 2),
 					Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE,
 							BlockSandStone.EnumType.SMOOTH),
 					0);
-			worldIn.setBlockState(new BlockPos(blockpos.getX() + 2, blockpos.getY() - i + 1, blockpos.getZ() + 3),
+			worldIn.setBlockState(pos.add(2, -i
+					+ 1, 3),
 					Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE,
 							BlockSandStone.EnumType.SMOOTH),
 					0);
-			worldIn.setBlockState(new BlockPos(blockpos.getX() + 2, blockpos.getY() - i + 1, blockpos.getZ() + 1),
+			worldIn.setBlockState(pos.add(2, -i
+					+ 1, 1),
 					Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE,
 							BlockSandStone.EnumType.SMOOTH),
 					0);
 		}
-
 		return true;
 	}
 }

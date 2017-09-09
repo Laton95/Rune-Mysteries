@@ -11,7 +11,8 @@
       "data": 0
     },
     "@": {
-      "item": "runemysteries:death_rune"
+      "item": "runemysteries:rune",
+      "data": 6
     }
   },
   "result": {

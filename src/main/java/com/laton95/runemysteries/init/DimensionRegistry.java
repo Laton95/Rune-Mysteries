@@ -11,6 +11,7 @@ import com.laton95.runemysteries.world.dimensionProviders.EarthDimension;
 import com.laton95.runemysteries.world.dimensionProviders.FireDimension;
 import com.laton95.runemysteries.world.dimensionProviders.LawDimension;
 import com.laton95.runemysteries.world.dimensionProviders.MindDimension;
+import com.laton95.runemysteries.world.dimensionProviders.MineDimension;
 import com.laton95.runemysteries.world.dimensionProviders.NatureDimension;
 import com.laton95.runemysteries.world.dimensionProviders.SoulDimension;
 import com.laton95.runemysteries.world.dimensionProviders.WaterDimension;
@@ -18,7 +19,9 @@ import com.laton95.runemysteries.world.dimensionProviders.WaterDimension;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
-public class DimensionRegistry {
+public class DimensionRegistry
+{
+
 	public static int airDimID;
 	public static DimensionType AIR;
 
@@ -58,7 +61,11 @@ public class DimensionRegistry {
 	public static int waterDimID;
 	public static DimensionType WATER;
 
-	public static void registerDimensions() {
+	public static int mineDimID;
+	public static DimensionType MINE;
+
+	public static void registerDimensions()
+	{
 		airDimID = ModConfig.DIMENSIONS.airTempleDimID;
 		AIR = DimensionType.register("air_temple", "_air", airDimID, AirDimension.class, false);
 
@@ -100,6 +107,9 @@ public class DimensionRegistry {
 		waterDimID = ModConfig.DIMENSIONS.waterTempleDimID;
 		WATER = DimensionType.register("water_temple", "_water", waterDimID, WaterDimension.class, false);
 
+		mineDimID = ModConfig.DIMENSIONS.essenceMineDimID;
+		MINE = DimensionType.register("essence_mine", "_mine", mindDimID, MineDimension.class, false);
+
 		DimensionManager.registerDimension(airDimID, AIR);
 		DimensionManager.registerDimension(bloodDimID, BLOOD);
 		DimensionManager.registerDimension(bodyDimID, BODY);
@@ -113,5 +123,6 @@ public class DimensionRegistry {
 		DimensionManager.registerDimension(natureDimID, NATURE);
 		DimensionManager.registerDimension(soulDimID, SOUL);
 		DimensionManager.registerDimension(waterDimID, WATER);
+		DimensionManager.registerDimension(mineDimID, MINE);
 	}
 }
