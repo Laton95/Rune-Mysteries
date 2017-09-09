@@ -40,7 +40,6 @@ public class ComponentTemple extends StructureComponent
 		{
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
-			LogHelper.info(bBox.minX / 16 + "," + bBox.minZ / 16);
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
 					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);

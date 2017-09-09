@@ -260,6 +260,7 @@ public class AltarTracker
 			{
 				outStandingBiomes.addAll(altar.getBiomes());
 				altarNBTHelper.placedMap.put(altar.getName(), false);
+				altarNBTHelper.generatedMap.put(altar.getName(), false);
 			}
 
 			BlockPos pos = findBiomePosition(outStandingBiomes, random,
@@ -367,6 +368,7 @@ public class AltarTracker
 		private final String name;
 		private final String room;
 		private boolean placed;
+		private boolean generated;
 		private boolean biomeDependant;
 		private int placementRadius;
 		private Float flatnessTolerance;
@@ -398,6 +400,7 @@ public class AltarTracker
 		{
 			this.name = name;
 			placed = false;
+			generated = false;
 			biomeDependant = true;
 			this.placementRadius = placementRadius;
 			this.flatnessTolerance = flatnessTolerance;
@@ -420,6 +423,22 @@ public class AltarTracker
 			if (placed)
 			{
 				altarNBTHelper.placedMap.put(name, true);
+				altarNBTHelper.markDirty();
+			}
+		}
+		
+		public boolean isGenerated()
+		{
+			return generated;
+		}
+		
+		public void setGenerated(boolean generated)
+		{
+			this.generated = generated;
+			
+			if (generated)
+			{
+				altarNBTHelper.generatedMap.put(name, true);
 				altarNBTHelper.markDirty();
 			}
 		}
@@ -505,6 +524,7 @@ public class AltarTracker
 		{
 			position = altarNBTHelper.posMap.get(name);
 			placed = altarNBTHelper.placedMap.get(name);
+			generated = altarNBTHelper.generatedMap.get(name);
 		}
 
 		public List<BiomeDictionary.Type> getBiomes()
