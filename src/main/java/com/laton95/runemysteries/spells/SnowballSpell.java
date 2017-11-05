@@ -37,7 +37,7 @@ public class SnowballSpell extends SpellBase
 		if (!world.isRemote)
 		{
 			EntitySnowball entitysnowball = new EntitySnowball(world, player);
-			entitysnowball.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F,
+			entitysnowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F,
 					1.0F);
 			world.spawnEntity(entitysnowball);
 		}

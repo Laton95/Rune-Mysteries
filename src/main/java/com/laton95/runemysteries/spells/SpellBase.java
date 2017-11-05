@@ -32,7 +32,7 @@ public abstract class SpellBase
 
 	protected void putProjectileInWorld(World world, EntityPlayer player, SpellProjectileBase spellProjectile)
 	{
-		spellProjectile.setHeadingFromThrower(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
+		spellProjectile.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 		world.spawnEntity(spellProjectile);
 	}
 

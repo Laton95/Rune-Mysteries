@@ -3,7 +3,6 @@ package com.laton95.runemysteries.world.structureComponents;
 import java.util.Random;
 
 import com.laton95.runemysteries.init.BlockRegistry;
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
 
 import net.minecraft.init.Blocks;
@@ -23,6 +22,12 @@ public class ComponentTemple extends StructureComponent
 	private final String type;
 	private final BlockPos portalPos;
 
+	public ComponentTemple()
+	{
+		type = null;
+		portalPos = null;
+	}
+	
 	public ComponentTemple(int x, int z, String type, BlockPos portalPos, int yStart)
 	{
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x * 16, yStart, z * 16, 0, 0, 0, x * 16

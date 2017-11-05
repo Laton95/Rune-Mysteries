@@ -2,10 +2,8 @@ package com.laton95.runemysteries.world.structureComponents;
 
 import java.util.Random;
 
-import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
-import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
 

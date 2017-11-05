@@ -3,12 +3,12 @@ package com.laton95.runemysteries.init;
 import java.util.ArrayList;
 
 import com.laton95.runemysteries.item.ItemRune;
+import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.item.ItemRuneBag;
 import com.laton95.runemysteries.item.ItemScroll;
 import com.laton95.runemysteries.item.ItemSpellbook;
 import com.laton95.runemysteries.item.ItemTalisman;
 import com.laton95.runemysteries.item.RMModItem;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
 

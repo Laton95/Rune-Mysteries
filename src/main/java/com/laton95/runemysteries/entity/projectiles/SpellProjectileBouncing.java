@@ -3,7 +3,6 @@ package com.laton95.runemysteries.entity.projectiles;
 import com.laton95.runemysteries.reference.ModReference;
 
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
@@ -11,8 +10,6 @@ import net.minecraft.world.World;
 
 public class SpellProjectileBouncing extends SpellProjectileBase
 {
-
-	private int landedTick;
 	
 	private final static ResourceLocation TEXTURE = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
 	private final static EnumParticleTypes TRAIL_PARTICLE = EnumParticleTypes.CRIT;

@@ -16,7 +16,6 @@ import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.util.ItemNBTHelper;
 
 import net.minecraft.client.Minecraft;
-import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.GuiButton;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.client.renderer.GlStateManager;
@@ -28,7 +27,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.fml.client.config.HoverChecker;
-import scala.tools.nsc.interpreter.IMain.StrippingTruncatingWriter;
 
 public class GuiSpellbook extends RMModGuiScreen
 {
@@ -38,12 +36,13 @@ public class GuiSpellbook extends RMModGuiScreen
 	private SpellBase newSpell;
 	private SpellBase oldSpell;
 	private SpellBase costSpell;
+	@SuppressWarnings("unused")
 	private GuiButton buttonDone;
+	@SuppressWarnings("unused")
 	private GuiButton buttonCancel;
 	private GuiButton buttonExtra;
 
 	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/spellbook.png");
-	private final ResourceLocation guiTexture2 = new ResourceLocation(ModReference.MOD_ID, "textures/items/spellbook.png");
 
 	private int textureHeight = 256;
 	private int textureWidth = 128;
@@ -226,6 +225,7 @@ public class GuiSpellbook extends RMModGuiScreen
 	{
 
 		private final EntityPlayer player;
+		@SuppressWarnings("unused")
 		private GuiButton buttonDone;
 
 		public GuiExtraItems(EntityPlayer player, ItemStack spellbook, SpellBase spell)

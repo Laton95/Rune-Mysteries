@@ -28,7 +28,7 @@ import net.minecraft.world.World;
 public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
 	
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
 
 	public BlockRuneAltarEntrance()
 	{

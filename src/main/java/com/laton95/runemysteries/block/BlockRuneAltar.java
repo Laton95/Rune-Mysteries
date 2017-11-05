@@ -36,7 +36,7 @@ import net.minecraft.world.storage.loot.LootTable;
 public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 {
 	
-	public static final PropertyEnum TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
 
 	public BlockRuneAltar()
 	{

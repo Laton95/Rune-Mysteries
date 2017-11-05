@@ -19,7 +19,10 @@ import net.minecraft.world.gen.structure.template.TemplateManager;
 
 public class ComponentCosmicTemple extends StructureComponent
 {
-
+	public ComponentCosmicTemple()
+	{
+	}
+	
 	public ComponentCosmicTemple(int x, int z)
 	{
 		ChunkPos chunkPos = new ChunkPos(x, z);

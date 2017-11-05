@@ -3,7 +3,6 @@ package com.laton95.runemysteries;
 import java.time.LocalDate;
 import java.time.Month;
 
-import com.laton95.runemysteries.init.BlockRegistry;
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.init.LootRegistry;
 import com.laton95.runemysteries.init.OreDictRegistry;

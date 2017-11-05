@@ -4,14 +4,12 @@ import java.util.List;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBouncing;
 import com.laton95.runemysteries.entity.projectiles.SpellProjectileTeleportBasic;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 
-import net.minecraft.entity.item.EntityEnderPearl;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;

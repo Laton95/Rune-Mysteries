@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.util;
 
-import java.util.Random;
-
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemRuneBag;
 import com.laton95.runemysteries.item.ItemSpellbook;
@@ -24,8 +22,6 @@ import net.minecraftforge.items.IItemHandler;
 @Mod.EventBusSubscriber
 public class ItemHelper
 {
-
-	private static Random random = new Random();
 
 	public static ItemStack getRuneBag(EntityPlayer player)
 	{

@@ -1,25 +1,15 @@
 package com.laton95.runemysteries.entity.projectiles;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import com.google.common.base.Predicate;
 import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.entity.passive.EntityPig;
-import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.util.EntityDamageSourceIndirect;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
-import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.math.RayTraceResult.Type;
 import net.minecraft.world.World;
 
 public class SpellProjectileFollowing extends SpellProjectileBase

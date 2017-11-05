@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
-import com.ibm.icu.util.BytesTrie.Result;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.reference.NamesReference;

@@ -6,6 +6,7 @@
   },
   "variants": {
     "type=air": { "model": "runemysteries:rune_altar_block" },
+    "type=astral": { "model": "runemysteries:rune_altar_block" },
     "type=blood": { "model": "runemysteries:rune_altar_block" },
     "type=body": { "model": "runemysteries:rune_altar_block" },
     "type=chaos": { "model": "runemysteries:rune_altar_block" },
@@ -18,6 +19,7 @@
     "type=nature": { "model": "runemysteries:rune_altar_block" },
     "type=soul": { "model": "runemysteries:rune_altar_block" },
     "type=water": { "model": "runemysteries:rune_altar_block" },
+    "type=essence": { "model": "runemysteries:rune_altar_block" },
     "inventory": { "model": "runemysteries:rune_altar_block" }
   }
 }
