@@ -86,12 +86,8 @@ public class ComponentSurfaceAltar extends StructureComponent
             for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
             {
                 blockpos$mutableblockpos.setPos(l, 64, k);
-//
-//                if (structurebb.isVecInside(blockpos$mutableblockpos))
-//                {
-                    i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel() - 1);
-                    ++j;
-//                }
+                i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel() - 1);
+                ++j;
             }
         }
 

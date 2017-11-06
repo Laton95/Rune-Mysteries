@@ -98,9 +98,10 @@ public class MapGenRuneAltar_SOUL extends MapGenStructure
 					ComponentSoulAltar componentRuneAltar = new ComponentSoulAltar(random, chunkX * 16
 							+ random.nextInt(6)
 							+ 1, chunkZ * 16 + random.nextInt(6) + 1, altar.getName(), altar.getRoom(), depth);
+					
+					componentRuneAltar.offsetToAverageGroundLevel(worldIn, -1);
+					
 					bBox = componentRuneAltar.getBoundingBox();
-
-					componentRuneAltar.offsetToAverageGroundLevel(worldIn, bBox, -1);
 
 					altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 					if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(),
@@ -110,10 +111,6 @@ public class MapGenRuneAltar_SOUL extends MapGenStructure
 
 						// Altar generated
 						altar.setPlaced(true);
-						altar.setPosition(
-								new BlockPos(altarPos.getX() + 2, altarPos.getY() - depth, altarPos.getZ()
-										- 8));
-						altar.setPlacementRadius(0);
 						LogHelper.info(altar.toString());
 						components.add(componentRuneAltar);
 					}

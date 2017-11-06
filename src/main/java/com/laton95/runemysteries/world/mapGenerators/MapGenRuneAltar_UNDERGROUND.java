@@ -14,7 +14,6 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
-import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
 
 public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
@@ -96,29 +95,17 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 			{
 				if (!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn))
 				{
-					StructureBoundingBox bBox;
-					BlockPos altarPos;
-					BlockPos altarPos2;
-
 					ComponentUndergroundAltar componentRuneAltar = new ComponentUndergroundAltar(random, chunkX
 							* 16, chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
-					bBox = componentRuneAltar.getBoundingBox();
-
-					altarPos = new BlockPos(bBox.minX, random.nextInt(25) + 15, bBox.minZ);
-					altarPos2 = new BlockPos(bBox.maxX, altarPos.getY() + bBox.getYSize(), bBox.maxZ);
-					componentRuneAltar.setBoundingBox(new StructureBoundingBox(altarPos, altarPos2));
+					
 					// Altar generated
 					altar.setPlaced(true);
-					altar.setPosition(
-							new BlockPos(altarPos.getX() + 7, altarPos.getY() + 2, altarPos.getZ() + 7));
-					altar.setPlacementRadius(0);
 					LogHelper.info(altar.toString());
 					components.add(componentRuneAltar);
 				}
 				else
 				{
-					// Altar failed to generate because incorrect
-					// biome
+					// Altar failed to generate because incorrect biome
 					panic(altar);
 				}
 			}

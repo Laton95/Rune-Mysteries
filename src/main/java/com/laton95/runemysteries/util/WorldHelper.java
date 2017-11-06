@@ -88,7 +88,7 @@ public class WorldHelper
 		return false;
 	}
 
-	public static boolean isInsideCave(World world, BlockPos pos, int xSize, int zSize)
+	public static boolean isInsideWall(World world, BlockPos pos, int xSize, int zSize)
 	{
 		int solidBlocks = 0;
 		for (int x = 0; x < xSize; x++)

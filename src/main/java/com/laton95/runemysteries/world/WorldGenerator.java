@@ -68,7 +68,7 @@ public class WorldGenerator implements IWorldGenerator
 	@SubscribeEvent
 	public void populate(PopulateChunkEvent.Populate event)
 	{
-		if (event.getType() == EventType.DUNGEON && !event.getWorld().isRemote)
+		if ((event.getType() == EventType.DUNGEON || event.getType() == EventType.GLOWSTONE) && !event.getWorld().isRemote)
 		{
 			switch (event.getWorld().provider.getDimensionType())
 			{

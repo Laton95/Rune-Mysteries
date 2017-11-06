@@ -91,7 +91,6 @@ public class MapGenRuneAltar_END extends MapGenStructure
 			if (altar != null && !altar.isPlaced())
 			{
 				StructureBoundingBox bBox;
-				BlockPos altarPos;
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
 				boolean isFloating = !WorldHelper.isOverGround(worldIn,
@@ -109,11 +108,8 @@ public class MapGenRuneAltar_END extends MapGenStructure
 					componentRuneAltar.offsetToAverageGroundLevel(worldIn, bBox, -1);
 				}
 
-				altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 				// Altar generated
 				altar.setPlaced(true);
-				altar.setPosition(new BlockPos(altarPos.getX() + 4, altarPos.getY() + 1, altarPos.getZ() + 4));
-				altar.setPlacementRadius(0);
 				LogHelper.info(altar.toString());
 				components.add(componentRuneAltar);
 			}
