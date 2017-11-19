@@ -9,6 +9,7 @@ import com.laton95.runemysteries.util.StructureHelper;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.world.World;
@@ -26,6 +27,10 @@ public class VillageWizardsHouse extends Village
 
 	private EnumFacing facing;
 
+	public VillageWizardsHouse() {
+		
+	}
+	
 	public VillageWizardsHouse(Start villagePiece, int par2, Random par3Random,
 			StructureBoundingBox par4StructureBoundingBox, EnumFacing facing)
 	{
@@ -40,22 +45,47 @@ public class VillageWizardsHouse extends Village
 	@Override
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox structureBoundingBoxIn)
 	{
-		StructureBoundingBox bBox = boundingBox;
-		structureBoundingBoxIn = boundingBox;
 		if (groundLevel < 0)
 		{
-			groundLevel = getAverageGroundLevel(worldIn, bBox);
+			
+			groundLevel = getAverageGroundLevel(worldIn, boundingBox);
 			if (groundLevel < 0)
 			{
 				return true;
 			}
-			boundingBox.offset(0, groundLevel - boundingBox.maxY + 10 - 1, 0);
-			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
+			boundingBox.offset(0, groundLevel - boundingBox.maxY + 5, 0);
+			BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
 			PlacementSettings settings = new PlacementSettings().setBoundingBox(boundingBox).setReplacedBlock(
 					Blocks.STRUCTURE_VOID);
+			if (facing != null) {
+				switch (facing) {
+				case NORTH:
+					settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
+					pos = pos.add(0, 0, 7);
+					break;
+				case SOUTH:
+					settings.setRotation(Rotation.CLOCKWISE_90);
+					pos = pos.add(10, 0, 0);
+					break;
+				case WEST:
+					settings.setRotation(Rotation.CLOCKWISE_180);
+					pos = pos.add(10, 0, 10);
+					break;
+				default:
+					break;
+				}
+			}
+			
 			StructureHelper structureHelper = new StructureHelper(worldIn, "wizard_house", pos, settings);
 			structureHelper.generate();
 			LogHelper.info(pos + " " + facing);
+			this.spawnVillagers(worldIn, boundingBox, 5, 2, 5, 2);
+			
+			for (int x = boundingBox.minX; x <= boundingBox.maxX; x++) {
+				for (int z = boundingBox.minZ; z <= boundingBox.maxZ; z++) {
+					worldIn.setBlockState(new BlockPos(x,20,z),Blocks.GLASS.getDefaultState());
+				}
+			}
 		}
 
 		return true;
@@ -85,7 +115,7 @@ public class VillageWizardsHouse extends Village
 		@Override
 		public Village buildComponent(PieceWeight villagePiece, Start startPiece, List<StructureComponent> pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5)
 		{
-			StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p1, p2, p3, 0, 0, 0, 8, 6, 11,
+			StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p1, 64, p3, 0, 0, 0, 11, 6, 8,
 					facing);
 			return !canVillageGoDeeper(box) || StructureComponent.findIntersecting(pieces, box) != null ? null
 					: new VillageWizardsHouse(startPiece, p5, random, box, facing);

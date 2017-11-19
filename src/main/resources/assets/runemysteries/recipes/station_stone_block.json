@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "   ",
+    "#  ",
+    "#  "
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:ruin_block"
+    }
+  },
+  "result": {
+    "item": "runemysteries:station_stone_block",
+    "count": 2
+  }
+}

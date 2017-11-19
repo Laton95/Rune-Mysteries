@@ -30,13 +30,13 @@ public class ItemSpellbook extends RMModItem
 		setMaxStackSize(1);
 	}
 
-	private boolean hasItems(EntityPlayer player, List<SpellBase.SpellCost> costs, InventoryRuneBag bag)
+	private boolean hasItems(EntityPlayer player, List<SpellBase.SpellCost> costs, ArrayList<InventoryRuneBag> bags)
 	{
 		ArrayList<SpellBase.SpellCost> tempCosts = new ArrayList<>(costs);
 
 		for (SpellBase.SpellCost spellCost : costs)
 		{
-			if (hasItem(player, spellCost, bag))
+			if (hasItem(player, spellCost, bags))
 			{
 				tempCosts.remove(spellCost);
 			}
@@ -51,12 +51,15 @@ public class ItemSpellbook extends RMModItem
 		}
 	}
 
-	private boolean hasItem(EntityPlayer player, SpellBase.SpellCost cost, InventoryRuneBag bag)
+	private boolean hasItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
 	{
 		int count = 0;
-		if (bag != null && cost.getItem() instanceof ItemRune)
+		if (bags.size() > 0 && cost.getItem() instanceof ItemRune)
 		{
-			count = bag.getRuneCount((ItemRune) cost.getItem());
+			for (InventoryRuneBag bag : bags)
+			{
+				count += bag.getRuneCount((ItemRune) cost.getItem());
+			}
 		}
 
 		for (int i = 0; i < player.inventory.getSizeInventory(); ++i)
@@ -71,21 +74,24 @@ public class ItemSpellbook extends RMModItem
 		return count >= cost.getCount();
 	}
 
-	private void removeItems(EntityPlayer player, List<SpellBase.SpellCost> costs, InventoryRuneBag bag)
+	private void removeItems(EntityPlayer player, List<SpellBase.SpellCost> costs, ArrayList<InventoryRuneBag> bags)
 	{
 		for (SpellBase.SpellCost spellCost : costs)
 		{
-			removeItem(player, spellCost, bag);
+			removeItem(player, spellCost, bags);
 		}
 	}
 
-	private void removeItem(EntityPlayer player, SpellBase.SpellCost cost, InventoryRuneBag bag)
+	private void removeItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
 	{
 		int count = cost.getCount();
 
-		if (bag != null && cost.getItem() instanceof ItemRune)
+		if (bags.size() > 0 && cost.getItem() instanceof ItemRune)
 		{
-			count = bag.removeRune((ItemRune) cost.getItem(), count);
+			for (InventoryRuneBag bag : bags)
+			{
+				count = bag.removeRune((ItemRune) cost.getItem(), count);
+			}
 		}
 
 		int i = 0;
@@ -128,16 +134,11 @@ public class ItemSpellbook extends RMModItem
 			}
 			else
 			{
-				ItemStack bag = ItemHelper.getRuneBag(playerIn);
-				InventoryRuneBag bagInventory = null;
-				if (bag != null)
-				{
-					bagInventory = new InventoryRuneBag(bag);
-				}
+				ArrayList<InventoryRuneBag> bagInventories = ItemHelper.getBagInventories(playerIn);
 
-				if (hasItems(playerIn, spell.getCosts(), bagInventory))
+				if (hasItems(playerIn, spell.getCosts(), bagInventories))
 				{
-					removeItems(playerIn, spell.getCosts(), bagInventory);
+					removeItems(playerIn, spell.getCosts(), bagInventories);
 					CastSpell(worldIn, playerIn, spell);
 					return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
 				}
