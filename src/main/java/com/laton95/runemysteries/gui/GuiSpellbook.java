@@ -73,12 +73,12 @@ public class GuiSpellbook extends RMModGuiScreen
 
 		int standardWidth = width / 2 - 49;
 		int standardHeight = (height + textureHeight) / 2 + borderWidth + offset;
-		buttonDone = this.addButton(new GuiButton(0, standardWidth
-				- 50, standardHeight, 98, 20, I18n.format("gui.done")));
-		buttonCancel = this.addButton(new GuiButton(1, standardWidth
-				+ 50, standardHeight, 98, 20, I18n.format("gui.cancel")));
-		buttonExtra = this.addButton(new GuiButton(2, standardWidth + 64, standardHeight
-				- 35, 98, 20, I18n.format(NamesReference.Spellbook.COST_BUTTON)));
+		buttonDone = this
+				.addButton(new GuiButton(0, standardWidth - 50, standardHeight, 98, 20, I18n.format("gui.done")));
+		buttonCancel = this
+				.addButton(new GuiButton(1, standardWidth + 50, standardHeight, 98, 20, I18n.format("gui.cancel")));
+		buttonExtra = this.addButton(new GuiButton(2, standardWidth + 64, standardHeight - 35, 98, 20,
+				I18n.format(NamesReference.Spellbook.COST_BUTTON)));
 		buttonExtra.visible = false;
 
 		int idIterator = 3;
@@ -92,8 +92,7 @@ public class GuiSpellbook extends RMModGuiScreen
 		{
 			if (!spell.equals(Spells.NONE_SPELL))
 			{
-				this.addButton(
-						new SpellButton(idIterator, xStart + i * xInterval, yStart + j * yInterval, spell));
+				this.addButton(new SpellButton(idIterator, xStart + i * xInterval, yStart + j * yInterval, spell));
 				i++;
 				if (i > 6)
 				{
@@ -118,19 +117,19 @@ public class GuiSpellbook extends RMModGuiScreen
 		{
 			switch (button.id)
 			{
-				case 0:
-					sendSpellToServer();
-					mc.displayGuiScreen((GuiScreen) null);
-					break;
-				case 1:
-					mc.displayGuiScreen((GuiScreen) null);
-					break;
-				case 2:
-					mc.displayGuiScreen(new GuiExtraItems(player, spellbook, costSpell));
-					break;
-				default:
-					newSpell = ((SpellButton) buttonList.get(button.id)).getSpell();
-					break;
+			case 0:
+				sendSpellToServer();
+				mc.displayGuiScreen((GuiScreen) null);
+				break;
+			case 1:
+				mc.displayGuiScreen((GuiScreen) null);
+				break;
+			case 2:
+				mc.displayGuiScreen(new GuiExtraItems(player, spellbook, costSpell));
+				break;
+			default:
+				newSpell = ((SpellButton) buttonList.get(button.id)).getSpell();
+				break;
 			}
 		}
 	}
@@ -178,8 +177,7 @@ public class GuiSpellbook extends RMModGuiScreen
 					ItemStack stack = new ItemStack(cost.getItem(), 1, cost.getMetadata());
 					mc.getRenderItem().renderItemIntoGUI(stack, x + xInterval * j, yInterval * i + y);
 					RenderHelper.disableStandardItemLighting();
-					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j,
-							3 + yInterval * i + y, 0);
+					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j, 3 + yInterval * i + y, 0);
 					i++;
 					if (i > 1)
 					{
@@ -199,22 +197,23 @@ public class GuiSpellbook extends RMModGuiScreen
 			temp1 = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_NAME);
 			temp2 = new TextComponentTranslation(NamesReference.Spells.NO_SPELL_DESCRIPTION);
 		}
-		
-		fontRenderer.drawString(TextFormatting.BLACK + temp1.getFormattedText() + TextFormatting.UNDERLINE, xStart + 192
-				- fontRenderer.getStringWidth(temp1.getFormattedText()) / 2, yStart + 30, 0, false);
-		fontRenderer.drawSplitString(TextFormatting.BLACK + temp2.getFormattedText(), xStart + 140, yStart
-				+ 60, 107, 0);
+
+		fontRenderer.drawString(TextFormatting.BLACK + temp1.getFormattedText() + TextFormatting.UNDERLINE,
+				xStart + 192 - fontRenderer.getStringWidth(temp1.getFormattedText()) / 2, yStart + 30, 0, false);
+		fontRenderer.drawSplitString(TextFormatting.BLACK + temp2.getFormattedText(), xStart + 140, yStart + 60, 107,
+				0);
 
 		super.drawScreen(mouseX, mouseY, partialTicks);
-		
-		for (GuiButton button : this.buttonList)
+
+		for (GuiButton button : buttonList)
 		{
 			if (button instanceof SpellButton)
 			{
 				HoverChecker hoverChecker = new HoverChecker(button, 10);
 				if (hoverChecker.checkHover(mouseX, mouseY))
 				{
-					TextComponentTranslation tooltip = new TextComponentTranslation(((SpellButton) button).getSpell().getName());
+					TextComponentTranslation tooltip = new TextComponentTranslation(
+							((SpellButton) button).getSpell().getName());
 					drawHoveringText(tooltip.getFormattedText(), button.x, button.y);
 				}
 			}
@@ -240,8 +239,8 @@ public class GuiSpellbook extends RMModGuiScreen
 
 			int standardWidth = width / 2 - 49;
 			int standardHeight = (height + textureHeight) / 2 + borderWidth + offset;
-			buttonDone = this.addButton(
-					new GuiButton(0, standardWidth, standardHeight, 98, 20, I18n.format("gui.done")));
+			buttonDone = this
+					.addButton(new GuiButton(0, standardWidth, standardHeight, 98, 20, I18n.format("gui.done")));
 		}
 
 		@Override
@@ -280,8 +279,7 @@ public class GuiSpellbook extends RMModGuiScreen
 					ItemStack stack = new ItemStack(cost.getItem(), 1, cost.getMetadata());
 					mc.getRenderItem().renderItemIntoGUI(stack, x + xInterval * j, yInterval * i + y);
 					RenderHelper.disableStandardItemLighting();
-					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j,
-							3 + yInterval * i + y, 0);
+					fontRenderer.drawString(" x " + cost.getCount(), x + 15 + xInterval * j, 3 + yInterval * i + y, 0);
 					i++;
 					if (i > 9)
 					{
@@ -297,7 +295,8 @@ public class GuiSpellbook extends RMModGuiScreen
 	private class SpellButton extends GuiButton
 	{
 
-		private final ResourceLocation buttonTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/widgets.png");
+		private final ResourceLocation buttonTexture = new ResourceLocation(ModReference.MOD_ID,
+				"textures/gui/widgets.png");
 		private final ResourceLocation spellTexture;
 		private final SpellBase spell;
 

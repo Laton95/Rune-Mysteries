@@ -39,17 +39,20 @@ public class WorldGenRegistry
 	{
 		LogHelper.info("Registering world-gen");
 		makeGenMap();
-		genMap.forEach((k, v) -> {
+		genMap.forEach((k, v) ->
+		{
 			GameRegistry.registerWorldGenerator(v, 0);
 		});
 
 		makeStructureMap();
-		structureMap.forEach((k, v) -> {
+		structureMap.forEach((k, v) ->
+		{
 			MapGenStructureIO.registerStructure(v, k);
 		});
 
 		makeComponentMap();
-		componentMap.forEach((k, v) -> {
+		componentMap.forEach((k, v) ->
+		{
 			MapGenStructureIO.registerStructureComponent(v, k);
 		});
 	}

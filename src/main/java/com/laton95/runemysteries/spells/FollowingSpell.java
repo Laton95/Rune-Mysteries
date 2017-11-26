@@ -21,11 +21,12 @@ public class FollowingSpell extends SpellBase
 
 	private final static List<SpellCost> costs = ImmutableList.of(
 
-	);
+			);
 
 	public FollowingSpell()
 	{
-		super(costs, 20, NamesReference.Spells.FOLLOWING_SPELL_NAME, NamesReference.Spells.FOLLOWING_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 20, NamesReference.Spells.FOLLOWING_SPELL_NAME, NamesReference.Spells.FOLLOWING_SPELL_DESCRIPTION,
+				new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override
@@ -37,8 +38,8 @@ public class FollowingSpell extends SpellBase
 		if (test != null)
 		{
 			target = world.findNearestEntityWithinAABB(EntityLiving.class,
-					new AxisAlignedBB(test.hitVec.x - radius, test.hitVec.y - radius, test.hitVec.z
-							- radius, test.hitVec.x + radius, test.hitVec.y + radius, test.hitVec.z + radius),
+					new AxisAlignedBB(test.hitVec.x - radius, test.hitVec.y - radius, test.hitVec.z - radius,
+							test.hitVec.x + radius, test.hitVec.y + radius, test.hitVec.z + radius),
 					player);
 		}
 
@@ -47,7 +48,9 @@ public class FollowingSpell extends SpellBase
 			SpellProjectileBase projectile = new SpellProjectileFollowing(world, player, target);
 			putProjectileInWorld(world, player, projectile);
 			return true;
-		} else {
+		}
+		else
+		{
 			return false;
 		}
 	}

@@ -17,11 +17,12 @@ public class BouncingSpell extends SpellBase
 
 	private final static List<SpellCost> costs = ImmutableList.of(
 
-	);
+			);
 
 	public BouncingSpell()
 	{
-		super(costs, 20, NamesReference.Spells.BOUNCING_SPELL_NAME, NamesReference.Spells.BOUNCING_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 20, NamesReference.Spells.BOUNCING_SPELL_NAME, NamesReference.Spells.BOUNCING_SPELL_DESCRIPTION,
+				new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override
@@ -29,7 +30,7 @@ public class BouncingSpell extends SpellBase
 	{
 		SpellProjectileBase projectile = new SpellProjectileBouncing(world, player);
 		putProjectileInWorld(world, player, projectile);
-		
+
 		return true;
 	}
 

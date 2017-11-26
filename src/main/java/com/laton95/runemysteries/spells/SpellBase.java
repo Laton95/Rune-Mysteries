@@ -2,9 +2,8 @@ package com.laton95.runemysteries.spells;
 
 import java.util.List;
 
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
@@ -28,9 +27,12 @@ public abstract class SpellBase
 		this.guiTexture = guiTexture;
 	}
 
+	/*
+	 * Fires the selected spell, always check for remote world before calling this
+	 * */
 	public abstract boolean fireSpell(World world, EntityPlayer player);
 
-	protected void putProjectileInWorld(World world, EntityPlayer player, SpellProjectileBase spellProjectile)
+	protected void putProjectileInWorld(World world, EntityPlayer player, EntityThrowable spellProjectile)
 	{
 		spellProjectile.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 		world.spawnEntity(spellProjectile);

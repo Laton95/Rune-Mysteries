@@ -111,8 +111,7 @@ public class ItemRuneBag extends RMModItem
 		{
 			if (!playerIn.isSneaking())
 			{
-				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn,
-						(int) playerIn.posX,
+				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn, (int) playerIn.posX,
 						(int) playerIn.posY, (int) playerIn.posZ);
 			}
 			else
@@ -124,8 +123,7 @@ public class ItemRuneBag extends RMModItem
 				}
 				else
 				{
-					playerIn.sendMessage(
-							new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
 				}
 			}
 		}

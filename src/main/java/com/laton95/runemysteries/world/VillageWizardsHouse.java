@@ -27,10 +27,11 @@ public class VillageWizardsHouse extends Village
 
 	private EnumFacing facing;
 
-	public VillageWizardsHouse() {
-		
+	public VillageWizardsHouse()
+	{
+
 	}
-	
+
 	public VillageWizardsHouse(Start villagePiece, int par2, Random par3Random,
 			StructureBoundingBox par4StructureBoundingBox, EnumFacing facing)
 	{
@@ -47,7 +48,7 @@ public class VillageWizardsHouse extends Village
 	{
 		if (groundLevel < 0)
 		{
-			
+
 			groundLevel = getAverageGroundLevel(worldIn, boundingBox);
 			if (groundLevel < 0)
 			{
@@ -55,10 +56,12 @@ public class VillageWizardsHouse extends Village
 			}
 			boundingBox.offset(0, groundLevel - boundingBox.maxY + 5, 0);
 			BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
-			PlacementSettings settings = new PlacementSettings().setBoundingBox(boundingBox).setReplacedBlock(
-					Blocks.STRUCTURE_VOID);
-			if (facing != null) {
-				switch (facing) {
+			PlacementSettings settings = new PlacementSettings().setBoundingBox(boundingBox)
+					.setReplacedBlock(Blocks.STRUCTURE_VOID);
+			if (facing != null)
+			{
+				switch (facing)
+				{
 				case NORTH:
 					settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
 					pos = pos.add(0, 0, 7);
@@ -75,15 +78,17 @@ public class VillageWizardsHouse extends Village
 					break;
 				}
 			}
-			
+
 			StructureHelper structureHelper = new StructureHelper(worldIn, "wizard_house", pos, settings);
 			structureHelper.generate();
 			LogHelper.info(pos + " " + facing);
-			this.spawnVillagers(worldIn, boundingBox, 5, 2, 5, 2);
-			
-			for (int x = boundingBox.minX; x <= boundingBox.maxX; x++) {
-				for (int z = boundingBox.minZ; z <= boundingBox.maxZ; z++) {
-					worldIn.setBlockState(new BlockPos(x,20,z),Blocks.GLASS.getDefaultState());
+			spawnVillagers(worldIn, boundingBox, 5, 2, 5, 2);
+
+			for (int x = boundingBox.minX; x <= boundingBox.maxX; x++)
+			{
+				for (int z = boundingBox.minZ; z <= boundingBox.maxZ; z++)
+				{
+					worldIn.setBlockState(new BlockPos(x, 20, z), Blocks.GLASS.getDefaultState());
 				}
 			}
 		}
@@ -113,7 +118,8 @@ public class VillageWizardsHouse extends Village
 		}
 
 		@Override
-		public Village buildComponent(PieceWeight villagePiece, Start startPiece, List<StructureComponent> pieces, Random random, int p1, int p2, int p3, EnumFacing facing, int p5)
+		public Village buildComponent(PieceWeight villagePiece, Start startPiece, List<StructureComponent> pieces,
+				Random random, int p1, int p2, int p3, EnumFacing facing, int p5)
 		{
 			StructureBoundingBox box = StructureBoundingBox.getComponentToAddBoundingBox(p1, 64, p3, 0, 0, 0, 11, 6, 8,
 					facing);

@@ -18,17 +18,19 @@ public class EntityRenderSpellProjectile extends Render<SpellProjectileBase>
 	}
 
 	@Override
-	public void doRender(SpellProjectileBase entity, double x, double y, double z, float entityYaw,
-			float partialTicks) {
+	public void doRender(SpellProjectileBase entity, double x, double y, double z, float entityYaw, float partialTicks)
+	{
 		bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
 		GlStateManager.pushMatrix();
 		GlStateManager.disableLighting();
 		GlStateManager.translate((float) x, (float) y, (float) z);
-		GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks
-				- 90.0F, 0.0F, 1.0F, 0.0F);
-		GlStateManager.rotate(entity.prevRotationPitch
-				+ (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
+		GlStateManager.rotate(
+				entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F,
+				1.0F, 0.0F);
+		GlStateManager.rotate(
+				entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F,
+				1.0F);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		GlStateManager.enableRescaleNormal();
@@ -82,7 +84,8 @@ public class EntityRenderSpellProjectile extends Render<SpellProjectileBase>
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(SpellProjectileBase entity) {
+	protected ResourceLocation getEntityTexture(SpellProjectileBase entity)
+	{
 		return entity.getTexture();
 	}
 

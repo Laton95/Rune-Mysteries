@@ -48,7 +48,7 @@ public class RMModBlock extends Block
 		this.drop = drop;
 
 	}
-	
+
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{

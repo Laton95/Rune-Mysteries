@@ -24,24 +24,23 @@ public class SnowballSpell extends SpellBase
 
 	public SnowballSpell()
 	{
-		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL_NAME, NamesReference.Spells.SNOWBALL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL_NAME, NamesReference.Spells.SNOWBALL_SPELL_DESCRIPTION,
+				new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override
 	public boolean fireSpell(World world, EntityPlayer player)
 	{
 		world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW,
-				SoundCategory.NEUTRAL, 0.5F, 0.4F
-						/ (world.rand.nextFloat() * 0.4F + 0.8F));
+				SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
 
 		if (!world.isRemote)
 		{
 			EntitySnowball entitysnowball = new EntitySnowball(world, player);
-			entitysnowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F,
-					1.0F);
+			entitysnowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 			world.spawnEntity(entitysnowball);
 		}
-		
+
 		return true;
 	}
 

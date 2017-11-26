@@ -14,18 +14,19 @@ public class MetaItemBlock extends ItemBlock
 		super(block);
 		if (!(block instanceof IMetaBlock))
 		{
-			throw new IllegalArgumentException(String.format("The given block %s is not an instance of IMetaBlock", block.getUnlocalizedName()));
+			throw new IllegalArgumentException(
+					String.format("The given block %s is not an instance of IMetaBlock", block.getUnlocalizedName()));
 		}
-		this.setHasSubtypes(true);
-		this.setMaxDamage(0);
+		setHasSubtypes(true);
+		setMaxDamage(0);
 	}
 
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		return super.getUnlocalizedName() + "." + ((IMetaBlock) this.block).getSpecialName(stack);
+		return super.getUnlocalizedName() + "." + ((IMetaBlock) block).getSpecialName(stack);
 	}
-	
+
 	@Override
 	public int getMetadata(int damage)
 	{

@@ -24,7 +24,8 @@ public class ComponentEndAltar extends StructureComponent
 	private String name;
 
 	public ComponentEndAltar()
-	{}
+	{
+	}
 
 	public ComponentEndAltar(Random rand, int x, int z, String name)
 	{
@@ -33,31 +34,30 @@ public class ComponentEndAltar extends StructureComponent
 	}
 
 	private boolean generated = false;
-	
+
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
-		if (!generated && !altar.isGenerated()) 
+		if (!generated && !altar.isGenerated())
 		{
 			LogHelper.info("Generating altar");
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - 6, pos.getZ() - 1);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
-					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
+			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "end_island", pos2);
 			structureHelper.generate();
-			
+
 			structureHelper = new StructureHelper(worldIn, "stone_circle", pos);
 			structureHelper.generate();
 			structureHelper = new StructureHelper(worldIn, name, pos);
 			structureHelper.generate();
 			generated = true;
-			
-			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY
-					+ 1, boundingBox.minZ + 4));
+
+			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY + 1, boundingBox.minZ + 4));
 			altar.setPlacementRadius(0);
 			altar.setGenerated(true);
 		}
@@ -65,22 +65,23 @@ public class ComponentEndAltar extends StructureComponent
 	}
 
 	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound) {
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 	private int horizontalPos = -1;
-	
+
 	/**
-	 * Calculates and offsets this structure boundingbox to average ground
-	 * level
+	 * Calculates and offsets this structure boundingbox to average ground level
 	 */
 	public boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset)
 	{
@@ -102,8 +103,7 @@ public class ComponentEndAltar extends StructureComponent
 
 					if (structurebb.isVecInside(blockpos$mutableblockpos))
 					{
-						i += Math.max(
-								worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(),
+						i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(),
 								worldIn.provider.getAverageGroundLevel());
 						++j;
 					}

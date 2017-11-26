@@ -38,7 +38,8 @@ public class VillagerTradeHelper
 		{
 			int i = buyingPriceInfo.getPrice(random);
 			int j = sellingPriceInfo.getPrice(random);
-			recipeList.add(new MerchantRecipe(new ItemStack(buyingItem, i, random.nextInt(buyingMaxMeta +1)), new ItemStack(sellingItem, j, random.nextInt(sellingMaxMeta +1))));
+			recipeList.add(new MerchantRecipe(new ItemStack(buyingItem, i, random.nextInt(buyingMaxMeta + 1)),
+					new ItemStack(sellingItem, j, random.nextInt(sellingMaxMeta + 1))));
 		}
 	}
 }

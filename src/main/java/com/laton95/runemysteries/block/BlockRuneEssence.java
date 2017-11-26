@@ -28,13 +28,15 @@ public class BlockRuneEssence extends RMModBlock
 	}
 
 	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
+			@Nullable TileEntity te, ItemStack stack)
 	{
 		if (!player.isCreative())
 		{
 			player.addExhaustion(0.005F);
 
-			ItemStack itemstack = new ItemStack(ItemRegistry.RUNE, 1, EnumRuneType.ESSENCE.ordinal());
+			ItemStack itemstack = new ItemStack(ItemRegistry.RUNE, worldIn.rand.nextInt(4) + 1,
+					EnumRuneType.ESSENCE.ordinal());
 			spawnAsEntity(worldIn, pos, itemstack);
 
 			worldIn.setBlockState(pos, state);

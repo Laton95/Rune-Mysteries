@@ -35,35 +35,35 @@ import net.minecraft.world.storage.loot.LootTable;
 
 public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 {
-	
+
 	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
 
 	public BlockRuneAltar()
 	{
 		super("rune_Altar", Material.ROCK, 0, 2000f, null, 0, true);
 		setBlockUnbreakable();
-		this.setDefaultState(this.blockState.getBaseState().withProperty(TYPE, EnumRuneType.AIR));
+		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumRuneType.AIR));
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {TYPE});
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		EnumRuneType type = (EnumRuneType) state.getValue(TYPE);
+		EnumRuneType type = state.getValue(TYPE);
 		return type.ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
+		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
 	}
-	
+
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
@@ -85,11 +85,13 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
 				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.RUNE, getMetaFromState(state), isOurania);
 			}
-			
-			if (stack.getItem() == ItemRegistry.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && isOurania == false)
+
+			if (stack.getItem() == ItemRegistry.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal()
+					&& isOurania == false)
 			{
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.RUNE_TALISMAN, getMetaFromState(state), isOurania);
+				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.RUNE_TALISMAN, getMetaFromState(state),
+						isOurania);
 			}
 
 			if (stack.getItem() == Items.BOOK)
@@ -108,12 +110,13 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
 			if (player instanceof EntityPlayerMP)
 			{
-				if (entityIn.getItem().getItem() == ItemRegistry.RUNE && entityIn.getItem().getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+				if (entityIn.getItem().getItem() == ItemRegistry.RUNE
+						&& entityIn.getItem().getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 				{
 					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player,
 							new ItemStack(ItemRegistry.RUNE, 1, EnumRuneType.ESSENCE.ordinal()));
 				}
-				
+
 				if (isOurania)
 				{
 					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player,
@@ -127,16 +130,18 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	{
 		while (entityIn.getItem().getCount() > 0)
 		{
-			ItemStack itemstack ;
+			ItemStack itemstack;
 			if (isOurania)
 			{
 				itemstack = getRandomRune(worldIn);
-			} else {
+			}
+			else
+			{
 				itemstack = new ItemStack(item, 1, metadata);
 			}
-			
+
 			spawnAsEntity(worldIn, entityIn.getPosition(), itemstack);
-			((EntityItem) entityIn).getItem().setCount(((EntityItem) entityIn).getItem().getCount() - 1);
+			entityIn.getItem().setCount(entityIn.getItem().getCount() - 1);
 		}
 		entityIn.setDead();
 	}
@@ -166,13 +171,14 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	{
 		return EnumRuneType.values()[stack.getItemDamage()].toString();
 	}
-	
+
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player)
 	{
 		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
 	}
-	
+
 	private ItemStack getRandomRune(World world)
 	{
 		List<ItemStack> items = new ArrayList<>();

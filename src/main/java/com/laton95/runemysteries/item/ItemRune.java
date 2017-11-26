@@ -12,21 +12,9 @@ public class ItemRune extends RMModItem
 
 	public static enum EnumRuneType implements IStringSerializable
 	{
-		AIR("air"), 
-		ASTRAL("astral"), 
-		BLOOD("blood"), 
-		BODY("body"), 
-		CHAOS("chaos"), 
-		COSMIC("cosmic"), 
-		DEATH("death"), 
-		EARTH("earth"), 
-		FIRE("fire"), 
-		LAW("law"), 
-		MIND("mind"), 
-		NATURE("nature"), 
-		SOUL("soul"), 
-		WATER("water"),
-		ESSENCE("essence");
+		AIR("air"), ASTRAL("astral"), BLOOD("blood"), BODY("body"), CHAOS("chaos"), COSMIC("cosmic"), DEATH(
+				"death"), EARTH("earth"), FIRE("fire"), LAW(
+						"law"), MIND("mind"), NATURE("nature"), SOUL("soul"), WATER("water"), ESSENCE("essence");
 
 		private final String name;
 

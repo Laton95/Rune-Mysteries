@@ -76,7 +76,8 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 	{
 
 		public Start()
-		{}
+		{
+		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
@@ -95,9 +96,9 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 			{
 				if (!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn))
 				{
-					ComponentUndergroundAltar componentRuneAltar = new ComponentUndergroundAltar(random, chunkX
-							* 16, chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
-					
+					ComponentUndergroundAltar componentRuneAltar = new ComponentUndergroundAltar(random, chunkX * 16,
+							chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
+
 					// Altar generated
 					altar.setPlaced(true);
 					LogHelper.info(altar.toString());

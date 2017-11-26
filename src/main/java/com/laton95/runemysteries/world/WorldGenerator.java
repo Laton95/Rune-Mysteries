@@ -32,35 +32,36 @@ public class WorldGenerator implements IWorldGenerator
 	public static AltarTracker altarTracker;
 
 	@Override
-	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
+	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator,
+			IChunkProvider chunkProvider)
 	{
 		if (!world.isRemote)
 		{
 			switch (world.provider.getDimensionType())
 			{
-				case OVERWORLD:
-					// Ores
-					OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
+			case OVERWORLD:
+				// Ores
+				OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
 
-					// Structures
-					surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					break;
-				case NETHER:
-					// Ores
+				// Structures
+				surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				break;
+			case NETHER:
+				// Ores
 
-					// Structures
-					netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					break;
-				case THE_END:
-					// Ores
+				// Structures
+				netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				break;
+			case THE_END:
+				// Ores
 
-					// Structures
-					endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					break;
-				default:
-					break;
+				// Structures
+				endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -68,25 +69,26 @@ public class WorldGenerator implements IWorldGenerator
 	@SubscribeEvent
 	public void populate(PopulateChunkEvent.Populate event)
 	{
-		if ((event.getType() == EventType.DUNGEON || event.getType() == EventType.GLOWSTONE) && !event.getWorld().isRemote)
+		if ((event.getType() == EventType.DUNGEON || event.getType() == EventType.GLOWSTONE)
+				&& !event.getWorld().isRemote)
 		{
 			switch (event.getWorld().provider.getDimensionType())
 			{
-				case OVERWORLD:
-					// Structures
-					surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					break;
-				case NETHER:
-					netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-							new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					break;
-				default:
-					break;
+			case OVERWORLD:
+				// Structures
+				surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				break;
+			case NETHER:
+				netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+						new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				break;
+			default:
+				break;
 			}
 		}
 	}
@@ -96,12 +98,12 @@ public class WorldGenerator implements IWorldGenerator
 	{
 		switch (event.getWorld().provider.getDimensionType())
 		{
-			case THE_END:
-				endAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
-						new ChunkPos(event.getChunkX(), event.getChunkZ()));
-				break;
-			default:
-				break;
+		case THE_END:
+			endAltarGenerator.generateStructure(event.getWorld(), event.getRand(),
+					new ChunkPos(event.getChunkX(), event.getChunkZ()));
+			break;
+		default:
+			break;
 		}
 	}
 }

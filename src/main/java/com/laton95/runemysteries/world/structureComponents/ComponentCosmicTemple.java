@@ -22,7 +22,7 @@ public class ComponentCosmicTemple extends StructureComponent
 	public ComponentCosmicTemple()
 	{
 	}
-	
+
 	public ComponentCosmicTemple(int x, int z)
 	{
 		ChunkPos chunkPos = new ChunkPos(x, z);
@@ -42,8 +42,8 @@ public class ComponentCosmicTemple extends StructureComponent
 			structureBoundingBoxIn = boundingBox;
 			LogHelper.info(bBox.minX / 16 + "," + bBox.minZ / 16);
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
-					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
+			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "cosmic_temple_se", pos);
 			if (bBox.minX / 16 == 0 && bBox.minZ / 16 == 0)
 			{

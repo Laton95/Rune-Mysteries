@@ -83,13 +83,13 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 		worldIn.spawnParticle(particle, blockCenterX, blockCenterY, blockCenterZ - sideOffset, 0.01, 0.01, 0.01);
 
 		// Corners
-		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ
-				+ cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ
-				- cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ
-				+ cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ
-				- cornerOffset, 0.01, 0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01,
+				0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01,
+				0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01,
+				0.01, 0.01);
+		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01,
+				0.01, 0.01);
 	}
 }

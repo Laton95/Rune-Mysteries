@@ -24,7 +24,8 @@ public class ComponentNetherAltar extends StructureComponent
 	private String name;
 
 	public ComponentNetherAltar()
-	{}
+	{
+	}
 
 	public ComponentNetherAltar(Random rand, int x, int z, String name)
 	{
@@ -34,32 +35,31 @@ public class ComponentNetherAltar extends StructureComponent
 	}
 
 	private boolean generated = false;
-	
+
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
 		LogHelper.info("tst2");
-		if (!generated && !altar.isGenerated()) 
+		if (!generated && !altar.isGenerated())
 		{
 			LogHelper.info("Generating altar");
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - 6, pos.getZ() - 1);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
-					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
+			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "nether_island", pos2);
 			structureHelper.generate();
-			
+
 			structureHelper = new StructureHelper(worldIn, "stone_circle", pos);
 			structureHelper.generate();
 			structureHelper = new StructureHelper(worldIn, name, pos);
 			structureHelper.generate();
 			generated = true;
-			
-			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY
-					+ 1, boundingBox.minZ + 4));
+
+			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY + 1, boundingBox.minZ + 4));
 			altar.setPlacementRadius(0);
 			altar.setGenerated(true);
 		}
@@ -67,14 +67,16 @@ public class ComponentNetherAltar extends StructureComponent
 	}
 
 	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound) {
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_) {
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
 		// TODO Auto-generated method stub
-		
+
 	}
 }

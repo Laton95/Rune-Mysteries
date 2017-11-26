@@ -9,7 +9,7 @@ import net.minecraft.client.settings.KeyBinding;
 public enum Keybindings
 {
 
-	EXPLODE(NamesReference.Keys.TEST, Keyboard.KEY_G);
+	TEST(NamesReference.Keys.TEST, Keyboard.KEY_G);
 
 	private final KeyBinding keyBinding;
 

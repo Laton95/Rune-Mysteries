@@ -24,21 +24,21 @@ public class GuiHandler implements IGuiHandler
 	{
 		switch (GuiIDs.values()[ID])
 		{
-			case SPELLBOOK:
+		case SPELLBOOK:
+			return null;
+		case RUNE_BAG:
+			if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
+			{
+				return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
+			}
+			else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
+			{
+				return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
+			}
+			else
+			{
 				return null;
-			case RUNE_BAG:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
-				{
-					return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
-				}
-				else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
-				{
-					return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
-				}
-				else
-				{
-					return null;
-				}
+			}
 		}
 		throw new IllegalArgumentException("No guid with id " + ID);
 	}
@@ -48,32 +48,32 @@ public class GuiHandler implements IGuiHandler
 	{
 		switch (GuiIDs.values()[ID])
 		{
-			case SPELLBOOK:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemSpellbook)
-				{
-					return new GuiSpellbook(player, player.getHeldItemMainhand());
-				}
-				else if (player.getHeldItemOffhand().getItem() instanceof ItemSpellbook)
-				{
-					return new GuiSpellbook(player, player.getHeldItemOffhand());
-				}
-				else
-				{
-					return null;
-				}
-			case RUNE_BAG:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
-				{
-					return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
-				}
-				else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
-				{
-					return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
-				}
-				else
-				{
-					return null;
-				}
+		case SPELLBOOK:
+			if (player.getHeldItemMainhand().getItem() instanceof ItemSpellbook)
+			{
+				return new GuiSpellbook(player, player.getHeldItemMainhand());
+			}
+			else if (player.getHeldItemOffhand().getItem() instanceof ItemSpellbook)
+			{
+				return new GuiSpellbook(player, player.getHeldItemOffhand());
+			}
+			else
+			{
+				return null;
+			}
+		case RUNE_BAG:
+			if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
+			{
+				return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
+			}
+			else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
+			{
+				return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
+			}
+			else
+			{
+				return null;
+			}
 		}
 		throw new IllegalArgumentException("No guid with id " + ID);
 	}

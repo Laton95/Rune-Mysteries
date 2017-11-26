@@ -1,30 +1,27 @@
 package com.laton95.runemysteries.entity.projectiles;
 
-import com.laton95.runemysteries.reference.ModReference;
-
 import net.minecraft.entity.EntityLivingBase;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SpellProjectileBouncing extends SpellProjectileBase
 {
-	
-	private final static ResourceLocation TEXTURE = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
-	private final static EnumParticleTypes TRAIL_PARTICLE = EnumParticleTypes.CRIT;
-	private final static EnumParticleTypes IMPACT_PARTICLE = EnumParticleTypes.END_ROD;
-
-	public SpellProjectileBouncing(World worldIn, EntityLivingBase throwerIn)
+	public SpellProjectileBouncing(World worldIn)
 	{
-		super(worldIn, throwerIn, TEXTURE, TRAIL_PARTICLE, IMPACT_PARTICLE);
-		setImpactParticleSpeed(0.15f);
+		super(worldIn);
 	}
 	
-	@Override
-	public void onEntityUpdate()
+	public SpellProjectileBouncing(World worldIn, EntityLivingBase throwerIn)
 	{
-		super.onEntityUpdate();
+		super(worldIn, throwerIn);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public SpellProjectileBouncing(World worldIn, double x, double y, double z)
+	{
+		super(worldIn, x, y, z);
 	}
 
 	@Override
@@ -37,26 +34,26 @@ public class SpellProjectileBouncing extends SpellProjectileBase
 		{
 			switch (result.sideHit)
 			{
-				case DOWN:
-					motionY = -motionY;
-					break;
-				case EAST:
-					motionX = -motionX * hBoost;
-					break;
-				case NORTH:
-					motionZ = -motionZ * hBoost;
-					break;
-				case SOUTH:
-					motionZ = -motionZ * hBoost;
-					break;
-				case UP:
-					motionY = -motionY * yDecay;
-					break;
-				case WEST:
-					motionX = -motionX * hBoost;
-					break;
-				default:
-					break;
+			case DOWN:
+				motionY = -motionY;
+				break;
+			case EAST:
+				motionX = -motionX * hBoost;
+				break;
+			case NORTH:
+				motionZ = -motionZ * hBoost;
+				break;
+			case SOUTH:
+				motionZ = -motionZ * hBoost;
+				break;
+			case UP:
+				motionY = -motionY * yDecay;
+				break;
+			case WEST:
+				motionX = -motionX * hBoost;
+				break;
+			default:
+				break;
 			}
 		}
 		else
@@ -65,14 +62,12 @@ public class SpellProjectileBouncing extends SpellProjectileBase
 			motionX = -motionX * hBoost + result.entityHit.motionX;
 			motionZ = -motionZ * hBoost + result.entityHit.motionZ;
 		}
-		
+
 		if (ticksExisted > 2000)
 		{
 			setDead();
 		}
-		
-		
-		
+
 		super.onImpact(result);
 	}
 }

@@ -33,13 +33,13 @@ public class ClientProxy extends CommonProxy
 		LogHelper.info("Registering projectile renders");
 		RenderingRegistry.registerEntityRenderingHandler(SpellProjectileBase.class,
 				new IRenderFactory<SpellProjectileBase>()
-				{
+		{
 
-					@Override
-					public Render<SpellProjectileBase> createRenderFor(RenderManager manager)
-					{
-						return new EntityRenderSpellProjectile(manager);
-					}
-				});
+			@Override
+			public Render<SpellProjectileBase> createRenderFor(RenderManager manager)
+			{
+				return new EntityRenderSpellProjectile(manager);
+			}
+		});
 	}
 }

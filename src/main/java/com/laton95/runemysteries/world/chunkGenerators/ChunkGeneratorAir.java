@@ -14,8 +14,8 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 public class ChunkGeneratorAir extends ChunkGeneratorSurfaceWorld
 {
 
-	private final static List<Biome.SpawnListEntry> MOB_SPAWNS = ImmutableList.of(
-			new SpawnListEntry(EntityRabbit.class, 20, 2, 6));
+	private final static List<Biome.SpawnListEntry> MOB_SPAWNS = ImmutableList
+			.of(new SpawnListEntry(EntityRabbit.class, 20, 2, 6));
 
 	public ChunkGeneratorAir(World worldIn, long seed)
 	{

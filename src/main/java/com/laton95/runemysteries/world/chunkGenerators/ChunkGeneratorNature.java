@@ -14,8 +14,8 @@ import net.minecraft.world.biome.Biome.SpawnListEntry;
 public class ChunkGeneratorNature extends ChunkGeneratorSurfaceWorld
 {
 
-	private final static List<Biome.SpawnListEntry> MOB_SPAWNS = ImmutableList.of(
-			new SpawnListEntry(EntityParrot.class, 20, 1, 4));
+	private final static List<Biome.SpawnListEntry> MOB_SPAWNS = ImmutableList
+			.of(new SpawnListEntry(EntityParrot.class, 20, 1, 4));
 
 	public ChunkGeneratorNature(World worldIn, long seed)
 	{

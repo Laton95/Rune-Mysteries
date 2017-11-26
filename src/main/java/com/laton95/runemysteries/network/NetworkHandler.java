@@ -18,7 +18,6 @@ public class NetworkHandler
 	{
 		INSTANCE = NetworkRegistry.INSTANCE.newSimpleChannel(ModReference.MOD_ID);
 
-		INSTANCE.registerMessage(MessageExplode.class, MessageExplode.class, 0, Side.SERVER);
 		INSTANCE.registerMessage(MessageSpellSelect.class, MessageSpellSelect.class, 0, Side.SERVER);
 	}
 

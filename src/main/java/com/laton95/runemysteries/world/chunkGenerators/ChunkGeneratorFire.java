@@ -10,6 +10,7 @@ public class ChunkGeneratorFire extends ChunkGeneratorOceanWorld
 
 	public ChunkGeneratorFire(World worldIn, long seed)
 	{
-		super(worldIn, seed, Blocks.STONE.getDefaultState(), Blocks.STONE.getDefaultState(), Blocks.LAVA.getDefaultState(), 85, 84, 83, NamesReference.worldGenStrings.WATER);
+		super(worldIn, seed, Blocks.STONE.getDefaultState(), Blocks.STONE.getDefaultState(),
+				Blocks.LAVA.getDefaultState(), 85, 84, 83, NamesReference.worldGenStrings.WATER);
 	}
 }

@@ -43,7 +43,8 @@ public class MapGenCosmicTemple extends MapGenRuneTemple
 	{
 
 		public Start()
-		{}
+		{
+		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{

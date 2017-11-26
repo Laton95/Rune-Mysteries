@@ -27,7 +27,7 @@ import net.minecraft.world.World;
 
 public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
-	
+
 	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
 
 	public BlockRuneAltarEntrance()
@@ -35,26 +35,26 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 		super("rune_Altar_Entrance", Material.ROCK, 0, 2000f, null, 0, false);
 		setBlockUnbreakable();
 	}
-	
+
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {TYPE});
+		return new BlockStateContainer(this, new IProperty[] { TYPE });
 	}
-	
+
 	@Override
 	public int getMetaFromState(IBlockState state)
 	{
-		EnumRuneType type = (EnumRuneType) state.getValue(TYPE);
+		EnumRuneType type = state.getValue(TYPE);
 		return type.ordinal();
 	}
-	
+
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		return this.getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
+		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
 	}
-	
+
 	@Override
 	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
 	{
@@ -68,7 +68,8 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	}
 
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn,
+			EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
 	{
 		if (!worldIn.isRemote)
 		{
@@ -76,7 +77,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 			if (playerIn.getHeldItemMainhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
 					&& playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state)
 					|| playerIn.getHeldItemOffhand().getItem().equals(ItemRegistry.RUNE_TALISMAN)
-							&& playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
+					&& playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
 				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
@@ -114,44 +115,46 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	{
 		return EnumRuneType.values()[stack.getItemDamage()].toString();
 	}
-	
+
 	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
+	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos,
+			EntityPlayer player)
 	{
 		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
 	}
-	
-	private int getDimIDFromState(IBlockState state) {
+
+	private int getDimIDFromState(IBlockState state)
+	{
 		switch (EnumRuneType.values()[getMetaFromState(state)])
 		{
-			case AIR:
-				return ModConfig.DIMENSIONS.airTempleDimID;
-			case BLOOD:
-				return ModConfig.DIMENSIONS.bloodTempleDimID;
-			case BODY:
-				return ModConfig.DIMENSIONS.bodyTempleDimID;
-			case CHAOS:
-				return ModConfig.DIMENSIONS.chaosTempleDimID;
-			case COSMIC:
-				return ModConfig.DIMENSIONS.cosmicTempleDimID;
-			case DEATH:
-				return ModConfig.DIMENSIONS.deathTempleDimID;
-			case EARTH:
-				return ModConfig.DIMENSIONS.earthTempleDimID;
-			case FIRE:
-				return ModConfig.DIMENSIONS.fireTempleDimID;
-			case LAW:
-				return ModConfig.DIMENSIONS.lawTempleDimID;
-			case MIND:
-				return ModConfig.DIMENSIONS.mindTempleDimID;
-			case NATURE:
-				return ModConfig.DIMENSIONS.natureTempleDimID;
-			case SOUL:
-				return ModConfig.DIMENSIONS.soulTempleDimID;
-			case WATER:
-				return ModConfig.DIMENSIONS.waterTempleDimID;
-			default:
-				return 0;
+		case AIR:
+			return ModConfig.DIMENSIONS.airTempleDimID;
+		case BLOOD:
+			return ModConfig.DIMENSIONS.bloodTempleDimID;
+		case BODY:
+			return ModConfig.DIMENSIONS.bodyTempleDimID;
+		case CHAOS:
+			return ModConfig.DIMENSIONS.chaosTempleDimID;
+		case COSMIC:
+			return ModConfig.DIMENSIONS.cosmicTempleDimID;
+		case DEATH:
+			return ModConfig.DIMENSIONS.deathTempleDimID;
+		case EARTH:
+			return ModConfig.DIMENSIONS.earthTempleDimID;
+		case FIRE:
+			return ModConfig.DIMENSIONS.fireTempleDimID;
+		case LAW:
+			return ModConfig.DIMENSIONS.lawTempleDimID;
+		case MIND:
+			return ModConfig.DIMENSIONS.mindTempleDimID;
+		case NATURE:
+			return ModConfig.DIMENSIONS.natureTempleDimID;
+		case SOUL:
+			return ModConfig.DIMENSIONS.soulTempleDimID;
+		case WATER:
+			return ModConfig.DIMENSIONS.waterTempleDimID;
+		default:
+			return 0;
 		}
 	}
 }

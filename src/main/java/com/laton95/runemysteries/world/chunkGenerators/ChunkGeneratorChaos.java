@@ -36,37 +36,31 @@ public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld
 					{
 						if (y == 0)
 						{
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.BEDROCK.getDefaultState());
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
 						}
 						else if (y == 85)
 						{
 							int colour = rand.nextInt(EnumDyeColor.values().length);
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.CONCRETE.getDefaultState().withProperty(
-											BlockColored.COLOR, EnumDyeColor.values()[colour]));
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.CONCRETE.getDefaultState()
+									.withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
 						}
 						else if (y == 92)
 						{
 							int colour = rand.nextInt(EnumDyeColor.values().length);
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.CONCRETE.getDefaultState().withProperty(
-											BlockColored.COLOR, EnumDyeColor.values()[colour]));
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.CONCRETE.getDefaultState()
+									.withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
 						}
 						else if (y > 92)
 						{
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.STONE.getDefaultState());
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.STONE.getDefaultState());
 						}
 						else if (y > surfaceLevel)
 						{
 							if (rand.nextFloat() <= 0.015)
 							{
 								int colour = rand.nextInt(EnumDyeColor.values().length);
-								chunkprimer.setBlockState(xPos, y, zPos,
-										Blocks.CONCRETE.getDefaultState().withProperty(
-												BlockColored.COLOR,
-												EnumDyeColor.values()[colour]));
+								chunkprimer.setBlockState(xPos, y, zPos, Blocks.CONCRETE.getDefaultState()
+										.withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
 							}
 							else if (rand.nextFloat() <= 0.005)
 							{
@@ -76,8 +70,7 @@ public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld
 						}
 						else
 						{
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.STONE.getDefaultState());
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.STONE.getDefaultState());
 						}
 					}
 				}

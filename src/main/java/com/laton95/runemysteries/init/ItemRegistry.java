@@ -26,7 +26,7 @@ public class ItemRegistry
 {
 
 	private static ArrayList<Item> itemList = new ArrayList<>();
-	
+
 	public static final ItemRune RUNE = new ItemRune();
 	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman();
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
@@ -54,11 +54,12 @@ public class ItemRegistry
 				Class<? extends Enum<?>> values = ((RMModItem) item).getValues();
 				for (int i = 0; i < values.getEnumConstants().length; i++)
 				{
-					registerRenderVariants(item, i, item.getRegistryName().getResourcePath() + "_"
-							+ values.getEnumConstants()[i]);
+					registerRenderVariants(item, i,
+							item.getRegistryName().getResourcePath() + "_" + values.getEnumConstants()[i]);
 				}
-			} 
-			else if (item.getHasSubtypes() && item instanceof ItemBlock) {
+			}
+			else if (item.getHasSubtypes() && item instanceof ItemBlock)
+			{
 				for (int i = 0; i < EnumRuneType.values().length; i++)
 				{
 					registerRenderVariants(item, i, item.getRegistryName().getResourcePath());

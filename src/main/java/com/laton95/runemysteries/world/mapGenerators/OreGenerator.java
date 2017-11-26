@@ -26,7 +26,8 @@ public class OreGenerator
 			throw new IllegalArgumentException("Illigal Height Arguments for WorldGenerator");
 		}
 
-		WorldGenerator finiteEssenceGen = new WorldGenMinable(BlockRegistry.RUNE_ESSENCE_FINITE.getDefaultState(), ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinSize);
+		WorldGenerator finiteEssenceGen = new WorldGenMinable(BlockRegistry.RUNE_ESSENCE_FINITE.getDefaultState(),
+				ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinSize);
 
 		int heightDifference = maxHeight - minHeight + 1;
 		for (int i = 0; i < ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinsPerChunk; i++)

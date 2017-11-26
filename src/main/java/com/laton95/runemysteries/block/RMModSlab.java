@@ -74,8 +74,8 @@ public abstract class RMModSlab extends BlockSlab
 
 		if (!isDouble())
 		{
-			iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM
-					: BlockSlab.EnumBlockHalf.TOP);
+			iblockstate = iblockstate.withProperty(HALF,
+					(meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
 		}
 
 		return iblockstate;
@@ -136,7 +136,7 @@ public abstract class RMModSlab extends BlockSlab
 				int harvestLevel, boolean showInCreative)
 		{
 			super(name + "_Half", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
-			this.doubleSlab = new Double(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			doubleSlab = new Double(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 
 		@Override

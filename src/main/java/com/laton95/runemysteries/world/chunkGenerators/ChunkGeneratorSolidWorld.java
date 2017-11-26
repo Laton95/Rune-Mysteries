@@ -54,8 +54,7 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 					{
 						if (y == 0)
 						{
-							chunkprimer.setBlockState(xPos, y, zPos,
-									Blocks.BEDROCK.getDefaultState());
+							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
 						}
 						else
 						{
@@ -110,7 +109,8 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 	}
 
 	@Override
-	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
+			boolean findUnexplored)
 	{
 		return null;
 	}

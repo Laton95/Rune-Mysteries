@@ -85,8 +85,6 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure
 		{
 			super(chunkX, chunkZ);
 
-			
-			
 			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar("chaos_altar");
 
 			if (altar != null && !altar.isPlaced())
@@ -95,9 +93,8 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
 
-				ComponentNetherAltar componentRuneAltar = new ComponentNetherAltar(random, chunkX * 16
-						+ randX, chunkZ * 16
-								+ randZ, altar.getName());
+				ComponentNetherAltar componentRuneAltar = new ComponentNetherAltar(random, chunkX * 16 + randX,
+						chunkZ * 16 + randZ, altar.getName());
 
 				// Altar generated
 				altar.setPlaced(true);

@@ -17,12 +17,13 @@ import net.minecraft.world.World;
 public class DeathSpell extends SpellBase
 {
 
-	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.DEATH.ordinal()));
+	private final static List<SpellCost> costs = ImmutableList
+			.of(new SpellCost(ItemRegistry.RUNE, 3, EnumRuneType.DEATH.ordinal()));
 
 	public DeathSpell()
 	{
-		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION,
+				new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class DeathSpell extends SpellBase
 	{
 		SpellProjectileBase projectile = new SpellProjectileDamage(world, player, 30);
 		putProjectileInWorld(world, player, projectile);
-		
+
 		return true;
 	}
 

@@ -24,7 +24,8 @@ public class ComponentSurfaceAltar extends StructureComponent
 	private String name;
 
 	public ComponentSurfaceAltar()
-	{}
+	{
+	}
 
 	public ComponentSurfaceAltar(Random rand, int x, int z, String name)
 	{
@@ -33,11 +34,11 @@ public class ComponentSurfaceAltar extends StructureComponent
 	}
 
 	private boolean generated = false;
-	
+
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
-		
+
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
 		if (!generated && !altar.isGenerated())
 		{
@@ -45,16 +46,15 @@ public class ComponentSurfaceAltar extends StructureComponent
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
-					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
+			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "stone_circle", pos);
 			structureHelper.generate();
 			structureHelper = new StructureHelper(worldIn, name, pos);
 			structureHelper.generate();
 			generated = true;
-			
-			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY
-					+ 1, boundingBox.minZ + 4));
+
+			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY + 1, boundingBox.minZ + 4));
 			altar.setPlacementRadius(0);
 			altar.setGenerated(true);
 		}
@@ -65,41 +65,42 @@ public class ComponentSurfaceAltar extends StructureComponent
 	protected void writeStructureToNBT(NBTTagCompound tagCompound)
 	{
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 	{
 		// TODO Auto-generated method stub
-		
-	}
-	
-	private int getAverageGroundLevel(World worldIn)
-    {
-        int i = 0;
-        int j = 0;
-        BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-        
-        for (int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k)
-        {
-            for (int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
-            {
-                blockpos$mutableblockpos.setPos(l, 64, k);
-                i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel() - 1);
-                ++j;
-            }
-        }
 
-        if (j == 0)
-        {
-            return -1;
-        }
-        else
-        {
-            return i / j;
-        }
-    }
+	}
+
+	private int getAverageGroundLevel(World worldIn)
+	{
+		int i = 0;
+		int j = 0;
+		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
+
+		for (int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
+		{
+			for (int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
+			{
+				blockpos$mutableblockpos.setPos(l, 64, k);
+				i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(),
+						worldIn.provider.getAverageGroundLevel() - 1);
+				++j;
+			}
+		}
+
+		if (j == 0)
+		{
+			return -1;
+		}
+		else
+		{
+			return i / j;
+		}
+	}
 
 	public void offsetToAverageGroundLevel(World worldIn, int i)
 	{
@@ -109,6 +110,6 @@ public class ComponentSurfaceAltar extends StructureComponent
 			return;
 		}
 		boundingBox.offset(0, groundLevel - boundingBox.maxY + 2, 0);
-		
+
 	}
 }

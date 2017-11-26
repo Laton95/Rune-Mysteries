@@ -95,17 +95,16 @@ public class MapGenRuneAltar_SOUL extends MapGenStructure
 					StructureBoundingBox bBox;
 					BlockPos altarPos;
 					int depth = random.nextInt(10) + 10;
-					ComponentSoulAltar componentRuneAltar = new ComponentSoulAltar(random, chunkX * 16
-							+ random.nextInt(6)
-							+ 1, chunkZ * 16 + random.nextInt(6) + 1, altar.getName(), altar.getRoom(), depth);
-					
+					ComponentSoulAltar componentRuneAltar = new ComponentSoulAltar(random,
+							chunkX * 16 + random.nextInt(6) + 1, chunkZ * 16 + random.nextInt(6) + 1, altar.getName(),
+							altar.getRoom(), depth);
+
 					componentRuneAltar.offsetToAverageGroundLevel(worldIn, -1);
-					
+
 					bBox = componentRuneAltar.getBoundingBox();
 
 					altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-					if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(),
-							3, 1,
+					if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3, 1,
 							altar.getFlatnessTolerance()))
 					{
 

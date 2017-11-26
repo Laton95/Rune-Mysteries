@@ -10,7 +10,8 @@ public class ChunkGeneratorWater extends ChunkGeneratorOceanWorld
 
 	public ChunkGeneratorWater(World worldIn, long seed)
 	{
-		super(worldIn, seed, Blocks.STONE.getDefaultState(), Blocks.DIRT.getDefaultState(), Blocks.WATER.getDefaultState(), 85, 82, 80, NamesReference.worldGenStrings.WATER);
+		super(worldIn, seed, Blocks.STONE.getDefaultState(), Blocks.DIRT.getDefaultState(),
+				Blocks.WATER.getDefaultState(), 85, 82, 80, NamesReference.worldGenStrings.WATER);
 	}
 
 }

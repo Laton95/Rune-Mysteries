@@ -15,7 +15,8 @@ public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect>
 	private int spellID;
 
 	public MessageSpellSelect()
-	{}
+	{
+	}
 
 	public MessageSpellSelect(SpellBase spell)
 	{

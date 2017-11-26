@@ -1,108 +1,110 @@
 package com.laton95.runemysteries.entity.projectiles;
 
-import com.laton95.runemysteries.reference.ModReference;
-
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityEndGateway;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class SpellProjectileTeleportBasic extends SpellProjectileBase
 {
-	private final static ResourceLocation TEXTURE = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/pink-purple.png");
-	private final static EnumParticleTypes TRAIL_PARTICLE = EnumParticleTypes.CRIT;
-	private final static EnumParticleTypes IMPACT_PARTICLE = EnumParticleTypes.END_ROD;
+	public SpellProjectileTeleportBasic(World worldIn)
+	{
+		super(worldIn);
+	}
+	
+	public SpellProjectileTeleportBasic(World worldIn, EntityLivingBase throwerIn)
+	{
+		super(worldIn, throwerIn);
+	}
+	
+	@SideOnly(Side.CLIENT)
+	public SpellProjectileTeleportBasic(World worldIn, double x, double y, double z)
+	{
+		super(worldIn, x, y, z);
+	}
+	
+	protected void onImpact(RayTraceResult result)
+	{
+		super.onImpact(result);
+		EntityLivingBase thrower = getThrower();
 
-    public SpellProjectileTeleportBasic(World worldIn)
-    {
-        super(worldIn);
-    }
+		if (result.typeOfHit == RayTraceResult.Type.BLOCK)
+		{
+			BlockPos blockpos = result.getBlockPos();
+			TileEntity tileentity = world.getTileEntity(blockpos);
 
-    public SpellProjectileTeleportBasic(World worldIn, EntityLivingBase throwerIn)
-    {
-        super(worldIn, throwerIn, TEXTURE, TRAIL_PARTICLE, IMPACT_PARTICLE);
-        setImpactParticleSpeed(0.1f);
-    }
+			if (tileentity instanceof TileEntityEndGateway)
+			{
+				TileEntityEndGateway tileentityendgateway = (TileEntityEndGateway) tileentity;
 
-    protected void onImpact(RayTraceResult result)
-    {
-    	super.onImpact(result);
-        EntityLivingBase thrower = this.getThrower();
+				if (thrower != null)
+				{
+					if (thrower instanceof EntityPlayerMP)
+					{
+						CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP) thrower,
+								world.getBlockState(blockpos));
+					}
 
-        if (result.typeOfHit == RayTraceResult.Type.BLOCK)
-        {
-            BlockPos blockpos = result.getBlockPos();
-            TileEntity tileentity = this.world.getTileEntity(blockpos);
+					tileentityendgateway.teleportEntity(thrower);
+					super.onImpact(result);
+					return;
+				}
 
-            if (tileentity instanceof TileEntityEndGateway)
-            {
-                TileEntityEndGateway tileentityendgateway = (TileEntityEndGateway)tileentity;
+				tileentityendgateway.teleportEntity(this);
+				return;
+			}
+		}
 
-                if (thrower != null)
-                {
-                    if (thrower instanceof EntityPlayerMP)
-                    {
-                        CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP)thrower, this.world.getBlockState(blockpos));
-                    }
+		if (!world.isRemote)
+		{
+			if (thrower instanceof EntityPlayerMP)
+			{
+				EntityPlayerMP entityplayermp = (EntityPlayerMP) thrower;
 
-                    tileentityendgateway.teleportEntity(thrower);
-                    this.setDead();
-                    return;
-                }
+				if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == world
+						&& !entityplayermp.isPlayerSleeping())
+				{
+					net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(
+							entityplayermp, posX, posY, posZ, 5.0F);
+					if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
+					{
 
-                tileentityendgateway.teleportEntity(this);
-                return;
-            }
-        }
+						if (thrower.isRiding())
+						{
+							thrower.dismountRidingEntity();
+						}
 
-        if (!this.world.isRemote)
-        {
-            if (thrower instanceof EntityPlayerMP)
-            {
-                EntityPlayerMP entityplayermp = (EntityPlayerMP)thrower;
+						thrower.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
+					}
+				}
+			}
+			else if (thrower != null)
+			{
+				thrower.setPositionAndUpdate(posX, posY, posZ);
+			}
+		}
+		
+		super.onImpact(result);
+	}
 
-                if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == this.world && !entityplayermp.isPlayerSleeping())
-                {
-                    net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(entityplayermp, this.posX, this.posY, this.posZ, 5.0F);
-                    if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
-                    {
+	public void onUpdate()
+	{
+		EntityLivingBase entitylivingbase = getThrower();
 
-                    if (thrower.isRiding())
-                    {
-                        thrower.dismountRidingEntity();
-                    }
-
-                    thrower.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
-                    }
-                }
-            }
-            else if (thrower != null)
-            {
-                thrower.setPositionAndUpdate(this.posX, this.posY, this.posZ);
-            }
-
-            this.setDead();
-        }
-    }
-
-    public void onUpdate()
-    {
-        EntityLivingBase entitylivingbase = this.getThrower();
-
-        if (entitylivingbase != null && entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
-        {
-            this.setDead();
-        }
-        else
-        {
-            super.onUpdate();
-        }
-    }
+		if (entitylivingbase != null && entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
+		{
+			setDead();
+		}
+		else
+		{
+			super.onUpdate();
+		}
+	}
 }

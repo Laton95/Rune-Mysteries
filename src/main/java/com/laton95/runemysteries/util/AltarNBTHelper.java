@@ -73,7 +73,7 @@ public class AltarNBTHelper extends WorldSavedData
 		boolean soulAltarPlaced = nbt.getBoolean("soul_altar_placed");
 		boolean waterAltarPlaced = nbt.getBoolean("water_altar_placed");
 		boolean ouraniaAltarPlaced = nbt.getBoolean("ourania_altar_placed");
-		
+
 		boolean airAltarGenerated = nbt.getBoolean("air_altar_generated");
 		boolean astralAltarGenerated = nbt.getBoolean("astral_altar_generated");
 		boolean bloodAltarGenerated = nbt.getBoolean("blood_altar_generated");
@@ -121,7 +121,7 @@ public class AltarNBTHelper extends WorldSavedData
 		placedMap.put("soul_altar", soulAltarPlaced);
 		placedMap.put("water_altar", waterAltarPlaced);
 		placedMap.put("ourania_altar", ouraniaAltarPlaced);
-		
+
 		generatedMap.put("air_altar", airAltarGenerated);
 		generatedMap.put("astral_altar", astralAltarGenerated);
 		generatedMap.put("blood_altar", bloodAltarGenerated);
@@ -186,7 +186,7 @@ public class AltarNBTHelper extends WorldSavedData
 		compound.setBoolean("soul_altar_placed", placedMap.get("soul_altar"));
 		compound.setBoolean("water_altar_placed", placedMap.get("water_altar"));
 		compound.setBoolean("ourania_altar_placed", placedMap.get("ourania_altar"));
-		
+
 		compound.setBoolean("air_altar_generated", generatedMap.get("air_altar"));
 		compound.setBoolean("astral_altar_generated", generatedMap.get("astral_altar"));
 		compound.setBoolean("blood_altar_generated", generatedMap.get("blood_altar"));

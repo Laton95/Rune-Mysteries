@@ -78,7 +78,8 @@ public class MapGenRuneAltar_SURFACE extends MapGenStructure
 	{
 
 		public Start()
-		{}
+		{
+		}
 
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
@@ -99,19 +100,17 @@ public class MapGenRuneAltar_SURFACE extends MapGenStructure
 				{
 					StructureBoundingBox bBox;
 					BlockPos altarPos;
-					ComponentSurfaceAltar componentRuneAltar = new ComponentSurfaceAltar(random, chunkX * 16
-							+ random.nextInt(4) + 1, chunkZ * 16 + random.nextInt(4) + 1, altar.getName());
+					ComponentSurfaceAltar componentRuneAltar = new ComponentSurfaceAltar(random,
+							chunkX * 16 + random.nextInt(4) + 1, chunkZ * 16 + random.nextInt(4) + 1, altar.getName());
 
 					componentRuneAltar.offsetToAverageGroundLevel(worldIn, -1);
-					
+
 					bBox = componentRuneAltar.getBoundingBox();
 
 					altarPos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-					if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(),
-							3, 1,
+					if (WorldHelper.isFlat(worldIn, altarPos, bBox.getXSize(), bBox.getYSize(), bBox.getZSize(), 3, 1,
 							altar.getFlatnessTolerance()))
 					{
-						
 						// Altar generated
 						altar.setPlaced(true);
 						LogHelper.info(altar.toString());

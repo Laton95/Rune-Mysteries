@@ -92,7 +92,9 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 
 		temple = new MapGenRuneTemple(world);
 
-		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise);
+		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld(
+				minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise,
+				forestNoise);
 		ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(worldIn, rand, ctx);
 		minLimitPerlinNoise = ctx.getLPerlin1();
 		maxLimitPerlinNoise = ctx.getLPerlin2();
@@ -126,8 +128,8 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 
 	public void setBlocksInChunk(int x, int z, ChunkPrimer primer)
 	{
-		biomesForGeneration = world.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 4 - 2, z * 4
-				- 2, 10, 10);
+		biomesForGeneration = world.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 4 - 2, z * 4 - 2,
+				10, 10);
 		generateHeightmap(x * 4, 0, z * 4);
 
 		for (int i = 0; i < 4; ++i)
@@ -169,13 +171,11 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 							{
 								if ((lvt_45_1_ += d16) > 0.0D)
 								{
-									primer.setBlockState(i * 4 + k2, i2 * 8 + j2,
-											l * 4 + l2, worldBlock);
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, worldBlock);
 								}
 								else if (i2 * 8 + j2 < settings.seaLevel)
 								{
-									primer.setBlockState(i * 4 + k2, i2 * 8 + j2,
-											l * 4 + l2, oceanBlock);
+									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, oceanBlock);
 								}
 							}
 
@@ -218,9 +218,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		float f = settings.coordinateScale;
 		float f1 = settings.heightScale;
 		mainNoiseRegion = mainPerlinNoise.generateNoiseOctaves(mainNoiseRegion, p_185978_1_, p_185978_2_, p_185978_3_,
-				5, 33, 5, f
-						/ settings.mainNoiseScaleX,
-				f1 / settings.mainNoiseScaleY, f / settings.mainNoiseScaleZ);
+				5, 33, 5, f / settings.mainNoiseScaleX, f1 / settings.mainNoiseScaleY, f / settings.mainNoiseScaleZ);
 		minLimitRegion = minLimitPerlinNoise.generateNoiseOctaves(minLimitRegion, p_185978_1_, p_185978_2_, p_185978_3_,
 				5, 33, 5, f, f1, f);
 		maxLimitRegion = maxLimitPerlinNoise.generateNoiseOctaves(maxLimitRegion, p_185978_1_, p_185978_2_, p_185978_3_,
@@ -242,10 +240,8 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 					for (int k1 = -2; k1 <= 2; ++k1)
 					{
 						Biome biome1 = biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
-						float f5 = settings.biomeDepthOffSet
-								+ biome1.getBaseHeight() * settings.biomeDepthWeight;
-						float f6 = settings.biomeScaleOffset
-								+ biome1.getHeightVariation() * settings.biomeScaleWeight;
+						float f5 = settings.biomeDepthOffSet + biome1.getBaseHeight() * settings.biomeDepthWeight;
+						float f6 = settings.biomeScaleOffset + biome1.getHeightVariation() * settings.biomeScaleWeight;
 
 						if (terrainType == WorldType.AMPLIFIED && f5 > 0.0F)
 						{
@@ -367,14 +363,14 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		}
 	}
 
-	public void performWorldGenSpawning(World worldIn, Biome biomeIn, int p_77191_2_, int p_77191_3_, int p_77191_4_, int p_77191_5_, Random randomIn)
+	public void performWorldGenSpawning(World worldIn, Biome biomeIn, int p_77191_2_, int p_77191_3_, int p_77191_4_,
+			int p_77191_5_, Random randomIn)
 	{
 		if (!worldMobSpawns.isEmpty())
 		{
 			while (randomIn.nextFloat() < 0.2)
 			{
-				Biome.SpawnListEntry entitySpawnEntry = WeightedRandom.getRandomItem(worldIn.rand,
-						worldMobSpawns);
+				Biome.SpawnListEntry entitySpawnEntry = WeightedRandom.getRandomItem(worldIn.rand, worldMobSpawns);
 				int i = entitySpawnEntry.minGroupCount
 						+ randomIn.nextInt(1 + entitySpawnEntry.maxGroupCount - entitySpawnEntry.minGroupCount);
 				IEntityLivingData ientitylivingdata = null;
@@ -391,8 +387,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 					{
 						BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
 
-						if (WorldEntitySpawner.canCreatureTypeSpawnAtLocation(
-								EntityLiving.SpawnPlacementType.ON_GROUND,
+						if (WorldEntitySpawner.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND,
 								worldIn, blockpos))
 						{
 							EntityLiving entityliving;
@@ -408,13 +403,10 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 							}
 
 							entityliving.setLocationAndAngles(j + 0.5F, blockpos.getY(), k + 0.5F,
-									randomIn.nextFloat()
-											* 360.0F,
-									0.0F);
+									randomIn.nextFloat() * 360.0F, 0.0F);
 							worldIn.spawnEntity(entityliving);
 							ientitylivingdata = entityliving.onInitialSpawn(
-									worldIn.getDifficultyForLocation(new BlockPos(entityliving)),
-									ientitylivingdata);
+									worldIn.getDifficultyForLocation(new BlockPos(entityliving)), ientitylivingdata);
 							flag = true;
 						}
 
@@ -422,8 +414,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 
 						for (k += randomIn.nextInt(5) - randomIn.nextInt(5); j < p_77191_2_
 								|| j >= p_77191_2_ + p_77191_4_ || k < p_77191_3_
-								|| k >= p_77191_3_ + p_77191_4_; k = i1 + randomIn.nextInt(5)
-										- randomIn.nextInt(5))
+								|| k >= p_77191_3_ + p_77191_4_; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
 						{
 							j = l + randomIn.nextInt(5) - randomIn.nextInt(5);
 						}
@@ -446,7 +437,8 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	}
 
 	@Override
-	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
+			boolean findUnexplored)
 	{
 		return null;
 	}

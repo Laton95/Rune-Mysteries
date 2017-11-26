@@ -16,30 +16,30 @@ import net.minecraft.world.World;
 public class ItemScroll extends RMModItem
 {
 
-	public static enum EnumScrollType implements IStringSerializable {
+	public static enum EnumScrollType implements IStringSerializable
+	{
 		MINE("mine");
 
 		private final String name;
-		
-		
+
 		private EnumScrollType(String name)
 		{
 			this.name = name;
 		}
-		
+
 		@Override
 		public String getName()
 		{
 			return name;
 		}
-		
+
 		@Override
 		public String toString()
 		{
 			return name;
 		}
 	}
-	
+
 	public ItemScroll()
 	{
 		super("scroll", true, EnumScrollType.class);
@@ -70,15 +70,15 @@ public class ItemScroll extends RMModItem
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
-	
+
 	private int getDimIDFromMetadata(int metadata)
 	{
 		switch (EnumScrollType.values()[metadata])
 		{
-			case MINE:
-				return ModConfig.DIMENSIONS.essenceMineDimID;
+		case MINE:
+			return ModConfig.DIMENSIONS.essenceMineDimID;
 		}
-		
+
 		return 0;
 	}
 }

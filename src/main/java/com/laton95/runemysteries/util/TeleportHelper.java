@@ -40,7 +40,8 @@ public class TeleportHelper
 	 *         mind.
 	 */
 
-	public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord,
+			float yaw, float pitch)
 	{
 		if (entity == null || entity.world.isRemote)
 		{
@@ -121,7 +122,8 @@ public class TeleportHelper
 		 * @param pitch
 		 *            The target pitch.
 		 */
-		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord,
+				double zCoord, float yaw, float pitch)
 		{
 			entity.removePassengers();
 			entity = handleEntityTeleport(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
@@ -139,8 +141,8 @@ public class TeleportHelper
 		{
 			if (entity.isRiding())
 			{
-				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ
-						+ offsetZ, entity.rotationYaw, entity.rotationPitch);
+				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ + offsetZ,
+						entity.rotationYaw, entity.rotationPitch);
 			}
 			for (PassengerHelper passenger : passengers)
 			{
@@ -223,7 +225,8 @@ public class TeleportHelper
 	 * This is the base teleport method that figures out how to handle the
 	 * teleport and makes it happen!
 	 */
-	private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim,
+			double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		if (entity == null || entity.world.isRemote)
 		{
@@ -241,14 +244,12 @@ public class TeleportHelper
 		{
 			if (entity instanceof EntityPlayerMP)
 			{
-				return teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim,
-						xCoord,
+				return teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord,
 						yCoord, zCoord, yaw, pitch);
 			}
 			else
 			{
-				return teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord,
-						yaw,
+				return teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw,
 						pitch);
 			}
 		}
@@ -270,7 +271,8 @@ public class TeleportHelper
 		return entity;
 	}
 
-	private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim,
+			int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		if (entity.isDead)
 		{
@@ -314,15 +316,16 @@ public class TeleportHelper
 	 * This is the black magic responsible for teleporting players between
 	 * dimensions!
 	 */
-	private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server,
+			int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		WorldServer sourceWorld = server.getWorld(sourceDim);
 		WorldServer targetWorld = server.getWorld(targetDim);
 		PlayerList playerList = server.getPlayerList();
 
 		player.dimension = targetDim;
-		player.connection.sendPacket(
-				new SPacketRespawn(player.dimension, targetWorld.getDifficulty(), targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+		player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(),
+				targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
 		playerList.updatePermissionLevel(player);
 		sourceWorld.removeEntityDangerously(player);
 		player.isDead = false;

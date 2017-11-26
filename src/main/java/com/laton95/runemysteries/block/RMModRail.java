@@ -68,7 +68,8 @@ public class RMModRail extends RMModBlock
 	}
 
 	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox,
+			List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
 	{
 		if (!p_185477_7_)
 		{
@@ -170,7 +171,8 @@ public class RMModRail extends RMModBlock
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
 	{
-		return side == EnumFacing.DOWN ? !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite()) : true;
+		return side == EnumFacing.DOWN ? !blockAccess.getBlockState(pos.offset(side))
+				.doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite()) : true;
 	}
 
 	/**
@@ -204,10 +206,9 @@ public class RMModRail extends RMModBlock
 		boolean flag2 = canWallConnectTo(worldIn, pos, EnumFacing.SOUTH);
 		boolean flag3 = canWallConnectTo(worldIn, pos, EnumFacing.WEST);
 		boolean flag4 = flag && !flag1 && flag2 && !flag3 || !flag && flag1 && !flag2 && flag3;
-		return state.withProperty(UP, Boolean.valueOf(!flag4
-				|| !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST,
-						Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST,
-								Boolean.valueOf(flag3));
+		return state.withProperty(UP, Boolean.valueOf(!flag4 || !worldIn.isAirBlock(pos.up())))
+				.withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1))
+				.withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
 	}
 
 	@Override
@@ -217,7 +218,8 @@ public class RMModRail extends RMModBlock
 	}
 
 	@Override
-	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
+	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_,
+			EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ != EnumFacing.UP && p_193383_4_ != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THICK
 				: BlockFaceShape.CENTER_BIG;

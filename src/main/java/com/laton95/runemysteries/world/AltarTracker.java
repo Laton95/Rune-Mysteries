@@ -36,38 +36,40 @@ public class AltarTracker
 
 	public AltarTracker()
 	{
-		overworldAltars.add(
-				new RuneAltar("air_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.AIR_ALTAR_BIOMES, WorldGenReference.AIR_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("astral_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.ASTRAL_ALTAR_BIOMES, WorldGenReference.ASTRAL_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("death_altar", defaultAltarRadius, 0f, WorldGenReference.DEATH_ALTAR_BIOMES, WorldGenReference.DEATH_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "death_altar_room", 1));
-		overworldAltars.add(
-				new RuneAltar("body_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.BODY_ALTAR_BIOMES, WorldGenReference.BODY_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("blood_altar", defaultAltarRadius, 0f, WorldGenReference.BLOOD_ALTAR_BIOMES, WorldGenReference.BLOOD_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "blood_altar_room", 1));
-		overworldAltars.add(
-				new RuneAltar("mind_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.MIND_ALTAR_BIOMES, WorldGenReference.MIND_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("earth_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.EARTH_ALTAR_BIOMES, WorldGenReference.EARTH_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("water_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.WATER_ALTAR_BIOMES, WorldGenReference.WATER_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("soul_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.SOUL_ALTAR_BIOMES, WorldGenReference.SOUL_ALTAR_BIOMES_AVOID, Type.SOUL, "soul_altar_room", 0));
-		overworldAltars.add(
-				new RuneAltar("law_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.LAW_ALTAR_BIOMES, WorldGenReference.LAW_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("fire_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.FIRE_ALTAR_BIOMES, WorldGenReference.FIRE_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("nature_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.NATURE_ALTAR_BIOMES, WorldGenReference.NATURE_ALTAR_BIOMES_AVOID, Type.SURFACE));
-		overworldAltars.add(
-				new RuneAltar("ourania_altar", defaultAltarRadius, 0f, WorldGenReference.OURANIA_ALTAR_BIOMES, WorldGenReference.OURANIA_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "ourania_altar_room", 2));
+		overworldAltars.add(new RuneAltar("air_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.AIR_ALTAR_BIOMES, WorldGenReference.AIR_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("astral_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.ASTRAL_ALTAR_BIOMES, WorldGenReference.ASTRAL_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("death_altar", defaultAltarRadius, 0f, WorldGenReference.DEATH_ALTAR_BIOMES,
+				WorldGenReference.DEATH_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "death_altar_room", 1));
+		overworldAltars.add(new RuneAltar("body_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.BODY_ALTAR_BIOMES, WorldGenReference.BODY_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("blood_altar", defaultAltarRadius, 0f, WorldGenReference.BLOOD_ALTAR_BIOMES,
+				WorldGenReference.BLOOD_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "blood_altar_room", 1));
+		overworldAltars.add(new RuneAltar("mind_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.MIND_ALTAR_BIOMES, WorldGenReference.MIND_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("earth_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.EARTH_ALTAR_BIOMES, WorldGenReference.EARTH_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("water_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.WATER_ALTAR_BIOMES, WorldGenReference.WATER_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("soul_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.SOUL_ALTAR_BIOMES, WorldGenReference.SOUL_ALTAR_BIOMES_AVOID, Type.SOUL,
+				"soul_altar_room", 0));
+		overworldAltars.add(new RuneAltar("law_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.LAW_ALTAR_BIOMES, WorldGenReference.LAW_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("fire_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.FIRE_ALTAR_BIOMES, WorldGenReference.FIRE_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars.add(new RuneAltar("nature_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.NATURE_ALTAR_BIOMES, WorldGenReference.NATURE_ALTAR_BIOMES_AVOID, Type.SURFACE));
+		overworldAltars
+		.add(new RuneAltar("ourania_altar", defaultAltarRadius, 0f, WorldGenReference.OURANIA_ALTAR_BIOMES,
+				WorldGenReference.OURANIA_ALTAR_BIOMES_AVOID, Type.UNDERGROUND, "ourania_altar_room", 2));
 
-		netherAltars.add(
-				new RuneAltar("chaos_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.CHAOS_ALTAR_BIOMES, WorldGenReference.CHAOS_ALTAR_BIOMES_AVOID, Type.NETHER));
+		netherAltars.add(new RuneAltar("chaos_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.CHAOS_ALTAR_BIOMES, WorldGenReference.CHAOS_ALTAR_BIOMES_AVOID, Type.NETHER));
 
-		endAltars.add(
-				new RuneAltar("cosmic_altar", defaultAltarRadius, defaultAltarFlatnessTolerance, WorldGenReference.COSMIC_ALTAR_BIOMES, WorldGenReference.COSMIC_ALTAR_BIOMES_AVOID, Type.END));
+		endAltars.add(new RuneAltar("cosmic_altar", defaultAltarRadius, defaultAltarFlatnessTolerance,
+				WorldGenReference.COSMIC_ALTAR_BIOMES, WorldGenReference.COSMIC_ALTAR_BIOMES_AVOID, Type.END));
 	}
 
 	public boolean inGenerationRange(ChunkPos pos, int dimID, Type type)
@@ -75,15 +77,15 @@ public class AltarTracker
 		List<RuneAltar> list = new ArrayList<>();
 		switch (dimID)
 		{
-			case 0:
-				list = overworldAltars;
-				break;
-			case -1:
-				list = netherAltars;
-				break;
-			case 1:
-				list = endAltars;
-				break;
+		case 0:
+			list = overworldAltars;
+			break;
+		case -1:
+			list = netherAltars;
+			break;
+		case 1:
+			list = endAltars;
+			break;
 		}
 		for (RuneAltar altar : list)
 		{
@@ -103,15 +105,15 @@ public class AltarTracker
 		List<RuneAltar> list = new ArrayList<>();
 		switch (dimID)
 		{
-			case 0:
-				list = overworldAltars;
-				break;
-			case -1:
-				list = netherAltars;
-				break;
-			case 1:
-				list = endAltars;
-				break;
+		case 0:
+			list = overworldAltars;
+			break;
+		case -1:
+			list = netherAltars;
+			break;
+		case 1:
+			list = endAltars;
+			break;
 		}
 		List<RuneAltar> nearbyAltars = new ArrayList<>();
 		for (RuneAltar altar : list)
@@ -251,7 +253,8 @@ public class AltarTracker
 		endAltarsFound = true;
 	}
 
-	public void findLocations(List<RuneAltar> outStandingAltars, List<BiomeDictionary.Type> allowedBiomes, Random random, World world)
+	public void findLocations(List<RuneAltar> outStandingAltars, List<BiomeDictionary.Type> allowedBiomes,
+			Random random, World world)
 	{
 		while (!outStandingAltars.isEmpty())
 		{
@@ -265,8 +268,7 @@ public class AltarTracker
 
 			BlockPos pos = findBiomePosition(outStandingBiomes, random,
 					ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-					ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
-							/ 16,
+					ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
 					ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
 
 			if (pos != null)
@@ -288,8 +290,7 @@ public class AltarTracker
 				{
 					pos = findBiomePosition(allowedBiomes, random,
 							ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-							ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
-									/ 16,
+							ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
 							ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
 					if (pos != null)
 					{
@@ -303,8 +304,7 @@ public class AltarTracker
 					{
 						pos = findBiomePosition(new LinkedList<BiomeDictionary.Type>(), random,
 								ModConfig.WORLD_GENERATION.rune_altars.runeAltarTries,
-								ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange
-										/ 16,
+								ModConfig.WORLD_GENERATION.rune_altars.maxRuneAltarRange / 16,
 								ModConfig.WORLD_GENERATION.rune_altars.minRuneAltarRange / 16);
 						altar.setPosition(pos);
 						LogHelper.info(altar);
@@ -317,7 +317,8 @@ public class AltarTracker
 		}
 	}
 
-	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius, int min)
+	protected BlockPos findBiomePosition(List<BiomeDictionary.Type> biomes, Random rand, int attempts, int radius,
+			int min)
 	{
 		for (int i = 0; i < attempts; i++)
 		{
@@ -426,16 +427,16 @@ public class AltarTracker
 				altarNBTHelper.markDirty();
 			}
 		}
-		
+
 		public boolean isGenerated()
 		{
 			return generated;
 		}
-		
+
 		public void setGenerated(boolean generated)
 		{
 			this.generated = generated;
-			
+
 			if (generated)
 			{
 				altarNBTHelper.generatedMap.put(name, true);

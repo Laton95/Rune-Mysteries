@@ -146,25 +146,25 @@ public class ItemSpellbook extends RMModItem
 				{
 					if (!worldIn.isRemote)
 					{
-						playerIn.sendMessage(
-								new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
+						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
 					}
 					return new ActionResult<>(EnumActionResult.FAIL, spellbook);
 				}
 			}
 		}
 	}
-	
-	public void CastSpell(World worldIn, EntityPlayer playerIn, SpellBase spell) {
-		if (spell.fireSpell(worldIn, playerIn))
+
+	public void CastSpell(World worldIn, EntityPlayer playerIn, SpellBase spell)
+	{
+		if (!worldIn.isRemote)
 		{
-			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
-		} 
-		else 
-		{
-			playerIn.getCooldownTracker().setCooldown(this, 5);
-			if (!worldIn.isRemote)
+			if (spell.fireSpell(worldIn, playerIn))
 			{
+				playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
+			}
+			else
+			{
+				playerIn.getCooldownTracker().setCooldown(this, 5);
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 			}
 		}

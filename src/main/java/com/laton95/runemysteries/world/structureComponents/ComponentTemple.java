@@ -27,11 +27,11 @@ public class ComponentTemple extends StructureComponent
 		type = null;
 		portalPos = null;
 	}
-	
+
 	public ComponentTemple(int x, int z, String type, BlockPos portalPos, int yStart)
 	{
-		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x * 16, yStart, z * 16, 0, 0, 0, x * 16
-				+ 16, yStart + 32, z * 16 + 16, EnumFacing.UP);
+		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x * 16, yStart, z * 16, 0, 0, 0, x * 16 + 16,
+				yStart + 32, z * 16 + 16, EnumFacing.UP);
 		this.type = type;
 		this.portalPos = portalPos;
 	}
@@ -46,8 +46,8 @@ public class ComponentTemple extends StructureComponent
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(
-					structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
+			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, type + "_temple_se", pos);
 			if (bBox.minX / 16 == 0 && bBox.minZ / 16 == 0)
 			{

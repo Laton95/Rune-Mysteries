@@ -94,13 +94,10 @@ public class MapGenRuneAltar_END extends MapGenStructure
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
 				boolean isFloating = !WorldHelper.isOverGround(worldIn,
-						new BlockPos(chunkX * 16 + randX, 0, chunkZ * 16
-								+ randZ),
-						10, 10);
+						new BlockPos(chunkX * 16 + randX, 0, chunkZ * 16 + randZ), 10, 10);
 
-				ComponentEndAltar componentRuneAltar = new ComponentEndAltar(random, chunkX * 16
-						+ randX, chunkZ * 16
-								+ randZ, altar.getName());
+				ComponentEndAltar componentRuneAltar = new ComponentEndAltar(random, chunkX * 16 + randX,
+						chunkZ * 16 + randZ, altar.getName());
 				bBox = componentRuneAltar.getBoundingBox();
 
 				if (!isFloating)

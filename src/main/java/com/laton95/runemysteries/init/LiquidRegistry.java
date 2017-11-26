@@ -44,7 +44,8 @@ public class LiquidRegistry
 				@Override
 				protected ModelResourceLocation getModelResourceLocation(IBlockState state)
 				{
-					return new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fluid.getFluidName()), "fluid");
+					return new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fluid.getFluidName()),
+							"fluid");
 				}
 			});
 			FluidRegistry.addBucketForFluid(fluid);
@@ -60,8 +61,9 @@ public class LiquidRegistry
 
 		public RMModFluid(String name)
 		{
-			super(ModReference.MOD_ID + ":" + name, new ResourceLocation(ModReference.MOD_ID, "fluids/" + name
-					+ "_still"), new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_flowing"));
+			super(ModReference.MOD_ID + ":" + name,
+					new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_still"),
+					new ResourceLocation(ModReference.MOD_ID, "fluids/" + name + "_flowing"));
 			this.name = name;
 		}
 

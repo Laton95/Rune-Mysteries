@@ -25,7 +25,8 @@ public class TileEntityRegistry
 	{
 		LogHelper.info("Registering tile entities");
 		makeTileEntityMap();
-		tileEntityMap.forEach((k, v) -> {
+		tileEntityMap.forEach((k, v) ->
+		{
 			GameRegistry.registerTileEntity(v, k);
 		});
 	}

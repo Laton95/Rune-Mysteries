@@ -51,24 +51,24 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 		{
 			switch (returnID)
 			{
-				case 0:
-					if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findOverworldLocations(worldIn);
-					}
-					break;
-				case -1:
-					if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findNetherLocations(worldIn);
-					}
-					break;
-				case 1:
-					if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findEndLocations(worldIn);
-					}
-					break;
+			case 0:
+				if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
+				{
+					WorldGenerator.altarTracker.findOverworldLocations(worldIn);
+				}
+				break;
+			case -1:
+				if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
+				{
+					WorldGenerator.altarTracker.findNetherLocations(worldIn);
+				}
+				break;
+			case 1:
+				if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
+				{
+					WorldGenerator.altarTracker.findEndLocations(worldIn);
+				}
+				break;
 			}
 
 			if (entityIn.world.provider.getDimension() != returnID && altar != null)
@@ -80,8 +80,7 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 					altarPos = new BlockPos(0, 100, 0);
 				}
 				TeleportHelper.teleportEntity(entityIn, returnID, altarPos.getX() - 1, altarPos.getY(),
-						altarPos.getZ()
-								- 1);
+						altarPos.getZ() - 1);
 			}
 		}
 	}
