@@ -8,7 +8,7 @@ import java.util.Random;
 import com.laton95.runemysteries.reference.WorldGenReference;
 import com.laton95.runemysteries.util.AltarNBTHelper;
 import com.laton95.runemysteries.util.LogHelper;
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.util.math.BlockPos;

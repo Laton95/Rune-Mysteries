@@ -3,7 +3,7 @@ package com.laton95.runemysteries.spells;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileExplosive;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellExplosive;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 
@@ -27,7 +27,7 @@ public class ExplosionSpell extends SpellBase
 	@Override
 	public boolean fireSpell(World world, EntityPlayer player)
 	{
-		SpellProjectileExplosive projectile = new SpellProjectileExplosive(world, player);
+		EntityProjectileSpellExplosive projectile = new EntityProjectileSpellExplosive(world, player);
 		projectile.setExplosivePower(2);
 		putProjectileInWorld(world, player, projectile);
 

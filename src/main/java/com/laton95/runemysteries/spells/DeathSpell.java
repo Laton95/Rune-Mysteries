@@ -3,8 +3,8 @@ package com.laton95.runemysteries.spells;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileDamage;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellDamage;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
@@ -29,7 +29,7 @@ public class DeathSpell extends SpellBase
 	@Override
 	public boolean fireSpell(World world, EntityPlayer player)
 	{
-		SpellProjectileBase projectile = new SpellProjectileDamage(world, player, 30);
+		EntityProjectileSpellBase projectile = new EntityProjectileSpellDamage(world, player, 30);
 		putProjectileInWorld(world, player, projectile);
 
 		return true;

@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.entity.projectiles;
+package com.laton95.runemysteries.entity.projectile;
 
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.entity.EntityLivingBase;
@@ -6,30 +6,23 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityEndGateway;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SpellProjectileTeleportBasic extends SpellProjectileBase
+public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBase
 {
-	public SpellProjectileTeleportBasic(World worldIn)
+	public EntityProjectileSpellTeleportBasic(World worldIn)
 	{
 		super(worldIn);
 	}
-	
-	public SpellProjectileTeleportBasic(World worldIn, EntityLivingBase throwerIn)
+
+	public EntityProjectileSpellTeleportBasic(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
 	}
-	
-	@SideOnly(Side.CLIENT)
-	public SpellProjectileTeleportBasic(World worldIn, double x, double y, double z)
-	{
-		super(worldIn, x, y, z);
-	}
-	
+
 	protected void onImpact(RayTraceResult result)
 	{
 		super.onImpact(result);
@@ -89,11 +82,26 @@ public class SpellProjectileTeleportBasic extends SpellProjectileBase
 			{
 				thrower.setPositionAndUpdate(posX, posY, posZ);
 			}
+			
+			setDead();
 		}
+		
 		
 		super.onImpact(result);
 	}
-
+	
+	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.PORTAL;
+	}
+	
+	@Override
+	protected EnumParticleTypes getTrailParticles()
+	{
+		return EnumParticleTypes.CRIT_MAGIC;
+	}
+	
 	public void onUpdate()
 	{
 		EntityLivingBase entitylivingbase = getThrower();

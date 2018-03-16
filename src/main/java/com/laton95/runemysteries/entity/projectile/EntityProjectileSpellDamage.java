@@ -1,34 +1,26 @@
-package com.laton95.runemysteries.entity.projectiles;
+package com.laton95.runemysteries.entity.projectile;
 
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SpellProjectileDamage extends SpellProjectileBase
+public class EntityProjectileSpellDamage extends EntityProjectileSpellBase
 {
 
 	private final int damage;
 
-	public SpellProjectileDamage(World worldIn)
+	public EntityProjectileSpellDamage(World worldIn)
 	{
 		super(worldIn);
 		damage = 0;
 	}
-	
-	public SpellProjectileDamage(World worldIn, EntityLivingBase throwerIn, int damage)
+
+	public EntityProjectileSpellDamage(World worldIn, EntityLivingBase throwerIn, int damage)
 	{
 		super(worldIn, throwerIn);
 		this.damage = damage;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public SpellProjectileDamage(World worldIn, double x, double y, double z)
-	{
-		super(worldIn, x, y, z);
-		damage = 0;
 	}
 
 	@Override
@@ -45,5 +37,17 @@ public class SpellProjectileDamage extends SpellProjectileBase
 			setDead();
 		}
 		super.onImpact(result);
+	}
+	
+	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.CRIT;
+	}
+	
+	@Override
+	protected EnumParticleTypes getTrailParticles()
+	{
+		return EnumParticleTypes.FIREWORKS_SPARK;
 	}
 }

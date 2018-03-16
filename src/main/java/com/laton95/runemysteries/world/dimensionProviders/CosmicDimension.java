@@ -39,7 +39,6 @@ public class CosmicDimension extends WorldProvider
 	@Override
 	public IRenderHandler getSkyRenderer()
 	{
-		// TODO Auto-generated method stub
 		return super.getSkyRenderer();
 	}
 
@@ -61,8 +60,7 @@ public class CosmicDimension extends WorldProvider
 		@Override
 		public void render(float partialTicks, WorldClient world, Minecraft mc)
 		{
-			// TODO Auto-generated method stub
-
+			//Do nothing to renderer no clouds
 		}
 
 	}

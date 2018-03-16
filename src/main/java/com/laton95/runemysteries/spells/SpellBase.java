@@ -2,6 +2,7 @@ package com.laton95.runemysteries.spells;
 
 import java.util.List;
 
+import com.laton95.runemysteries.entity.projectile.EntityModThrowable;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.projectile.EntityThrowable;
 import net.minecraft.item.Item;
@@ -32,7 +33,7 @@ public abstract class SpellBase
 	 * */
 	public abstract boolean fireSpell(World world, EntityPlayer player);
 
-	protected void putProjectileInWorld(World world, EntityPlayer player, EntityThrowable spellProjectile)
+	protected void putProjectileInWorld(World world, EntityPlayer player, EntityModThrowable spellProjectile)
 	{
 		spellProjectile.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);
 		world.spawnEntity(spellProjectile);

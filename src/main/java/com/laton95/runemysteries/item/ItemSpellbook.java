@@ -58,7 +58,7 @@ public class ItemSpellbook extends RMModItem
 		{
 			for (InventoryRuneBag bag : bags)
 			{
-				count += bag.getRuneCount((ItemRune) cost.getItem());
+				count += bag.getRuneCount((ItemRune) cost.getItem(), cost.getMetadata());
 			}
 		}
 
@@ -90,7 +90,7 @@ public class ItemSpellbook extends RMModItem
 		{
 			for (InventoryRuneBag bag : bags)
 			{
-				count = bag.removeRune((ItemRune) cost.getItem(), count);
+				count = bag.removeRune((ItemRune) cost.getItem(), count, cost.getMetadata());
 			}
 		}
 
@@ -98,7 +98,7 @@ public class ItemSpellbook extends RMModItem
 		while (count > 0 && i < player.inventory.getSizeInventory())
 		{
 			ItemStack itemstack = player.inventory.getStackInSlot(i);
-			if (itemstack.getItem().equals(cost.getItem()))
+			if (itemstack.getItem().equals(cost.getItem()) && (!cost.usesMetadata() || itemstack.getItemDamage() == cost.getMetadata()))
 			{
 				int temp = count;
 				count -= itemstack.getCount();

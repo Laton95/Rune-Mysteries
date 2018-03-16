@@ -13,3 +13,6 @@ MCMod-Testing_Server.launch
 *.launch
 *.log
 *.prefs
+Rune-Mysteries.iml
+*.xml
+out

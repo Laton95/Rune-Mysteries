@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.util;
+package com.laton95.runemysteries.config;
 
 import com.laton95.runemysteries.reference.ModReference;
 

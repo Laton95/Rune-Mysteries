@@ -21,13 +21,13 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 				null);
 	}
 
-	public int getRuneCount(ItemRune rune)
+	public int getRuneCount(ItemRune rune, int metadata)
 	{
 		int count = 0;
 		for (int i = 0; i < getSlots(); i++)
 		{
 			ItemStack stack = getStackInSlot(i);
-			if (stack.getItem().equals(rune))
+			if (stack.getItem().equals(rune) && stack.getItemDamage() == metadata)
 			{
 				count += stack.getCount();
 			}
@@ -40,13 +40,13 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 		return new TextComponentString(bagItemStack.getDisplayName());
 	}
 
-	public int removeRune(ItemRune rune, int count)
+	public int removeRune(ItemRune rune, int count, int metadata)
 	{
 		int i = 0;
 		while (count > 0 && i < getSlots())
 		{
 			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack.getItem().equals(rune))
+			if (itemstack.getItem().equals(rune) && itemstack.getItemDamage() == metadata)
 			{
 				int temp = count;
 				count -= itemstack.getCount();

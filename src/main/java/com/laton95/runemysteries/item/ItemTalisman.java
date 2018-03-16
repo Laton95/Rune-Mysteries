@@ -3,7 +3,7 @@ package com.laton95.runemysteries.item;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.WorldGenerator;

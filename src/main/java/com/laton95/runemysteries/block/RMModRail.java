@@ -131,7 +131,7 @@ public class RMModRail extends RMModBlock
 
 	/**
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
-	 * for render
+	 * for renderer
 	 */
 	@Override
 	public boolean isOpaqueCube(IBlockState state)

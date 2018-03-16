@@ -3,7 +3,7 @@ package com.laton95.runemysteries.world.mapGenerators;
 import java.util.Random;
 
 import com.laton95.runemysteries.init.BlockRegistry;
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;

@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.init;
 
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.world.dimensionProviders.AirDimension;
 import com.laton95.runemysteries.world.dimensionProviders.BloodDimension;
 import com.laton95.runemysteries.world.dimensionProviders.BodyDimension;

@@ -3,8 +3,8 @@ package com.laton95.runemysteries.spells;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileFollowing;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellFollowing;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 
@@ -45,7 +45,7 @@ public class FollowingSpell extends SpellBase
 
 		if (target != null)
 		{
-			SpellProjectileBase projectile = new SpellProjectileFollowing(world, player, target);
+			EntityProjectileSpellBase projectile = new EntityProjectileSpellFollowing(world, player, target);
 			putProjectileInWorld(world, player, projectile);
 			return true;
 		}

@@ -3,8 +3,8 @@ package com.laton95.runemysteries.spells;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBouncing;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBouncing;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 
@@ -28,7 +28,7 @@ public class BouncingSpell extends SpellBase
 	@Override
 	public boolean fireSpell(World world, EntityPlayer player)
 	{
-		SpellProjectileBase projectile = new SpellProjectileBouncing(world, player);
+		EntityProjectileSpellBase projectile = new EntityProjectileSpellBouncing(world, player);
 		putProjectileInWorld(world, player, projectile);
 
 		return true;

@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.item;
 
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 
 import net.minecraft.entity.player.EntityPlayer;

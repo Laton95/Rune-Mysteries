@@ -3,8 +3,8 @@ package com.laton95.runemysteries.spells;
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileTeleportBasic;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellTeleportBasic;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
@@ -30,7 +30,7 @@ public class TeleportBasicSpell extends SpellBase
 	@Override
 	public boolean fireSpell(World world, EntityPlayer player)
 	{
-		SpellProjectileBase projectile = new SpellProjectileTeleportBasic(world, player);
+		EntityProjectileSpellBase projectile = new EntityProjectileSpellTeleportBasic(world, player);
 		putProjectileInWorld(world, player, projectile);
 		return true;
 	}

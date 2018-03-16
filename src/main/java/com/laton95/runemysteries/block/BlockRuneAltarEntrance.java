@@ -3,7 +3,7 @@ package com.laton95.runemysteries.block;
 import com.laton95.runemysteries.init.ItemRegistry;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 
 import net.minecraft.block.material.Material;

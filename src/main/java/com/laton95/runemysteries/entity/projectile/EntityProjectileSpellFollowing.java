@@ -1,53 +1,50 @@
-package com.laton95.runemysteries.entity.projectiles;
+package com.laton95.runemysteries.entity.projectile;
 
 import com.laton95.runemysteries.util.WorldHelper;
 
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EntityDamageSourceIndirect;
+import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
-public class SpellProjectileFollowing extends SpellProjectileBase
+public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 {
 	private Entity targetEntity;
 
-	public SpellProjectileFollowing(World worldIn)
+	public EntityProjectileSpellFollowing(World worldIn)
 	{
 		super(worldIn);
 	}
 	
-	public SpellProjectileFollowing(World worldIn, EntityLivingBase throwerIn, Entity targetEntity)
+	public EntityProjectileSpellFollowing(World worldIn, EntityLivingBase throwerIn, Entity targetEntity)
 	{
 		super(worldIn, throwerIn);
 		this.targetEntity = targetEntity;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	public SpellProjectileFollowing(World worldIn, double x, double y, double z)
-	{
-		super(worldIn, x, y, z);
 	}
 
 	@Override
 	public void onUpdate()
 	{
-		if (targetEntity.isDead)
-		{
-			setDead();
-		}
-
-		if (WorldHelper.isNearby(new BlockPos(this), new BlockPos(targetEntity), 1))
-		{
-			targetEntity.attackEntityFrom(
-					new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), 1);
-		}
-
+		
+		
 		if (targetEntity != null)
 		{
+			super.onUpdate();
+			
+			if (targetEntity.isDead)
+			{
+				setDead();
+			}
+			
+			if (WorldHelper.isNearby(new BlockPos(this), new BlockPos(targetEntity), 1))
+			{
+				targetEntity.attackEntityFrom(
+						new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), 1);
+			}
+			
 			double followSpeed = 0.1;
 			double x = targetEntity.posX - posX;
 			double z = targetEntity.posZ - posZ;
@@ -64,17 +61,23 @@ public class SpellProjectileFollowing extends SpellProjectileBase
 			motionY = ys;
 			motionZ = zs;
 		}
-		else
-		{
-			setDead();
-		}
-
-		super.onUpdate();
 	}
 
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
 
+	}
+	
+	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.CRIT;
+	}
+	
+	@Override
+	protected EnumParticleTypes getTrailParticles()
+	{
+		return EnumParticleTypes.CRIT;
 	}
 }

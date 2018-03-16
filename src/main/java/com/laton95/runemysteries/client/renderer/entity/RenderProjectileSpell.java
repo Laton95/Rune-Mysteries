@@ -1,6 +1,6 @@
-package com.laton95.runemysteries.client.render;
+package com.laton95.runemysteries.client.renderer.entity;
 
-import com.laton95.runemysteries.entity.projectiles.SpellProjectileBase;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
 
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -10,15 +10,18 @@ import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.util.ResourceLocation;
 
-public class EntityRenderSpellProjectile extends Render<SpellProjectileBase>
+public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 {
-	public EntityRenderSpellProjectile(RenderManager renderManager)
+	private final ResourceLocation entityTexture;
+
+	public RenderProjectileSpell(RenderManager renderManager, ResourceLocation entityTexture)
 	{
 		super(renderManager);
+		this.entityTexture = entityTexture;
 	}
 
 	@Override
-	public void doRender(SpellProjectileBase entity, double x, double y, double z, float entityYaw, float partialTicks)
+	public void doRender(EntityProjectileSpellBase entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
 		bindEntityTexture(entity);
 		GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
@@ -84,9 +87,9 @@ public class EntityRenderSpellProjectile extends Render<SpellProjectileBase>
 	}
 
 	@Override
-	protected ResourceLocation getEntityTexture(SpellProjectileBase entity)
+	protected ResourceLocation getEntityTexture(EntityProjectileSpellBase entity)
 	{
-		return entity.getTexture();
+		return entityTexture;
 	}
 
 }

@@ -2,7 +2,7 @@ package com.laton95.runemysteries.tileentity;
 
 import java.util.ArrayList;
 
-import com.laton95.runemysteries.util.ModConfig;
+import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 
