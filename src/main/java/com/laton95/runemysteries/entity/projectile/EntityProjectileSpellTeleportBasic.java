@@ -41,8 +41,7 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 				{
 					if (thrower instanceof EntityPlayerMP)
 					{
-						CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP) thrower,
-								world.getBlockState(blockpos));
+						CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP) thrower, world.getBlockState(blockpos));
 					}
 
 					tileentityendgateway.teleportEntity(thrower);
@@ -61,11 +60,9 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 			{
 				EntityPlayerMP entityplayermp = (EntityPlayerMP) thrower;
 
-				if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == world
-						&& !entityplayermp.isPlayerSleeping())
+				if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == world && !entityplayermp.isPlayerSleeping())
 				{
-					net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(
-							entityplayermp, posX, posY, posZ, 5.0F);
+					net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(entityplayermp, posX, posY, posZ, 5.0F);
 					if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
 					{
 
@@ -77,8 +74,7 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 						thrower.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
 					}
 				}
-			}
-			else if (thrower != null)
+			} else if (thrower != null)
 			{
 				thrower.setPositionAndUpdate(posX, posY, posZ);
 			}
@@ -109,8 +105,7 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 		if (entitylivingbase != null && entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
 		{
 			setDead();
-		}
-		else
+		} else
 		{
 			super.onUpdate();
 		}

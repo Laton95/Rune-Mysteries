@@ -1,47 +1,46 @@
 package com.laton95.runemysteries.util;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import com.laton95.runemysteries.reference.ModReference;
-
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.storage.MapStorage;
 import net.minecraft.world.storage.WorldSavedData;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class AltarNBTHelper extends WorldSavedData
 {
-
+	
 	private static final String DATA_NAME = ModReference.MOD_ID;
-
+	
 	public boolean overworldAltarsGenerated;
 	public boolean netherAltarsGenerated;
 	public boolean endAltarsGenerated;
-
+	
 	public Map<String, BlockPos> posMap = new HashMap<>();
 	public Map<String, Boolean> placedMap = new HashMap<>();
 	public Map<String, Boolean> generatedMap = new HashMap<>();
-
+	
 	// Required constructors
 	public AltarNBTHelper()
 	{
 		super(DATA_NAME);
 	}
-
+	
 	public AltarNBTHelper(String s)
 	{
 		super(s);
 	}
-
+	
 	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
 		overworldAltarsGenerated = nbt.getBoolean("overworldAltarsGenerated");
 		netherAltarsGenerated = nbt.getBoolean("netherAltarsGenerated");
 		endAltarsGenerated = nbt.getBoolean("endAltarsGenerated");
-
+		
 		BlockPos airAltarPos = intArrayToBlockPos(nbt.getIntArray("airAltarPos"));
 		BlockPos astralAltarPos = intArrayToBlockPos(nbt.getIntArray("astralAltarPos"));
 		BlockPos bloodAltarPos = intArrayToBlockPos(nbt.getIntArray("bloodAltarPos"));
@@ -57,7 +56,7 @@ public class AltarNBTHelper extends WorldSavedData
 		BlockPos soulAltarPos = intArrayToBlockPos(nbt.getIntArray("soulAltarPos"));
 		BlockPos waterAltarPos = intArrayToBlockPos(nbt.getIntArray("waterAltarPos"));
 		BlockPos ouraniaAltarPos = intArrayToBlockPos(nbt.getIntArray("ouraniaAltarPos"));
-
+		
 		boolean airAltarPlaced = nbt.getBoolean("air_altar_placed");
 		boolean astralAltarPlaced = nbt.getBoolean("astral_altar_placed");
 		boolean bloodAltarPlaced = nbt.getBoolean("blood_altar_placed");
@@ -73,7 +72,7 @@ public class AltarNBTHelper extends WorldSavedData
 		boolean soulAltarPlaced = nbt.getBoolean("soul_altar_placed");
 		boolean waterAltarPlaced = nbt.getBoolean("water_altar_placed");
 		boolean ouraniaAltarPlaced = nbt.getBoolean("ourania_altar_placed");
-
+		
 		boolean airAltarGenerated = nbt.getBoolean("air_altar_generated");
 		boolean astralAltarGenerated = nbt.getBoolean("astral_altar_generated");
 		boolean bloodAltarGenerated = nbt.getBoolean("blood_altar_generated");
@@ -89,7 +88,7 @@ public class AltarNBTHelper extends WorldSavedData
 		boolean soulAltarGenerated = nbt.getBoolean("soul_altar_generated");
 		boolean waterAltarGenerated = nbt.getBoolean("water_altar_generated");
 		boolean ouraniaAltarGenerated = nbt.getBoolean("ourania_altar_generated");
-
+		
 		posMap.put("air_altar", airAltarPos);
 		posMap.put("astral_altar", astralAltarPos);
 		posMap.put("blood_altar", bloodAltarPos);
@@ -105,7 +104,7 @@ public class AltarNBTHelper extends WorldSavedData
 		posMap.put("soul_altar", soulAltarPos);
 		posMap.put("water_altar", waterAltarPos);
 		posMap.put("ourania_altar", ouraniaAltarPos);
-
+		
 		placedMap.put("air_altar", airAltarPlaced);
 		placedMap.put("astral_altar", astralAltarPlaced);
 		placedMap.put("blood_altar", bloodAltarPlaced);
@@ -121,7 +120,7 @@ public class AltarNBTHelper extends WorldSavedData
 		placedMap.put("soul_altar", soulAltarPlaced);
 		placedMap.put("water_altar", waterAltarPlaced);
 		placedMap.put("ourania_altar", ouraniaAltarPlaced);
-
+		
 		generatedMap.put("air_altar", airAltarGenerated);
 		generatedMap.put("astral_altar", astralAltarGenerated);
 		generatedMap.put("blood_altar", bloodAltarGenerated);
@@ -138,14 +137,14 @@ public class AltarNBTHelper extends WorldSavedData
 		generatedMap.put("water_altar", waterAltarGenerated);
 		generatedMap.put("ourania_altar", ouraniaAltarGenerated);
 	}
-
+	
 	@Override
 	public NBTTagCompound writeToNBT(NBTTagCompound compound)
 	{
 		compound.setBoolean("overworldAltarsGenerated", overworldAltarsGenerated);
 		compound.setBoolean("netherAltarsGenerated", netherAltarsGenerated);
 		compound.setBoolean("endAltarsGenerated", endAltarsGenerated);
-
+		
 		compound.setIntArray("airAltarPos", blockPosToIntArray(posMap.get("air_altar")));
 		compound.setIntArray("astralAltarPos", blockPosToIntArray(posMap.get("astral_altar")));
 		compound.setIntArray("bloodAltarPos", blockPosToIntArray(posMap.get("blood_altar")));
@@ -161,7 +160,7 @@ public class AltarNBTHelper extends WorldSavedData
 		compound.setIntArray("soulAltarPos", blockPosToIntArray(posMap.get("soul_altar")));
 		compound.setIntArray("waterAltarPos", blockPosToIntArray(posMap.get("water_altar")));
 		compound.setIntArray("ouraniaAltarPos", blockPosToIntArray(posMap.get("ourania_altar")));
-
+		
 		compound.setBoolean("air_altar_placed", placedMap.get("air_altar"));
 		compound.setBoolean("astral_altar_placed", placedMap.get("astral_altar"));
 		compound.setBoolean("blood_altar_placed", placedMap.get("blood_altar"));
@@ -170,8 +169,7 @@ public class AltarNBTHelper extends WorldSavedData
 		{
 			compound.setBoolean("chaos_altar_placed", placedMap.get("chaos_altar"));
 			compound.setBoolean("cosmic_altar_placed", placedMap.get("cosmic_altar"));
-		}
-		catch (NullPointerException e)
+		} catch (NullPointerException e)
 		{
 			// Nether and End generators have not been initialized yet,
 			// ignore
@@ -186,7 +184,7 @@ public class AltarNBTHelper extends WorldSavedData
 		compound.setBoolean("soul_altar_placed", placedMap.get("soul_altar"));
 		compound.setBoolean("water_altar_placed", placedMap.get("water_altar"));
 		compound.setBoolean("ourania_altar_placed", placedMap.get("ourania_altar"));
-
+		
 		compound.setBoolean("air_altar_generated", generatedMap.get("air_altar"));
 		compound.setBoolean("astral_altar_generated", generatedMap.get("astral_altar"));
 		compound.setBoolean("blood_altar_generated", generatedMap.get("blood_altar"));
@@ -195,8 +193,7 @@ public class AltarNBTHelper extends WorldSavedData
 		{
 			compound.setBoolean("chaos_altar_generated", generatedMap.get("chaos_altar"));
 			compound.setBoolean("cosmic_altar_generated", generatedMap.get("cosmic_altar"));
-		}
-		catch (NullPointerException e)
+		} catch (NullPointerException e)
 		{
 			// Nether and End generators have not been initialized yet,
 			// ignore
@@ -211,15 +208,15 @@ public class AltarNBTHelper extends WorldSavedData
 		compound.setBoolean("soul_altar_generated", generatedMap.get("soul_altar"));
 		compound.setBoolean("water_altar_generated", generatedMap.get("water_altar"));
 		compound.setBoolean("ourania_altar_generated", generatedMap.get("ourania_altar"));
-
+		
 		return compound;
 	}
-
+	
 	public static AltarNBTHelper get(World world)
 	{
 		MapStorage storage = world.getMapStorage();
 		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
-
+		
 		if (instance == null)
 		{
 			instance = new AltarNBTHelper();
@@ -228,12 +225,12 @@ public class AltarNBTHelper extends WorldSavedData
 		}
 		return instance;
 	}
-
+	
 	private BlockPos intArrayToBlockPos(int[] array)
 	{
 		return new BlockPos(array[0], array[1], array[2]);
 	}
-
+	
 	private int[] blockPosToIntArray(BlockPos pos)
 	{
 		int[] array = new int[3];

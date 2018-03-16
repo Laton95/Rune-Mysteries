@@ -2,7 +2,6 @@ package com.laton95.runemysteries.item;
 
 import com.laton95.runemysteries.creativetab.RMModCreativeTab;
 import com.laton95.runemysteries.reference.ModReference;
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -10,9 +9,9 @@ import net.minecraft.util.NonNullList;
 
 public class RMModItem extends Item
 {
-
+	
 	private Class<? extends Enum<?>> values;
-
+	
 	public RMModItem(String name, boolean showInCreative)
 	{
 		super();
@@ -23,14 +22,14 @@ public class RMModItem extends Item
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}
 	}
-
+	
 	public RMModItem(String name, boolean showInCreative, Class<? extends Enum<?>> values)
 	{
 		this(name, showInCreative);
 		setHasSubtypes(true);
 		this.values = values;
 	}
-
+	
 	@Override
 	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
 	{
@@ -40,13 +39,12 @@ public class RMModItem extends Item
 			{
 				items.add(new ItemStack(this, 1, i));
 			}
-		}
-		else
+		} else
 		{
 			super.getSubItems(tab, items);
 		}
 	}
-
+	
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
@@ -60,13 +58,12 @@ public class RMModItem extends Item
 				}
 			}
 			return this.getUnlocalizedName() + "." + values.getEnumConstants()[0];
-		}
-		else
+		} else
 		{
 			return super.getUnlocalizedName();
 		}
 	}
-
+	
 	public Class<? extends Enum<?>> getValues()
 	{
 		return values;

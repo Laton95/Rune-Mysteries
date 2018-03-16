@@ -5,7 +5,7 @@ import net.minecraft.inventory.Container;
 
 public abstract class RMModGuiContainer extends GuiContainer
 {
-
+	
 	public RMModGuiContainer(Container inventorySlotsIn)
 	{
 		super(inventorySlotsIn);

@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_inventory",
-    "textures": {
-        "texture": "minecraft:blocks/quartz_block_side"
-    }
+  "parent": "runemysteries:block/rail_inventory",
+  "textures": {
+    "texture": "minecraft:blocks/quartz_block_side"
+  }
 }

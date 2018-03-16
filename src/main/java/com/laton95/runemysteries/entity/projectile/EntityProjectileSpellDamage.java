@@ -8,21 +8,21 @@ import net.minecraft.world.World;
 
 public class EntityProjectileSpellDamage extends EntityProjectileSpellBase
 {
-
+	
 	private final int damage;
-
+	
 	public EntityProjectileSpellDamage(World worldIn)
 	{
 		super(worldIn);
 		damage = 0;
 	}
-
+	
 	public EntityProjectileSpellDamage(World worldIn, EntityLivingBase throwerIn, int damage)
 	{
 		super(worldIn, throwerIn);
 		this.damage = damage;
 	}
-
+	
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
@@ -30,9 +30,7 @@ public class EntityProjectileSpellDamage extends EntityProjectileSpellBase
 		{
 			if (result.entityHit != null)
 			{
-				result.entityHit.attackEntityFrom(
-						new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(),
-						damage);
+				result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), damage);
 			}
 			setDead();
 		}

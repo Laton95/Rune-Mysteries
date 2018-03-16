@@ -1,31 +1,31 @@
 {
-    "display": {
-        "icon": {
-            "item": "runemysteries:rune",
-            "data": 0
-        },
-        "title": {
-            "translate": "advancements.runemysteries.runecrafting.ourania.title"
-        },
-        "description": {
-            "translate": "advancements.runemysteries.runecrafting.ourania.description"
-        },
-        "frame": "challenge",
-        "hidden": "true"
+  "display": {
+    "icon": {
+      "item": "runemysteries:rune",
+      "data": 0
     },
-    "rewards": {
-        "experience": 1000
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.ourania.title"
     },
-    "parent": "runemysteries:runecrafting/craft_rune",
-    "criteria": {
-        "craft_rune": {
-            "trigger": "minecraft:consume_item",
-            "conditions": {
-                "item": {
-                    "item": "runemysteries:rune_altar",
-                    "data": 14
-                }
-            }
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.ourania.description"
+    },
+    "frame": "challenge",
+    "hidden": "true"
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "parent": "runemysteries:runecrafting/craft_rune",
+  "criteria": {
+    "craft_rune": {
+      "trigger": "minecraft:consume_item",
+      "conditions": {
+        "item": {
+          "item": "runemysteries:rune_altar",
+          "data": 14
         }
+      }
     }
+  }
 }}

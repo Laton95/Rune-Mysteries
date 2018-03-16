@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_inventory",
-    "textures": {
-        "texture": "runemysteries:blocks/temple_block"
-    }
+  "parent": "runemysteries:block/rail_inventory",
+  "textures": {
+    "texture": "runemysteries:blocks/temple_block"
+  }
 }

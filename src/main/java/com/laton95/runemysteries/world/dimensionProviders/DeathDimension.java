@@ -2,7 +2,6 @@ package com.laton95.runemysteries.world.dimensionProviders;
 
 import com.laton95.runemysteries.init.DimensionRegistry;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorDeath;
-
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
@@ -20,7 +19,7 @@ public class DeathDimension extends WorldProvider
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
-	 *
+	 * <p>
 	 * Note that subclasses generally override this method without calling the
 	 * parent version.
 	 */

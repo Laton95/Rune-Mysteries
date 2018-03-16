@@ -5,8 +5,14 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "variant=default": { "model": "runemysteries:blood_block" }
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "variant=default": {
+      "model": "runemysteries:blood_block"
+    }
   }
 }

@@ -1,10 +1,8 @@
 package com.laton95.runemysteries.client.settings;
 
-import org.lwjgl.input.Keyboard;
-
 import com.laton95.runemysteries.reference.NamesReference;
-
 import net.minecraft.client.settings.KeyBinding;
+import org.lwjgl.input.Keyboard;
 
 public enum Keybindings
 {

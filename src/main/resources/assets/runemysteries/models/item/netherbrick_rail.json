@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_inventory",
-    "textures": {
-        "texture": "minecraft:blocks/nether_brick"
-    }
+  "parent": "runemysteries:block/rail_inventory",
+  "textures": {
+    "texture": "minecraft:blocks/nether_brick"
+  }
 }

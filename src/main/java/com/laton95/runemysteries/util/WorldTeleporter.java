@@ -7,17 +7,17 @@ import net.minecraft.world.WorldServer;
 
 public class WorldTeleporter extends Teleporter
 {
-
+	
 	BlockPos exit;
 	WorldServer world;
-
+	
 	public WorldTeleporter(WorldServer worldIn, BlockPos exit)
 	{
 		super(worldIn);
 		this.exit = exit;
 		world = worldIn;
 	}
-
+	
 	@Override
 	public void placeInPortal(Entity entityIn, float rotationYaw)
 	{

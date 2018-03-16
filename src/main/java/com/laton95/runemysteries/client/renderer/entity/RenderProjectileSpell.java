@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.client.renderer.entity;
 
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
-
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
 import net.minecraft.client.renderer.Tessellator;
@@ -28,12 +27,8 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 		GlStateManager.pushMatrix();
 		GlStateManager.disableLighting();
 		GlStateManager.translate((float) x, (float) y, (float) z);
-		GlStateManager.rotate(
-				entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F,
-				1.0F, 0.0F);
-		GlStateManager.rotate(
-				entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F,
-				1.0F);
+		GlStateManager.rotate(entity.prevRotationYaw + (entity.rotationYaw - entity.prevRotationYaw) * partialTicks - 90.0F, 0.0F, 1.0F, 0.0F);
+		GlStateManager.rotate(entity.prevRotationPitch + (entity.rotationPitch - entity.prevRotationPitch) * partialTicks, 0.0F, 0.0F, 1.0F);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		GlStateManager.enableRescaleNormal();

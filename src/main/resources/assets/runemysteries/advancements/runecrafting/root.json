@@ -1,30 +1,30 @@
 {
-    "display": {
-        "icon": {
-            "item": "runemysteries:rune",
-            "data": 8
-        },
-        "title": {
-            "translate": "advancements.runemysteries.runecrafting.root.title"
-        },
-        "description": {
-            "translate": "advancements.runemysteries.runecrafting.root.description"
-        },
-        "background": "runemysteries:textures/blocks/ruin_block.png",
-        "show_toast": false,
-        "announce_to_chat": false
+  "display": {
+    "icon": {
+      "item": "runemysteries:rune",
+      "data": 8
     },
-    "criteria": {
-        "rune_essence": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:rune",
-                        "data": 14
-                    }
-                ]
-            }
-        }
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.root.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.root.description"
+    },
+    "background": "runemysteries:textures/blocks/ruin_block.png",
+    "show_toast": false,
+    "announce_to_chat": false
+  },
+  "criteria": {
+    "rune_essence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:rune",
+            "data": 14
+          }
+        ]
+      }
     }
+  }
 }

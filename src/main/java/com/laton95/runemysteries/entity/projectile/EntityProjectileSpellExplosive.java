@@ -7,9 +7,9 @@ import net.minecraft.world.World;
 
 public class EntityProjectileSpellExplosive extends EntityProjectileSpellBase
 {
-
+	
 	private int power = 0;
-
+	
 	public EntityProjectileSpellExplosive(World worldIn)
 	{
 		super(worldIn);
@@ -19,7 +19,7 @@ public class EntityProjectileSpellExplosive extends EntityProjectileSpellBase
 	{
 		super(worldIn, throwerIn);
 	}
-
+	
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
@@ -28,7 +28,7 @@ public class EntityProjectileSpellExplosive extends EntityProjectileSpellBase
 			world.createExplosion(getThrower(), posX, posY, posZ, power, true);
 			setDead();
 		}
-
+		
 		super.onImpact(result);
 	}
 	
@@ -44,7 +44,8 @@ public class EntityProjectileSpellExplosive extends EntityProjectileSpellBase
 		return EnumParticleTypes.FIREWORKS_SPARK;
 	}
 	
-	public void setExplosivePower(int power) {
+	public void setExplosivePower(int power)
+	{
 		this.power = power;
 	}
 }

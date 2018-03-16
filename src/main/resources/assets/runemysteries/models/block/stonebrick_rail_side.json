@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_side",
-    "textures": {
-        "rail": "minecraft:blocks/stonebrick"
-    }
+  "parent": "runemysteries:block/rail_side",
+  "textures": {
+    "rail": "minecraft:blocks/stonebrick"
+  }
 }

@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_inventory",
-    "textures": {
-        "texture": "minecraft:blocks/sandstone_smooth"
-    }
+  "parent": "runemysteries:block/rail_inventory",
+  "textures": {
+    "texture": "minecraft:blocks/sandstone_smooth"
+  }
 }

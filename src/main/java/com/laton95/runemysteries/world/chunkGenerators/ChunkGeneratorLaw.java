@@ -5,10 +5,10 @@ import net.minecraft.world.World;
 
 public class ChunkGeneratorLaw extends ChunkGeneratorSolidWorld
 {
-
+	
 	public ChunkGeneratorLaw(World worldIn, long seed)
 	{
 		super(worldIn, seed, 256, Blocks.STONE.getDefaultState());
 	}
-
+	
 }

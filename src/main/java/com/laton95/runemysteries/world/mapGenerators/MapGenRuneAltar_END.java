@@ -1,15 +1,11 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
-import java.util.List;
-import java.util.Random;
-
 import com.google.common.collect.Lists;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
 import com.laton95.runemysteries.world.structureComponents.ComponentEndAltar;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -17,6 +13,9 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureStart;
+
+import java.util.List;
+import java.util.Random;
 
 public class MapGenRuneAltar_END extends MapGenStructure
 {
@@ -43,8 +42,7 @@ public class MapGenRuneAltar_END extends MapGenStructure
 			{
 				WorldGenerator.altarTracker.findEndLocations(world);
 			}
-		}
-		else
+		} else
 		{
 			WorldGenerator.altarTracker = new AltarTracker();
 			WorldGenerator.altarTracker.findEndLocations(world);
@@ -93,11 +91,9 @@ public class MapGenRuneAltar_END extends MapGenStructure
 				StructureBoundingBox bBox;
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
-				boolean isFloating = !WorldHelper.isOverGround(worldIn,
-						new BlockPos(chunkX * 16 + randX, 0, chunkZ * 16 + randZ), 10, 10);
+				boolean isFloating = !WorldHelper.isOverGround(worldIn, new BlockPos(chunkX * 16 + randX, 0, chunkZ * 16 + randZ), 10, 10);
 
-				ComponentEndAltar componentRuneAltar = new ComponentEndAltar(random, chunkX * 16 + randX,
-						chunkZ * 16 + randZ, altar.getName());
+				ComponentEndAltar componentRuneAltar = new ComponentEndAltar(random, chunkX * 16 + randX, chunkZ * 16 + randZ, altar.getName());
 				bBox = componentRuneAltar.getBoundingBox();
 
 				if (!isFloating)

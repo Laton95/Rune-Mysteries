@@ -4,30 +4,38 @@
     "sides": "runemysteries:blocks/teleporter_side",
     "particle": "runemysteries:blocks/teleporter_side"
   },
-    "elements": [
-        {
-            "from": [0, 0, 0],
-            "to": [16, 1.6, 16],
-            "faces": {
-                "up": {
-                    "texture": "#top"
-                },
-                "down": {
-                    "texture": "#sides"
-                },
-                "north": {
-                    "texture": "#sides"
-                },
-                "south": {
-                    "texture": "#sides"
-                },
-                "west": {
-                    "texture": "#sides"
-                },
-                "east": {
-                    "texture": "#sides"
-                }
-            }
+  "elements": [
+    {
+      "from": [
+        0,
+        0,
+        0
+      ],
+      "to": [
+        16,
+        1.6,
+        16
+      ],
+      "faces": {
+        "up": {
+          "texture": "#top"
+        },
+        "down": {
+          "texture": "#sides"
+        },
+        "north": {
+          "texture": "#sides"
+        },
+        "south": {
+          "texture": "#sides"
+        },
+        "west": {
+          "texture": "#sides"
+        },
+        "east": {
+          "texture": "#sides"
         }
-    ]
+      }
+    }
+  ]
 }

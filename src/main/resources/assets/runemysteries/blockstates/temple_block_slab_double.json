@@ -5,8 +5,14 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": [{}],
-    "variant=default": { "model": "runemysteries:temple_block" }
+    "normal": [
+      {}
+    ],
+    "inventory": [
+      {}
+    ],
+    "variant=default": {
+      "model": "runemysteries:temple_block"
+    }
   }
 }

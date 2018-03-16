@@ -2,7 +2,6 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.creativetab.RMModCreativeTab;
 import com.laton95.runemysteries.reference.ModReference;
-
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
@@ -13,11 +12,10 @@ import net.minecraft.world.IBlockAccess;
 
 public class RMModBlock extends Block
 {
-
+	
 	protected ItemStack drop = null;
-
-	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative)
+	
+	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
@@ -29,11 +27,10 @@ public class RMModBlock extends Block
 		setHardness(hardness);
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);
-
+		
 	}
-
-	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass,
-			int harvestLevel, boolean showInCreative, ItemStack drop)
+	
+	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative, ItemStack drop)
 	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
@@ -46,9 +43,9 @@ public class RMModBlock extends Block
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);
 		this.drop = drop;
-
+		
 	}
-
+	
 	@Override
 	public void getDrops(NonNullList<ItemStack> drops, IBlockAccess world, BlockPos pos, IBlockState state, int fortune)
 	{

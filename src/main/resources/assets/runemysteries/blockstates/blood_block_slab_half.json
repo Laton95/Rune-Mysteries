@@ -5,9 +5,17 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [{}],
-    "inventory": { "model": "runemysteries:blood_block_slab_bottom" },
-    "half=bottom,variant=default": { "model": "runemysteries:blood_block_slab_bottom" },
-    "half=top,variant=default": { "model": "runemysteries:blood_block_slab_top" }
+    "normal": [
+      {}
+    ],
+    "inventory": {
+      "model": "runemysteries:blood_block_slab_bottom"
+    },
+    "half=bottom,variant=default": {
+      "model": "runemysteries:blood_block_slab_bottom"
+    },
+    "half=top,variant=default": {
+      "model": "runemysteries:blood_block_slab_top"
+    }
   }
 }

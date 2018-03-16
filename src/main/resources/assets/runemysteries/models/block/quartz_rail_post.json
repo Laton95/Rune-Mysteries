@@ -1,6 +1,6 @@
 {
-    "parent": "runemysteries:block/rail_post",
-    "textures": {
-        "rail": "minecraft:blocks/quartz_block_side"
-    }
+  "parent": "runemysteries:block/rail_post",
+  "textures": {
+    "rail": "minecraft:blocks/quartz_block_side"
+  }
 }

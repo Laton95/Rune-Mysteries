@@ -52,8 +52,7 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 					default:
 						break;
 				}
-			}
-			else
+			} else
 			{
 				if (!world.isRemote) LogHelper.info("Hit entity on server");
 				if (world.isRemote) LogHelper.info("Hit entity on client");

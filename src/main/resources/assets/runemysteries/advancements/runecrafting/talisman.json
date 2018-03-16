@@ -1,190 +1,189 @@
 {
-    "display": {
-        "icon": {
+  "display": {
+    "icon": {
+      "item": "runemysteries:talisman",
+      "data": 0
+    },
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.talisman.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.talisman.description"
+    }
+  },
+  "parent": "runemysteries:runecrafting/rune_essence",
+  "criteria": {
+    "air_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
             "item": "runemysteries:talisman",
             "data": 0
-        },
-        "title": {
-            "translate": "advancements.runemysteries.runecrafting.talisman.title"
-        },
-        "description": {
-            "translate": "advancements.runemysteries.runecrafting.talisman.description"
-        }
-    },
-    "parent": "runemysteries:runecrafting/rune_essence",
-    "criteria": {
-        "air_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 0
-                    }
-                ]
-            }
-        },
-        "astral_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 1
-                    }
-                ]
-            }
-        },
-        "blood_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 2
-                    }
-                ]
-            }
-        },
-        "body_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 3
-                    }
-                ]
-            }
-        },
-        "chaos_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 4
-                    }
-                ]
-            }
-        },
-        "cosmic_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 5
-                    }
-                ]
-            }
-        },
-        "death_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 6
-                    }
-                ]
-            }
-        },
-        "earth_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 7
-                    }
-                ]
-            }
-        },
-        "fire_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 8
-                    }
-                ]
-            }
-        },
-        "law_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 9
-                    }
-                ]
-            }
-        },
-        "mind_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 10
-                    }
-                ]
-            }
-        },
-        "nature_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 11
-                    }
-                ]
-            }
-        },
-        "soul_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman",
-                        "data": 12
-                    }
-                ]
-            }
-        },
-        "water_talisman": {
-            "trigger": "minecraft:inventory_changed",
-            "conditions": {
-                "items": [
-                    {
-                        "item": "runemysteries:talisman"
-                        ,
-                        "data": 13
-                    }
-                ]
-            }
-        }
-    },
-    "requirements": [
-        [
-            "air_talisman",
-            "astral_talisman",
-            "blood_talisman",
-            "body_talisman",
-            "chaos_talisman",
-            "cosmic_talisman",
-            "death_talisman",
-            "earth_talisman",
-            "fire_talisman",
-            "law_talisman",
-            "mind_talisman",
-            "nature_talisman",
-            "soul_talisman",
-            "water_talisman"
+          }
         ]
+      }
+    },
+    "astral_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 1
+          }
+        ]
+      }
+    },
+    "blood_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 2
+          }
+        ]
+      }
+    },
+    "body_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 3
+          }
+        ]
+      }
+    },
+    "chaos_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 4
+          }
+        ]
+      }
+    },
+    "cosmic_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 5
+          }
+        ]
+      }
+    },
+    "death_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 6
+          }
+        ]
+      }
+    },
+    "earth_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 7
+          }
+        ]
+      }
+    },
+    "fire_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 8
+          }
+        ]
+      }
+    },
+    "law_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 9
+          }
+        ]
+      }
+    },
+    "mind_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 10
+          }
+        ]
+      }
+    },
+    "nature_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 11
+          }
+        ]
+      }
+    },
+    "soul_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 12
+          }
+        ]
+      }
+    },
+    "water_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:talisman",
+            "data": 13
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "air_talisman",
+      "astral_talisman",
+      "blood_talisman",
+      "body_talisman",
+      "chaos_talisman",
+      "cosmic_talisman",
+      "death_talisman",
+      "earth_talisman",
+      "fire_talisman",
+      "law_talisman",
+      "mind_talisman",
+      "nature_talisman",
+      "soul_talisman",
+      "water_talisman"
     ]
+  ]
 }

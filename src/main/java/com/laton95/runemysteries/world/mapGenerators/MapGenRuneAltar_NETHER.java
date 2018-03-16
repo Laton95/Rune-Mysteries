@@ -1,20 +1,19 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
-import java.util.List;
-import java.util.Random;
-
 import com.google.common.collect.Lists;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
 import com.laton95.runemysteries.world.structureComponents.ComponentNetherAltar;
-
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
+
+import java.util.List;
+import java.util.Random;
 
 public class MapGenRuneAltar_NETHER extends MapGenStructure
 {
@@ -41,15 +40,13 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure
 			{
 				WorldGenerator.altarTracker.findNetherLocations(world);
 			}
-		}
-		else
+		} else
 		{
 			WorldGenerator.altarTracker = new AltarTracker();
 			WorldGenerator.altarTracker.findNetherLocations(world);
 		}
 
-		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1,
-				AltarTracker.Type.NETHER);
+		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1, AltarTracker.Type.NETHER);
 	}
 
 	@Override
@@ -93,8 +90,7 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
 
-				ComponentNetherAltar componentRuneAltar = new ComponentNetherAltar(random, chunkX * 16 + randX,
-						chunkZ * 16 + randZ, altar.getName());
+				ComponentNetherAltar componentRuneAltar = new ComponentNetherAltar(random, chunkX * 16 + randX, chunkZ * 16 + randZ, altar.getName());
 
 				// Altar generated
 				altar.setPlaced(true);

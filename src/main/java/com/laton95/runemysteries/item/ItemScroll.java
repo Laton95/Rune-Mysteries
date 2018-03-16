@@ -1,9 +1,8 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.config.ModConfig;
+import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.TeleportHelper;
-
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
@@ -15,37 +14,37 @@ import net.minecraft.world.World;
 
 public class ItemScroll extends RMModItem
 {
-
+	
 	public static enum EnumScrollType implements IStringSerializable
 	{
 		MINE("mine");
-
+		
 		private final String name;
-
+		
 		private EnumScrollType(String name)
 		{
 			this.name = name;
 		}
-
+		
 		@Override
 		public String getName()
 		{
 			return name;
 		}
-
+		
 		@Override
 		public String toString()
 		{
 			return name;
 		}
 	}
-
+	
 	public ItemScroll()
 	{
 		super("scroll", true, EnumScrollType.class);
 		maxStackSize = 16;
 	}
-
+	
 	@Override
 	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
 	{
@@ -61,24 +60,23 @@ public class ItemScroll extends RMModItem
 				}
 				playerIn.getCooldownTracker().setCooldown(this, 500);
 				TeleportHelper.teleportEntity(playerIn, dimID, 0, 64, 0);
-			}
-			else
+			} else
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Scroll.FAIL));
 			}
-
+			
 		}
 		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
 	}
-
+	
 	private int getDimIDFromMetadata(int metadata)
 	{
 		switch (EnumScrollType.values()[metadata])
 		{
-		case MINE:
-			return ModConfig.DIMENSIONS.essenceMineDimID;
+			case MINE:
+				return ModConfig.DIMENSIONS.essenceMineDimID;
 		}
-
+		
 		return 0;
 	}
 }

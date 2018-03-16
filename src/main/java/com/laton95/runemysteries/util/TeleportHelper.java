@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.util;
 
-import java.util.LinkedList;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityList;
 import net.minecraft.entity.player.EntityPlayer;
@@ -18,6 +16,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
 
+import java.util.LinkedList;
+
 /**
  * Created by brandon3055 on 6/12/2016.
  * <p>
@@ -26,7 +26,7 @@ import net.minecraftforge.common.ForgeHooks;
  */
 public class TeleportHelper
 {
-
+	
 	/**
 	 * Universal method for teleporting entities of all shapes and sizes! This
 	 * method will teleport an entity and any entity it is riding recursively.
@@ -37,25 +37,24 @@ public class TeleportHelper
 	 * teleport the rider you should not need to worry about the mount.
 	 *
 	 * @return the entity. This may be a new instance so be sure to keep that in
-	 *         mind.
+	 * mind.
 	 */
-
-	public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord,
-			float yaw, float pitch)
+	
+	public static Entity teleportEntity(Entity entity, int dimension, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		if (entity == null || entity.world.isRemote)
 		{
 			return entity;
 		}
-
+		
 		MinecraftServer server = entity.getServer();
 		int sourceDim = entity.world.provider.getDimension();
-
+		
 		if (!entity.isBeingRidden() && !entity.isRiding())
 		{
 			return handleEntityTeleport(entity, server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);
 		}
-
+		
 		Entity rootEntity = entity.getLowestRidingEntity();
 		PassengerHelper passengerHelper = new PassengerHelper(rootEntity);
 		PassengerHelper rider = passengerHelper.getPassenger(entity);
@@ -67,24 +66,23 @@ public class TeleportHelper
 		passengerHelper.teleport(server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);
 		passengerHelper.remountRiders();
 		passengerHelper.updateClients();
-
+		
 		return rider.entity;
 	}
-
+	
 	private static class PassengerHelper
 	{
-
+		
 		public Entity entity;
 		public LinkedList<PassengerHelper> passengers = new LinkedList<>();
 		public double offsetX, offsetY, offsetZ;
-
+		
 		/**
 		 * Creates a new passenger helper for the given entity and recursively
 		 * adds all of the entities passengers.
 		 *
-		 * @param entity
-		 *            The root entity. If you have multiple stacked entities
-		 *            this would be the one at the bottom of the stack.
+		 * @param entity The root entity. If you have multiple stacked entities
+		 *               this would be the one at the bottom of the stack.
 		 */
 		public PassengerHelper(Entity entity)
 		{
@@ -100,30 +98,21 @@ public class TeleportHelper
 				passengers.add(new PassengerHelper(passenger));
 			}
 		}
-
+		
 		/**
 		 * Recursively teleports the entity and all of its passengers after
 		 * dismounting them.
 		 *
-		 * @param server
-		 *            The minecraft server.
-		 * @param sourceDim
-		 *            The source dimension.
-		 * @param targetDim
-		 *            The target dimension.
-		 * @param xCoord
-		 *            The target x position.
-		 * @param yCoord
-		 *            The target y position.
-		 * @param zCoord
-		 *            The target z position.
-		 * @param yaw
-		 *            The target yaw.
-		 * @param pitch
-		 *            The target pitch.
+		 * @param server    The minecraft server.
+		 * @param sourceDim The source dimension.
+		 * @param targetDim The target dimension.
+		 * @param xCoord    The target x position.
+		 * @param yCoord    The target y position.
+		 * @param zCoord    The target z position.
+		 * @param yaw       The target yaw.
+		 * @param pitch     The target pitch.
 		 */
-		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord,
-				double zCoord, float yaw, float pitch)
+		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 		{
 			entity.removePassengers();
 			entity = handleEntityTeleport(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
@@ -132,7 +121,7 @@ public class TeleportHelper
 				passenger.teleport(server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
 			}
 		}
-
+		
 		/**
 		 * Recursively remounts all of this entities riders and offsets their
 		 * position relative to their position before teleporting.
@@ -141,8 +130,7 @@ public class TeleportHelper
 		{
 			if (entity.isRiding())
 			{
-				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ + offsetZ,
-						entity.rotationYaw, entity.rotationPitch);
+				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ + offsetZ, entity.rotationYaw, entity.rotationPitch);
 			}
 			for (PassengerHelper passenger : passengers)
 			{
@@ -150,7 +138,7 @@ public class TeleportHelper
 				passenger.remountRiders();
 			}
 		}
-
+		
 		/**
 		 * This method sends update packets to any players that were teleported
 		 * with the entity stack.
@@ -166,13 +154,12 @@ public class TeleportHelper
 				passenger.updateClients();
 			}
 		}
-
+		
 		/**
 		 * This is the method that is responsible for actually sending the
 		 * update to each client.
 		 *
-		 * @param playerMP
-		 *            The Player.
+		 * @param playerMP The Player.
 		 */
 		private void updateClient(EntityPlayerMP playerMP)
 		{
@@ -185,12 +172,11 @@ public class TeleportHelper
 				passenger.updateClients();
 			}
 		}
-
+		
 		/**
 		 * This method returns the helper for a specific entity in the stack.
 		 *
-		 * @param passenger
-		 *            The passenger you are looking for.
+		 * @param passenger The passenger you are looking for.
 		 * @return The passenger helper for the specified passenger.
 		 */
 		public PassengerHelper getPassenger(Entity passenger)
@@ -199,7 +185,7 @@ public class TeleportHelper
 			{
 				return this;
 			}
-
+			
 			for (PassengerHelper rider : passengers)
 			{
 				PassengerHelper re = rider.getPassenger(passenger);
@@ -208,11 +194,11 @@ public class TeleportHelper
 					return re;
 				}
 			}
-
+			
 			return null;
 		}
 	}
-
+	
 	/**
 	 * Convenience method that does not require pitch and yaw.
 	 */
@@ -220,76 +206,68 @@ public class TeleportHelper
 	{
 		return teleportEntity(entity, dimension, xCoord, yCoord, zCoord, entity.rotationYaw, entity.rotationPitch);
 	}
-
+	
 	/**
 	 * This is the base teleport method that figures out how to handle the
 	 * teleport and makes it happen!
 	 */
-	private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim,
-			double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	private static Entity handleEntityTeleport(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		if (entity == null || entity.world.isRemote)
 		{
 			return entity;
 		}
-
+		
 		boolean interDimensional = sourceDim != targetDim;
-
+		
 		if (interDimensional && !ForgeHooks.onTravelToDimension(entity, targetDim))
 		{
 			return entity;
 		}
-
+		
 		if (interDimensional)
 		{
 			if (entity instanceof EntityPlayerMP)
 			{
-				return teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord,
-						yCoord, zCoord, yaw, pitch);
-			}
-			else
+				return teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+			} else
 			{
-				return teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw,
-						pitch);
+				return teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
 			}
-		}
-		else
+		} else
 		{
 			if (entity instanceof EntityPlayerMP)
 			{
 				EntityPlayerMP player = (EntityPlayerMP) entity;
 				player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
 				player.setRotationYawHead(yaw);
-			}
-			else
+			} else
 			{
 				entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
 				entity.setRotationYawHead(yaw);
 			}
 		}
-
+		
 		return entity;
 	}
-
-	private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim,
-			int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	
+	private static Entity teleportEntityInternational(Entity entity, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		if (entity.isDead)
 		{
 			return null;
 		}
-
+		
 		WorldServer sourceWorld = server.getWorld(sourceDim);
 		WorldServer targetWorld = server.getWorld(targetDim);
 		entity.dimension = targetDim;
-
+		
 		sourceWorld.removeEntity(entity);
 		entity.isDead = false;
 		entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
 		sourceWorld.updateEntityWithOptionalForce(entity, false);
-
-		Entity newEntity = EntityList.createEntityByIDFromName(new ResourceLocation(EntityList.getEntityString(entity)),
-				targetWorld);
+		
+		Entity newEntity = EntityList.createEntityByIDFromName(new ResourceLocation(EntityList.getEntityString(entity)), targetWorld);
 		if (newEntity != null)
 		{
 			/** copyDataFromOld */
@@ -304,70 +282,67 @@ public class TeleportHelper
 			newEntity.forceSpawn = flag;
 			targetWorld.updateEntityWithOptionalForce(newEntity, false);
 		}
-
+		
 		entity.isDead = true;
 		sourceWorld.resetUpdateEntityTick();
 		targetWorld.resetUpdateEntityTick();
-
+		
 		return newEntity;
 	}
-
+	
 	/**
 	 * This is the black magic responsible for teleporting players between
 	 * dimensions!
 	 */
-	private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server,
-			int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+	private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
 	{
 		WorldServer sourceWorld = server.getWorld(sourceDim);
 		WorldServer targetWorld = server.getWorld(targetDim);
 		PlayerList playerList = server.getPlayerList();
-
+		
 		player.dimension = targetDim;
-		player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(),
-				targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+		player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(), targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
 		playerList.updatePermissionLevel(player);
 		sourceWorld.removeEntityDangerously(player);
 		player.isDead = false;
-
+		
 		// region Transfer to world
-
+		
 		player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
 		player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
 		targetWorld.spawnEntity(player);
 		targetWorld.updateEntityWithOptionalForce(player, false);
 		player.setWorld(targetWorld);
-
+		
 		// endregion
-
+		
 		playerList.preparePlayer(player, sourceWorld);
 		player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
 		player.interactionManager.setWorld(targetWorld);
 		player.connection.sendPacket(new SPacketPlayerAbilities(player.capabilities));
-
+		
 		playerList.updateTimeAndWeatherForPlayer(player, targetWorld);
 		playerList.syncPlayerInventory(player);
-
+		
 		for (PotionEffect potioneffect : player.getActivePotionEffects())
 		{
 			player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potioneffect));
 		}
-		net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim,
-				targetDim);
+		net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim);
 		player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
-
+		
 		return player;
 	}
-
+	
 	public static Entity getHighestRidingEntity(Entity mount)
 	{
 		Entity entity;
-
+		
 		for (entity = mount; entity.getPassengers().size() > 0; entity = entity.getPassengers().get(0))
 		{
 			;
 		}
-
+		
 		return entity;
 	}
 }

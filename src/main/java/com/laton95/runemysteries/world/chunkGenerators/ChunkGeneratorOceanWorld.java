@@ -1,11 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
-
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -19,6 +14,10 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.ChunkGeneratorSettings;
 import net.minecraft.world.gen.IChunkGenerator;
+
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
 
 public class ChunkGeneratorOceanWorld implements IChunkGenerator
 {
@@ -35,8 +34,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 
 	private MapGenRuneTemple temple;
 
-	public ChunkGeneratorOceanWorld(World worldIn, long seed, IBlockState worldBlock, IBlockState surfaceBlock,
-			IBlockState oceanBlock, int oceanSurface, int crustSurface, int worldSurface, String generatorSettings)
+	public ChunkGeneratorOceanWorld(World worldIn, long seed, IBlockState worldBlock, IBlockState surfaceBlock, IBlockState oceanBlock, int oceanSurface, int crustSurface, int worldSurface, String generatorSettings)
 	{
 		world = worldIn;
 		rand = new Random(seed);
@@ -75,20 +73,16 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 						if (y == 0)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
-						}
-						else if (y > oceanSurface)
+						} else if (y > oceanSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.AIR.getDefaultState());
-						}
-						else if (y > crustSurface)
+						} else if (y > crustSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, OCEANBLOCK);
-						}
-						else if (y > worldSurface)
+						} else if (y > worldSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, SURFACEBLOCK);
-						}
-						else
+						} else
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, WORLDBLOCK);
 						}
@@ -145,8 +139,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	}
 
 	@Override
-	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
-			boolean findUnexplored)
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
 	{
 		return null;
 	}

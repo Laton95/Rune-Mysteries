@@ -1,11 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Random;
-
 import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
-
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -18,15 +13,19 @@ import net.minecraft.world.chunk.Chunk;
 import net.minecraft.world.chunk.ChunkPrimer;
 import net.minecraft.world.gen.IChunkGenerator;
 
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+
 public class ChunkGeneratorSolidWorld implements IChunkGenerator
 {
-
+	
 	protected final IBlockState WORLDBLOCK;
 	protected final Random rand;
 	protected final World world;
 	protected final int surfaceLevel;
 	protected MapGenRuneTemple temple;
-
+	
 	public ChunkGeneratorSolidWorld(World worldIn, long seed, int surfaceLevel, IBlockState worldblock)
 	{
 		world = worldIn;
@@ -35,7 +34,7 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 		this.surfaceLevel = surfaceLevel;
 		WORLDBLOCK = worldblock;
 	}
-
+	
 	/**
 	 * Generates the chunk at the specified position, from scratch
 	 */
@@ -55,8 +54,7 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 						if (y == 0)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
-						}
-						else
+						} else
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, WORLDBLOCK);
 						}
@@ -64,15 +62,15 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 				}
 			}
 		}
-
+		
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
-
+		
 		temple.generate(world, x, z, chunkprimer);
-
+		
 		chunk.generateSkylightMap();
 		return chunk;
 	}
-
+	
 	@Override
 	public void populate(int x, int z)
 	{
@@ -86,41 +84,40 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 		long rand1 = rand.nextLong() / 2L * 2L + 1L;
 		long rand2 = rand.nextLong() / 2L * 2L + 1L;
 		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-
+		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
-
+		
 		temple.generateStructure(world, rand, chunkpos);
-
+		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
-
+		
 		BlockFalling.fallInstantly = false;
 	}
-
+	
 	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		return new LinkedList<>();
 	}
-
+	
 	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return true;
 	}
-
+	
 	@Override
-	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position,
-			boolean findUnexplored)
+	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
-
+	
 	}
-
+	
 	@Override
 	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
 	{

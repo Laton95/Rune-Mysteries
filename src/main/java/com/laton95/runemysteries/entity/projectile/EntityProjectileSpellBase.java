@@ -52,11 +52,12 @@ public abstract class EntityProjectileSpellBase extends EntityModThrowable
 	{
 		if (!world.isRemote)
 		{
-			world.setEntityState(this, (byte)3);
+			world.setEntityState(this, (byte) 3);
 		}
 		
 	}
 	
 	protected abstract EnumParticleTypes getImpactParticles();
+
 	protected abstract EnumParticleTypes getTrailParticles();
 }

@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.entity.projectile;
 
 import com.laton95.runemysteries.util.WorldHelper;
-
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EntityDamageSourceIndirect;
@@ -13,7 +12,7 @@ import net.minecraft.world.World;
 public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 {
 	private Entity targetEntity;
-
+	
 	public EntityProjectileSpellFollowing(World worldIn)
 	{
 		super(worldIn);
@@ -24,7 +23,7 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 		super(worldIn, throwerIn);
 		this.targetEntity = targetEntity;
 	}
-
+	
 	@Override
 	public void onUpdate()
 	{
@@ -41,8 +40,7 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 			
 			if (WorldHelper.isNearby(new BlockPos(this), new BlockPos(targetEntity), 1))
 			{
-				targetEntity.attackEntityFrom(
-						new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), 1);
+				targetEntity.attackEntityFrom(new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), 1);
 			}
 			
 			double followSpeed = 0.1;
@@ -62,11 +60,11 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 			motionZ = zs;
 		}
 	}
-
+	
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
-
+	
 	}
 	
 	@Override

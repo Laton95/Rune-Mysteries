@@ -3,30 +3,38 @@
     "all": "runemysteries:blocks/rune_altar_block",
     "particle": "runemysteries:blocks/rune_altar_block"
   },
-    "elements": [
-        {
-            "from": [1.6, 0, 1.6],
-            "to": [14.4, 14.4, 14.4],
-            "faces": {
-                "up": {
-                    "texture": "#all"
-                },
-                "down": {
-                    "texture": "#all"
-                },
-                "north": {
-                    "texture": "#all"
-                },
-                "south": {
-                    "texture": "#all"
-                },
-                "west": {
-                    "texture": "#all"
-                },
-                "east": {
-                    "texture": "#all"
-                }
-            }
+  "elements": [
+    {
+      "from": [
+        1.6,
+        0,
+        1.6
+      ],
+      "to": [
+        14.4,
+        14.4,
+        14.4
+      ],
+      "faces": {
+        "up": {
+          "texture": "#all"
+        },
+        "down": {
+          "texture": "#all"
+        },
+        "north": {
+          "texture": "#all"
+        },
+        "south": {
+          "texture": "#all"
+        },
+        "west": {
+          "texture": "#all"
+        },
+        "east": {
+          "texture": "#all"
         }
-    ]
+      }
+    }
+  ]
 }

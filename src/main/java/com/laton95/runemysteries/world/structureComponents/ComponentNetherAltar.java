@@ -1,12 +1,9 @@
 package com.laton95.runemysteries.world.structureComponents;
 
-import java.util.Random;
-
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
 import com.laton95.runemysteries.world.AltarTracker;
 import com.laton95.runemysteries.world.WorldGenerator;
-
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
@@ -17,6 +14,8 @@ import net.minecraft.world.gen.structure.StructureBoundingBox;
 import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.TemplateManager;
+
+import java.util.Random;
 
 public class ComponentNetherAltar extends StructureComponent
 {
@@ -48,8 +47,7 @@ public class ComponentNetherAltar extends StructureComponent
 			structureBoundingBoxIn = boundingBox;
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - 6, pos.getZ() - 1);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn)
-			.setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "nether_island", pos2);
 			structureHelper.generate();
 

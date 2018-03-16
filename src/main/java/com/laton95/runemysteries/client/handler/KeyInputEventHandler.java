@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.client.handler;
 
 import com.laton95.runemysteries.client.settings.Keybindings;
-
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
 
@@ -28,9 +27,9 @@ public class KeyInputEventHandler
 		{
 			switch (key)
 			{
-			case TEST:
-				// NetworkHandler.sendToServer(new MessageExplode(3, false));
-				break;
+				case TEST:
+					// NetworkHandler.sendToServer(new MessageExplode(3, false));
+					break;
 			}
 		}
 	}

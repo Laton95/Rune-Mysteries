@@ -2,7 +2,7 @@
   "parent": "block/half_slab",
   "textures": {
     "bottom": "runemysteries:blocks/blood_block",
-        "top": "runemysteries:blocks/blood_block",
-        "side": "runemysteries:blocks/blood_block"
+    "top": "runemysteries:blocks/blood_block",
+    "side": "runemysteries:blocks/blood_block"
   }
 }

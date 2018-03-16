@@ -5,10 +5,10 @@ import net.minecraft.world.World;
 
 public class ChunkGeneratorMine extends ChunkGeneratorSolidWorld
 {
-
+	
 	public ChunkGeneratorMine(World worldIn, long seed)
 	{
 		super(worldIn, seed, 64, Blocks.SNOW.getDefaultState());
 	}
-
+	
 }

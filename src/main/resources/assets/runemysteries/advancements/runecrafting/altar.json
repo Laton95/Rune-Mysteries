@@ -1,111 +1,111 @@
 {
-    "display": {
-        "icon": {
-            "item": "runemysteries:rune_altar"
-        },
-        "title": {
-            "translate": "advancements.runemysteries.runecrafting.altar.title"
-        },
-        "description": {
-            "translate": "advancements.runemysteries.runecrafting.altar.description"
-        }
+  "display": {
+    "icon": {
+      "item": "runemysteries:rune_altar"
     },
-    "parent": "runemysteries:runecrafting/talisman",
-    "criteria": {
-        "air_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "air_temple"
-            }
-        },
-        "blood_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "blood_temple"
-            }
-        },
-        "body_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "body_temple"
-            }
-        },
-        "chaos_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "chaos_temple"
-            }
-        },
-        "cosmic_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "cosmic_temple"
-            }
-        },
-        "death_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "death_temple"
-            }
-        },
-        "earth_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "earth_temple"
-            }
-        },
-        "fire_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "fire_temple"
-            }
-        },
-        "law_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "law_temple"
-            }
-        },
-        "mind_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "mind_temple"
-            }
-        },
-        "nature_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "nature_temple"
-            }
-        },
-        "soul_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "soul_temple"
-            }
-        },
-        "water_altar": {
-            "trigger": "minecraft:changed_dimension",
-            "conditions": {
-                "to": "water_temple"
-            }
-        }
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.altar.title"
     },
-    "requirements": [
-        [
-            "air_altar",
-            "blood_altar",
-            "body_altar",
-            "chaos_altar",
-            "cosmic_altar",
-            "death_altar",
-            "earth_altar",
-            "fire_altar",
-            "law_altar",
-            "mind_altar",
-            "nature_altar",
-            "soul_altar",
-            "water_altar"
-        ]
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.altar.description"
+    }
+  },
+  "parent": "runemysteries:runecrafting/talisman",
+  "criteria": {
+    "air_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "air_temple"
+      }
+    },
+    "blood_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "blood_temple"
+      }
+    },
+    "body_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "body_temple"
+      }
+    },
+    "chaos_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "chaos_temple"
+      }
+    },
+    "cosmic_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "cosmic_temple"
+      }
+    },
+    "death_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "death_temple"
+      }
+    },
+    "earth_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "earth_temple"
+      }
+    },
+    "fire_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "fire_temple"
+      }
+    },
+    "law_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "law_temple"
+      }
+    },
+    "mind_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "mind_temple"
+      }
+    },
+    "nature_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "nature_temple"
+      }
+    },
+    "soul_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "soul_temple"
+      }
+    },
+    "water_altar": {
+      "trigger": "minecraft:changed_dimension",
+      "conditions": {
+        "to": "water_temple"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "air_altar",
+      "blood_altar",
+      "body_altar",
+      "chaos_altar",
+      "cosmic_altar",
+      "death_altar",
+      "earth_altar",
+      "fire_altar",
+      "law_altar",
+      "mind_altar",
+      "nature_altar",
+      "soul_altar",
+      "water_altar"
     ]
+  ]
 }

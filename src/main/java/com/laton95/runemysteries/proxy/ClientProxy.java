@@ -6,7 +6,6 @@ import com.laton95.runemysteries.client.settings.Keybindings;
 import com.laton95.runemysteries.entity.projectile.*;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
-
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
@@ -14,7 +13,7 @@ import net.minecraftforge.fml.client.registry.RenderingRegistry;
 
 public class ClientProxy extends CommonProxy
 {
-
+	
 	@Override
 	public void registerKeyBindings()
 	{
@@ -25,14 +24,11 @@ public class ClientProxy extends CommonProxy
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}
 	}
-
-	private ResourceLocation blueGreen = new ResourceLocation(ModReference.MOD_ID,
-			"textures/entity/projectile/blue-green.png");
-	private ResourceLocation pinkPurple = new ResourceLocation(ModReference.MOD_ID,
-			"textures/entity/projectile/pink-purple.png");
-	private ResourceLocation redOrange = new ResourceLocation(ModReference.MOD_ID,
-			"textures/entity/projectile/red-orange.png");
-
+	
+	private ResourceLocation blueGreen = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
+	private ResourceLocation pinkPurple = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/pink-purple.png");
+	private ResourceLocation redOrange = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/red-orange.png");
+	
 	@Override
 	public void registerProjectileRenders()
 	{

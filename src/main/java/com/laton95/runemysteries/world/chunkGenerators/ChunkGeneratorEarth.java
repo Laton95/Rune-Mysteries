@@ -5,10 +5,10 @@ import net.minecraft.world.World;
 
 public class ChunkGeneratorEarth extends ChunkGeneratorSolidWorld
 {
-
+	
 	public ChunkGeneratorEarth(World worldIn, long seed)
 	{
 		super(worldIn, seed, 256, Blocks.DIRT.getDefaultState());
 	}
-
+	
 }
