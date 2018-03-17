@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.structureComponents;
 
-import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
 import net.minecraft.init.Blocks;
@@ -18,19 +18,19 @@ import java.util.Random;
 
 public class ComponentCosmicTemple extends StructureComponent
 {
+	private boolean generated = false;
+	
 	public ComponentCosmicTemple()
 	{
 	}
-
+	
 	public ComponentCosmicTemple(int x, int z)
 	{
 		ChunkPos chunkPos = new ChunkPos(x, z);
 		BlockPos pos = chunkPos.getBlock(0, 0, 0);
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(pos.getX(), 85, pos.getZ(), 0, 0, 0, 1, 1, 1, EnumFacing.UP);
 	}
-
-	private boolean generated = false;
-
+	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
@@ -79,24 +79,24 @@ public class ComponentCosmicTemple extends StructureComponent
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_s1", pos);
 			}
-
+			
 			structureHelper.generate();
-			worldIn.setBlockState(new BlockPos(-1, 87, 22), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(22, 87, 0), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(-23, 87, -1), BlockRegistry.ALTAR_PORTAL.getDefaultState());
-			worldIn.setBlockState(new BlockPos(0, 87, -23), BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(-1, 87, 22), ModBlocks.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(22, 87, 0), ModBlocks.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(-23, 87, -1), ModBlocks.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(new BlockPos(0, 87, -23), ModBlocks.ALTAR_PORTAL.getDefaultState());
 			generated = true;
 		}
 		return true;
 	}
-
+	
 	@Override
 	protected void writeStructureToNBT(NBTTagCompound tagCompound)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	@Override
 	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 	{

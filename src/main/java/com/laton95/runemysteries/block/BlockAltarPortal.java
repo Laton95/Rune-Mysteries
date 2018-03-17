@@ -19,6 +19,8 @@ import java.util.Random;
 public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 {
 	
+	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.1, 1);
+	
 	public BlockAltarPortal(String name)
 	{
 		super(name, Material.ROCK, 0, 2000f, null, 0, false);
@@ -56,8 +58,6 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 	{
 		return false;
 	}
-	
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.1, 1);
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)

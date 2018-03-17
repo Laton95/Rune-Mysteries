@@ -21,6 +21,8 @@ public class ComponentEndAltar extends StructureComponent
 {
 	
 	private String name;
+	private boolean generated = false;
+	private int horizontalPos = -1;
 	
 	public ComponentEndAltar()
 	{
@@ -31,8 +33,6 @@ public class ComponentEndAltar extends StructureComponent
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x, 64, z, 0, 0, 0, 10, 3, 10, EnumFacing.UP);
 		this.name = name;
 	}
-	
-	private boolean generated = false;
 	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
@@ -75,8 +75,6 @@ public class ComponentEndAltar extends StructureComponent
 		// TODO Auto-generated method stub
 		
 	}
-	
-	private int horizontalPos = -1;
 	
 	/**
 	 * Calculates and offsets this structure boundingbox to average ground level

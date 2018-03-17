@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.spells;
 
 import com.google.common.collect.ImmutableList;
-import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
@@ -17,7 +17,7 @@ import java.util.List;
 public class SnowballSpell extends SpellBase
 {
 	
-	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ItemRegistry.RUNE, 2, EnumRuneType.WATER.ordinal()), new SpellCost(ItemRegistry.RUNE, 1, EnumRuneType.AIR.ordinal()));
+	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 2, EnumRuneType.WATER.ordinal()), new SpellCost(ModItems.RUNE, 1, EnumRuneType.AIR.ordinal()));
 	
 	public SnowballSpell()
 	{

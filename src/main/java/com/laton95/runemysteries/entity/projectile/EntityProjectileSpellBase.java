@@ -58,6 +58,6 @@ public abstract class EntityProjectileSpellBase extends EntityModThrowable
 	}
 	
 	protected abstract EnumParticleTypes getImpactParticles();
-
+	
 	protected abstract EnumParticleTypes getTrailParticles();
 }

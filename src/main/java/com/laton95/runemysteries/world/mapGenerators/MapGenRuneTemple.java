@@ -14,21 +14,21 @@ import java.util.Random;
 
 public class MapGenRuneTemple extends MapGenStructure
 {
-
+	
 	private final List<Biome.SpawnListEntry> runeTempleSpawnList;
-
+	
 	public MapGenRuneTemple(World world)
 	{
 		this.world = world;
 		runeTempleSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
 	}
-
+	
 	@Override
 	public String getStructureName()
 	{
 		return "RuneTemple";
 	}
-
+	
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
@@ -40,19 +40,19 @@ public class MapGenRuneTemple extends MapGenStructure
 			return false;
 		}
 	}
-
+	
 	@Override
 	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
 	{
 		return null;
 	}
-
+	
 	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new MapGenRuneTemple.Start(world, rand, chunkX, chunkZ);
 	}
-
+	
 	/**
 	 * returns possible spawns for rune temples
 	 */
@@ -60,20 +60,20 @@ public class MapGenRuneTemple extends MapGenStructure
 	{
 		return runeTempleSpawnList;
 	}
-
+	
 	public static class Start extends StructureStart
 	{
-
+		
 		public Start()
 		{
 		}
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
 			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
-
+			
 		}
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn)
 		{
 			super(chunkX, chunkZ);
@@ -127,7 +127,7 @@ public class MapGenRuneTemple extends MapGenStructure
 				ComponentTemple componentWaterTemple = new ComponentTemple(chunkX, chunkZ, "water", new BlockPos(0, 86, -9), 83);
 				components.add(componentWaterTemple);
 			}
-
+			
 			updateBoundingBox();
 		}
 	}

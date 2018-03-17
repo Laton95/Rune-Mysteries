@@ -16,16 +16,15 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.ArrayList;
 
 @Mod.EventBusSubscriber
-public class ItemRegistry
+public class ModItems
 {
-	
-	private static ArrayList<Item> itemList = new ArrayList<>();
 	
 	public static final ItemRune RUNE = new ItemRune();
 	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman();
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
 	public static final ItemScroll MINE_SCROLL = new ItemScroll();
+	private static ArrayList<Item> itemList = new ArrayList<>();
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event)

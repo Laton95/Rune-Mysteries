@@ -12,13 +12,13 @@ import net.minecraft.util.ResourceLocation;
 public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 {
 	private final ResourceLocation entityTexture;
-
+	
 	public RenderProjectileSpell(RenderManager renderManager, ResourceLocation entityTexture)
 	{
 		super(renderManager);
 		this.entityTexture = entityTexture;
 	}
-
+	
 	@Override
 	public void doRender(EntityProjectileSpellBase entity, double x, double y, double z, float entityYaw, float partialTicks)
 	{
@@ -32,10 +32,10 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder bufferbuilder = tessellator.getBuffer();
 		GlStateManager.enableRescaleNormal();
-
+		
 		GlStateManager.rotate(45.0F, 1.0F, 0.0F, 0.0F);
 		GlStateManager.scale(0.05625F, 0.05625F, 0.05625F);
-
+		
 		int state = 0;
 		int animationDelay = 5;
 		if (entity.ticksExisted % animationDelay > animationDelay / 2)
@@ -43,7 +43,7 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 			state = 1;
 		}
 		double size = 1.8D;
-
+		
 		int k = 1;
 		GlStateManager.translate(size, 0, 0);
 		for (int j = 0; j < 2; j++)
@@ -62,7 +62,7 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 			k = -1;
 		}
 		GlStateManager.translate(-size, 0, 0);
-
+		
 		for (int j = 0; j < 4; ++j)
 		{
 			GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
@@ -74,17 +74,17 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 			bufferbuilder.pos(-size, size, 0.0D).tex(0.0D, 0.5D + 0.5D * state).endVertex();
 			tessellator.draw();
 		}
-
+		
 		GlStateManager.disableRescaleNormal();
 		GlStateManager.enableLighting();
 		GlStateManager.popMatrix();
 		super.doRender(entity, x, y, z, entityYaw, partialTicks);
 	}
-
+	
 	@Override
 	protected ResourceLocation getEntityTexture(EntityProjectileSpellBase entity)
 	{
 		return entityTexture;
 	}
-
+	
 }

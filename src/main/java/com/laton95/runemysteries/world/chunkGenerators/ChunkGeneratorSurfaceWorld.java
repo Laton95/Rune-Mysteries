@@ -32,27 +32,27 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	
 	private final IBlockState worldBlock;
 	private final Random rand;
-	private NoiseGeneratorOctaves minLimitPerlinNoise;
-	private NoiseGeneratorOctaves maxLimitPerlinNoise;
-	private NoiseGeneratorOctaves mainPerlinNoise;
-	private NoiseGeneratorPerlin surfaceNoise;
-	public NoiseGeneratorOctaves scaleNoise;
-	public NoiseGeneratorOctaves depthNoise;
-	public NoiseGeneratorOctaves forestNoise;
-	private ChunkGeneratorSettings settings;
 	private final World world;
 	private final WorldType terrainType;
 	private final double[] heightMap;
 	private final float[] biomeWeights;
-	private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
-	private double[] depthBuffer = new double[256];
-	private Biome[] biomesForGeneration;
+	private final MapGenRuneTemple temple;
+	private final List<Biome.SpawnListEntry> worldMobSpawns;
+	public NoiseGeneratorOctaves scaleNoise;
+	public NoiseGeneratorOctaves depthNoise;
+	public NoiseGeneratorOctaves forestNoise;
 	double[] mainNoiseRegion;
 	double[] minLimitRegion;
 	double[] maxLimitRegion;
 	double[] depthRegion;
-	private final MapGenRuneTemple temple;
-	private final List<Biome.SpawnListEntry> worldMobSpawns;
+	private NoiseGeneratorOctaves minLimitPerlinNoise;
+	private NoiseGeneratorOctaves maxLimitPerlinNoise;
+	private NoiseGeneratorOctaves mainPerlinNoise;
+	private NoiseGeneratorPerlin surfaceNoise;
+	private ChunkGeneratorSettings settings;
+	private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
+	private double[] depthBuffer = new double[256];
+	private Biome[] biomesForGeneration;
 	
 	public ChunkGeneratorSurfaceWorld(World worldIn, long seed, IBlockState worldBlock, String generatorSettings, int treesPerChunk, int flowersPerChunk, List<Biome.SpawnListEntry> worldMobSpawns)
 	{

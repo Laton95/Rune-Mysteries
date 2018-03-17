@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.init.ItemRegistry;
-import com.laton95.runemysteries.init.LootRegistry;
+import com.laton95.runemysteries.init.ModItems;
+import com.laton95.runemysteries.init.ModLoot;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
@@ -36,6 +36,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 {
 	
 	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltar()
 	{
@@ -79,22 +80,22 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		{
 			ItemStack stack = ((EntityItem) entityIn).getItem();
 			boolean isOurania = getMetaFromState(state) == EnumRuneType.ESSENCE.ordinal();
-			if (stack.getItem() == ItemRegistry.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+			if (stack.getItem() == ModItems.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 			{
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.RUNE, getMetaFromState(state), isOurania);
+				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getMetaFromState(state), isOurania);
 			}
 			
-			if (stack.getItem() == ItemRegistry.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && isOurania == false)
+			if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && isOurania == false)
 			{
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.RUNE_TALISMAN, getMetaFromState(state), isOurania);
+				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, getMetaFromState(state), isOurania);
 			}
 			
 			if (stack.getItem() == Items.BOOK)
 			{
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ItemRegistry.SPELLBOOK, 0, isOurania);
+				spawnItem(worldIn, (EntityItem) entityIn, ModItems.SPELLBOOK, 0, isOurania);
 			}
 		}
 	}
@@ -107,9 +108,9 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
 			if (player instanceof EntityPlayerMP)
 			{
-				if (entityIn.getItem().getItem() == ItemRegistry.RUNE && entityIn.getItem().getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+				if (entityIn.getItem().getItem() == ModItems.RUNE && entityIn.getItem().getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 				{
-					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(ItemRegistry.RUNE, 1, EnumRuneType.ESSENCE.ordinal()));
+					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(ModItems.RUNE, 1, EnumRuneType.ESSENCE.ordinal()));
 				}
 				
 				if (isOurania)
@@ -151,8 +152,6 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		return false;
 	}
 	
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
-	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
@@ -176,7 +175,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		List<ItemStack> items = new ArrayList<>();
 		try
 		{
-			ResourceLocation resourcelocation = LootRegistry.OURANIA_ALTAR;
+			ResourceLocation resourcelocation = ModLoot.OURANIA_ALTAR;
 			LootTable loottable = world.getLootTableManager().getLootTableFromLocation(resourcelocation);
 			LootContext.Builder lootBuilder = new LootContext.Builder((WorldServer) world);
 			items = loottable.generateLootForPools(world.rand, lootBuilder.build());

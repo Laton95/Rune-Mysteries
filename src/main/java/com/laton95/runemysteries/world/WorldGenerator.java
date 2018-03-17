@@ -18,12 +18,12 @@ import java.util.Random;
 public class WorldGenerator implements IWorldGenerator
 {
 	
+	public static AltarTracker altarTracker;
 	private MapGenRuneAltar_SURFACE surfaceAltarGenerator = new MapGenRuneAltar_SURFACE();
 	private MapGenRuneAltar_UNDERGROUND undergroundAltarGenerator = new MapGenRuneAltar_UNDERGROUND();
 	private MapGenRuneAltar_SOUL soulAltarGenerator = new MapGenRuneAltar_SOUL();
 	private MapGenRuneAltar_NETHER netherAltarGenerator = new MapGenRuneAltar_NETHER();
 	private MapGenRuneAltar_END endAltarGenerator = new MapGenRuneAltar_END();
-	public static AltarTracker altarTracker;
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)

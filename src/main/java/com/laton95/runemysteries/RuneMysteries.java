@@ -68,11 +68,11 @@ public class RuneMysteries
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
-		MinecraftForge.EVENT_BUS.register(new LootRegistry());
-		WorldGenRegistry.registerWorldGen();
-		DimensionRegistry.registerDimensions();
-		OreDictRegistry.registerOres();
-		VillagerRegistry.registerVillage();
+		MinecraftForge.EVENT_BUS.register(new ModLoot());
+		ModWorldGen.registerWorldGen();
+		ModDimensions.registerDimensions();
+		ModOreDict.registerOres();
+		ModVillagers.registerVillage();
 		proxy.registerKeyBindings();
 	}
 	

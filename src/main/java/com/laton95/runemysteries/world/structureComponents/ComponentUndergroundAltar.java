@@ -23,6 +23,7 @@ public class ComponentUndergroundAltar extends StructureComponent
 	private String name;
 	private String room;
 	private int yOffset;
+	private boolean generated = false;
 	
 	public ComponentUndergroundAltar()
 	{
@@ -35,8 +36,6 @@ public class ComponentUndergroundAltar extends StructureComponent
 		this.room = room;
 		this.yOffset = yOffset;
 	}
-	
-	private boolean generated = false;
 	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)

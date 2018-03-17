@@ -15,30 +15,6 @@ import net.minecraft.world.World;
 public class ItemScroll extends RMModItem
 {
 	
-	public static enum EnumScrollType implements IStringSerializable
-	{
-		MINE("mine");
-		
-		private final String name;
-		
-		private EnumScrollType(String name)
-		{
-			this.name = name;
-		}
-		
-		@Override
-		public String getName()
-		{
-			return name;
-		}
-		
-		@Override
-		public String toString()
-		{
-			return name;
-		}
-	}
-	
 	public ItemScroll()
 	{
 		super("scroll", true, EnumScrollType.class);
@@ -78,5 +54,29 @@ public class ItemScroll extends RMModItem
 		}
 		
 		return 0;
+	}
+	
+	public static enum EnumScrollType implements IStringSerializable
+	{
+		MINE("mine");
+		
+		private final String name;
+		
+		private EnumScrollType(String name)
+		{
+			this.name = name;
+		}
+		
+		@Override
+		public String getName()
+		{
+			return name;
+		}
+		
+		@Override
+		public String toString()
+		{
+			return name;
+		}
 	}
 }

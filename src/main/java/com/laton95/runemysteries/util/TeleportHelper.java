@@ -70,135 +70,6 @@ public class TeleportHelper
 		return rider.entity;
 	}
 	
-	private static class PassengerHelper
-	{
-		
-		public Entity entity;
-		public LinkedList<PassengerHelper> passengers = new LinkedList<>();
-		public double offsetX, offsetY, offsetZ;
-		
-		/**
-		 * Creates a new passenger helper for the given entity and recursively
-		 * adds all of the entities passengers.
-		 *
-		 * @param entity The root entity. If you have multiple stacked entities
-		 *               this would be the one at the bottom of the stack.
-		 */
-		public PassengerHelper(Entity entity)
-		{
-			this.entity = entity;
-			if (entity.isRiding())
-			{
-				offsetX = entity.posX - entity.getRidingEntity().posX;
-				offsetY = entity.posY - entity.getRidingEntity().posY;
-				offsetZ = entity.posZ - entity.getRidingEntity().posZ;
-			}
-			for (Entity passenger : entity.getPassengers())
-			{
-				passengers.add(new PassengerHelper(passenger));
-			}
-		}
-		
-		/**
-		 * Recursively teleports the entity and all of its passengers after
-		 * dismounting them.
-		 *
-		 * @param server    The minecraft server.
-		 * @param sourceDim The source dimension.
-		 * @param targetDim The target dimension.
-		 * @param xCoord    The target x position.
-		 * @param yCoord    The target y position.
-		 * @param zCoord    The target z position.
-		 * @param yaw       The target yaw.
-		 * @param pitch     The target pitch.
-		 */
-		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
-		{
-			entity.removePassengers();
-			entity = handleEntityTeleport(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
-			for (PassengerHelper passenger : passengers)
-			{
-				passenger.teleport(server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
-			}
-		}
-		
-		/**
-		 * Recursively remounts all of this entities riders and offsets their
-		 * position relative to their position before teleporting.
-		 */
-		public void remountRiders()
-		{
-			if (entity.isRiding())
-			{
-				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ + offsetZ, entity.rotationYaw, entity.rotationPitch);
-			}
-			for (PassengerHelper passenger : passengers)
-			{
-				passenger.entity.startRiding(entity, true);
-				passenger.remountRiders();
-			}
-		}
-		
-		/**
-		 * This method sends update packets to any players that were teleported
-		 * with the entity stack.
-		 */
-		public void updateClients()
-		{
-			if (entity instanceof EntityPlayerMP)
-			{
-				updateClient((EntityPlayerMP) entity);
-			}
-			for (PassengerHelper passenger : passengers)
-			{
-				passenger.updateClients();
-			}
-		}
-		
-		/**
-		 * This is the method that is responsible for actually sending the
-		 * update to each client.
-		 *
-		 * @param playerMP The Player.
-		 */
-		private void updateClient(EntityPlayerMP playerMP)
-		{
-			if (entity.isBeingRidden())
-			{
-				playerMP.connection.sendPacket(new SPacketSetPassengers(entity));
-			}
-			for (PassengerHelper passenger : passengers)
-			{
-				passenger.updateClients();
-			}
-		}
-		
-		/**
-		 * This method returns the helper for a specific entity in the stack.
-		 *
-		 * @param passenger The passenger you are looking for.
-		 * @return The passenger helper for the specified passenger.
-		 */
-		public PassengerHelper getPassenger(Entity passenger)
-		{
-			if (entity == passenger)
-			{
-				return this;
-			}
-			
-			for (PassengerHelper rider : passengers)
-			{
-				PassengerHelper re = rider.getPassenger(passenger);
-				if (re != null)
-				{
-					return re;
-				}
-			}
-			
-			return null;
-		}
-	}
-	
 	/**
 	 * Convenience method that does not require pitch and yaw.
 	 */
@@ -344,5 +215,134 @@ public class TeleportHelper
 		}
 		
 		return entity;
+	}
+	
+	private static class PassengerHelper
+	{
+		
+		public Entity entity;
+		public LinkedList<PassengerHelper> passengers = new LinkedList<>();
+		public double offsetX, offsetY, offsetZ;
+		
+		/**
+		 * Creates a new passenger helper for the given entity and recursively
+		 * adds all of the entities passengers.
+		 *
+		 * @param entity The root entity. If you have multiple stacked entities
+		 *               this would be the one at the bottom of the stack.
+		 */
+		public PassengerHelper(Entity entity)
+		{
+			this.entity = entity;
+			if (entity.isRiding())
+			{
+				offsetX = entity.posX - entity.getRidingEntity().posX;
+				offsetY = entity.posY - entity.getRidingEntity().posY;
+				offsetZ = entity.posZ - entity.getRidingEntity().posZ;
+			}
+			for (Entity passenger : entity.getPassengers())
+			{
+				passengers.add(new PassengerHelper(passenger));
+			}
+		}
+		
+		/**
+		 * Recursively teleports the entity and all of its passengers after
+		 * dismounting them.
+		 *
+		 * @param server    The minecraft server.
+		 * @param sourceDim The source dimension.
+		 * @param targetDim The target dimension.
+		 * @param xCoord    The target x position.
+		 * @param yCoord    The target y position.
+		 * @param zCoord    The target z position.
+		 * @param yaw       The target yaw.
+		 * @param pitch     The target pitch.
+		 */
+		public void teleport(MinecraftServer server, int sourceDim, int targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch)
+		{
+			entity.removePassengers();
+			entity = handleEntityTeleport(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+			for (PassengerHelper passenger : passengers)
+			{
+				passenger.teleport(server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+			}
+		}
+		
+		/**
+		 * Recursively remounts all of this entities riders and offsets their
+		 * position relative to their position before teleporting.
+		 */
+		public void remountRiders()
+		{
+			if (entity.isRiding())
+			{
+				entity.setLocationAndAngles(entity.posX + offsetX, entity.posY + offsetY, entity.posZ + offsetZ, entity.rotationYaw, entity.rotationPitch);
+			}
+			for (PassengerHelper passenger : passengers)
+			{
+				passenger.entity.startRiding(entity, true);
+				passenger.remountRiders();
+			}
+		}
+		
+		/**
+		 * This method sends update packets to any players that were teleported
+		 * with the entity stack.
+		 */
+		public void updateClients()
+		{
+			if (entity instanceof EntityPlayerMP)
+			{
+				updateClient((EntityPlayerMP) entity);
+			}
+			for (PassengerHelper passenger : passengers)
+			{
+				passenger.updateClients();
+			}
+		}
+		
+		/**
+		 * This is the method that is responsible for actually sending the
+		 * update to each client.
+		 *
+		 * @param playerMP The Player.
+		 */
+		private void updateClient(EntityPlayerMP playerMP)
+		{
+			if (entity.isBeingRidden())
+			{
+				playerMP.connection.sendPacket(new SPacketSetPassengers(entity));
+			}
+			for (PassengerHelper passenger : passengers)
+			{
+				passenger.updateClients();
+			}
+		}
+		
+		/**
+		 * This method returns the helper for a specific entity in the stack.
+		 *
+		 * @param passenger The passenger you are looking for.
+		 * @return The passenger helper for the specified passenger.
+		 */
+		public PassengerHelper getPassenger(Entity passenger)
+		{
+			if (entity == passenger)
+			{
+				return this;
+			}
+			
+			for (PassengerHelper rider : passengers)
+			{
+				PassengerHelper re = rider.getPassenger(passenger);
+				if (re != null)
+				{
+					return re;
+				}
+			}
+			
+			return null;
+		}
 	}
 }

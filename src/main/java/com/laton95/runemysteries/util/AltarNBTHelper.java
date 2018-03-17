@@ -34,6 +34,20 @@ public class AltarNBTHelper extends WorldSavedData
 		super(s);
 	}
 	
+	public static AltarNBTHelper get(World world)
+	{
+		MapStorage storage = world.getMapStorage();
+		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
+		
+		if (instance == null)
+		{
+			instance = new AltarNBTHelper();
+			storage.setData(DATA_NAME, instance);
+			instance.markDirty();
+		}
+		return instance;
+	}
+	
 	@Override
 	public void readFromNBT(NBTTagCompound nbt)
 	{
@@ -210,20 +224,6 @@ public class AltarNBTHelper extends WorldSavedData
 		compound.setBoolean("ourania_altar_generated", generatedMap.get("ourania_altar"));
 		
 		return compound;
-	}
-	
-	public static AltarNBTHelper get(World world)
-	{
-		MapStorage storage = world.getMapStorage();
-		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
-		
-		if (instance == null)
-		{
-			instance = new AltarNBTHelper();
-			storage.setData(DATA_NAME, instance);
-			instance.markDirty();
-		}
-		return instance;
 	}
 	
 	private BlockPos intArrayToBlockPos(int[] array)

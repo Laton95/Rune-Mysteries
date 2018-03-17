@@ -13,11 +13,6 @@ import net.minecraftforge.fml.common.network.IGuiHandler;
 public class GuiHandler implements IGuiHandler
 {
 	
-	public enum GuiIDs
-	{
-		SPELLBOOK, RUNE_BAG
-	}
-	
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
@@ -69,6 +64,11 @@ public class GuiHandler implements IGuiHandler
 				}
 		}
 		throw new IllegalArgumentException("No guid with id " + ID);
+	}
+	
+	public enum GuiIDs
+	{
+		SPELLBOOK, RUNE_BAG
 	}
 	
 }

@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
-import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorWater;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
@@ -33,7 +33,7 @@ public class WaterDimension extends WorldProvider
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.WATER;
+		return ModDimensions.WATER;
 	}
 	
 	@Override

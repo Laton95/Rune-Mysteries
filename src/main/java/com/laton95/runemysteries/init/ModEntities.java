@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.registry.EntityEntry;
 import net.minecraftforge.fml.common.registry.EntityEntryBuilder;
 
 @Mod.EventBusSubscriber
-public class EntityRegistry
+public class ModEntities
 {
 	
 	private static int entityID = 0;
@@ -22,7 +22,11 @@ public class EntityRegistry
 	{
 		LogHelper.info("Registering entities");
 		
-		EntityEntry[] entries = {createBuilder("spell_projectile_bouncing").entity(EntityProjectileSpellBouncing.class).tracker(64, 20, true).build(), createBuilder("spell_projectile_damage").entity(EntityProjectileSpellDamage.class).tracker(64, 20, true).build(), createBuilder("spell_projectile_explosive").entity(EntityProjectileSpellExplosive.class).tracker(64, 20, true).build(), createBuilder("spell_projectile_following").entity(EntityProjectileSpellFollowing.class).tracker(64, 1, true).build(), createBuilder("spell_projectile_teleport_basic").entity(EntityProjectileSpellTeleportBasic.class).tracker(64, 20, true).build()};
+		EntityEntry[] entries = {createBuilder("spell_projectile_bouncing").entity(EntityProjectileSpellBouncing.class).tracker(64, 20, true).build(),
+				createBuilder("spell_projectile_damage").entity(EntityProjectileSpellDamage.class).tracker(64, 20, true).build(),
+				createBuilder("spell_projectile_explosive").entity(EntityProjectileSpellExplosive.class).tracker(64, 20, true).build(),
+				createBuilder("spell_projectile_following").entity(EntityProjectileSpellFollowing.class).tracker(64, 1, true).build(),
+				createBuilder("spell_projectile_teleport_basic").entity(EntityProjectileSpellTeleportBasic.class).tracker(64, 20, true).build()};
 		
 		event.getRegistry().registerAll(entries);
 		

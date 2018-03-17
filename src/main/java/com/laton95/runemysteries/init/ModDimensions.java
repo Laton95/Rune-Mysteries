@@ -5,7 +5,7 @@ import com.laton95.runemysteries.world.dimensionProviders.*;
 import net.minecraft.world.DimensionType;
 import net.minecraftforge.common.DimensionManager;
 
-public class DimensionRegistry
+public class ModDimensions
 {
 	
 	public static int airDimID;

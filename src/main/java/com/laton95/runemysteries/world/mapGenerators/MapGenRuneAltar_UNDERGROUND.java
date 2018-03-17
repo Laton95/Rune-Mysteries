@@ -17,20 +17,20 @@ import java.util.Random;
 
 public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 {
-
+	
 	private final List<Biome.SpawnListEntry> runeAltarSpawnList;
-
+	
 	public MapGenRuneAltar_UNDERGROUND()
 	{
 		runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
 	}
-
+	
 	@Override
 	public String getStructureName()
 	{
 		return "RuneAltarUnderground";
 	}
-
+	
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
@@ -45,22 +45,22 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 			WorldGenerator.altarTracker = new AltarTracker();
 			WorldGenerator.altarTracker.findOverworldLocations(world);
 		}
-
+		
 		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), 0, AltarTracker.Type.UNDERGROUND);
 	}
-
+	
 	@Override
 	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
 	{
 		return null;
 	}
-
+	
 	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new MapGenRuneAltar_UNDERGROUND.Start(world, rand, chunkX, chunkZ);
 	}
-
+	
 	/**
 	 * returns possible spawns for rune altars
 	 */
@@ -68,32 +68,32 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 	{
 		return runeAltarSpawnList;
 	}
-
+	
 	public static class Start extends StructureStart
 	{
-
+		
 		public Start()
 		{
 		}
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
 			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
-
+			
 		}
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn)
 		{
 			super(chunkX, chunkZ);
-
+			
 			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(new ChunkPos(chunkX, chunkZ), worldIn.provider.getDimension());
-
+			
 			if (altar != null && !altar.isPlaced())
 			{
 				if (!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn))
 				{
 					ComponentUndergroundAltar componentRuneAltar = new ComponentUndergroundAltar(random, chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
-
+					
 					// Altar generated
 					altar.setPlaced(true);
 					LogHelper.info(altar.toString());
@@ -106,7 +106,7 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 			}
 			updateBoundingBox();
 		}
-
+		
 		private void panic(AltarTracker.RuneAltar altar)
 		{
 			altar.incrementFailureCount(1);

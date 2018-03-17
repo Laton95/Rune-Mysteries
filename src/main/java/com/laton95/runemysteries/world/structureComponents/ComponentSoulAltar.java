@@ -25,6 +25,7 @@ public class ComponentSoulAltar extends StructureComponent
 	private String name;
 	private String room;
 	private int depth;
+	private boolean generated = false;
 	
 	public ComponentSoulAltar()
 	{
@@ -37,8 +38,6 @@ public class ComponentSoulAltar extends StructureComponent
 		this.room = room;
 		this.depth = depth;
 	}
-	
-	private boolean generated = false;
 	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)

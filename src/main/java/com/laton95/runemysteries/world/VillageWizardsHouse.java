@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world;
 
-import com.laton95.runemysteries.init.VillagerRegistry;
+import com.laton95.runemysteries.init.ModVillagers;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.StructureHelper;
 import net.minecraft.init.Blocks;
@@ -25,6 +25,7 @@ public class VillageWizardsHouse extends Village
 {
 	
 	private EnumFacing facing;
+	private int groundLevel = -1;
 	
 	public VillageWizardsHouse()
 	{
@@ -38,8 +39,6 @@ public class VillageWizardsHouse extends Village
 		boundingBox = par4StructureBoundingBox;
 		this.facing = facing;
 	}
-	
-	private int groundLevel = -1;
 	
 	@Override
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox structureBoundingBoxIn)
@@ -96,7 +95,7 @@ public class VillageWizardsHouse extends Village
 	@Override
 	protected VillagerProfession chooseForgeProfession(int count, VillagerProfession prof)
 	{
-		return VillagerRegistry.villagerProfession_Wizard;
+		return ModVillagers.villagerProfession_Wizard;
 	}
 	
 	public static class VillageManager implements IVillageCreationHandler

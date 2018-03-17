@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
-import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorSoul;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
@@ -33,7 +33,7 @@ public class SoulDimension extends WorldProvider
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.SOUL;
+		return ModDimensions.SOUL;
 	}
 	
 	@Override

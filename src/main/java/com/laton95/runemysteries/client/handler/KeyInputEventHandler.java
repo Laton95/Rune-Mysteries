@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 
 public class KeyInputEventHandler
 {
-
+	
 	private Keybindings getPressedKey()
 	{
 		for (Keybindings key : Keybindings.values())
@@ -18,7 +18,7 @@ public class KeyInputEventHandler
 		}
 		return null;
 	}
-
+	
 	@SubscribeEvent
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event)
 	{

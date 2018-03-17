@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
-import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorChaos;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
@@ -15,7 +15,7 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 
 public class ChaosDimension extends WorldProvider
 {
-
+	
 	/**
 	 * Creates a new {@link BiomeProvider} for the WorldProvider, and also sets
 	 * the values of {@link #hasSkylight} and {@link #hasNoSky} appropriately.
@@ -29,50 +29,50 @@ public class ChaosDimension extends WorldProvider
 		biomeProvider = new BiomeProviderSingle(Biomes.VOID);
 		hasSkyLight = true;
 	}
-
+	
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.CHAOS;
+		return ModDimensions.CHAOS;
 	}
-
+	
 	@Override
 	public boolean isSurfaceWorld()
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean canCoordinateBeSpawn(int x, int z)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public boolean canRespawnHere()
 	{
 		return false;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean doesXZShowFog(int x, int z)
 	{
 		return false;
 	}
-
+	
 	@Override
 	public long getWorldTime()
 	{
 		return 6000;
 	}
-
+	
 	@Override
 	public boolean isDaytime()
 	{
 		return true;
 	}
-
+	
 	@Override
 	@SideOnly(Side.CLIENT)
 	public Vec3d getFogColor(float p_76562_1_, float p_76562_2_)
@@ -87,7 +87,7 @@ public class ChaosDimension extends WorldProvider
 		f3 = f3 * (f * 0.91F + 0.09F);
 		return new Vec3d(f1, f2, f3);
 	}
-
+	
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{

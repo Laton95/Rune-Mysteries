@@ -19,19 +19,18 @@ import java.util.Random;
 public class AltarTracker
 {
 	
-	private List<RuneAltar> overworldAltars = new ArrayList<>();
-	private List<RuneAltar> netherAltars = new ArrayList<>();
-	private List<RuneAltar> endAltars = new ArrayList<>();
-	private float defaultAltarFlatnessTolerance = 0.8f;
-	private int defaultAltarRadius = 4;
 	public int warningFailureCount = 8;
 	public int panicFailureCount = 36;
 	public boolean overworldAltarsFound = false;
 	public boolean netherAltarsFound = false;
 	public boolean endAltarsFound = false;
-	
 	protected World world;
 	protected AltarNBTHelper altarNBTHelper;
+	private List<RuneAltar> overworldAltars = new ArrayList<>();
+	private List<RuneAltar> netherAltars = new ArrayList<>();
+	private List<RuneAltar> endAltars = new ArrayList<>();
+	private float defaultAltarFlatnessTolerance = 0.8f;
+	private int defaultAltarRadius = 4;
 	
 	public AltarTracker()
 	{
@@ -328,6 +327,11 @@ public class AltarTracker
 		return placed + "/" + total;
 	}
 	
+	public enum Type
+	{
+		SURFACE, UNDERGROUND, SOUL, NETHER, END
+	}
+	
 	public class RuneAltar
 	{
 		
@@ -541,10 +545,5 @@ public class AltarTracker
 			return name + " at " + position;
 		}
 		
-	}
-	
-	public enum Type
-	{
-		SURFACE, UNDERGROUND, SOUL, NETHER, END
 	}
 }

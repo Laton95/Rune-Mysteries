@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.config.ModConfig;
-import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.TeleportHelper;
@@ -28,6 +28,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
 	
 	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltarEntrance()
 	{
@@ -71,8 +72,8 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	{
 		if (!worldIn.isRemote)
 		{
-			new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, getMetaFromState(state));
-			if (playerIn.getHeldItemMainhand().getItem().equals(ItemRegistry.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ItemRegistry.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
+			new ItemStack(ModItems.RUNE_TALISMAN, 1, getMetaFromState(state));
+			if (playerIn.getHeldItemMainhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
 				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
@@ -95,8 +96,6 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	{
 		return false;
 	}
-	
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)

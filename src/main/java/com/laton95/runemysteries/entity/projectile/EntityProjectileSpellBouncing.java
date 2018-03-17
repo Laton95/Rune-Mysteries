@@ -12,12 +12,12 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 	{
 		super(worldIn);
 	}
-
+	
 	public EntityProjectileSpellBouncing(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
 	}
-
+	
 	@Override
 	public void onImpact(RayTraceResult result)
 	{

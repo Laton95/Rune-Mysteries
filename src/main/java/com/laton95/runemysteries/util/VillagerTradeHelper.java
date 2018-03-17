@@ -17,10 +17,10 @@ public class VillagerTradeHelper
 		
 		public Item buyingItem;
 		public EntityVillager.PriceInfo buyingPriceInfo;
-		int buyingMaxMeta;
 		public Item sellingItem;
 		public EntityVillager.PriceInfo sellingPriceInfo;
 		public int sellingMaxMeta;
+		int buyingMaxMeta;
 		
 		public Trade(Item buyingItem, EntityVillager.PriceInfo buyingPriceInfo, int buyingMaxMeta, Item sellingItem, EntityVillager.PriceInfo sellingPriceInfo, int sellingMaxMeta)
 		{

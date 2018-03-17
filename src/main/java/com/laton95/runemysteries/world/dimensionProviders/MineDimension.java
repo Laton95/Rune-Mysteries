@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
-import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorMine;
 import net.minecraft.init.Biomes;
 import net.minecraft.util.math.MathHelper;
@@ -33,7 +33,7 @@ public class MineDimension extends WorldProvider
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.MINE;
+		return ModDimensions.MINE;
 	}
 	
 	@Override

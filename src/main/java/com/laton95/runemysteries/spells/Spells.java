@@ -25,12 +25,6 @@ public class Spells
 	
 	public static List<SpellBase> spellList = ImmutableList.of(new TeleportBasicSpell(), new SnowballSpell(), new ExplosionSpell(), new DeathSpell(), new BouncingSpell(), new FollowingSpell());
 	
-	public SpellBase registerSpell(SpellBase spell)
-	{
-		spellList.add(spell);
-		return spell;
-	}
-	
 	public static void checkSpells()
 	{
 		for (SpellBase spell : spellList)
@@ -52,5 +46,11 @@ public class Spells
 				throw new IllegalArgumentException("Spell is uncastable, too many costs to fit in player inventory: " + spell.getName());
 			}
 		}
+	}
+	
+	public SpellBase registerSpell(SpellBase spell)
+	{
+		spellList.add(spell);
+		return spell;
 	}
 }

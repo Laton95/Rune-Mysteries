@@ -16,6 +16,8 @@ import java.util.Random;
 public class BlockParticleLight extends RMModBlock
 {
 	
+	protected static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.3D, 0.3D, 0.3D, 0.7D, 0.7D, 0.7D);
+	
 	public BlockParticleLight(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
 		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
@@ -34,8 +36,6 @@ public class BlockParticleLight extends RMModBlock
 	{
 		return false;
 	}
-	
-	protected static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.3D, 0.3D, 0.3D, 0.7D, 0.7D, 0.7D);
 	
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)

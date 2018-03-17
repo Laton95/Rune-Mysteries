@@ -37,7 +37,7 @@ public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect>
 	@Override
 	public void handleClientSide(MessageSpellSelect message, EntityPlayer player)
 	{
-	
+
 	}
 	
 	@Override

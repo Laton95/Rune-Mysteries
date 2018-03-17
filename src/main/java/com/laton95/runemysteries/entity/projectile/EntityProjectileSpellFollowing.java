@@ -64,7 +64,7 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
-	
+
 	}
 	
 	@Override

@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.structureComponents;
 
-import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.util.StructureHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -17,25 +17,24 @@ import java.util.Random;
 
 public class ComponentTemple extends StructureComponent
 {
-
+	
 	private final String type;
 	private final BlockPos portalPos;
-
+	private boolean generated = false;
+	
 	public ComponentTemple()
 	{
 		type = null;
 		portalPos = null;
 	}
-
+	
 	public ComponentTemple(int x, int z, String type, BlockPos portalPos, int yStart)
 	{
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x * 16, yStart, z * 16, 0, 0, 0, x * 16 + 16, yStart + 32, z * 16 + 16, EnumFacing.UP);
 		this.type = type;
 		this.portalPos = portalPos;
 	}
-
-	private boolean generated = false;
-
+	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
@@ -60,19 +59,19 @@ public class ComponentTemple extends StructureComponent
 				structureHelper = new StructureHelper(worldIn, type + "_temple_nw", pos);
 			}
 			structureHelper.generate();
-			worldIn.setBlockState(portalPos, BlockRegistry.ALTAR_PORTAL.getDefaultState());
+			worldIn.setBlockState(portalPos, ModBlocks.ALTAR_PORTAL.getDefaultState());
 			generated = true;
 		}
 		return true;
 	}
-
+	
 	@Override
 	protected void writeStructureToNBT(NBTTagCompound tagCompound)
 	{
 		// TODO Auto-generated method stub
-
+		
 	}
-
+	
 	@Override
 	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
 	{

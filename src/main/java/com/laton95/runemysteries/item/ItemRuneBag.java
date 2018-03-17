@@ -49,6 +49,30 @@ public class ItemRuneBag extends RMModItem
 		return new InvProvider();
 	}
 	
+	@Override
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
+	{
+		ItemStack stack = playerIn.getHeldItem(handIn);
+		if (!worldIn.isRemote)
+		{
+			if (!playerIn.isSneaking())
+			{
+				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
+			} else
+			{
+				ItemNBTHelper.toggleBoolean(stack, "autoPickup");
+				if (ItemNBTHelper.getBoolean(stack, "autoPickup", true))
+				{
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_ON));
+				} else
+				{
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
+				}
+			}
+		}
+		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
+	}
+	
 	private static class InvProvider implements ICapabilitySerializable<NBTBase>
 	{
 		
@@ -98,29 +122,5 @@ public class ItemRuneBag extends RMModItem
 		{
 			CapabilityItemHandler.ITEM_HANDLER_CAPABILITY.readNBT(inv, null, nbt);
 		}
-	}
-	
-	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-	{
-		ItemStack stack = playerIn.getHeldItem(handIn);
-		if (!worldIn.isRemote)
-		{
-			if (!playerIn.isSneaking())
-			{
-				playerIn.openGui(RuneMysteries.instance, GuiIDs.RUNE_BAG.ordinal(), worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
-			} else
-			{
-				ItemNBTHelper.toggleBoolean(stack, "autoPickup");
-				if (ItemNBTHelper.getBoolean(stack, "autoPickup", true))
-				{
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_ON));
-				} else
-				{
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.RuneBag.AUTO_TURN_OFF));
-				}
-			}
-		}
-		return new ActionResult<>(EnumActionResult.SUCCESS, stack);
 	}
 }

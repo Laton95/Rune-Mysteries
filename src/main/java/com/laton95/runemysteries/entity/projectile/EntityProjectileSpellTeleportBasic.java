@@ -17,60 +17,60 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 	{
 		super(worldIn);
 	}
-
+	
 	public EntityProjectileSpellTeleportBasic(World worldIn, EntityLivingBase throwerIn)
 	{
 		super(worldIn, throwerIn);
 	}
-
+	
 	protected void onImpact(RayTraceResult result)
 	{
 		super.onImpact(result);
 		EntityLivingBase thrower = getThrower();
-
+		
 		if (result.typeOfHit == RayTraceResult.Type.BLOCK)
 		{
 			BlockPos blockpos = result.getBlockPos();
 			TileEntity tileentity = world.getTileEntity(blockpos);
-
+			
 			if (tileentity instanceof TileEntityEndGateway)
 			{
 				TileEntityEndGateway tileentityendgateway = (TileEntityEndGateway) tileentity;
-
+				
 				if (thrower != null)
 				{
 					if (thrower instanceof EntityPlayerMP)
 					{
 						CriteriaTriggers.ENTER_BLOCK.trigger((EntityPlayerMP) thrower, world.getBlockState(blockpos));
 					}
-
+					
 					tileentityendgateway.teleportEntity(thrower);
 					super.onImpact(result);
 					return;
 				}
-
+				
 				tileentityendgateway.teleportEntity(this);
 				return;
 			}
 		}
-
+		
 		if (!world.isRemote)
 		{
 			if (thrower instanceof EntityPlayerMP)
 			{
 				EntityPlayerMP entityplayermp = (EntityPlayerMP) thrower;
-
+				
 				if (entityplayermp.connection.getNetworkManager().isChannelOpen() && entityplayermp.world == world && !entityplayermp.isPlayerSleeping())
 				{
 					net.minecraftforge.event.entity.living.EnderTeleportEvent event = new net.minecraftforge.event.entity.living.EnderTeleportEvent(entityplayermp, posX, posY, posZ, 5.0F);
 					if (!net.minecraftforge.common.MinecraftForge.EVENT_BUS.post(event))
 					{
-
+						
 						if (thrower.isRiding())
 						{
 							thrower.dismountRidingEntity();
 						}
-
+						
 						thrower.setPositionAndUpdate(event.getTargetX(), event.getTargetY(), event.getTargetZ());
 					}
 				}
@@ -101,7 +101,7 @@ public class EntityProjectileSpellTeleportBasic extends EntityProjectileSpellBas
 	public void onUpdate()
 	{
 		EntityLivingBase entitylivingbase = getThrower();
-
+		
 		if (entitylivingbase != null && entitylivingbase instanceof EntityPlayer && !entitylivingbase.isEntityAlive())
 		{
 			setDead();

@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.init.ModBlocks;
 import net.minecraft.block.BlockColored;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
@@ -55,7 +55,7 @@ public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld
 								chunkprimer.setBlockState(xPos, y, zPos, Blocks.CONCRETE.getDefaultState().withProperty(BlockColored.COLOR, EnumDyeColor.values()[colour]));
 							} else if (rand.nextFloat() <= 0.005)
 							{
-								chunkprimer.setBlockState(xPos, y, zPos, BlockRegistry.PARTICLE_LIGHT.getDefaultState());
+								chunkprimer.setBlockState(xPos, y, zPos, ModBlocks.PARTICLE_LIGHT.getDefaultState());
 							}
 						} else
 						{

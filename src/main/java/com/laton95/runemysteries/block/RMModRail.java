@@ -29,38 +29,42 @@ public class RMModRail extends RMModBlock
 	public static final PropertyBool EAST = PropertyBool.create("east");
 	public static final PropertyBool SOUTH = PropertyBool.create("south");
 	public static final PropertyBool WEST = PropertyBool.create("west");
-	protected static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D), new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D), new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D), new AxisAlignedBB(0.25D, 0.0D, 0.0D, 0.75D, 1.0D, 0.75D), new AxisAlignedBB(0.3125D, 0.0D, 0.0D, 0.6875D, 0.875D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.75D, 1.0D, 0.75D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.75D, 1.0D, 1.0D), new AxisAlignedBB(0.25D, 0.0D, 0.25D, 1.0D, 1.0D, 0.75D), new AxisAlignedBB(0.25D, 0.0D, 0.25D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.3125D, 1.0D, 0.875D, 0.6875D), new AxisAlignedBB(0.0D, 0.0D, 0.25D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D), new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D), new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
-	protected static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {AABB_BY_INDEX[0].setMaxY(1.5D), AABB_BY_INDEX[1].setMaxY(1.5D), AABB_BY_INDEX[2].setMaxY(1.5D), AABB_BY_INDEX[3].setMaxY(1.5D), AABB_BY_INDEX[4].setMaxY(1.5D), AABB_BY_INDEX[5].setMaxY(1.5D), AABB_BY_INDEX[6].setMaxY(1.5D), AABB_BY_INDEX[7].setMaxY(1.5D), AABB_BY_INDEX[8].setMaxY(1.5D), AABB_BY_INDEX[9].setMaxY(1.5D), AABB_BY_INDEX[10].setMaxY(1.5D), AABB_BY_INDEX[11].setMaxY(1.5D), AABB_BY_INDEX[12].setMaxY(1.5D), AABB_BY_INDEX[13].setMaxY(1.5D), AABB_BY_INDEX[14].setMaxY(1.5D), AABB_BY_INDEX[15].setMaxY(1.5D)};
+	protected static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 0.75D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.3125D, 0.0D, 0.0D, 0.6875D, 0.875D, 1.0D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.75D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 0.75D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 1.0D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 1.0D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.3125D, 1.0D, 0.875D, 0.6875D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 1.0D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
+	protected static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {AABB_BY_INDEX[0].setMaxY(1.5D),
+			AABB_BY_INDEX[1].setMaxY(1.5D),
+			AABB_BY_INDEX[2].setMaxY(1.5D),
+			AABB_BY_INDEX[3].setMaxY(1.5D),
+			AABB_BY_INDEX[4].setMaxY(1.5D),
+			AABB_BY_INDEX[5].setMaxY(1.5D),
+			AABB_BY_INDEX[6].setMaxY(1.5D),
+			AABB_BY_INDEX[7].setMaxY(1.5D),
+			AABB_BY_INDEX[8].setMaxY(1.5D),
+			AABB_BY_INDEX[9].setMaxY(1.5D),
+			AABB_BY_INDEX[10].setMaxY(1.5D),
+			AABB_BY_INDEX[11].setMaxY(1.5D),
+			AABB_BY_INDEX[12].setMaxY(1.5D),
+			AABB_BY_INDEX[13].setMaxY(1.5D),
+			AABB_BY_INDEX[14].setMaxY(1.5D),
+			AABB_BY_INDEX[15].setMaxY(1.5D)};
 	
 	public RMModRail(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
 		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		state = getActualState(state, source, pos);
-		return AABB_BY_INDEX[getAABBIndex(state)];
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
-	{
-		if (!p_185477_7_)
-		{
-			state = getActualState(state, worldIn, pos);
-		}
-		
-		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
-	}
-	
-	@Override
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-	{
-		blockState = getActualState(blockState, worldIn, pos);
-		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
 	}
 	
 	private static int getAABBIndex(IBlockState state)
@@ -88,6 +92,37 @@ public class RMModRail extends RMModBlock
 		}
 		
 		return i;
+	}
+	
+	protected static boolean isExcepBlockForAttachWithPiston(Block p_194143_0_)
+	{
+		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		state = getActualState(state, source, pos);
+		return AABB_BY_INDEX[getAABBIndex(state)];
+	}
+	
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
+	{
+		if (!p_185477_7_)
+		{
+			state = getActualState(state, worldIn, pos);
+		}
+		
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
+	}
+	
+	@Override
+	@Nullable
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+	{
+		blockState = getActualState(blockState, worldIn, pos);
+		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
 	}
 	
 	@Override
@@ -122,11 +157,6 @@ public class RMModRail extends RMModBlock
 		BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos, p_176253_3_);
 		boolean flag = blockfaceshape == BlockFaceShape.MIDDLE_POLE_THICK || blockfaceshape == BlockFaceShape.MIDDLE_POLE && block instanceof BlockFenceGate;
 		return !isExcepBlockForAttachWithPiston(block) && blockfaceshape == BlockFaceShape.SOLID || flag;
-	}
-	
-	protected static boolean isExcepBlockForAttachWithPiston(Block p_194143_0_)
-	{
-		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
 	}
 	
 	/**
@@ -184,7 +214,11 @@ public class RMModRail extends RMModBlock
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {UP, NORTH, EAST, WEST, SOUTH});
+		return new BlockStateContainer(this, new IProperty[] {UP,
+				NORTH,
+				EAST,
+				WEST,
+				SOUTH});
 	}
 	
 	@Override

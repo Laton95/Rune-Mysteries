@@ -17,8 +17,8 @@ import java.util.Random;
 public abstract class RMModSlab extends BlockSlab
 {
 	
-	private Item halfSlabItem;
 	public static final PropertyEnum<RMModSlab.Variant> VARIANT = PropertyEnum.<RMModSlab.Variant>create("variant", RMModSlab.Variant.class);
+	private Item halfSlabItem;
 	
 	public RMModSlab(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
@@ -104,7 +104,19 @@ public abstract class RMModSlab extends BlockSlab
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}) : new BlockStateContainer(this, new IProperty[] {HALF, VARIANT});
+		return isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}) : new BlockStateContainer(this, new IProperty[] {HALF,
+				VARIANT});
+	}
+	
+	public static enum Variant implements IStringSerializable
+	{
+		DEFAULT;
+		
+		@Override
+		public String getName()
+		{
+			return "default";
+		}
 	}
 	
 	public static class Double extends RMModSlab
@@ -136,17 +148,6 @@ public abstract class RMModSlab extends BlockSlab
 		public boolean isDouble()
 		{
 			return false;
-		}
-	}
-	
-	public static enum Variant implements IStringSerializable
-	{
-		DEFAULT;
-		
-		@Override
-		public String getName()
-		{
-			return "default";
 		}
 	}
 }

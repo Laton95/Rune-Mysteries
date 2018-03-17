@@ -21,6 +21,7 @@ public class ComponentSurfaceAltar extends StructureComponent
 {
 	
 	private String name;
+	private boolean generated = false;
 	
 	public ComponentSurfaceAltar()
 	{
@@ -31,8 +32,6 @@ public class ComponentSurfaceAltar extends StructureComponent
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x, 0, z, 0, 0, 0, 10, 3, 10, EnumFacing.UP);
 		this.name = name;
 	}
-	
-	private boolean generated = false;
 	
 	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)

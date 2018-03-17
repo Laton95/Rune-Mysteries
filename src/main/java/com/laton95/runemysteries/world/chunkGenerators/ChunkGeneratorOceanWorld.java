@@ -21,7 +21,7 @@ import java.util.Random;
 
 public class ChunkGeneratorOceanWorld implements IChunkGenerator
 {
-
+	
 	private final IBlockState WORLDBLOCK;
 	private final IBlockState SURFACEBLOCK;
 	private final IBlockState OCEANBLOCK;
@@ -31,9 +31,9 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	private final int crustSurface;
 	private final int worldSurface;
 	private final ChunkGeneratorSettings settings;
-
+	
 	private MapGenRuneTemple temple;
-
+	
 	public ChunkGeneratorOceanWorld(World worldIn, long seed, IBlockState worldBlock, IBlockState surfaceBlock, IBlockState oceanBlock, int oceanSurface, int crustSurface, int worldSurface, String generatorSettings)
 	{
 		world = worldIn;
@@ -45,14 +45,14 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 		this.oceanSurface = oceanSurface;
 		this.crustSurface = crustSurface;
 		this.worldSurface = worldSurface;
-
+		
 		WorldSettings settings = new WorldSettings(world.getWorldInfo());
 		settings.setGeneratorOptions(generatorSettings);
 		world.getWorldInfo().populateFromWorldSettings(settings);
 		this.settings = ChunkGeneratorSettings.Factory.jsonToFactory(generatorSettings).build();
 		worldIn.setSeaLevel(this.settings.seaLevel);
 	}
-
+	
 	/**
 	 * Generates the chunk at the specified position, from scratch
 	 */
@@ -63,7 +63,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 		if (Math.max(Math.abs(x), Math.abs(z)) < 16)
 		{
 			rand.setSeed(x * 341873128712L + z * 132897987541L);
-
+			
 			for (int y = 0; y < world.getActualHeight(); y++)
 			{
 				for (int xPos = 0; xPos < 16; xPos++)
@@ -90,15 +90,15 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 				}
 			}
 		}
-
+		
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
-
+		
 		temple.generate(world, x, z, chunkprimer);
-
+		
 		chunk.generateSkylightMap();
 		return chunk;
 	}
-
+	
 	@Override
 	public void populate(int x, int z)
 	{
@@ -112,44 +112,44 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 		long rand1 = rand.nextLong() / 2L * 2L + 1L;
 		long rand2 = rand.nextLong() / 2L * 2L + 1L;
 		rand.setSeed(x * rand1 + z * rand2 ^ world.getSeed());
-
+		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
-
+		
 		biome.decorator.clayPerChunk = 0;
 		biome.decorator.generateFalls = false;
 		biome.decorate(world, rand, new BlockPos(xPos, 0, zPos));
-
+		
 		temple.generateStructure(world, rand, chunkpos);
-
+		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
-
+		
 		BlockFalling.fallInstantly = false;
 	}
-
+	
 	@Override
 	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
 	{
 		return new LinkedList<>();
 	}
-
+	
 	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return true;
 	}
-
+	
 	@Override
 	public BlockPos getNearestStructurePos(World worldIn, String structureName, BlockPos position, boolean findUnexplored)
 	{
 		return null;
 	}
-
+	
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
 
 	}
-
+	
 	@Override
 	public boolean isInsideStructure(World worldIn, String structureName, BlockPos pos)
 	{

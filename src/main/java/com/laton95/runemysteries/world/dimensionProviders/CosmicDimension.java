@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
-import com.laton95.runemysteries.init.DimensionRegistry;
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorCosmic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.WorldClient;
@@ -53,21 +53,10 @@ public class CosmicDimension extends WorldProvider
 		return clouds;
 	}
 	
-	private class NoClouds extends IRenderHandler
-	{
-		
-		@Override
-		public void render(float partialTicks, WorldClient world, Minecraft mc)
-		{
-			//Do nothing to renderer no clouds
-		}
-		
-	}
-	
 	@Override
 	public DimensionType getDimensionType()
 	{
-		return DimensionRegistry.COSMIC;
+		return ModDimensions.COSMIC;
 	}
 	
 	@Override
@@ -129,5 +118,16 @@ public class CosmicDimension extends WorldProvider
 	public IChunkGenerator createChunkGenerator()
 	{
 		return new ChunkGeneratorCosmic(world, world.getSeed());
+	}
+	
+	private class NoClouds extends IRenderHandler
+	{
+		
+		@Override
+		public void render(float partialTicks, WorldClient world, Minecraft mc)
+		{
+			//Do nothing to renderer no clouds
+		}
+		
 	}
 }

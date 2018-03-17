@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.init;
 
-import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.util.ResourceLocation;
@@ -10,23 +9,50 @@ import net.minecraftforge.event.LootTableLoadEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-import java.util.List;
-
 @Mod.EventBusSubscriber
-public final class LootRegistry
+public final class ModLoot
 {
 	
 	public static final ResourceLocation OURANIA_ALTAR = LootTableList.register(new ResourceLocation(ModReference.MOD_ID, "altars/ourania_altar"));
 	
-	private static final List<String> TABLES = ImmutableList.of("inject/chests/abandoned_mineshaft", "inject/chests/desert_pyramid", "inject/chests/jungle_temple", "inject/chests/simple_dungeon", "inject/chests/spawn_bonus_chest", "inject/chests/village_blacksmith", "inject/chests/stronghold_corridor", "inject/chests/nether_bridge", "inject/chests/igloo_chest", "inject/chests/stronghold_crossing", "inject/chests/stronghold_library", "inject/chests/woodland_mansion", "inject/chests/end_city_treasure", "inject/gameplay/fishing/treasure", "inject/entities/blaze", "inject/entities/elder_guardian", "inject/entities/enderman", "inject/entities/endermite", "inject/entities/evocation_illager", "inject/entities/ghast", "inject/entities/guardian", "inject/entities/husk", "inject/entities/magma_cube", "inject/entities/silverfish", "inject/entities/skeleton", "inject/entities/slime", "inject/entities/squid", "inject/entities/stray", "inject/entities/vex", "inject/entities/vindication_illager", "inject/entities/wither_skeleton", "inject/entities/zombie_pigman", "inject/entities/zombie_villager", "inject/entities/zombie"
-	
-	);
-	
-	public LootRegistry()
+	public ModLoot()
 	{
 		LogHelper.info("Registering loot tables");
 		
-		String[] lootTables = {"inject/chests/abandoned_mineshaft", "inject/chests/desert_pyramid", "inject/chests/jungle_temple", "inject/chests/simple_dungeon", "inject/chests/spawn_bonus_chest", "inject/chests/village_blacksmith", "inject/chests/stronghold_corridor", "inject/chests/nether_bridge", "inject/chests/igloo_chest", "inject/chests/stronghold_crossing", "inject/chests/stronghold_library", "inject/chests/woodland_mansion", "inject/chests/end_city_treasure", "inject/gameplay/fishing/treasure", "inject/entities/blaze", "inject/entities/elder_guardian", "inject/entities/enderman", "inject/entities/endermite", "inject/entities/evocation_illager", "inject/entities/ghast", "inject/entities/guardian", "inject/entities/husk", "inject/entities/magma_cube", "inject/entities/silverfish", "inject/entities/skeleton", "inject/entities/slime", "inject/entities/squid", "inject/entities/stray", "inject/entities/vex", "inject/entities/vindication_illager", "inject/entities/wither_skeleton", "inject/entities/zombie_pigman", "inject/entities/zombie_villager", "inject/entities/zombie"};
+		String[] lootTables = {"inject/chests/abandoned_mineshaft",
+				"inject/chests/desert_pyramid",
+				"inject/chests/jungle_temple",
+				"inject/chests/simple_dungeon",
+				"inject/chests/spawn_bonus_chest",
+				"inject/chests/village_blacksmith",
+				"inject/chests/stronghold_corridor",
+				"inject/chests/nether_bridge",
+				"inject/chests/igloo_chest",
+				"inject/chests/stronghold_crossing",
+				"inject/chests/stronghold_library",
+				"inject/chests/woodland_mansion",
+				"inject/chests/end_city_treasure",
+				"inject/gameplay/fishing/treasure",
+				"inject/entities/blaze",
+				"inject/entities/elder_guardian",
+				"inject/entities/enderman",
+				"inject/entities/endermite",
+				"inject/entities/evocation_illager",
+				"inject/entities/ghast",
+				"inject/entities/guardian",
+				"inject/entities/husk",
+				"inject/entities/magma_cube",
+				"inject/entities/silverfish",
+				"inject/entities/skeleton",
+				"inject/entities/slime",
+				"inject/entities/squid",
+				"inject/entities/stray",
+				"inject/entities/vex",
+				"inject/entities/vindication_illager",
+				"inject/entities/wither_skeleton",
+				"inject/entities/zombie_pigman",
+				"inject/entities/zombie_villager",
+				"inject/entities/zombie"};
 		
 		for (String s : lootTables)
 		{

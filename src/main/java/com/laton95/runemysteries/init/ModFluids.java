@@ -20,7 +20,7 @@ import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import java.util.List;
 
 @Mod.EventBusSubscriber
-public class LiquidRegistry
+public class ModFluids
 {
 	
 	public static final RMModFluid fluid_blood = new RMModFluid("fluid_Blood");
@@ -68,14 +68,14 @@ public class LiquidRegistry
 			return name;
 		}
 		
-		public void setFluidBlock(RMModFluidBlock fluidBlock)
-		{
-			this.fluidBlock = fluidBlock;
-		}
-		
 		public RMModFluidBlock getFluidBlock()
 		{
 			return fluidBlock;
+		}
+		
+		public void setFluidBlock(RMModFluidBlock fluidBlock)
+		{
+			this.fluidBlock = fluidBlock;
 		}
 	}
 	

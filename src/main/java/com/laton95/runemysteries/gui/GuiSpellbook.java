@@ -31,6 +31,7 @@ public class GuiSpellbook extends RMModGuiScreen
 	
 	private final EntityPlayer player;
 	private final ItemStack spellbook;
+	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/spellbook.png");
 	private SpellBase newSpell;
 	private SpellBase oldSpell;
 	private SpellBase costSpell;
@@ -39,9 +40,6 @@ public class GuiSpellbook extends RMModGuiScreen
 	@SuppressWarnings("unused")
 	private GuiButton buttonCancel;
 	private GuiButton buttonExtra;
-	
-	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/spellbook.png");
-	
 	private int textureHeight = 256;
 	private int textureWidth = 128;
 	private int borderWidth = 3;

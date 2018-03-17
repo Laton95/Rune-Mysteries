@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
 import com.laton95.runemysteries.config.ModConfig;
-import com.laton95.runemysteries.init.BlockRegistry;
+import com.laton95.runemysteries.init.ModBlocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.feature.WorldGenMinable;
@@ -25,7 +25,7 @@ public class OreGenerator
 			throw new IllegalArgumentException("Illigal Height Arguments for WorldGenerator");
 		}
 		
-		WorldGenerator finiteEssenceGen = new WorldGenMinable(BlockRegistry.RUNE_ESSENCE_FINITE.getDefaultState(), ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinSize);
+		WorldGenerator finiteEssenceGen = new WorldGenMinable(ModBlocks.RUNE_ESSENCE_FINITE.getDefaultState(), ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinSize);
 		
 		int heightDifference = maxHeight - minHeight + 1;
 		for (int i = 0; i < ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinsPerChunk; i++)

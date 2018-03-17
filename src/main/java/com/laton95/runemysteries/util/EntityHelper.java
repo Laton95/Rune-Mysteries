@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.util;
 
-import com.laton95.runemysteries.init.ItemRegistry;
+import com.laton95.runemysteries.init.ModItems;
 import net.minecraft.entity.boss.EntityWither;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
@@ -16,7 +16,7 @@ public class EntityHelper
 	{
 		if (event.getEntity() instanceof EntityWither && !event.getEntity().world.isRemote)
 		{
-			event.getEntity().entityDropItem(new ItemStack(ItemRegistry.RUNE_TALISMAN, 1, 6), 0);
+			event.getEntity().entityDropItem(new ItemStack(ModItems.RUNE_TALISMAN, 1, 6), 0);
 		}
 	}
 }
