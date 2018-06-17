@@ -24,6 +24,7 @@ public class ModItems
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
 	public static final ItemScroll MINE_SCROLL = new ItemScroll();
+	public static final ItemBanana BANANA = new ItemBanana();
 	private static ArrayList<Item> itemList = new ArrayList<>();
 	
 	@SubscribeEvent
@@ -74,6 +75,7 @@ public class ModItems
 		itemList.add(SPELLBOOK);
 		itemList.add(RUNE_BAG);
 		itemList.add(MINE_SCROLL);
+		itemList.add(BANANA);
 	}
 	
 	public static void addItemBlock(ItemBlock itemBlock)

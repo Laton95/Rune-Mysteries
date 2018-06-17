@@ -5,6 +5,7 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.TeleportHelper;
+import com.sun.istack.internal.NotNull;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
@@ -27,8 +28,8 @@ import net.minecraft.world.World;
 public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
 	
-	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
+	private static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltarEntrance()
 	{
@@ -39,7 +40,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {TYPE});
+		return new BlockStateContainer(this, TYPE);
 	}
 	
 	@Override

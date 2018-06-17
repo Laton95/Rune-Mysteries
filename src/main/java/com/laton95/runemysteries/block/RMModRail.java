@@ -25,11 +25,11 @@ public class RMModRail extends RMModBlock
 {
 	
 	public static final PropertyBool UP = PropertyBool.create("up");
-	public static final PropertyBool NORTH = PropertyBool.create("north");
-	public static final PropertyBool EAST = PropertyBool.create("east");
-	public static final PropertyBool SOUTH = PropertyBool.create("south");
-	public static final PropertyBool WEST = PropertyBool.create("west");
-	protected static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
+	private static final PropertyBool NORTH = PropertyBool.create("north");
+	private static final PropertyBool EAST = PropertyBool.create("east");
+	private static final PropertyBool SOUTH = PropertyBool.create("south");
+	private static final PropertyBool WEST = PropertyBool.create("west");
+	private static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
@@ -45,7 +45,7 @@ public class RMModRail extends RMModBlock
 			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
-	protected static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {AABB_BY_INDEX[0].setMaxY(1.5D),
+	private static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {AABB_BY_INDEX[0].setMaxY(1.5D),
 			AABB_BY_INDEX[1].setMaxY(1.5D),
 			AABB_BY_INDEX[2].setMaxY(1.5D),
 			AABB_BY_INDEX[3].setMaxY(1.5D),
@@ -71,22 +71,22 @@ public class RMModRail extends RMModBlock
 	{
 		int i = 0;
 		
-		if (state.getValue(NORTH).booleanValue())
+		if (state.getValue(NORTH))
 		{
 			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
 		}
 		
-		if (state.getValue(EAST).booleanValue())
+		if (state.getValue(EAST))
 		{
 			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
 		}
 		
-		if (state.getValue(SOUTH).booleanValue())
+		if (state.getValue(SOUTH))
 		{
 			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
 		}
 		
-		if (state.getValue(WEST).booleanValue())
+		if (state.getValue(WEST))
 		{
 			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
 		}

@@ -34,6 +34,7 @@ item.runemysteries:talisman.essence.name=Blank Talisman
 item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
 item.runemysteries:scroll.mine.name=Rune Essence Mine Teleport Scroll
+item.runemysteries:banana.name=Banana
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
@@ -122,16 +123,25 @@ advancements.runemysteries.runecrafting.ourania.description=Find and use the leg
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
 spell.runemysteries.enderpearlSpell.desc=Throw an ender pearl.
+
 spell.runemysteries.snowballSpell.name=Snowball
 spell.runemysteries.snowballSpell.desc=Throw a snowball.
+
 spell.runemysteries.explosionSpell.name=Explosion
 spell.runemysteries.explosionSpell.desc=Fire an orb of energy that explodes on impact.
+
 spell.runemysteries.deathSpell.name=Damage
 spell.runemysteries.deathSpell.desc=Hurls a deadly projectile.
+
 spell.runemysteries.bouncingSpell.name=Bounce
 spell.runemysteries.bouncingSpell.desc=A projectile that bounces around.
+
 spell.runemysteries.followingSpell.name=Tracking spell
 spell.runemysteries.followingSpell.desc=A spell that follows and damages a target.
+
+spell.runemysteries.bonesToBananas.name=Bones To Bananas
+spell.runemysteries.bonesToBananas.desc=Transform all your bones into bananas.
+
 spell.runemysteries.noSpell.name=None
 spell.runemysteries.noSpell.desc=No spell selected.
 

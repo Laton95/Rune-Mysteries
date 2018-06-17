@@ -35,8 +35,8 @@ import java.util.List;
 public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 {
 	
-	public static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
+	private static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltar()
 	{
@@ -48,7 +48,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return new BlockStateContainer(this, new IProperty[] {TYPE});
+		return new BlockStateContainer(this, TYPE);
 	}
 	
 	@Override
@@ -86,7 +86,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getMetaFromState(state), isOurania);
 			}
 			
-			if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && isOurania == false)
+			if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && !isOurania)
 			{
 				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
 				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, getMetaFromState(state), isOurania);
@@ -100,7 +100,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		}
 	}
 	
-	protected void giveAdvancements(EntityItem entityIn, World worldIn, boolean isOurania)
+	private void giveAdvancements(EntityItem entityIn, World worldIn, boolean isOurania)
 	{
 		String thrower = entityIn.getThrower();
 		if (thrower != null)
@@ -121,7 +121,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		}
 	}
 	
-	protected void spawnItem(World worldIn, EntityItem entityIn, Item item, int metadata, boolean isOurania)
+	private void spawnItem(World worldIn, EntityItem entityIn, Item item, int metadata, boolean isOurania)
 	{
 		while (entityIn.getItem().getCount() > 0)
 		{

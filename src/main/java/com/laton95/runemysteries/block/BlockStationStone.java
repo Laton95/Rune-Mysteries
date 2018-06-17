@@ -9,7 +9,7 @@ import net.minecraft.world.IBlockAccess;
 public class BlockStationStone extends RMModBlock
 {
 	
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.1, 0, 0.1, 0.9, 0.9, 0.9);
+	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.1, 0, 0.1, 0.9, 0.9, 0.9);
 	
 	public BlockStationStone()
 	{

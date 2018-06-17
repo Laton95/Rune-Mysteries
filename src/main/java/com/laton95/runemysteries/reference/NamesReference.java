@@ -81,6 +81,9 @@ public final class NamesReference
 		public static final String FOLLOWING_SPELL_NAME = "spell.runemysteries.followingSpell.name";
 		public static final String FOLLOWING_SPELL_DESCRIPTION = "spell.runemysteries.followingSpell.desc";
 		
+		public static final String BONES_TO_BANANAS_SPELL_NAME = "spell.runemysteries.bonesToBananas.name";
+		public static final String BONES_TO_BANANAS_SPELL_DESCRIPTION = "spell.runemysteries.bonesToBananas.desc";
+		
 		public static final String NO_SPELL_NAME = "spell.runemysteries.noSpell.name";
 		public static final String NO_SPELL_DESCRIPTION = "spell.runemysteries.noSpell.desc";
 	}
