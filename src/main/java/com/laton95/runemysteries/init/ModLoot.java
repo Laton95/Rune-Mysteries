@@ -42,6 +42,7 @@ public final class ModLoot
 				"inject/entities/guardian",
 				"inject/entities/husk",
 				"inject/entities/magma_cube",
+				"inject/entities/parrot",
 				"inject/entities/silverfish",
 				"inject/entities/skeleton",
 				"inject/entities/slime",
@@ -138,6 +139,9 @@ public final class ModLoot
 					evt.getTable().addPool(getInjectPool(file));
 					break;
 				case "entities/magma_cube":
+					evt.getTable().addPool(getInjectPool(file));
+					break;
+				case "entities/parrot":
 					evt.getTable().addPool(getInjectPool(file));
 					break;
 				case "entities/silverfish":

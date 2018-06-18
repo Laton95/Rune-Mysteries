@@ -35,6 +35,7 @@ item.runemysteries:spellbook.name=Spellbook
 item.runemysteries:rune_bag.name=Rune Pouch
 item.runemysteries:scroll.mine.name=Rune Essence Mine Teleport Scroll
 item.runemysteries:banana.name=Banana
+item.runemysteries:ex_parrot.name=Ex-Parrot
 
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
@@ -98,6 +99,8 @@ tile.runemysteries:altar_Exit_Portal.name=Altar Exit Portal
 
 tile.runemysteries:particle_Light.name=Magic Light
 
+tile.runemysteries:black_monolith.name=Monolith
+
 #Fluids
 fluid.runemysteries:fluid_Blood=Blood
 
@@ -107,18 +110,30 @@ itemGroup.runemysteries=Rune Mysteries
 #Advancements
 advancements.runemysteries.runecrafting.root.title=Runecrafting
 advancements.runemysteries.runecrafting.root.description=The forgotten art of runecrafting.
+
 advancements.runemysteries.runecrafting.rune_essence.title=Essentials
 advancements.runemysteries.runecrafting.rune_essence.description=Find some rune essence.
+
 advancements.runemysteries.runecrafting.craft_rune.title=Altaration
 advancements.runemysteries.runecrafting.craft_rune.description=Craft a rune at a rune altar.
+
 advancements.runemysteries.runecrafting.talisman.title=Sedridor's Gift
 advancements.runemysteries.runecrafting.talisman.description=Obtain a runecrafting talisman.
+
 advancements.runemysteries.runecrafting.get_all_talismans.title=Omni-Talisman
 advancements.runemysteries.runecrafting.get_all_talismans.description=Obtain all of the runecrafting talismans.
+
 advancements.runemysteries.runecrafting.altar.title=Mysterious Ruins
 advancements.runemysteries.runecrafting.altar.description=Follow the pull of a runecrafting talisman.
+
 advancements.runemysteries.runecrafting.ourania.title=ZMI Associate
 advancements.runemysteries.runecrafting.ourania.description=Find and use the legendary Ourania altar.
+
+advancements.runemysteries.runecrafting.black_monolith.title=Approaching Horror
+advancements.runemysteries.runecrafting.black_monolith.description=What carves it's hate upon the monolith?
+
+advancements.runemysteries.runecrafting.ex_parrot.title=Ex-Ex-Parrot
+advancements.runemysteries.runecrafting.ex_parrot.description=Bereft of life, 'e rises again!
 
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
@@ -173,6 +188,8 @@ item.runemysteries.rune_bag.autoOff=Auto rune-pickup off.
 tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of you.
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
 
+tile.runemysteries:black_monolith.rightClick=Do you really think you can save them %1$s?
+
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
 death.attack.runeMagicDamageProjectile=%1$s was blasted by %2$s
@@ -186,3 +203,5 @@ gui.runemysteries.button.extraCosts=Items
 
 #Entity
 entity.Villager.runemysteries.runecrafter=Runecrafter
+
+entity.runemysteries:ex_ex_parrot.name=Ex-Ex-Parrot

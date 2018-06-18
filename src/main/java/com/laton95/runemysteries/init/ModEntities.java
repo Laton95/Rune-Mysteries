@@ -1,5 +1,7 @@
 package com.laton95.runemysteries.init;
 
+import com.laton95.runemysteries.entity.passive.EntityExExParrot;
+import com.laton95.runemysteries.entity.passive.EntityFriendlyZombie;
 import com.laton95.runemysteries.entity.projectile.*;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
@@ -22,11 +24,15 @@ public class ModEntities
 	{
 		LogHelper.info("Registering entities");
 		
-		EntityEntry[] entries = {createBuilder("spell_projectile_bouncing").entity(EntityProjectileSpellBouncing.class).tracker(64, 20, true).build(),
+		EntityEntry[] entries = {
+				createBuilder("spell_projectile_bouncing").entity(EntityProjectileSpellBouncing.class).tracker(64, 20, true).build(),
 				createBuilder("spell_projectile_damage").entity(EntityProjectileSpellDamage.class).tracker(64, 20, true).build(),
 				createBuilder("spell_projectile_explosive").entity(EntityProjectileSpellExplosive.class).tracker(64, 20, true).build(),
 				createBuilder("spell_projectile_following").entity(EntityProjectileSpellFollowing.class).tracker(64, 1, true).build(),
-				createBuilder("spell_projectile_teleport_basic").entity(EntityProjectileSpellTeleportBasic.class).tracker(64, 20, true).build()};
+				createBuilder("spell_projectile_teleport_basic").entity(EntityProjectileSpellTeleportBasic.class).tracker(64, 20, true).build(),
+				createBuilder("ex_ex_parrot").entity(EntityExExParrot.class).tracker(64, 1, true).build(),
+				createBuilder("friendly_zombie").entity(EntityFriendlyZombie.class).tracker(64, 1, true).build()
+		};
 		
 		event.getRegistry().registerAll(entries);
 		

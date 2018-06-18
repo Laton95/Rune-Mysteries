@@ -14,6 +14,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Mod.EventBusSubscriber
 public class ModItems
@@ -25,14 +26,24 @@ public class ModItems
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
 	public static final ItemScroll MINE_SCROLL = new ItemScroll();
 	public static final ItemBanana BANANA = new ItemBanana();
-	private static ArrayList<Item> itemList = new ArrayList<>();
+	public static final ItemExParrot EX_PARROT = new ItemExParrot();
+	
+	private static ArrayList<Item> items = new ArrayList<Item>(
+			Arrays.asList(
+					RUNE,
+					RUNE_TALISMAN,
+					SPELLBOOK,
+					RUNE_BAG,
+					MINE_SCROLL,
+					BANANA,
+					EX_PARROT
+			));
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event)
 	{
 		LogHelper.info("Registering items");
-		makeItemList();
-		for (Item item : itemList)
+		for (Item item : items)
 		{
 			event.getRegistry().register(item);
 		}
@@ -41,7 +52,7 @@ public class ModItems
 	
 	public static void registerRenders()
 	{
-		for (Item item : itemList)
+		for (Item item : items)
 		{
 			if (item.getHasSubtypes() && item instanceof RMModItem)
 			{
@@ -68,23 +79,13 @@ public class ModItems
 		ModelLoader.setCustomModelResourceLocation(item, meta, new ModelResourceLocation(new ResourceLocation(ModReference.MOD_ID, fileName), "inventory"));
 	}
 	
-	private static void makeItemList()
-	{
-		itemList.add(RUNE);
-		itemList.add(RUNE_TALISMAN);
-		itemList.add(SPELLBOOK);
-		itemList.add(RUNE_BAG);
-		itemList.add(MINE_SCROLL);
-		itemList.add(BANANA);
-	}
-	
 	public static void addItemBlock(ItemBlock itemBlock)
 	{
-		itemList.add(itemBlock);
+		items.add(itemBlock);
 	}
 	
 	public static void addItem(Item item)
 	{
-		itemList.add(item);
+		items.add(item);
 	}
 }

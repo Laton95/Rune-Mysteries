@@ -1,0 +1,41 @@
+{
+  "textures": {
+    "sides": "runemysteries:blocks/black_monolith",
+    "front": "runemysteries:blocks/black_monolith_front",
+    "particle": "runemysteries:blocks/black_monolith_front"
+  },
+  "elements": [
+    {
+      "from": [
+        2,
+        0,
+        6
+      ],
+      "to": [
+        14,
+        16,
+        10
+      ],
+      "faces": {
+        "up": {
+          "texture": "#sides"
+        },
+        "down": {
+          "texture": "#sides"
+        },
+        "north": {
+          "texture": "#front"
+        },
+        "south": {
+          "texture": "#sides"
+        },
+        "west": {
+          "texture": "#sides"
+        },
+        "east": {
+          "texture": "#sides"
+        }
+      }
+    }
+  ]
+}

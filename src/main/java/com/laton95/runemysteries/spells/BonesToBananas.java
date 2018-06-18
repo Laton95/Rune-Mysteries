@@ -5,10 +5,12 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.world.World;
 
 import java.util.List;
@@ -35,6 +37,18 @@ public class BonesToBananas extends SpellBase
 			{
 				ItemStack bananas = new ItemStack(ModItems.BANANA, player.inventory.getStackInSlot(i).getCount());
 				player.inventory.setInventorySlotContents(i, bananas);
+			}
+		}
+		
+		int radius = 5;
+		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius));
+		
+		for (EntityItem item : items)
+		{
+			if (item.getItem().getItem() == Items.BONE)
+			{
+				ItemStack bananas = new ItemStack(ModItems.BANANA, item.getItem().getCount());
+				item.setItem(bananas);
 			}
 		}
 		

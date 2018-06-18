@@ -5,7 +5,6 @@ import com.laton95.runemysteries.init.ModLoot;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;

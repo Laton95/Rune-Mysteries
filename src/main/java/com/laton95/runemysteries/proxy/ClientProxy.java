@@ -1,8 +1,12 @@
 package com.laton95.runemysteries.proxy;
 
 import com.laton95.runemysteries.client.handler.KeyInputEventHandler;
+import com.laton95.runemysteries.client.renderer.entity.RenderExExParrot;
+import com.laton95.runemysteries.client.renderer.entity.RenderFriendlyZombie;
 import com.laton95.runemysteries.client.renderer.entity.RenderProjectileSpell;
 import com.laton95.runemysteries.client.settings.Keybindings;
+import com.laton95.runemysteries.entity.passive.EntityExExParrot;
+import com.laton95.runemysteries.entity.passive.EntityFriendlyZombie;
 import com.laton95.runemysteries.entity.projectile.*;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.LogHelper;
@@ -30,7 +34,7 @@ public class ClientProxy extends CommonProxy
 	}
 	
 	@Override
-	public void registerProjectileRenders()
+	public void registerRenders()
 	{
 		LogHelper.info("Registering projectile renders");
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellBouncing.class, renderManager -> new RenderProjectileSpell(renderManager, blueGreen));
@@ -38,5 +42,8 @@ public class ClientProxy extends CommonProxy
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellExplosive.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellFollowing.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellTeleportBasic.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
+		
+		RenderingRegistry.registerEntityRenderingHandler(EntityExExParrot.class, renderManager -> new RenderExExParrot(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityFriendlyZombie.class, renderManager -> new RenderFriendlyZombie(renderManager));
 	}
 }

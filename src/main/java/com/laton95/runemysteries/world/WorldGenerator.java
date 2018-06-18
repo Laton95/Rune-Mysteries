@@ -24,6 +24,7 @@ public class WorldGenerator implements IWorldGenerator
 	private MapGenRuneAltar_SOUL soulAltarGenerator = new MapGenRuneAltar_SOUL();
 	private MapGenRuneAltar_NETHER netherAltarGenerator = new MapGenRuneAltar_NETHER();
 	private MapGenRuneAltar_END endAltarGenerator = new MapGenRuneAltar_END();
+	private MapGenMonolith monolithGenerator = new MapGenMonolith();
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
@@ -40,17 +41,20 @@ public class WorldGenerator implements IWorldGenerator
 					surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				case NETHER:
 					// Ores
 					
 					// Structures
 					netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				case THE_END:
 					// Ores
 					
 					// Structures
+					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				default:

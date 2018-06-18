@@ -5,5 +5,5 @@ public abstract class CommonProxy
 	
 	public abstract void registerKeyBindings();
 	
-	public abstract void registerProjectileRenders();
+	public abstract void registerRenders();
 }

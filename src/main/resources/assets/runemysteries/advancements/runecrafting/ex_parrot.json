@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "runemysteries:ex_parrot"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.ex_parrot.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.ex_parrot.description"
+    },
+    "frame": "challenge",
+    "hidden": "true"
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "parent": "runemysteries:runecrafting/black_monolith",
+  "criteria": {
+    "ex_parrot": {
+      "trigger": "runemysteries:ex_parrot"
+    }
+  }
+}

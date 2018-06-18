@@ -51,7 +51,7 @@ public class RuneMysteries
 	{
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		proxy.registerProjectileRenders();
+		proxy.registerRenders();
 		
 		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
 		{
@@ -73,6 +73,7 @@ public class RuneMysteries
 		ModDimensions.registerDimensions();
 		ModOreDict.registerOres();
 		ModVillagers.registerVillage();
+		ModAdvancements.RegisterAdvancementTriggers();
 		proxy.registerKeyBindings();
 	}
 	

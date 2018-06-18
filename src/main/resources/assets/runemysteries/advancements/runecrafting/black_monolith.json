@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "runemysteries:black_monolith"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.black_monolith.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.black_monolith.description"
+    },
+    "frame": "challenge",
+    "hidden": "true"
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "parent": "runemysteries:runecrafting/root",
+  "criteria": {
+    "touch_monolith": {
+      "trigger": "runemysteries:touch_monolith"
+    }
+  }
+}

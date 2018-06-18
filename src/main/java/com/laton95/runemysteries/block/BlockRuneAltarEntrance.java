@@ -5,9 +5,7 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.TeleportHelper;
-import com.sun.istack.internal.NotNull;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
@@ -76,11 +74,11 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 			new ItemStack(ModItems.RUNE_TALISMAN, 1, getMetaFromState(state));
 			if (playerIn.getHeldItemMainhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
 			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.ENTER));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_ENTER));
 				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
 			} else
 			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.AltarInteraction.INTERACT));
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_INTERACT));
 			}
 		}
 		return true;

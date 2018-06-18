@@ -10,11 +10,13 @@ public final class NamesReference
 		public static final String TEST = "keys.runemysteries.test";
 	}
 	
-	public static final class AltarInteraction
+	public static final class BlockInteraction
 	{
 		
-		public static final String ENTER = "tile.runemysteries:altar_entrance.enter";
-		public static final String INTERACT = "tile.runemysteries:altar_entrance.rightClick";
+		public static final String ALTAR_ENTER = "tile.runemysteries:altar_entrance.enter";
+		public static final String ALTAR_INTERACT = "tile.runemysteries:altar_entrance.rightClick";
+		
+		public static final String MONOLITH_INTERACT = "tile.runemysteries:black_monolith.rightClick";
 	}
 	
 	public static final class Talisman
