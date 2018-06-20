@@ -1,0 +1,24 @@
+{
+  "display": {
+    "icon": {
+      "item": "runemysteries:elder_stone"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.elder_stone.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.elder_stone.description"
+    },
+    "frame": "challenge",
+    "hidden": "true"
+  },
+  "rewards": {
+    "experience": 1000
+  },
+  "parent": "runemysteries:runecrafting/root",
+  "criteria": {
+    "touch_elder_stone": {
+      "trigger": "runemysteries:elder_stone"
+    }
+  }
+}

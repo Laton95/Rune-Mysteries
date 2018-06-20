@@ -2,7 +2,9 @@ package com.laton95.runemysteries.item;
 
 import com.laton95.runemysteries.GuiHandler.GuiIDs;
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
+import com.laton95.runemysteries.potion.RMModPotion;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.spells.SpellBase;
 import com.laton95.runemysteries.spells.Spells;
@@ -119,10 +121,9 @@ public class ItemSpellbook extends RMModItem
 		{
 			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
 			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
-		} else
+		} else if (spell.canCast(worldIn, playerIn))
 		{
-			
-			if (playerIn.isCreative())
+			if (playerIn.isCreative() || ModPotions.STONETOUCHER.hasEffect(playerIn))
 			{
 				CastSpell(worldIn, playerIn, spell);
 				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
@@ -135,7 +136,8 @@ public class ItemSpellbook extends RMModItem
 					removeItems(playerIn, spell.getCosts(), bagInventories);
 					CastSpell(worldIn, playerIn, spell);
 					return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
-				} else
+				}
+				else
 				{
 					if (!worldIn.isRemote)
 					{
@@ -145,20 +147,22 @@ public class ItemSpellbook extends RMModItem
 				}
 			}
 		}
+		
+		if (!worldIn.isRemote)
+		{
+			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.SPELL_FAIL));
+			playerIn.getCooldownTracker().setCooldown(this, 10);
+		}
+		
+		return new ActionResult<>(EnumActionResult.FAIL, spellbook);
 	}
 	
 	public void CastSpell(World worldIn, EntityPlayer playerIn, SpellBase spell)
 	{
 		if (!worldIn.isRemote)
 		{
-			if (spell.fireSpell(worldIn, playerIn))
-			{
-				playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
-			} else
-			{
-				playerIn.getCooldownTracker().setCooldown(this, 5);
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-			}
+			spell.fireSpell(worldIn, playerIn);
+			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
 		}
 	}
 }

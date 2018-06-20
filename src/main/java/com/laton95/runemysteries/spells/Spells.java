@@ -15,9 +15,14 @@ public class Spells
 	
 	public static final SpellBase NONE_SPELL = new SpellBase(new ArrayList<>(), 0, NamesReference.Spells.NO_SPELL_NAME, NamesReference.Spells.NO_SPELL_DESCRIPTION, null)
 	{
+		@Override
+		public void fireSpell(World world, EntityPlayer player)
+		{
+		
+		}
 		
 		@Override
-		public boolean fireSpell(World world, EntityPlayer player)
+		public boolean canCast(World world, EntityPlayer player)
 		{
 			return false;
 		}

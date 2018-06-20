@@ -101,6 +101,8 @@ tile.runemysteries:particle_Light.name=Magic Light
 
 tile.runemysteries:black_monolith.name=Monolith
 
+tile.runemysteries:elder_stone.name=Stone of Jas
+
 #Fluids
 fluid.runemysteries:fluid_Blood=Blood
 
@@ -134,6 +136,9 @@ advancements.runemysteries.runecrafting.black_monolith.description=What carves i
 
 advancements.runemysteries.runecrafting.ex_parrot.title=Ex-Ex-Parrot
 advancements.runemysteries.runecrafting.ex_parrot.description=Bereft of life, 'e rises again!
+
+advancements.runemysteries.runecrafting.elder_stone.title=Stonetoucher
+advancements.runemysteries.runecrafting.elder_stone.description=The God Wars are over... as long as the thing they were fighting over remains hidden.
 
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink
@@ -178,6 +183,8 @@ item.runemysteries.talisman.pull.end=The talisman throbs in your hand.
 item.runemysteries.talisman.pull.fail=The talisman is unresponsive.
 
 item.runemysteries.spellbook.norunes=You do not have enough runes to cast this spell.
+item.runemysteries.spellbook.spellFail=You can't cast this spell right now.
+
 item.runemysteries.scroll.fail=You are already at the scroll's destination.
 
 item.runemysteries.rune_bag.autoTurnOn=The pouch will now auto-pickup runes.
@@ -189,6 +196,8 @@ tile.runemysteries:altar_entrance.enter=You feel a powerful force take hold of y
 tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from the shrine.
 
 tile.runemysteries:black_monolith.rightClick=Do you really think you can save them %1$s?
+
+tile.runemysteries:elder_stone.rightClick=You feel a rush of energy flow through your body.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.
@@ -205,3 +214,6 @@ gui.runemysteries.button.extraCosts=Items
 entity.Villager.runemysteries.runecrafter=Runecrafter
 
 entity.runemysteries:ex_ex_parrot.name=Ex-Ex-Parrot
+
+#Potion
+runemysteries:stonetoucher=Stonetoucher

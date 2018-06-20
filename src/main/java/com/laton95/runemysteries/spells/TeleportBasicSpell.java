@@ -24,10 +24,15 @@ public class TeleportBasicSpell extends SpellBase
 	}
 	
 	@Override
-	public boolean fireSpell(World world, EntityPlayer player)
+	public void fireSpell(World world, EntityPlayer player)
 	{
 		EntityProjectileSpellBase projectile = new EntityProjectileSpellTeleportBasic(world, player);
 		putProjectileInWorld(world, player, projectile);
+	}
+	
+	@Override
+	public boolean canCast(World world, EntityPlayer player)
+	{
 		return true;
 	}
 	

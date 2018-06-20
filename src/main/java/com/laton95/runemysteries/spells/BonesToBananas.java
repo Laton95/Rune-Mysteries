@@ -17,6 +17,8 @@ import java.util.List;
 
 public class BonesToBananas extends SpellBase
 {
+	private int effectRadius = 5;
+	
 	private final static List<SpellCost> costs = ImmutableList.of(
 			new SpellCost(ModItems.RUNE, 2, ItemRune.EnumRuneType.WATER.ordinal()),
 			new SpellCost(ModItems.RUNE, 2, ItemRune.EnumRuneType.EARTH.ordinal()),
@@ -29,7 +31,7 @@ public class BonesToBananas extends SpellBase
 	}
 	
 	@Override
-	public boolean fireSpell(World world, EntityPlayer player)
+	public void fireSpell(World world, EntityPlayer player)
 	{
 		for (int i = 0; i < player.inventory.getSizeInventory(); i++)
 		{
@@ -39,9 +41,7 @@ public class BonesToBananas extends SpellBase
 				player.inventory.setInventorySlotContents(i, bananas);
 			}
 		}
-		
-		int radius = 5;
-		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(player.posX - radius, player.posY - radius, player.posZ - radius, player.posX + radius, player.posY + radius, player.posZ + radius));
+		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(player.posX - effectRadius, player.posY - effectRadius, player.posZ - effectRadius, player.posX + effectRadius, player.posY + effectRadius, player.posZ + effectRadius));
 		
 		for (EntityItem item : items)
 		{
@@ -51,7 +51,29 @@ public class BonesToBananas extends SpellBase
 				item.setItem(bananas);
 			}
 		}
+	}
+	
+	@Override
+	public boolean canCast(World world, EntityPlayer player)
+	{
+		for (int i = 0; i < player.inventory.getSizeInventory(); i++)
+		{
+			if (player.inventory.getStackInSlot(i).getItem() == Items.BONE)
+			{
+				return true;
+			}
+		}
 		
-		return  true;
+		List<EntityItem> items = world.getEntitiesWithinAABB(EntityItem.class, new AxisAlignedBB(player.posX - effectRadius, player.posY - effectRadius, player.posZ - effectRadius, player.posX + effectRadius, player.posY + effectRadius, player.posZ + effectRadius));
+		
+		for (EntityItem item : items)
+		{
+			if (item.getItem().getItem() == Items.BONE)
+			{
+				return true;
+			}
+		}
+		
+		return false;
 	}
 }

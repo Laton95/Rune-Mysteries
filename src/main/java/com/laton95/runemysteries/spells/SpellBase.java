@@ -29,7 +29,9 @@ public abstract class SpellBase
 	/*
 	 * Fires the selected spell, always check for remote world before calling this
 	 * */
-	public abstract boolean fireSpell(World world, EntityPlayer player);
+	public abstract void fireSpell(World world, EntityPlayer player);
+	
+	public abstract boolean canCast(World world, EntityPlayer player);
 	
 	protected void putProjectileInWorld(World world, EntityPlayer player, EntityModThrowable spellProjectile)
 	{

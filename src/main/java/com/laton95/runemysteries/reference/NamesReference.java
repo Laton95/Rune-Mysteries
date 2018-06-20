@@ -17,6 +17,8 @@ public final class NamesReference
 		public static final String ALTAR_INTERACT = "tile.runemysteries:altar_entrance.rightClick";
 		
 		public static final String MONOLITH_INTERACT = "tile.runemysteries:black_monolith.rightClick";
+		
+		public static final String ELDER_STONE_INTERACT = "tile.runemysteries:elder_stone.rightClick";
 	}
 	
 	public static final class Talisman
@@ -50,6 +52,7 @@ public final class NamesReference
 	{
 		
 		public static final String NO_RUNES = "item.runemysteries.spellbook.norunes";
+		public static final String SPELL_FAIL = "item.runemysteries.spellbook.spellFail";
 		public static final String COST_BUTTON = "gui.runemysteries.button.extraCosts";
 	}
 	

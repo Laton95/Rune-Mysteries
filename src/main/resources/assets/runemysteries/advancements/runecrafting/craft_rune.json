@@ -14,13 +14,7 @@
   "parent": "runemysteries:runecrafting/altar",
   "criteria": {
     "craft_rune": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "item": "runemysteries:rune",
-          "data": 14
-        }
-      }
+      "trigger": "runemysteries:craft_rune"
     }
   }
-}}
+}

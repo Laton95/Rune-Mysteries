@@ -19,13 +19,7 @@
   "parent": "runemysteries:runecrafting/craft_rune",
   "criteria": {
     "craft_rune": {
-      "trigger": "minecraft:consume_item",
-      "conditions": {
-        "item": {
-          "item": "runemysteries:rune_altar",
-          "data": 14
-        }
-      }
+      "trigger": "runemysteries:ourania"
     }
   }
-}}
+}

@@ -26,12 +26,16 @@ public class ExplosionSpell extends SpellBase
 	}
 	
 	@Override
-	public boolean fireSpell(World world, EntityPlayer player)
+	public void fireSpell(World world, EntityPlayer player)
 	{
 		EntityProjectileSpellExplosive projectile = new EntityProjectileSpellExplosive(world, player);
 		projectile.setExplosivePower(2);
 		putProjectileInWorld(world, player, projectile);
-		
+	}
+	
+	@Override
+	public boolean canCast(World world, EntityPlayer player)
+	{
 		return true;
 	}
 	

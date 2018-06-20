@@ -42,6 +42,7 @@ public class ModBlocks
 	public static final RMModRail SANDSTONE_RAIL = new RMModRail("sandstone_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	public static final BlockParticleLight PARTICLE_LIGHT = new BlockParticleLight("particle_Light", Material.BARRIER, 0f, 0f, "pickaxe", 0, true);
 	public static final BlockBlackMonolith BLACK_MONOLITH = new BlockBlackMonolith();
+	public static final BlockElderStone ELDER_STONE = new BlockElderStone();
 	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -71,7 +72,9 @@ public class ModBlocks
 				QUARTZ_RAIL,
 				SANDSTONE_RAIL,
 				PARTICLE_LIGHT,
-				BLACK_MONOLITH};
+				BLACK_MONOLITH,
+				ELDER_STONE
+		};
 		
 		for (Block block : blocks)
 		{

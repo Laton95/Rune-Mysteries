@@ -1,8 +1,12 @@
 package com.laton95.runemysteries.block;
 
+import com.laton95.runemysteries.advancement.triggers.Triggers;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.init.ModLoot;
+import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
+import com.laton95.runemysteries.potion.PotionStonetoucher;
+import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
@@ -75,68 +79,72 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	@Override
 	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
 	{
-		if (entityIn instanceof EntityItem)
+		if (entityIn instanceof EntityItem && !worldIn.isRemote)
 		{
 			ItemStack stack = ((EntityItem) entityIn).getItem();
 			boolean isOurania = getMetaFromState(state) == EnumRuneType.ESSENCE.ordinal();
+			int altarData  = getMetaFromState(state);
+			
 			if (stack.getItem() == ModItems.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 			{
-				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getMetaFromState(state), isOurania);
-			}
-			
-			if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal() && !isOurania)
-			{
-				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, getMetaFromState(state), isOurania);
-			}
-			
-			if (stack.getItem() == Items.BOOK)
-			{
-				giveAdvancements((EntityItem) entityIn, worldIn, isOurania);
-				spawnItem(worldIn, (EntityItem) entityIn, ModItems.SPELLBOOK, 0, isOurania);
-			}
-		}
-	}
-	
-	private void giveAdvancements(EntityItem entityIn, World worldIn, boolean isOurania)
-	{
-		String thrower = entityIn.getThrower();
-		if (thrower != null)
-		{
-			EntityPlayer player = worldIn.getPlayerEntityByName(thrower);
-			if (player instanceof EntityPlayerMP)
-			{
-				if (entityIn.getItem().getItem() == ModItems.RUNE && entityIn.getItem().getItemDamage() == EnumRuneType.ESSENCE.ordinal())
-				{
-					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(ModItems.RUNE, 1, EnumRuneType.ESSENCE.ordinal()));
-				}
-				
+				ItemStack newStack;
 				if (isOurania)
 				{
-					CriteriaTriggers.CONSUME_ITEM.trigger((EntityPlayerMP) player, new ItemStack(Item.getItemFromBlock(this), 1, EnumRuneType.ESSENCE.ordinal()));
+					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getRandomRune(worldIn).getMetadata(), isOurania);
+				} else
+				{
+					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, altarData, isOurania);
 				}
+			}
+			else if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+			{
+				changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, altarData, isOurania);
+			}
+			else if (stack.getItem() == Items.BOOK)
+			{
+				changeItem(worldIn, (EntityItem) entityIn, ModItems.SPELLBOOK, 0, isOurania);
 			}
 		}
 	}
 	
-	private void spawnItem(World worldIn, EntityItem entityIn, Item item, int metadata, boolean isOurania)
+	private void changeItem(World worldIn, EntityItem entityItem, Item item, int metadata, boolean isOurania)
 	{
-		while (entityIn.getItem().getCount() > 0)
+		if (!worldIn.isRemote)
 		{
-			ItemStack itemstack;
-			if (isOurania)
+			LogHelper.info("making item");
+			
+			int bonusRunes = 0;
+			
+			String playerName = entityItem.getThrower();
+			if (playerName != null)
 			{
-				itemstack = getRandomRune(worldIn);
-			} else
-			{
-				itemstack = new ItemStack(item, 1, metadata);
+				EntityPlayer player = worldIn.getPlayerEntityByName(playerName);
+
+				Triggers.CRAFT_RUNE.trigger((EntityPlayerMP) player);
+
+				if (isOurania) Triggers.OURANIA.trigger((EntityPlayerMP) player);
+
+				if (ModPotions.STONETOUCHER.hasEffect(player))
+				{
+					bonusRunes = entityItem.getItem().getCount();
+				}
 			}
 			
-			spawnAsEntity(worldIn, entityIn.getPosition(), itemstack);
-			entityIn.getItem().setCount(entityIn.getItem().getCount() - 1);
+			int count = entityItem.getItem().getCount() + bonusRunes;
+			
+			entityItem.setItem(new ItemStack(item, 1, metadata));
+			entityItem.setDead();
+			
+			while (count > 0)
+			{
+				if (isOurania && item.getHasSubtypes()) metadata = getRandomRune(worldIn).getMetadata();
+				ItemStack newStack = new ItemStack(item, 1, metadata);
+				EntityItem newItem = new EntityItem(worldIn, entityItem.posX, entityItem.posY, entityItem.posZ);
+				newItem.setItem(newStack);
+				worldIn.spawnEntity(newItem);
+				count--;
+			}
 		}
-		entityIn.setDead();
 	}
 	
 	@Override

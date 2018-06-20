@@ -1,20 +1,19 @@
 {
   "textures": {
-    "sides": "runemysteries:blocks/black_monolith",
-    "front": "runemysteries:blocks/black_monolith_front",
-    "particle": "runemysteries:blocks/black_monolith"
+    "sides": "runemysteries:blocks/elder_stone",
+    "particle": "runemysteries:blocks/elder_stone"
   },
   "elements": [
     {
       "from": [
         2,
         0,
-        6
+        2
       ],
       "to": [
-        14,
         16,
-        10
+        16,
+        16
       ],
       "faces": {
         "up": {
@@ -24,7 +23,7 @@
           "texture": "#sides"
         },
         "north": {
-          "texture": "#front"
+          "texture": "#sides"
         },
         "south": {
           "texture": "#sides"

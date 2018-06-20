@@ -28,7 +28,7 @@ public class FollowingSpell extends SpellBase
 	}
 	
 	@Override
-	public boolean fireSpell(World world, EntityPlayer player)
+	public void fireSpell(World world, EntityPlayer player)
 	{
 		double radius = 20;
 		RayTraceResult test = player.rayTrace(200, 1.0f);
@@ -42,10 +42,12 @@ public class FollowingSpell extends SpellBase
 		{
 			EntityProjectileSpellBase projectile = new EntityProjectileSpellFollowing(world, player, target);
 			putProjectileInWorld(world, player, projectile);
-			return true;
-		} else
-		{
-			return false;
 		}
+	}
+	
+	@Override
+	public boolean canCast(World world, EntityPlayer player)
+	{
+		return true;
 	}
 }
