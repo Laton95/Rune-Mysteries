@@ -36,39 +36,9 @@ public class CosmicDimension extends WorldProvider
 	}
 	
 	@Override
-	public IRenderHandler getSkyRenderer()
+	public IChunkGenerator createChunkGenerator()
 	{
-		return super.getSkyRenderer();
-	}
-	
-	@Override
-	public float getSunBrightness(float par1)
-	{
-		return 0;
-	}
-	
-	@Override
-	public IRenderHandler getCloudRenderer()
-	{
-		return clouds;
-	}
-	
-	@Override
-	public DimensionType getDimensionType()
-	{
-		return ModDimensions.COSMIC;
-	}
-	
-	@Override
-	public float getCloudHeight()
-	{
-		return 0f;
-	}
-	
-	@Override
-	public boolean isSurfaceWorld()
-	{
-		return true;
+		return new ChunkGeneratorCosmic(world, world.getSeed());
 	}
 	
 	@Override
@@ -78,26 +48,7 @@ public class CosmicDimension extends WorldProvider
 	}
 	
 	@Override
-	public boolean canRespawnHere()
-	{
-		return false;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int x, int z)
-	{
-		return false;
-	}
-	
-	@Override
-	public long getWorldTime()
-	{
-		return 18000;
-	}
-	
-	@Override
-	public boolean isDaytime()
+	public boolean isSurfaceWorld()
 	{
 		return true;
 	}
@@ -115,9 +66,58 @@ public class CosmicDimension extends WorldProvider
 	}
 	
 	@Override
-	public IChunkGenerator createChunkGenerator()
+	public boolean canRespawnHere()
 	{
-		return new ChunkGeneratorCosmic(world, world.getSeed());
+		return false;
+	}
+	
+	@Override
+	public float getCloudHeight()
+	{
+		return 0f;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean doesXZShowFog(int x, int z)
+	{
+		return false;
+	}
+	
+	@Override
+	public IRenderHandler getSkyRenderer()
+	{
+		return super.getSkyRenderer();
+	}
+	
+	@Override
+	public IRenderHandler getCloudRenderer()
+	{
+		return clouds;
+	}
+	
+	@Override
+	public boolean isDaytime()
+	{
+		return true;
+	}
+	
+	@Override
+	public float getSunBrightness(float par1)
+	{
+		return 0;
+	}
+	
+	@Override
+	public long getWorldTime()
+	{
+		return 18000;
+	}
+	
+	@Override
+	public DimensionType getDimensionType()
+	{
+		return ModDimensions.COSMIC;
 	}
 	
 	private class NoClouds extends IRenderHandler

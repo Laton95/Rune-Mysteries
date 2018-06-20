@@ -27,6 +27,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 {
 	
 	private static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	
 	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltarEntrance()
@@ -36,9 +37,9 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState()
+	public IBlockState getStateFromMeta(int meta)
 	{
-		return new BlockStateContainer(this, TYPE);
+		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
 	}
 	
 	@Override
@@ -46,48 +47,6 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	{
 		EnumRuneType type = state.getValue(TYPE);
 		return type.ordinal();
-	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
-	}
-	
-	@Override
-	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
-	{
-		for (int i = 0; i < EnumRuneType.values().length; i++)
-		{
-			if (i != EnumRuneType.ASTRAL.ordinal() && i != EnumRuneType.ESSENCE.ordinal())
-			{
-				items.add(new ItemStack(this, 1, i));
-			}
-		}
-	}
-	
-	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		if (!worldIn.isRemote)
-		{
-			new ItemStack(ModItems.RUNE_TALISMAN, 1, getMetaFromState(state));
-			if (playerIn.getHeldItemMainhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
-			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_ENTER));
-				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
-			} else
-			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_INTERACT));
-			}
-		}
-		return true;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
 	}
 	
 	@Override
@@ -103,9 +62,46 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	}
 	
 	@Override
-	public String getSpecialName(ItemStack stack)
+	public boolean isOpaqueCube(IBlockState state)
 	{
-		return EnumRuneType.values()[stack.getItemDamage()].toString();
+		return false;
+	}
+	
+	@Override
+	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
+	{
+		if(!worldIn.isRemote)
+		{
+			new ItemStack(ModItems.RUNE_TALISMAN, 1, getMetaFromState(state));
+			if(playerIn.getHeldItemMainhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
+			{
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_ENTER));
+				TeleportHelper.teleportEntity(playerIn, getDimIDFromState(state), 2, 87, 2);
+			}
+			else
+			{
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_INTERACT));
+			}
+		}
+		return true;
+	}
+	
+	@Override
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
+	{
+		for(int i = 0; i < EnumRuneType.values().length; i++)
+		{
+			if(i != EnumRuneType.ASTRAL.ordinal() && i != EnumRuneType.ESSENCE.ordinal())
+			{
+				items.add(new ItemStack(this, 1, i));
+			}
+		}
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, TYPE);
 	}
 	
 	@Override
@@ -116,7 +112,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	
 	private int getDimIDFromState(IBlockState state)
 	{
-		switch (EnumRuneType.values()[getMetaFromState(state)])
+		switch(EnumRuneType.values()[getMetaFromState(state)])
 		{
 			case AIR:
 				return ModConfig.DIMENSIONS.airTempleDimID;
@@ -147,5 +143,11 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 			default:
 				return 0;
 		}
+	}
+	
+	@Override
+	public String getSpecialName(ItemStack stack)
+	{
+		return EnumRuneType.values()[stack.getItemDamage()].toString();
 	}
 }

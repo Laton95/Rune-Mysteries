@@ -23,8 +23,11 @@ public class ComponentSoulAltar extends StructureComponent
 {
 	
 	private String name;
+	
 	private String room;
+	
 	private int depth;
+	
 	private boolean generated = false;
 	
 	public ComponentSoulAltar()
@@ -40,11 +43,25 @@ public class ComponentSoulAltar extends StructureComponent
 	}
 	
 	@Override
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
-		if (!generated && !altar.isGenerated())
+		if(!generated && !altar.isGenerated())
 		{
 			LogHelper.info("Generating altar");
 			StructureBoundingBox bBox = boundingBox;
@@ -64,16 +81,17 @@ public class ComponentSoulAltar extends StructureComponent
 			structureHelper = new StructureHelper(worldIn, name, pos3);
 			structureHelper.generate();
 			
-			for (int i = 0; i < depth - 4; i++)
+			for(int i = 0; i < depth - 4; i++)
 			{
-				if (i > 0)
+				if(i > 0)
 				{
 					worldIn.setBlockState(pos.add(2, -i + 1, 2), Blocks.LADDER.getDefaultState().withRotation(Rotation.CLOCKWISE_90));
 					worldIn.setBlockState(pos.add(3, -i + 1, 2), Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.SMOOTH), 0);
 					worldIn.setBlockState(pos.add(1, -i + 1, 2), Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.SMOOTH), 0);
 					worldIn.setBlockState(pos.add(2, -i + 1, 3), Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.SMOOTH), 0);
 					worldIn.setBlockState(pos.add(2, -i + 1, 1), Blocks.SANDSTONE.getDefaultState().withProperty(BlockSandStone.TYPE, BlockSandStone.EnumType.SMOOTH), 0);
-				} else
+				}
+				else
 				{
 					worldIn.setBlockState(pos.add(2, -i + 1, 2), Blocks.WATER.getDefaultState());
 				}
@@ -89,17 +107,14 @@ public class ComponentSoulAltar extends StructureComponent
 		return true;
 	}
 	
-	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	public void offsetToAverageGroundLevel(World worldIn, int i)
 	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
-	{
-		// TODO Auto-generated method stub
+		int groundLevel = getAverageGroundLevel(worldIn);
+		if(groundLevel < 0)
+		{
+			return;
+		}
+		boundingBox.offset(0, groundLevel - boundingBox.maxY + 2, 0);
 		
 	}
 	
@@ -109,9 +124,9 @@ public class ComponentSoulAltar extends StructureComponent
 		int j = 0;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		
-		for (int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
+		for(int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
 		{
-			for (int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
+			for(int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
 			{
 				blockpos$mutableblockpos.setPos(l, 64, k);
 				i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel() - 1);
@@ -119,23 +134,13 @@ public class ComponentSoulAltar extends StructureComponent
 			}
 		}
 		
-		if (j == 0)
+		if(j == 0)
 		{
 			return -1;
-		} else
+		}
+		else
 		{
 			return i / j;
 		}
-	}
-	
-	public void offsetToAverageGroundLevel(World worldIn, int i)
-	{
-		int groundLevel = getAverageGroundLevel(worldIn);
-		if (groundLevel < 0)
-		{
-			return;
-		}
-		boundingBox.offset(0, groundLevel - boundingBox.maxY + 2, 0);
-		
 	}
 }

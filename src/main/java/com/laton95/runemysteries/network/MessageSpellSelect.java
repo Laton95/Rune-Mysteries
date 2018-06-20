@@ -35,23 +35,24 @@ public class MessageSpellSelect extends RMModMessageBase<MessageSpellSelect>
 	}
 	
 	@Override
-	public void handleClientSide(MessageSpellSelect message, EntityPlayer player)
-	{
-
-	}
-	
-	@Override
 	public void handleServerSide(MessageSpellSelect message, EntityPlayer player)
 	{
 		ItemStack spellbook = player.getHeldItemMainhand();
 		ItemStack spellbook2 = player.getHeldItemOffhand();
-		if (spellbook.getItem() instanceof ItemSpellbook)
+		if(spellbook.getItem() instanceof ItemSpellbook)
 		{
 			ItemNBTHelper.setSpell(spellbook, Spells.spellList.get(message.spellID));
-		} else if (spellbook2.getItem() instanceof ItemSpellbook)
+		}
+		else if(spellbook2.getItem() instanceof ItemSpellbook)
 		{
 			ItemNBTHelper.setSpell(spellbook2, Spells.spellList.get(message.spellID));
 		}
+	}
+	
+	@Override
+	public void handleClientSide(MessageSpellSelect message, EntityPlayer player)
+	{
+	
 	}
 	
 }

@@ -9,45 +9,59 @@ public class ModDimensions
 {
 	
 	public static int airDimID;
+	
 	public static DimensionType AIR;
 	
 	public static int bloodDimID;
+	
 	public static DimensionType BLOOD;
 	
 	public static int bodyDimID;
+	
 	public static DimensionType BODY;
 	
 	public static int chaosDimID;
+	
 	public static DimensionType CHAOS;
 	
 	public static int cosmicDimID;
+	
 	public static DimensionType COSMIC;
 	
 	public static int deathDimID;
+	
 	public static DimensionType DEATH;
 	
 	public static int earthDimID;
+	
 	public static DimensionType EARTH;
 	
 	public static int fireDimID;
+	
 	public static DimensionType FIRE;
 	
 	public static int lawDimID;
+	
 	public static DimensionType LAW;
 	
 	public static int mindDimID;
+	
 	public static DimensionType MIND;
 	
 	public static int natureDimID;
+	
 	public static DimensionType NATURE;
 	
 	public static int soulDimID;
+	
 	public static DimensionType SOUL;
 	
 	public static int waterDimID;
+	
 	public static DimensionType WATER;
 	
 	public static int mineDimID;
+	
 	public static DimensionType MINE;
 	
 	public static void registerDimensions()
@@ -56,14 +70,12 @@ public class ModDimensions
 		AIR = DimensionType.register("air_temple", "_air", airDimID, AirDimension.class, false);
 		
 		bloodDimID = ModConfig.DIMENSIONS.bloodTempleDimID;
-		;
 		BLOOD = DimensionType.register("blood_temple", "_blood", bloodDimID, BloodDimension.class, false);
 		
 		bodyDimID = ModConfig.DIMENSIONS.bodyTempleDimID;
 		BODY = DimensionType.register("body_temple", "_body", bodyDimID, BodyDimension.class, false);
 		
 		chaosDimID = ModConfig.DIMENSIONS.chaosTempleDimID;
-		;
 		CHAOS = DimensionType.register("chaos_temple", "_chaos", chaosDimID, ChaosDimension.class, false);
 		
 		cosmicDimID = ModConfig.DIMENSIONS.cosmicTempleDimID;

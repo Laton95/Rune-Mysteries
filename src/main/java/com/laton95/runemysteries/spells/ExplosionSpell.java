@@ -18,7 +18,7 @@ public class ExplosionSpell extends SpellBase
 	private final static List<SpellCost> costs = ImmutableList.of(
 			new SpellCost(ModItems.RUNE, 1, ItemRune.EnumRuneType.CHAOS.ordinal()),
 			new SpellCost(ModItems.RUNE, 3, ItemRune.EnumRuneType.FIRE.ordinal())
-			);
+																 );
 	
 	public ExplosionSpell()
 	{

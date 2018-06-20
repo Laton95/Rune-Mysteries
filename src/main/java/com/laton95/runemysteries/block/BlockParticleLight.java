@@ -26,21 +26,15 @@ public class BlockParticleLight extends RMModBlock
 	}
 	
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 	
 	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
 	{
-		return BoundingBox;
+		return true;
 	}
 	
 	@Override
@@ -50,15 +44,21 @@ public class BlockParticleLight extends RMModBlock
 	}
 	
 	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
+	{
+		return BoundingBox;
+	}
+	
+	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
 	
 	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+	public boolean isOpaqueCube(IBlockState state)
 	{
-		return true;
+		return false;
 	}
 	
 	@SideOnly(Side.CLIENT)

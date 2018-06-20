@@ -21,21 +21,21 @@ public class EntityProjectileSpellExplosive extends EntityProjectileSpellBase
 	}
 	
 	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.EXPLOSION_HUGE;
+	}
+	
+	@Override
 	public void onImpact(RayTraceResult result)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
 			world.createExplosion(getThrower(), posX, posY, posZ, power, true);
 			setDead();
 		}
 		
 		super.onImpact(result);
-	}
-	
-	@Override
-	protected EnumParticleTypes getImpactParticles()
-	{
-		return EnumParticleTypes.EXPLOSION_HUGE;
 	}
 	
 	@Override

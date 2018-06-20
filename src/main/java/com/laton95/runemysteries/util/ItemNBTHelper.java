@@ -18,10 +18,23 @@ public class ItemNBTHelper
 	
 	public static void removeTag(ItemStack itemStack, String keyName)
 	{
-		if (itemStack.hasTagCompound())
+		if(itemStack.hasTagCompound())
 		{
 			itemStack.getTagCompound().removeTag(keyName);
 		}
+	}
+	
+	// String
+	public static String getString(ItemStack itemStack, String keyName)
+	{
+		initNBTTagCompound(itemStack);
+		
+		if(!itemStack.getTagCompound().hasKey(keyName))
+		{
+			setString(itemStack, keyName, "");
+		}
+		
+		return itemStack.getTagCompound().getString(keyName);
 	}
 	
 	/**
@@ -32,30 +45,10 @@ public class ItemNBTHelper
 	 */
 	private static void initNBTTagCompound(ItemStack itemStack)
 	{
-		if (!itemStack.hasTagCompound())
+		if(!itemStack.hasTagCompound())
 		{
 			itemStack.setTagCompound(new NBTTagCompound());
 		}
-	}
-	
-	public static void setLong(ItemStack itemStack, String keyName, long keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setLong(keyName, keyValue);
-	}
-	
-	// String
-	public static String getString(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if (!itemStack.getTagCompound().hasKey(keyName))
-		{
-			setString(itemStack, keyName, "");
-		}
-		
-		return itemStack.getTagCompound().getString(keyName);
 	}
 	
 	public static void setString(ItemStack itemStack, String keyName, String keyValue)
@@ -70,7 +63,7 @@ public class ItemNBTHelper
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setBoolean(itemStack, keyName, defaultValue);
 		}
@@ -97,7 +90,7 @@ public class ItemNBTHelper
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setByte(itemStack, keyName, (byte) 0);
 		}
@@ -117,7 +110,7 @@ public class ItemNBTHelper
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setShort(itemStack, keyName, (short) 0);
 		}
@@ -132,32 +125,12 @@ public class ItemNBTHelper
 		itemStack.getTagCompound().setShort(keyName, keyValue);
 	}
 	
-	// int
-	public static int getInt(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if (!itemStack.getTagCompound().hasKey(keyName))
-		{
-			setInteger(itemStack, keyName, 0);
-		}
-		
-		return itemStack.getTagCompound().getInteger(keyName);
-	}
-	
-	public static void setInteger(ItemStack itemStack, String keyName, int keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setInteger(keyName, keyValue);
-	}
-	
 	// long
 	public static long getLong(ItemStack itemStack, String keyName)
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setLong(itemStack, keyName, 0);
 		}
@@ -165,12 +138,19 @@ public class ItemNBTHelper
 		return itemStack.getTagCompound().getLong(keyName);
 	}
 	
+	public static void setLong(ItemStack itemStack, String keyName, long keyValue)
+	{
+		initNBTTagCompound(itemStack);
+		
+		itemStack.getTagCompound().setLong(keyName, keyValue);
+	}
+	
 	// float
 	public static float getFloat(ItemStack itemStack, String keyName)
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setFloat(itemStack, keyName, 0);
 		}
@@ -190,7 +170,7 @@ public class ItemNBTHelper
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey(keyName))
+		if(!itemStack.getTagCompound().hasKey(keyName))
 		{
 			setDouble(itemStack, keyName, 0);
 		}
@@ -210,16 +190,17 @@ public class ItemNBTHelper
 	{
 		initNBTTagCompound(itemStack);
 		
-		if (!itemStack.getTagCompound().hasKey("spell"))
+		if(!itemStack.getTagCompound().hasKey("spell"))
 		{
 			setSpell(itemStack, Spells.NONE_SPELL);
 		}
 		
 		int spellID = ItemNBTHelper.getInt(itemStack, "spell");
-		if (spellID >= 0)
+		if(spellID >= 0)
 		{
 			return Spells.spellList.get(spellID);
-		} else
+		}
+		else
 		{
 			return Spells.NONE_SPELL;
 		}
@@ -231,5 +212,25 @@ public class ItemNBTHelper
 		initNBTTagCompound(itemStack);
 		
 		itemStack.getTagCompound().setInteger("spell", Spells.spellList.indexOf(spell));
+	}
+	
+	// int
+	public static int getInt(ItemStack itemStack, String keyName)
+	{
+		initNBTTagCompound(itemStack);
+		
+		if(!itemStack.getTagCompound().hasKey(keyName))
+		{
+			setInteger(itemStack, keyName, 0);
+		}
+		
+		return itemStack.getTagCompound().getInteger(keyName);
+	}
+	
+	public static void setInteger(ItemStack itemStack, String keyName, int keyValue)
+	{
+		initNBTTagCompound(itemStack);
+		
+		itemStack.getTagCompound().setInteger(keyName, keyValue);
 	}
 }

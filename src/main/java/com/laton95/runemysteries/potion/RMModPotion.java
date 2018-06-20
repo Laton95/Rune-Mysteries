@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.potion;
 
 import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -26,11 +25,13 @@ public class RMModPotion extends Potion
 		this.texture = texture;
 	}
 	
-	public boolean hasEffect(EntityLivingBase entity) {
+	public boolean hasEffect(EntityLivingBase entity)
+	{
 		return hasEffect(entity, this);
 	}
 	
-	public boolean hasEffect(EntityLivingBase entity, Potion potion) {
+	public boolean hasEffect(EntityLivingBase entity, Potion potion)
+	{
 		return entity.getActivePotionEffect(potion) != null;
 	}
 	
@@ -59,7 +60,8 @@ public class RMModPotion extends Potion
 	}
 	
 	@SideOnly(Side.CLIENT)
-	private void render(int x, int y, float alpha) {
+	private void render(int x, int y, float alpha)
+	{
 		Minecraft.getMinecraft().renderEngine.bindTexture(texture);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder buf = tessellator.getBuffer();

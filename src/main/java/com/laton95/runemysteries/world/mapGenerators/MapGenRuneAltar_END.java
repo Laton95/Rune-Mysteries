@@ -24,7 +24,7 @@ public class MapGenRuneAltar_END extends MapGenStructure
 	
 	public MapGenRuneAltar_END()
 	{
-		runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
+		runeAltarSpawnList = Lists.newArrayList();
 	}
 	
 	@Override
@@ -34,27 +34,28 @@ public class MapGenRuneAltar_END extends MapGenStructure
 	}
 	
 	@Override
+	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
+	{
+		return null;
+	}
+	
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
-		if (WorldGenerator.altarTracker != null)
+		if(WorldGenerator.altarTracker != null)
 		{
-			if (!WorldGenerator.altarTracker.endAltarsFound)
+			if(!WorldGenerator.altarTracker.endAltarsFound)
 			{
 				WorldGenerator.altarTracker.findEndLocations(world);
 			}
-		} else
+		}
+		else
 		{
 			WorldGenerator.altarTracker = new AltarTracker();
 			WorldGenerator.altarTracker.findEndLocations(world);
 		}
 		
 		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), 1, AltarTracker.Type.END);
-	}
-	
-	@Override
-	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
-	{
-		return null;
 	}
 	
 	@Override
@@ -86,7 +87,7 @@ public class MapGenRuneAltar_END extends MapGenStructure
 			
 			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar("cosmic_altar");
 			
-			if (altar != null && !altar.isPlaced())
+			if(altar != null && !altar.isPlaced())
 			{
 				StructureBoundingBox bBox;
 				int randX = random.nextInt(4) + 1;
@@ -96,7 +97,7 @@ public class MapGenRuneAltar_END extends MapGenStructure
 				ComponentEndAltar componentRuneAltar = new ComponentEndAltar(random, chunkX * 16 + randX, chunkZ * 16 + randZ, altar.getName());
 				bBox = componentRuneAltar.getBoundingBox();
 				
-				if (!isFloating)
+				if(!isFloating)
 				{
 					componentRuneAltar.offsetToAverageGroundLevel(worldIn, bBox, -1);
 				}

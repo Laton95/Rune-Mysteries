@@ -14,7 +14,7 @@ public class EntityHelper
 	@SubscribeEvent
 	public static void livingDeathHandler(LivingDeathEvent event)
 	{
-		if (event.getEntity() instanceof EntityWither && !event.getEntity().world.isRemote)
+		if(event.getEntity() instanceof EntityWither && !event.getEntity().world.isRemote)
 		{
 			event.getEntity().entityDropItem(new ItemStack(ModItems.RUNE_TALISMAN, 1, 6), 0);
 		}

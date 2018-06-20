@@ -12,17 +12,6 @@ public class RMModItem extends Item
 	
 	private Class<? extends Enum<?>> values;
 	
-	public RMModItem(String name, boolean showInCreative)
-	{
-		super();
-		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
-		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative)
-		{
-			setCreativeTab(RMModCreativeTab.RM_TAB);
-		}
-	}
-	
 	public RMModItem(String name, boolean showInCreative, Class<? extends Enum<?>> values)
 	{
 		this(name, showInCreative);
@@ -30,37 +19,50 @@ public class RMModItem extends Item
 		this.values = values;
 	}
 	
-	@Override
-	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+	public RMModItem(String name, boolean showInCreative)
 	{
-		if (hasSubtypes && values != null && tab == getCreativeTab())
+		super();
+		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
+		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
+		if(showInCreative)
 		{
-			for (int i = 0; i < values.getEnumConstants().length; i++)
-			{
-				items.add(new ItemStack(this, 1, i));
-			}
-		} else
-		{
-			super.getSubItems(tab, items);
+			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}
 	}
 	
 	@Override
 	public String getUnlocalizedName(ItemStack stack)
 	{
-		if (hasSubtypes && values != null)
+		if(hasSubtypes && values != null)
 		{
-			for (int i = 0; i < values.getEnumConstants().length; i++)
+			for(int i = 0; i < values.getEnumConstants().length; i++)
 			{
-				if (stack.getItemDamage() == i)
+				if(stack.getItemDamage() == i)
 				{
 					return this.getUnlocalizedName() + "." + values.getEnumConstants()[i];
 				}
 			}
 			return this.getUnlocalizedName() + "." + values.getEnumConstants()[0];
-		} else
+		}
+		else
 		{
 			return super.getUnlocalizedName();
+		}
+	}
+	
+	@Override
+	public void getSubItems(CreativeTabs tab, NonNullList<ItemStack> items)
+	{
+		if(hasSubtypes && values != null && tab == getCreativeTab())
+		{
+			for(int i = 0; i < values.getEnumConstants().length; i++)
+			{
+				items.add(new ItemStack(this, 1, i));
+			}
+		}
+		else
+		{
+			super.getSubItems(tab, items);
 		}
 	}
 	

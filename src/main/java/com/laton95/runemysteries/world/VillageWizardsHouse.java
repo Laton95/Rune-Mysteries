@@ -25,11 +25,12 @@ public class VillageWizardsHouse extends Village
 {
 	
 	private EnumFacing facing;
+
 	private int groundLevel = -1;
 	
 	public VillageWizardsHouse()
 	{
-	
+
 	}
 	
 	public VillageWizardsHouse(Start villagePiece, int par2, Random par3Random, StructureBoundingBox par4StructureBoundingBox, EnumFacing facing)
@@ -43,20 +44,20 @@ public class VillageWizardsHouse extends Village
 	@Override
 	public boolean addComponentParts(World worldIn, Random rand, StructureBoundingBox structureBoundingBoxIn)
 	{
-		if (groundLevel < 0)
+		if(groundLevel < 0)
 		{
 			
 			groundLevel = getAverageGroundLevel(worldIn, boundingBox);
-			if (groundLevel < 0)
+			if(groundLevel < 0)
 			{
 				return true;
 			}
 			boundingBox.offset(0, groundLevel - boundingBox.maxY + 5, 0);
 			BlockPos pos = new BlockPos(boundingBox.minX, boundingBox.minY, boundingBox.minZ);
 			PlacementSettings settings = new PlacementSettings().setBoundingBox(boundingBox).setReplacedBlock(Blocks.STRUCTURE_VOID);
-			if (facing != null)
+			if(facing != null)
 			{
-				switch (facing)
+				switch(facing)
 				{
 					case NORTH:
 						settings.setRotation(Rotation.COUNTERCLOCKWISE_90);
@@ -80,9 +81,9 @@ public class VillageWizardsHouse extends Village
 			LogHelper.info(pos + " " + facing);
 			spawnVillagers(worldIn, boundingBox, 5, 2, 5, 2);
 			
-			for (int x = boundingBox.minX; x <= boundingBox.maxX; x++)
+			for(int x = boundingBox.minX; x <= boundingBox.maxX; x++)
 			{
-				for (int z = boundingBox.minZ; z <= boundingBox.maxZ; z++)
+				for(int z = boundingBox.minZ; z <= boundingBox.maxZ; z++)
 				{
 					worldIn.setBlockState(new BlockPos(x, 20, z), Blocks.GLASS.getDefaultState());
 				}

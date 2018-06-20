@@ -32,9 +32,22 @@ public class ComponentCosmicTemple extends StructureComponent
 	}
 	
 	@Override
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
+		// TODO Auto-generated method stub
+	}
+	
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
-		if (!generated)
+		if(!generated)
 		{
 			StructureBoundingBox bBox = boundingBox;
 			structureBoundingBoxIn = boundingBox;
@@ -42,40 +55,51 @@ public class ComponentCosmicTemple extends StructureComponent
 			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
 			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
 			StructureHelper structureHelper = new StructureHelper(worldIn, "cosmic_temple_se", pos);
-			if (bBox.minX / 16 == 0 && bBox.minZ / 16 == 0)
+			if(bBox.minX / 16 == 0 && bBox.minZ / 16 == 0)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_se", pos);
-			} else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == 0)
+			}
+			else if(bBox.minX / 16 == -1 && bBox.minZ / 16 == 0)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_sw", pos);
-			} else if (bBox.minX / 16 == 0 && bBox.minZ / 16 == -1)
+			}
+			else if(bBox.minX / 16 == 0 && bBox.minZ / 16 == -1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_ne", pos);
-			} else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == -1)
+			}
+			else if(bBox.minX / 16 == -1 && bBox.minZ / 16 == -1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_nw", pos);
-			} else if (bBox.minX / 16 == -2 && bBox.minZ / 16 == 0)
+			}
+			else if(bBox.minX / 16 == -2 && bBox.minZ / 16 == 0)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_w2", pos);
-			} else if (bBox.minX / 16 == -2 && bBox.minZ / 16 == -1)
+			}
+			else if(bBox.minX / 16 == -2 && bBox.minZ / 16 == -1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_w1", pos);
-			} else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == -2)
+			}
+			else if(bBox.minX / 16 == -1 && bBox.minZ / 16 == -2)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_n1", pos);
-			} else if (bBox.minX / 16 == 0 && bBox.minZ / 16 == -2)
+			}
+			else if(bBox.minX / 16 == 0 && bBox.minZ / 16 == -2)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_n2", pos);
-			} else if (bBox.minX / 16 == 1 && bBox.minZ / 16 == -1)
+			}
+			else if(bBox.minX / 16 == 1 && bBox.minZ / 16 == -1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_e1", pos);
-			} else if (bBox.minX / 16 == 1 && bBox.minZ / 16 == 0)
+			}
+			else if(bBox.minX / 16 == 1 && bBox.minZ / 16 == 0)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_e2", pos);
-			} else if (bBox.minX / 16 == 0 && bBox.minZ / 16 == 1)
+			}
+			else if(bBox.minX / 16 == 0 && bBox.minZ / 16 == 1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_s2", pos);
-			} else if (bBox.minX / 16 == -1 && bBox.minZ / 16 == 1)
+			}
+			else if(bBox.minX / 16 == -1 && bBox.minZ / 16 == 1)
 			{
 				structureHelper = new StructureHelper(worldIn, "cosmic_temple_s1", pos);
 			}
@@ -88,18 +112,5 @@ public class ComponentCosmicTemple extends StructureComponent
 			generated = true;
 		}
 		return true;
-	}
-	
-	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
-	{
-		// TODO Auto-generated method stub
 	}
 }

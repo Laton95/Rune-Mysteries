@@ -31,27 +31,49 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 {
 	
 	private final IBlockState worldBlock;
+
 	private final Random rand;
+
 	private final World world;
+
 	private final WorldType terrainType;
+
 	private final double[] heightMap;
+
 	private final float[] biomeWeights;
+
 	private final MapGenRuneTemple temple;
+
 	private final List<Biome.SpawnListEntry> worldMobSpawns;
+
 	public NoiseGeneratorOctaves scaleNoise;
+
 	public NoiseGeneratorOctaves depthNoise;
+
 	public NoiseGeneratorOctaves forestNoise;
+
 	double[] mainNoiseRegion;
+
 	double[] minLimitRegion;
+
 	double[] maxLimitRegion;
+
 	double[] depthRegion;
+
 	private NoiseGeneratorOctaves minLimitPerlinNoise;
+
 	private NoiseGeneratorOctaves maxLimitPerlinNoise;
+
 	private NoiseGeneratorOctaves mainPerlinNoise;
+
 	private NoiseGeneratorPerlin surfaceNoise;
+
 	private ChunkGeneratorSettings settings;
+
 	private IBlockState oceanBlock = Blocks.WATER.getDefaultState();
+
 	private double[] depthBuffer = new double[256];
+
 	private Biome[] biomesForGeneration;
 	
 	public ChunkGeneratorSurfaceWorld(World worldIn, long seed, IBlockState worldBlock, String generatorSettings, int treesPerChunk, int flowersPerChunk, List<Biome.SpawnListEntry> worldMobSpawns)
@@ -76,9 +98,9 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		heightMap = new double[825];
 		biomeWeights = new float[25];
 		
-		for (int i = -2; i <= 2; ++i)
+		for(int i = -2; i <= 2; ++i)
 		{
-			for (int j = -2; j <= 2; ++j)
+			for(int j = -2; j <= 2; ++j)
 			{
 				float f = 10.0F / MathHelper.sqrt(i * i + j * j + 0.2F);
 				biomeWeights[i + 2 + (j + 2) * 5] = f;
@@ -108,7 +130,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	public Chunk generateChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		if (Math.max(Math.abs(x), Math.abs(z)) < 16)
+		if(Math.max(Math.abs(x), Math.abs(z)) < 16)
 		{
 			rand.setSeed(x * 341873128712L + z * 132897987541L);
 			setBlocksInChunk(x, z, chunkprimer);
@@ -127,19 +149,19 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		biomesForGeneration = world.getBiomeProvider().getBiomesForGeneration(biomesForGeneration, x * 4 - 2, z * 4 - 2, 10, 10);
 		generateHeightmap(x * 4, 0, z * 4);
 		
-		for (int i = 0; i < 4; ++i)
+		for(int i = 0; i < 4; ++i)
 		{
 			int j = i * 5;
 			int k = (i + 1) * 5;
 			
-			for (int l = 0; l < 4; ++l)
+			for(int l = 0; l < 4; ++l)
 			{
 				int i1 = (j + l) * 33;
 				int j1 = (j + l + 1) * 33;
 				int k1 = (k + l) * 33;
 				int l1 = (k + l + 1) * 33;
 				
-				for (int i2 = 0; i2 < 32; ++i2)
+				for(int i2 = 0; i2 < 32; ++i2)
 				{
 					double d1 = heightMap[i1 + i2];
 					double d2 = heightMap[j1 + i2];
@@ -150,24 +172,25 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 					double d7 = (heightMap[k1 + i2 + 1] - d3) * 0.125D;
 					double d8 = (heightMap[l1 + i2 + 1] - d4) * 0.125D;
 					
-					for (int j2 = 0; j2 < 8; ++j2)
+					for(int j2 = 0; j2 < 8; ++j2)
 					{
 						double d10 = d1;
 						double d11 = d2;
 						double d12 = (d3 - d1) * 0.25D;
 						double d13 = (d4 - d2) * 0.25D;
 						
-						for (int k2 = 0; k2 < 4; ++k2)
+						for(int k2 = 0; k2 < 4; ++k2)
 						{
 							double d16 = (d11 - d10) * 0.25D;
 							double lvt_45_1_ = d10 - d16;
 							
-							for (int l2 = 0; l2 < 4; ++l2)
+							for(int l2 = 0; l2 < 4; ++l2)
 							{
-								if ((lvt_45_1_ += d16) > 0.0D)
+								if((lvt_45_1_ += d16) > 0.0D)
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, worldBlock);
-								} else if (i2 * 8 + j2 < settings.seaLevel)
+								}
+								else if(i2 * 8 + j2 < settings.seaLevel)
 								{
 									primer.setBlockState(i * 4 + k2, i2 * 8 + j2, l * 4 + l2, oceanBlock);
 								}
@@ -189,15 +212,15 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	
 	public void replaceBiomeBlocks(int x, int z, ChunkPrimer primer, Biome[] biomesIn)
 	{
-		if (!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, world))
+		if(!net.minecraftforge.event.ForgeEventFactory.onReplaceBiomeBlocks(this, x, z, primer, world))
 		{
 			return;
 		}
 		depthBuffer = surfaceNoise.getRegion(depthBuffer, x * 16, z * 16, 16, 16, 0.0625D, 0.0625D, 1.0D);
 		
-		for (int i = 0; i < 16; ++i)
+		for(int i = 0; i < 16; ++i)
 		{
-			for (int j = 0; j < 16; ++j)
+			for(int j = 0; j < 16; ++j)
 			{
 				Biome biome = biomesIn[j + i * 16];
 				biome.genTerrainBlocks(world, rand, primer, x * 16 + i, z * 16 + j, depthBuffer[j + i * 16]);
@@ -216,24 +239,24 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		int i = 0;
 		int j = 0;
 		
-		for (int k = 0; k < 5; ++k)
+		for(int k = 0; k < 5; ++k)
 		{
-			for (int l = 0; l < 5; ++l)
+			for(int l = 0; l < 5; ++l)
 			{
 				float f2 = 0.0F;
 				float f3 = 0.0F;
 				float f4 = 0.0F;
 				Biome biome = biomesForGeneration[k + 2 + (l + 2) * 10];
 				
-				for (int j1 = -2; j1 <= 2; ++j1)
+				for(int j1 = -2; j1 <= 2; ++j1)
 				{
-					for (int k1 = -2; k1 <= 2; ++k1)
+					for(int k1 = -2; k1 <= 2; ++k1)
 					{
 						Biome biome1 = biomesForGeneration[k + j1 + 2 + (l + k1 + 2) * 10];
 						float f5 = settings.biomeDepthOffSet + biome1.getBaseHeight() * settings.biomeDepthWeight;
 						float f6 = settings.biomeScaleOffset + biome1.getHeightVariation() * settings.biomeScaleWeight;
 						
-						if (terrainType == WorldType.AMPLIFIED && f5 > 0.0F)
+						if(terrainType == WorldType.AMPLIFIED && f5 > 0.0F)
 						{
 							f5 = 1.0F + f5 * 2.0F;
 							f6 = 1.0F + f6 * 4.0F;
@@ -241,7 +264,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 						
 						float f7 = biomeWeights[j1 + 2 + (k1 + 2) * 5] / (f5 + 2.0F);
 						
-						if (biome1.getBaseHeight() > biome.getBaseHeight())
+						if(biome1.getBaseHeight() > biome.getBaseHeight())
 						{
 							f7 /= 2.0F;
 						}
@@ -258,27 +281,28 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 				f3 = (f3 * 4.0F - 1.0F) / 8.0F;
 				double d7 = depthRegion[j] / 8000.0D;
 				
-				if (d7 < 0.0D)
+				if(d7 < 0.0D)
 				{
 					d7 = -d7 * 0.3D;
 				}
 				
 				d7 = d7 * 3.0D - 2.0D;
 				
-				if (d7 < 0.0D)
+				if(d7 < 0.0D)
 				{
 					d7 = d7 / 2.0D;
 					
-					if (d7 < -1.0D)
+					if(d7 < -1.0D)
 					{
 						d7 = -1.0D;
 					}
 					
 					d7 = d7 / 1.4D;
 					d7 = d7 / 2.0D;
-				} else
+				}
+				else
 				{
-					if (d7 > 1.0D)
+					if(d7 > 1.0D)
 					{
 						d7 = 1.0D;
 					}
@@ -293,11 +317,11 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 				d8 = d8 * settings.baseSize / 8.0D;
 				double d0 = settings.baseSize + d8 * 4.0D;
 				
-				for (int l1 = 0; l1 < 33; ++l1)
+				for(int l1 = 0; l1 < 33; ++l1)
 				{
 					double d1 = (l1 - d0) * settings.stretchY * 128.0D / 256.0D / d9;
 					
-					if (d1 < 0.0D)
+					if(d1 < 0.0D)
 					{
 						d1 *= 4.0D;
 					}
@@ -307,7 +331,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 					double d4 = (mainNoiseRegion[i] / 10.0D + 1.0D) / 2.0D;
 					double d5 = MathHelper.clampedLerp(d2, d3, d4) - d1;
 					
-					if (l1 > 29)
+					if(l1 > 29)
 					{
 						double d6 = (l1 - 29) / 3.0F;
 						d5 = d5 * (1.0D - d6) + -10.0D * d6;
@@ -323,7 +347,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	@Override
 	public void populate(int x, int z)
 	{
-		if (Math.max(Math.abs(x), Math.abs(z)) < 16)
+		if(Math.max(Math.abs(x), Math.abs(z)) < 16)
 		{
 			BlockFalling.fallInstantly = true;
 			int xPos = x * 16;
@@ -354,9 +378,9 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	
 	public void performWorldGenSpawning(World worldIn, Biome biomeIn, int p_77191_2_, int p_77191_3_, int p_77191_4_, int p_77191_5_, Random randomIn)
 	{
-		if (!worldMobSpawns.isEmpty())
+		if(!worldMobSpawns.isEmpty())
 		{
-			while (randomIn.nextFloat() < 0.2)
+			while(randomIn.nextFloat() < 0.2)
 			{
 				Biome.SpawnListEntry entitySpawnEntry = WeightedRandom.getRandomItem(worldIn.rand, worldMobSpawns);
 				int i = entitySpawnEntry.minGroupCount + randomIn.nextInt(1 + entitySpawnEntry.maxGroupCount - entitySpawnEntry.minGroupCount);
@@ -366,22 +390,23 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 				int l = j;
 				int i1 = k;
 				
-				for (int j1 = 0; j1 < i; ++j1)
+				for(int j1 = 0; j1 < i; ++j1)
 				{
 					boolean flag = false;
 					
-					for (int k1 = 0; !flag && k1 < 4; ++k1)
+					for(int k1 = 0; !flag && k1 < 4; ++k1)
 					{
 						BlockPos blockpos = worldIn.getTopSolidOrLiquidBlock(new BlockPos(j, 0, k));
 						
-						if (WorldEntitySpawner.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, worldIn, blockpos))
+						if(WorldEntitySpawner.canCreatureTypeSpawnAtLocation(EntityLiving.SpawnPlacementType.ON_GROUND, worldIn, blockpos))
 						{
 							EntityLiving entityliving;
 							
 							try
 							{
 								entityliving = entitySpawnEntry.newInstance(worldIn);
-							} catch (Exception exception)
+							}
+							catch(Exception exception)
 							{
 								exception.printStackTrace();
 								continue;
@@ -395,7 +420,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 						
 						j += randomIn.nextInt(5) - randomIn.nextInt(5);
 						
-						for (k += randomIn.nextInt(5) - randomIn.nextInt(5); j < p_77191_2_ || j >= p_77191_2_ + p_77191_4_ || k < p_77191_3_ || k >= p_77191_3_ + p_77191_4_; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
+						for(k += randomIn.nextInt(5) - randomIn.nextInt(5); j < p_77191_2_ || j >= p_77191_2_ + p_77191_4_ || k < p_77191_3_ || k >= p_77191_3_ + p_77191_4_; k = i1 + randomIn.nextInt(5) - randomIn.nextInt(5))
 						{
 							j = l + randomIn.nextInt(5) - randomIn.nextInt(5);
 						}
@@ -406,15 +431,15 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	}
 	
 	@Override
-	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
-	{
-		return new LinkedList<>();
-	}
-	
-	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return false;
+	}
+	
+	@Override
+	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+	{
+		return new LinkedList<>();
 	}
 	
 	@Override

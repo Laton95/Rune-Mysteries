@@ -10,6 +10,7 @@ public class InitDataStructures
 	public class TileEntityEntry
 	{
 		public final String key;
+		
 		public final Class<? extends TileEntity> entityClass;
 		
 		public TileEntityEntry(String key, Class<? extends TileEntity> entityClass)
@@ -22,6 +23,7 @@ public class InitDataStructures
 	public class StructureEntry
 	{
 		public final String name;
+		
 		public final Class<? extends StructureStart> structureClass;
 		
 		public StructureEntry(String name, Class<? extends StructureStart> structureClass)
@@ -34,6 +36,7 @@ public class InitDataStructures
 	public class ComponentEntry
 	{
 		public final String name;
+		
 		public final Class<? extends StructureComponent> componentClass;
 		
 		public ComponentEntry(String name, Class<? extends StructureComponent> componentClass)

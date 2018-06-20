@@ -11,6 +11,7 @@ public abstract class EntityProjectileSpellBase extends EntityModThrowable
 {
 	
 	private float impactParticleSpeed = 0.5f;
+
 	private float trailParticleSpeed = 0.1f;
 	
 	public EntityProjectileSpellBase(World worldIn)
@@ -27,21 +28,23 @@ public abstract class EntityProjectileSpellBase extends EntityModThrowable
 	@SideOnly(Side.CLIENT)
 	public void handleStatusUpdate(byte id)
 	{
-		if (id == 3)
+		if(id == 3)
 		{
-			for (int i = 0; i < 24; ++i)
+			for(int i = 0; i < 24; ++i)
 			{
 				world.spawnParticle(getImpactParticles(), posX, posY, posZ, rand.nextDouble() * impactParticleSpeed * 2 - impactParticleSpeed, rand.nextDouble() * impactParticleSpeed * 2 - impactParticleSpeed, rand.nextDouble() * impactParticleSpeed * 2 - impactParticleSpeed);
 			}
 		}
 	}
 	
+	protected abstract EnumParticleTypes getImpactParticles();
+	
 	@Override
 	public void onUpdate()
 	{
 		super.onUpdate();
 		
-		for (int i = 0; i < 4; ++i)
+		for(int i = 0; i < 4; ++i)
 		{
 			world.spawnParticle(getTrailParticles(), posX, posY, posZ, rand.nextDouble() * trailParticleSpeed * 2 - trailParticleSpeed, rand.nextDouble() * trailParticleSpeed * 2 - trailParticleSpeed, rand.nextDouble() * trailParticleSpeed * 2 - trailParticleSpeed);
 		}
@@ -50,14 +53,12 @@ public abstract class EntityProjectileSpellBase extends EntityModThrowable
 	@Override
 	protected void onImpact(RayTraceResult result)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
 			world.setEntityState(this, (byte) 3);
 		}
 		
 	}
-	
-	protected abstract EnumParticleTypes getImpactParticles();
 	
 	protected abstract EnumParticleTypes getTrailParticles();
 }

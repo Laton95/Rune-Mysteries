@@ -17,9 +17,9 @@ public class ContainerRuneBag extends RMModContainer
 	{
 		this.bag = bag;
 		
-		for (int i = 0; i < 2; ++i)
+		for(int i = 0; i < 2; ++i)
 		{
-			for (int j = 0; j < 7; ++j)
+			for(int j = 0; j < 7; ++j)
 			{
 				addSlotToContainer(new RuneSlot(bag, j + i * 7, 26 + j * 18, 35 + i * 18));
 			}
@@ -28,59 +28,54 @@ public class ContainerRuneBag extends RMModContainer
 		addPlayerSlots(playerInventory, 8, 84);
 	}
 	
-	@Override
-	public boolean canInteractWith(EntityPlayer playerIn)
-	{
-		return true;
-	}
-	
 	// Thanks to CoolAlias for this implementation!
 	@Override
 	public ItemStack transferStackInSlot(EntityPlayer playerIn, int index)
 	{
 		ItemStack itemstack = ItemStack.EMPTY;
 		Slot slot = inventorySlots.get(index);
-		
+
 		int invStart = bag.getSlots();
 		int invEnd = invStart + 26;
 		int hotbarStart = invEnd + 1;
 		int hotbarEnd = hotbarStart + 8;
 		
-		if (slot != null && slot.getHasStack())
+		if(slot != null && slot.getHasStack())
 		{
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
-			
+
 			// If item is in our custom inventory
-			if (index < invStart)
+			if(index < invStart)
 			{
 				// try to place in player inventory / action bar
-				if (!mergeItemStack(itemstack1, invStart, hotbarEnd + 1, true))
+				if(!mergeItemStack(itemstack1, invStart, hotbarEnd + 1, true))
 				{
 					return ItemStack.EMPTY;
 				}
-				
+
 				slot.onSlotChange(itemstack1, itemstack);
 			}
 			// Item is in inventory / hotbar, try to place in custom
 			// inventory
 			else
 			{
-				if (!mergeItemStack(itemstack1, 0, invStart, false))
+				if(!mergeItemStack(itemstack1, 0, invStart, false))
 				{
 					return ItemStack.EMPTY;
 				}
 			}
 			
-			if (itemstack1.isEmpty())
+			if(itemstack1.isEmpty())
 			{
 				slot.putStack(ItemStack.EMPTY);
-			} else
+			}
+			else
 			{
 				slot.onSlotChanged();
 			}
 			
-			if (itemstack1.getCount() == itemstack.getCount())
+			if(itemstack1.getCount() == itemstack.getCount())
 			{
 				return ItemStack.EMPTY;
 			}
@@ -89,6 +84,12 @@ public class ContainerRuneBag extends RMModContainer
 		}
 		
 		return itemstack;
+	}
+	
+	@Override
+	public boolean canInteractWith(EntityPlayer playerIn)
+	{
+		return true;
 	}
 	
 	private class RuneSlot extends SlotItemHandler
@@ -102,10 +103,11 @@ public class ContainerRuneBag extends RMModContainer
 		@Override
 		public boolean isItemValid(ItemStack stack)
 		{
-			if (stack.getItem() instanceof ItemRune)
+			if(stack.getItem() instanceof ItemRune)
 			{
 				return super.isItemValid(stack);
-			} else
+			}
+			else
 			{
 				return false;
 			}

@@ -19,17 +19,23 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 	}
 	
 	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.CRIT_MAGIC;
+	}
+	
+	@Override
 	public void onImpact(RayTraceResult result)
 	{
 		super.onImpact(result);
 		
-		if (ticksExisted > 10)
+		if(ticksExisted > 10)
 		{
 			double yDecay = 1.0;
 			double hBoost = 1.0;
-			if (result.typeOfHit == RayTraceResult.Type.BLOCK)
+			if(result.typeOfHit == RayTraceResult.Type.BLOCK)
 			{
-				switch (result.sideHit)
+				switch(result.sideHit)
 				{
 					case DOWN:
 						motionY = -motionY;
@@ -52,10 +58,17 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 					default:
 						break;
 				}
-			} else
+			}
+			else
 			{
-				if (!world.isRemote) LogHelper.info("Hit entity on server");
-				if (world.isRemote) LogHelper.info("Hit entity on client");
+				if(!world.isRemote)
+				{
+					LogHelper.info("Hit entity on server");
+				}
+				if(world.isRemote)
+				{
+					LogHelper.info("Hit entity on client");
+				}
 				motionY = Math.abs(motionY) * yDecay + result.entityHit.motionY;
 				motionX = -motionX * hBoost + result.entityHit.motionX;
 				motionZ = -motionZ * hBoost + result.entityHit.motionZ;
@@ -63,16 +76,10 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 		}
 		
 		
-		if (ticksExisted > 2000 && !world.isRemote)
+		if(ticksExisted > 2000 && !world.isRemote)
 		{
 			setDead();
 		}
-	}
-	
-	@Override
-	protected EnumParticleTypes getImpactParticles()
-	{
-		return EnumParticleTypes.CRIT_MAGIC;
 	}
 	
 	@Override

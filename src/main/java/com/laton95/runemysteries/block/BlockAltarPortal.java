@@ -29,28 +29,9 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-	{
-		TileEntityAltarPortal portal = (TileEntityAltarPortal) worldIn.getTileEntity(pos);
-		portal.TeleportEntity(entityIn, worldIn);
-	}
-	
-	@Override
 	public TileEntity createNewTileEntity(World worldIn, int meta)
 	{
 		return new TileEntityAltarPortal();
-	}
-	
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-	{
-		return NULL_AABB;
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
 	}
 	
 	@Override
@@ -63,6 +44,18 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
+	}
+	
+	@Override
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+	{
+		return NULL_AABB;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
 	}
 	
 	@SideOnly(Side.CLIENT)
@@ -86,5 +79,12 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
 		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01, 0.01, 0.01);
 		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		TileEntityAltarPortal portal = (TileEntityAltarPortal) worldIn.getTileEntity(pos);
+		portal.TeleportEntity(entityIn, worldIn);
 	}
 }

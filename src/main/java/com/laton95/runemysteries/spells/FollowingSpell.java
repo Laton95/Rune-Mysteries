@@ -20,7 +20,7 @@ public class FollowingSpell extends SpellBase
 	
 	private final static List<SpellCost> costs = ImmutableList.of(
 	
-	);
+																 );
 	
 	public FollowingSpell()
 	{
@@ -33,12 +33,12 @@ public class FollowingSpell extends SpellBase
 		double radius = 20;
 		RayTraceResult test = player.rayTrace(200, 1.0f);
 		Entity target = null;
-		if (test != null)
+		if(test != null)
 		{
 			target = world.findNearestEntityWithinAABB(EntityLiving.class, new AxisAlignedBB(test.hitVec.x - radius, test.hitVec.y - radius, test.hitVec.z - radius, test.hitVec.x + radius, test.hitVec.y + radius, test.hitVec.z + radius), player);
 		}
 		
-		if (target != null)
+		if(target != null)
 		{
 			EntityProjectileSpellBase projectile = new EntityProjectileSpellFollowing(world, player, target);
 			putProjectileInWorld(world, player, projectile);

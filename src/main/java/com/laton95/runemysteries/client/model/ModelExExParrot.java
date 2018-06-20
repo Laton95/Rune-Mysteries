@@ -13,16 +13,27 @@ import net.minecraftforge.fml.relauncher.SideOnly;
 public class ModelExExParrot extends ModelBase
 {
 	ModelRenderer body;
+
 	ModelRenderer tail;
+
 	ModelRenderer wingLeft;
+
 	ModelRenderer wingRight;
+
 	ModelRenderer head;
+
 	ModelRenderer head2;
+
 	ModelRenderer beak1;
+
 	ModelRenderer beak2;
+	
 	ModelRenderer feather;
+	
 	ModelRenderer legLeft;
+	
 	ModelRenderer legRight;
+	
 	private ModelExExParrot.State state = ModelExExParrot.State.STANDING;
 	
 	public ModelExExParrot()
@@ -99,15 +110,15 @@ public class ModelExExParrot extends ModelBase
 		this.wingRight.rotationPointX = -1.5F;
 		this.wingLeft.rotationPointX = 1.5F;
 		
-		if (this.state != ModelExExParrot.State.FLYING)
+		if(this.state != ModelExExParrot.State.FLYING)
 		{
-			if (this.state == ModelExExParrot.State.SITTING)
+			if(this.state == ModelExExParrot.State.SITTING)
 			{
 				return;
 			}
 
 			this.legLeft.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-			this.legRight.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			this.legRight.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 		}
 
 		this.head.rotationPointY = 15.69F + f;
@@ -130,20 +141,20 @@ public class ModelExExParrot extends ModelBase
 	{
 		this.feather.rotateAngleX = -0.2214F;
 		this.body.rotateAngleX = 0.4937F;
-		this.wingLeft.rotateAngleX = -((float)Math.PI * 2F / 9F);
-		this.wingLeft.rotateAngleY = -(float)Math.PI;
-		this.wingRight.rotateAngleX = -((float)Math.PI * 2F / 9F);
-		this.wingRight.rotateAngleY = -(float)Math.PI;
+		this.wingLeft.rotateAngleX = -((float) Math.PI * 2F / 9F);
+		this.wingLeft.rotateAngleY = -(float) Math.PI;
+		this.wingRight.rotateAngleX = -((float) Math.PI * 2F / 9F);
+		this.wingRight.rotateAngleY = -(float) Math.PI;
 		this.legLeft.rotateAngleX = -0.0299F;
 		this.legRight.rotateAngleX = -0.0299F;
 		this.legLeft.rotationPointY = 22.0F;
 		this.legRight.rotationPointY = 22.0F;
-
-		if (entitylivingbaseIn instanceof EntityExExParrot)
+		
+		if(entitylivingbaseIn instanceof EntityExExParrot)
 		{
-			EntityExExParrot entityparrot = (EntityExExParrot)entitylivingbaseIn;
-
-			if (entityparrot.isSitting())
+			EntityExExParrot entityparrot = (EntityExExParrot) entitylivingbaseIn;
+			
+			if(entityparrot.isSitting())
 			{
 				float f = 1.9F;
 				this.head.rotationPointY = 17.59F;
@@ -160,10 +171,10 @@ public class ModelExExParrot extends ModelBase
 				++this.legRight.rotateAngleX;
 				this.state = ModelExExParrot.State.SITTING;
 			}
-			else if (entityparrot.isFlying())
+			else if(entityparrot.isFlying())
 			{
-				this.legLeft.rotateAngleX += ((float)Math.PI * 2F / 9F);
-				this.legRight.rotateAngleX += ((float)Math.PI * 2F / 9F);
+				this.legLeft.rotateAngleX += ((float) Math.PI * 2F / 9F);
+				this.legRight.rotateAngleX += ((float) Math.PI * 2F / 9F);
 				this.state = State.FLYING;
 			}
 			else
@@ -177,7 +188,7 @@ public class ModelExExParrot extends ModelBase
 	}
 	
 	@SideOnly(Side.CLIENT)
-	static enum State
+	enum State
 	{
 		FLYING,
 		STANDING,

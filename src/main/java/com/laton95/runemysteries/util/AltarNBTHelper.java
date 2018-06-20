@@ -16,11 +16,15 @@ public class AltarNBTHelper extends WorldSavedData
 	private static final String DATA_NAME = ModReference.MOD_ID;
 	
 	public boolean overworldAltarsGenerated;
+	
 	public boolean netherAltarsGenerated;
+	
 	public boolean endAltarsGenerated;
 	
 	public Map<String, BlockPos> posMap = new HashMap<>();
+	
 	public Map<String, Boolean> placedMap = new HashMap<>();
+	
 	public Map<String, Boolean> generatedMap = new HashMap<>();
 	
 	// Required constructors
@@ -39,7 +43,7 @@ public class AltarNBTHelper extends WorldSavedData
 		MapStorage storage = world.getMapStorage();
 		AltarNBTHelper instance = (AltarNBTHelper) storage.getOrLoadData(AltarNBTHelper.class, DATA_NAME);
 		
-		if (instance == null)
+		if(instance == null)
 		{
 			instance = new AltarNBTHelper();
 			storage.setData(DATA_NAME, instance);
@@ -183,7 +187,8 @@ public class AltarNBTHelper extends WorldSavedData
 		{
 			compound.setBoolean("chaos_altar_placed", placedMap.get("chaos_altar"));
 			compound.setBoolean("cosmic_altar_placed", placedMap.get("cosmic_altar"));
-		} catch (NullPointerException e)
+		}
+		catch(NullPointerException e)
 		{
 			// Nether and End generators have not been initialized yet,
 			// ignore
@@ -207,7 +212,8 @@ public class AltarNBTHelper extends WorldSavedData
 		{
 			compound.setBoolean("chaos_altar_generated", generatedMap.get("chaos_altar"));
 			compound.setBoolean("cosmic_altar_generated", generatedMap.get("cosmic_altar"));
-		} catch (NullPointerException e)
+		}
+		catch(NullPointerException e)
 		{
 			// Nether and End generators have not been initialized yet,
 			// ignore
@@ -226,20 +232,20 @@ public class AltarNBTHelper extends WorldSavedData
 		return compound;
 	}
 	
-	private BlockPos intArrayToBlockPos(int[] array)
-	{
-		return new BlockPos(array[0], array[1], array[2]);
-	}
-	
 	private int[] blockPosToIntArray(BlockPos pos)
 	{
 		int[] array = new int[3];
-		if (pos != null & array != null)
+		if(pos != null & array != null)
 		{
 			array[0] = pos.getX();
 			array[1] = pos.getY();
 			array[2] = pos.getZ();
 		}
 		return array;
+	}
+	
+	private BlockPos intArrayToBlockPos(int[] array)
+	{
+		return new BlockPos(array[0], array[1], array[2]);
 	}
 }

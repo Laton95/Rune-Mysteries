@@ -11,7 +11,7 @@ public class MetaItemBlock extends ItemBlock
 	public MetaItemBlock(Block block)
 	{
 		super(block);
-		if (!(block instanceof IMetaBlock))
+		if(!(block instanceof IMetaBlock))
 		{
 			throw new IllegalArgumentException(String.format("The given block %s is not an instance of IMetaBlock", block.getUnlocalizedName()));
 		}

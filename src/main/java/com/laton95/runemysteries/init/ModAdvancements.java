@@ -17,12 +17,12 @@ public class ModAdvancements
 		{
 			method = ReflectionHelper.findMethod(CriteriaTriggers.class, "register", "func_192118_a", ICriterionTrigger.class);
 			method.setAccessible(true);
-			for (int i = 0; i < Triggers.TRIGGER_ARRAY.length; i++)
+			for(int i = 0; i < Triggers.TRIGGER_ARRAY.length; i++)
 			{
 				method.invoke(null, Triggers.TRIGGER_ARRAY[i]);
 			}
 		}
-		catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
+		catch(SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e)
 		{
 		
 		}

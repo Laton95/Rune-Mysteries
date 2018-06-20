@@ -21,15 +21,11 @@ public class BlockRuneEssence extends RMModBlock
 	}
 	
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state,
+							 @Nullable
+									 TileEntity te, ItemStack stack)
 	{
-		return false;
-	}
-	
-	@Override
-	public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack)
-	{
-		if (!player.isCreative())
+		if(!player.isCreative())
 		{
 			player.addExhaustion(0.005F);
 			
@@ -38,5 +34,11 @@ public class BlockRuneEssence extends RMModBlock
 			
 			worldIn.setBlockState(pos, state);
 		}
+	}
+	
+	@Override
+	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
+	{
+		return false;
 	}
 }

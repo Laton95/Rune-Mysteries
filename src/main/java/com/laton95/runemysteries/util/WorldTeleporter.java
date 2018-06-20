@@ -9,6 +9,7 @@ public class WorldTeleporter extends Teleporter
 {
 	
 	BlockPos exit;
+	
 	WorldServer world;
 	
 	public WorldTeleporter(WorldServer worldIn, BlockPos exit)

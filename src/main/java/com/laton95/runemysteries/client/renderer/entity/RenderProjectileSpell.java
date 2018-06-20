@@ -38,7 +38,7 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 		
 		int state = 0;
 		int animationDelay = 5;
-		if (entity.ticksExisted % animationDelay > animationDelay / 2)
+		if(entity.ticksExisted % animationDelay > animationDelay / 2)
 		{
 			state = 1;
 		}
@@ -46,7 +46,7 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 		
 		int k = 1;
 		GlStateManager.translate(size, 0, 0);
-		for (int j = 0; j < 2; j++)
+		for(int j = 0; j < 2; j++)
 		{
 			GlStateManager.glNormal3f(0.05625F, 0.0F, 0.0F);
 			bufferbuilder.begin(7, DefaultVertexFormats.POSITION_TEX);
@@ -63,7 +63,7 @@ public class RenderProjectileSpell extends Render<EntityProjectileSpellBase>
 		}
 		GlStateManager.translate(-size, 0, 0);
 		
-		for (int j = 0; j < 4; ++j)
+		for(int j = 0; j < 4; ++j)
 		{
 			GlStateManager.rotate(90.0F, 1.0F, 0.0F, 0.0F);
 			GlStateManager.glNormal3f(0.0F, 0.0F, 0.05625F);

@@ -21,6 +21,7 @@ public class ComponentSurfaceAltar extends StructureComponent
 {
 	
 	private String name;
+	
 	private boolean generated = false;
 	
 	public ComponentSurfaceAltar()
@@ -34,11 +35,25 @@ public class ComponentSurfaceAltar extends StructureComponent
 	}
 	
 	@Override
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
-		if (!generated && !altar.isGenerated())
+		if(!generated && !altar.isGenerated())
 		{
 			LogHelper.info("Generating altar");
 			StructureBoundingBox bBox = boundingBox;
@@ -58,17 +73,14 @@ public class ComponentSurfaceAltar extends StructureComponent
 		return true;
 	}
 	
-	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	public void offsetToAverageGroundLevel(World worldIn, int i)
 	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
-	{
-		// TODO Auto-generated method stub
+		int groundLevel = getAverageGroundLevel(worldIn);
+		if(groundLevel < 0)
+		{
+			return;
+		}
+		boundingBox.offset(0, groundLevel - boundingBox.maxY + 2, 0);
 		
 	}
 	
@@ -78,9 +90,9 @@ public class ComponentSurfaceAltar extends StructureComponent
 		int j = 0;
 		BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 		
-		for (int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
+		for(int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
 		{
-			for (int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
+			for(int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
 			{
 				blockpos$mutableblockpos.setPos(l, 64, k);
 				i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel() - 1);
@@ -88,23 +100,13 @@ public class ComponentSurfaceAltar extends StructureComponent
 			}
 		}
 		
-		if (j == 0)
+		if(j == 0)
 		{
 			return -1;
-		} else
+		}
+		else
 		{
 			return i / j;
 		}
-	}
-	
-	public void offsetToAverageGroundLevel(World worldIn, int i)
-	{
-		int groundLevel = getAverageGroundLevel(worldIn);
-		if (groundLevel < 0)
-		{
-			return;
-		}
-		boundingBox.offset(0, groundLevel - boundingBox.maxY + 2, 0);
-		
 	}
 }

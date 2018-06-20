@@ -24,23 +24,23 @@ public class EntityProjectileSpellDamage extends EntityProjectileSpellBase
 	}
 	
 	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.CRIT;
+	}
+	
+	@Override
 	public void onImpact(RayTraceResult result)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
-			if (result.entityHit != null)
+			if(result.entityHit != null)
 			{
 				result.entityHit.attackEntityFrom(new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), damage);
 			}
 			setDead();
 		}
 		super.onImpact(result);
-	}
-	
-	@Override
-	protected EnumParticleTypes getImpactParticles()
-	{
-		return EnumParticleTypes.CRIT;
 	}
 	
 	@Override

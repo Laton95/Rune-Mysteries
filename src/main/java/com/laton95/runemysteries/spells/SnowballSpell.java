@@ -27,9 +27,9 @@ public class SnowballSpell extends SpellBase
 	@Override
 	public void fireSpell(World world, EntityPlayer player)
 	{
-		world.playSound((EntityPlayer) null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
+		world.playSound(null, player.posX, player.posY, player.posZ, SoundEvents.ENTITY_SNOWBALL_THROW, SoundCategory.NEUTRAL, 0.5F, 0.4F / (world.rand.nextFloat() * 0.4F + 0.8F));
 		
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
 			EntitySnowball entitysnowball = new EntitySnowball(world, player);
 			entitysnowball.shoot(player, player.rotationPitch, player.rotationYaw, 0.0F, 1.5F, 1.0F);

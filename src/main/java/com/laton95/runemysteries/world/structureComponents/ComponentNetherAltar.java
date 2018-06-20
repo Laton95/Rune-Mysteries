@@ -21,6 +21,7 @@ public class ComponentNetherAltar extends StructureComponent
 {
 	
 	private String name;
+
 	private boolean generated = false;
 	
 	public ComponentNetherAltar()
@@ -35,11 +36,25 @@ public class ComponentNetherAltar extends StructureComponent
 	}
 	
 	@Override
+	protected void writeStructureToNBT(NBTTagCompound tagCompound)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
+	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
+	{
+		// TODO Auto-generated method stub
+		
+	}
+	
+	@Override
 	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 	{
 		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
 		LogHelper.info("tst2");
-		if (!generated && !altar.isGenerated())
+		if(!generated && !altar.isGenerated())
 		{
 			LogHelper.info("Generating altar");
 			StructureBoundingBox bBox = boundingBox;
@@ -61,19 +76,5 @@ public class ComponentNetherAltar extends StructureComponent
 			altar.setGenerated(true);
 		}
 		return true;
-	}
-	
-	@Override
-	protected void writeStructureToNBT(NBTTagCompound tagCompound)
-	{
-		// TODO Auto-generated method stub
-		
-	}
-	
-	@Override
-	protected void readStructureFromNBT(NBTTagCompound tagCompound, TemplateManager p_143011_2_)
-	{
-		// TODO Auto-generated method stub
-		
 	}
 }

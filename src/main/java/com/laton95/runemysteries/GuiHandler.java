@@ -16,18 +16,20 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getServerGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		switch (GuiIDs.values()[ID])
+		switch(GuiIDs.values()[ID])
 		{
 			case SPELLBOOK:
 				return null;
 			case RUNE_BAG:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
+				if(player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
 				{
 					return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
-				} else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
+				}
+				else if(player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
 				{
 					return new ContainerRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
-				} else
+				}
+				else
 				{
 					return null;
 				}
@@ -38,27 +40,31 @@ public class GuiHandler implements IGuiHandler
 	@Override
 	public Object getClientGuiElement(int ID, EntityPlayer player, World world, int x, int y, int z)
 	{
-		switch (GuiIDs.values()[ID])
+		switch(GuiIDs.values()[ID])
 		{
 			case SPELLBOOK:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemSpellbook)
+				if(player.getHeldItemMainhand().getItem() instanceof ItemSpellbook)
 				{
 					return new GuiSpellbook(player, player.getHeldItemMainhand());
-				} else if (player.getHeldItemOffhand().getItem() instanceof ItemSpellbook)
+				}
+				else if(player.getHeldItemOffhand().getItem() instanceof ItemSpellbook)
 				{
 					return new GuiSpellbook(player, player.getHeldItemOffhand());
-				} else
+				}
+				else
 				{
 					return null;
 				}
 			case RUNE_BAG:
-				if (player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
+				if(player.getHeldItemMainhand().getItem() instanceof ItemRuneBag)
 				{
 					return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemMainhand()));
-				} else if (player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
+				}
+				else if(player.getHeldItemOffhand().getItem() instanceof ItemRuneBag)
 				{
 					return new GuiRuneBag(player.inventory, new InventoryRuneBag(player.getHeldItemOffhand()));
-				} else
+				}
+				else
 				{
 					return null;
 				}

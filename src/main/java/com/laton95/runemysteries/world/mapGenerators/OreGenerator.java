@@ -14,13 +14,13 @@ public class OreGenerator
 	
 	public static void finiteEssenceGen(World world, Random random, int chunkX, int chunkZ)
 	{
-		if (!ModConfig.WORLD_GENERATION.ores.generateFiniteEssence)
+		if(!ModConfig.WORLD_GENERATION.ores.generateFiniteEssence)
 		{
 			return;
 		}
 		int minHeight = ModConfig.WORLD_GENERATION.ores.finiteEssenceMinHeight;
 		int maxHeight = ModConfig.WORLD_GENERATION.ores.finiteEssenceMaxHeight;
-		if (minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
+		if(minHeight < 0 || maxHeight > 256 || minHeight > maxHeight)
 		{
 			throw new IllegalArgumentException("Illigal Height Arguments for WorldGenerator");
 		}
@@ -28,7 +28,7 @@ public class OreGenerator
 		WorldGenerator finiteEssenceGen = new WorldGenMinable(ModBlocks.RUNE_ESSENCE_FINITE.getDefaultState(), ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinSize);
 		
 		int heightDifference = maxHeight - minHeight + 1;
-		for (int i = 0; i < ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinsPerChunk; i++)
+		for(int i = 0; i < ModConfig.WORLD_GENERATION.ores.finiteEssenceVeinsPerChunk; i++)
 		{
 			int x = chunkX * 16 + random.nextInt(16);
 			int y = minHeight + random.nextInt(heightDifference);

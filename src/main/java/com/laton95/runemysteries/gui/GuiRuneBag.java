@@ -12,7 +12,9 @@ public class GuiRuneBag extends RMModGuiContainer
 {
 	
 	private final ResourceLocation guiTexture = new ResourceLocation(ModReference.MOD_ID, "textures/gui/rune_bag.png");
+	
 	private final IInventory playerInventory;
+	
 	private final InventoryRuneBag bagInventory;
 	
 	public GuiRuneBag(InventoryPlayer playerInv, InventoryRuneBag bag)

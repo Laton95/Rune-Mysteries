@@ -19,19 +19,25 @@ public class WorldGenerator implements IWorldGenerator
 {
 	
 	public static AltarTracker altarTracker;
+
 	private MapGenRuneAltar_SURFACE surfaceAltarGenerator = new MapGenRuneAltar_SURFACE();
+
 	private MapGenRuneAltar_UNDERGROUND undergroundAltarGenerator = new MapGenRuneAltar_UNDERGROUND();
+
 	private MapGenRuneAltar_SOUL soulAltarGenerator = new MapGenRuneAltar_SOUL();
+	
 	private MapGenRuneAltar_NETHER netherAltarGenerator = new MapGenRuneAltar_NETHER();
+	
 	private MapGenRuneAltar_END endAltarGenerator = new MapGenRuneAltar_END();
+	
 	private MapGenMonolith monolithGenerator = new MapGenMonolith();
 	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
-		if (!world.isRemote)
+		if(!world.isRemote)
 		{
-			switch (world.provider.getDimensionType())
+			switch(world.provider.getDimensionType())
 			{
 				case OVERWORLD:
 					// Ores
@@ -66,9 +72,9 @@ public class WorldGenerator implements IWorldGenerator
 	@SubscribeEvent
 	public void populate(PopulateChunkEvent.Populate event)
 	{
-		if ((event.getType() == EventType.DUNGEON || event.getType() == EventType.GLOWSTONE) && !event.getWorld().isRemote)
+		if((event.getType() == EventType.DUNGEON || event.getType() == EventType.GLOWSTONE) && !event.getWorld().isRemote)
 		{
-			switch (event.getWorld().provider.getDimensionType())
+			switch(event.getWorld().provider.getDimensionType())
 			{
 				case OVERWORLD:
 					// Structures
@@ -88,7 +94,7 @@ public class WorldGenerator implements IWorldGenerator
 	@SubscribeEvent
 	public void populateEnd(PopulateChunkEvent.Post event)
 	{
-		switch (event.getWorld().provider.getDimensionType())
+		switch(event.getWorld().provider.getDimensionType())
 		{
 			case THE_END:
 				endAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));

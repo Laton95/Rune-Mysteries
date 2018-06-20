@@ -5,9 +5,7 @@ import com.google.common.base.Predicates;
 import com.google.common.collect.Collections2;
 import com.google.common.collect.Lists;
 import com.laton95.runemysteries.util.EnumCorner;
-import net.minecraft.block.properties.PropertyDirection;
 import net.minecraft.block.properties.PropertyEnum;
-import net.minecraft.util.EnumFacing;
 
 import java.util.Collection;
 

@@ -18,6 +18,7 @@ public class ModConfig
 	@Name("World Gen")
 	@Comment("Worldgen options.")
 	public static final WorldGeneration WORLD_GENERATION = new WorldGeneration();
+
 	@Name("Dimensions")
 	@Comment("Dimension options.")
 	public static final Dimensions DIMENSIONS = new Dimensions();
@@ -28,6 +29,7 @@ public class ModConfig
 		@Name("Rune Altar generation")
 		@Comment("Rune altar generation options.")
 		public final RuneAltars rune_altars = new RuneAltars();
+		
 		@Name("Ore generation")
 		@Comment("Ore generation options.")
 		public final Ores ores = new Ores();
@@ -38,7 +40,6 @@ public class ModConfig
 			@Name("Generate Altars")
 			@Comment("Generate rune altars in the world.")
 			public boolean generateRuneAltars = true;
-			;
 			
 			@Name("Max Altar Distance")
 			@Comment("Maximum distance from 0,0 rune altars will generate.")
@@ -167,7 +168,7 @@ public class ModConfig
 		@SubscribeEvent
 		public static void onConfigChanged(final ConfigChangedEvent.OnConfigChangedEvent event)
 		{
-			if (event.getModID().equals(ModReference.MOD_ID))
+			if(event.getModID().equals(ModReference.MOD_ID))
 			{
 				ConfigManager.sync(ModReference.MOD_ID, Config.Type.INSTANCE);
 			}

@@ -19,7 +19,8 @@ public final class ModLoot
 	{
 		LogHelper.info("Registering loot tables");
 		
-		String[] lootTables = {"inject/chests/abandoned_mineshaft",
+		String[] lootTables = {
+				"inject/chests/abandoned_mineshaft",
 				"inject/chests/desert_pyramid",
 				"inject/chests/jungle_temple",
 				"inject/chests/simple_dungeon",
@@ -53,9 +54,10 @@ public final class ModLoot
 				"inject/entities/wither_skeleton",
 				"inject/entities/zombie_pigman",
 				"inject/entities/zombie_villager",
-				"inject/entities/zombie"};
+				"inject/entities/zombie"
+		};
 		
-		for (String s : lootTables)
+		for(String s : lootTables)
 		{
 			LootTableList.register(new ResourceLocation(ModReference.MOD_ID, s));
 		}
@@ -67,10 +69,10 @@ public final class ModLoot
 		String prefix = "minecraft:";
 		String name = evt.getName().toString();
 		
-		if (name.startsWith(prefix))
+		if(name.startsWith(prefix))
 		{
 			String file = name.substring(name.indexOf(prefix) + prefix.length());
-			switch (file)
+			switch(file)
 			{
 				case "chests/abandoned_mineshaft":
 					evt.getTable().addPool(getInjectPool(file));

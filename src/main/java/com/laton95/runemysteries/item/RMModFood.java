@@ -16,7 +16,7 @@ public class RMModFood extends ItemFood
 		super(amount, saturation, isWolfFood);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative)
+		if(showInCreative)
 		{
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}

@@ -29,7 +29,7 @@ public class ItemTalisman extends RMModItem
 	{
 		ItemStack talisman = playerIn.getHeldItem(handIn);
 		
-		if (talisman.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+		if(talisman.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 		{
 			return new ActionResult<>(EnumActionResult.PASS, talisman);
 		}
@@ -37,22 +37,22 @@ public class ItemTalisman extends RMModItem
 		int dimID = getDimID(talisman);
 		String altar = EnumRuneType.values()[talisman.getItemDamage()].getName() + "_altar";
 		
-		switch (dimID)
+		switch(dimID)
 		{
 			case 0:
-				if (!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
+				if(!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
 				{
 					WorldGenerator.altarTracker.findOverworldLocations(worldIn);
 				}
 				break;
 			case -1:
-				if (!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
+				if(!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
 				{
 					WorldGenerator.altarTracker.findNetherLocations(worldIn);
 				}
 				break;
 			case 1:
-				if (!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
+				if(!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
 				{
 					WorldGenerator.altarTracker.findEndLocations(worldIn);
 				}
@@ -61,18 +61,20 @@ public class ItemTalisman extends RMModItem
 		
 		BlockPos pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
 		
-		if (playerIn.isCreative() && playerIn.isSneaking())
+		if(playerIn.isCreative() && playerIn.isSneaking())
 		{
 			try
 			{
-				if (pos.getY() != 0)
+				if(pos.getY() != 0)
 				{
 					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), pos.getY(), pos.getZ());
-				} else
+				}
+				else
 				{
 					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), 100, pos.getZ());
 				}
-			} catch (NullPointerException e)
+			}
+			catch(NullPointerException e)
 			{
 				TeleportHelper.teleportEntity(playerIn, dimID, playerIn.posX, playerIn.posY, playerIn.posZ);
 			}
@@ -80,34 +82,34 @@ public class ItemTalisman extends RMModItem
 		
 		playerIn.getCooldownTracker().setCooldown(this, 30);
 		
-		if (!worldIn.isRemote)
+		if(!worldIn.isRemote)
 		{
-			if (!ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars)
+			if(!ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars)
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
 			
-			switch (worldIn.provider.getDimension())
+			switch(worldIn.provider.getDimension())
 			{
 				case 0:
-					switch (dimID)
+					switch(dimID)
 					{
 						case 0:
 							printDirection(playerIn, worldIn, pos);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case -1:
-							worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
 							playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case 1:
-							worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
+							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 					}
 				case -1:
-					switch (dimID)
+					switch(dimID)
 					{
 						case -1:
 							printDirection(playerIn, worldIn, pos);
@@ -116,12 +118,12 @@ public class ItemTalisman extends RMModItem
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case 1:
-							worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
+							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 					}
 				case 1:
-					switch (dimID)
+					switch(dimID)
 					{
 						case 1:
 							printDirection(playerIn, worldIn, pos);
@@ -130,7 +132,7 @@ public class ItemTalisman extends RMModItem
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case -1:
-							worldIn.playSound((EntityPlayer) null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
 							playerIn.attackEntityFrom(new DamageSource(NamesReference.Talisman.NETHER_DAMAGE), 2f);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
@@ -143,14 +145,28 @@ public class ItemTalisman extends RMModItem
 		return new ActionResult<>(EnumActionResult.FAIL, talisman);
 	}
 	
+	private int getDimID(ItemStack talisman)
+	{
+		switch(talisman.getItemDamage())
+		{
+			case 4:
+				return -1;
+			case 5:
+				return 1;
+			default:
+				return 0;
+		}
+	}
+	
 	private void printDirection(EntityPlayer playerIn, World worldIn, BlockPos pos)
 	{
-		if (WorldHelper.isNearby(playerIn.getPosition(), pos, 5))
+		if(WorldHelper.isNearby(playerIn.getPosition(), pos, 5))
 		{
 			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NEARBY));
-		} else
+		}
+		else
 		{
-			switch (WorldHelper.getDirection(playerIn.getPosition(), pos))
+			switch(WorldHelper.getDirection(playerIn.getPosition(), pos))
 			{
 				case NORTH:
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH));
@@ -190,19 +206,6 @@ public class ItemTalisman extends RMModItem
 					LogHelper.info("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
 					break;
 			}
-		}
-	}
-	
-	private int getDimID(ItemStack talisman)
-	{
-		switch (talisman.getItemDamage())
-		{
-			case 4:
-				return -1;
-			case 5:
-				return 1;
-			default:
-				return 0;
 		}
 	}
 }

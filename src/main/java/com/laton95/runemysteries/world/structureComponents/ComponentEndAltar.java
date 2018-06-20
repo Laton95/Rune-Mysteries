@@ -21,7 +21,9 @@ public class ComponentEndAltar extends StructureComponent
 {
 	
 	private String name;
+
 	private boolean generated = false;
+
 	private int horizontalPos = -1;
 	
 	public ComponentEndAltar()
@@ -32,34 +34,6 @@ public class ComponentEndAltar extends StructureComponent
 	{
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(x, 64, z, 0, 0, 0, 10, 3, 10, EnumFacing.UP);
 		this.name = name;
-	}
-	
-	@Override
-	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
-	{
-		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
-		if (!generated && !altar.isGenerated())
-		{
-			LogHelper.info("Generating altar");
-			StructureBoundingBox bBox = boundingBox;
-			structureBoundingBoxIn = boundingBox;
-			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
-			BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - 6, pos.getZ() - 1);
-			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
-			StructureHelper structureHelper = new StructureHelper(worldIn, "end_island", pos2);
-			structureHelper.generate();
-			
-			structureHelper = new StructureHelper(worldIn, "stone_circle", pos);
-			structureHelper.generate();
-			structureHelper = new StructureHelper(worldIn, name, pos);
-			structureHelper.generate();
-			generated = true;
-			
-			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY + 1, boundingBox.minZ + 4));
-			altar.setPlacementRadius(0);
-			altar.setGenerated(true);
-		}
-		return true;
 	}
 	
 	@Override
@@ -76,27 +50,56 @@ public class ComponentEndAltar extends StructureComponent
 		
 	}
 	
+	@Override
+	public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
+	{
+		AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(name);
+		if(!generated && !altar.isGenerated())
+		{
+			LogHelper.info("Generating altar");
+			StructureBoundingBox bBox = boundingBox;
+			structureBoundingBoxIn = boundingBox;
+			BlockPos pos = new BlockPos(bBox.minX, bBox.minY, bBox.minZ);
+			BlockPos pos2 = new BlockPos(pos.getX() - 1, pos.getY() - 6, pos.getZ() - 1);
+			new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureBoundingBoxIn).setChunk(new ChunkPos(pos)).setIgnoreEntities(false);
+			StructureHelper structureHelper = new StructureHelper(worldIn, "end_island", pos2);
+			structureHelper.generate();
+
+			structureHelper = new StructureHelper(worldIn, "stone_circle", pos);
+			structureHelper.generate();
+			structureHelper = new StructureHelper(worldIn, name, pos);
+			structureHelper.generate();
+			generated = true;
+
+			altar.setPosition(new BlockPos(boundingBox.minX + 4, boundingBox.minY + 1, boundingBox.minZ + 4));
+			altar.setPlacementRadius(0);
+			altar.setGenerated(true);
+		}
+		return true;
+	}
+	
 	/**
 	 * Calculates and offsets this structure boundingbox to average ground level
 	 */
 	public boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset)
 	{
-		if (horizontalPos >= 0)
+		if(horizontalPos >= 0)
 		{
 			return true;
-		} else
+		}
+		else
 		{
 			int i = 0;
 			int j = 0;
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 			
-			for (int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
+			for(int k = boundingBox.minZ; k <= boundingBox.maxZ; ++k)
 			{
-				for (int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
+				for(int l = boundingBox.minX; l <= boundingBox.maxX; ++l)
 				{
 					blockpos$mutableblockpos.setPos(l, 64, k);
 					
-					if (structurebb.isVecInside(blockpos$mutableblockpos))
+					if(structurebb.isVecInside(blockpos$mutableblockpos))
 					{
 						i += Math.max(worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY(), worldIn.provider.getAverageGroundLevel());
 						++j;
@@ -104,10 +107,11 @@ public class ComponentEndAltar extends StructureComponent
 				}
 			}
 			
-			if (j == 0)
+			if(j == 0)
 			{
 				return false;
-			} else
+			}
+			else
 			{
 				horizontalPos = i / j;
 				boundingBox.offset(0, horizontalPos - boundingBox.minY + yOffset, 0);

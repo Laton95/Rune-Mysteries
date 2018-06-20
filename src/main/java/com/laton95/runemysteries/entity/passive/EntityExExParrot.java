@@ -23,9 +23,13 @@ import javax.annotation.Nullable;
 public class EntityExExParrot extends EntityTameable implements EntityFlying
 {
 	public float flap;
+
 	public float flapSpeed;
+
 	public float oFlapSpeed;
+
 	public float oFlap;
+
 	public float flapping = 1.0F;
 	
 	public EntityExExParrot(World worldIn)
@@ -33,11 +37,6 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 		super(worldIn);
 		this.setSize(0.5F, 0.9F);
 		this.moveHelper = new EntityFlyHelper(this);
-	}
-	
-	public boolean isFlying()
-	{
-		return !onGround;
 	}
 	
 	protected void initEntityAI()
@@ -72,10 +71,18 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 		return pathnavigateflying;
 	}
 	
+	@Nullable
 	@Override
-	public float getEyeHeight()
+	public SoundEvent getAmbientSound()
 	{
-		return  this.height * 0.6f;
+		return SoundEvents.E_PARROT_IM_ZOMBIE;
+	}
+	
+	@Nullable
+	@Override
+	protected ResourceLocation getLootTable()
+	{
+		return LootTableList.ENTITIES_PARROT;
 	}
 	
 	@Override
@@ -89,17 +96,17 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 	{
 		this.oFlap = this.flap;
 		this.oFlapSpeed = this.flapSpeed;
-		this.flapSpeed = (float)((double)this.flapSpeed + (double)(this.onGround ? -1 : 4) * 0.3D);
+		this.flapSpeed = (float) ((double) this.flapSpeed + (double) (this.onGround ? -1 : 4) * 0.3D);
 		this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
 		
-		if (!this.onGround && this.flapping < 1.0F)
+		if(!this.onGround && this.flapping < 1.0F)
 		{
 			this.flapping = 1.0F;
 		}
 		
-		this.flapping = (float)((double)this.flapping * 0.9D);
+		this.flapping = (float) ((double) this.flapping * 0.9D);
 		
-		if (!this.onGround && this.motionY < 0.0D)
+		if(!this.onGround && this.motionY < 0.0D)
 		{
 			this.motionY *= 0.6D;
 		}
@@ -108,9 +115,33 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 	}
 	
 	@Override
+	public boolean attackEntityFrom(DamageSource source, float amount)
+	{
+		if(this.isEntityInvulnerable(source))
+		{
+			return false;
+		}
+		else
+		{
+			if(this.aiSit != null)
+			{
+				this.aiSit.setSitting(false);
+			}
+			
+			return super.attackEntityFrom(source, amount);
+		}
+	}
+	
+	@Override
+	public boolean isBreedingItem(ItemStack stack)
+	{
+		return false;
+	}
+	
+	@Override
 	public boolean processInteract(EntityPlayer player, EnumHand hand)
 	{
-		if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player))
+		if(!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player))
 		{
 			this.aiSit.setSitting(!this.isSitting());
 		}
@@ -118,10 +149,9 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 		return super.processInteract(player, hand);
 	}
 	
-	@Override
-	public boolean isBreedingItem(ItemStack stack)
+	public boolean isFlying()
 	{
-		return false;
+		return !onGround;
 	}
 	
 	@Override
@@ -139,9 +169,9 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 	
 	@Nullable
 	@Override
-	public SoundEvent getAmbientSound()
+	protected SoundEvent getHurtSound(DamageSource damageSourceIn)
 	{
-		return SoundEvents.E_PARROT_IM_ZOMBIE;
+		return SoundEvents.ENTITY_ZOMBIE_HURT;
 	}
 	
 	@Nullable
@@ -151,11 +181,16 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 		return SoundEvents.ENTITY_ZOMBIE_DEATH;
 	}
 	
-	@Nullable
 	@Override
-	protected SoundEvent getHurtSound(DamageSource damageSourceIn)
+	public void fall(float distance, float damageMultiplier)
 	{
-		return SoundEvents.ENTITY_ZOMBIE_HURT;
+	
+	}
+	
+	@Override
+	protected float getSoundPitch()
+	{
+		return (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F;
 	}
 	
 	@Override
@@ -177,45 +212,14 @@ public class EntityExExParrot extends EntityTameable implements EntityFlying
 	}
 	
 	@Override
-	protected float getSoundPitch()
+	public float getEyeHeight()
 	{
-		return (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F + 1.0F;
+		return this.height * 0.6f;
 	}
 	
 	@Override
 	public SoundCategory getSoundCategory()
 	{
 		return SoundCategory.NEUTRAL;
-	}
-	
-	@Override
-	public boolean attackEntityFrom(DamageSource source, float amount)
-	{
-		if (this.isEntityInvulnerable(source))
-		{
-			return false;
-		}
-		else
-		{
-			if (this.aiSit != null)
-			{
-				this.aiSit.setSitting(false);
-			}
-			
-			return super.attackEntityFrom(source, amount);
-		}
-	}
-	
-	@Override
-	public void fall(float distance, float damageMultiplier)
-	{
-	
-	}
-	
-	@Nullable
-	@Override
-	protected ResourceLocation getLootTable()
-	{
-		return LootTableList.ENTITIES_PARROT;
 	}
 }

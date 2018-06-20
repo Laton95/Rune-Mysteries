@@ -17,7 +17,8 @@ import java.util.Random;
 public abstract class RMModSlab extends BlockSlab
 {
 	
-	public static final PropertyEnum<RMModSlab.Variant> VARIANT = PropertyEnum.<RMModSlab.Variant>create("variant", RMModSlab.Variant.class);
+	public static final PropertyEnum<RMModSlab.Variant> VARIANT = PropertyEnum.create("variant", RMModSlab.Variant.class);
+	
 	private Item halfSlabItem;
 	
 	public RMModSlab(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
@@ -31,7 +32,7 @@ public abstract class RMModSlab extends BlockSlab
 		setHarvestLevel(toolClass, harvestLevel);
 		
 		IBlockState state = blockState.getBaseState();
-		if (!isDouble())
+		if(!isDouble())
 		{
 			state = state.withProperty(HALF, EnumBlockHalf.BOTTOM);
 		}
@@ -47,29 +48,11 @@ public abstract class RMModSlab extends BlockSlab
 	}
 	
 	@Override
-	public IProperty<?> getVariantProperty()
-	{
-		return VARIANT;
-	}
-	
-	@Override
-	public Comparable<?> getTypeForItem(ItemStack stack)
-	{
-		return RMModSlab.Variant.DEFAULT;
-	}
-	
-	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return 0;
-	}
-	
-	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
 		IBlockState iblockstate = getDefaultState().withProperty(VARIANT, RMModSlab.Variant.DEFAULT);
 		
-		if (!isDouble())
+		if(!isDouble())
 		{
 			iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
 		}
@@ -82,7 +65,7 @@ public abstract class RMModSlab extends BlockSlab
 	{
 		int i = 0;
 		
-		if (!isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
+		if(!isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
 		{
 			i |= 8;
 		}
@@ -90,9 +73,17 @@ public abstract class RMModSlab extends BlockSlab
 		return i;
 	}
 	
-	public void setDroppedItem(Item item)
+	@Override
+	public int damageDropped(IBlockState state)
 	{
-		halfSlabItem = item;
+		return 0;
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return isDouble() ? new BlockStateContainer(this, VARIANT) : new BlockStateContainer(this, HALF,
+																							 VARIANT);
 	}
 	
 	@Override
@@ -102,13 +93,23 @@ public abstract class RMModSlab extends BlockSlab
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState()
+	public IProperty<?> getVariantProperty()
 	{
-		return isDouble() ? new BlockStateContainer(this, new IProperty[] {VARIANT}) : new BlockStateContainer(this, new IProperty[] {HALF,
-				VARIANT});
+		return VARIANT;
 	}
 	
-	public static enum Variant implements IStringSerializable
+	@Override
+	public Comparable<?> getTypeForItem(ItemStack stack)
+	{
+		return RMModSlab.Variant.DEFAULT;
+	}
+	
+	public void setDroppedItem(Item item)
+	{
+		halfSlabItem = item;
+	}
+	
+	public enum Variant implements IStringSerializable
 	{
 		DEFAULT;
 		
@@ -150,4 +151,6 @@ public abstract class RMModSlab extends BlockSlab
 			return false;
 		}
 	}
+	
+	
 }

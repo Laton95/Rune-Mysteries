@@ -16,7 +16,7 @@ public class BouncingSpell extends SpellBase
 	
 	private final static List<SpellCost> costs = ImmutableList.of(
 	
-	);
+																 );
 	
 	public BouncingSpell()
 	{
@@ -33,7 +33,7 @@ public class BouncingSpell extends SpellBase
 	@Override
 	public boolean canCast(World world, EntityPlayer player)
 	{
-		return  true;
+		return true;
 	}
 	
 }

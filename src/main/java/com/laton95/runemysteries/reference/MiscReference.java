@@ -4,5 +4,6 @@ public class MiscReference
 {
 	
 	public static Boolean isAprilFools = false;
+	
 	public static Boolean isChristmas = false;
 }

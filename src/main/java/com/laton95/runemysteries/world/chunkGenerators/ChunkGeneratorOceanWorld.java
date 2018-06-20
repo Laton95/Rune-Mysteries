@@ -23,13 +23,21 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 {
 	
 	private final IBlockState WORLDBLOCK;
+	
 	private final IBlockState SURFACEBLOCK;
+	
 	private final IBlockState OCEANBLOCK;
+	
 	private final Random rand;
+	
 	private final World world;
+	
 	private final int oceanSurface;
+	
 	private final int crustSurface;
+	
 	private final int worldSurface;
+	
 	private final ChunkGeneratorSettings settings;
 	
 	private MapGenRuneTemple temple;
@@ -60,29 +68,33 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	public Chunk generateChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		if (Math.max(Math.abs(x), Math.abs(z)) < 16)
+		if(Math.max(Math.abs(x), Math.abs(z)) < 16)
 		{
 			rand.setSeed(x * 341873128712L + z * 132897987541L);
 			
-			for (int y = 0; y < world.getActualHeight(); y++)
+			for(int y = 0; y < world.getActualHeight(); y++)
 			{
-				for (int xPos = 0; xPos < 16; xPos++)
+				for(int xPos = 0; xPos < 16; xPos++)
 				{
-					for (int zPos = 0; zPos < 16; zPos++)
+					for(int zPos = 0; zPos < 16; zPos++)
 					{
-						if (y == 0)
+						if(y == 0)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
-						} else if (y > oceanSurface)
+						}
+						else if(y > oceanSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.AIR.getDefaultState());
-						} else if (y > crustSurface)
+						}
+						else if(y > crustSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, OCEANBLOCK);
-						} else if (y > worldSurface)
+						}
+						else if(y > worldSurface)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, SURFACEBLOCK);
-						} else
+						}
+						else
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, WORLDBLOCK);
 						}
@@ -127,15 +139,15 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	}
 	
 	@Override
-	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
-	{
-		return new LinkedList<>();
-	}
-	
-	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return true;
+	}
+	
+	@Override
+	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+	{
+		return new LinkedList<>();
 	}
 	
 	@Override
@@ -147,7 +159,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	@Override
 	public void recreateStructures(Chunk chunkIn, int x, int z)
 	{
-
+	
 	}
 	
 	@Override

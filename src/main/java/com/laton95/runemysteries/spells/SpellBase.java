@@ -12,9 +12,13 @@ public abstract class SpellBase
 {
 	
 	protected final List<SpellBase.SpellCost> costs;
+	
 	protected final int cooldown;
+	
 	protected final String name;
+	
 	protected final String description;
+	
 	protected final ResourceLocation guiTexture;
 	
 	public SpellBase(List<SpellBase.SpellCost> costs, int cooldown, String name, String description, ResourceLocation guiTexture)
@@ -68,8 +72,11 @@ public abstract class SpellBase
 	{
 		
 		private final Item item;
+		
 		private final int count;
+		
 		private final int damage;
+		
 		private final boolean useMetadata;
 		
 		public SpellCost(Item item, int count, int damage)

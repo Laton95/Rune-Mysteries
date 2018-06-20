@@ -7,30 +7,30 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 public class KeyInputEventHandler
 {
 	
-	private Keybindings getPressedKey()
-	{
-		for (Keybindings key : Keybindings.values())
-		{
-			if (key.isPressed())
-			{
-				return key;
-			}
-		}
-		return null;
-	}
-	
 	@SubscribeEvent
 	public void handleKeyInputEvent(InputEvent.KeyInputEvent event)
 	{
 		Keybindings key = getPressedKey();
-		if (key != null)
+		if(key != null)
 		{
-			switch (key)
+			switch(key)
 			{
 				case TEST:
 					// NetworkHandler.sendToServer(new MessageExplode(3, false));
 					break;
 			}
 		}
+	}
+	
+	private Keybindings getPressedKey()
+	{
+		for(Keybindings key : Keybindings.values())
+		{
+			if(key.isPressed())
+			{
+				return key;
+			}
+		}
+		return null;
 	}
 }

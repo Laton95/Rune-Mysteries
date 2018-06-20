@@ -17,12 +17,6 @@ public class BlockStationStone extends RMModBlock
 	}
 	
 	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
@@ -32,5 +26,11 @@ public class BlockStationStone extends RMModBlock
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
+	}
+	
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
 	}
 }

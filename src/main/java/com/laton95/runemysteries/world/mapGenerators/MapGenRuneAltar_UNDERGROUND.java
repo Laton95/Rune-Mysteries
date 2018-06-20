@@ -22,7 +22,7 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 	
 	public MapGenRuneAltar_UNDERGROUND()
 	{
-		runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
+		runeAltarSpawnList = Lists.newArrayList();
 	}
 	
 	@Override
@@ -32,27 +32,28 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 	}
 	
 	@Override
+	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
+	{
+		return null;
+	}
+	
+	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
-		if (WorldGenerator.altarTracker != null)
+		if(WorldGenerator.altarTracker != null)
 		{
-			if (!WorldGenerator.altarTracker.overworldAltarsFound)
+			if(!WorldGenerator.altarTracker.overworldAltarsFound)
 			{
 				WorldGenerator.altarTracker.findOverworldLocations(world);
 			}
-		} else
+		}
+		else
 		{
 			WorldGenerator.altarTracker = new AltarTracker();
 			WorldGenerator.altarTracker.findOverworldLocations(world);
 		}
-		
+
 		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), 0, AltarTracker.Type.UNDERGROUND);
-	}
-	
-	@Override
-	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
-	{
-		return null;
 	}
 	
 	@Override
@@ -88,9 +89,9 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 			
 			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar(new ChunkPos(chunkX, chunkZ), worldIn.provider.getDimension());
 			
-			if (altar != null && !altar.isPlaced())
+			if(altar != null && !altar.isPlaced())
 			{
-				if (!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn))
+				if(!altar.isBiomeDependant() || altar.isBiomeViable(biomeIn))
 				{
 					ComponentUndergroundAltar componentRuneAltar = new ComponentUndergroundAltar(random, chunkX * 16, chunkZ * 16, altar.getName(), altar.getRoom(), altar.getYOffset());
 					
@@ -98,7 +99,8 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 					altar.setPlaced(true);
 					LogHelper.info(altar.toString());
 					components.add(componentRuneAltar);
-				} else
+				}
+				else
 				{
 					// Altar failed to generate because incorrect biome
 					panic(altar);
@@ -110,11 +112,11 @@ public class MapGenRuneAltar_UNDERGROUND extends MapGenStructure
 		private void panic(AltarTracker.RuneAltar altar)
 		{
 			altar.incrementFailureCount(1);
-			if (altar.getFailureCount() > WorldGenerator.altarTracker.warningFailureCount)
+			if(altar.getFailureCount() > WorldGenerator.altarTracker.warningFailureCount)
 			{
 				altar.incrementPlacementRadius(5);
 				altar.decrementFlatnessTolerance(0.02f);
-				if (altar.getFailureCount() > WorldGenerator.altarTracker.panicFailureCount)
+				if(altar.getFailureCount() > WorldGenerator.altarTracker.panicFailureCount)
 				{
 					altar.incrementPlacementRadius(20);
 					altar.setBiomeDependant(false);

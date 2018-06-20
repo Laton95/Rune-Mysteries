@@ -18,7 +18,7 @@ public class Spells
 		@Override
 		public void fireSpell(World world, EntityPlayer player)
 		{
-		
+
 		}
 		
 		@Override
@@ -32,21 +32,21 @@ public class Spells
 	
 	public static void checkSpells()
 	{
-		for (SpellBase spell : spellList)
+		for(SpellBase spell : spellList)
 		{
 			List<ItemStack> items = new ArrayList<>();
-			for (SpellCost spellCost : spell.getCosts())
+			for(SpellCost spellCost : spell.getCosts())
 			{
-				for (ItemStack itemStack : items)
+				for(ItemStack itemStack : items)
 				{
-					if (itemStack.getItem() == spellCost.getItem() && spellCost.getMetadata() == itemStack.getItemDamage())
+					if(itemStack.getItem() == spellCost.getItem() && spellCost.getMetadata() == itemStack.getItemDamage())
 					{
 						throw new IllegalArgumentException("Spell has multiple costs with the same item: " + spell.getName());
 					}
 				}
 				items.add(new ItemStack(spellCost.getItem(), 1, spellCost.getMetadata()));
 			}
-			if (spell.getCosts().size() > 40 + 14)
+			if(spell.getCosts().size() > 40 + 14)
 			{
 				throw new IllegalArgumentException("Spell is uncastable, too many costs to fit in player inventory: " + spell.getName());
 			}

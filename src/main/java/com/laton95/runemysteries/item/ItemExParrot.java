@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.item;
 
-public class ItemExParrot extends  RMModItem
+public class ItemExParrot extends RMModItem
 {
 	public ItemExParrot()
 	{

@@ -53,12 +53,12 @@ public class RuneMysteries
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		proxy.registerRenders();
 		
-		if (LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
+		if(LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
 		{
 			LogHelper.info("It's April Fools!");
 			MiscReference.isAprilFools = true;
 		}
-		if (LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25)
+		if(LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25)
 		{
 			LogHelper.info("Merry Christmas!");
 			MiscReference.isChristmas = true;
@@ -87,7 +87,7 @@ public class RuneMysteries
 	public void serverStarting(FMLServerStartedEvent event)
 	{
 		LogHelper.info("Loading altar tracker");
-		if (WorldGenerator.altarTracker == null)
+		if(WorldGenerator.altarTracker == null)
 		{
 			WorldGenerator.altarTracker = new AltarTracker();
 		}

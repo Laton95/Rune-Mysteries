@@ -21,11 +21,17 @@ public class ModItems
 {
 	
 	public static final ItemRune RUNE = new ItemRune();
+	
 	public static final ItemTalisman RUNE_TALISMAN = new ItemTalisman();
+	
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
+	
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
+	
 	public static final ItemScroll MINE_SCROLL = new ItemScroll();
+	
 	public static final ItemBanana BANANA = new ItemBanana();
+	
 	public static final ItemExParrot EX_PARROT = new ItemExParrot();
 	
 	private static ArrayList<Item> items = new ArrayList<Item>(
@@ -37,13 +43,13 @@ public class ModItems
 					MINE_SCROLL,
 					BANANA,
 					EX_PARROT
-			));
+						 ));
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event)
 	{
 		LogHelper.info("Registering items");
-		for (Item item : items)
+		for(Item item : items)
 		{
 			event.getRegistry().register(item);
 		}
@@ -52,22 +58,24 @@ public class ModItems
 	
 	public static void registerRenders()
 	{
-		for (Item item : items)
+		for(Item item : items)
 		{
-			if (item.getHasSubtypes() && item instanceof RMModItem)
+			if(item.getHasSubtypes() && item instanceof RMModItem)
 			{
 				Class<? extends Enum<?>> values = ((RMModItem) item).getValues();
-				for (int i = 0; i < values.getEnumConstants().length; i++)
+				for(int i = 0; i < values.getEnumConstants().length; i++)
 				{
 					registerRenderVariants(item, i, item.getRegistryName().getResourcePath() + "_" + values.getEnumConstants()[i]);
 				}
-			} else if (item.getHasSubtypes() && item instanceof ItemBlock)
+			}
+			else if(item.getHasSubtypes() && item instanceof ItemBlock)
 			{
-				for (int i = 0; i < EnumRuneType.values().length; i++)
+				for(int i = 0; i < EnumRuneType.values().length; i++)
 				{
 					registerRenderVariants(item, i, item.getRegistryName().getResourcePath());
 				}
-			} else
+			}
+			else
 			{
 				ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
 			}

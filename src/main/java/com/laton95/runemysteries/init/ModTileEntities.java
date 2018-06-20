@@ -20,7 +20,7 @@ public class ModTileEntities
 		
 		TileEntityEntry[] entrires = {new InitDataStructures().new TileEntityEntry("altar_portal", TileEntityAltarPortal.class)};
 		
-		for (TileEntityEntry entry : entrires)
+		for(TileEntityEntry entry : entrires)
 		{
 			GameRegistry.registerTileEntity(entry.entityClass, entry.key);
 		}

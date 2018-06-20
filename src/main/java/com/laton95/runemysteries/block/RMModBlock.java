@@ -20,7 +20,7 @@ public class RMModBlock extends Block
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative)
+		if(showInCreative)
 		{
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}
@@ -35,7 +35,7 @@ public class RMModBlock extends Block
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 		setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		if (showInCreative)
+		if(showInCreative)
 		{
 			setCreativeTab(RMModCreativeTab.RM_TAB);
 		}

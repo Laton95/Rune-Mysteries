@@ -31,15 +31,9 @@ public class FireDimension extends WorldProvider
 	}
 	
 	@Override
-	public DimensionType getDimensionType()
+	public IChunkGenerator createChunkGenerator()
 	{
-		return ModDimensions.FIRE;
-	}
-	
-	@Override
-	public boolean isSurfaceWorld()
-	{
-		return true;
+		return new ChunkGeneratorFire(world, world.getSeed());
 	}
 	
 	@Override
@@ -49,26 +43,7 @@ public class FireDimension extends WorldProvider
 	}
 	
 	@Override
-	public boolean canRespawnHere()
-	{
-		return false;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean doesXZShowFog(int x, int z)
-	{
-		return false;
-	}
-	
-	@Override
-	public long getWorldTime()
-	{
-		return 6000;
-	}
-	
-	@Override
-	public boolean isDaytime()
+	public boolean isSurfaceWorld()
 	{
 		return true;
 	}
@@ -89,8 +64,33 @@ public class FireDimension extends WorldProvider
 	}
 	
 	@Override
-	public IChunkGenerator createChunkGenerator()
+	public boolean canRespawnHere()
 	{
-		return new ChunkGeneratorFire(world, world.getSeed());
+		return false;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean doesXZShowFog(int x, int z)
+	{
+		return false;
+	}
+	
+	@Override
+	public boolean isDaytime()
+	{
+		return true;
+	}
+	
+	@Override
+	public long getWorldTime()
+	{
+		return 6000;
+	}
+	
+	@Override
+	public DimensionType getDimensionType()
+	{
+		return ModDimensions.FIRE;
 	}
 }

@@ -17,50 +17,51 @@ import java.util.Random;
 
 public class MapGenRuneAltar_NETHER extends MapGenStructure
 {
-
+	
 	private final List<Biome.SpawnListEntry> runeAltarSpawnList;
-
+	
 	public MapGenRuneAltar_NETHER()
 	{
-		runeAltarSpawnList = Lists.<Biome.SpawnListEntry>newArrayList();
+		runeAltarSpawnList = Lists.newArrayList();
 	}
-
+	
 	@Override
 	public String getStructureName()
 	{
 		return "RuneAltarNether";
 	}
-
-	@Override
-	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
-	{
-		if (WorldGenerator.altarTracker != null)
-		{
-			if (!WorldGenerator.altarTracker.netherAltarsFound)
-			{
-				WorldGenerator.altarTracker.findNetherLocations(world);
-			}
-		} else
-		{
-			WorldGenerator.altarTracker = new AltarTracker();
-			WorldGenerator.altarTracker.findNetherLocations(world);
-		}
-
-		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1, AltarTracker.Type.NETHER);
-	}
-
+	
 	@Override
 	public BlockPos getNearestStructurePos(World worldIn, BlockPos pos, boolean findUnexplored)
 	{
 		return null;
 	}
-
+	
+	@Override
+	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
+	{
+		if(WorldGenerator.altarTracker != null)
+		{
+			if(!WorldGenerator.altarTracker.netherAltarsFound)
+			{
+				WorldGenerator.altarTracker.findNetherLocations(world);
+			}
+		}
+		else
+		{
+			WorldGenerator.altarTracker = new AltarTracker();
+			WorldGenerator.altarTracker.findNetherLocations(world);
+		}
+		
+		return WorldGenerator.altarTracker.inGenerationRange(new ChunkPos(chunkX, chunkZ), -1, AltarTracker.Type.NETHER);
+	}
+	
 	@Override
 	protected StructureStart getStructureStart(int chunkX, int chunkZ)
 	{
 		return new MapGenRuneAltar_NETHER.Start(world, rand, chunkX, chunkZ);
 	}
-
+	
 	/**
 	 * returns possible spawns for rune altars
 	 */
@@ -68,30 +69,30 @@ public class MapGenRuneAltar_NETHER extends MapGenStructure
 	{
 		return runeAltarSpawnList;
 	}
-
+	
 	public static class Start extends StructureStart
 	{
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
 			this(worldIn, random, chunkX, chunkZ, worldIn.getBiome(new BlockPos(chunkX * 16 + 8, 0, chunkZ * 16 + 8)));
-
+			
 		}
-
+		
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn)
 		{
 			super(chunkX, chunkZ);
-
+			
 			AltarTracker.RuneAltar altar = WorldGenerator.altarTracker.getAltar("chaos_altar");
-
-			if (altar != null && !altar.isPlaced())
+			
+			if(altar != null && !altar.isPlaced())
 			{
 				LogHelper.info("tst");
 				int randX = random.nextInt(4) + 1;
 				int randZ = random.nextInt(4) + 1;
-
+				
 				ComponentNetherAltar componentRuneAltar = new ComponentNetherAltar(random, chunkX * 16 + randX, chunkZ * 16 + randZ, altar.getName());
-
+				
 				// Altar generated
 				altar.setPlaced(true);
 				LogHelper.info(altar.toString());

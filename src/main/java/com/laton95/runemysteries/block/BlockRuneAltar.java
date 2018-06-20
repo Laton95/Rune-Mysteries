@@ -5,9 +5,7 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.init.ModLoot;
 import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
-import com.laton95.runemysteries.potion.PotionStonetoucher;
 import com.laton95.runemysteries.util.LogHelper;
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -39,6 +37,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 {
 	
 	private static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
+	
 	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
 	
 	public BlockRuneAltar()
@@ -49,9 +48,9 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState()
+	public IBlockState getStateFromMeta(int meta)
 	{
-		return new BlockStateContainer(this, TYPE);
+		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
 	}
 	
 	@Override
@@ -59,98 +58,6 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	{
 		EnumRuneType type = state.getValue(TYPE);
 		return type.ordinal();
-	}
-	
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		return getDefaultState().withProperty(TYPE, EnumRuneType.values()[meta]);
-	}
-	
-	@Override
-	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
-	{
-		for (int i = 0; i < EnumRuneType.values().length; i++)
-		{
-			items.add(new ItemStack(this, 1, i));
-		}
-	}
-	
-	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-	{
-		if (entityIn instanceof EntityItem && !worldIn.isRemote)
-		{
-			ItemStack stack = ((EntityItem) entityIn).getItem();
-			boolean isOurania = getMetaFromState(state) == EnumRuneType.ESSENCE.ordinal();
-			int altarData  = getMetaFromState(state);
-			
-			if (stack.getItem() == ModItems.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
-			{
-				ItemStack newStack;
-				if (isOurania)
-				{
-					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getRandomRune(worldIn).getMetadata(), isOurania);
-				} else
-				{
-					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, altarData, isOurania);
-				}
-			}
-			else if (stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
-			{
-				changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, altarData, isOurania);
-			}
-			else if (stack.getItem() == Items.BOOK)
-			{
-				changeItem(worldIn, (EntityItem) entityIn, ModItems.SPELLBOOK, 0, isOurania);
-			}
-		}
-	}
-	
-	private void changeItem(World worldIn, EntityItem entityItem, Item item, int metadata, boolean isOurania)
-	{
-		if (!worldIn.isRemote)
-		{
-			LogHelper.info("making item");
-			
-			int bonusRunes = 0;
-			
-			String playerName = entityItem.getThrower();
-			if (playerName != null)
-			{
-				EntityPlayer player = worldIn.getPlayerEntityByName(playerName);
-
-				Triggers.CRAFT_RUNE.trigger((EntityPlayerMP) player);
-
-				if (isOurania) Triggers.OURANIA.trigger((EntityPlayerMP) player);
-
-				if (ModPotions.STONETOUCHER.hasEffect(player))
-				{
-					bonusRunes = entityItem.getItem().getCount();
-				}
-			}
-			
-			int count = entityItem.getItem().getCount() + bonusRunes;
-			
-			entityItem.setItem(new ItemStack(item, 1, metadata));
-			entityItem.setDead();
-			
-			while (count > 0)
-			{
-				if (isOurania && item.getHasSubtypes()) metadata = getRandomRune(worldIn).getMetadata();
-				ItemStack newStack = new ItemStack(item, 1, metadata);
-				EntityItem newItem = new EntityItem(worldIn, entityItem.posX, entityItem.posY, entityItem.posZ);
-				newItem.setItem(newStack);
-				worldIn.spawnEntity(newItem);
-				count--;
-			}
-		}
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
 	}
 	
 	@Override
@@ -166,15 +73,108 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	}
 	
 	@Override
-	public String getSpecialName(ItemStack stack)
+	public boolean isOpaqueCube(IBlockState state)
 	{
-		return EnumRuneType.values()[stack.getItemDamage()].toString();
+		return false;
+	}
+	
+	@Override
+	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
+	{
+		if(entityIn instanceof EntityItem && !worldIn.isRemote)
+		{
+			ItemStack stack = ((EntityItem) entityIn).getItem();
+			boolean isOurania = getMetaFromState(state) == EnumRuneType.ESSENCE.ordinal();
+			int altarData = getMetaFromState(state);
+			
+			if(stack.getItem() == ModItems.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+			{
+				ItemStack newStack;
+				if(isOurania)
+				{
+					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getRandomRune(worldIn).getMetadata(), isOurania);
+				}
+				else
+				{
+					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, altarData, isOurania);
+				}
+			}
+			else if(stack.getItem() == ModItems.RUNE_TALISMAN && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
+			{
+				changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE_TALISMAN, altarData, isOurania);
+			}
+			else if(stack.getItem() == Items.BOOK)
+			{
+				changeItem(worldIn, (EntityItem) entityIn, ModItems.SPELLBOOK, 0, isOurania);
+			}
+		}
+	}
+	
+	@Override
+	public void getSubBlocks(CreativeTabs itemIn, NonNullList<ItemStack> items)
+	{
+		for(int i = 0; i < EnumRuneType.values().length; i++)
+		{
+			items.add(new ItemStack(this, 1, i));
+		}
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, TYPE);
 	}
 	
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
 		return new ItemStack(Item.getItemFromBlock(this), 1, getMetaFromState(state));
+	}
+	
+	private void changeItem(World worldIn, EntityItem entityItem, Item item, int metadata, boolean isOurania)
+	{
+		if(!worldIn.isRemote)
+		{
+			LogHelper.info("making item");
+			
+			int bonusRunes = 0;
+			
+			String playerName = entityItem.getThrower();
+			if(playerName != null)
+			{
+				EntityPlayer player = worldIn.getPlayerEntityByName(playerName);
+				
+				Triggers.CRAFT_RUNE.trigger((EntityPlayerMP) player);
+				
+				if(isOurania)
+				{
+					Triggers.OURANIA.trigger((EntityPlayerMP) player);
+				}
+				
+				if(ModPotions.STONETOUCHER.hasEffect(player))
+				{
+					bonusRunes = entityItem.getItem().getCount();
+				}
+			}
+			
+			int count = entityItem.getItem().getCount() + bonusRunes;
+			
+			entityItem.setItem(new ItemStack(item, 1, metadata));
+			entityItem.setDead();
+			
+			while(count > 0)
+			{
+				if(isOurania && item.getHasSubtypes())
+				{
+					metadata = getRandomRune(worldIn).getMetadata();
+				}
+				ItemStack newStack = new ItemStack(item, 1, metadata);
+				EntityItem newItem = new EntityItem(worldIn, entityItem.posX, entityItem.posY, entityItem.posZ);
+				newItem.setItem(newStack);
+				worldIn.spawnEntity(newItem);
+				count--;
+			}
+		}
 	}
 	
 	private ItemStack getRandomRune(World world)
@@ -186,10 +186,17 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 			LootTable loottable = world.getLootTableManager().getLootTableFromLocation(resourcelocation);
 			LootContext.Builder lootBuilder = new LootContext.Builder((WorldServer) world);
 			items = loottable.generateLootForPools(world.rand, lootBuilder.build());
-		} catch (NullPointerException e)
+		}
+		catch(NullPointerException e)
 		{
 			items.add(new ItemStack(Blocks.DIRT));
 		}
 		return items.get(0);
+	}
+	
+	@Override
+	public String getSpecialName(ItemStack stack)
+	{
+		return EnumRuneType.values()[stack.getItemDamage()].toString();
 	}
 }

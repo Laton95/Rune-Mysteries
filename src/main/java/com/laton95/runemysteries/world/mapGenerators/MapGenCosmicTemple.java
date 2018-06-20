@@ -19,13 +19,7 @@ public class MapGenCosmicTemple extends MapGenRuneTemple
 	@Override
 	protected boolean canSpawnStructureAtCoords(int chunkX, int chunkZ)
 	{
-		if (chunkX == 0 && chunkZ == 0 || chunkX == -1 && chunkZ == 0 || chunkX == 0 && chunkZ == -1 || chunkX == -1 && chunkZ == -1 || chunkX == -2 && chunkZ == 0 || chunkX == -2 && chunkZ == -1 || chunkX == -1 && chunkZ == -2 || chunkX == 0 && chunkZ == -2 || chunkX == 1 && chunkZ == -1 || chunkX == 1 && chunkZ == 0 || chunkX == 0 && chunkZ == 1 || chunkX == -1 && chunkZ == 1)
-		{
-			return true;
-		} else
-		{
-			return false;
-		}
+		return chunkX == 0 && chunkZ == 0 || chunkX == -1 && chunkZ == 0 || chunkX == 0 && chunkZ == -1 || chunkX == -1 && chunkZ == -1 || chunkX == -2 && chunkZ == 0 || chunkX == -2 && chunkZ == -1 || chunkX == -1 && chunkZ == -2 || chunkX == 0 && chunkZ == -2 || chunkX == 1 && chunkZ == -1 || chunkX == 1 && chunkZ == 0 || chunkX == 0 && chunkZ == 1 || chunkX == -1 && chunkZ == 1;
 	}
 	
 	@Override

@@ -19,6 +19,7 @@ public class ChunkGeneratorVoidWorld implements IChunkGenerator
 {
 	
 	private final Random rand;
+
 	private final World world;
 	
 	protected MapGenRuneTemple temple;
@@ -70,15 +71,15 @@ public class ChunkGeneratorVoidWorld implements IChunkGenerator
 	}
 	
 	@Override
-	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
-	{
-		return new LinkedList<>();
-	}
-	
-	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return true;
+	}
+	
+	@Override
+	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+	{
+		return new LinkedList<>();
 	}
 	
 	@Override

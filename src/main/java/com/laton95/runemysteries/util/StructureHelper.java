@@ -14,9 +14,17 @@ public class StructureHelper
 {
 	
 	private Template template;
+	
 	private World world;
+	
 	private BlockPos pos;
+	
 	private PlacementSettings settings;
+	
+	public StructureHelper(World world, String structureName, BlockPos pos)
+	{
+		this(world, structureName, pos, new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID));
+	}
 	
 	public StructureHelper(World world, String structureName, BlockPos pos, PlacementSettings settings)
 	{
@@ -28,11 +36,6 @@ public class StructureHelper
 		TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
 		ResourceLocation structureResource = new ResourceLocation(ModReference.MOD_ID, structureName);
 		template = templatemanager.getTemplate(minecraftserver, structureResource);
-	}
-	
-	public StructureHelper(World world, String structureName, BlockPos pos)
-	{
-		this(world, structureName, pos, new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID));
 	}
 	
 	public void generate()

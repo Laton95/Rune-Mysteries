@@ -26,17 +26,18 @@ public class ItemScroll extends RMModItem
 	{
 		ItemStack scroll = playerIn.getHeldItem(handIn);
 		int dimID = getDimIDFromMetadata(scroll.getItemDamage());
-		if (!worldIn.isRemote)
+		if(!worldIn.isRemote)
 		{
-			if (worldIn.provider.getDimension() != dimID)
+			if(worldIn.provider.getDimension() != dimID)
 			{
-				if (!playerIn.isCreative())
+				if(!playerIn.isCreative())
 				{
 					playerIn.getHeldItem(handIn).shrink(1);
 				}
 				playerIn.getCooldownTracker().setCooldown(this, 500);
 				TeleportHelper.teleportEntity(playerIn, dimID, 0, 64, 0);
-			} else
+			}
+			else
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Scroll.FAIL));
 			}
@@ -47,7 +48,7 @@ public class ItemScroll extends RMModItem
 	
 	private int getDimIDFromMetadata(int metadata)
 	{
-		switch (EnumScrollType.values()[metadata])
+		switch(EnumScrollType.values()[metadata])
 		{
 			case MINE:
 				return ModConfig.DIMENSIONS.essenceMineDimID;
@@ -56,13 +57,13 @@ public class ItemScroll extends RMModItem
 		return 0;
 	}
 	
-	public static enum EnumScrollType implements IStringSerializable
+	public enum EnumScrollType implements IStringSerializable
 	{
 		MINE("mine");
 		
 		private final String name;
 		
-		private EnumScrollType(String name)
+		EnumScrollType(String name)
 		{
 			this.name = name;
 		}

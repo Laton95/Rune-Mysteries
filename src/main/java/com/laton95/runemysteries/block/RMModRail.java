@@ -3,7 +3,6 @@ package com.laton95.runemysteries.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockFenceGate;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.IProperty;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.BlockStateContainer;
@@ -25,11 +24,17 @@ public class RMModRail extends RMModBlock
 {
 	
 	public static final PropertyBool UP = PropertyBool.create("up");
+	
 	private static final PropertyBool NORTH = PropertyBool.create("north");
+	
 	private static final PropertyBool EAST = PropertyBool.create("east");
+	
 	private static final PropertyBool SOUTH = PropertyBool.create("south");
+	
 	private static final PropertyBool WEST = PropertyBool.create("west");
-	private static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
+	
+	private static final AxisAlignedBB[] AABB_BY_INDEX = new AxisAlignedBB[] {
+			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.25D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.25D, 0.75D, 1.0D, 1.0D),
@@ -44,8 +49,11 @@ public class RMModRail extends RMModBlock
 			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D),
 			new AxisAlignedBB(0.25D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D),
 			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 0.75D),
-			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)};
-	private static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {AABB_BY_INDEX[0].setMaxY(1.5D),
+			new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 1.0D, 1.0D)
+	};
+	
+	private static final AxisAlignedBB[] CLIP_AABB_BY_INDEX = new AxisAlignedBB[] {
+			AABB_BY_INDEX[0].setMaxY(1.5D),
 			AABB_BY_INDEX[1].setMaxY(1.5D),
 			AABB_BY_INDEX[2].setMaxY(1.5D),
 			AABB_BY_INDEX[3].setMaxY(1.5D),
@@ -60,121 +68,12 @@ public class RMModRail extends RMModBlock
 			AABB_BY_INDEX[12].setMaxY(1.5D),
 			AABB_BY_INDEX[13].setMaxY(1.5D),
 			AABB_BY_INDEX[14].setMaxY(1.5D),
-			AABB_BY_INDEX[15].setMaxY(1.5D)};
+			AABB_BY_INDEX[15].setMaxY(1.5D)
+	};
 	
 	public RMModRail(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
 		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
-	}
-	
-	private static int getAABBIndex(IBlockState state)
-	{
-		int i = 0;
-		
-		if (state.getValue(NORTH))
-		{
-			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
-		}
-		
-		if (state.getValue(EAST))
-		{
-			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
-		}
-		
-		if (state.getValue(SOUTH))
-		{
-			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
-		}
-		
-		if (state.getValue(WEST))
-		{
-			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
-		}
-		
-		return i;
-	}
-	
-	protected static boolean isExcepBlockForAttachWithPiston(Block p_194143_0_)
-	{
-		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
-	}
-	
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
-	{
-		state = getActualState(state, source, pos);
-		return AABB_BY_INDEX[getAABBIndex(state)];
-	}
-	
-	@Override
-	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes, @Nullable Entity entityIn, boolean p_185477_7_)
-	{
-		if (!p_185477_7_)
-		{
-			state = getActualState(state, worldIn, pos);
-		}
-		
-		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
-	}
-	
-	@Override
-	@Nullable
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-	{
-		blockState = getActualState(blockState, worldIn, pos);
-		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
-	}
-	
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	/**
-	 * Determines if an entity can path through this block
-	 */
-	@Override
-	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
-	{
-		return false;
-	}
-	
-	/**
-	 * Used to determine ambient occlusion and culling when rebuilding chunks
-	 * for renderer
-	 */
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos, EnumFacing p_176253_3_)
-	{
-		IBlockState iblockstate = worldIn.getBlockState(pos);
-		Block block = iblockstate.getBlock();
-		BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos, p_176253_3_);
-		boolean flag = blockfaceshape == BlockFaceShape.MIDDLE_POLE_THICK || blockfaceshape == BlockFaceShape.MIDDLE_POLE && block instanceof BlockFenceGate;
-		return !isExcepBlockForAttachWithPiston(block) && blockfaceshape == BlockFaceShape.SOLID || flag;
-	}
-	
-	/**
-	 * Gets the metadata of the item this Block can drop. This method is called
-	 * when the block gets destroyed. It returns the metadata of the dropped
-	 * item based on the old metadata of the block.
-	 */
-	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return 0;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
-	{
-		return side == EnumFacing.DOWN ? !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite()) : true;
 	}
 	
 	/**
@@ -212,13 +111,80 @@ public class RMModRail extends RMModBlock
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState()
+	public boolean isFullCube(IBlockState state)
 	{
-		return new BlockStateContainer(this, new IProperty[] {UP,
-				NORTH,
-				EAST,
-				WEST,
-				SOUTH});
+		return false;
+	}
+	
+	/**
+	 * Determines if an entity can path through this block
+	 */
+	@Override
+	public boolean isPassable(IBlockAccess worldIn, BlockPos pos)
+	{
+		return false;
+	}
+	
+	@Override
+	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
+	{
+		state = getActualState(state, source, pos);
+		return AABB_BY_INDEX[getAABBIndex(state)];
+	}
+	
+	private static int getAABBIndex(IBlockState state)
+	{
+		int i = 0;
+		
+		if(state.getValue(NORTH))
+		{
+			i |= 1 << EnumFacing.NORTH.getHorizontalIndex();
+		}
+		
+		if(state.getValue(EAST))
+		{
+			i |= 1 << EnumFacing.EAST.getHorizontalIndex();
+		}
+		
+		if(state.getValue(SOUTH))
+		{
+			i |= 1 << EnumFacing.SOUTH.getHorizontalIndex();
+		}
+		
+		if(state.getValue(WEST))
+		{
+			i |= 1 << EnumFacing.WEST.getHorizontalIndex();
+		}
+		
+		return i;
+	}
+	
+	private boolean canWallConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
+	{
+		BlockPos other = pos.offset(facing);
+		Block block = world.getBlockState(other).getBlock();
+		return block.canBeConnectedTo(world, other, facing.getOpposite()) || canConnectTo(world, other, facing.getOpposite());
+	}
+	
+	private boolean canConnectTo(IBlockAccess worldIn, BlockPos pos, EnumFacing p_176253_3_)
+	{
+		IBlockState iblockstate = worldIn.getBlockState(pos);
+		Block block = iblockstate.getBlock();
+		BlockFaceShape blockfaceshape = iblockstate.getBlockFaceShape(worldIn, pos, p_176253_3_);
+		boolean flag = blockfaceshape == BlockFaceShape.MIDDLE_POLE_THICK || blockfaceshape == BlockFaceShape.MIDDLE_POLE && block instanceof BlockFenceGate;
+		return !isExcepBlockForAttachWithPiston(block) && blockfaceshape == BlockFaceShape.SOLID || flag;
+	}
+	
+	protected static boolean isExcepBlockForAttachWithPiston(Block p_194143_0_)
+	{
+		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
+	}
+	
+	@Override
+	@SideOnly(Side.CLIENT)
+	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
+	{
+		return side != EnumFacing.DOWN || !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite());
 	}
 	
 	@Override
@@ -227,23 +193,68 @@ public class RMModRail extends RMModBlock
 		return p_193383_4_ != EnumFacing.UP && p_193383_4_ != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
 	}
 	
+	@Override
+	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes,
+									  @Nullable
+											  Entity entityIn, boolean p_185477_7_)
+	{
+		if(!p_185477_7_)
+		{
+			state = getActualState(state, worldIn, pos);
+		}
+		
+		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
+	}
+	
+	@Override
+	@Nullable
+	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
+	{
+		blockState = getActualState(blockState, worldIn, pos);
+		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
+	}
+	
+	/**
+	 * Used to determine ambient occlusion and culling when rebuilding chunks
+	 * for renderer
+	 */
+	@Override
+	public boolean isOpaqueCube(IBlockState state)
+	{
+		return false;
+	}
+	
+	/**
+	 * Gets the metadata of the item this Block can drop. This method is called
+	 * when the block gets destroyed. It returns the metadata of the dropped
+	 * item based on the old metadata of the block.
+	 */
+	@Override
+	public int damageDropped(IBlockState state)
+	{
+		return 0;
+	}
+	
 	/*
 	 * ======================================== FORGE START
 	 * ========================================
 	 */
 	
 	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, UP,
+									   NORTH,
+									   EAST,
+									   WEST,
+									   SOUTH);
+	}
+	
+	@Override
 	public boolean canBeConnectedTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
 	{
 		Block connector = world.getBlockState(pos.offset(facing)).getBlock();
 		return connector instanceof RMModRail || connector instanceof BlockFenceGate;
-	}
-	
-	private boolean canWallConnectTo(IBlockAccess world, BlockPos pos, EnumFacing facing)
-	{
-		BlockPos other = pos.offset(facing);
-		Block block = world.getBlockState(other).getBlock();
-		return block.canBeConnectedTo(world, other, facing.getOpposite()) || canConnectTo(world, other, facing.getOpposite());
 	}
 	
 	/*

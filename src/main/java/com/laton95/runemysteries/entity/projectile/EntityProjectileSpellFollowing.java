@@ -25,20 +25,26 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 	}
 	
 	@Override
+	protected EnumParticleTypes getImpactParticles()
+	{
+		return EnumParticleTypes.CRIT;
+	}
+	
+	@Override
 	public void onUpdate()
 	{
 		
 		
-		if (targetEntity != null)
+		if(targetEntity != null)
 		{
 			super.onUpdate();
 			
-			if (targetEntity.isDead)
+			if(targetEntity.isDead)
 			{
 				setDead();
 			}
 			
-			if (WorldHelper.isNearby(new BlockPos(this), new BlockPos(targetEntity), 1))
+			if(WorldHelper.isNearby(new BlockPos(this), new BlockPos(targetEntity), 1))
 			{
 				targetEntity.attackEntityFrom(new EntityDamageSourceIndirect("runeMagicDamageProjectile", this, getThrower()).setProjectile(), 1);
 			}
@@ -64,13 +70,7 @@ public class EntityProjectileSpellFollowing extends EntityProjectileSpellBase
 	@Override
 	public void onImpact(RayTraceResult result)
 	{
-
-	}
 	
-	@Override
-	protected EnumParticleTypes getImpactParticles()
-	{
-		return EnumParticleTypes.CRIT;
 	}
 	
 	@Override

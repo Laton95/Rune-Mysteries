@@ -19,7 +19,9 @@ public class ClientProxy extends CommonProxy
 {
 	
 	private ResourceLocation blueGreen = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
+
 	private ResourceLocation pinkPurple = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/pink-purple.png");
+	
 	private ResourceLocation redOrange = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/red-orange.png");
 
 	@Override
@@ -27,7 +29,7 @@ public class ClientProxy extends CommonProxy
 	{
 		LogHelper.info("Registering keybinds");
 		MinecraftForge.EVENT_BUS.register(new KeyInputEventHandler());
-		for (Keybindings key : Keybindings.values())
+		for(Keybindings key : Keybindings.values())
 		{
 			ClientRegistry.registerKeyBinding(key.getKeybind());
 		}

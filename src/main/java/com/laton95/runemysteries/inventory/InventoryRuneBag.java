@@ -11,6 +11,7 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 {
 	
 	private final ItemStack bagItemStack;
+
 	private final IItemHandlerModifiable inventory;
 	
 	public InventoryRuneBag(ItemStack stack)
@@ -22,10 +23,10 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 	public int getRuneCount(ItemRune rune, int metadata)
 	{
 		int count = 0;
-		for (int i = 0; i < getSlots(); i++)
+		for(int i = 0; i < getSlots(); i++)
 		{
 			ItemStack stack = getStackInSlot(i);
-			if (stack.getItem().equals(rune) && stack.getItemDamage() == metadata)
+			if(stack.getItem().equals(rune) && stack.getItemDamage() == metadata)
 			{
 				count += stack.getCount();
 			}
@@ -33,44 +34,16 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 		return count;
 	}
 	
-	public ITextComponent getDisplayName()
-	{
-		return new TextComponentString(bagItemStack.getDisplayName());
-	}
-	
-	public int removeRune(ItemRune rune, int count, int metadata)
-	{
-		int i = 0;
-		while (count > 0 && i < getSlots())
-		{
-			ItemStack itemstack = getStackInSlot(i);
-			if (itemstack.getItem().equals(rune) && itemstack.getItemDamage() == metadata)
-			{
-				int temp = count;
-				count -= itemstack.getCount();
-				itemstack.shrink(temp);
-			}
-			i++;
-		}
-		return count;
-	}
-	
 	@Override
-	public void setStackInSlot(int slot, ItemStack stack)
+	public int getSlots()
 	{
-		inventory.setStackInSlot(slot, stack);
+		return inventory.getSlots();
 	}
 	
 	@Override
 	public ItemStack getStackInSlot(int slot)
 	{
 		return inventory.getStackInSlot(slot);
-	}
-	
-	@Override
-	public int getSlots()
-	{
-		return inventory.getSlots();
 	}
 	
 	@Override
@@ -89,5 +62,33 @@ public class InventoryRuneBag implements IItemHandlerModifiable
 	public int getSlotLimit(int slot)
 	{
 		return inventory.getSlotLimit(slot);
+	}
+	
+	public ITextComponent getDisplayName()
+	{
+		return new TextComponentString(bagItemStack.getDisplayName());
+	}
+	
+	public int removeRune(ItemRune rune, int count, int metadata)
+	{
+		int i = 0;
+		while(count > 0 && i < getSlots())
+		{
+			ItemStack itemstack = getStackInSlot(i);
+			if(itemstack.getItem().equals(rune) && itemstack.getItemDamage() == metadata)
+			{
+				int temp = count;
+				count -= itemstack.getCount();
+				itemstack.shrink(temp);
+			}
+			i++;
+		}
+		return count;
+	}
+	
+	@Override
+	public void setStackInSlot(int slot, ItemStack stack)
+	{
+		inventory.setStackInSlot(slot, stack);
 	}
 }

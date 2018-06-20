@@ -22,8 +22,11 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 {
 	
 	protected EntityLivingBase thrower;
+	
 	private int ignoreTime;
+	
 	private Entity ignoreEntity;
+	
 	private boolean hasReverseGravity = false;
 	
 	public EntityModThrowable(World worldIn)
@@ -46,53 +49,6 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 	}
 	
 	@Override
-	public void shoot(double x, double y, double z, float velocity, float inaccuracy)
-	{
-		float f = MathHelper.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
-		x /= f;
-		y /= f;
-		z /= f;
-		double inaccuracyModifier = 0.007499999832361937d;
-		x += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
-		y += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
-		z += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
-		x *= velocity;
-		y *= velocity;
-		z *= velocity;
-		
-		setVelocity(x, y, z);
-	}
-	
-	public void shoot(Entity entityThrower, float rotationPitchIn, float rotationYawIn, float pitchOffset, float velocity, float inaccuracy)
-	{
-		float scaleConstant = 0.017453292f;
-		float x = -MathHelper.sin(rotationYawIn * scaleConstant) * MathHelper.cos(rotationPitchIn * scaleConstant);
-		float y = -MathHelper.sin((rotationPitchIn + pitchOffset) * scaleConstant);
-		float z = MathHelper.cos(rotationYawIn * scaleConstant) * MathHelper.cos(rotationPitchIn * scaleConstant);
-		shoot((double) x, (double) y, (double) z, velocity, inaccuracy);
-		
-		motionX += entityThrower.motionX;
-		motionZ += entityThrower.motionZ;
-		motionY += entityThrower.motionY;
-	}
-	
-	@Override
-	@SideOnly(Side.CLIENT)
-	public void setVelocity(double x, double y, double z)
-	{
-		super.setVelocity(x, y, z);
-		
-		if (this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
-		{
-			float f1 = MathHelper.sqrt(x * x + z * z);
-			rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
-			rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
-			prevRotationYaw = this.rotationYaw;
-			prevRotationPitch = this.rotationPitch;
-		}
-	}
-	
-	@Override
 	public void onUpdate()
 	{
 		//Update last tick positions
@@ -109,7 +65,7 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		RayTraceResult raytraceresult = this.world.rayTraceBlocks(currentPosition, futurePosition);
 		
 		//If the projectile is going to hit something, change future position to the point of impact
-		if (raytraceresult != null)
+		if(raytraceresult != null)
 		{
 			futurePosition = new Vec3d(raytraceresult.hitVec.x, raytraceresult.hitVec.y, raytraceresult.hitVec.z);
 		}
@@ -120,28 +76,30 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		boolean isIgnoreEntity = false;
 		
 		//Find the nearest entity to the future position, ignoring it if the projectile has just been fired
-		for (Entity entity : nearbyEntities)
+		for(Entity entity : nearbyEntities)
 		{
-			if (entity.canBeCollidedWith())
+			if(entity.canBeCollidedWith())
 			{
-				if (entity == ignoreEntity)
+				if(entity == ignoreEntity)
 				{
 					isIgnoreEntity = true;
-				} else if (thrower != null && ticksExisted < 2 && ignoreEntity == null)
+				}
+				else if(thrower != null && ticksExisted < 2 && ignoreEntity == null)
 				{
 					ignoreEntity = entity;
 					isIgnoreEntity = true;
-				} else
+				}
+				else
 				{
 					isIgnoreEntity = false;
 					AxisAlignedBB entityBB = entity.getEntityBoundingBox().grow(0.30000001192092896D);
 					RayTraceResult bBoxCollision = entityBB.calculateIntercept(currentPosition, futurePosition);
 					
-					if (bBoxCollision != null)
+					if(bBoxCollision != null)
 					{
 						double entityDistance = currentPosition.squareDistanceTo(bBoxCollision.hitVec);
 						
-						if (entityDistance < closestDistance)
+						if(entityDistance < closestDistance)
 						{
 							closestEntity = entity;
 							closestDistance = entityDistance;
@@ -151,35 +109,38 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 			}
 		}
 		
-		if (ignoreEntity != null)
+		if(ignoreEntity != null)
 		{
-			if (isIgnoreEntity)
+			if(isIgnoreEntity)
 			{
 				ignoreTime = 2;
-			} else if (ignoreTime-- <= 0)
+			}
+			else if(ignoreTime-- <= 0)
 			{
 				ignoreEntity = null;
 			}
 		}
 		
 		//Set the type of the RayTraceResult as an entity, with its target as the chosen entity
-		if (closestEntity != null)
+		if(closestEntity != null)
 		{
 			raytraceresult = new RayTraceResult(closestEntity);
 		}
 		
 		//If the projetile hits a portal go through it, otherwise call the onImpact method
-		if (raytraceresult != null)
+		if(raytraceresult != null)
 		{
-			if (raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.PORTAL)
+			if(raytraceresult.typeOfHit == RayTraceResult.Type.BLOCK && this.world.getBlockState(raytraceresult.getBlockPos()).getBlock() == Blocks.PORTAL)
 			{
 				this.setPortal(raytraceresult.getBlockPos());
-			} else if (!net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult))
+			}
+			else if(!net.minecraftforge.event.ForgeEventFactory.onProjectileImpact(this, raytraceresult))
 			{
-				if (raytraceresult.typeOfHit == RayTraceResult.Type.ENTITY && raytraceresult.entityHit == thrower)
+				if(raytraceresult.typeOfHit == RayTraceResult.Type.ENTITY && raytraceresult.entityHit == thrower)
 				{
 				
-				} else
+				}
+				else
 				{
 					this.onImpact(raytraceresult);
 				}
@@ -197,22 +158,22 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		this.rotationPitch = (float) (MathHelper.atan2(this.motionY, (double) f) * (180D / Math.PI));
 		
 		//What the hell is this all for
-		while (this.rotationPitch - this.prevRotationPitch < -180.0F)
+		while(this.rotationPitch - this.prevRotationPitch < -180.0F)
 		{
 			this.prevRotationPitch -= 360.0F;
 		}
 		
-		while (this.rotationPitch - this.prevRotationPitch >= 180.0F)
+		while(this.rotationPitch - this.prevRotationPitch >= 180.0F)
 		{
 			this.prevRotationPitch += 360.0F;
 		}
 		
-		while (this.rotationYaw - this.prevRotationYaw < -180.0F)
+		while(this.rotationYaw - this.prevRotationYaw < -180.0F)
 		{
 			this.prevRotationYaw -= 360.0F;
 		}
 		
-		while (this.rotationYaw - this.prevRotationYaw >= 180.0F)
+		while(this.rotationYaw - this.prevRotationYaw >= 180.0F)
 		{
 			this.prevRotationYaw += 360.0F;
 		}
@@ -223,9 +184,9 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		float airResistance = 0.99F;
 		float gravityVelocity = hasReverseGravity ? -0.03f : 0.03f;
 		
-		if (this.isInWater())
+		if(this.isInWater())
 		{
-			for (int j = 0; j < 4; ++j)
+			for(int j = 0; j < 4; ++j)
 			{
 				this.world.spawnParticle(EnumParticleTypes.WATER_BUBBLE, this.posX - this.motionX * 0.25D, this.posY - this.motionY * 0.25D, this.posZ - this.motionZ * 0.25D, this.motionX, this.motionY, this.motionZ);
 			}
@@ -238,7 +199,7 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		this.motionY *= (double) airResistance;
 		this.motionZ *= (double) airResistance;
 		
-		if (!this.hasNoGravity())
+		if(!this.hasNoGravity())
 		{
 			this.motionY -= (double) gravityVelocity;
 		}
@@ -248,32 +209,10 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 	
 	protected abstract void onImpact(RayTraceResult result);
 	
-	public EntityLivingBase getThrower()
+	@Override
+	public boolean isInRangeToRenderDist(double distance)
 	{
-		return thrower;
-	}
-	
-	private EntityLivingBase getThrowerFromName(String name)
-	{
-		EntityLivingBase throwerEntity = this.world.getPlayerEntityByName(name);
-		
-		if (throwerEntity == null && this.world instanceof WorldServer)
-		{
-			try
-			{
-				Entity entity = ((WorldServer) this.world).getEntityFromUuid(UUID.fromString(name));
-				
-				if (entity instanceof EntityLivingBase)
-				{
-					throwerEntity = (EntityLivingBase) entity;
-				}
-			} catch (Throwable var2)
-			{
-				throwerEntity = null;
-			}
-		}
-		
-		return throwerEntity;
+		return true;
 	}
 	
 	@Override
@@ -283,6 +222,30 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 		this.thrower = getThrowerFromName(throwerName);
 	}
 	
+	private EntityLivingBase getThrowerFromName(String name)
+	{
+		EntityLivingBase throwerEntity = this.world.getPlayerEntityByName(name);
+		
+		if(throwerEntity == null && this.world instanceof WorldServer)
+		{
+			try
+			{
+				Entity entity = ((WorldServer) this.world).getEntityFromUuid(UUID.fromString(name));
+				
+				if(entity instanceof EntityLivingBase)
+				{
+					throwerEntity = (EntityLivingBase) entity;
+				}
+			}
+			catch(Throwable var2)
+			{
+				throwerEntity = null;
+			}
+		}
+		
+		return throwerEntity;
+	}
+	
 	@Override
 	protected void writeEntityToNBT(NBTTagCompound compound)
 	{
@@ -290,9 +253,55 @@ public abstract class EntityModThrowable extends Entity implements IProjectile
 	}
 	
 	@Override
-	public boolean isInRangeToRenderDist(double distance)
+	@SideOnly(Side.CLIENT)
+	public void setVelocity(double x, double y, double z)
 	{
-		return true;
+		super.setVelocity(x, y, z);
+		
+		if(this.prevRotationPitch == 0.0F && this.prevRotationYaw == 0.0F)
+		{
+			float f1 = MathHelper.sqrt(x * x + z * z);
+			rotationYaw = (float) (MathHelper.atan2(x, z) * (180D / Math.PI));
+			rotationPitch = (float) (MathHelper.atan2(y, (double) f1) * (180D / Math.PI));
+			prevRotationYaw = this.rotationYaw;
+			prevRotationPitch = this.rotationPitch;
+		}
+	}
+	
+	public void shoot(Entity entityThrower, float rotationPitchIn, float rotationYawIn, float pitchOffset, float velocity, float inaccuracy)
+	{
+		float scaleConstant = 0.017453292f;
+		float x = -MathHelper.sin(rotationYawIn * scaleConstant) * MathHelper.cos(rotationPitchIn * scaleConstant);
+		float y = -MathHelper.sin((rotationPitchIn + pitchOffset) * scaleConstant);
+		float z = MathHelper.cos(rotationYawIn * scaleConstant) * MathHelper.cos(rotationPitchIn * scaleConstant);
+		shoot((double) x, (double) y, (double) z, velocity, inaccuracy);
+		
+		motionX += entityThrower.motionX;
+		motionZ += entityThrower.motionZ;
+		motionY += entityThrower.motionY;
+	}
+	
+	@Override
+	public void shoot(double x, double y, double z, float velocity, float inaccuracy)
+	{
+		float f = MathHelper.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
+		x /= f;
+		y /= f;
+		z /= f;
+		double inaccuracyModifier = 0.007499999832361937d;
+		x += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
+		y += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
+		z += this.rand.nextGaussian() * inaccuracyModifier * inaccuracy;
+		x *= velocity;
+		y *= velocity;
+		z *= velocity;
+		
+		setVelocity(x, y, z);
+	}
+	
+	public EntityLivingBase getThrower()
+	{
+		return thrower;
 	}
 	
 	public void setHasReverseGravity(boolean hasReverseGravity)

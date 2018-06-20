@@ -30,7 +30,7 @@ public class ModFluids
 	@SubscribeEvent
 	public static void registerFluids(RegistryEvent.Register<Block> event)
 	{
-		for (RMModFluid fluid : fluidList)
+		for(RMModFluid fluid : fluidList)
 		{
 			FluidRegistry.registerFluid(fluid);
 			RMModFluidBlock fluidBlock = new RMModFluidBlock(fluid.getFluidName(), fluid);
@@ -55,6 +55,7 @@ public class ModFluids
 	{
 		
 		private final String name;
+		
 		private RMModFluidBlock fluidBlock;
 		
 		public RMModFluid(String name)

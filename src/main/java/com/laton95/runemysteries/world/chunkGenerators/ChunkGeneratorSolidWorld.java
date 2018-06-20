@@ -21,9 +21,13 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 {
 	
 	protected final IBlockState WORLDBLOCK;
+	
 	protected final Random rand;
+	
 	protected final World world;
+	
 	protected final int surfaceLevel;
+	
 	protected MapGenRuneTemple temple;
 	
 	public ChunkGeneratorSolidWorld(World worldIn, long seed, int surfaceLevel, IBlockState worldblock)
@@ -42,19 +46,20 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 	public Chunk generateChunk(int x, int z)
 	{
 		ChunkPrimer chunkprimer = new ChunkPrimer();
-		if (Math.max(Math.abs(x), Math.abs(z)) < 16)
+		if(Math.max(Math.abs(x), Math.abs(z)) < 16)
 		{
 			rand.setSeed(x * 341873128712L + z * 132897987541L);
-			for (int y = 0; y < surfaceLevel; y++)
+			for(int y = 0; y < surfaceLevel; y++)
 			{
-				for (int xPos = 0; xPos < 16; xPos++)
+				for(int xPos = 0; xPos < 16; xPos++)
 				{
-					for (int zPos = 0; zPos < 16; zPos++)
+					for(int zPos = 0; zPos < 16; zPos++)
 					{
-						if (y == 0)
+						if(y == 0)
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, Blocks.BEDROCK.getDefaultState());
-						} else
+						}
+						else
 						{
 							chunkprimer.setBlockState(xPos, y, zPos, WORLDBLOCK);
 						}
@@ -95,15 +100,15 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 	}
 	
 	@Override
-	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
-	{
-		return new LinkedList<>();
-	}
-	
-	@Override
 	public boolean generateStructures(Chunk chunkIn, int x, int z)
 	{
 		return true;
+	}
+	
+	@Override
+	public List<Biome.SpawnListEntry> getPossibleCreatures(EnumCreatureType creatureType, BlockPos pos)
+	{
+		return new LinkedList<>();
 	}
 	
 	@Override
