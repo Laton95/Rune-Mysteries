@@ -45,7 +45,7 @@ public class BlockElderStone extends RMModBlock
 	
 	public BlockElderStone()
 	{
-		super("elder_stone", Material.ROCK, 0f, 0f, "pickaxe", 0, true);
+		super("elder_stone", Material.ROCK, 0f, 0f, "pickaxe", 0, false);
 		setBlockUnbreakable();
 		setTickRandomly(true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CORNER, EnumCorner.NORTH_EAST).withProperty(TOP, true));
@@ -60,6 +60,7 @@ public class BlockElderStone extends RMModBlock
 	 * Get the actual Block state of this Block at the given position. This applies properties not visible in the
 	 * metadata, such as fence connections.
 	 */
+	@SuppressWarnings("deprecation")
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
 		boolean hasNorth = worldIn.getBlockState(pos.north()).getBlock() == this;
@@ -94,11 +95,13 @@ public class BlockElderStone extends RMModBlock
 		return state.withProperty(CORNER, corner).withProperty(TOP, isTop);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
@@ -145,6 +148,7 @@ public class BlockElderStone extends RMModBlock
 		return AXIS_ALIGNED_BBS[0];
 	}
 	
+	@SuppressWarnings("deprecation")
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
 	{
 		return face != EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
@@ -153,6 +157,7 @@ public class BlockElderStone extends RMModBlock
 	/**
 	 * Used to determine ambient occlusion and culling when rebuilding chunks for render
 	 */
+	@SuppressWarnings("deprecation")
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
@@ -183,7 +188,7 @@ public class BlockElderStone extends RMModBlock
 		{
 			BlockPos essPos = stonePositions.get(rand.nextInt(stonePositions.size()));
 			
-			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE_FINITE.getDefaultState());
+			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE.getDefaultState().withProperty(BlockRuneEssence.FINITE, true));
 		}
 	}
 	
@@ -202,6 +207,7 @@ public class BlockElderStone extends RMModBlock
 		return true;
 	}
 	
+	@Override
 	protected BlockStateContainer createBlockState()
 	{
 		return new BlockStateContainer(this, CORNER, TOP);

@@ -47,6 +47,7 @@ public abstract class RMModSlab extends BlockSlab
 		return this.getUnlocalizedName();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{

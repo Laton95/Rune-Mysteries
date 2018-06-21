@@ -38,9 +38,10 @@ public class BlockBlackMonolith extends RMModBlock
 	
 	public BlockBlackMonolith()
 	{
-		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, true);
+		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, false);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateFromMeta(int meta)
 	{
 		EnumFacing enumfacing = EnumFacing.getFront(meta);
@@ -58,22 +59,26 @@ public class BlockBlackMonolith extends RMModBlock
 		return state.getValue(FACING).getIndex();
 	}
 	
+	@SuppressWarnings("deprecation")
 	public IBlockState withRotation(IBlockState state, Rotation rot)
 	{
 		return state.withProperty(FACING, rot.rotate(state.getValue(FACING)));
 	}
 	
+	@SuppressWarnings("deprecation")
 	public IBlockState withMirror(IBlockState state, Mirror mirrorIn)
 	{
 		return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
@@ -81,11 +86,13 @@ public class BlockBlackMonolith extends RMModBlock
 		return enumfacing.getAxis() == EnumFacing.Axis.X ? X_AXIS_AABB : Z_AXIS_AABB;
 	}
 	
+	@SuppressWarnings("deprecation")
 	public BlockFaceShape getBlockFaceShape(IBlockAccess worldIn, IBlockState state, BlockPos pos, EnumFacing face)
 	{
 		return face != EnumFacing.UP && face != EnumFacing.DOWN ? BlockFaceShape.UNDEFINED : BlockFaceShape.SOLID;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -160,6 +167,7 @@ public class BlockBlackMonolith extends RMModBlock
 		return new BlockStateContainer(this, FACING);
 	}
 	
+	@SuppressWarnings("deprecation")
 	public IBlockState getStateForPlacement(World worldIn, BlockPos pos, EnumFacing facing, float hitX, float hitY, float hitZ, int meta, EntityLivingBase placer)
 	{
 		return this.getDefaultState().withProperty(FACING, placer.getHorizontalFacing().getOpposite());

@@ -9,25 +9,28 @@ import net.minecraft.world.IBlockAccess;
 public class BlockStationStone extends RMModBlock
 {
 	
-	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.1, 0, 0.1, 0.9, 0.9, 0.9);
+	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.125, 0, 0.125, 0.875, 0.9375, 0.875);
 	
 	public BlockStationStone()
 	{
 		super("station_Stone_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{

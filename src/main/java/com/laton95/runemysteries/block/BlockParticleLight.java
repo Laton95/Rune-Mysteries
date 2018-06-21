@@ -25,6 +25,7 @@ public class BlockParticleLight extends RMModBlock
 		translucent = true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
@@ -37,24 +38,28 @@ public class BlockParticleLight extends RMModBlock
 		return true;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public EnumBlockRenderType getRenderType(IBlockState state)
 	{
 		return EnumBlockRenderType.INVISIBLE;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
 	{
 		return NULL_AABB;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{

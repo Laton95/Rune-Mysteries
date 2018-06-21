@@ -38,7 +38,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	
 	private static final PropertyEnum<EnumRuneType> TYPE = PropertyEnum.create("type", EnumRuneType.class);
 	
-	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.9, 1);
+	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
 	
 	public BlockRuneAltar()
 	{
@@ -47,6 +47,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumRuneType.AIR));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
@@ -60,18 +61,21 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 		return type.ordinal();
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
 	{
 		return BoundingBox;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -89,7 +93,6 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 			
 			if(stack.getItem() == ModItems.RUNE && stack.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
 			{
-				ItemStack newStack;
 				if(isOurania)
 				{
 					changeItem(worldIn, (EntityItem) entityIn, ModItems.RUNE, getRandomRune(worldIn).getMetadata(), isOurania);

@@ -79,6 +79,7 @@ public class RMModRail extends RMModBlock
 	/**
 	 * Convert the given metadata into a BlockState for this Block
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
@@ -99,6 +100,7 @@ public class RMModRail extends RMModBlock
 	 * applies properties not visible in the metadata, such as fence
 	 * connections.
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
 	{
@@ -110,6 +112,7 @@ public class RMModRail extends RMModBlock
 		return state.withProperty(UP, Boolean.valueOf(!flag4 || !worldIn.isAirBlock(pos.up()))).withProperty(NORTH, Boolean.valueOf(flag)).withProperty(EAST, Boolean.valueOf(flag1)).withProperty(SOUTH, Boolean.valueOf(flag2)).withProperty(WEST, Boolean.valueOf(flag3));
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isFullCube(IBlockState state)
 	{
@@ -125,6 +128,7 @@ public class RMModRail extends RMModBlock
 		return false;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos)
 	{
@@ -180,6 +184,7 @@ public class RMModRail extends RMModBlock
 		return Block.isExceptBlockForAttachWithPiston(p_194143_0_) || p_194143_0_ == Blocks.BARRIER || p_194143_0_ == Blocks.MELON_BLOCK || p_194143_0_ == Blocks.PUMPKIN || p_194143_0_ == Blocks.LIT_PUMPKIN;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	@SideOnly(Side.CLIENT)
 	public boolean shouldSideBeRendered(IBlockState blockState, IBlockAccess blockAccess, BlockPos pos, EnumFacing side)
@@ -187,12 +192,14 @@ public class RMModRail extends RMModBlock
 		return side != EnumFacing.DOWN || !blockAccess.getBlockState(pos.offset(side)).doesSideBlockRendering(blockAccess, pos.offset(side), side.getOpposite());
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public BlockFaceShape getBlockFaceShape(IBlockAccess p_193383_1_, IBlockState p_193383_2_, BlockPos p_193383_3_, EnumFacing p_193383_4_)
 	{
 		return p_193383_4_ != EnumFacing.UP && p_193383_4_ != EnumFacing.DOWN ? BlockFaceShape.MIDDLE_POLE_THICK : BlockFaceShape.CENTER_BIG;
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	public void addCollisionBoxToList(IBlockState state, World worldIn, BlockPos pos, AxisAlignedBB entityBox, List<AxisAlignedBB> collidingBoxes,
 									  @Nullable
@@ -206,6 +213,7 @@ public class RMModRail extends RMModBlock
 		addCollisionBoxToList(pos, entityBox, collidingBoxes, CLIP_AABB_BY_INDEX[getAABBIndex(state)]);
 	}
 	
+	@SuppressWarnings("deprecation")
 	@Override
 	@Nullable
 	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
@@ -218,6 +226,7 @@ public class RMModRail extends RMModBlock
 	 * Used to determine ambient occlusion and culling when rebuilding chunks
 	 * for renderer
 	 */
+	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
@@ -235,11 +244,6 @@ public class RMModRail extends RMModBlock
 		return 0;
 	}
 	
-	/*
-	 * ======================================== FORGE START
-	 * ========================================
-	 */
-	
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
@@ -256,9 +260,4 @@ public class RMModRail extends RMModBlock
 		Block connector = world.getBlockState(pos.offset(facing)).getBlock();
 		return connector instanceof RMModRail || connector instanceof BlockFenceGate;
 	}
-	
-	/*
-	 * ======================================== FORGE END
-	 * ========================================
-	 */
 }
