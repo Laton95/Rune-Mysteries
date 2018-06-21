@@ -2,14 +2,12 @@ package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.block.*;
 import com.laton95.runemysteries.block.RMModSlab.Half;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.item.MetaItemBlock;
 import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemSlab;
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -25,8 +23,6 @@ public class ModBlocks
 	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal("altar_Exit_Portal");
 	
 	public static final BlockRuneEssence RUNE_ESSENCE = new BlockRuneEssence();
-	
-	public static final RMModBlock RUNE_ESSENCE_FINITE = new RMModBlock("rune_Essence_Block_Finite", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, new ItemStack(ModItems.RUNE, 1, EnumRuneType.ESSENCE.ordinal()));
 	
 	public static final RMModBlock RUIN_BLOCK = new RMModBlock("ruin_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	
@@ -78,7 +74,6 @@ public class ModBlocks
 				RUNE_ALTAR_ENTRANCE,
 				ALTAR_PORTAL,
 				RUNE_ESSENCE,
-				RUNE_ESSENCE_FINITE,
 				RUIN_BLOCK,
 				STATION_STONE,
 				TEMPLE_BLOCK,

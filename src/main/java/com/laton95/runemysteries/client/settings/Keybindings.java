@@ -11,7 +11,7 @@ public enum Keybindings
 	
 	private final KeyBinding keyBinding;
 	
-	private Keybindings(String keyName, int defaultKeyValue)
+	Keybindings(String keyName, int defaultKeyValue)
 	{
 		keyBinding = new KeyBinding(keyName, defaultKeyValue, NamesReference.Keys.CATEGORY);
 	}

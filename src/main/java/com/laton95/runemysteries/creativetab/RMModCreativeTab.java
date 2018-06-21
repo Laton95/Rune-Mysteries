@@ -11,11 +11,28 @@ public class RMModCreativeTab
 	
 	public static final CreativeTabs RM_TAB = new CreativeTabs(ModReference.MOD_ID)
 	{
-		
 		@Override
 		public ItemStack getTabIconItem()
 		{
 			return new ItemStack(ModItems.RUNE, 1, EnumRuneType.FIRE.ordinal());
+		}
+		
+		//		@Override
+		//		public boolean hasSearchBar()
+		//		{
+		//			return true;
+		//		}
+		
+		@Override
+		public String getBackgroundImageName()
+		{
+			return "runemysteries.png";
+		}
+		
+		@Override
+		public int getSearchbarWidth()
+		{
+			return 80;
 		}
 	};
 }

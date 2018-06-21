@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
+import com.laton95.runemysteries.client.renderer.sky.RenderSkySoul;
 import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorSoul;
 import net.minecraft.init.Biomes;
@@ -10,8 +11,11 @@ import net.minecraft.world.WorldProvider;
 import net.minecraft.world.biome.BiomeProvider;
 import net.minecraft.world.biome.BiomeProviderSingle;
 import net.minecraft.world.gen.IChunkGenerator;
+import net.minecraftforge.client.IRenderHandler;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
+
+import javax.annotation.Nullable;
 
 public class SoulDimension extends WorldProvider
 {
@@ -34,6 +38,13 @@ public class SoulDimension extends WorldProvider
 	public IChunkGenerator createChunkGenerator()
 	{
 		return new ChunkGeneratorSoul(world, world.getSeed());
+	}
+	
+	@Nullable
+	@Override
+	public IRenderHandler getSkyRenderer()
+	{
+		return new RenderSkySoul();
 	}
 	
 	@Override

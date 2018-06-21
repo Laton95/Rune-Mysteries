@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.world.dimensionProviders;
 
+import com.laton95.runemysteries.client.renderer.sky.RenderSkyCosmic;
 import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.world.chunkGenerators.ChunkGeneratorCosmic;
 import net.minecraft.client.Minecraft;
@@ -87,7 +88,7 @@ public class CosmicDimension extends WorldProvider
 	@Override
 	public IRenderHandler getSkyRenderer()
 	{
-		return super.getSkyRenderer();
+		return new RenderSkyCosmic();
 	}
 	
 	@Override

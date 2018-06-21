@@ -10,7 +10,7 @@
     "description": {
       "translate": "advancements.runemysteries.runecrafting.root.description"
     },
-    "background": "runemysteries:textures/blocks/ruin_block.png",
+    "background": "runemysteries:textures/blocks/rune_altar_block.png",
     "show_toast": false,
     "announce_to_chat": false
   },

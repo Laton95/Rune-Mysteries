@@ -7,7 +7,6 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.client.renderer.block.statemap.StateMapperBase;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.client.model.ModelLoader;
 import net.minecraftforge.event.RegistryEvent;
@@ -88,12 +87,6 @@ public class ModFluids
 			super(fluid, Material.WATER);
 			setUnlocalizedName(ModReference.MOD_ID + ":" + name);
 			this.setRegistryName(ModReference.MOD_ID, name.toLowerCase());
-		}
-		
-		@Override
-		public EnumBlockRenderType getRenderType(IBlockState state)
-		{
-			return EnumBlockRenderType.MODEL;
 		}
 	}
 }

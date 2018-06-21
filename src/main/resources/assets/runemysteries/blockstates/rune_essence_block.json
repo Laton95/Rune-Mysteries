@@ -5,9 +5,12 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [
-      {}
-    ],
+    "finite=false": {
+      "model": "runemysteries:rune_essence_block"
+    },
+    "finite=true": {
+      "model": "runemysteries:rune_essence_block"
+    },
     "inventory": [
       {}
     ]
