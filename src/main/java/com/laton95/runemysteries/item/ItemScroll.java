@@ -1,5 +1,7 @@
 package com.laton95.runemysteries.item;
 
+import com.laton95.runemysteries.capabilities.ICapabilityPlayerLastLocation;
+import com.laton95.runemysteries.capabilities.ProviderPlayerLastLocation;
 import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.TeleportHelper;
@@ -28,13 +30,17 @@ public class ItemScroll extends RMModItem
 		int dimID = getDimIDFromMetadata(scroll.getItemDamage());
 		if(!worldIn.isRemote)
 		{
+			
 			if(worldIn.provider.getDimension() != dimID)
 			{
 				if(!playerIn.isCreative())
 				{
 					playerIn.getHeldItem(handIn).shrink(1);
 				}
-				playerIn.getCooldownTracker().setCooldown(this, 500);
+				playerIn.getCooldownTracker().setCooldown(this, 20);
+				
+				ICapabilityPlayerLastLocation location = playerIn.getCapability(ProviderPlayerLastLocation.LAST_LOCATION_CAPABILITY, null);
+				location.set((int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ, worldIn.provider.getDimension());
 				TeleportHelper.teleportEntity(playerIn, dimID, 0, 64, 0);
 			}
 			else

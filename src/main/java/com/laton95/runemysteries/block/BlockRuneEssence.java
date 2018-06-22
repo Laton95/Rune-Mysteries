@@ -19,7 +19,7 @@ public class BlockRuneEssence extends RMModBlock
 	
 	public BlockRuneEssence()
 	{
-		super("rune_Essence_Block", Material.ROCK, 1.5f, 2000f, "pickaxe", 1, true);
+		super("rune_Essence_Block", Material.ROCK, 1.5f, 2000f, "pickaxe", 0, true);
 	}
 	
 	@SuppressWarnings("deprecation")

@@ -1,5 +1,7 @@
 package com.laton95.runemysteries.tileentity;
 
+import com.laton95.runemysteries.capabilities.ICapabilityPlayerLastLocation;
+import com.laton95.runemysteries.capabilities.ProviderPlayerLastLocation;
 import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
@@ -72,7 +74,18 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 					break;
 			}
 			
-			if(entityIn.world.provider.getDimension() != returnID && altar != null)
+			if(entityIn instanceof EntityPlayer && entityIn.world.provider.getDimension() == ModConfig.DIMENSIONS.essenceMineDimID)
+			{
+				ICapabilityPlayerLastLocation location = entityIn.getCapability(ProviderPlayerLastLocation.LAST_LOCATION_CAPABILITY, null);
+				BlockPos returnPos = location.getPosition();
+				
+				if(returnPos == null)
+				{
+					returnPos = new BlockPos(0, 100, 0);
+				}
+				TeleportHelper.teleportEntity(entityIn, location.getDimId(), returnPos.getX(), returnPos.getY() + 0.5, returnPos.getZ());
+			}
+			else if(entityIn.world.provider.getDimension() != returnID && altar != null)
 			{
 				BlockPos altarPos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
 				
@@ -169,6 +182,11 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 		{
 			returnID = 0;
 			altar = "water_altar";
+		}
+		else if(dimID == ModConfig.DIMENSIONS.essenceMineDimID)
+		{
+			returnID = 0;
+			altar = "mine";
 		}
 	}
 }

@@ -15,6 +15,8 @@ public final class ModLoot
 	
 	public static final ResourceLocation OURANIA_ALTAR = LootTableList.register(new ResourceLocation(ModReference.MOD_ID, "altars/ourania_altar"));
 	
+	public static final ResourceLocation ESSENCE_MINE = LootTableList.register(new ResourceLocation(ModReference.MOD_ID, "chests/essence_mine"));
+	
 	public ModLoot()
 	{
 		LogHelper.info("Registering loot tables");

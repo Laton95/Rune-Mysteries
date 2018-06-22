@@ -31,6 +31,7 @@ public class ModWorldGen
 				new InitDataStructures().new StructureEntry("RuneAltar_END", MapGenRuneAltar_END.Start.class),
 				new InitDataStructures().new StructureEntry("RuneTemple", MapGenRuneTemple.Start.class),
 				new InitDataStructures().new StructureEntry("CosmicTemple", MapGenCosmicTemple.Start.class),
+				new InitDataStructures().new StructureEntry("EssenceMine", MapGenMine.Start.class)
 				};
 		
 		ComponentEntry[] components = {
@@ -41,6 +42,7 @@ public class ModWorldGen
 				new InitDataStructures().new ComponentEntry("NetherAltar", ComponentNetherAltar.class),
 				new InitDataStructures().new ComponentEntry("Temple", ComponentTemple.class),
 				new InitDataStructures().new ComponentEntry("CosmicTemple", ComponentCosmicTemple.class),
+				new InitDataStructures().new ComponentEntry("EssenceMine", ComponentMine.class)
 				};
 		
 		for(StructureEntry structure : structures)

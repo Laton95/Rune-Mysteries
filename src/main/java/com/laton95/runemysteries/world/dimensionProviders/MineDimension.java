@@ -64,6 +64,12 @@ public class MineDimension extends WorldProvider
 	}
 	
 	@Override
+	public float getSunBrightness(float par1)
+	{
+		return 1;
+	}
+	
+	@Override
 	public boolean canRespawnHere()
 	{
 		return false;

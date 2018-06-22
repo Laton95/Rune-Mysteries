@@ -76,7 +76,6 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	{
 		if(!worldIn.isRemote)
 		{
-			new ItemStack(ModItems.RUNE_TALISMAN, 1, getMetaFromState(state));
 			if(playerIn.getHeldItemMainhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemMainhand().getItemDamage() == getMetaFromState(state) || playerIn.getHeldItemOffhand().getItem().equals(ModItems.RUNE_TALISMAN) && playerIn.getHeldItemOffhand().getItemDamage() == getMetaFromState(state))
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_ENTER));

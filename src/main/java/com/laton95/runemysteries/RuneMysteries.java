@@ -1,5 +1,6 @@
 package com.laton95.runemysteries;
 
+import com.laton95.runemysteries.capabilities.CapabilityHandler;
 import com.laton95.runemysteries.init.*;
 import com.laton95.runemysteries.network.NetworkHandler;
 import com.laton95.runemysteries.proxy.CommonProxy;
@@ -52,6 +53,7 @@ public class RuneMysteries
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
 		proxy.registerRenders();
+		ModCapabilities.RegisterCapabilities();
 		
 		if(LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
 		{
@@ -69,6 +71,7 @@ public class RuneMysteries
 	public void init(FMLInitializationEvent event)
 	{
 		MinecraftForge.EVENT_BUS.register(new ModLoot());
+		MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 		ModWorldGen.registerWorldGen();
 		ModDimensions.registerDimensions();
 		ModOreDict.registerOres();
