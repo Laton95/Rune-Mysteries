@@ -10,9 +10,9 @@ import net.minecraft.util.NonNullList;
 public class RMModItem extends Item
 {
 	
-	private Class<? extends Enum<?>> values;
+	private Class<? extends IMetaEnum> values;
 	
-	public RMModItem(String name, boolean showInCreative, Class<? extends Enum<?>> values)
+	public RMModItem(String name, boolean showInCreative, Class<? extends IMetaEnum> values)
 	{
 		this(name, showInCreative);
 		setHasSubtypes(true);
@@ -66,7 +66,7 @@ public class RMModItem extends Item
 		}
 	}
 	
-	public Class<? extends Enum<?>> getValues()
+	public Class<? extends IMetaEnum> getValues()
 	{
 		return values;
 	}

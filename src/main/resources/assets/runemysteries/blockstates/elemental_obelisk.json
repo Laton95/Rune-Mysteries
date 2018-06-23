@@ -1,0 +1,65 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column",
+    "transform": "forge:default-block"
+  },
+  "variants": {
+    "element=air,top=true": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/air_obelisk_top",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=earth,top=true": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/earth_obelisk_top",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=fire,top=true": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/fire_obelisk_top",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=water,top=true": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/water_obelisk_top",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=air,top=false": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/air_obelisk",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=earth,top=false": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/earth_obelisk",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=fire,top=false": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/fire_obelisk",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    },
+    "element=water,top=false": {
+      "model": "cube_column",
+      "textures": {
+        "side": "runemysteries:blocks/water_obelisk",
+        "end": "runemysteries:blocks/obelisk_top"
+      }
+    }
+  }
+}

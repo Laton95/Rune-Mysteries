@@ -76,7 +76,7 @@ public class RuneMysteries
 		ModDimensions.registerDimensions();
 		ModOreDict.registerOres();
 		ModVillagers.registerVillage();
-		ModAdvancements.RegisterAdvancementTriggers();
+		ModAdvancements.registerAdvancementTriggers();
 		proxy.registerKeyBindings();
 	}
 	

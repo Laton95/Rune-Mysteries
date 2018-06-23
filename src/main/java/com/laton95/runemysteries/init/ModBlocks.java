@@ -2,12 +2,9 @@ package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.block.*;
 import com.laton95.runemysteries.block.RMModSlab.Half;
-import com.laton95.runemysteries.item.MetaItemBlock;
 import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -44,7 +41,7 @@ public class ModBlocks
 	
 	public static final RMModRail BLOOD_BLOCK_RAIL = new RMModRail("blood_Block_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	
-	public static final RMModBlock FLESH_BLOCK = new RMModBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final RMRandomRotationBlock FLESH_BLOCK = new RMRandomRotationBlock("flesh_Block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true);
 	
 	public static final RMModRail STONEBRICK_RAIL = new RMModRail("stonebrick_Rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
 	
@@ -63,6 +60,8 @@ public class ModBlocks
 	public static final BlockBlackMonolith BLACK_MONOLITH = new BlockBlackMonolith();
 	
 	public static final BlockElderStone ELDER_STONE = new BlockElderStone();
+	
+	public static final BlockElementalObelisk ELEMENTAL_OBELISK = new BlockElementalObelisk();
 	
 	@SubscribeEvent
 	public static void registerBlocks(RegistryEvent.Register<Block> event)
@@ -93,35 +92,23 @@ public class ModBlocks
 				SANDSTONE_RAIL,
 				PARTICLE_LIGHT,
 				BLACK_MONOLITH,
-				ELDER_STONE
+				ELDER_STONE,
+				ELEMENTAL_OBELISK
 		};
 		
 		for(Block block : blocks)
 		{
-			if(block instanceof IMetaBlock)
-			{
-				ItemBlock itemBlock = new MetaItemBlock(block);
-				itemBlock.setRegistryName(block.getRegistryName());
-				ModItems.addItemBlock(itemBlock);
-				event.getRegistry().register(block);
-			}
-			else if(block instanceof RMModSlab)
+			if(block instanceof RMModSlab)
 			{
 				RMModSlab.Half slab = (Half) block;
 				RMModSlab.Double doubleSlab = slab.doubleSlab;
-				ItemBlock itemBlock = new ItemSlab(slab, slab, doubleSlab);
-				itemBlock.setRegistryName(slab.getRegistryName());
-				ModItems.addItemBlock(itemBlock);
-				slab.setDroppedItem(itemBlock);
-				doubleSlab.setDroppedItem(itemBlock);
+				ModItems.addBlock(block);
 				event.getRegistry().register(slab);
 				event.getRegistry().register(doubleSlab);
 			}
 			else
 			{
-				ItemBlock itemBlock = new ItemBlock(block);
-				itemBlock.setRegistryName(block.getRegistryName());
-				ModItems.addItemBlock(itemBlock);
+				ModItems.addBlock(block);
 				event.getRegistry().register(block);
 				
 			}

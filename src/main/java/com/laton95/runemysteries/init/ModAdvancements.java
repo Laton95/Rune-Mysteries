@@ -10,7 +10,7 @@ import java.lang.reflect.Method;
 
 public class ModAdvancements
 {
-	public static void RegisterAdvancementTriggers()
+	public static void registerAdvancementTriggers()
 	{
 		Method method;
 		try

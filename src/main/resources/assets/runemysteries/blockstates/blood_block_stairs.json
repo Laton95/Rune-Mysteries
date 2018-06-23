@@ -1,14 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "runemysteries:blood_block",
+    "model": "runemysteries:blood_block_stairs",
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [
-      {}
-    ],
-    "inventory": {
+    "normal": {
       "model": "runemysteries:blood_block_stairs",
       "y": 0,
       "uvlock": true

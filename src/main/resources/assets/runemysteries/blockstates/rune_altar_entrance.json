@@ -49,9 +49,6 @@
     },
     "type=essence": {
       "model": "runemysteries:rune_altar_block"
-    },
-    "inventory": {
-      "model": "runemysteries:rune_altar_block"
     }
   }
 }

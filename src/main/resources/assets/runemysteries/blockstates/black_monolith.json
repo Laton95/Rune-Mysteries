@@ -9,7 +9,7 @@
     "facing=south": { "model": "runemysteries:black_monolith", "y": 180 },
     "facing=west":  { "model": "runemysteries:black_monolith", "y": 270 },
     "facing=east":  { "model": "runemysteries:black_monolith", "y": 90 },
-    "inventory": [
+    "normal": [
       {}
     ]
   }

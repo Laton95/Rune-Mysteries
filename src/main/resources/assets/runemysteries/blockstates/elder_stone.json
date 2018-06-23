@@ -13,7 +13,7 @@
     "corner=north_east,top=true": { "model": "runemysteries:elder_stone_top", "y": 90 },
     "corner=south_west,top=true":  { "model": "runemysteries:elder_stone_top", "y": 270 },
     "corner=south_east,top=true":  { "model": "runemysteries:elder_stone_top", "y": 180 },
-    "inventory": [
+    "normal": [
       {}
     ]
   }

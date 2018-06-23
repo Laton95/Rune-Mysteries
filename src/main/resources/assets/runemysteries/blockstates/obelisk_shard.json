@@ -1,0 +1,30 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "runemysteries:item/generated"
+  },
+  "variants": {
+    "element_type": {
+      "air": {
+        "textures": {
+          "layer0": "runemysteries:items/shard_air"
+        }
+      },
+      "earth": {
+        "textures": {
+          "layer0": "runemysteries:items/shard_earth"
+        }
+      },
+      "fire": {
+        "textures": {
+          "layer0": "runemysteries:items/shard_fire"
+        }
+      },
+      "water": {
+        "textures": {
+          "layer0": "runemysteries:items/shard_water"
+        }
+      }
+    }
+  }
+}

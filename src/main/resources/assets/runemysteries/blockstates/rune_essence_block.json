@@ -11,7 +11,7 @@
     "finite=true": {
       "model": "runemysteries:rune_essence_block"
     },
-    "inventory": [
+    "normal": [
       {}
     ]
   }

@@ -1,14 +1,11 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "runemysteries:temple_block",
+    "model": "runemysteries:temple_block_stairs",
     "transform": "forge:default-block"
   },
   "variants": {
-    "normal": [
-      {}
-    ],
-    "inventory": {
+    "normal": {
       "model": "runemysteries:temple_block_stairs",
       "y": 0,
       "uvlock": true

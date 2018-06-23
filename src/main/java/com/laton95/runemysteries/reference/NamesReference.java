@@ -21,6 +21,10 @@ public final class NamesReference
 		public static final String MONOLITH_INTERACT = "tile.runemysteries:black_monolith.rightClick";
 		
 		public static final String ELDER_STONE_INTERACT = "tile.runemysteries:elder_stone.rightClick";
+		
+		public static final String OBELISK_INTERACT = "tile.runemysteries:elemental_obelisk.rightClick";
+		
+		public static final String OBELISK_INTERACT_FAIL = "tile.runemysteries:elemental_obelisk.rightClick.fail";
 	}
 	
 	public static final class Talisman

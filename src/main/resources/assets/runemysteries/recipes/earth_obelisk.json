@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$#$",
+    "#@#",
+    "$#$"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:obelisk_shard",
+      "data": 1
+    },
+    "@": {
+      "item": "runemysteries:rune_essence_block"
+    },
+    "$": {
+      "item": "runemysteries:rune",
+      "data": 7
+    }
+  },
+  "result": {
+    "item": "runemysteries:elemental_obelisk",
+    "data": 1,
+    "count": 1
+  }
+}

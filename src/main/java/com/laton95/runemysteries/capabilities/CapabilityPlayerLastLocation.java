@@ -16,6 +16,13 @@ public class CapabilityPlayerLastLocation implements ICapabilityPlayerLastLocati
 	}
 	
 	@Override
+	public void set(ICapabilityPlayerLastLocation old)
+	{
+		playerLastPos = old.getPosition();
+		dimId = old.getDimId();
+	}
+	
+	@Override
 	public BlockPos getPosition()
 	{
 		return playerLastPos;

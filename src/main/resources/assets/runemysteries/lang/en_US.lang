@@ -37,6 +37,11 @@ item.runemysteries:scroll.mine.name=Rune Essence Mine Teleport Scroll
 item.runemysteries:banana.name=Banana
 item.runemysteries:ex_parrot.name=Ex-Parrot
 
+item.runemysteries:obelisk_shard.air.name=Shard Of Air
+item.runemysteries:obelisk_shard.earth.name=Shard Of Earth
+item.runemysteries:obelisk_shard.fire.name=Shard Of Fire
+item.runemysteries:obelisk_shard.water.name=Shard Of Water
+
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
 tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
@@ -102,6 +107,11 @@ tile.runemysteries:particle_Light.name=Magic Light
 tile.runemysteries:black_monolith.name=Monolith
 
 tile.runemysteries:elder_stone.name=Stone of Jas
+
+tile.runemysteries:elemental_obelisk.air.name=Air Obelisk
+tile.runemysteries:elemental_obelisk.earth.name=Earth Obelisk
+tile.runemysteries:elemental_obelisk.fire.name=Fire Obelisk
+tile.runemysteries:elemental_obelisk.water.name=Water Obelisk
 
 #Fluids
 fluid.runemysteries:fluid_Blood=Blood
@@ -198,6 +208,9 @@ tile.runemysteries:altar_entrance.rightClick=A mysterious power emanates from th
 tile.runemysteries:black_monolith.rightClick=Do you really think you can save them %1$s?
 
 tile.runemysteries:elder_stone.rightClick=You feel a rush of energy flow through your body.
+
+tile.runemysteries:elemental_obelisk.rightClick=The obelisk is humming with energy.
+tile.runemysteries:elemental_obelisk.rightClick.fail=The obelisk is not tall enough.
 
 #Death messages
 death.attack.chaostalisman=%1$s was burned by the heat of the Nether.

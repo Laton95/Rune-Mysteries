@@ -10,7 +10,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.IStringSerializable;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
 
@@ -63,21 +62,27 @@ public class ItemScroll extends RMModItem
 		return 0;
 	}
 	
-	public enum EnumScrollType implements IStringSerializable
+	public enum EnumScrollType implements IMetaEnum
 	{
-		MINE("mine");
+		MINE;
 		
 		private final String name;
 		
-		EnumScrollType(String name)
+		EnumScrollType()
 		{
-			this.name = name;
+			this.name = super.toString().toLowerCase();
 		}
 		
 		@Override
 		public String getName()
 		{
 			return name;
+		}
+		
+		@Override
+		public String getID()
+		{
+			return "scroll_type";
 		}
 		
 		@Override

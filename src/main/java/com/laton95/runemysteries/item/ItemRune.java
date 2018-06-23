@@ -1,7 +1,5 @@
 package com.laton95.runemysteries.item;
 
-import net.minecraft.util.IStringSerializable;
-
 public class ItemRune extends RMModItem
 {
 	
@@ -10,35 +8,41 @@ public class ItemRune extends RMModItem
 		super("rune", true, EnumRuneType.class);
 	}
 	
-	public enum EnumRuneType implements IStringSerializable
+	public enum EnumRuneType implements IMetaEnum
 	{
-		AIR("air"),
-		ASTRAL("astral"),
-		BLOOD("blood"),
-		BODY("body"),
-		CHAOS("chaos"),
-		COSMIC("cosmic"),
-		DEATH("death"),
-		EARTH("earth"),
-		FIRE("fire"),
-		LAW("law"),
-		MIND("mind"),
-		NATURE("nature"),
-		SOUL("soul"),
-		WATER("water"),
-		ESSENCE("essence");
+		AIR,
+		ASTRAL,
+		BLOOD,
+		BODY,
+		CHAOS,
+		COSMIC,
+		DEATH,
+		EARTH,
+		FIRE,
+		LAW,
+		MIND,
+		NATURE,
+		SOUL,
+		WATER,
+		ESSENCE;
 		
 		private final String name;
 		
-		EnumRuneType(String name)
+		EnumRuneType()
 		{
-			this.name = name;
+			this.name = super.toString().toLowerCase();
 		}
 		
 		@Override
 		public String getName()
 		{
 			return name;
+		}
+		
+		@Override
+		public String getID()
+		{
+			return "rune_type";
 		}
 		
 		@Override

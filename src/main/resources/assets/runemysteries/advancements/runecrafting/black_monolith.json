@@ -9,11 +9,7 @@
     "description": {
       "translate": "advancements.runemysteries.runecrafting.black_monolith.description"
     },
-    "frame": "challenge",
     "hidden": "true"
-  },
-  "rewards": {
-    "experience": 1000
   },
   "parent": "runemysteries:runecrafting/root",
   "criteria": {
