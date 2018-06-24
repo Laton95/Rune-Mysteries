@@ -33,6 +33,7 @@ public class BlockElementalObelisk extends RMModBlock implements IMetaBlock
 	{
 		super("elemental_obelisk", Material.ROCK, 1.5f, 2000f, "pickaxe", 3, true);
 		setDefaultState(blockState.getBaseState().withProperty(ELEMENT, EnumObeliskElement.AIR).withProperty(TOP, true));
+		setLightLevel(8);
 	}
 	
 	@Override
@@ -116,7 +117,15 @@ public class BlockElementalObelisk extends RMModBlock implements IMetaBlock
 		{
 			if(isCompleteObelisk(worldIn, pos, state.getValue(ELEMENT)))
 			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.OBELISK_INTERACT));
+				if(playerIn.getHeldItem(hand).getItem() == ModItems.GLASS_ORB && playerIn.getHeldItem(hand).getMetadata() == 0)
+				{
+					ItemStack stack = new ItemStack(ModItems.GLASS_ORB, 1, state.getValue(ELEMENT).ordinal() + 1);
+					playerIn.setHeldItem(hand, stack);
+				}
+				else
+				{
+					playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.OBELISK_INTERACT));
+				}
 			}
 			else
 			{

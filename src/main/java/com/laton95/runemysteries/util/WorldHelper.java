@@ -1,10 +1,16 @@
 package com.laton95.runemysteries.util;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.chunk.Chunk;
+import net.minecraftforge.common.BiomeDictionary;
+
+import java.util.List;
 
 public class WorldHelper
 {
@@ -55,6 +61,38 @@ public class WorldHelper
 		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
 		
 		return 1 - (airBlocksBelow * airWeight + solidBlocksAbove * solidWeight) / (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight) > flatnessTolerance;
+	}
+	
+	public static boolean biomeIsOfType(List<BiomeDictionary.Type> biomeTypes, Biome biome)
+	{
+		for(BiomeDictionary.Type type : biomeTypes)
+		{
+			if(BiomeDictionary.hasType(biome, type))
+			{
+				return true;
+			}
+		}
+		
+		return false;
+	}
+	
+	public static BlockPos getTopSolidBlock(World world, BlockPos pos)
+	{
+		Chunk chunk = world.getChunkFromBlockCoords(pos);
+		BlockPos blockpos;
+		BlockPos blockpos1;
+		
+		for(blockpos = new BlockPos(pos.getX(), chunk.getTopFilledSegment() + 16, pos.getZ()); blockpos.getY() >= 0; blockpos = blockpos1)
+		{
+			blockpos1 = blockpos.down();
+			IBlockState state = chunk.getBlockState(blockpos1);
+			if(state.getMaterial().blocksMovement() && !state.getBlock().isLeaves(state, world, blockpos1) && !state.getBlock().isFoliage(world, blockpos1))
+			{
+				break;
+			}
+		}
+		
+		return blockpos;
 	}
 	
 	public static boolean isOverGround(World world, BlockPos pos, int xSize, int zSize)

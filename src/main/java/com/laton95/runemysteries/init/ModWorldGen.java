@@ -31,7 +31,8 @@ public class ModWorldGen
 				new InitDataStructures().new StructureEntry("RuneAltar_END", MapGenRuneAltar_END.Start.class),
 				new InitDataStructures().new StructureEntry("RuneTemple", MapGenRuneTemple.Start.class),
 				new InitDataStructures().new StructureEntry("CosmicTemple", MapGenCosmicTemple.Start.class),
-				new InitDataStructures().new StructureEntry("EssenceMine", MapGenMine.Start.class)
+				new InitDataStructures().new StructureEntry("EssenceMine", MapGenMine.Start.class),
+				new InitDataStructures().new StructureEntry("ElementalObelisk", MapGenElementalObelisk.Start.class)
 				};
 		
 		ComponentEntry[] components = {
@@ -42,7 +43,11 @@ public class ModWorldGen
 				new InitDataStructures().new ComponentEntry("NetherAltar", ComponentNetherAltar.class),
 				new InitDataStructures().new ComponentEntry("Temple", ComponentTemple.class),
 				new InitDataStructures().new ComponentEntry("CosmicTemple", ComponentCosmicTemple.class),
-				new InitDataStructures().new ComponentEntry("EssenceMine", ComponentMine.class)
+				new InitDataStructures().new ComponentEntry("EssenceMine", ComponentMine.class),
+				new InitDataStructures().new ComponentEntry("AirObelisk", ComponentElementalObelisks.ComponentAirObelisk.class),
+				new InitDataStructures().new ComponentEntry("EarthObelisk", ComponentElementalObelisks.ComponentEarthObelisk.class),
+				new InitDataStructures().new ComponentEntry("FireObelisk", ComponentElementalObelisks.ComponentFireObelisk.class),
+				new InitDataStructures().new ComponentEntry("WaterObelisk", ComponentElementalObelisks.ComponentWaterObelisk.class)
 				};
 		
 		for(StructureEntry structure : structures)

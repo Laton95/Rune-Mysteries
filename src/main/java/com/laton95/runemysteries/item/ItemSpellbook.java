@@ -111,6 +111,17 @@ public class ItemSpellbook extends RMModItem
 	private boolean hasItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
 	{
 		int count = 0;
+		
+		ItemStack source = getHeldRuneSources(player);
+		
+		if(cost.getItem() instanceof ItemRune && source != null)
+		{
+			if(cost.getMetadata() == ((IRuneSource) source.getItem()).getRuneType().ordinal())
+			{
+				return true;
+			}
+		}
+		
 		if(bags.size() > 0 && cost.getItem() instanceof ItemRune)
 		{
 			for(InventoryRuneBag bag : bags)
@@ -130,11 +141,37 @@ public class ItemSpellbook extends RMModItem
 		return count >= cost.getCount();
 	}
 	
+	private ItemStack getHeldRuneSources(EntityPlayer player)
+	{
+		if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IRuneSource)
+		{
+			return player.getHeldItem(EnumHand.MAIN_HAND);
+		}
+		else if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof IRuneSource)
+		{
+			return player.getHeldItem(EnumHand.OFF_HAND);
+		}
+		
+		return null;
+	}
+	
 	private void removeItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
 	{
 		int count = cost.getCount();
 		
-		if(bags.size() > 0 && cost.getItem() instanceof ItemRune)
+		ItemStack source = getHeldRuneSources(player);
+		
+		if(cost.getItem() instanceof ItemRune && source != null)
+		{
+			if(cost.getMetadata() == ((IRuneSource) source.getItem()).getRuneType().ordinal())
+			{
+				int temp = count;
+				count -= source.getMaxDamage() - source.getItemDamage();
+				source.damageItem(temp, player);
+			}
+		}
+		
+		if(count > 0 && bags.size() > 0 && cost.getItem() instanceof ItemRune)
 		{
 			for(InventoryRuneBag bag : bags)
 			{

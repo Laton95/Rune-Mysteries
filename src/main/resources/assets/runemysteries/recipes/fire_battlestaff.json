@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #",
+    "@ "
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:glass_orb",
+      "data": 3
+    },
+    "@": {
+      "item": "runemysteries:battlestaff"
+    }
+  },
+  "result": {
+    "item": "runemysteries:fire_battlestaff",
+    "count": 1
+  }
+}

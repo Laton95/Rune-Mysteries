@@ -32,6 +32,8 @@ public class WorldGenerator implements IWorldGenerator
 	
 	private MapGenMonolith monolithGenerator = new MapGenMonolith();
 	
+	private MapGenElementalObelisk obeliskGenerator = new MapGenElementalObelisk();
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -44,23 +46,22 @@ public class WorldGenerator implements IWorldGenerator
 					OreGenerator.finiteEssenceGen(world, random, chunkX, chunkZ);
 					
 					// Structures
-					surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					//					surfaceAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					//					undergroundAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					//					soulAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					obeliskGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				case NETHER:
 					// Ores
 					
 					// Structures
 					netherAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				case THE_END:
 					// Ores
 					
 					// Structures
-					monolithGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					endAltarGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				default:
@@ -78,9 +79,10 @@ public class WorldGenerator implements IWorldGenerator
 			{
 				case OVERWORLD:
 					// Structures
-					surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					//					surfaceAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					//					undergroundAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					//					soulAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					obeliskGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					break;
 				case NETHER:
 					netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));

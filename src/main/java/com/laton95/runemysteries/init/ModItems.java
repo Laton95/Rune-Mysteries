@@ -47,6 +47,19 @@ public class ModItems
 	
 	public static final RMModItem OBELISK_SHARD = new RMModItem("obelisk_shard", true, BlockElementalObelisk.EnumObeliskElement.class);
 	
+	public static final ItemOrb GLASS_ORB = new ItemOrb();
+	
+	public static final ItemBattlestaff BATTLESTAFF = new ItemBattlestaff();
+	
+	public static final ItemAirBattlestaff AIR_BATTLESTAFF = new ItemAirBattlestaff();
+	
+	public static final ItemEarthBattlestaff EARTH_BATTLESTAFF = new ItemEarthBattlestaff();
+	
+	public static final ItemFireBattlestaff FIRE_BATTLESTAFF = new ItemFireBattlestaff();
+	
+	public static final ItemWaterBattlestaff WATER_BATTLESTAFF = new ItemWaterBattlestaff();
+	
+	
 	private static Item[] items = new Item[]
 			{
 					RUNE,
@@ -56,7 +69,13 @@ public class ModItems
 					MINE_SCROLL,
 					BANANA,
 					EX_PARROT,
-					OBELISK_SHARD
+					OBELISK_SHARD,
+					GLASS_ORB,
+					BATTLESTAFF,
+					AIR_BATTLESTAFF,
+					EARTH_BATTLESTAFF,
+					FIRE_BATTLESTAFF,
+					WATER_BATTLESTAFF
 			};
 	
 	private static ArrayList<Block> itemBlocks = new ArrayList<>();

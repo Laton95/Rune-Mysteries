@@ -23,6 +23,10 @@ public class ModConfig
 	@Comment("Dimension options.")
 	public static final Dimensions DIMENSIONS = new Dimensions();
 	
+	@Name("Gameplay")
+	@Comment("Gameplay options.")
+	public static final Gameplay GAMEPLAY = new Gameplay();
+	
 	public static class WorldGeneration
 	{
 		
@@ -33,6 +37,10 @@ public class ModConfig
 		@Name("Ore generation")
 		@Comment("Ore generation options.")
 		public final Ores ores = new Ores();
+		
+		@Name("Elemental obelisk generation")
+		@Comment("Elemental obelisk generation options.")
+		public final ElementalObelisks elemental_obelisks = new ElementalObelisks();
 		
 		public static class RuneAltars
 		{
@@ -71,7 +79,7 @@ public class ModConfig
 			public int finiteEssenceVeinSize = 8;
 			
 			@Name("Finite Essence Veins Per Chunk")
-			@Comment("Number of generation tries per chunk for finite essence veins.")
+			@Comment("Number of finite essence veins per chunk.")
 			@RangeInt(min = 0)
 			public int finiteEssenceVeinsPerChunk = 10;
 			
@@ -84,6 +92,18 @@ public class ModConfig
 			@Comment("Minimum height of finite essence veins.")
 			@RangeInt(min = 0, max = 255)
 			public int finiteEssenceMinHeight = 10;
+		}
+		
+		public static class ElementalObelisks
+		{
+			@Name("Generate elemental obelisks")
+			@Comment("Generate elemental obelisks in the world.")
+			public boolean generateElementalObelisks = true;
+			
+			@Name("Elemental obelisk max distance")
+			@Comment("Max distance between elemental obelisks, in chunks.")
+			@RangeInt(min = 10, max = 100)
+			public int elementalObeliskMaxDistance = 18;
 		}
 	}
 	
@@ -159,6 +179,15 @@ public class ModConfig
 		@Comment("Dimension ID for essence mine.")
 		@RangeInt(min = 10)
 		public int essenceMineDimID = 182;
+	}
+	
+	public static class Gameplay
+	{
+		
+		@Name("Battlestaff Durability")
+		@Comment("Durability of a newly crafted battlestaff.")
+		@RangeInt(min = 100, max = 10000)
+		public int battlestaffDurability = 1000;
 	}
 	
 	@Mod.EventBusSubscriber(modid = ModReference.MOD_ID)

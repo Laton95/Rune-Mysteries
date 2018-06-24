@@ -127,6 +127,11 @@ public final class NamesReference
 		public static final String NO_SPELL_DESCRIPTION = "spell.runemysteries.noSpell.desc";
 	}
 	
+	public static final class Misc
+	{
+		public static final String TOOLTIP_RUNE_SOURCE = "gui.runemysteries.tooltip:rune_source";
+	}
+	
 	public static final class worldGenStrings
 	{
 		

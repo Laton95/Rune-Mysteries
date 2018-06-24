@@ -42,6 +42,18 @@ item.runemysteries:obelisk_shard.earth.name=Shard Of Earth
 item.runemysteries:obelisk_shard.fire.name=Shard Of Fire
 item.runemysteries:obelisk_shard.water.name=Shard Of Water
 
+item.runemysteries:glass_orb.uncharged.name=Unpowered Orb
+item.runemysteries:glass_orb.air.name=Air Orb
+item.runemysteries:glass_orb.earth.name=Earth Orb
+item.runemysteries:glass_orb.fire.name=Fire Orb
+item.runemysteries:glass_orb.water.name=Water Orb
+
+item.runemysteries:battlestaff.name=Battlestaff
+item.runemysteries:air_battlestaff.name=Air Battlestaff
+item.runemysteries:earth_battlestaff.name=Earth Battlestaff
+item.runemysteries:fire_battlestaff.name=Fire Battlestaff
+item.runemysteries:water_battlestaff.name=Water Battlestaff
+
 #Blocks
 tile.runemysteries:rune_Essence_Block.name=Rune Essence
 tile.runemysteries:rune_Essence_Block_Finite.name=Rune Essence
@@ -222,6 +234,8 @@ keys.runemysteries.test=Test
 
 #Gui
 gui.runemysteries.button.extraCosts=Items
+
+gui.runemysteries.tooltip:rune_source=Provides unlimited %1$ss
 
 #Entity
 entity.Villager.runemysteries.runecrafter=Runecrafter

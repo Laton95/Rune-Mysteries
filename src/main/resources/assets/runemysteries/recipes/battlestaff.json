@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "  $",
+    " @ ",
+    "$  "
+  ],
+  "key": {
+    "@": {
+      "item": "minecraft:stick"
+    },
+    "$": {
+      "item": "runemysteries:rune",
+      "data": 14
+    }
+  },
+  "result": {
+    "item": "runemysteries:battlestaff",
+    "count": 1
+  }
+}

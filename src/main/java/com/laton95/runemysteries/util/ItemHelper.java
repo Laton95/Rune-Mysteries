@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.util;
 
 import com.laton95.runemysteries.inventory.InventoryRuneBag;
+import com.laton95.runemysteries.item.IRuneSource;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemRuneBag;
 import com.laton95.runemysteries.item.ItemSpellbook;
@@ -123,6 +124,12 @@ public class ItemHelper
 			// Spellbook tooltip
 			TextComponentTranslation string = new TextComponentTranslation(ItemNBTHelper.getSpell(stack).getName());
 			event.getToolTip().add("Spell: " + string.getFormattedText());
+		}
+		else if(stack.getItem() instanceof IRuneSource)
+		{
+			TextComponentTranslation runeName = new TextComponentTranslation("item.runemysteries:rune." + ((IRuneSource) stack.getItem()).getRuneType() + ".name");
+			TextComponentTranslation string = new TextComponentTranslation(NamesReference.Misc.TOOLTIP_RUNE_SOURCE, runeName.getFormattedText());
+			event.getToolTip().add(string.getFormattedText());
 		}
 	}
 }
