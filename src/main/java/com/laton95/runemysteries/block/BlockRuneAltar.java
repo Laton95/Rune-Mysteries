@@ -5,7 +5,6 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.init.ModLoot;
 import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
-import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.BlockStateContainer;
@@ -42,7 +41,7 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	
 	public BlockRuneAltar()
 	{
-		super("rune_Altar", Material.ROCK, 0, 2000f, null, 0, true);
+		super("rune_Altar", Material.ROCK, 0, 2000f, null, 0, true, true);
 		setBlockUnbreakable();
 		setDefaultState(blockState.getBaseState().withProperty(TYPE, EnumRuneType.AIR));
 	}
@@ -138,8 +137,6 @@ public class BlockRuneAltar extends RMModBlock implements IMetaBlock
 	{
 		if(!worldIn.isRemote)
 		{
-			LogHelper.info("making item");
-			
 			int bonusRunes = 0;
 			
 			String playerName = entityItem.getThrower();

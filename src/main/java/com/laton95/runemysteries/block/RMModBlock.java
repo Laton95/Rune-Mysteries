@@ -7,7 +7,9 @@ import net.minecraft.block.material.Material;
 
 public class RMModBlock extends Block
 {
-	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
+	public boolean hasItem;
+	
+	public RMModBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative, boolean hasItem)
 	{
 		super(material);
 		setUnlocalizedName(ModReference.MOD_ID + ":" + name);
@@ -19,5 +21,6 @@ public class RMModBlock extends Block
 		setHardness(hardness);
 		setResistance(resistance);
 		setHarvestLevel(toolClass, harvestLevel);
+		this.hasItem = hasItem;
 	}
 }

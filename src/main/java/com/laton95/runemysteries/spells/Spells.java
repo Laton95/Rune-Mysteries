@@ -28,7 +28,17 @@ public class Spells
 		}
 	};
 	
-	public static List<SpellBase> spellList = ImmutableList.of(new TeleportBasicSpell(), new SnowballSpell(), new ExplosionSpell(), new DeathSpell(), new BouncingSpell(), new FollowingSpell(), new BonesToBananas());
+	public static List<SpellBase> spellList = ImmutableList.of
+			(
+					new SpellTeleportBasic(),
+					new SpellSnowball(),
+					new SpellExplosion(),
+					new SpellDeath(),
+					new SpellBouncing(),
+					new SpellFollowing(),
+					new SpellBonesToBananas(),
+					new SpellMagicLight()
+			);
 	
 	public static void checkSpells()
 	{

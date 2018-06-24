@@ -2,9 +2,7 @@ package com.laton95.runemysteries.spells;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
-import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellDamage;
-import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBouncing;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.entity.player.EntityPlayer;
@@ -13,20 +11,22 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class DeathSpell extends SpellBase
+public class SpellBouncing extends SpellBase
 {
 	
-	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 3, EnumRuneType.DEATH.ordinal()));
+	private final static List<SpellCost> costs = ImmutableList.of(
 	
-	public DeathSpell()
+																 );
+	
+	public SpellBouncing()
 	{
-		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 20, NamesReference.Spells.BOUNCING_SPELL_NAME, NamesReference.Spells.BOUNCING_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 	
 	@Override
 	public void fireSpell(World world, EntityPlayer player)
 	{
-		EntityProjectileSpellBase projectile = new EntityProjectileSpellDamage(world, player, 30);
+		EntityProjectileSpellBase projectile = new EntityProjectileSpellBouncing(world, player);
 		putProjectileInWorld(world, player, projectile);
 	}
 	

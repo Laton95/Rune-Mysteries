@@ -65,7 +65,6 @@ public class StructureHelper
 				
 				if(tileentity instanceof TileEntityChest)
 				{
-					LogHelper.info(entry.getKey());
 					((TileEntityChest) tileentity).setLootTable(loot, world.rand.nextLong());
 				}
 			}

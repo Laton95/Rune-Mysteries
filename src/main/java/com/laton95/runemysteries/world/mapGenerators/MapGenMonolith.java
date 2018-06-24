@@ -2,7 +2,6 @@ package com.laton95.runemysteries.world.mapGenerators;
 
 import com.laton95.runemysteries.block.BlockBlackMonolith;
 import com.laton95.runemysteries.init.ModBlocks;
-import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
@@ -59,7 +58,6 @@ public class MapGenMonolith extends MapGenBase
 				if(places.size() > 0)
 				{
 					BlockPos pos = places.get(rand.nextInt(places.size()));
-					LogHelper.info("monolith " + (x * 16 + pos.getX()) + "," + (z * 16 + pos.getZ()));
 					worldIn.getChunkFromChunkCoords(x, z).setBlockState(pos, ModBlocks.BLACK_MONOLITH.getStateFromMeta(0).withProperty(BlockBlackMonolith.FACING, EnumFacing.Plane.HORIZONTAL.random(rand)));
 				}
 			}

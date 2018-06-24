@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.entity.projectile;
 
-import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.math.RayTraceResult;
@@ -61,14 +60,6 @@ public class EntityProjectileSpellBouncing extends EntityProjectileSpellBase
 			}
 			else
 			{
-				if(!world.isRemote)
-				{
-					LogHelper.info("Hit entity on server");
-				}
-				if(world.isRemote)
-				{
-					LogHelper.info("Hit entity on client");
-				}
 				motionY = Math.abs(motionY) * yDecay + result.entityHit.motionY;
 				motionX = -motionX * hBoost + result.entityHit.motionX;
 				motionZ = -motionZ * hBoost + result.entityHit.motionZ;

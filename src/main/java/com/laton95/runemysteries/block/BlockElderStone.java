@@ -45,7 +45,7 @@ public class BlockElderStone extends RMModBlock
 	
 	public BlockElderStone()
 	{
-		super("elder_stone", Material.ROCK, 0f, 0f, "pickaxe", 0, false);
+		super("elder_stone", Material.ROCK, 0f, 0f, "pickaxe", 0, false, true);
 		setBlockUnbreakable();
 		setTickRandomly(true);
 		this.setDefaultState(this.blockState.getBaseState().withProperty(CORNER, EnumCorner.NORTH_EAST).withProperty(TOP, true));

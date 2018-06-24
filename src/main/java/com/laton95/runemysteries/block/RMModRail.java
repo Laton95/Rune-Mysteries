@@ -73,7 +73,7 @@ public class RMModRail extends RMModBlock
 	
 	public RMModRail(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
-		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative, true);
 	}
 	
 	/**

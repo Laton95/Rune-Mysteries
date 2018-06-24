@@ -15,7 +15,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class BonesToBananas extends SpellBase
+public class SpellBonesToBananas extends SpellBase
 {
 	private final static List<SpellCost> costs = ImmutableList.of(
 			new SpellCost(ModItems.RUNE, 2, ItemRune.EnumRuneType.WATER.ordinal()),
@@ -25,7 +25,7 @@ public class BonesToBananas extends SpellBase
 	
 	private int effectRadius = 5;
 	
-	public BonesToBananas()
+	public SpellBonesToBananas()
 	{
 		super(costs, 20, NamesReference.Spells.BONES_TO_BANANAS_SPELL_NAME, NamesReference.Spells.BONES_TO_BANANAS_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}

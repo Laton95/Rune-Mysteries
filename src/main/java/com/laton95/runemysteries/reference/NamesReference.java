@@ -122,6 +122,10 @@ public final class NamesReference
 		
 		public static final String BONES_TO_BANANAS_SPELL_DESCRIPTION = "spell.runemysteries.bonesToBananas.desc";
 		
+		public static final String MAGIC_LIGHT_SPELL_NAME = "spell.runemysteries.magicLight.name";
+		
+		public static final String MAGIC_LIGHT_SPELL_DESCRIPTION = "spell.runemysteries.magicLight.desc";
+		
 		public static final String NO_SPELL_NAME = "spell.runemysteries.noSpell.name";
 		
 		public static final String NO_SPELL_DESCRIPTION = "spell.runemysteries.noSpell.desc";

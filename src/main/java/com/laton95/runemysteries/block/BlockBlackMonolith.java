@@ -4,7 +4,6 @@ import com.laton95.runemysteries.advancement.triggers.Triggers;
 import com.laton95.runemysteries.entity.passive.EntityExExParrot;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.util.LogHelper;
 import net.minecraft.block.BlockHorizontal;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyDirection;
@@ -38,7 +37,7 @@ public class BlockBlackMonolith extends RMModBlock
 	
 	public BlockBlackMonolith()
 	{
-		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, false);
+		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, false, true);
 	}
 	
 	@SuppressWarnings("deprecation")
@@ -152,7 +151,6 @@ public class BlockBlackMonolith extends RMModBlock
 		}
 		else
 		{
-			LogHelper.info(hand);
 			if(!worldIn.isRemote)
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.MONOLITH_INTERACT, playerIn.getDisplayName()));

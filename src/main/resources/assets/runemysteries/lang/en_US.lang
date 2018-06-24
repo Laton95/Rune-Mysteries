@@ -184,6 +184,9 @@ spell.runemysteries.followingSpell.desc=A spell that follows and damages a targe
 spell.runemysteries.bonesToBananas.name=Bones To Bananas
 spell.runemysteries.bonesToBananas.desc=Transform all your bones into bananas.
 
+spell.runemysteries.magicLight.name=Magic Light
+spell.runemysteries.magicLight.desc=Summon a magical light on the target block.
+
 spell.runemysteries.noSpell.name=None
 spell.runemysteries.noSpell.desc=No spell selected.
 

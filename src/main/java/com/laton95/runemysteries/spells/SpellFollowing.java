@@ -15,14 +15,14 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class FollowingSpell extends SpellBase
+public class SpellFollowing extends SpellBase
 {
 	
 	private final static List<SpellCost> costs = ImmutableList.of(
 	
 																 );
 	
-	public FollowingSpell()
+	public SpellFollowing()
 	{
 		super(costs, 20, NamesReference.Spells.FOLLOWING_SPELL_NAME, NamesReference.Spells.FOLLOWING_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}

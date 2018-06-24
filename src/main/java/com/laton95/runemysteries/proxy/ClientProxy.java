@@ -38,7 +38,7 @@ public class ClientProxy extends CommonProxy
 	@Override
 	public void registerRenders()
 	{
-		LogHelper.info("Registering projectile renders");
+		LogHelper.info("Registering entity rendering");
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellBouncing.class, renderManager -> new RenderProjectileSpell(renderManager, blueGreen));
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellDamage.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
 		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellExplosive.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));

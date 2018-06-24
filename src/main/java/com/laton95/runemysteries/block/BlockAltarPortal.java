@@ -23,7 +23,7 @@ public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
 	
 	public BlockAltarPortal(String name)
 	{
-		super(name, Material.ROCK, 0, 2000f, null, 0, false);
+		super(name, Material.ROCK, 0, 2000f, null, 0, false, true);
 		setBlockUnbreakable();
 		lightValue = 12;
 	}

@@ -4,8 +4,8 @@ import net.minecraft.block.material.Material;
 
 public class RMRandomRotationBlock extends RMModBlock
 {
-	public RMRandomRotationBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
+	public RMRandomRotationBlock(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative, boolean hasItem)
 	{
-		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative, hasItem);
 	}
 }

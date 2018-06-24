@@ -203,7 +203,7 @@ public class ItemTalisman extends RMModItem
 					break;
 				default:
 					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-					LogHelper.info("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
+					LogHelper.error("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
 					break;
 			}
 		}

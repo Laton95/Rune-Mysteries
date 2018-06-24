@@ -2,7 +2,7 @@ package com.laton95.runemysteries.spells;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
-import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellTeleportBasic;
+import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellDamage;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
@@ -13,20 +13,20 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class TeleportBasicSpell extends SpellBase
+public class SpellDeath extends SpellBase
 {
 	
-	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 3, EnumRuneType.LAW.ordinal()));
+	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 3, EnumRuneType.DEATH.ordinal()));
 	
-	public TeleportBasicSpell()
+	public SpellDeath()
 	{
-		super(costs, 20, NamesReference.Spells.ENDERPEARL_SPELL_NAME, NamesReference.Spells.ENDERPEARL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
+		super(costs, 20, NamesReference.Spells.DEATH_SPELL_NAME, NamesReference.Spells.DEATH_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}
 	
 	@Override
 	public void fireSpell(World world, EntityPlayer player)
 	{
-		EntityProjectileSpellBase projectile = new EntityProjectileSpellTeleportBasic(world, player);
+		EntityProjectileSpellBase projectile = new EntityProjectileSpellDamage(world, player, 30);
 		putProjectileInWorld(world, player, projectile);
 	}
 	

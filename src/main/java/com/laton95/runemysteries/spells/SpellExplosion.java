@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class ExplosionSpell extends SpellBase
+public class SpellExplosion extends SpellBase
 {
 	
 	private final static List<SpellCost> costs = ImmutableList.of(
@@ -20,7 +20,7 @@ public class ExplosionSpell extends SpellBase
 			new SpellCost(ModItems.RUNE, 3, ItemRune.EnumRuneType.FIRE.ordinal())
 																 );
 	
-	public ExplosionSpell()
+	public SpellExplosion()
 	{
 		super(costs, 20, NamesReference.Spells.EXPLOSION_SPELL_NAME, NamesReference.Spells.EXPLOSION_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}

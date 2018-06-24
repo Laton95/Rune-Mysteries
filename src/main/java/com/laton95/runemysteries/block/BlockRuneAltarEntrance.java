@@ -32,7 +32,7 @@ public class BlockRuneAltarEntrance extends RMModBlock implements IMetaBlock
 	
 	public BlockRuneAltarEntrance()
 	{
-		super("rune_Altar_Entrance", Material.ROCK, 0, 2000f, null, 0, false);
+		super("rune_Altar_Entrance", Material.ROCK, 0, 2000f, null, 0, false, true);
 		setBlockUnbreakable();
 	}
 	

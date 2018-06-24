@@ -1,12 +1,30 @@
 {
   "forge_marker": 1,
   "defaults": {
-    "model": "runemysteries:particle_light",
-    "transform": "forge:default-block"
+    "model": "cube_all",
+    "textures": {
+      "all": "runemysteries:items/rune_essence",
+      "particle": "runemysteries:items/rune_essence"
+    }
   },
   "variants": {
-    "normal": [
-      {}
-    ]
+    "colour": {
+      "white": {},
+      "orange": {},
+      "magenta": {},
+      "light_blue": {},
+      "yellow": {},
+      "lime": {},
+      "pink": {},
+      "gray": {},
+      "silver": {},
+      "cyan": {},
+      "purple": {},
+      "blue": {},
+      "brown": {},
+      "green": {},
+      "red": {},
+      "black": {}
+    }
   }
 }

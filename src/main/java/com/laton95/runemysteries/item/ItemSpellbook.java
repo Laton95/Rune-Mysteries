@@ -194,7 +194,7 @@ public class ItemSpellbook extends RMModItem
 		
 		if(count > 0)
 		{
-			LogHelper.info("Error: Spell cost not fully paid");
+			LogHelper.error("Error: Spell cost not fully paid");
 		}
 	}
 }

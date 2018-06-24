@@ -37,7 +37,7 @@ public class LogHelper
 	
 	public static void info(Object object)
 	{
-		log.log(Level.INFO, object);
+		log.log(Level.INFO, "runemysteries:" + object);
 	}
 	
 	// Below this, these outputs do not appear in the FML log.

@@ -68,7 +68,7 @@ public class TeleportHelper
 		PassengerHelper rider = passengerHelper.getPassenger(entity);
 		if(rider == null)
 		{
-			LogHelper.info("RiddenEntity: This error should not be possible");
+			LogHelper.error("RiddenEntity: This error should not be possible");
 			return entity;
 		}
 		passengerHelper.teleport(server, sourceDim, dimension, xCoord, yCoord, zCoord, yaw, pitch);

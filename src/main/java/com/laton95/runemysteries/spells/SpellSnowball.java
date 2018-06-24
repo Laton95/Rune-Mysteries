@@ -14,12 +14,12 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
-public class SnowballSpell extends SpellBase
+public class SpellSnowball extends SpellBase
 {
 	
 	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 2, EnumRuneType.WATER.ordinal()), new SpellCost(ModItems.RUNE, 1, EnumRuneType.AIR.ordinal()));
 	
-	public SnowballSpell()
+	public SpellSnowball()
 	{
 		super(costs, 5, NamesReference.Spells.SNOWBALL_SPELL_NAME, NamesReference.Spells.SNOWBALL_SPELL_DESCRIPTION, new ResourceLocation(ModReference.MOD_ID, "textures/spells/gui/explosion.png"));
 	}

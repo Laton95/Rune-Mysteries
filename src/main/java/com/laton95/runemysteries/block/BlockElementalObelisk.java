@@ -31,7 +31,7 @@ public class BlockElementalObelisk extends RMModBlock implements IMetaBlock
 	
 	public BlockElementalObelisk()
 	{
-		super("elemental_obelisk", Material.ROCK, 1.5f, 2000f, "pickaxe", 3, true);
+		super("elemental_obelisk", Material.ROCK, 1.5f, 2000f, "pickaxe", 3, true, true);
 		setDefaultState(blockState.getBaseState().withProperty(ELEMENT, EnumObeliskElement.AIR).withProperty(TOP, true));
 		setLightLevel(8);
 	}
@@ -62,12 +62,6 @@ public class BlockElementalObelisk extends RMModBlock implements IMetaBlock
 		}
 		
 		return state.withProperty(TOP, isTop || !isSameElement);
-	}
-	
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
 	}
 	
 	@Override
