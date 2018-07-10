@@ -17,174 +17,85 @@ public final class ModLoot
 	
 	public static final ResourceLocation ESSENCE_MINE = LootTableList.register(new ResourceLocation(ModReference.MOD_ID, "chests/essence_mine"));
 	
+	private static final String[] lootTables = {
+			"inject/chests/abandoned_mineshaft",
+			"inject/chests/desert_pyramid",
+			"inject/chests/jungle_temple",
+			"inject/chests/simple_dungeon",
+			"inject/chests/spawn_bonus_chest",
+			"inject/chests/village_blacksmith",
+			"inject/chests/stronghold_corridor",
+			"inject/chests/nether_bridge",
+			"inject/chests/igloo_chest",
+			"inject/chests/stronghold_crossing",
+			"inject/chests/stronghold_library",
+			"inject/chests/woodland_mansion",
+			"inject/chests/end_city_treasure",
+			"inject/gameplay/fishing/treasure",
+			"inject/entities/blaze",
+			"inject/entities/cave_spider",
+			"inject/entities/creeper",
+			"inject/entities/elder_guardian",
+			"inject/entities/enderman",
+			"inject/entities/endermite",
+			"inject/entities/evocation_illager",
+			"inject/entities/ghast",
+			"inject/entities/guardian",
+			"inject/entities/husk",
+			"inject/entities/illusion_illager",
+			"inject/entities/magma_cube",
+			"inject/entities/parrot",
+			"inject/entities/shulker",
+			"inject/entities/silverfish",
+			"inject/entities/skeleton",
+			"inject/entities/slime",
+			"inject/entities/spider",
+			"inject/entities/squid",
+			"inject/entities/stray",
+			"inject/entities/vex",
+			"inject/entities/vindication_illager",
+			"inject/entities/witch",
+			"inject/entities/wither_skeleton",
+			"inject/entities/zombie_pigman",
+			"inject/entities/zombie_villager",
+			"inject/entities/zombie"
+	};
+	
 	public ModLoot()
 	{
 		LogHelper.info("Registering loot tables");
 		
-		String[] lootTables = {
-				"inject/chests/abandoned_mineshaft",
-				"inject/chests/desert_pyramid",
-				"inject/chests/jungle_temple",
-				"inject/chests/simple_dungeon",
-				"inject/chests/spawn_bonus_chest",
-				"inject/chests/village_blacksmith",
-				"inject/chests/stronghold_corridor",
-				"inject/chests/nether_bridge",
-				"inject/chests/igloo_chest",
-				"inject/chests/stronghold_crossing",
-				"inject/chests/stronghold_library",
-				"inject/chests/woodland_mansion",
-				"inject/chests/end_city_treasure",
-				"inject/gameplay/fishing/treasure",
-				"inject/entities/blaze",
-				"inject/entities/elder_guardian",
-				"inject/entities/enderman",
-				"inject/entities/endermite",
-				"inject/entities/evocation_illager",
-				"inject/entities/ghast",
-				"inject/entities/guardian",
-				"inject/entities/husk",
-				"inject/entities/magma_cube",
-				"inject/entities/parrot",
-				"inject/entities/silverfish",
-				"inject/entities/skeleton",
-				"inject/entities/slime",
-				"inject/entities/squid",
-				"inject/entities/stray",
-				"inject/entities/vex",
-				"inject/entities/vindication_illager",
-				"inject/entities/wither_skeleton",
-				"inject/entities/zombie_pigman",
-				"inject/entities/zombie_villager",
-				"inject/entities/zombie"
-		};
-		
-		for(String s : lootTables)
+		for(String path : lootTables)
 		{
-			LootTableList.register(new ResourceLocation(ModReference.MOD_ID, s));
+			LootTableList.register(new ResourceLocation(ModReference.MOD_ID, path));
 		}
 	}
 	
 	@SubscribeEvent
-	public void lootLoad(LootTableLoadEvent evt)
+	public void lootLoad(LootTableLoadEvent event)
 	{
 		String prefix = "minecraft:";
-		String name = evt.getName().toString();
+		String name = event.getName().toString();
+		String suffix = name.substring(10);
 		
-		if(name.startsWith(prefix))
+		if(name.startsWith(prefix) && isValidLoottable(suffix))
 		{
 			String file = name.substring(name.indexOf(prefix) + prefix.length());
-			switch(file)
+			event.getTable().addPool(getInjectPool(file));
+		}
+	}
+	
+	private static boolean isValidLoottable(String suffix)
+	{
+		for(String s : lootTables)
+		{
+			if(s.endsWith(suffix))
 			{
-				case "chests/abandoned_mineshaft":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/desert_pyramid":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/jungle_temple":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/simple_dungeon":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/spawn_bonus_chest":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/stronghold_corridor":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/nether_bridge":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/igloo_chest":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/stronghold_crossing":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/stronghold_library":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/woodland_mansion":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/end_city_treasure":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "chests/village_blacksmith":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "gameplay/fishing/treasure":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/blaze":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/elder_guardian":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/enderman":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/endermite":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/evocation_illager":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/ghast":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/guardian":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/husk":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/magma_cube":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/parrot":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/silverfish":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/skeleton":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/slime":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/squid":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/stray":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/vex":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/vindication_illager":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/wither_skeleton":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/zombie_pigman":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/zombie_villager":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				case "entities/zombie":
-					evt.getTable().addPool(getInjectPool(file));
-					break;
-				default:
-					break;
+				return true;
 			}
 		}
+		
+		return false;
 	}
 	
 	private LootPool getInjectPool(String entryName)

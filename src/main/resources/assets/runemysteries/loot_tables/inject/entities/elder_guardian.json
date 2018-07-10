@@ -4,11 +4,6 @@
       "conditions": [
         {
           "condition": "killed_by_player"
-        },
-        {
-          "condition": "random_chance_with_looting",
-          "chance": 1,
-          "looting_multiplier": 0
         }
       ],
       "name": "main",
@@ -20,14 +15,8 @@
         {
           "entryName": "water",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 13
-            }
-          ]
+          "name": "runemysteries:water_talisman",
+          "weight": 1
         }
       ]
     }

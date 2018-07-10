@@ -16,7 +16,7 @@ public class EntityHelper
 	{
 		if(event.getEntity() instanceof EntityWither && !event.getEntity().world.isRemote)
 		{
-			event.getEntity().entityDropItem(new ItemStack(ModItems.RUNE_TALISMAN, 1, 6), 0);
+			event.getEntity().entityDropItem(new ItemStack(ModItems.DEATH_TALISMAN, 1), 0);
 		}
 	}
 }

@@ -1,0 +1,24 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "model": "cube_column",
+    "textures": {
+      "end": "runemysteries:blocks/obelisk_top",
+      "side": "runemysteries:blocks/water_obelisk_top"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "top": {
+      "true": {},
+      "false": {
+        "textures": {
+          "side": "runemysteries:blocks/water_obelisk"
+        }
+      }
+    },
+    "normal": [
+      {}
+    ]
+  }
+}

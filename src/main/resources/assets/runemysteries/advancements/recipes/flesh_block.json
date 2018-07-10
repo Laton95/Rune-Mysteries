@@ -11,8 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:rune",
-            "data": 3
+            "item": "runemysteries:body_rune"
           }
         ]
       }

@@ -1,0 +1,67 @@
+{
+  "forge_marker": 1,
+  "defaults": {
+    "textures": {
+      "rail": "minecraft:blocks/prismarine_dark"
+    },
+    "uvlock": true
+  },
+  "variants": {
+    "up": {
+      "true": {
+        "submodel": {
+          "post": {
+            "model": "runemysteries:rail_post"
+          }
+        }
+      },
+      "false": {}
+    },
+    "north": {
+      "true": {
+        "submodel": {
+          "side_n": {
+            "model": "runemysteries:rail_side"
+          }
+        }
+      },
+      "false": {}
+    },
+    "south": {
+      "true": {
+        "submodel": {
+          "side_s": {
+            "model": "runemysteries:rail_side",
+            "y": 180
+          }
+        }
+      },
+      "false": {}
+    },
+    "east": {
+      "true": {
+        "submodel": {
+          "side_e": {
+            "model": "runemysteries:rail_side",
+            "y": 90
+          }
+        }
+      },
+      "false": {}
+    },
+    "west": {
+      "true": {
+        "submodel": {
+          "side_w": {
+            "model": "runemysteries:rail_side",
+            "y": 270
+          }
+        }
+      },
+      "false": {}
+    },
+    "normal": {
+      "model": "runemysteries:rail_inventory"
+    }
+  }
+}

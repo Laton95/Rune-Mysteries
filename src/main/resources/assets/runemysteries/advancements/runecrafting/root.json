@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "runemysteries:rune",
-      "data": 8
+      "item": "runemysteries:fire_rune"
     },
     "title": {
       "translate": "advancements.runemysteries.runecrafting.root.title"
@@ -10,7 +9,7 @@
     "description": {
       "translate": "advancements.runemysteries.runecrafting.root.description"
     },
-    "background": "runemysteries:textures/blocks/rune_altar_block.png",
+    "background": "runemysteries:textures/blocks/ruin_stone.png",
     "show_toast": false,
     "announce_to_chat": false
   },
@@ -20,8 +19,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:rune",
-            "data": 14
+            "item": "runemysteries:rune_essence"
           }
         ]
       }

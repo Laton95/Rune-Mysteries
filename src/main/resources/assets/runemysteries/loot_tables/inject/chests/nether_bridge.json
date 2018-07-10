@@ -10,26 +10,14 @@
         {
           "entryName": "fire",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 3,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 8
-            }
-          ]
+          "name": "runemysteries:fire_talisman",
+          "weight": 20
         },
         {
           "entryName": "chaos",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 4
-            }
-          ]
+          "name": "runemysteries:chaos_talisman",
+          "weight": 10
         }
       ]
     }

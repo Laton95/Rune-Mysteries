@@ -10,62 +10,32 @@
         {
           "entryName": "air",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 20,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 0
-            }
-          ]
+          "name": "runemysteries:air_talisman",
+          "weight": 20
         },
         {
           "entryName": "earth",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 7
-            }
-          ]
+          "name": "runemysteries:earth_talisman",
+          "weight": 15
         },
         {
           "entryName": "fire",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 8
-            }
-          ]
+          "name": "runemysteries:fire_talisman",
+          "weight": 15
         },
         {
           "entryName": "water",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 13
-            }
-          ]
+          "name": "runemysteries:water_talisman",
+          "weight": 15
         },
         {
           "entryName": "blank",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 50,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 14
-            }
-          ]
+          "name": "runemysteries:blank_talisman",
+          "weight": 60
         },
         {
           "entryName": "banana",
@@ -85,13 +55,9 @@
         {
           "entryName": "essence",
           "type": "item",
-          "name": "runemysteries:rune",
+          "name": "runemysteries:rune_essence",
           "weight": 20,
           "functions": [
-            {
-              "function": "set_data",
-              "data": 14
-            },
             {
               "function": "set_count",
               "count": {
@@ -139,6 +105,10 @@
               }
             }
           ]
+        },
+        {
+          "type": "empty",
+          "weight": 5
         }
       ]
     }

@@ -3,7 +3,6 @@ package com.laton95.runemysteries.spells;
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellExplosive;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,10 +14,11 @@ import java.util.List;
 public class SpellExplosion extends SpellBase
 {
 	
-	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ModItems.RUNE, 1, ItemRune.EnumRuneType.CHAOS.ordinal()),
-			new SpellCost(ModItems.RUNE, 3, ItemRune.EnumRuneType.FIRE.ordinal())
-																 );
+	private final static List<SpellCost> costs = ImmutableList.of
+			(
+					new SpellCost(ModItems.CHAOS_RUNE, 1),
+					new SpellCost(ModItems.FIRE_RUNE, 3)
+			);
 	
 	public SpellExplosion()
 	{

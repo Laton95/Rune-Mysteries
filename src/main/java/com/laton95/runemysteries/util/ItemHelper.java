@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.util.SoundCategory;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.util.text.TextFormatting;
 import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -127,9 +128,10 @@ public class ItemHelper
 		}
 		else if(stack.getItem() instanceof IRuneSource)
 		{
-			TextComponentTranslation runeName = new TextComponentTranslation("item.runemysteries:rune." + ((IRuneSource) stack.getItem()).getRuneType() + ".name");
-			TextComponentTranslation string = new TextComponentTranslation(NamesReference.Misc.TOOLTIP_RUNE_SOURCE, runeName.getFormattedText());
-			event.getToolTip().add(string.getFormattedText());
+			String unlocalisedRune = ((IRuneSource) stack.getItem()).getRuneType().getRuneOfType().getUnlocalizedName() + ".name";
+			TextComponentTranslation runeName = new TextComponentTranslation(unlocalisedRune);
+			TextComponentTranslation string = new TextComponentTranslation(NamesReference.Misc.TOOLTIP_RUNE_SOURCE, TextFormatting.GRAY + runeName.getFormattedText());
+			event.getToolTip().add(string.getFormattedText() + TextFormatting.GRAY + "s");
 		}
 	}
 }

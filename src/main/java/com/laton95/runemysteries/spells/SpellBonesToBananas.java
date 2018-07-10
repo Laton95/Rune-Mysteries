@@ -2,7 +2,6 @@ package com.laton95.runemysteries.spells;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.entity.item.EntityItem;
@@ -17,11 +16,12 @@ import java.util.List;
 
 public class SpellBonesToBananas extends SpellBase
 {
-	private final static List<SpellCost> costs = ImmutableList.of(
-			new SpellCost(ModItems.RUNE, 2, ItemRune.EnumRuneType.WATER.ordinal()),
-			new SpellCost(ModItems.RUNE, 2, ItemRune.EnumRuneType.EARTH.ordinal()),
-			new SpellCost(ModItems.RUNE, 1, ItemRune.EnumRuneType.NATURE.ordinal())
-																 );
+	private final static List<SpellCost> costs = ImmutableList.of
+			(
+					new SpellCost(ModItems.WATER_RUNE, 2),
+					new SpellCost(ModItems.EARTH_RUNE, 2),
+					new SpellCost(ModItems.NATURE_RUNE, 1)
+			);
 	
 	private int effectRadius = 5;
 	

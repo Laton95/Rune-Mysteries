@@ -13,21 +13,15 @@
       ],
       "name": "main",
       "rolls": {
-        "min": 1,
+        "min": 0,
         "max": 1
       },
       "entries": [
         {
           "entryName": "cosmic",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            }
-          ]
+          "name": "runemysteries:cosmic_talisman",
+          "weight": 15
         }
       ]
     }

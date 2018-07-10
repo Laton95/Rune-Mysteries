@@ -14,8 +14,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:glass_orb",
-            "data": 0
+            "item": "runemysteries:glass_orb"
           }
         ]
       }

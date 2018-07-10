@@ -13,13 +13,11 @@
       "item": "minecraft:diamond"
     },
     "$": {
-      "item": "runemysteries:rune",
-      "data": 14
+      "item": "runemysteries:rune_essence"
     }
   },
   "result": {
     "item": "runemysteries:glass_orb",
-    "data": 0,
     "count": 1
   }
 }

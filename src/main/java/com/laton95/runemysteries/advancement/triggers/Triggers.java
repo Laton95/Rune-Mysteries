@@ -12,11 +12,14 @@ public class Triggers
 	
 	public static final CustomTrigger OURANIA = new CustomTrigger("ourania");
 	
+	public static final CustomTrigger CHARGE_ORB = new CustomTrigger("charge_orb");
+	
 	public static final CustomTrigger[] TRIGGER_ARRAY = new CustomTrigger[] {
 			TOUCH_MONOLITH,
 			EX_PARROT,
 			TOUCH_ELDER_STONE,
 			CRAFT_RUNE,
-			OURANIA
+			OURANIA,
+			CHARGE_ORB
 	};
 }

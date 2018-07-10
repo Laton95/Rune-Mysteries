@@ -38,7 +38,7 @@
   },
   "ambientocclusion": false,
   "textures": {
-    "particle": "#texture"
+    "particle": "#rail"
   },
   "elements": [
     {
@@ -54,24 +54,24 @@
       ],
       "faces": {
         "down": {
-          "texture": "#texture",
+          "texture": "#rail",
           "cullface": "down"
         },
         "up": {
-          "texture": "#texture",
+          "texture": "#rail",
           "cullface": "up"
         },
         "north": {
-          "texture": "#texture"
+          "texture": "#rail"
         },
         "south": {
-          "texture": "#texture"
+          "texture": "#rail"
         },
         "west": {
-          "texture": "#texture"
+          "texture": "#rail"
         },
         "east": {
-          "texture": "#texture"
+          "texture": "#rail"
         }
       }
     }

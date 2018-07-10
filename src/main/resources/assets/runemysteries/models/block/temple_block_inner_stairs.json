@@ -1,8 +1,0 @@
-{
-  "parent": "block/inner_stairs",
-  "textures": {
-    "bottom": "runemysteries:blocks/temple_block",
-    "top": "runemysteries:blocks/temple_block",
-    "side": "runemysteries:blocks/temple_block"
-  }
-}

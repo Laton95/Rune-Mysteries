@@ -7,20 +7,17 @@
   ],
   "key": {
     "#": {
-      "item": "runemysteries:obelisk_shard",
-      "data": 1
+      "item": "runemysteries:earth_obelisk_shard"
     },
     "@": {
-      "item": "runemysteries:rune_essence_block"
+      "item": "runemysteries:rune_essence_block_finite"
     },
     "$": {
-      "item": "runemysteries:rune",
-      "data": 7
+      "item": "runemysteries:earth_rune"
     }
   },
   "result": {
-    "item": "runemysteries:elemental_obelisk",
-    "data": 1,
+    "item": "runemysteries:earth_obelisk",
     "count": 1
   }
 }

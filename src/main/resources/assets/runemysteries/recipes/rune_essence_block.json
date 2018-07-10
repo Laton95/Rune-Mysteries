@@ -6,12 +6,11 @@
   ],
   "key": {
     "#": {
-      "item": "runemysteries:rune",
-      "data": 14
+      "item": "runemysteries:rune_essence"
     }
   },
   "result": {
-    "item": "runemysteries:rune_essence_block",
+    "item": "runemysteries:rune_essence_block_finite",
     "count": 1
   }
 }

@@ -10,170 +10,90 @@
         {
           "entryName": "air",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 0
-            }
-          ]
-        },
-        {
-          "entryName": "body",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 3
-            }
-          ]
-        },
-        {
-          "entryName": "earth",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 7
-            }
-          ]
-        },
-        {
-          "entryName": "fire",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 8
-            }
-          ]
-        },
-        {
-          "entryName": "mind",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 10
-            }
-          ]
-        },
-        {
-          "entryName": "water",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 15,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 13
-            }
-          ]
+          "name": "runemysteries:air_talisman",
+          "weight": 20
         },
         {
           "entryName": "astral",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 1
-            }
-          ]
-        },
-        {
-          "entryName": "nature",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 11
-            }
-          ]
-        },
-        {
-          "entryName": "death",
-          "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 6
-            }
-          ]
+          "name": "runemysteries:astral_talisman",
+          "weight": 1
         },
         {
           "entryName": "blood",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 5,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 2
-            }
-          ]
+          "name": "runemysteries:blood_talisman",
+          "weight": 10
+        },
+        {
+          "entryName": "body",
+          "type": "item",
+          "name": "runemysteries:body_talisman",
+          "weight": 10
         },
         {
           "entryName": "chaos",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 4
-            }
-          ]
+          "name": "runemysteries:chaos_talisman",
+          "weight": 1
         },
         {
           "entryName": "cosmic",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 5
-            }
-          ]
+          "name": "runemysteries:cosmic_talisman",
+          "weight": 1
+        },
+        {
+          "entryName": "death",
+          "type": "item",
+          "name": "runemysteries:death_talisman",
+          "weight": 10
+        },
+        {
+          "entryName": "earth",
+          "type": "item",
+          "name": "runemysteries:earth_talisman",
+          "weight": 20
+        },
+        {
+          "entryName": "fire",
+          "type": "item",
+          "name": "runemysteries:fire_talisman",
+          "weight": 20
         },
         {
           "entryName": "law",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 9
-            }
-          ]
+          "name": "runemysteries:law_talisman",
+          "weight": 1
+        },
+        {
+          "entryName": "mind",
+          "type": "item",
+          "name": "runemysteries:mind_talisman",
+          "weight": 10
+        },
+        {
+          "entryName": "nature",
+          "type": "item",
+          "name": "runemysteries:nature_talisman",
+          "weight": 1
         },
         {
           "entryName": "soul",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 12
-            }
-          ]
+          "name": "runemysteries:soul_talisman",
+          "weight": 10
+        },
+        {
+          "entryName": "water",
+          "type": "item",
+          "name": "runemysteries:water_talisman",
+          "weight": 20
+        },
+        {
+          "type": "empty",
+          "weight": 20
         }
       ]
     },
@@ -187,12 +107,15 @@
         {
           "entryName": "mine scroll",
           "type": "item",
-          "name": "runemysteries:scroll",
+          "name": "runemysteries:mine_scroll",
           "weight": 1,
           "functions": [
             {
-              "function": "set_data",
-              "data": 0
+              "function": "set_count",
+              "count": {
+                "min": 1,
+                "max": 15
+              }
             }
           ]
         },

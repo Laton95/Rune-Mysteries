@@ -60,7 +60,7 @@ public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld
 							}
 							else if(rand.nextFloat() <= 0.005)
 							{
-								chunkprimer.setBlockState(xPos, y, zPos, ModBlocks.PARTICLE_LIGHT.getDefaultState());
+								chunkprimer.setBlockState(xPos, y, zPos, ModBlocks.ORANGE_LIGHT.getDefaultState());
 							}
 						}
 						else

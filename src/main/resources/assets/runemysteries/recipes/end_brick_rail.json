@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:end_bricks"
+    },
+    "@": {
+      "item": "minecraft:end_stone"
+    }
+  },
+  "result": {
+    "item": "runemysteries:end_brick_rail",
+    "count": 5
+  }
+}

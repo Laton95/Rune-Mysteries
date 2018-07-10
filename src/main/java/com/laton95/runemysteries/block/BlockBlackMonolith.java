@@ -37,25 +37,18 @@ public class BlockBlackMonolith extends RMModBlock
 	
 	public BlockBlackMonolith()
 	{
-		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, false, true);
+		super("black_monolith", Material.ROCK, 200.0f, 2000f, "pickaxe", 4, true, true);
 	}
 	
-	@SuppressWarnings("deprecation")
+	@Override
 	public IBlockState getStateFromMeta(int meta)
 	{
-		EnumFacing enumfacing = EnumFacing.getFront(meta);
-		
-		if(enumfacing.getAxis() == EnumFacing.Axis.Y)
-		{
-			enumfacing = EnumFacing.NORTH;
-		}
-		
-		return this.getDefaultState().withProperty(FACING, enumfacing);
+		return getDefaultState().withProperty(FACING, EnumFacing.values()[meta]);
 	}
 	
 	public int getMetaFromState(IBlockState state)
 	{
-		return state.getValue(FACING).getIndex();
+		return state.getValue(FACING).ordinal();
 	}
 	
 	@SuppressWarnings("deprecation")

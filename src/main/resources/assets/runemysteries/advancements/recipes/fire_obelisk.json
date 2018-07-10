@@ -11,8 +11,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:obelisk_shard",
-            "data": 2
+            "item": "runemysteries:fire_obelisk_shard"
           }
         ]
       }

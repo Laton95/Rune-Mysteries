@@ -3,7 +3,6 @@ package com.laton95.runemysteries.spells;
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.block.Block;
@@ -25,10 +24,10 @@ public class SpellMagicLight extends SpellBase
 {
 	private final static List<SpellCost> costs = ImmutableList.of
 			(
-					new SpellCost(ModItems.RUNE, 1, ItemRune.EnumRuneType.NATURE.ordinal())
+					new SpellCost(ModItems.NATURE_RUNE, 1)
 			);
 	
-	private Block light = ModBlocks.PARTICLE_LIGHT;
+	private Block light = ModBlocks.WHITE_LIGHT;
 	
 	private BlockPos pos;
 	

@@ -188,7 +188,7 @@ public class BlockElderStone extends RMModBlock
 		{
 			BlockPos essPos = stonePositions.get(rand.nextInt(stonePositions.size()));
 			
-			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE.getDefaultState().withProperty(BlockRuneEssence.FINITE, true));
+			worldIn.setBlockState(essPos, ModBlocks.FINITE_RUNE_ESSENCE.getDefaultState());
 		}
 	}
 	

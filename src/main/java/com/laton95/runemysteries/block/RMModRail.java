@@ -73,17 +73,7 @@ public class RMModRail extends RMModBlock
 	
 	public RMModRail(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 	{
-		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative, true);
-	}
-	
-	/**
-	 * Convert the given metadata into a BlockState for this Block
-	 */
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		return getDefaultState();
+		super(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 	}
 	
 	/**
@@ -222,26 +212,11 @@ public class RMModRail extends RMModBlock
 		return CLIP_AABB_BY_INDEX[getAABBIndex(blockState)];
 	}
 	
-	/**
-	 * Used to determine ambient occlusion and culling when rebuilding chunks
-	 * for renderer
-	 */
 	@SuppressWarnings("deprecation")
 	@Override
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
-	}
-	
-	/**
-	 * Gets the metadata of the item this Block can drop. This method is called
-	 * when the block gets destroyed. It returns the metadata of the dropped
-	 * item based on the old metadata of the block.
-	 */
-	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return 0;
 	}
 	
 	@Override

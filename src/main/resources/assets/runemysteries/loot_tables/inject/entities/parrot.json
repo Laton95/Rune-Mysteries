@@ -18,7 +18,7 @@
       },
       "entries": [
         {
-          "entryName": "ex-parrot",
+          "entryName": "ex_parrot",
           "type": "item",
           "name": "runemysteries:ex_parrot",
           "weight": 1

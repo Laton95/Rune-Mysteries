@@ -4,7 +4,6 @@ import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellBase;
 import com.laton95.runemysteries.entity.projectile.EntityProjectileSpellTeleportBasic;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.reference.NamesReference;
 import net.minecraft.entity.player.EntityPlayer;
@@ -16,7 +15,10 @@ import java.util.List;
 public class SpellTeleportBasic extends SpellBase
 {
 	
-	private final static List<SpellCost> costs = ImmutableList.of(new SpellCost(ModItems.RUNE, 3, EnumRuneType.LAW.ordinal()));
+	private final static List<SpellCost> costs = ImmutableList.of
+			(
+					new SpellCost(ModItems.LAW_RUNE, 3)
+			);
 	
 	public SpellTeleportBasic()
 	{

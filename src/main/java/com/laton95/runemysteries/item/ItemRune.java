@@ -1,54 +1,14 @@
 package com.laton95.runemysteries.item;
 
+import com.laton95.runemysteries.enums.EnumRuneType;
+
 public class ItemRune extends RMModItem
 {
+	private final EnumRuneType runeType;
 	
-	public ItemRune()
+	public ItemRune(EnumRuneType runeType)
 	{
-		super("rune", true, EnumRuneType.class);
-	}
-	
-	public enum EnumRuneType implements IMetaEnum
-	{
-		AIR,
-		ASTRAL,
-		BLOOD,
-		BODY,
-		CHAOS,
-		COSMIC,
-		DEATH,
-		EARTH,
-		FIRE,
-		LAW,
-		MIND,
-		NATURE,
-		SOUL,
-		WATER,
-		ESSENCE;
-		
-		private final String name;
-		
-		EnumRuneType()
-		{
-			this.name = super.toString().toLowerCase();
-		}
-		
-		@Override
-		public String getName()
-		{
-			return name;
-		}
-		
-		@Override
-		public String getID()
-		{
-			return "rune_type";
-		}
-		
-		@Override
-		public String toString()
-		{
-			return name;
-		}
+		super(runeType.toString().toLowerCase() + "_rune", true);
+		this.runeType = runeType;
 	}
 }

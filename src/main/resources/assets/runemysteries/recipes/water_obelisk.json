@@ -7,20 +7,18 @@
   ],
   "key": {
     "#": {
-      "item": "runemysteries:obelisk_shard",
+      "item": "runemysteries:water_obelisk_shard",
       "data": 3
     },
     "@": {
-      "item": "runemysteries:rune_essence_block"
+      "item": "runemysteries:rune_essence_block_finite"
     },
     "$": {
-      "item": "runemysteries:rune",
-      "data": 13
+      "item": "runemysteries:water_rune"
     }
   },
   "result": {
-    "item": "runemysteries:elemental_obelisk",
-    "data": 3,
+    "item": "runemysteries:water_obelisk",
     "count": 1
   }
 }

@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:red_sandstone",
+      "data": 2
+    },
+    "@": {
+      "item": "minecraft:stone_slab2",
+      "data": 0
+    }
+  },
+  "result": {
+    "item": "runemysteries:red_sandstone_rail",
+    "count": 5
+  }
+}

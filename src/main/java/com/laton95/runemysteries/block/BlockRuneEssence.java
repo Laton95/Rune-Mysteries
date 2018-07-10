@@ -1,10 +1,8 @@
 package com.laton95.runemysteries.block;
 
+import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.EnumFaceDirection;
 import net.minecraft.entity.player.EntityPlayer;
@@ -21,41 +19,19 @@ import java.util.Random;
 
 public class BlockRuneEssence extends RMModBlock
 {
-	public static final PropertyBool FINITE = PropertyBool.create("finite");
+	private final boolean isFinite;
 	
-	public BlockRuneEssence()
+	public BlockRuneEssence(boolean isFinite)
 	{
-		super("rune_Essence_Block", Material.ROCK, 1.5f, 2000f, "pickaxe", 0, true, true);
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		if(meta == 0)
-		{
-			return getDefaultState().withProperty(FINITE, true);
-		}
-		
-		return getDefaultState().withProperty(FINITE, false);
-	}
-	
-	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		if(state.getValue(FINITE))
-		{
-			return 0;
-		}
-		
-		return 1;
+		super(isFinite ? "rune_essence_block_finite" : "rune_essence_block", Material.ROCK, 1.5f, 2000f, "pickaxe", 0, isFinite, isFinite);
+		this.isFinite = isFinite;
 	}
 	
 	@SideOnly(Side.CLIENT)
 	@Override
 	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
 	{
-		if(!stateIn.getValue(FINITE))
+		if(!isFinite)
 		{
 			double xPos = 0;
 			double yPos = 0;
@@ -63,13 +39,8 @@ public class BlockRuneEssence extends RMModBlock
 			
 			double offset = 0.1;
 			
-			switch(EnumFaceDirection.values()[rand.nextInt(EnumFaceDirection.values().length)])
+			switch(EnumFaceDirection.values()[rand.nextInt(EnumFaceDirection.values().length - 1) + 1])
 			{
-				case DOWN:
-					xPos += rand.nextFloat() + offset;
-					yPos -= offset;
-					zPos += rand.nextFloat() + offset;
-					break;
 				case UP:
 					xPos += rand.nextFloat() + offset;
 					yPos += 1 + offset;
@@ -114,35 +85,23 @@ public class BlockRuneEssence extends RMModBlock
 	@Override
 	public Item getItemDropped(IBlockState state, Random rand, int fortune)
 	{
-		return ModItems.RUNE;
+		return ModItems.RUNE_ESSENCE;
 	}
 	
 	@Override
 	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
 	{
 		super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-		if(!state.getValue(FINITE))
+		if(!isFinite)
 		{
 			worldIn.setBlockState(pos, state);
 		}
 	}
 	
 	@Override
-	public int damageDropped(IBlockState state)
-	{
-		return EnumRuneType.ESSENCE.ordinal();
-	}
-	
-	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
 		return this.quantityDropped(random) + random.nextInt(fortune + 1);
-	}
-	
-	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, FINITE);
 	}
 	
 	@Override
@@ -154,6 +113,6 @@ public class BlockRuneEssence extends RMModBlock
 	@Override
 	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
 	{
-		return new ItemStack(Item.getItemFromBlock(this), 1, 0);
+		return new ItemStack(Item.getItemFromBlock(ModBlocks.FINITE_RUNE_ESSENCE), 1, 0);
 	}
 }

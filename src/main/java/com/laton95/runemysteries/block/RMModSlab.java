@@ -47,35 +47,8 @@ public abstract class RMModSlab extends BlockSlab
 		return this.getUnlocalizedName();
 	}
 	
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getStateFromMeta(int meta)
-	{
-		IBlockState iblockstate = getDefaultState().withProperty(VARIANT, RMModSlab.Variant.DEFAULT);
-		
-		if(!isDouble())
-		{
-			iblockstate = iblockstate.withProperty(HALF, (meta & 8) == 0 ? BlockSlab.EnumBlockHalf.BOTTOM : BlockSlab.EnumBlockHalf.TOP);
-		}
-		
-		return iblockstate;
-	}
-	
 	@Override
 	public int getMetaFromState(IBlockState state)
-	{
-		int i = 0;
-		
-		if(!isDouble() && state.getValue(HALF) == BlockSlab.EnumBlockHalf.TOP)
-		{
-			i |= 8;
-		}
-		
-		return i;
-	}
-	
-	@Override
-	public int damageDropped(IBlockState state)
 	{
 		return 0;
 	}
@@ -83,8 +56,7 @@ public abstract class RMModSlab extends BlockSlab
 	@Override
 	protected BlockStateContainer createBlockState()
 	{
-		return isDouble() ? new BlockStateContainer(this, VARIANT) : new BlockStateContainer(this, HALF,
-																							 VARIANT);
+		return isDouble() ? new BlockStateContainer(this, VARIANT) : new BlockStateContainer(this, HALF, VARIANT);
 	}
 	
 	@Override
@@ -126,7 +98,7 @@ public abstract class RMModSlab extends BlockSlab
 		
 		public Double(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 		{
-			super(name + "_Double", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			super(name + "_double", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 		
 		@Override
@@ -142,7 +114,7 @@ public abstract class RMModSlab extends BlockSlab
 		
 		public Half(String name, Material material, float hardness, Float resistance, String toolClass, int harvestLevel, boolean showInCreative)
 		{
-			super(name + "_Half", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
+			super(name + "_half", material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 			doubleSlab = new Double(name, material, hardness, resistance, toolClass, harvestLevel, showInCreative);
 		}
 		

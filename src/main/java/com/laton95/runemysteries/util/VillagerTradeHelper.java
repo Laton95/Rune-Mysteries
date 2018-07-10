@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.util;
 
+import com.google.common.collect.ImmutableList;
 import net.minecraft.entity.IMerchant;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.item.Item;
@@ -7,6 +8,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.village.MerchantRecipe;
 import net.minecraft.village.MerchantRecipeList;
 
+import java.util.List;
 import java.util.Random;
 
 public class VillagerTradeHelper
@@ -15,26 +17,35 @@ public class VillagerTradeHelper
 	public static class Trade implements EntityVillager.ITradeList
 	{
 		
-		public Item buyingItem;
+		public List<Item> buyingItems;
 		
 		public EntityVillager.PriceInfo buyingPriceInfo;
 		
-		public Item sellingItem;
+		public List<Item> sellingItems;
 		
 		public EntityVillager.PriceInfo sellingPriceInfo;
 		
-		public int sellingMaxMeta;
-		
-		int buyingMaxMeta;
-		
-		public Trade(Item buyingItem, EntityVillager.PriceInfo buyingPriceInfo, int buyingMaxMeta, Item sellingItem, EntityVillager.PriceInfo sellingPriceInfo, int sellingMaxMeta)
+		public Trade(Item buyingItem, EntityVillager.PriceInfo buyingPriceInfo, Item sellingItem, EntityVillager.PriceInfo sellingPriceInfo)
 		{
-			this.buyingItem = buyingItem;
+			this(ImmutableList.of(buyingItem), buyingPriceInfo, ImmutableList.of(sellingItem), sellingPriceInfo);
+		}
+		
+		public Trade(List<Item> buyingItems, EntityVillager.PriceInfo buyingPriceInfo, List<Item> sellingItems, EntityVillager.PriceInfo sellingPriceInfo)
+		{
+			this.buyingItems = buyingItems;
 			this.buyingPriceInfo = buyingPriceInfo;
-			this.buyingMaxMeta = buyingMaxMeta;
-			this.sellingItem = sellingItem;
+			this.sellingItems = sellingItems;
 			this.sellingPriceInfo = sellingPriceInfo;
-			this.sellingMaxMeta = sellingMaxMeta;
+		}
+		
+		public Trade(Item buyingItem, EntityVillager.PriceInfo buyingPriceInfo, List<Item> sellingItems, EntityVillager.PriceInfo sellingPriceInfo)
+		{
+			this(ImmutableList.of(buyingItem), buyingPriceInfo, sellingItems, sellingPriceInfo);
+		}
+		
+		public Trade(List<Item> buyingItems, EntityVillager.PriceInfo buyingPriceInfo, Item sellingItem, EntityVillager.PriceInfo sellingPriceInfo)
+		{
+			this(buyingItems, buyingPriceInfo, ImmutableList.of(sellingItem), sellingPriceInfo);
 		}
 		
 		@Override
@@ -42,7 +53,9 @@ public class VillagerTradeHelper
 		{
 			int i = buyingPriceInfo.getPrice(random);
 			int j = sellingPriceInfo.getPrice(random);
-			recipeList.add(new MerchantRecipe(new ItemStack(buyingItem, i, random.nextInt(buyingMaxMeta + 1)), new ItemStack(sellingItem, j, random.nextInt(sellingMaxMeta + 1))));
+			Item buyingItem = buyingItems.get(random.nextInt(buyingItems.size()));
+			Item sellingItem = sellingItems.get(random.nextInt(sellingItems.size()));
+			recipeList.add(new MerchantRecipe(new ItemStack(buyingItem, i), new ItemStack(sellingItem, j)));
 		}
 	}
 }

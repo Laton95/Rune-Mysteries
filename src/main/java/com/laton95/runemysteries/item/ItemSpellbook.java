@@ -114,12 +114,9 @@ public class ItemSpellbook extends RMModItem
 		
 		ItemStack source = getHeldRuneSources(player);
 		
-		if(cost.getItem() instanceof ItemRune && source != null)
+		if(cost.getItem() instanceof ItemRune && source != null && cost.getItem() == ((IRuneSource) source.getItem()).getRuneType().getRuneOfType())
 		{
-			if(cost.getMetadata() == ((IRuneSource) source.getItem()).getRuneType().ordinal())
-			{
-				return true;
-			}
+			return true;
 		}
 		
 		if(bags.size() > 0 && cost.getItem() instanceof ItemRune)
@@ -161,14 +158,10 @@ public class ItemSpellbook extends RMModItem
 		
 		ItemStack source = getHeldRuneSources(player);
 		
-		if(cost.getItem() instanceof ItemRune && source != null)
+		if(cost.getItem() instanceof ItemRune && source != null && cost.getItem() == ((IRuneSource) source.getItem()).getRuneType().getRuneOfType())
 		{
-			if(cost.getMetadata() == ((IRuneSource) source.getItem()).getRuneType().ordinal())
-			{
-				int temp = count;
-				count -= source.getMaxDamage() - source.getItemDamage();
-				source.damageItem(temp, player);
-			}
+			source.damageItem(count, player);
+			count = 0;
 		}
 		
 		if(count > 0 && bags.size() > 0 && cost.getItem() instanceof ItemRune)

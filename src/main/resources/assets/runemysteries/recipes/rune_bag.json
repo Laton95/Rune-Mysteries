@@ -77,60 +77,46 @@
     },
     "R": [
       {
-        "item": "runemysteries:rune",
-        "data": 0
+        "item": "runemysteries:air_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 1
+        "item": "runemysteries:astral_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 2
+        "item": "runemysteries:blood_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 3
+        "item": "runemysteries:body_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 4
+        "item": "runemysteries:chaos_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 5
+        "item": "runemysteries:cosmic_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 6
+        "item": "runemysteries:death_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 7
+        "item": "runemysteries:earth_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 8
+        "item": "runemysteries:fire_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 9
+        "item": "runemysteries:law_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 10
+        "item": "runemysteries:mind_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 11
+        "item": "runemysteries:nature_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 12
+        "item": "runemysteries:soul_rune"
       },
       {
-        "item": "runemysteries:rune",
-        "data": 13
+        "item": "runemysteries:water_rune"
       }
     ]
   },

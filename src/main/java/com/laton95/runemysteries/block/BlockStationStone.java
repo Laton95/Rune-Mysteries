@@ -13,7 +13,7 @@ public class BlockStationStone extends RMModBlock
 	
 	public BlockStationStone()
 	{
-		super("station_Stone_Block", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, true);
+		super("station_stone", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1);
 	}
 	
 	@SuppressWarnings("deprecation")

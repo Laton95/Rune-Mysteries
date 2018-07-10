@@ -1,8 +1,7 @@
 {
   "display": {
     "icon": {
-      "item": "runemysteries:talisman",
-      "data": 12
+      "item": "runemysteries:fire_talisman"
     },
     "title": {
       "translate": "advancements.runemysteries.runecrafting.get_all_talismans.title"
@@ -22,8 +21,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 0
+            "item": "runemysteries:air_talisman"
           }
         ]
       }
@@ -33,8 +31,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 1
+            "item": "runemysteries:air_talisman"
           }
         ]
       }
@@ -44,8 +41,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 2
+            "item": "runemysteries:blood_talisman"
           }
         ]
       }
@@ -55,8 +51,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 3
+            "item": "runemysteries:body_talisman"
           }
         ]
       }
@@ -66,8 +61,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 4
+            "item": "runemysteries:chaos_talisman"
           }
         ]
       }
@@ -77,8 +71,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 5
+            "item": "runemysteries:cosmic_talisman"
           }
         ]
       }
@@ -88,8 +81,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 6
+            "item": "runemysteries:death_talisman"
           }
         ]
       }
@@ -99,8 +91,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 7
+            "item": "runemysteries:earth_talisman"
           }
         ]
       }
@@ -110,8 +101,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 8
+            "item": "runemysteries:fire_talisman"
           }
         ]
       }
@@ -121,8 +111,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 9
+            "item": "runemysteries:law_talisman"
           }
         ]
       }
@@ -132,8 +121,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 10
+            "item": "runemysteries:mind_talisman"
           }
         ]
       }
@@ -143,8 +131,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 11
+            "item": "runemysteries:nature_talisman"
           }
         ]
       }
@@ -154,8 +141,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 12
+            "item": "runemysteries:soul_talisman"
           }
         ]
       }
@@ -165,8 +151,7 @@
       "conditions": {
         "items": [
           {
-            "item": "runemysteries:talisman",
-            "data": 13
+            "item": "runemysteries:water_talisman"
           }
         ]
       }

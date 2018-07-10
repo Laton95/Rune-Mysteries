@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.util.LogHelper;
-import net.minecraftforge.oredict.OreDictionary;
 
 public class ModOreDict
 {
@@ -9,6 +8,10 @@ public class ModOreDict
 	public static void registerOres()
 	{
 		LogHelper.info("Registering ore dictionary");
-		OreDictionary.registerOre("RMRune", ModItems.RUNE);
+		
+		//		for(EnumRuneType RUNE: EnumRuneType.values())
+		//		{
+		//			OreDictionary.registerOre("RMRune", RUNE.getRuneOfType());
+		//		}
 	}
 }

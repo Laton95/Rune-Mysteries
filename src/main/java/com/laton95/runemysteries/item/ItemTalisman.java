@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.item;
 
 import com.laton95.runemysteries.config.ModConfig;
-import com.laton95.runemysteries.item.ItemRune.EnumRuneType;
+import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.NamesReference;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.TeleportHelper;
@@ -17,11 +17,13 @@ import net.minecraft.world.World;
 
 public class ItemTalisman extends RMModItem
 {
+	private final EnumRuneType runeType;
 	
-	public ItemTalisman()
+	public ItemTalisman(EnumRuneType runeType)
 	{
-		super("talisman", true, EnumRuneType.class);
+		super(runeType.toString().toLowerCase() + "_talisman", true);
 		setMaxStackSize(1);
+		this.runeType = runeType;
 	}
 	
 	@Override
@@ -29,13 +31,9 @@ public class ItemTalisman extends RMModItem
 	{
 		ItemStack talisman = playerIn.getHeldItem(handIn);
 		
-		if(talisman.getItemDamage() == EnumRuneType.ESSENCE.ordinal())
-		{
-			return new ActionResult<>(EnumActionResult.PASS, talisman);
-		}
+		String altar = runeType.toString() + "_altar";
 		
-		int dimID = getDimID(talisman);
-		String altar = EnumRuneType.values()[talisman.getItemDamage()].getName() + "_altar";
+		int dimID = runeType.getRuinDimId();
 		
 		switch(dimID)
 		{
@@ -96,7 +94,7 @@ public class ItemTalisman extends RMModItem
 					switch(dimID)
 					{
 						case 0:
-							printDirection(playerIn, worldIn, pos);
+							printDirection(playerIn, pos);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case -1:
 							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
@@ -112,7 +110,7 @@ public class ItemTalisman extends RMModItem
 					switch(dimID)
 					{
 						case -1:
-							printDirection(playerIn, worldIn, pos);
+							printDirection(playerIn, pos);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case 0:
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
@@ -126,7 +124,7 @@ public class ItemTalisman extends RMModItem
 					switch(dimID)
 					{
 						case 1:
-							printDirection(playerIn, worldIn, pos);
+							printDirection(playerIn, pos);
 							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 						case 0:
 							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
@@ -145,20 +143,8 @@ public class ItemTalisman extends RMModItem
 		return new ActionResult<>(EnumActionResult.FAIL, talisman);
 	}
 	
-	private int getDimID(ItemStack talisman)
-	{
-		switch(talisman.getItemDamage())
-		{
-			case 4:
-				return -1;
-			case 5:
-				return 1;
-			default:
-				return 0;
-		}
-	}
 	
-	private void printDirection(EntityPlayer playerIn, World worldIn, BlockPos pos)
+	private void printDirection(EntityPlayer playerIn, BlockPos pos)
 	{
 		if(WorldHelper.isNearby(playerIn.getPosition(), pos, 5))
 		{

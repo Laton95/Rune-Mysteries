@@ -10,14 +10,8 @@
         {
           "entryName": "astral",
           "type": "item",
-          "name": "runemysteries:talisman",
-          "weight": 1,
-          "functions": [
-            {
-              "function": "set_data",
-              "data": 1
-            }
-          ]
+          "name": "runemysteries:astral_talisman",
+          "weight": 1
         }
       ]
     }
