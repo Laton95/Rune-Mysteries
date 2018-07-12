@@ -121,6 +121,7 @@ public class ModItems
 	
 	public static final ItemChargedBattlestaff WATER_BATTLESTAFF = new ItemChargedBattlestaff("water_battlestaff", true, EnumRuneType.WATER);
 	
+	public static final ItemDebug DEBUG = new ItemDebug();
 	
 	private static Item[] items = new Item[]
 			{
@@ -178,7 +179,9 @@ public class ModItems
 					AIR_BATTLESTAFF,
 					EARTH_BATTLESTAFF,
 					FIRE_BATTLESTAFF,
-					WATER_BATTLESTAFF
+					WATER_BATTLESTAFF,
+					
+					DEBUG
 			};
 	
 	private static ArrayList<Block> itemBlocks = new ArrayList<>();

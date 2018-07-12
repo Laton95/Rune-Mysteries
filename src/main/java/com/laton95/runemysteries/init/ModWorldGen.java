@@ -5,7 +5,8 @@ import com.laton95.runemysteries.init.InitDataStructures.StructureEntry;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 import com.laton95.runemysteries.world.mapGenerators.*;
-import com.laton95.runemysteries.world.structureComponents.*;
+import com.laton95.runemysteries.world.structureComponents.ComponentCenterStructure;
+import com.laton95.runemysteries.world.structureComponents.ComponentElementalObelisks;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -29,25 +30,29 @@ public class ModWorldGen
 				new InitDataStructures().new StructureEntry("RuneAltar_SOUL", MapGenRuneAltar_SOUL.Start.class),
 				new InitDataStructures().new StructureEntry("RuneAltar_NETHER", MapGenRuneAltar_NETHER.Start.class),
 				new InitDataStructures().new StructureEntry("RuneAltar_END", MapGenRuneAltar_END.Start.class),
-				new InitDataStructures().new StructureEntry("RuneTemple", MapGenRuneTemple.Start.class),
-				new InitDataStructures().new StructureEntry("CosmicTemple", MapGenCosmicTemple.Start.class),
-				new InitDataStructures().new StructureEntry("EssenceMine", MapGenMine.Start.class),
-				new InitDataStructures().new StructureEntry("ElementalObelisk", MapGenElementalObelisk.Start.class)
+				new InitDataStructures().new StructureEntry("elemental_obelisk", MapGenElementalObelisk.Start.class),
+				new InitDataStructures().new StructureEntry("air_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("blood_temple", MapGenBloodTemple.Start.class),
+				new InitDataStructures().new StructureEntry("body_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("chaos_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("cosmic_temple", MapGenCosmicTemple.Start.class),
+				new InitDataStructures().new StructureEntry("death_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("earth_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("fire_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("law_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("mind_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("nature_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("soul_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("water_temple", MapGenAirTemple.Start.class),
+				new InitDataStructures().new StructureEntry("essence_mine", MapGenAirTemple.Start.class),
 				};
 		
 		ComponentEntry[] components = {
-				new InitDataStructures().new ComponentEntry("SurfaceAltar", ComponentSurfaceAltar.class),
-				new InitDataStructures().new ComponentEntry("UndergroundAltar", ComponentUndergroundAltar.class),
-				new InitDataStructures().new ComponentEntry("SoulAltar", ComponentSoulAltar.class),
-				new InitDataStructures().new ComponentEntry("EndAltar", ComponentEndAltar.class),
-				new InitDataStructures().new ComponentEntry("NetherAltar", ComponentNetherAltar.class),
-				new InitDataStructures().new ComponentEntry("Temple", ComponentTemple.class),
-				new InitDataStructures().new ComponentEntry("CosmicTemple", ComponentCosmicTemple.class),
-				new InitDataStructures().new ComponentEntry("EssenceMine", ComponentMine.class),
-				new InitDataStructures().new ComponentEntry("AirObelisk", ComponentElementalObelisks.ComponentAirObelisk.class),
-				new InitDataStructures().new ComponentEntry("EarthObelisk", ComponentElementalObelisks.ComponentEarthObelisk.class),
-				new InitDataStructures().new ComponentEntry("FireObelisk", ComponentElementalObelisks.ComponentFireObelisk.class),
-				new InitDataStructures().new ComponentEntry("WaterObelisk", ComponentElementalObelisks.ComponentWaterObelisk.class)
+				new InitDataStructures().new ComponentEntry("air_obelisk", ComponentElementalObelisks.ComponentAirObelisk.class),
+				new InitDataStructures().new ComponentEntry("earth_obelisk", ComponentElementalObelisks.ComponentEarthObelisk.class),
+				new InitDataStructures().new ComponentEntry("fire_obelisk", ComponentElementalObelisks.ComponentFireObelisk.class),
+				new InitDataStructures().new ComponentEntry("water_obelisk", ComponentElementalObelisks.ComponentWaterObelisk.class),
+				new InitDataStructures().new ComponentEntry("center_structure", ComponentCenterStructure.class)
 				};
 		
 		for(StructureEntry structure : structures)

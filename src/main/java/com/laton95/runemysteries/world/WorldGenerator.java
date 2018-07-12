@@ -85,7 +85,7 @@ public class WorldGenerator implements IWorldGenerator
 					obeliskGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					break;
 				case NETHER:
-					netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					//					netherAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					break;
 				default:
 					break;
@@ -99,7 +99,7 @@ public class WorldGenerator implements IWorldGenerator
 		switch(event.getWorld().provider.getDimensionType())
 		{
 			case THE_END:
-				endAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+				//				endAltarGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 				break;
 			default:
 				break;

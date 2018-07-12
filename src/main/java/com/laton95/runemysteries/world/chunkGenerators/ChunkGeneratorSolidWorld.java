@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenCenterStructure;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -28,13 +28,12 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 	
 	protected final int surfaceLevel;
 	
-	protected MapGenRuneTemple temple;
+	protected MapGenCenterStructure centerpiece;
 	
 	public ChunkGeneratorSolidWorld(World worldIn, long seed, int surfaceLevel, IBlockState worldblock)
 	{
 		world = worldIn;
 		rand = new Random(seed);
-		temple = new MapGenRuneTemple(worldIn);
 		this.surfaceLevel = surfaceLevel;
 		WORLDBLOCK = worldblock;
 	}
@@ -70,7 +69,7 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 		
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		
-		temple.generate(world, x, z, chunkprimer);
+		centerpiece.generate(world, x, z, chunkprimer);
 		
 		chunk.generateSkylightMap();
 		return chunk;
@@ -92,7 +91,7 @@ public class ChunkGeneratorSolidWorld implements IChunkGenerator
 		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(true, this, world, rand, x, z, false);
 		
-		temple.generateStructure(world, rand, chunkpos);
+		centerpiece.generateStructure(world, rand, chunkpos);
 		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
 		

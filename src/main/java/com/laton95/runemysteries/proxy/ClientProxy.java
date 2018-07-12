@@ -1,51 +1,40 @@
 package com.laton95.runemysteries.proxy;
 
-import com.laton95.runemysteries.client.handler.KeyInputEventHandler;
-import com.laton95.runemysteries.client.renderer.entity.RenderExExParrot;
-import com.laton95.runemysteries.client.renderer.entity.RenderFriendlyZombie;
-import com.laton95.runemysteries.client.renderer.entity.RenderProjectileSpell;
-import com.laton95.runemysteries.client.settings.Keybindings;
-import com.laton95.runemysteries.entity.passive.EntityExExParrot;
-import com.laton95.runemysteries.entity.passive.EntityFriendlyZombie;
-import com.laton95.runemysteries.entity.projectile.*;
-import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.util.LogHelper;
-import net.minecraft.util.ResourceLocation;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fml.client.registry.ClientRegistry;
-import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import com.laton95.runemysteries.init.ModRenders;
+import com.laton95.runemysteries.init.Modkeybinds;
+import net.minecraftforge.fml.common.event.*;
 
-public class ClientProxy extends CommonProxy
+public class ClientProxy implements IProxy
 {
 	
-	private ResourceLocation blueGreen = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
-
-	private ResourceLocation pinkPurple = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/pink-purple.png");
-	
-	private ResourceLocation redOrange = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/red-orange.png");
-
 	@Override
-	public void registerKeyBindings()
+	public void preInit(FMLPreInitializationEvent event)
 	{
-		LogHelper.info("Registering keybinds");
-		MinecraftForge.EVENT_BUS.register(new KeyInputEventHandler());
-		for(Keybindings key : Keybindings.values())
-		{
-			ClientRegistry.registerKeyBinding(key.getKeybind());
-		}
+		ModRenders.registerRenders();
+		Modkeybinds.registerKeybinds();
 	}
 	
 	@Override
-	public void registerRenders()
+	public void init(FMLInitializationEvent event)
 	{
-		LogHelper.info("Registering entity rendering");
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellBouncing.class, renderManager -> new RenderProjectileSpell(renderManager, blueGreen));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellDamage.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellExplosive.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellFollowing.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellTeleportBasic.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
-		
-		RenderingRegistry.registerEntityRenderingHandler(EntityExExParrot.class, renderManager -> new RenderExExParrot(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFriendlyZombie.class, renderManager -> new RenderFriendlyZombie(renderManager));
+	
+	}
+	
+	@Override
+	public void postInit(FMLPostInitializationEvent event)
+	{
+	
+	}
+	
+	@Override
+	public void serverStarting(FMLServerStartingEvent event)
+	{
+	
+	}
+	
+	@Override
+	public void serverStopping(FMLServerStoppingEvent event)
+	{
+	
 	}
 }

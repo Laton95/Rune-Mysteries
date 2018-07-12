@@ -3,7 +3,7 @@ package com.laton95.runemysteries;
 import com.laton95.runemysteries.capabilities.CapabilityHandler;
 import com.laton95.runemysteries.init.*;
 import com.laton95.runemysteries.network.NetworkHandler;
-import com.laton95.runemysteries.proxy.CommonProxy;
+import com.laton95.runemysteries.proxy.IProxy;
 import com.laton95.runemysteries.reference.MiscReference;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.spells.Spells;
@@ -28,31 +28,20 @@ public class RuneMysteries
 	@Instance(ModReference.MOD_ID)
 	public static RuneMysteries instance;
 	
-	@SidedProxy(clientSide = ModReference.CLIENT_PROXY_CLASS, serverSide = ModReference.SERVER_PROXY_CLASS)
-	public static CommonProxy proxy;
-	
-	/**
-	 * This is used to keep track of GUIs that we make
-	 */
-	private static int modGuiIndex = 0;
-	
-	/**
-	 * Set our custom inventory Gui index to the next available Gui index
-	 */
-	public static final int GUI_ITEM_INV = modGuiIndex++;
+	@SidedProxy(clientSide = ModReference.CLIENT_PROXY_CLASS)
+	public static IProxy proxy;
 	
 	static
 	{
 		FluidRegistry.enableUniversalBucket();
-		
 	}
 	
 	@Mod.EventHandler
 	public void preInit(FMLPreInitializationEvent event)
 	{
+		proxy.preInit(event);
 		NetworkHandler.init();
 		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		proxy.registerRenders();
 		ModCapabilities.RegisterCapabilities();
 		
 		if(LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
@@ -70,6 +59,7 @@ public class RuneMysteries
 	@Mod.EventHandler
 	public void init(FMLInitializationEvent event)
 	{
+		proxy.init(event);
 		MinecraftForge.EVENT_BUS.register(new ModLoot());
 		MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
 		ModWorldGen.registerWorldGen();
@@ -77,18 +67,19 @@ public class RuneMysteries
 		ModOreDict.registerOres();
 		ModVillagers.registerVillage();
 		ModAdvancements.registerAdvancementTriggers();
-		proxy.registerKeyBindings();
 	}
 	
 	@Mod.EventHandler
 	public void postInit(FMLPostInitializationEvent event)
 	{
+		proxy.postInit(event);
 		Spells.checkSpells();
 	}
 	
 	@Mod.EventHandler
-	public void serverStarting(FMLServerStartedEvent event)
+	public void serverStarting(FMLServerStartingEvent event)
 	{
+		proxy.serverStarting(event);
 		LogHelper.info("Loading altar tracker");
 		if(WorldGenerator.altarTracker == null)
 		{
@@ -99,6 +90,7 @@ public class RuneMysteries
 	@Mod.EventHandler
 	public void serverStopping(FMLServerStoppingEvent event)
 	{
+		proxy.serverStopping(event);
 		LogHelper.info("Unloading altar tracker");
 		WorldGenerator.altarTracker = null;
 	}

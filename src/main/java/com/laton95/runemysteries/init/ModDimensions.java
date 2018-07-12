@@ -62,7 +62,7 @@ public class ModDimensions
 	
 	public static int mineDimID;
 	
-	public static DimensionType MINE;
+	public static DimensionType ESSENCEMINE;
 	
 	public static void registerDimensions()
 	{
@@ -106,7 +106,7 @@ public class ModDimensions
 		WATER = DimensionType.register("water_temple", "_water", waterDimID, WaterDimension.class, false);
 		
 		mineDimID = ModConfig.DIMENSIONS.essenceMineDimID;
-		MINE = DimensionType.register("essence_mine", "_mine", mindDimID, MineDimension.class, false);
+		ESSENCEMINE = DimensionType.register("essence_mine", "_mine", mindDimID, EssenceMineDimension.class, false);
 		
 		DimensionManager.registerDimension(airDimID, AIR);
 		DimensionManager.registerDimension(bloodDimID, BLOOD);
@@ -121,6 +121,6 @@ public class ModDimensions
 		DimensionManager.registerDimension(natureDimID, NATURE);
 		DimensionManager.registerDimension(soulDimID, SOUL);
 		DimensionManager.registerDimension(waterDimID, WATER);
-		DimensionManager.registerDimension(mineDimID, MINE);
+		DimensionManager.registerDimension(mineDimID, ESSENCEMINE);
 	}
 }

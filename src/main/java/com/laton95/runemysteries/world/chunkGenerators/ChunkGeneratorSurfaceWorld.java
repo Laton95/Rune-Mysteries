@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenCenterStructure;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EntityLiving;
@@ -41,8 +41,8 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 	private final double[] heightMap;
 
 	private final float[] biomeWeights;
-
-	private final MapGenRuneTemple temple;
+	
+	protected MapGenCenterStructure centerpiece;
 
 	private final List<Biome.SpawnListEntry> worldMobSpawns;
 
@@ -110,8 +110,6 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 		this.worldBlock = worldBlock;
 		this.worldMobSpawns = worldMobSpawns;
 		
-		temple = new MapGenRuneTemple(world);
-		
 		net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld ctx = new net.minecraftforge.event.terraingen.InitNoiseGensEvent.ContextOverworld(minLimitPerlinNoise, maxLimitPerlinNoise, mainPerlinNoise, surfaceNoise, scaleNoise, depthNoise, forestNoise);
 		ctx = net.minecraftforge.event.terraingen.TerrainGen.getModdedNoiseGenerators(worldIn, rand, ctx);
 		minLimitPerlinNoise = ctx.getLPerlin1();
@@ -138,7 +136,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 			replaceBiomeBlocks(x, z, chunkprimer, biomesForGeneration);
 		}
 		
-		temple.generate(world, x, z, chunkprimer);
+		centerpiece.generate(world, x, z, chunkprimer);
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		chunk.generateSkylightMap();
 		return chunk;
@@ -368,7 +366,7 @@ public class ChunkGeneratorSurfaceWorld implements IChunkGenerator
 			biome.decorate(world, rand, new BlockPos(xPos, 0, zPos));
 			performWorldGenSpawning(world, biome, xPos + 8, zPos + 8, 16, 16, rand);
 			
-			temple.generateStructure(world, rand, chunkpos);
+			centerpiece.generateStructure(world, rand, chunkpos);
 			
 			net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, flag);
 			

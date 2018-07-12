@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import com.laton95.runemysteries.world.mapGenerators.MapGenRuneTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenCenterStructure;
 import net.minecraft.block.BlockFalling;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.EnumCreatureType;
@@ -40,13 +40,12 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 	
 	private final ChunkGeneratorSettings settings;
 	
-	private MapGenRuneTemple temple;
+	protected MapGenCenterStructure centerpiece;
 	
 	public ChunkGeneratorOceanWorld(World worldIn, long seed, IBlockState worldBlock, IBlockState surfaceBlock, IBlockState oceanBlock, int oceanSurface, int crustSurface, int worldSurface, String generatorSettings)
 	{
 		world = worldIn;
 		rand = new Random(seed);
-		temple = new MapGenRuneTemple(worldIn);
 		WORLDBLOCK = worldBlock;
 		SURFACEBLOCK = surfaceBlock;
 		OCEANBLOCK = oceanBlock;
@@ -105,7 +104,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 		
 		Chunk chunk = new Chunk(world, chunkprimer, x, z);
 		
-		temple.generate(world, x, z, chunkprimer);
+		centerpiece.generate(world, x, z, chunkprimer);
 		
 		chunk.generateSkylightMap();
 		return chunk;
@@ -131,7 +130,7 @@ public class ChunkGeneratorOceanWorld implements IChunkGenerator
 		biome.decorator.generateFalls = false;
 		biome.decorate(world, rand, new BlockPos(xPos, 0, zPos));
 		
-		temple.generateStructure(world, rand, chunkpos);
+		centerpiece.generateStructure(world, rand, chunkpos);
 		
 		net.minecraftforge.event.ForgeEventFactory.onChunkPopulate(false, this, world, rand, x, z, false);
 		

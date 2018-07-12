@@ -9,6 +9,6 @@ public class ChunkGeneratorCosmic extends ChunkGeneratorVoidWorld
 	public ChunkGeneratorCosmic(World worldIn, long seed)
 	{
 		super(worldIn, seed);
-		temple = new MapGenCosmicTemple(worldIn);
+		centerpiece = new MapGenCosmicTemple();
 	}
 }

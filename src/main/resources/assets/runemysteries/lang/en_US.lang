@@ -55,6 +55,8 @@ item.runemysteries:earth_battlestaff.name=Earth Battlestaff
 item.runemysteries:fire_battlestaff.name=Fire Battlestaff
 item.runemysteries:water_battlestaff.name=Water Battlestaff
 
+item.runemysteries:debug_item.name=Debug
+
 ########################################################################################
 #Blocks
 tile.runemysteries:rune_essence_block.name=Rune Essence
