@@ -3,11 +3,12 @@ package com.laton95.runemysteries.tileentity;
 import com.laton95.runemysteries.capabilities.ICapabilityPlayerLastLocation;
 import com.laton95.runemysteries.capabilities.ProviderPlayerLastLocation;
 import com.laton95.runemysteries.config.ModConfig;
+import com.laton95.runemysteries.enums.EnumRuneType;
+import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
@@ -19,9 +20,9 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 	
 	private int timer = 20;
 	
-	private String altar;
+	private EnumRuneType rune = null;
 	
-	private int returnID;
+	private int returnID = 0;
 	
 	@Override
 	public void update()
@@ -50,143 +51,106 @@ public class TileEntityAltarPortal extends RMModTileEntity implements ITickable
 	
 	public void TeleportEntity(Entity entityIn, World worldIn)
 	{
-		if(!worldIn.isRemote && worldIn.provider.getDimension() != returnID)
+		if(!worldIn.isRemote)
 		{
-			switch(returnID)
+			if(rune == null)
 			{
-				case 0:
-					if(!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findOverworldLocations(worldIn);
-					}
-					break;
-				case -1:
-					if(!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findNetherLocations(worldIn);
-					}
-					break;
-				case 1:
-					if(!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
-					{
-						WorldGenerator.altarTracker.findEndLocations(worldIn);
-					}
-					break;
+				updateDimensionValues();
 			}
 			
-			if(entityIn instanceof EntityPlayer && entityIn.world.provider.getDimension() == ModConfig.DIMENSIONS.essenceMineDimID)
+			if(worldIn.provider.getDimension() != returnID)
 			{
-				ICapabilityPlayerLastLocation location = entityIn.getCapability(ProviderPlayerLastLocation.LAST_LOCATION_CAPABILITY, null);
-				BlockPos returnPos = location.getPosition();
-				
-				if(returnPos == null)
+				if(entityIn.world.provider.getDimension() == ModConfig.DIMENSIONS.essenceMineDimID && entityIn instanceof EntityPlayer)
 				{
-					returnPos = new BlockPos(0, 100, 0);
+					BlockPos returnPos = new BlockPos(0, 70, 0);
+					int dimId = 0;
+					
+					ICapabilityPlayerLastLocation location = entityIn.getCapability(ProviderPlayerLastLocation.LAST_LOCATION_CAPABILITY, null);
+					
+					if(location != null)
+					{
+						returnPos = location.getPosition();
+						dimId = location.getDimId();
+					}
+					
+					TeleportHelper.teleportEntity(entityIn, dimId, returnPos.getX(), returnPos.getY() + 0.5, returnPos.getZ());
 				}
-				TeleportHelper.teleportEntity(entityIn, location.getDimId(), returnPos.getX(), returnPos.getY() + 0.5, returnPos.getZ());
-			}
-			else if(entityIn.world.provider.getDimension() != returnID && altar != null)
-			{
-				BlockPos altarPos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
-				
-				if(altarPos == null)
+				else if(entityIn.world.provider.getDimension() != returnID && rune != null)
 				{
-					altarPos = new BlockPos(0, 100, 0);
+					BlockPos returnPos = new BlockPos(0, 70, 0);
+					
+					try
+					{
+						returnPos = WorldGenerator.ruinTracker.getRuinByRune(rune).getRuinPos();
+					}
+					catch(Exception e)
+					{
+						LogHelper.warn(String.format("An error occured while getting %s altar location. Teleporting to default location", rune.toString().toLowerCase()));
+					}
+					
+					TeleportHelper.teleportEntity(entityIn, returnID, returnPos.getX() + 2, returnPos.getY(), returnPos.getZ() + 1);
 				}
-				TeleportHelper.teleportEntity(entityIn, returnID, altarPos.getX() - 1, altarPos.getY(), altarPos.getZ() - 1);
 			}
 		}
 	}
 	
-	@Override
-	public void readFromNBT(NBTTagCompound compound)
-	{
-		super.readFromNBT(compound);
-		altar = compound.getString("altar");
-		returnID = compound.getInteger("returnID");
-	}
-	
-	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
-		compound.setString("altar", altar);
-		compound.setInteger("returnID", returnID);
-		return super.writeToNBT(compound);
-	}
-	
-	@Override
-	public void onLoad()
+	private void updateDimensionValues()
 	{
 		int dimID = world.provider.getDimension();
+		
 		if(dimID == ModConfig.DIMENSIONS.airTempleDimID)
 		{
-			returnID = 0;
-			altar = "air_altar";
+			rune = EnumRuneType.AIR;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.bloodTempleDimID)
 		{
-			returnID = 0;
-			altar = "blood_altar";
+			rune = EnumRuneType.BLOOD;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.bodyTempleDimID)
 		{
-			returnID = 0;
-			altar = "body_altar";
+			rune = EnumRuneType.BODY;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.chaosTempleDimID)
 		{
-			returnID = -1;
-			altar = "chaos_altar";
+			rune = EnumRuneType.CHAOS;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.cosmicTempleDimID)
 		{
-			returnID = 1;
-			altar = "cosmic_altar";
+			rune = EnumRuneType.COSMIC;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.deathTempleDimID)
 		{
-			returnID = 0;
-			altar = "death_altar";
+			rune = EnumRuneType.DEATH;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.earthTempleDimID)
 		{
-			returnID = 0;
-			altar = "earth_altar";
+			rune = EnumRuneType.EARTH;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.fireTempleDimID)
 		{
-			returnID = 0;
-			altar = "fire_altar";
+			rune = EnumRuneType.FIRE;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.lawTempleDimID)
 		{
-			returnID = 0;
-			altar = "law_altar";
+			rune = EnumRuneType.LAW;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.mindTempleDimID)
 		{
-			returnID = 0;
-			altar = "mind_altar";
+			rune = EnumRuneType.MIND;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.natureTempleDimID)
 		{
-			returnID = 0;
-			altar = "nature_altar";
+			rune = EnumRuneType.NATURE;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.soulTempleDimID)
 		{
-			returnID = 0;
-			altar = "soul_altar";
+			rune = EnumRuneType.SOUL;
 		}
 		else if(dimID == ModConfig.DIMENSIONS.waterTempleDimID)
 		{
-			returnID = 0;
-			altar = "water_altar";
+			rune = EnumRuneType.WATER;
 		}
-		else if(dimID == ModConfig.DIMENSIONS.essenceMineDimID)
-		{
-			returnID = 0;
-			altar = "mine";
-		}
+		
+		returnID = rune.gerRuinDimType().getId();
 	}
 }

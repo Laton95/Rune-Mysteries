@@ -58,7 +58,7 @@ public class MapGenMonolith extends MapGenBase
 				if(places.size() > 0)
 				{
 					BlockPos pos = places.get(rand.nextInt(places.size()));
-					worldIn.getChunkFromChunkCoords(x, z).setBlockState(pos, ModBlocks.BLACK_MONOLITH.getStateFromMeta(0).withProperty(BlockBlackMonolith.FACING, EnumFacing.Plane.HORIZONTAL.random(rand)));
+					worldIn.getChunkFromChunkCoords(x, z).setBlockState(pos, ModBlocks.BLACK_MONOLITH.getDefaultState().withProperty(BlockBlackMonolith.FACING, EnumFacing.Plane.HORIZONTAL.random(rand)));
 				}
 			}
 		}

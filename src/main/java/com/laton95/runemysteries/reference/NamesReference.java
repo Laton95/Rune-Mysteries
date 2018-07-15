@@ -40,26 +40,6 @@ public final class NamesReference
 		
 		public static final String NEARBY = "item.runemysteries.talisman.pull.nearby";
 		
-		public static final String NORTH = "item.runemysteries.talisman.pull.north";
-		
-		public static final String SOUTH = "item.runemysteries.talisman.pull.south";
-		
-		public static final String EAST = "item.runemysteries.talisman.pull.east";
-		
-		public static final String WEST = "item.runemysteries.talisman.pull.west";
-		
-		public static final String NORTH_EAST = "item.runemysteries.talisman.pull.northEast";
-		
-		public static final String NORTH_WEST = "item.runemysteries.talisman.pull.northWest";
-		
-		public static final String SOUTH_EAST = "item.runemysteries.talisman.pull.southEast";
-		
-		public static final String SOUTH_WEST = "item.runemysteries.talisman.pull.southWest";
-		
-		public static final String UP = "item.runemysteries.talisman.pull.up";
-		
-		public static final String DOWN = "item.runemysteries.talisman.pull.down";
-		
 		public static final String NETHER_DAMAGE = "chaostalisman";
 	}
 	

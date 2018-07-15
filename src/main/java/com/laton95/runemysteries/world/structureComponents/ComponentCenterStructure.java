@@ -17,11 +17,16 @@ import java.util.Random;
 
 public class ComponentCenterStructure extends StructureComponent
 {
-	private final String structure;
+	private String structure;
 	
 	private boolean generated = false;
 	
 	private List<BlockPos> portals;
+	
+	public ComponentCenterStructure()
+	{
+	
+	}
 	
 	public ComponentCenterStructure(String structure, int chunkX, int chunkZ, int yPos)
 	{

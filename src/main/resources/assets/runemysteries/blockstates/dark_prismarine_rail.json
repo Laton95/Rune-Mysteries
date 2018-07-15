@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/prismarine_dark"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

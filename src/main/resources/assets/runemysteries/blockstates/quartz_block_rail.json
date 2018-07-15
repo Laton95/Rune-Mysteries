@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/quartz_block_side"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

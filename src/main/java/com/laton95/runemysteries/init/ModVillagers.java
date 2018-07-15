@@ -3,12 +3,9 @@ package com.laton95.runemysteries.init;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.util.VillagerTradeHelper;
-import com.laton95.runemysteries.world.VillageWizardsHouse;
 import net.minecraft.entity.passive.EntityVillager;
 import net.minecraft.init.Items;
-import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import net.minecraftforge.fml.common.registry.VillagerRegistry;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerCareer;
 import net.minecraftforge.fml.common.registry.VillagerRegistry.VillagerProfession;
 
@@ -18,8 +15,8 @@ public class ModVillagers
 	
 	public static void registerVillage()
 	{
-		VillagerRegistry.instance().registerVillageCreationHandler(new VillageWizardsHouse.VillageManager());
-		MapGenStructureIO.registerStructureComponent(VillageWizardsHouse.class, "WizardHouse");
+		//		VillagerRegistry.instance().registerVillageCreationHandler(new VillageWizardsHouse.VillageManager());
+		//		MapGenStructureIO.registerStructureComponent(VillageWizardsHouse.class, "WizardHouse");
 		
 		villagerProfession_Wizard = new VillagerProfession(ModReference.MOD_ID + ":wizard", "runemysteries:textures/entity/villager/wizard.png", "runemysteries:textures/entity/villager/wizard_zombie.png");
 		ForgeRegistries.VILLAGER_PROFESSIONS.register(villagerProfession_Wizard);

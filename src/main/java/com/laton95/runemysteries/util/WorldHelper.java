@@ -1,8 +1,7 @@
 package com.laton95.runemysteries.util;
 
-import net.minecraft.block.Block;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.init.Blocks;
+import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.World;
@@ -14,55 +13,6 @@ import java.util.List;
 
 public class WorldHelper
 {
-	
-	public static boolean isFlat(World worldIn, BlockPos position, int xSize, int ySize, int zSize, int airWeight, int solidWeight, float flatnessTolerance)
-	{
-		int airBlocksBelow = 0;
-		int solidBlocksFirstLayer = 0;
-		int solidBlocksOverhead = 0;
-		
-		for(int y = 0; y < ySize + 1; y++)
-		{
-			for(int x = 0; x < xSize; x++)
-			{
-				for(int z = 0; z < zSize; z++)
-				{
-					int xPos = position.getX() + x;
-					int zPos = position.getZ() + z;
-					int yPos = position.getY() + y;
-					BlockPos pos = new BlockPos(xPos, yPos, zPos);
-					Block block = worldIn.getBlockState(pos).getBlock();
-					// Block block = Blocks.AIR;
-					if(y == 0 && (block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA)))
-					{
-						airBlocksBelow++;
-					}
-					else if(y == 1 && !(block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA)))
-					{
-						solidBlocksFirstLayer++;
-					}
-					else if(y > 1 && !(block.equals(Blocks.AIR) || block.equals(Blocks.WATER) || block.equals(Blocks.LAVA)))
-					{
-						solidBlocksOverhead++;
-					}
-				}
-			}
-		}
-		
-		if(solidBlocksFirstLayer > xSize * zSize * (1 - flatnessTolerance / 2))
-		{
-			return false;
-		}
-		if(airBlocksBelow > xSize * zSize * (1 - flatnessTolerance))
-		{
-			return false;
-		}
-		
-		int solidBlocksAbove = solidBlocksFirstLayer + solidBlocksOverhead;
-		
-		return 1 - (airBlocksBelow * airWeight + solidBlocksAbove * solidWeight) / (xSize * zSize * airWeight + xSize * zSize * ySize * solidWeight) > flatnessTolerance;
-	}
-	
 	public static boolean biomeIsOfType(List<BiomeDictionary.Type> biomeTypes, Biome biome)
 	{
 		for(BiomeDictionary.Type type : biomeTypes)
@@ -95,52 +45,6 @@ public class WorldHelper
 		return blockpos;
 	}
 	
-	public static boolean isOverGround(World world, BlockPos pos, int xSize, int zSize)
-	{
-		for(int x = 0; x < xSize; x++)
-		{
-			for(int z = 0; z < zSize; z++)
-			{
-				for(int y = world.getActualHeight(); y > 0; y--)
-				{
-					if(!world.getBlockState(new BlockPos(pos.getX() + x, y, pos.getZ() + z)).getBlock().equals(Blocks.AIR))
-					{
-						return true;
-					}
-				}
-			}
-		}
-		return false;
-	}
-	
-	public static boolean isInsideWall(World world, BlockPos pos, int xSize, int zSize)
-	{
-		int solidBlocks = 0;
-		for(int x = 0; x < xSize; x++)
-		{
-			for(int z = 0; z < zSize; z++)
-			{
-				for(int y = 0; y < 10; y++)
-				{
-					if(!world.getBlockState(new BlockPos(pos.getX() + x, pos.getY() + y, pos.getZ() + z)).getBlock().equals(Blocks.AIR))
-					{
-						solidBlocks++;
-						break;
-					}
-				}
-				for(int y = 0; y < 10; y++)
-				{
-					if(!world.getBlockState(new BlockPos(pos.getX() + x, pos.getY() - y, pos.getZ() + z)).getBlock().equals(Blocks.AIR))
-					{
-						solidBlocks++;
-						break;
-					}
-				}
-			}
-		}
-		return solidBlocks >= xSize * zSize;
-	}
-	
 	public static boolean isNearby(ChunkPos chunkA, ChunkPos chunkB, int range)
 	{
 		int x = Math.abs(chunkA.x - chunkB.x);
@@ -158,119 +62,94 @@ public class WorldHelper
 		return Math.max(Math.max(z, x), y * 2) < range;
 	}
 	
-	public static Direction getDirection(BlockPos from, BlockPos too)
+	public static Tuple<HorizontalDirection, VerticalDirection> getDirection(BlockPos from, BlockPos to)
 	{
-		int x = from.getX() - too.getX(); // East/West
-		int y = from.getY() - too.getY(); // Up/Down
-		int z = from.getZ() - too.getZ(); // North/South
+		HorizontalDirection horizontalDirection;
+		VerticalDirection verticalDirection = VerticalDirection.NONE;
 		
-		double horizontalTheta = Math.atan(Math.abs((double) x / z));
-		double verticalXTheta = Math.atan(Math.abs((double) x / y));
-		double verticalZTheta = Math.atan(Math.abs((double) z / y));
+		double horizontalDistanceX = from.getX() - to.getX();
+		double verticalDistance = from.getY() - to.getY();
+		double horizontalDistanceZ = from.getZ() - to.getZ();
 		
-		if(Math.max(verticalXTheta, verticalZTheta) < 0.1 * Math.PI)
+		double horizontalDistance = Math.sqrt(Math.pow(horizontalDistanceX, 2) + Math.pow(horizontalDistanceZ, 2));
+		
+		double verticalAngle = Math.atan(verticalDistance / horizontalDistance);
+		
+		double horizontalAngle = Math.atan2(horizontalDistanceX, horizontalDistanceZ);
+		
+		double offset = Math.PI / 8;
+		
+		//Calculate horizontal direction
+		if(horizontalDistance == 0)
 		{
-			if(y < 0)
-			{
-				return Direction.UP;
-			}
-			else
-			{
-				return Direction.DOWN;
-			}
+			horizontalDirection = HorizontalDirection.NONE;
 		}
-		if(z == 0)
+		else if(horizontalAngle >= Math.PI - offset)
 		{
-			if(x < 0)
-			{
-				return Direction.EAST;
-			}
-			else
-			{
-				return Direction.WEST;
-			}
+			horizontalDirection = HorizontalDirection.SOUTH;
 		}
-		if(x == 0)
+		else if(horizontalAngle > 6 * Math.PI / 8 - offset)
 		{
-			if(z < 0)
-			{
-				return Direction.SOUTH;
-			}
-			else
-			{
-				return Direction.NORTH;
-			}
+			horizontalDirection = HorizontalDirection.SOUTH_WEST;
 		}
-		if(z > 0 && x > 0)
+		else if(horizontalAngle >= 4 * Math.PI / 8 - offset)
 		{
-			// North-West quadrant
-			if(horizontalTheta < 0.125 * Math.PI)
-			{
-				return Direction.NORTH;
-			}
-			else if(horizontalTheta < 0.365 * Math.PI)
-			{
-				return Direction.NORTH_WEST;
-			}
-			else
-			{
-				return Direction.WEST;
-			}
+			horizontalDirection = HorizontalDirection.WEST;
 		}
-		if(z > 0 && x < 0)
+		else if(horizontalAngle > 2 * Math.PI / 8 - offset)
 		{
-			// North-East quadrant
-			if(horizontalTheta < 0.125 * Math.PI)
-			{
-				return Direction.NORTH;
-			}
-			else if(horizontalTheta < 0.365 * Math.PI)
-			{
-				return Direction.NORTH_EAST;
-			}
-			else
-			{
-				return Direction.EAST;
-			}
+			horizontalDirection = HorizontalDirection.NORTH_WEST;
 		}
-		if(z < 0 && x > 0)
+		else if(horizontalAngle >= -2 * Math.PI / 8 + offset)
 		{
-			// South-West quadrant
-			if(horizontalTheta < 0.125 * Math.PI)
-			{
-				return Direction.SOUTH;
-			}
-			else if(horizontalTheta < 0.365 * Math.PI)
-			{
-				return Direction.SOUTH_WEST;
-			}
-			else
-			{
-				return Direction.WEST;
-			}
+			horizontalDirection = HorizontalDirection.NORTH;
 		}
-		if(z < 0 && x < 0)
+		else if(horizontalAngle > -4 * Math.PI / 8 + offset)
 		{
-			// South-East quadrant
-			if(horizontalTheta < 0.125 * Math.PI)
-			{
-				return Direction.SOUTH;
-			}
-			else if(horizontalTheta < 0.365 * Math.PI)
-			{
-				return Direction.SOUTH_EAST;
-			}
-			else
-			{
-				return Direction.EAST;
-			}
+			horizontalDirection = HorizontalDirection.NORTH_EAST;
+		}
+		else if(horizontalAngle >= -6 * Math.PI / 8 + offset)
+		{
+			horizontalDirection = HorizontalDirection.EAST;
+		}
+		else if(horizontalAngle > -8 * Math.PI / 8 + offset)
+		{
+			horizontalDirection = HorizontalDirection.SOUTH_EAST;
+		}
+		else
+		{
+			horizontalDirection = HorizontalDirection.SOUTH;
 		}
 		
-		return Direction.UNKNOWN;
+		//Calculate vertical direction
+		double cutoffAngle = Math.PI / 4;
+		if(verticalAngle > cutoffAngle)
+		{
+			verticalDirection = VerticalDirection.DOWN;
+		}
+		else if(verticalAngle > 0)
+		{
+			verticalDirection = VerticalDirection.SLIGHT_DOWN;
+		}
+		else if(verticalAngle < -cutoffAngle)
+		{
+			verticalDirection = VerticalDirection.UP;
+		}
+		else if(verticalAngle < 0)
+		{
+			verticalDirection = VerticalDirection.SLIGHT_UP;
+		}
+		
+		return new Tuple<>(horizontalDirection, verticalDirection);
 	}
 	
-	public enum Direction
+	public enum HorizontalDirection
 	{
-		UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST, UNKNOWN
+		NONE, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST
+	}
+	
+	public enum VerticalDirection
+	{
+		NONE, UP, DOWN, SLIGHT_UP, SLIGHT_DOWN
 	}
 }

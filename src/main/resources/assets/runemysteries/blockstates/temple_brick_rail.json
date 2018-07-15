@@ -4,6 +4,7 @@
     "textures": {
       "rail": "runemysteries:blocks/temple_brick"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

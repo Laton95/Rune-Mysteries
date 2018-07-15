@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/obsidian"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

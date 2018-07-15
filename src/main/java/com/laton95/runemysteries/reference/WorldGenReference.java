@@ -68,9 +68,7 @@ public class WorldGenReference
 	
 	public static final List<BiomeDictionary.Type> OURANIA_ALTAR_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
 	
-	public static final List<BiomeDictionary.Type> ELEMENTAL_OBELISK_BIOMES_AVOID = ImmutableList.of(BiomeDictionary.Type.OCEAN);
-	
 	public static final List<BiomeDictionary.Type> AIR_OBELISK_BIOMES = ImmutableList.of(BiomeDictionary.Type.MOUNTAIN);
 	
-	public static final List<BiomeDictionary.Type> WATER_OBELISK_BIOMES = ImmutableList.of(BiomeDictionary.Type.SWAMP);
+	public static final List<BiomeDictionary.Type> WATER_OBELISK_BIOMES = ImmutableList.of(BiomeDictionary.Type.SWAMP, BiomeDictionary.Type.BEACH);
 }

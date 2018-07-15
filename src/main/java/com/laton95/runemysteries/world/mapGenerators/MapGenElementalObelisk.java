@@ -10,6 +10,7 @@ import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.structure.MapGenStructure;
 import net.minecraft.world.gen.structure.StructureStart;
+import net.minecraftforge.common.BiomeDictionary;
 
 import javax.annotation.Nullable;
 import java.util.Random;
@@ -76,12 +77,7 @@ public class MapGenElementalObelisk extends MapGenStructure
 		{
 			Biome biome = this.world.getBiomeProvider().getBiome(new BlockPos(i * 16 + 8, 0, j * 16 + 8));
 			
-			if(biome == null)
-			{
-				return false;
-			}
-			
-			return !WorldHelper.biomeIsOfType(WorldGenReference.ELEMENTAL_OBELISK_BIOMES_AVOID, biome);
+			return biome != null;
 		}
 		
 		return false;
@@ -108,18 +104,18 @@ public class MapGenElementalObelisk extends MapGenStructure
 		{
 			super(chunkX, chunkZ);
 			boolean generateBiomeSpecific = random.nextInt(4) != 0;
+			LogHelper.info("obelisk");
 			
 			if(WorldHelper.biomeIsOfType(WorldGenReference.AIR_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific)
 			{
 				//Generate air obelisk
-				LogHelper.info("air obelisk around: " + chunkX * 16 + "," + chunkZ * 16);
 				ComponentElementalObelisks.ComponentAirObelisk obelisk = new ComponentElementalObelisks.ComponentAirObelisk(random, chunkX * 16, chunkZ * 16);
 				this.components.add(obelisk);
 			}
-			else if(WorldHelper.biomeIsOfType(WorldGenReference.WATER_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific)
+			else if((WorldHelper.biomeIsOfType(WorldGenReference.WATER_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific) || BiomeDictionary.hasType(biomeIn, BiomeDictionary.Type.OCEAN))
 			{
-				LogHelper.info("water obelisk around: " + chunkX * 16 + "," + chunkZ * 16);
 				//Generate water obelisk
+				LogHelper.info("water" + chunkX + "," + chunkZ);
 				ComponentElementalObelisks.ComponentWaterObelisk obelisk = new ComponentElementalObelisks.ComponentWaterObelisk(random, chunkX * 16, chunkZ * 16);
 				this.components.add(obelisk);
 			}

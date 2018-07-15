@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/ice_packed"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

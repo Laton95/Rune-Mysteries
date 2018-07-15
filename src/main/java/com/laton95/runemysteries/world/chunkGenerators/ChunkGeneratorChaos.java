@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
 import com.laton95.runemysteries.init.ModBlocks;
-import com.laton95.runemysteries.world.mapGenerators.MapGenChaosTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenTempleChaos;
 import net.minecraft.block.BlockColored;
 import net.minecraft.init.Blocks;
 import net.minecraft.item.EnumDyeColor;
@@ -15,7 +15,7 @@ public class ChunkGeneratorChaos extends ChunkGeneratorSolidWorld
 	public ChunkGeneratorChaos(World worldIn, long seed)
 	{
 		super(worldIn, seed, 84, Blocks.STONE.getDefaultState());
-		centerpiece = new MapGenChaosTemple();
+		centerpiece = new MapGenTempleChaos();
 	}
 	
 	/**

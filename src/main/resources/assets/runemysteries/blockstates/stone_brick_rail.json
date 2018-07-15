@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/stonebrick"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

@@ -13,6 +13,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.world.DimensionType;
 import net.minecraft.world.World;
 
 public class ItemTalisman extends RMModItem
@@ -31,167 +32,100 @@ public class ItemTalisman extends RMModItem
 	{
 		ItemStack talisman = playerIn.getHeldItem(handIn);
 		
-		String altar = runeType.toString() + "_altar";
-		
-		int dimID = runeType.getRuinDimId();
-		
-		switch(dimID)
-		{
-			case 0:
-				if(!WorldGenerator.altarTracker.overworldAltarsFound && !worldIn.isRemote)
-				{
-					WorldGenerator.altarTracker.findOverworldLocations(worldIn);
-				}
-				break;
-			case -1:
-				if(!WorldGenerator.altarTracker.netherAltarsFound && !worldIn.isRemote)
-				{
-					WorldGenerator.altarTracker.findNetherLocations(worldIn);
-				}
-				break;
-			case 1:
-				if(!WorldGenerator.altarTracker.endAltarsFound && !worldIn.isRemote)
-				{
-					WorldGenerator.altarTracker.findEndLocations(worldIn);
-				}
-				break;
-		}
-		
-		BlockPos pos = WorldGenerator.altarTracker.getAltar(altar).getPosition();
-		
-		if(playerIn.isCreative() && playerIn.isSneaking())
-		{
-			try
-			{
-				if(pos.getY() != 0)
-				{
-					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), pos.getY(), pos.getZ());
-				}
-				else
-				{
-					TeleportHelper.teleportEntity(playerIn, dimID, pos.getX(), 100, pos.getZ());
-				}
-			}
-			catch(NullPointerException e)
-			{
-				TeleportHelper.teleportEntity(playerIn, dimID, playerIn.posX, playerIn.posY, playerIn.posZ);
-			}
-		}
-		
-		playerIn.getCooldownTracker().setCooldown(this, 30);
-		
 		if(!worldIn.isRemote)
 		{
-			if(!ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars)
+			DimensionType dimType = runeType.gerRuinDimType();
+			
+			BlockPos pos = null;
+			
+			try
+			{
+				pos = WorldGenerator.ruinTracker.getRuinByRune(runeType).getRuinPos();
+			}
+			catch(Exception e)
+			{
+				LogHelper.error(e.toString());
+				LogHelper.warn(String.format("An error occured while getting %s altar location.", runeType.toString().toLowerCase()));
+			}
+			
+			if(pos == null || !ModConfig.WORLD_GENERATION.rune_altars.generateRuneAltars)
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
 				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
 			
-			switch(worldIn.provider.getDimension())
+			if(playerIn.isCreative() && playerIn.isSneaking())
 			{
-				case 0:
-					switch(dimID)
-					{
-						case 0:
-							printDirection(playerIn, pos);
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case -1:
-							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
-							playerIn.attackEntityFrom(new DamageSource("chaostalisman"), 2f);
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case 1:
-							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-					}
-				case -1:
-					switch(dimID)
-					{
-						case -1:
-							printDirection(playerIn, pos);
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case 0:
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case 1:
-							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-					}
-				case 1:
-					switch(dimID)
-					{
-						case 1:
-							printDirection(playerIn, pos);
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case 0:
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-						case -1:
-							worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
-							playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
-							playerIn.attackEntityFrom(new DamageSource(NamesReference.Talisman.NETHER_DAMAGE), 2f);
-							return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
-					}
-				default:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-					return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
+				if(pos.getY() != 0)
+				{
+					TeleportHelper.teleportEntity(playerIn, dimType.getId(), pos.getX() + 2, pos.getY(), pos.getZ() + 2);
+				}
+				else
+				{
+					TeleportHelper.teleportEntity(playerIn, dimType.getId(), pos.getX(), 100, pos.getZ());
+				}
+				
+				return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 			}
-		}
-		return new ActionResult<>(EnumActionResult.FAIL, talisman);
-	}
-	
-	
-	private void printDirection(EntityPlayer playerIn, BlockPos pos)
-	{
-		if(WorldHelper.isNearby(playerIn.getPosition(), pos, 5))
-		{
-			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NEARBY));
-		}
-		else
-		{
-			switch(WorldHelper.getDirection(playerIn.getPosition(), pos))
+			
+			playerIn.getCooldownTracker().setCooldown(this, 30);
+			
+			switch(dimType)
 			{
-				case NORTH:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH));
+				case OVERWORLD:
+					if(worldIn.provider.getDimensionType() != DimensionType.OVERWORLD)
+					{
+						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.OVERWORLD));
+						return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
+					}
 					break;
-				case NORTH_EAST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH_EAST));
+				case NETHER:
+					if(worldIn.provider.getDimensionType() != DimensionType.NETHER)
+					{
+						worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.BLOCK_LAVA_EXTINGUISH, SoundCategory.PLAYERS, 1f, 1f);
+						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NETHER));
+						playerIn.attackEntityFrom(new DamageSource(NamesReference.Talisman.NETHER_DAMAGE), 2f);
+						return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
+					}
 					break;
-				case EAST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.EAST));
-					break;
-				case SOUTH_EAST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH_EAST));
-					break;
-				case SOUTH:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH));
-					break;
-				case SOUTH_WEST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.SOUTH_WEST));
-					break;
-				case WEST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.WEST));
-					break;
-				case NORTH_WEST:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NORTH_WEST));
-					break;
-				case UP:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.UP));
-					break;
-				case DOWN:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.DOWN));
-					break;
-				case UNKNOWN:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-					break;
-				default:
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.FAIL));
-					LogHelper.error("Something went wrong with altar locating, please submit a bug report to the Rune Mysteries github.");
+				case THE_END:
+					if(worldIn.provider.getDimensionType() != DimensionType.THE_END)
+					{
+						worldIn.playSound(null, playerIn.posX, playerIn.posY, playerIn.posZ, SoundEvents.ENTITY_ENDERMEN_AMBIENT, SoundCategory.PLAYERS, 1f, 1f);
+						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.END));
+						return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
+					}
 					break;
 			}
+			
+			if(WorldHelper.isNearby(playerIn.getPosition(), pos, 5))
+			{
+				playerIn.sendMessage(new TextComponentTranslation(NamesReference.Talisman.NEARBY));
+			}
+			else
+			{
+				Tuple<WorldHelper.HorizontalDirection, WorldHelper.VerticalDirection> direction = WorldHelper.getDirection(playerIn.getPosition(), pos);
+				
+				String localisationString = "item.runemysteries.talisman.pull.";
+				
+				if(direction.getFirst() != WorldHelper.HorizontalDirection.NONE)
+				{
+					localisationString += direction.getFirst().toString().toLowerCase();
+				}
+				
+				if(direction.getSecond() == WorldHelper.VerticalDirection.UP || direction.getSecond() == WorldHelper.VerticalDirection.DOWN)
+				{
+					if(direction.getFirst() != WorldHelper.HorizontalDirection.NONE)
+					{
+						localisationString += "_";
+					}
+					localisationString += direction.getSecond().toString().toLowerCase();
+				}
+				
+				playerIn.sendMessage(new TextComponentTranslation(localisationString));
+			}
 		}
+		
+		return new ActionResult<>(EnumActionResult.SUCCESS, talisman);
 	}
 }

@@ -2,7 +2,7 @@ package com.laton95.runemysteries.world.chunkGenerators;
 
 import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.world.mapGenerators.MapGenAirTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenTempleAir;
 import net.minecraft.entity.passive.EntityRabbit;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
@@ -19,6 +19,6 @@ public class ChunkGeneratorAir extends ChunkGeneratorSurfaceWorld
 	public ChunkGeneratorAir(World worldIn, long seed)
 	{
 		super(worldIn, seed, Blocks.STONE.getDefaultState(), NamesReference.worldGenStrings.AIR, 5, 3, MOB_SPAWNS);
-		centerpiece = new MapGenAirTemple();
+		centerpiece = new MapGenTempleAir();
 	}
 }

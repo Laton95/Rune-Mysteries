@@ -1,14 +1,13 @@
 package com.laton95.runemysteries.world.structureComponents;
 
+import com.laton95.runemysteries.util.ModStructureComponent;
 import com.laton95.runemysteries.util.StructureHelper;
-import com.laton95.runemysteries.util.WorldHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
-import net.minecraft.world.gen.structure.StructureComponent;
 import net.minecraft.world.gen.structure.template.PlacementSettings;
 import net.minecraft.world.gen.structure.template.TemplateManager;
 
@@ -16,9 +15,9 @@ import java.util.Random;
 
 public class ComponentElementalObelisks
 {
-	abstract static class Obelisk extends StructureComponent
+	abstract static class Obelisk extends ModStructureComponent
 	{
-		protected final String structureNBTName;
+		protected String structureNBTName;
 		
 		/** The size of the bounding box for this feature in the X axis */
 		protected int width;
@@ -28,8 +27,6 @@ public class ComponentElementalObelisks
 		
 		/** The size of the bounding box for this feature in the Z axis */
 		protected int depth;
-		
-		protected int horizontalPos = -1;
 		
 		protected Obelisk(Random rand, int x, int y, int z, int sizeX, int sizeY, int sizeZ, String structureNBTName)
 		{
@@ -48,6 +45,10 @@ public class ComponentElementalObelisks
 			{
 				this.boundingBox = new StructureBoundingBox(x, y, z, x + sizeZ - 1, y + sizeY - 1, z + sizeX - 1);
 			}
+		}
+		
+		protected Obelisk()
+		{
 		}
 		
 		/**
@@ -71,48 +72,6 @@ public class ComponentElementalObelisks
 			this.depth = tagCompound.getInteger("Depth");
 			this.horizontalPos = tagCompound.getInteger("HPos");
 		}
-		
-		/**
-		 * Calculates and offsets this structure boundingbox to average ground level
-		 */
-		protected boolean offsetToAverageGroundLevel(World worldIn, StructureBoundingBox structurebb, int yOffset)
-		{
-			if(this.horizontalPos >= 0)
-			{
-				return true;
-			}
-			else
-			{
-				int i = 0;
-				int j = 0;
-				BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
-				
-				for(int k = this.boundingBox.minZ; k <= this.boundingBox.maxZ; ++k)
-				{
-					for(int l = this.boundingBox.minX; l <= this.boundingBox.maxX; ++l)
-					{
-						blockpos$mutableblockpos.setPos(l, 64, k);
-						
-						if(structurebb.isVecInside(blockpos$mutableblockpos))
-						{
-							i += WorldHelper.getTopSolidBlock(worldIn, blockpos$mutableblockpos).getY();
-							++j;
-						}
-					}
-				}
-				
-				if(j == 0)
-				{
-					return false;
-				}
-				else
-				{
-					this.horizontalPos = i / j;
-					this.boundingBox.offset(0, this.horizontalPos - this.boundingBox.minY + yOffset, 0);
-					return true;
-				}
-			}
-		}
 	}
 	
 	abstract static class ComponentUndergroundObelisk extends Obelisk
@@ -121,6 +80,10 @@ public class ComponentElementalObelisks
 		protected ComponentUndergroundObelisk(Random rand, int x, int y, int z, int sizeX, int sizeY, int sizeZ, String structureNBTName)
 		{
 			super(rand, x, y, z, sizeX, sizeY, sizeZ, structureNBTName);
+		}
+		
+		protected ComponentUndergroundObelisk()
+		{
 		}
 		
 		@Override
@@ -144,10 +107,14 @@ public class ComponentElementalObelisks
 			super(rand, x, y, z, sizeX, sizeY, sizeZ, structureNBTName);
 		}
 		
+		protected ComponentSurfaceObelisk()
+		{
+		}
+		
 		@Override
 		public boolean addComponentParts(World worldIn, Random randomIn, StructureBoundingBox structureBoundingBoxIn)
 		{
-			if(!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -1))
+			if(!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -1, true))
 			{
 				return false;
 			}
@@ -166,6 +133,11 @@ public class ComponentElementalObelisks
 	
 	public static class ComponentAirObelisk extends ComponentSurfaceObelisk
 	{
+		public ComponentAirObelisk()
+		{
+		
+		}
+		
 		public ComponentAirObelisk(Random rand, int x, int z)
 		{
 			super(rand, x, 64, z, 3, 5, 3, "air_obelisk");
@@ -174,6 +146,11 @@ public class ComponentElementalObelisks
 	
 	public static class ComponentEarthObelisk extends ComponentUndergroundObelisk
 	{
+		public ComponentEarthObelisk()
+		{
+		
+		}
+		
 		public ComponentEarthObelisk(Random rand, int x, int z)
 		{
 			super(rand, x, 48, z, 5, 5, 5, "earth_obelisk");
@@ -205,6 +182,11 @@ public class ComponentElementalObelisks
 	
 	public static class ComponentFireObelisk extends ComponentUndergroundObelisk
 	{
+		public ComponentFireObelisk()
+		{
+		
+		}
+		
 		public ComponentFireObelisk(Random rand, int x, int z)
 		{
 			super(rand, x, 10, z, 5, 5, 5, "fire_obelisk");
@@ -213,6 +195,11 @@ public class ComponentElementalObelisks
 	
 	public static class ComponentWaterObelisk extends ComponentSurfaceObelisk
 	{
+		public ComponentWaterObelisk()
+		{
+		
+		}
+		
 		public ComponentWaterObelisk(Random rand, int x, int z)
 		{
 			super(rand, x, 64, z, 3, 5, 3, "water_obelisk");

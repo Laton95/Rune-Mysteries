@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.world.chunkGenerators;
 
-import com.laton95.runemysteries.world.mapGenerators.MapGenWaterTemple;
+import com.laton95.runemysteries.world.mapGenerators.MapGenTempleWater;
 import net.minecraft.init.Blocks;
 import net.minecraft.world.World;
 import net.minecraft.world.chunk.Chunk;
@@ -11,7 +11,7 @@ public class ChunkGeneratorWater extends ChunkGeneratorSolidWorld
 	public ChunkGeneratorWater(World worldIn, long seed)
 	{
 		super(worldIn, seed, 255, Blocks.WATER.getDefaultState());
-		centerpiece = new MapGenWaterTemple();
+		centerpiece = new MapGenTempleWater();
 	}
 	
 	@Override

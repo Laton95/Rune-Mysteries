@@ -8,8 +8,6 @@ import com.laton95.runemysteries.reference.MiscReference;
 import com.laton95.runemysteries.reference.ModReference;
 import com.laton95.runemysteries.spells.Spells;
 import com.laton95.runemysteries.util.LogHelper;
-import com.laton95.runemysteries.world.AltarTracker;
-import com.laton95.runemysteries.world.WorldGenerator;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fml.common.Mod;
@@ -80,18 +78,11 @@ public class RuneMysteries
 	public void serverStarting(FMLServerStartingEvent event)
 	{
 		proxy.serverStarting(event);
-		LogHelper.info("Loading altar tracker");
-		if(WorldGenerator.altarTracker == null)
-		{
-			WorldGenerator.altarTracker = new AltarTracker();
-		}
 	}
 	
 	@Mod.EventHandler
 	public void serverStopping(FMLServerStoppingEvent event)
 	{
 		proxy.serverStopping(event);
-		LogHelper.info("Unloading altar tracker");
-		WorldGenerator.altarTracker = null;
 	}
 }

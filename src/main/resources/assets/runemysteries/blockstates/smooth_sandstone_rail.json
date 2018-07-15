@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/sandstone_top"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

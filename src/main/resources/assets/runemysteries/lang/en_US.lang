@@ -232,15 +232,40 @@ spell.runemysteries.noSpell.desc=No spell selected.
 ########################################################################################
 #Use messages
 item.runemysteries.talisman.pull.north=The talisman pulls to the North.
-item.runemysteries.talisman.pull.northEast=The talisman pulls to the North-East.
+item.runemysteries.talisman.pull.north_down=The talisman pulls to the North and downwards.
+item.runemysteries.talisman.pull.north_up=The talisman pulls to the North and upwards.
+
+item.runemysteries.talisman.pull.north_east=The talisman pulls to the North-East.
+item.runemysteries.talisman.pull.north_east_down=The talisman pulls to the North-East and downwards.
+item.runemysteries.talisman.pull.north_east_up=The talisman pulls to the North-East and upwards.
+
 item.runemysteries.talisman.pull.east=The talisman pulls to the East.
-item.runemysteries.talisman.pull.southEast=The talisman pulls to the South-East.
+item.runemysteries.talisman.pull.east_down=The talisman pulls to the East and downwards.
+item.runemysteries.talisman.pull.east_up=The talisman pulls to the East and upwards.
+
+item.runemysteries.talisman.pull.south_east=The talisman pulls to the South-East.
+item.runemysteries.talisman.pull.south_east_down=The talisman pulls to the South-East and downwards.
+item.runemysteries.talisman.pull.south_east_up=The talisman pulls to the South-East and upwards.
+
 item.runemysteries.talisman.pull.south=The talisman pulls to the South.
-item.runemysteries.talisman.pull.southWest=The talisman pulls to the South-West.
+item.runemysteries.talisman.pull.south_down=The talisman pulls to the South and downwards.
+item.runemysteries.talisman.pull.south_up=The talisman pulls to the South and upwards.
+
+item.runemysteries.talisman.pull.south_west=The talisman pulls to the South-West.
+item.runemysteries.talisman.pull.south_west_down=The talisman pulls to the South-West and downwards.
+item.runemysteries.talisman.pull.south_west_up=The talisman pulls to the South-West and upwards.
+
 item.runemysteries.talisman.pull.west=The talisman pulls to the West.
-item.runemysteries.talisman.pull.northWest=The talisman pulls to the North-West.
+item.runemysteries.talisman.pull.west_down=The talisman pulls to the West and downwards.
+item.runemysteries.talisman.pull.west_up=The talisman pulls to the West and upwards.
+
+item.runemysteries.talisman.pull.north_west=The talisman pulls to the North-West.
+item.runemysteries.talisman.pull.north_west_down=The talisman pulls to the North-West and downwards.
+item.runemysteries.talisman.pull.north_west_up=The talisman pulls to the North-West and upwards.
+
 item.runemysteries.talisman.pull.up=The talisman pulls upwards.
 item.runemysteries.talisman.pull.down=The talisman pulls downwards.
+
 item.runemysteries.talisman.pull.nearby=The talisman pulls toward the altar stone.
 item.runemysteries.talisman.pull.overworld=You feel sudden thoughts of home.
 item.runemysteries.talisman.pull.nether=The talisman throbs and burns your hand.

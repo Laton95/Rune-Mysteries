@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/bone_block_side"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

@@ -5,6 +5,7 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemTalisman;
 import net.minecraft.item.Item;
+import net.minecraft.world.DimensionType;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -133,16 +134,16 @@ public enum EnumRuneType
 		}
 	}
 	
-	public int getRuinDimId()
+	public DimensionType gerRuinDimType()
 	{
 		switch(this)
 		{
 			case CHAOS:
-				return -1;
+				return DimensionType.NETHER;
 			case COSMIC:
-				return 1;
+				return DimensionType.THE_END;
 			default:
-				return 0;
+				return DimensionType.OVERWORLD;
 		}
 	}
 	

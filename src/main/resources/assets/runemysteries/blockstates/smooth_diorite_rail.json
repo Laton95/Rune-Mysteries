@@ -4,6 +4,7 @@
     "textures": {
       "rail": "minecraft:blocks/stone_diorite_smooth"
     },
+    "model": "runemysteries:invisible",
     "uvlock": true
   },
   "variants": {

@@ -11,9 +11,10 @@ import net.minecraft.world.World;
 
 public class ItemDebug extends RMModItem
 {
-	private static int first = 1;
-	
-	private static int second = -2;
+	enum DebugMode
+	{
+		SAVE
+	}
 	
 	public ItemDebug()
 	{
