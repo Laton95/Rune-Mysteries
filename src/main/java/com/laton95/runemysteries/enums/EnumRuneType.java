@@ -5,6 +5,7 @@ import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemTalisman;
 import net.minecraft.item.Item;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.DimensionType;
 
 import java.util.LinkedList;
@@ -179,6 +180,41 @@ public enum EnumRuneType
 				return ModConfig.DIMENSIONS.waterTempleDimID;
 			default:
 				return 0;
+		}
+	}
+	
+	public BlockPos getTempleEntrancePoint()
+	{
+		switch(this)
+		{
+			case AIR:
+				return new BlockPos(2, 87, 2);
+			case BLOOD:
+				return new BlockPos(4, 66, 6);
+			case BODY:
+				return new BlockPos(2, 87, 2);
+			case CHAOS:
+				return new BlockPos(2, 87, 2);
+			case COSMIC:
+				return new BlockPos(10, 64, 10);
+			case DEATH:
+				return new BlockPos(2, 87, 2);
+			case EARTH:
+				return new BlockPos(2, 87, 2);
+			case FIRE:
+				return new BlockPos(10, 107, 10);
+			case LAW:
+				return new BlockPos(2, 87, 2);
+			case MIND:
+				return new BlockPos(2, 87, 2);
+			case NATURE:
+				return new BlockPos(2, 87, 2);
+			case SOUL:
+				return new BlockPos(2, 87, 2);
+			case WATER:
+				return new BlockPos(9, 65, 11);
+			default:
+				return new BlockPos(2, 87, 2);
 		}
 	}
 }
