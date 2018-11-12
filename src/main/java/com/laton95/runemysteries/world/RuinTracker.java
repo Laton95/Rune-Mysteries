@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.world;
 
+import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.WorldGenReference;
@@ -16,33 +17,33 @@ import java.util.List;
 
 public class RuinTracker
 {
-	public final Ruin airRuin = new Ruin("air_ruin");
+	public final Ruin airRuin = new Ruin("air_ruin", "dirt_island");
 	
-	public final Ruin astralRuin = new Ruin("astral_ruin");
+	public final Ruin astralRuin = new Ruin("astral_ruin", "dirt_island");
 	
 	public final Ruin bloodRuin = new Ruin("blood_ruin");
 	
-	public final Ruin bodyRuin = new Ruin("body_ruin");
+	public final Ruin bodyRuin = new Ruin("body_ruin", "dirt_island");
 	
-	public final Ruin chaosRuin = new Ruin("chaos_ruin");
+	public final Ruin chaosRuin = new Ruin("chaos_ruin", "nether_island");
 	
-	public final Ruin cosmicRuin = new Ruin("cosmic_ruin");
+	public final Ruin cosmicRuin = new Ruin("cosmic_ruin", "end_island");
 	
 	public final Ruin deathRuin = new Ruin("death_ruin");
 	
-	public final Ruin earthRuin = new Ruin("earth_ruin");
+	public final Ruin earthRuin = new Ruin("earth_ruin", "dirt_island");
 	
-	public final Ruin fireRuin = new Ruin("fire_ruin");
+	public final Ruin fireRuin = new Ruin("fire_ruin", "sand_island");
 	
-	public final Ruin lawRuin = new Ruin("law_ruin");
+	public final Ruin lawRuin = new Ruin("law_ruin", "dirt_island");
 	
-	public final Ruin mindRuin = new Ruin("mind_ruin");
+	public final Ruin mindRuin = new Ruin("mind_ruin", "dirt_island");
 	
-	public final Ruin natureRuin = new Ruin("nature_ruin");
+	public final Ruin natureRuin = new Ruin("nature_ruin", "dirt_island");
 	
 	public final Ruin soulRuin = new Ruin("soul_ruin");
 	
-	public final Ruin waterRuin = new Ruin("water_ruin");
+	public final Ruin waterRuin = new Ruin("water_ruin", "dirt_island");
 	
 	public final Ruin ouraniaRuin = new Ruin("ourania_ruin");
 	
@@ -111,12 +112,11 @@ public class RuinTracker
 		
 		while(pos == null && tries > 0)
 		{
-			LogHelper.info(tries);
 			int x = world.rand.nextInt(maxRange - minRange) + minRange;
 			int z = world.rand.nextInt(maxRange - minRange) + minRange;
 			Biome biome = world.getBiome(new BlockPos(x, 0, z));
 			
-			if(WorldHelper.biomeIsOfType(allowedBiomes, biome) && !WorldHelper.biomeIsOfType(avoidBiomes, biome))
+			if((allowedBiomes.size() == 0 || WorldHelper.biomeIsOfType(allowedBiomes, biome)) && !WorldHelper.biomeIsOfType(avoidBiomes, biome))
 			{
 				pos = new BlockPos(x, 0, z);
 			}
@@ -128,9 +128,8 @@ public class RuinTracker
 		
 		if(tries <= 0)
 		{
-			int x = world.rand.nextInt(maxRange - minRange) + minRange;
-			int z = world.rand.nextInt(maxRange - minRange) + minRange;
-			pos = new BlockPos(x, 0, z);
+			LogHelper.warn("Could not find location for ruin, putting randomly");
+			pos = findPosition(world, ImmutableList.of(), avoidBiomes);
 		}
 		
 		return pos;
@@ -215,15 +214,23 @@ public class RuinTracker
 	
 	public class Ruin
 	{
-		private String name;
+		private final String name;
 		
 		private BlockPos ruinPos;
 		
 		private boolean isGenerated;
 		
+		private final String island;
+		
 		public Ruin(String name)
 		{
+			this(name, null);
+		}
+		
+		public Ruin(String name, String island)
+		{
 			this.name = name;
+			this.island = island;
 		}
 		
 		public BlockPos getRuinPos()
@@ -254,6 +261,11 @@ public class RuinTracker
 		public void setGenerated(boolean generated)
 		{
 			isGenerated = generated;
+		}
+		
+		public String getIsland()
+		{
+			return island;
 		}
 	}
 }

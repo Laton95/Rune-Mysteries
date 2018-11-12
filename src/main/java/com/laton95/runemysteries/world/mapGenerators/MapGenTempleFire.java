@@ -9,11 +9,12 @@ public class MapGenTempleFire extends MapGenCenterStructure
 {
 	private static List<BlockPos> portals = ImmutableList.of
 			(
-					new BlockPos(0, 100, 0)
+					new BlockPos(-6, 107, -4),
+					new BlockPos(21, 107, 20)
 			);
 	
 	public MapGenTempleFire()
 	{
-		super("fire_temple", "fire_temple", 60, portals);
+		super("fire_temple", "fire_temple", 84, portals);
 	}
 }

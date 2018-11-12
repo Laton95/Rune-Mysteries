@@ -13,6 +13,7 @@ import net.minecraft.potion.PotionEffect;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldServer;
 import net.minecraftforge.common.ForgeHooks;
 
@@ -26,6 +27,14 @@ import java.util.LinkedList;
  */
 public class TeleportHelper
 {
+	
+	/**
+	 * Convenience method that does not require pitch and yaw.
+	 */
+	public static Entity teleportEntity(Entity entity, int dimension, BlockPos pos)
+	{
+		return teleportEntity(entity, dimension, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, entity.rotationYaw, entity.rotationPitch);
+	}
 	
 	/**
 	 * Convenience method that does not require pitch and yaw.

@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.util;
+package com.laton95.runemysteries.enums;
 
 import net.minecraft.util.IStringSerializable;
 
@@ -11,7 +11,7 @@ public enum EnumCorner implements IStringSerializable
 	
 	private final String name;
 	
-	private EnumCorner(String name)
+	EnumCorner(String name)
 	{
 		this.name = name;
 	}

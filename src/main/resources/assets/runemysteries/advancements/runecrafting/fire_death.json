@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "minecraft:lava_bucket"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.runecrafting.fire_death.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.runecrafting.fire_death.description"
+    },
+    "hidden": "true"
+  },
+  "parent": "runemysteries:runecrafting/altar",
+  "criteria": {
+    "touch_monolith": {
+      "trigger": "runemysteries:fire_death"
+    }
+  }
+}

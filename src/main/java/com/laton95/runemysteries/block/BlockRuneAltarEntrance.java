@@ -57,7 +57,7 @@ public class BlockRuneAltarEntrance extends RMModBlock
 			if(playerIn.getHeldItemMainhand().getItem() == runeType.getTalismanOfType() || playerIn.getHeldItemOffhand().getItem() == runeType.getTalismanOfType())
 			{
 				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.ALTAR_ENTER));
-				TeleportHelper.teleportEntity(playerIn, runeType.getTempleDimId(), 2, 87, 2);
+				TeleportHelper.teleportEntity(playerIn, runeType.getTempleDimId(), runeType.getTempleEntrancePoint());
 			}
 			else
 			{

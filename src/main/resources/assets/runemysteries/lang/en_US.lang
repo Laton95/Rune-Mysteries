@@ -200,6 +200,9 @@ advancements.runemysteries.runecrafting.charge_orb.description=Bring a glass orb
 advancements.runemysteries.runecrafting.craft_battlestaff.title=Elemental Source
 advancements.runemysteries.runecrafting.craft_battlestaff.description=Craft a battlestaff, a source of elemental runes.
 
+advancements.runemysteries.runecrafting.fire_death.title=Watch Your Step
+advancements.runemysteries.runecrafting.fire_death.description=The fire temple isn't safe.
+
 ########################################################################################
 #Spells
 spell.runemysteries.enderpearlSpell.name=Blink

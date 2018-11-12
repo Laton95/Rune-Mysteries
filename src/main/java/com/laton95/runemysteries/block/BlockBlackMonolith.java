@@ -31,9 +31,9 @@ public class BlockBlackMonolith extends RMModBlock
 {
 	public static final PropertyDirection FACING = BlockHorizontal.FACING;
 	
-	protected static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.375D, 0.9D, 1.0D, 0.625D);
+	private static final AxisAlignedBB Z_AXIS_AABB = new AxisAlignedBB(0.1D, 0.0D, 0.375D, 0.9D, 1.0D, 0.625D);
 	
-	protected static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.1D, 0.625D, 1.0D, 0.9D);
+	private static final AxisAlignedBB X_AXIS_AABB = new AxisAlignedBB(0.375D, 0.0D, 0.1D, 0.625D, 1.0D, 0.9D);
 	
 	public BlockBlackMonolith()
 	{

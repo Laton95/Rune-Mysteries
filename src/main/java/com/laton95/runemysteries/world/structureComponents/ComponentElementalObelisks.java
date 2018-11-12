@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.world.structureComponents;
 
-import com.laton95.runemysteries.util.ModStructureComponent;
 import com.laton95.runemysteries.util.StructureHelper;
 import net.minecraft.init.Blocks;
 import net.minecraft.nbt.NBTTagCompound;
@@ -36,6 +35,9 @@ public class ComponentElementalObelisks
 			this.height = sizeY;
 			this.depth = sizeZ;
 			this.setCoordBaseMode(EnumFacing.Plane.HORIZONTAL.random(rand));
+			
+			x += 8 + rand.nextInt(10);
+			z += 8 + rand.nextInt(10);
 			
 			if(this.getCoordBaseMode().getAxis() == EnumFacing.Axis.Z)
 			{

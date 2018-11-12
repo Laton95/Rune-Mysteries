@@ -2,7 +2,6 @@ package com.laton95.runemysteries.world.mapGenerators;
 
 import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.reference.WorldGenReference;
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.laton95.runemysteries.world.structureComponents.ComponentElementalObelisks;
 import net.minecraft.util.math.BlockPos;
@@ -103,8 +102,7 @@ public class MapGenElementalObelisk extends MapGenStructure
 		public Start(World worldIn, Random random, int chunkX, int chunkZ, Biome biomeIn)
 		{
 			super(chunkX, chunkZ);
-			boolean generateBiomeSpecific = random.nextInt(4) != 0;
-			LogHelper.info("obelisk");
+			boolean generateBiomeSpecific = random.nextInt(10) != 0;
 			
 			if(WorldHelper.biomeIsOfType(WorldGenReference.AIR_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific)
 			{
@@ -112,10 +110,9 @@ public class MapGenElementalObelisk extends MapGenStructure
 				ComponentElementalObelisks.ComponentAirObelisk obelisk = new ComponentElementalObelisks.ComponentAirObelisk(random, chunkX * 16, chunkZ * 16);
 				this.components.add(obelisk);
 			}
-			else if((WorldHelper.biomeIsOfType(WorldGenReference.WATER_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific) || BiomeDictionary.hasType(biomeIn, BiomeDictionary.Type.OCEAN))
+			else if((WorldHelper.biomeIsOfType(WorldGenReference.WATER_OBELISK_BIOMES, biomeIn) && generateBiomeSpecific) || BiomeDictionary.hasType(biomeIn, BiomeDictionary.Type.WATER))
 			{
 				//Generate water obelisk
-				LogHelper.info("water" + chunkX + "," + chunkZ);
 				ComponentElementalObelisks.ComponentWaterObelisk obelisk = new ComponentElementalObelisks.ComponentWaterObelisk(random, chunkX * 16, chunkZ * 16);
 				this.components.add(obelisk);
 			}

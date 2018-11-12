@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.world.structureComponents;
 
-import com.laton95.runemysteries.util.ModStructureComponent;
 import com.laton95.runemysteries.util.StructureHelper;
 import com.laton95.runemysteries.world.RuinTracker;
 import net.minecraft.init.Blocks;
@@ -25,19 +24,19 @@ public class ComponentSurfaceRuin extends ModStructureComponent
 	}
 	
 	
-	public ComponentSurfaceRuin(RuinTracker.Ruin ruin, int chunkX, int chunkZ, int yPos)
+	public ComponentSurfaceRuin(RuinTracker.Ruin ruin, int chunkX, int chunkZ, int yPos, Random rand)
 	{
 		super(0);
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(
-				chunkX * 16 + 6,
+				chunkX * 16 + 8 + rand.nextInt(5),
 				yPos,
-				chunkZ * 16 + 6,
+				chunkZ * 16 + 8 + rand.nextInt(5),
 				0,
 				0,
 				0,
+				12,
 				10,
-				3,
-				10,
+				12,
 				EnumFacing.UP);
 		this.ruin = ruin;
 	}
@@ -59,7 +58,7 @@ public class ComponentSurfaceRuin extends ModStructureComponent
 	{
 		if(!generated)
 		{
-			if(!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -1, false))
+			if(!this.offsetToAverageGroundLevel(worldIn, structureBoundingBoxIn, -5, false))
 			{
 				return false;
 			}
@@ -69,14 +68,17 @@ public class ComponentSurfaceRuin extends ModStructureComponent
 				BlockPos blockpos = new BlockPos(structureboundingbox.minX, structureboundingbox.minY, structureboundingbox.minZ);
 				PlacementSettings placementsettings = (new PlacementSettings()).setReplacedBlock(Blocks.STRUCTURE_VOID).setBoundingBox(structureboundingbox);
 				
-				StructureHelper structureHelper = new StructureHelper(worldIn, "stone_circle", blockpos, placementsettings);
+				StructureHelper structureHelper = new StructureHelper(worldIn, ruin.getIsland(), blockpos, placementsettings);
 				structureHelper.generate();
 				
-				structureHelper = new StructureHelper(worldIn, ruin.getName(), blockpos, placementsettings);
+				structureHelper = new StructureHelper(worldIn, "stone_circle", blockpos.add(0, 5, 0), placementsettings);
+				structureHelper.generate();
+				
+				structureHelper = new StructureHelper(worldIn, ruin.getName(), blockpos.add(0, 5, 0), placementsettings);
 				structureHelper.generate();
 				
 				ruin.setGenerated(true);
-				ruin.setRuinPos(blockpos.add(5, 1, 5), worldIn);
+				ruin.setRuinPos(blockpos.add(6, 6, 6), worldIn);
 				
 				generated = true;
 			}

@@ -80,7 +80,7 @@ public class WorldHelper
 		double offset = Math.PI / 8;
 		
 		//Calculate horizontal direction
-		if(horizontalDistance == 0)
+		if(Math.abs(horizontalDistance) < 5)
 		{
 			horizontalDirection = HorizontalDirection.NONE;
 		}

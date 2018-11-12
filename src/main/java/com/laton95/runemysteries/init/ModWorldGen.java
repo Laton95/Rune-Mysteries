@@ -5,10 +5,7 @@ import com.laton95.runemysteries.init.InitDataStructures.StructureEntry;
 import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 import com.laton95.runemysteries.world.mapGenerators.*;
-import com.laton95.runemysteries.world.structureComponents.ComponentCenterStructure;
-import com.laton95.runemysteries.world.structureComponents.ComponentElementalObelisks;
-import com.laton95.runemysteries.world.structureComponents.ComponentSurfaceRuin;
-import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundRuin;
+import com.laton95.runemysteries.world.structureComponents.*;
 import net.minecraft.world.gen.structure.MapGenStructureIO;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.fml.common.registry.GameRegistry;
@@ -56,7 +53,8 @@ public class ModWorldGen
 				new InitDataStructures().new StructureEntry("mind_ruin", MapGenRuinMind.Start.class),
 				new InitDataStructures().new StructureEntry("nature_ruin", MapGenRuinNature.Start.class),
 				new InitDataStructures().new StructureEntry("soul_ruin", MapGenRuinSoul.Start.class),
-				new InitDataStructures().new StructureEntry("water_ruin", MapGenRuinWater.Start.class)
+				new InitDataStructures().new StructureEntry("water_ruin", MapGenRuinWater.Start.class),
+				new InitDataStructures().new StructureEntry("ourania_ruin", MapGenRuinOurania.Start.class)
 				};
 		
 		ComponentEntry[] components = {
@@ -66,7 +64,9 @@ public class ModWorldGen
 				new InitDataStructures().new ComponentEntry("water_obelisk", ComponentElementalObelisks.ComponentWaterObelisk.class),
 				new InitDataStructures().new ComponentEntry("center_structure", ComponentCenterStructure.class),
 				new InitDataStructures().new ComponentEntry("surface_ruin", ComponentSurfaceRuin.class),
-				new InitDataStructures().new ComponentEntry("underground_ruin", ComponentUndergroundRuin.class)
+				new InitDataStructures().new ComponentEntry("underground_ruin", ComponentUndergroundRuin.class),
+				new InitDataStructures().new ComponentEntry("island_ruin", ComponentIslandRuin.class),
+				new InitDataStructures().new ComponentEntry("soul_ruin", ComponentSoulRuin.class)
 				};
 		
 		for(StructureEntry structure : structures)

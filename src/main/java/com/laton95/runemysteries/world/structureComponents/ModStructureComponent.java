@@ -1,5 +1,6 @@
-package com.laton95.runemysteries.util;
+package com.laton95.runemysteries.world.structureComponents;
 
+import com.laton95.runemysteries.util.WorldHelper;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.StructureBoundingBox;
@@ -48,7 +49,9 @@ public abstract class ModStructureComponent extends StructureComponent
 						}
 						else
 						{
-							i += worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos).getY();
+							BlockPos topPos = worldIn.getTopSolidOrLiquidBlock(blockpos$mutableblockpos);
+							
+							i += Math.max(63, topPos.getY());
 						}
 						
 						++j;

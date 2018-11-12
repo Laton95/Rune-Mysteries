@@ -1,8 +1,7 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
-import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundRuin;
+import com.laton95.runemysteries.world.structureComponents.ComponentIslandRuin;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.gen.structure.MapGenStructure;
@@ -56,9 +55,7 @@ public class MapGenRuinChaos extends MapGenStructure
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
 			super(chunkX, chunkZ);
-			LogHelper.warn("Starting");
-			int ypos = random.nextInt(10) + 20;
-			ComponentUndergroundRuin ruin = new ComponentUndergroundRuin(WorldGenerator.ruinTracker.chaosRuin, chunkX, chunkZ, ypos);
+			ComponentIslandRuin ruin = new ComponentIslandRuin(WorldGenerator.ruinTracker.chaosRuin, chunkX, chunkZ, 27, random);
 			components.add(ruin);
 			updateBoundingBox();
 		}

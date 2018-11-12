@@ -33,7 +33,7 @@ public class WaterDimension extends WorldProvider
 	@Override
 	public IChunkGenerator createChunkGenerator()
 	{
-		return new ChunkGeneratorWater(world, world.getSeed());
+		return new ChunkGeneratorWater(world);
 	}
 	
 	@Override

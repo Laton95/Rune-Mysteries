@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.world.mapGenerators;
 
-import com.laton95.runemysteries.util.LogHelper;
 import com.laton95.runemysteries.world.WorldGenerator;
 import com.laton95.runemysteries.world.structureComponents.ComponentUndergroundRuin;
 import net.minecraft.util.math.BlockPos;
@@ -56,7 +55,6 @@ public class MapGenRuinDeath extends MapGenStructure
 		public Start(World worldIn, Random random, int chunkX, int chunkZ)
 		{
 			super(chunkX, chunkZ);
-			LogHelper.warn("Starting");
 			int ypos = random.nextInt(10) + 20;
 			ComponentUndergroundRuin ruin = new ComponentUndergroundRuin(WorldGenerator.ruinTracker.deathRuin, chunkX, chunkZ, ypos);
 			components.add(ruin);

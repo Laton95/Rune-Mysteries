@@ -27,10 +27,12 @@ public class ComponentUndergroundRuin extends StructureComponent
 	
 	public ComponentUndergroundRuin(RuinTracker.Ruin ruin, int chunkX, int chunkZ, int yPos)
 	{
+		int offset = 8;
+		
 		boundingBox = StructureBoundingBox.getComponentToAddBoundingBox(
-				chunkX * 16 + 6,
+				chunkX * 16 + offset,
 				yPos,
-				chunkZ * 16 + 6,
+				chunkZ * 16 + offset,
 				0,
 				0,
 				0,
@@ -66,10 +68,10 @@ public class ComponentUndergroundRuin extends StructureComponent
 			StructureHelper structureHelper = new StructureHelper(worldIn, ruin.getName() + "_room", pos);
 			structureHelper.generate();
 			
-			structureHelper = new StructureHelper(worldIn, "stone_circle", pos.add(5, 1, 5));
+			structureHelper = new StructureHelper(worldIn, "stone_circle", pos.add(4, 1, 4));
 			structureHelper.generate();
 			
-			structureHelper = new StructureHelper(worldIn, ruin.getName(), pos.add(5, 1, 5));
+			structureHelper = new StructureHelper(worldIn, ruin.getName(), pos.add(4, 1, 4));
 			structureHelper.generate();
 			
 			ruin.setGenerated(true);

@@ -52,6 +52,8 @@ public class WorldGenerator implements IWorldGenerator
 	
 	private MapGenRuinWater waterRuinGenerator = new MapGenRuinWater();
 	
+	private MapGenRuinOurania ouraniaRuinGenerator = new MapGenRuinOurania();
+	
 	@Override
 	public void generate(Random random, int chunkX, int chunkZ, World world, IChunkGenerator chunkGenerator, IChunkProvider chunkProvider)
 	{
@@ -69,7 +71,7 @@ public class WorldGenerator implements IWorldGenerator
 					
 					airRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					astralRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					//					bloodRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					bloodRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					bodyRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					deathRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					earthRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
@@ -77,8 +79,9 @@ public class WorldGenerator implements IWorldGenerator
 					lawRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					mindRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					natureRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
-					//					soulRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					soulRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					waterRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
+					ouraniaRuinGenerator.generate(world, chunkX, chunkZ, new ChunkPrimer());
 					break;
 				case NETHER:
 					// Ores
@@ -111,7 +114,7 @@ public class WorldGenerator implements IWorldGenerator
 					
 					airRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					astralRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					//					bloodRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					bloodRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					bodyRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					deathRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					earthRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
@@ -119,8 +122,9 @@ public class WorldGenerator implements IWorldGenerator
 					lawRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					mindRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					natureRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
-					//					soulRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					soulRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					waterRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
+					ouraniaRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));
 					break;
 				case NETHER:
 					chaosRuinGenerator.generateStructure(event.getWorld(), event.getRand(), new ChunkPos(event.getChunkX(), event.getChunkZ()));

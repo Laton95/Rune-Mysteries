@@ -1,12 +1,15 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.advancement.triggers.Triggers;
+import com.laton95.runemysteries.block.properties.PropertyCorner;
+import com.laton95.runemysteries.enums.EnumCorner;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.init.ModLoot;
 import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.item.ItemRune;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
@@ -32,6 +35,8 @@ public class BlockRuneAltar extends RMModBlock
 {
 	
 	private static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0.0D, 0.0D, 0.0D, 1.0D, 0.875D, 1.0D);
+	
+	public static final PropertyCorner CORNER = PropertyCorner.create("corner");
 	
 	private final EnumRuneType runeType;
 	
@@ -68,6 +73,51 @@ public class BlockRuneAltar extends RMModBlock
 	public boolean isOpaqueCube(IBlockState state)
 	{
 		return false;
+	}
+	
+	@Override
+	public int getMetaFromState(IBlockState state)
+	{
+		return 0;
+	}
+	
+	@Override
+	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
+	{
+		boolean hasNorth = worldIn.getBlockState(pos.north()).getBlock() == this;
+		boolean hasSouth = worldIn.getBlockState(pos.south()).getBlock() == this;
+		boolean hasWest = worldIn.getBlockState(pos.west()).getBlock() == this;
+		boolean hasEast = worldIn.getBlockState(pos.east()).getBlock() == this;
+		
+		EnumCorner corner = EnumCorner.NORTH_EAST;
+		
+		if(hasNorth && hasWest)
+		{
+			corner = EnumCorner.SOUTH_EAST;
+		}
+		
+		if(hasNorth && hasEast)
+		{
+			corner = EnumCorner.SOUTH_WEST;
+		}
+		
+		if(hasSouth && hasWest)
+		{
+			corner = EnumCorner.NORTH_EAST;
+		}
+		
+		if(hasSouth && hasEast)
+		{
+			corner = EnumCorner.NORTH_WEST;
+		}
+		
+		return state.withProperty(CORNER, corner);
+	}
+	
+	@Override
+	protected BlockStateContainer createBlockState()
+	{
+		return new BlockStateContainer(this, CORNER);
 	}
 	
 	@Override

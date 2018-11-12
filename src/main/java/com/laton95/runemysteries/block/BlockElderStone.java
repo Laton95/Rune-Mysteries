@@ -2,10 +2,10 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.advancement.triggers.Triggers;
 import com.laton95.runemysteries.block.properties.PropertyCorner;
+import com.laton95.runemysteries.enums.EnumCorner;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.util.EnumCorner;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.properties.PropertyBool;
 import net.minecraft.block.state.BlockFaceShape;

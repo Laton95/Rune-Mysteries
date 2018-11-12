@@ -9,7 +9,7 @@ public class MapGenTempleBlood extends MapGenCenterStructure
 {
 	private static List<BlockPos> portals = ImmutableList.of
 			(
-					new BlockPos(0, 100, 0)
+					new BlockPos(17, 65, 17)
 			);
 	
 	public MapGenTempleBlood()

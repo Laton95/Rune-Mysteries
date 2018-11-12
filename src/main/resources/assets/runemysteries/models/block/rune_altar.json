@@ -1,8 +1,9 @@
 {
   "transform": "forge:default-block",
   "textures": {
-    "all": "runemysteries:blocks/rune_altar",
-    "particle": "runemysteries:blocks/rune_altar"
+    "all": "runemysteries:blocks/ruin_stone",
+    "particle": "runemysteries:blocks/ruin_stone",
+    "top": "#top"
   },
   "elements": [
     {
@@ -18,7 +19,7 @@
       ],
       "faces": {
         "up": {
-          "texture": "#all"
+          "texture": "#top"
         },
         "down": {
           "texture": "#all"

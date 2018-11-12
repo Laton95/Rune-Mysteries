@@ -1,6 +1,9 @@
 {
   "forge_marker": 1,
   "defaults": {
+    "textures": {
+      "top": "runemysteries:blocks/ruin_stone"
+    },
     "model": "runemysteries:rune_altar",
     "uvlock": true,
     "transform": "forge:default-block"

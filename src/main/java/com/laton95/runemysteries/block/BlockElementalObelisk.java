@@ -34,7 +34,7 @@ public class BlockElementalObelisk extends RMModBlock
 	{
 		super(name, Material.ROCK, 1.5f, 2000f, "pickaxe", 3);
 		setDefaultState(blockState.getBaseState().withProperty(TOP, true));
-		setLightLevel(12);
+		setLightLevel(0.9375F);
 		this.shardDrop = shardDrop;
 		this.orb = orb;
 	}

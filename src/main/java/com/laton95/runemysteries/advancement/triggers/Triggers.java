@@ -14,12 +14,15 @@ public class Triggers
 	
 	public static final CustomTrigger CHARGE_ORB = new CustomTrigger("charge_orb");
 	
+	public static final CustomTrigger FIRE_DEATH = new CustomTrigger("fire_death");
+	
 	public static final CustomTrigger[] TRIGGER_ARRAY = new CustomTrigger[] {
 			TOUCH_MONOLITH,
 			EX_PARROT,
 			TOUCH_ELDER_STONE,
 			CRAFT_RUNE,
 			OURANIA,
-			CHARGE_ORB
+			CHARGE_ORB,
+			FIRE_DEATH
 	};
 }
