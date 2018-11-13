@@ -18,6 +18,8 @@ import net.minecraftforge.event.entity.player.EntityItemPickupEvent;
 import net.minecraftforge.event.entity.player.ItemTooltipEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
 
@@ -103,6 +105,7 @@ public class ItemHelper
 	}
 	
 	@SubscribeEvent
+	@SideOnly(Side.CLIENT)
 	public static void tooltipHandler(ItemTooltipEvent event)
 	{
 		ItemStack stack = event.getItemStack();

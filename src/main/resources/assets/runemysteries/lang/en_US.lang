@@ -320,3 +320,9 @@ entity.runemysteries:ex_ex_parrot.name=Ex-Ex-Parrot
 ########################################################################################
 #Potion
 runemysteries:stonetoucher=Stonetoucher
+
+########################################################################################
+#Book
+runemysteries:book_name=The Rune Mysteries
+runemysteries:book_landing_text=Guide to the mysteries of runestones.
+runemysteries:book_subtitle=Roons.

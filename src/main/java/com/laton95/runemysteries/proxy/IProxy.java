@@ -13,4 +13,6 @@ public interface IProxy
 	void serverStarting(FMLServerStartingEvent event);
 	
 	void serverStopping(FMLServerStoppingEvent event);
+	
+	void registerRenders();
 }

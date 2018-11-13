@@ -1,19 +1,13 @@
 package com.laton95.runemysteries.proxy;
 
-import com.laton95.runemysteries.init.ModFluids;
-import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.init.ModRenders;
-import com.laton95.runemysteries.init.Modkeybinds;
 import net.minecraftforge.fml.common.event.*;
 
-public class ClientProxy implements IProxy
+public class ServerProxy implements IProxy
 {
-	
 	@Override
 	public void preInit(FMLPreInitializationEvent event)
 	{
-		ModRenders.registerRenders();
-		Modkeybinds.registerKeybinds();
+	
 	}
 	
 	@Override
@@ -43,7 +37,6 @@ public class ClientProxy implements IProxy
 	@Override
 	public void registerRenders()
 	{
-		ModItems.registerRenders();
-		ModFluids.registerRenders();
+	
 	}
 }

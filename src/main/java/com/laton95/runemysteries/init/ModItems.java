@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.init;
 
+import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.block.RMModSlab;
 import com.laton95.runemysteries.block.RMRandomRotationBlock;
 import com.laton95.runemysteries.config.ModConfig;
@@ -184,7 +185,9 @@ public class ModItems
 					DEBUG
 			};
 	
-	private static ArrayList<Block> itemBlocks = new ArrayList<>();
+	private static ArrayList<Block> blocks = new ArrayList<>();
+	
+	private static ArrayList<ItemBlock> itemBlocks = new ArrayList<>();
 	
 	@SubscribeEvent
 	public static void registerItems(RegistryEvent.Register<Item> event)
@@ -193,10 +196,9 @@ public class ModItems
 		for(Item item : items)
 		{
 			event.getRegistry().register(item);
-			registerItemRender(item);
 		}
 		
-		for(Block block : itemBlocks)
+		for(Block block : blocks)
 		{
 			if(block instanceof RMModSlab)
 			{
@@ -207,22 +209,37 @@ public class ModItems
 				slab.setDroppedItem(itemBlock);
 				doubleSlab.setDroppedItem(itemBlock);
 				event.getRegistry().register(itemBlock);
-				registerBlockRender(itemBlock, "normal");
+				itemBlocks.add(itemBlock);
 			}
 			else if(block instanceof RMRandomRotationBlock)
 			{
 				ItemBlock itemBlock = new ItemBlock(block);
 				itemBlock.setRegistryName(block.getRegistryName());
 				event.getRegistry().register(itemBlock);
-				registerBlockRender(itemBlock, "inventory");
+				itemBlocks.add(itemBlock);
 			}
 			else
 			{
 				ItemBlock itemBlock = new ItemBlock(block);
 				itemBlock.setRegistryName(block.getRegistryName());
 				event.getRegistry().register(itemBlock);
-				registerBlockRender(itemBlock, "normal");
+				itemBlocks.add(itemBlock);
 			}
+		}
+		
+		RuneMysteries.proxy.registerRenders();
+	}
+	
+	public static void registerRenders()
+	{
+		for(Item item : items)
+		{
+			registerItemRender(item);
+		}
+		
+		for(ItemBlock itemBlock : itemBlocks)
+		{
+			registerBlockRender(itemBlock, "normal");
 		}
 	}
 	
@@ -240,6 +257,6 @@ public class ModItems
 	
 	public static void addBlock(Block block)
 	{
-		itemBlocks.add(block);
+		blocks.add(block);
 	}
 }

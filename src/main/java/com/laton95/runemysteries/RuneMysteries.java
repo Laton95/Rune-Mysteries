@@ -26,7 +26,7 @@ public class RuneMysteries
 	@Instance(ModReference.MOD_ID)
 	public static RuneMysteries instance;
 	
-	@SidedProxy(clientSide = ModReference.CLIENT_PROXY_CLASS)
+	@SidedProxy(clientSide = ModReference.CLIENT_PROXY_CLASS, serverSide = ModReference.SERVER_PROXY_CLASS)
 	public static IProxy proxy;
 	
 	static
