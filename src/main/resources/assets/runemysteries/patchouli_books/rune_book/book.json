@@ -1,0 +1,11 @@
+{
+    "name": "runemysteries:book_name",
+    "landing_text": "runemysteries:book_landing_text",
+    "creative_tab": "runemysteries",
+    "advancements_tab": "runemysteries:runecrafting",
+    "subtitle": "runemysteries:book_subtitle",
+    "model": "runemysteries:book",
+    "advancement_namespaces": [
+        "runemysteries"
+    ]
+}

@@ -9,18 +9,30 @@
     "transform": "forge:default-block"
   },
   "variants": {
-    "corner=south_east": [
-      {}
-    ],
-    "corner=north_west": [
-      {}
-    ],
-    "corner=north_east": [
-      {}
-    ],
-    "corner=south_west": [
-      {}
-    ],
+    "corner=south_east": {
+      "model": "runemysteries:rune_altar",
+      "textures": {
+        "top": "runemysteries:blocks/ourania_altar_se"
+      }
+    },
+    "corner=north_west": {
+      "model": "runemysteries:rune_altar",
+      "textures": {
+        "top": "runemysteries:blocks/ourania_altar_nw"
+      }
+    },
+    "corner=north_east": {
+      "model": "runemysteries:rune_altar",
+      "textures": {
+        "top": "runemysteries:blocks/ourania_altar_ne"
+      }
+    },
+    "corner=south_west": {
+      "model": "runemysteries:rune_altar",
+      "textures": {
+        "top": "runemysteries:blocks/ourania_altar_sw"
+      }
+    },
     "normal": [
       {}
     ]

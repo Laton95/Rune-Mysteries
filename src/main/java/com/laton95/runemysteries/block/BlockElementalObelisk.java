@@ -33,7 +33,7 @@ public class BlockElementalObelisk extends RMModBlock
 	public BlockElementalObelisk(String name, Item shardDrop, Item orb)
 	{
 		super(name, Material.ROCK, 1.5f, 2000f, "pickaxe", 3);
-		setDefaultState(blockState.getBaseState().withProperty(TOP, true));
+		setDefaultState(blockState.getBaseState().withProperty(TOP, false));
 		setLightLevel(0.9375F);
 		this.shardDrop = shardDrop;
 		this.orb = orb;
@@ -102,9 +102,9 @@ public class BlockElementalObelisk extends RMModBlock
 	@Override
 	public int quantityDroppedWithBonus(int fortune, Random random)
 	{
-		if(fortune > 0)
+		if(fortune == 3)
 		{
-			return this.quantityDropped(random) + random.nextInt(fortune - 1);
+			return this.quantityDropped(random) + random.nextInt(2);
 		}
 		else
 		{
