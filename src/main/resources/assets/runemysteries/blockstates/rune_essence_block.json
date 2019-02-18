@@ -1,15 +1,5 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "all": "runemysteries:blocks/rune_essence_block"
-    },
-    "model": "cube_all",
-    "uvlock": true
-  },
   "variants": {
-    "normal": [
-      {}
-    ]
+    "": { "model": "runemysteries:block/rune_essence_block" }
   }
 }

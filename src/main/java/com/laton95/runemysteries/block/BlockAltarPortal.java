@@ -1,94 +1,53 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.tileentity.TileEntityAltarPortal;
-import net.minecraft.block.ITileEntityProvider;
+import com.laton95.runemysteries.reference.StringReference.BlockInteraction;
+import com.laton95.runemysteries.util.TeleportHelper;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.Entity;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.EnumParticleTypes;
-import net.minecraft.util.math.AxisAlignedBB;
+import net.minecraft.init.Particles;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
+import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
 
-public class BlockAltarPortal extends RMModBlock implements ITileEntityProvider
-{
+public class BlockAltarPortal extends ModBlock {
 	
-	public static final AxisAlignedBB BoundingBox = new AxisAlignedBB(0, 0, 0, 1, 0.1, 1);
-	
-	public BlockAltarPortal(String name)
-	{
-		super(name, Material.ROCK, 0, 2000f, null, 0, false, true);
-		setBlockUnbreakable();
-		lightValue = 12;
+	public BlockAltarPortal() {
+		super("altar_portal", Properties.create(Material.BARRIER).lightValue(14).hardnessAndResistance(-1.0F, 3600000.0F), false, false);
 	}
 	
 	@Override
-	public TileEntity createNewTileEntity(World worldIn, int meta)
-	{
-		return new TileEntityAltarPortal();
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean isFullCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess world, BlockPos pos)
-	{
-		return BoundingBox;
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public AxisAlignedBB getCollisionBoundingBox(IBlockState blockState, IBlockAccess worldIn, BlockPos pos)
-	{
-		return NULL_AABB;
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public boolean isOpaqueCube(IBlockState state)
-	{
-		return false;
-	}
-	
-	@SideOnly(Side.CLIENT)
-	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
+	public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		double blockCenterX = pos.getX() + 0.5D;
-		double blockCenterY = pos.getY() + 0.2D;
+		double blockCenterY = pos.getY() + 2D;
 		double blockCenterZ = pos.getZ() + 0.5D;
-		double sideOffset = 0.4D;
-		double cornerOffset = 0.3D;
-		EnumParticleTypes particle = EnumParticleTypes.PORTAL;
-		// Sides
-		worldIn.spawnParticle(particle, blockCenterX + sideOffset, blockCenterY, blockCenterZ, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX - sideOffset, blockCenterY, blockCenterZ, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX, blockCenterY, blockCenterZ + sideOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX, blockCenterY, blockCenterZ - sideOffset, 0.01, 0.01, 0.01);
 		
-		// Corners
-		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX + cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ + cornerOffset, 0.01, 0.01, 0.01);
-		worldIn.spawnParticle(particle, blockCenterX - cornerOffset, blockCenterY, blockCenterZ - cornerOffset, 0.01, 0.01, 0.01);
+		float xSpeed = 0;
+		float ySpeed = -1.5f;
+		float zSpeed = 0;
+		
+		float radius = 0.5f;
+		
+		int i = rand.nextInt(10) + 20;
+		
+		for(int theta = 0; theta < 360; theta += i) {
+			double theta2 = (Math.PI / 2) - (theta * (Math.PI / 180));
+			double xOffset = radius * Math.sin(theta2);
+			double zOffset = radius * Math.cos(theta2);
+			
+			worldIn.spawnParticle(Particles.PORTAL, blockCenterX + xOffset, blockCenterY, blockCenterZ + zOffset, xSpeed, ySpeed, zSpeed);
+		}
 	}
 	
 	@Override
-	public void onEntityCollidedWithBlock(World worldIn, BlockPos pos, IBlockState state, Entity entityIn)
-	{
-		TileEntityAltarPortal portal = (TileEntityAltarPortal) worldIn.getTileEntity(pos);
-		portal.TeleportEntity(entityIn, worldIn);
+	public void onEntityWalk(World worldIn, BlockPos pos, Entity entityIn) {
+		if(!worldIn.isRemote()) {
+			entityIn.sendMessage(new TextComponentTranslation(BlockInteraction.ALTAR_TELEPORT));
+			
+			TeleportHelper.teleportEntity(entityIn, DimensionType.OVERWORLD, new BlockPos(0, 60, 0));
+		}
 	}
 }

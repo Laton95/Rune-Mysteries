@@ -1,136 +1,163 @@
 package com.laton95.runemysteries.init;
 
+import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.block.*;
-import com.laton95.runemysteries.block.RMModSlab.Half;
 import com.laton95.runemysteries.enums.EnumColour;
 import com.laton95.runemysteries.enums.EnumRuneType;
-import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.util.BlockRenderLayer;
+import net.minecraft.block.material.MaterialColor;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemWallOrFloor;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
-@Mod.EventBusSubscriber
-public class ModBlocks
-{
+@Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModBlocks {
 	
-	public static final BlockRuneAltar AIR_ALTAR = new BlockRuneAltar(EnumRuneType.AIR);
+	public static final BlockAltar AIR_ALTAR = new BlockAltar(EnumRuneType.AIR);
 	
-	public static final BlockRuneAltar ASTRAL_ALTAR = new BlockRuneAltar(EnumRuneType.ASTRAL);
+	public static final BlockAltar ASTRAL_ALTAR = new BlockAltar(EnumRuneType.ASTRAL);
 	
-	public static final BlockRuneAltar BLOOD_ALTAR = new BlockRuneAltar(EnumRuneType.BLOOD);
+	public static final BlockAltar BLOOD_ALTAR = new BlockAltar(EnumRuneType.BLOOD);
 	
-	public static final BlockRuneAltar BODY_ALTAR = new BlockRuneAltar(EnumRuneType.BODY);
+	public static final BlockAltar BODY_ALTAR = new BlockAltar(EnumRuneType.BODY);
 	
-	public static final BlockRuneAltar CHAOS_ALTAR = new BlockRuneAltar(EnumRuneType.CHAOS);
+	public static final BlockAltar CHAOS_ALTAR = new BlockAltar(EnumRuneType.CHAOS);
 	
-	public static final BlockRuneAltar COSMIC_ALTAR = new BlockRuneAltar(EnumRuneType.COSMIC);
+	public static final BlockAltar COSMIC_ALTAR = new BlockAltar(EnumRuneType.COSMIC);
 	
-	public static final BlockRuneAltar DEATH_ALTAR = new BlockRuneAltar(EnumRuneType.DEATH);
+	public static final BlockAltar DEATH_ALTAR = new BlockAltar(EnumRuneType.DEATH);
 	
-	public static final BlockRuneAltar EARTH_ALTAR = new BlockRuneAltar(EnumRuneType.EARTH);
+	public static final BlockAltar EARTH_ALTAR = new BlockAltar(EnumRuneType.EARTH);
 	
-	public static final BlockRuneAltar FIRE_ALTAR = new BlockRuneAltar(EnumRuneType.FIRE);
+	public static final BlockAltar FIRE_ALTAR = new BlockAltar(EnumRuneType.FIRE);
 	
-	public static final BlockRuneAltar LAW_ALTAR = new BlockRuneAltar(EnumRuneType.LAW);
+	public static final BlockAltar LAW_ALTAR = new BlockAltar(EnumRuneType.LAW);
 	
-	public static final BlockRuneAltar MIND_ALTAR = new BlockRuneAltar(EnumRuneType.MIND);
+	public static final BlockAltar MIND_ALTAR = new BlockAltar(EnumRuneType.MIND);
 	
-	public static final BlockRuneAltar NATURE_ALTAR = new BlockRuneAltar(EnumRuneType.NATURE);
+	public static final BlockAltar NATURE_ALTAR = new BlockAltar(EnumRuneType.NATURE);
 	
-	public static final BlockRuneAltar SOUL_ALTAR = new BlockRuneAltar(EnumRuneType.SOUL);
+	public static final BlockAltar SOUL_ALTAR = new BlockAltar(EnumRuneType.SOUL);
 	
-	public static final BlockRuneAltar WATER_ALTAR = new BlockRuneAltar(EnumRuneType.WATER);
+	public static final BlockAltar WATER_ALTAR = new BlockAltar(EnumRuneType.WATER);
 	
-	public static final BlockRuneAltar OURANIA_ALTAR = new BlockRuneAltar();
+	public static final BlockAltar OURANIA_ALTAR = new BlockAltar(EnumRuneType.OURANIA);
 	
-	public static final BlockRuneAltarEntrance AIR_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.AIR);
+	public static final BlockAltarEntrance AIR_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.AIR);
 	
-	public static final BlockRuneAltarEntrance BLOOD_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.BLOOD);
+	public static final BlockAltarEntrance BLOOD_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.BLOOD);
 	
-	public static final BlockRuneAltarEntrance BODY_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.BODY);
+	public static final BlockAltarEntrance BODY_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.BODY);
 	
-	public static final BlockRuneAltarEntrance CHAOS_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.CHAOS);
+	public static final BlockAltarEntrance CHAOS_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.CHAOS);
 	
-	public static final BlockRuneAltarEntrance COSMIC_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.COSMIC);
+	public static final BlockAltarEntrance COSMIC_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.COSMIC);
 	
-	public static final BlockRuneAltarEntrance DEATH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.DEATH);
+	public static final BlockAltarEntrance DEATH_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.DEATH);
 	
-	public static final BlockRuneAltarEntrance EARTH_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.EARTH);
+	public static final BlockAltarEntrance EARTH_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.EARTH);
 	
-	public static final BlockRuneAltarEntrance FIRE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.FIRE);
+	public static final BlockAltarEntrance FIRE_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.FIRE);
 	
-	public static final BlockRuneAltarEntrance LAW_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.LAW);
+	public static final BlockAltarEntrance LAW_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.LAW);
 	
-	public static final BlockRuneAltarEntrance MIND_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.MIND);
+	public static final BlockAltarEntrance MIND_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.MIND);
 	
-	public static final BlockRuneAltarEntrance NATURE_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.NATURE);
+	public static final BlockAltarEntrance NATURE_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.NATURE);
 	
-	public static final BlockRuneAltarEntrance SOUL_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.SOUL);
+	public static final BlockAltarEntrance SOUL_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.SOUL);
 	
-	public static final BlockRuneAltarEntrance WATER_ALTAR_ENTRANCE = new BlockRuneAltarEntrance(EnumRuneType.WATER);
+	public static final BlockAltarEntrance WATER_ALTAR_ENTRANCE = new BlockAltarEntrance(EnumRuneType.WATER);
 	
-	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal("altar_exit_portal");
+	public static final BlockAltarPortal ALTAR_PORTAL = new BlockAltarPortal();
 	
-	public static final BlockRuneEssence RUNE_ESSENCE = new BlockRuneEssence(false);
+	public static final BlockRuneEssence RUNE_ESSENCE = new BlockRuneEssence();
 	
-	public static final BlockRuneEssence FINITE_RUNE_ESSENCE = new BlockRuneEssence(true);
+	public static final BlockElementalObelisk AIR_OBELISK = new BlockElementalObelisk("air_obelisk", ModItems.AIR_SHARD, EnumRuneType.AIR);
 	
-	public static final RMModBlock RUIN_STONE = new RMModBlock("ruin_stone", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, true);
+	public static final BlockElementalObelisk EARTH_OBELISK = new BlockElementalObelisk("earth_obelisk", ModItems.EARTH_SHARD, EnumRuneType.EARTH);
 	
-	public static final BlockStationStone STATION_STONE = new BlockStationStone();
+	public static final BlockElementalObelisk FIRE_OBELISK = new BlockElementalObelisk("fire_obelisk", ModItems.FIRE_SHARD, EnumRuneType.FIRE);
 	
-	public static final RMModBlock TEMPLE_BRICKS = new RMModBlock("temple_bricks", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, true);
+	public static final BlockElementalObelisk WATER_OBELISK = new BlockElementalObelisk("water_obelisk", ModItems.WATER_SHARD, EnumRuneType.WATER);
 	
-	public static final RMModStairs TEMPLE_BRICK_STAIRS = new RMModStairs("temple_brick_stairs", "pickaxe", 1, true, TEMPLE_BRICKS.getDefaultState());
+	public static final BlockBlackMonolith BLACK_MONOLITH = new BlockBlackMonolith();
 	
-	public static final RMModSlab.Half TEMPLE_BRICK_SLAB = new RMModSlab.Half("temple_brick_slab", Material.ROCK, .5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlock RUIN_STONE = new ModBlock("ruin_stone");
 	
-	public static final RMModRail TEMPLE_BRICK_RAIL = new RMModRail("temple_brick_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlockStairs RUIN_STONE_STAIRS = new ModBlockStairs("ruin_stone_stairs", RUIN_STONE);
 	
-	public static final RMModBlock BLOOD_BRICKS = new RMModBlock("blood_bricks", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true, true);
+	public static final ModBlockSlab RUIN_STONE_SLAB = new ModBlockSlab("ruin_stone_slab", RUIN_STONE);
 	
-	public static final RMModStairs BLOOD_BRICK_STAIRS = new RMModStairs("blood_brick_stairs", "pickaxe", 1, true, BLOOD_BRICKS.getDefaultState());
+	public static final BlockRailing RUIN_STONE_RAILING = new BlockRailing("ruin_stone_railing", RUIN_STONE);
 	
-	public static final RMModSlab.Half BLOOD_BRICK_SLAB = new RMModSlab.Half("blood_brick_slab", Material.ROCK, .5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlock TEMPLE_BRICKS = new ModBlock("temple_bricks");
 	
-	public static final RMModRail BLOOD_BRICK_RAIL = new RMModRail("blood_brick_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlockStairs TEMPLE_BRICK_STAIRS = new ModBlockStairs("temple_brick_stairs", TEMPLE_BRICKS);
 	
-	public static final RMRandomRotationBlock FLESH_BLOCK = new RMRandomRotationBlock("flesh_block", Material.CAKE, 1.5f, 10.0f, "pickaxe", 1, true, true);
+	public static final ModBlockSlab TEMPLE_BRICK_SLAB = new ModBlockSlab("temple_brick_slab", TEMPLE_BRICKS);
 	
-	public static final RMModRail STONE_BRICK_RAIL = new RMModRail("stone_brick_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing TEMPLE_BRICK_RAILING = new BlockRailing("temple_brick_railing", TEMPLE_BRICKS);
 	
-	public static final RMModRail NETHER_BRICK_RAIL = new RMModRail("nether_brick_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlock BLOOD_BRICKS = new ModBlock("blood_bricks");
 	
-	public static final RMModRail PRISMARINE_RAIL = new RMModRail("dark_prismarine_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlockStairs BLOOD_BRICK_STAIRS = new ModBlockStairs("blood_brick_stairs", BLOOD_BRICKS);
 	
-	public static final RMModRail PURPUR_RAIL = new RMModRail("purpur_block_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlockSlab BLOOD_BRICK_SLAB = new ModBlockSlab("blood_brick_slab", BLOOD_BRICKS);
 	
-	public static final RMModRail QUARTZ_RAIL = new RMModRail("quartz_block_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing BLOOD_BRICK_RAILING = new BlockRailing("blood_brick_railing", BLOOD_BRICKS);
 	
-	public static final RMModRail SANDSTONE_RAIL = new RMModRail("smooth_sandstone_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final ModBlock FLESH_BLOCK = new ModBlock("flesh_block", Block.Properties.create(Material.CLAY).slipperiness(0.8F).sound(SoundType.SLIME));
 	
-	public static final RMModRail ANDESITE_RAIL = new RMModRail("smooth_andesite_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing STONE_RAILING = new BlockRailing("stone_railing", Blocks.STONE);
 	
-	public static final RMModRail ICE_RAIL = (RMModRail) new RMModRail("ice_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true).setRenderLayer(BlockRenderLayer.TRANSLUCENT);
+	public static final BlockRailing POLISHED_GRANITE_RAILING = new BlockRailing("polished_granite_railing", Blocks.POLISHED_GRANITE);
 	
-	public static final RMModRail PACKED_ICE_RAIL = new RMModRail("packed_ice_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing POLISHED_DIORITE_RAILING = new BlockRailing("polished_diorite_railing", Blocks.POLISHED_DIORITE);
 	
-	public static final RMModRail RED_SANDSTONE_RAIL = new RMModRail("red_sandstone_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing POLISHED_ANDESITE_RAILING = new BlockRailing("polished_andesite_railing", Blocks.POLISHED_ANDESITE);
 	
-	public static final RMModRail OBSIDIAN_RAIL = new RMModRail("obsidian_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing QUARTZ_RAILING = new BlockRailing("quartz_railing", Blocks.QUARTZ_BLOCK);
 	
-	public static final RMModRail GRANITE_RAIL = new RMModRail("smooth_granite_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing RED_SANDSTONE_RAILING = new BlockRailing("red_sandstone_railing", Blocks.RED_SANDSTONE);
 	
-	public static final RMModRail DIORITE_RAIL = new RMModRail("smooth_diorite_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing SANDSTONE_RAILING = new BlockRailing("sandstone_railing", Blocks.SANDSTONE);
 	
-	public static final RMModRail BONE_RAIL = new RMModRail("bone_block_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing SMOOTH_STONE_RAILING = new BlockRailing("smooth_stone_railing", Blocks.SMOOTH_STONE);
 	
-	public static final RMModRail END_BRICK_RAIL = new RMModRail("end_brick_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing BRICK_RAILING = new BlockRailing("brick_railing", Blocks.BRICKS);
 	
-	public static final RMModRail BRICK_RAIL = new RMModRail("brick_block_rail", Material.ROCK, 1.5f, 10.0f, "pickaxe", 1, true);
+	public static final BlockRailing OBSIDIAN_RAILING = new BlockRailing("obsidian_railing", Blocks.OBSIDIAN);
+	
+	public static final BlockRailing PURPUR_RAILING = new BlockRailing("purpur_railing", Blocks.PURPUR_BLOCK);
+	
+	public static final BlockRailing ICE_RAILING = new BlockRailing("ice_railing", Blocks.ICE, true);
+	
+	public static final BlockRailing STONE_BRICK_RAILING = new BlockRailing("stone_brick_railing", Blocks.STONE_BRICKS);
+	
+	public static final BlockRailing NETHER_BRICK_RAILING = new BlockRailing("nether_brick_railing", Blocks.NETHER_BRICKS);
+	
+	public static final BlockRailing END_STONE_BRICK_RAILING = new BlockRailing("end_stone_brick_railing", Blocks.END_STONE_BRICKS);
+	
+	public static final BlockRailing PACKED_ICE_RAILING = new BlockRailing("packed_ice_railing", Blocks.PACKED_ICE);
+	
+	public static final BlockRailing PRISMARINE_RAILING = new BlockRailing("prismarine_railing", Blocks.PRISMARINE);
+	
+	public static final BlockRailing PRISMARINE_BRICK_RAILING = new BlockRailing("prismarine_brick_railing", Blocks.PRISMARINE_BRICKS);
+	
+	public static final BlockRailing DARK_PRISMARINE_RAILING = new BlockRailing("dark_prismarine_railing", Blocks.DARK_PRISMARINE);
+	
+	public static final BlockRailing RED_NETHER_BRICK_RAILING = new BlockRailing("red_nether_brick_railing", Blocks.RED_NETHER_BRICKS);
+	
+	public static final BlockRailing BONE_RAILING = new BlockRailing("bone_railing", Blocks.BONE_BLOCK);
+	
+	public static final BlockRailing BLUE_ICE_RAILING = new BlockRailing("blue_ice_railing", Blocks.BLUE_ICE);
 	
 	public static final BlockParticleLight WHITE_LIGHT = new BlockParticleLight(EnumColour.WHITE);
 	
@@ -148,7 +175,7 @@ public class ModBlocks
 	
 	public static final BlockParticleLight GRAY_LIGHT = new BlockParticleLight(EnumColour.GRAY);
 	
-	public static final BlockParticleLight SILVER_LIGHT = new BlockParticleLight(EnumColour.SILVER);
+	public static final BlockParticleLight LIGHT_GRAY_LIGHT = new BlockParticleLight(EnumColour.LIGHT_GRAY);
 	
 	public static final BlockParticleLight CYAN_LIGHT = new BlockParticleLight(EnumColour.CYAN);
 	
@@ -164,136 +191,118 @@ public class ModBlocks
 	
 	public static final BlockParticleLight BLACK_LIGHT = new BlockParticleLight(EnumColour.BLACK);
 	
-	public static final BlockBlackMonolith BLACK_MONOLITH = new BlockBlackMonolith();
+	public static final BlockUnderwaterTorch UNDERWATER_TORCH = new BlockUnderwaterTorch();
 	
-	public static final BlockElderStone ELDER_STONE = new BlockElderStone();
+	public static final BlockUnderwaterTorchWall UNDERWATER_WALL_TORCH = new BlockUnderwaterTorchWall();
 	
-	public static final BlockElementalObelisk AIR_OBELISK = new BlockElementalObelisk("air_obelisk", ModItems.AIR_OBELISK_SHARD, ModItems.AIR_ORB);
+	public static final BlockElderCatalyst ELDER_CATALYST = new BlockElderCatalyst();
 	
-	public static final BlockElementalObelisk EARTH_OBELISK = new BlockElementalObelisk("earth_obelisk", ModItems.EARTH_OBELISK_SHARD, ModItems.EARTH_ORB);
-	
-	public static final BlockElementalObelisk FIRE_OBELISK = new BlockElementalObelisk("fire_obelisk", ModItems.FIRE_OBELISK_SHARD, ModItems.FIRE_ORB);
-	
-	public static final BlockElementalObelisk WATER_OBELISK = new BlockElementalObelisk("water_obelisk", ModItems.WATER_OBELISK_SHARD, ModItems.WATER_ORB);
+	private static Block[] blocks = {
+			AIR_ALTAR,
+			ASTRAL_ALTAR,
+			BLOOD_ALTAR,
+			BODY_ALTAR,
+			CHAOS_ALTAR,
+			COSMIC_ALTAR,
+			DEATH_ALTAR,
+			EARTH_ALTAR,
+			FIRE_ALTAR,
+			LAW_ALTAR,
+			MIND_ALTAR,
+			NATURE_ALTAR,
+			SOUL_ALTAR,
+			WATER_ALTAR,
+			OURANIA_ALTAR,
+			AIR_ALTAR_ENTRANCE,
+			BLOOD_ALTAR_ENTRANCE,
+			BODY_ALTAR_ENTRANCE,
+			CHAOS_ALTAR_ENTRANCE,
+			COSMIC_ALTAR_ENTRANCE,
+			DEATH_ALTAR_ENTRANCE,
+			EARTH_ALTAR_ENTRANCE,
+			FIRE_ALTAR_ENTRANCE,
+			LAW_ALTAR_ENTRANCE,
+			MIND_ALTAR_ENTRANCE,
+			NATURE_ALTAR_ENTRANCE,
+			SOUL_ALTAR_ENTRANCE,
+			WATER_ALTAR_ENTRANCE,
+			ALTAR_PORTAL,
+			RUNE_ESSENCE,
+			AIR_OBELISK,
+			EARTH_OBELISK,
+			FIRE_OBELISK,
+			WATER_OBELISK,
+			BLACK_MONOLITH,
+			RUIN_STONE,
+			RUIN_STONE_STAIRS,
+			RUIN_STONE_SLAB,
+			RUIN_STONE_RAILING,
+			TEMPLE_BRICKS,
+			TEMPLE_BRICK_STAIRS,
+			TEMPLE_BRICK_SLAB,
+			TEMPLE_BRICK_RAILING,
+			BLOOD_BRICKS,
+			BLOOD_BRICK_STAIRS,
+			BLOOD_BRICK_SLAB,
+			BLOOD_BRICK_RAILING,
+			FLESH_BLOCK,
+			STONE_RAILING,
+			POLISHED_GRANITE_RAILING,
+			POLISHED_DIORITE_RAILING,
+			POLISHED_ANDESITE_RAILING,
+			QUARTZ_RAILING,
+			RED_SANDSTONE_RAILING,
+			SANDSTONE_RAILING,
+			SMOOTH_STONE_RAILING,
+			BRICK_RAILING,
+			OBSIDIAN_RAILING,
+			PURPUR_RAILING,
+			ICE_RAILING,
+			STONE_BRICK_RAILING,
+			NETHER_BRICK_RAILING,
+			END_STONE_BRICK_RAILING,
+			PACKED_ICE_RAILING,
+			PRISMARINE_RAILING,
+			PRISMARINE_BRICK_RAILING,
+			DARK_PRISMARINE_RAILING,
+			RED_NETHER_BRICK_RAILING,
+			BONE_RAILING,
+			BLUE_ICE_RAILING,
+			WHITE_LIGHT,
+			ORANGE_LIGHT,
+			MAGENTA_LIGHT,
+			LIGHT_BLUE_LIGHT,
+			YELLOW_LIGHT,
+			LIME_LIGHT,
+			PINK_LIGHT,
+			GRAY_LIGHT,
+			LIGHT_GRAY_LIGHT,
+			CYAN_LIGHT,
+			PURPLE_LIGHT,
+			BLUE_LIGHT,
+			BROWN_LIGHT,
+			GREEN_LIGHT,
+			RED_LIGHT,
+			BLACK_LIGHT,
+			UNDERWATER_TORCH,
+			UNDERWATER_WALL_TORCH,
+			ELDER_CATALYST
+	};
 	
 	@SubscribeEvent
-	public static void registerBlocks(RegistryEvent.Register<Block> event)
-	{
-		LogHelper.info("Registering blocks");
+	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
+		ModLog.info("Registering blocks");
 		
-		Block[] blocks = {
-				AIR_ALTAR,
-				ASTRAL_ALTAR,
-				BLOOD_ALTAR,
-				BODY_ALTAR,
-				CHAOS_ALTAR,
-				COSMIC_ALTAR,
-				DEATH_ALTAR,
-				EARTH_ALTAR,
-				FIRE_ALTAR,
-				LAW_ALTAR,
-				MIND_ALTAR,
-				NATURE_ALTAR,
-				SOUL_ALTAR,
-				WATER_ALTAR,
-				OURANIA_ALTAR,
-				
-				AIR_ALTAR_ENTRANCE,
-				BLOOD_ALTAR_ENTRANCE,
-				BODY_ALTAR_ENTRANCE,
-				CHAOS_ALTAR_ENTRANCE,
-				COSMIC_ALTAR_ENTRANCE,
-				DEATH_ALTAR_ENTRANCE,
-				EARTH_ALTAR_ENTRANCE,
-				FIRE_ALTAR_ENTRANCE,
-				LAW_ALTAR_ENTRANCE,
-				MIND_ALTAR_ENTRANCE,
-				NATURE_ALTAR_ENTRANCE,
-				SOUL_ALTAR_ENTRANCE,
-				WATER_ALTAR_ENTRANCE,
-				
-				ALTAR_PORTAL,
-				
-				RUNE_ESSENCE,
-				FINITE_RUNE_ESSENCE,
-				
-				RUIN_STONE,
-				STATION_STONE,
-				
-				TEMPLE_BRICKS,
-				TEMPLE_BRICK_STAIRS,
-				TEMPLE_BRICK_SLAB,
-				TEMPLE_BRICK_RAIL,
-				
-				BLOOD_BRICKS,
-				BLOOD_BRICK_STAIRS,
-				BLOOD_BRICK_SLAB,
-				BLOOD_BRICK_RAIL,
-				
-				FLESH_BLOCK,
-				
-				STONE_BRICK_RAIL,
-				NETHER_BRICK_RAIL,
-				PRISMARINE_RAIL,
-				PURPUR_RAIL,
-				QUARTZ_RAIL,
-				SANDSTONE_RAIL,
-				ANDESITE_RAIL,
-				ICE_RAIL,
-				PACKED_ICE_RAIL,
-				RED_SANDSTONE_RAIL,
-				OBSIDIAN_RAIL,
-				GRANITE_RAIL,
-				DIORITE_RAIL,
-				BONE_RAIL,
-				END_BRICK_RAIL,
-				BRICK_RAIL,
-				
-				WHITE_LIGHT,
-				ORANGE_LIGHT,
-				MAGENTA_LIGHT,
-				LIGHT_BLUE_LIGHT,
-				YELLOW_LIGHT,
-				LIME_LIGHT,
-				PINK_LIGHT,
-				GRAY_LIGHT,
-				SILVER_LIGHT,
-				CYAN_LIGHT,
-				PURPLE_LIGHT,
-				BLUE_LIGHT,
-				BROWN_LIGHT,
-				GREEN_LIGHT,
-				RED_LIGHT,
-				BLACK_LIGHT,
-				
-				BLACK_MONOLITH,
-				ELDER_STONE,
-				
-				AIR_OBELISK,
-				EARTH_OBELISK,
-				FIRE_OBELISK,
-				WATER_OBELISK
-		};
-		
-		for(Block block : blocks)
-		{
-			if(block instanceof RMModSlab)
-			{
-				RMModSlab.Half slab = (Half) block;
-				RMModSlab.Double doubleSlab = slab.doubleSlab;
-				ModItems.addBlock(block);
-				event.getRegistry().register(slab);
-				event.getRegistry().register(doubleSlab);
+		for(Block block : blocks) {
+			event.getRegistry().register(block);
+			
+			if(block instanceof ModBlock && !((ModBlock) block).hasItem) {
 			}
-			else if(block instanceof RMModBlock && !((RMModBlock) block).hasItem)
-			{
-				event.getRegistry().register(block);
-			}
-			else
-			{
+			else {
 				ModItems.addBlock(block);
-				event.getRegistry().register(block);
 			}
 		}
+		
+		ModItems.addExtraItemBlock(new ItemWallOrFloor(ModBlocks.UNDERWATER_TORCH, ModBlocks.UNDERWATER_WALL_TORCH, (new Item.Properties()).group(RuneMysteries.RUNE_GROUP)));
 	}
 }

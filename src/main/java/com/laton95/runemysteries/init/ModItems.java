@@ -1,30 +1,27 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.block.RMModSlab;
-import com.laton95.runemysteries.block.RMRandomRotationBlock;
-import com.laton95.runemysteries.config.ModConfig;
+import com.laton95.runemysteries.block.ModBlock;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.item.*;
-import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
-import net.minecraft.client.renderer.block.model.ModelBakery;
-import net.minecraft.client.renderer.block.model.ModelResourceLocation;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
+import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemSlab;
-import net.minecraftforge.client.model.ModelLoader;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemWallOrFloor;
 import net.minecraftforge.event.RegistryEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
 import java.util.ArrayList;
 
-@Mod.EventBusSubscriber
-public class ModItems
-{
+@Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModItems {
 	
-	public static final RMModItem RUNE_ESSENCE = new RMModItem("rune_essence", true);
+	public static final ModItem RUNE_ESSENCE = new ModItem("rune_essence");
 	
 	public static final ItemRune AIR_RUNE = new ItemRune(EnumRuneType.AIR);
 	
@@ -54,7 +51,7 @@ public class ModItems
 	
 	public static final ItemRune WATER_RUNE = new ItemRune(EnumRuneType.WATER);
 	
-	public static final RMModItem BLANK_TALISMAN = new RMModItem("blank_talisman", true, 1);
+	public static final ModItem BLANK_TALISMAN = new ModItem("blank_talisman", new Properties().maxStackSize(1));
 	
 	public static final ItemTalisman AIR_TALISMAN = new ItemTalisman(EnumRuneType.AIR);
 	
@@ -84,179 +81,141 @@ public class ModItems
 	
 	public static final ItemTalisman WATER_TALISMAN = new ItemTalisman(EnumRuneType.WATER);
 	
+	public static final ModItem GLASS_ORB = new ModItem("glass_orb", new Properties().maxStackSize(1));
+	
+	public static final ModItem AIR_ORB = new ModItem("air_orb", new Properties().maxStackSize(1));
+	
+	public static final ModItem EARTH_ORB = new ModItem("earth_orb", new Properties().maxStackSize(1));
+	
+	public static final ModItem FIRE_ORB = new ModItem("fire_orb", new Properties().maxStackSize(1));
+	
+	public static final ModItem WATER_ORB = new ModItem("water_orb", new Properties().maxStackSize(1));
+	
+	public static final ModItem BATTLESTAFF = new ModItem("battlestaff", new Properties().maxStackSize(1));
+	
+	public static final ItemBattlestaff AIR_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.AIR);
+	
+	public static final ItemBattlestaff EARTH_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.EARTH);
+	
+	public static final ItemBattlestaff FIRE_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.FIRE);
+	
+	public static final ItemBattlestaff WATER_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.WATER);
+	
+	public static final ModItem AIR_SHARD = new ModItem("air_shard");
+	
+	public static final ModItem EARTH_SHARD = new ModItem("earth_shard");
+	
+	public static final ModItem FIRE_SHARD = new ModItem("fire_shard");
+	
+	public static final ModItem WATER_SHARD = new ModItem("water_shard");
+	
+	public static final ItemDebug DEBUG = new ItemDebug();
+	
 	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
 	
 	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
 	
-	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", ModConfig.DIMENSIONS.essenceMineDimID);
+	public static final ModItem EX_PARROT = new ModItem("ex_parrot");
 	
-	public static final RMModFood BANANA = new RMModFood("banana", true, 4, 4);
+	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", 1);
 	
-	public static final RMModItem EX_PARROT = new RMModItem("ex_parrot", true);
+	public static final ModFood BANANA = new ModFood("banana", 4, 4, false);
 	
-	public static final RMModItem AIR_OBELISK_SHARD = new RMModItem("air_obelisk_shard", true);
-	
-	public static final RMModItem EARTH_OBELISK_SHARD = new RMModItem("earth_obelisk_shard", true);
-	
-	public static final RMModItem FIRE_OBELISK_SHARD = new RMModItem("fire_obelisk_shard", true);
-	
-	public static final RMModItem WATER_OBELISK_SHARD = new RMModItem("water_obelisk_shard", true);
-	
-	public static final RMModItem GLASS_ORB = new RMModItem("glass_orb", true, 1);
-	
-	public static final RMModItem AIR_ORB = new RMModItem("air_orb", true, 1);
-	
-	public static final RMModItem EARTH_ORB = new RMModItem("earth_orb", true, 1);
-	
-	public static final RMModItem FIRE_ORB = new RMModItem("fire_orb", true, 1);
-	
-	public static final RMModItem WATER_ORB = new RMModItem("water_orb", true, 1);
-	
-	public static final RMModItem BATTLESTAFF = new RMModItem("battlestaff", true, 1);
-	
-	public static final ItemChargedBattlestaff AIR_BATTLESTAFF = new ItemChargedBattlestaff("air_battlestaff", true, EnumRuneType.AIR);
-	
-	public static final ItemChargedBattlestaff EARTH_BATTLESTAFF = new ItemChargedBattlestaff("earth_battlestaff", true, EnumRuneType.EARTH);
-	
-	public static final ItemChargedBattlestaff FIRE_BATTLESTAFF = new ItemChargedBattlestaff("fire_battlestaff", true, EnumRuneType.FIRE);
-	
-	public static final ItemChargedBattlestaff WATER_BATTLESTAFF = new ItemChargedBattlestaff("water_battlestaff", true, EnumRuneType.WATER);
-	
-	public static final ItemDebug DEBUG = new ItemDebug();
-	
-	private static Item[] items = new Item[]
-			{
-					RUNE_ESSENCE,
-					AIR_RUNE,
-					ASTRAL_RUNE,
-					BLOOD_RUNE,
-					BODY_RUNE,
-					CHAOS_RUNE,
-					COSMIC_RUNE,
-					DEATH_RUNE,
-					EARTH_RUNE,
-					FIRE_RUNE,
-					LAW_RUNE,
-					MIND_RUNE,
-					NATURE_RUNE,
-					SOUL_RUNE,
-					WATER_RUNE,
-					
-					BLANK_TALISMAN,
-					AIR_TALISMAN,
-					ASTRAL_TALISMAN,
-					BLOOD_TALISMAN,
-					BODY_TALISMAN,
-					CHAOS_TALISMAN,
-					COSMIC_TALISMAN,
-					DEATH_TALISMAN,
-					EARTH_TALISMAN,
-					FIRE_TALISMAN,
-					LAW_TALISMAN,
-					MIND_TALISMAN,
-					NATURE_TALISMAN,
-					SOUL_TALISMAN,
-					WATER_TALISMAN,
-					
-					
-					SPELLBOOK,
-					RUNE_BAG,
-					MINE_SCROLL,
-					BANANA,
-					EX_PARROT,
-					
-					AIR_OBELISK_SHARD,
-					EARTH_OBELISK_SHARD,
-					FIRE_OBELISK_SHARD,
-					WATER_OBELISK_SHARD,
-					
-					GLASS_ORB,
-					AIR_ORB,
-					EARTH_ORB,
-					FIRE_ORB,
-					WATER_ORB,
-					
-					BATTLESTAFF,
-					AIR_BATTLESTAFF,
-					EARTH_BATTLESTAFF,
-					FIRE_BATTLESTAFF,
-					WATER_BATTLESTAFF,
-					
-					DEBUG
-			};
+	private static Item[] items = {
+			RUNE_ESSENCE,
+			AIR_RUNE,
+			ASTRAL_RUNE,
+			BLOOD_RUNE,
+			BODY_RUNE,
+			CHAOS_RUNE,
+			COSMIC_RUNE,
+			DEATH_RUNE,
+			EARTH_RUNE,
+			FIRE_RUNE,
+			LAW_RUNE,
+			MIND_RUNE,
+			NATURE_RUNE,
+			SOUL_RUNE,
+			WATER_RUNE,
+			BLANK_TALISMAN,
+			AIR_TALISMAN,
+			ASTRAL_TALISMAN,
+			BLOOD_TALISMAN,
+			BODY_TALISMAN,
+			CHAOS_TALISMAN,
+			COSMIC_TALISMAN,
+			DEATH_TALISMAN,
+			EARTH_TALISMAN,
+			FIRE_TALISMAN,
+			LAW_TALISMAN,
+			MIND_TALISMAN,
+			NATURE_TALISMAN,
+			SOUL_TALISMAN,
+			WATER_TALISMAN,
+			GLASS_ORB,
+			AIR_ORB,
+			EARTH_ORB,
+			FIRE_ORB,
+			WATER_ORB,
+			BATTLESTAFF,
+			AIR_BATTLESTAFF,
+			EARTH_BATTLESTAFF,
+			FIRE_BATTLESTAFF,
+			WATER_BATTLESTAFF,
+			AIR_SHARD,
+			EARTH_SHARD,
+			FIRE_SHARD,
+			WATER_SHARD,
+			DEBUG,
+			SPELLBOOK,
+			RUNE_BAG,
+			EX_PARROT,
+			MINE_SCROLL,
+			BANANA
+	};
 	
 	private static ArrayList<Block> blocks = new ArrayList<>();
 	
-	private static ArrayList<ItemBlock> itemBlocks = new ArrayList<>();
+	private static ArrayList<ItemBlock> extraItems = new ArrayList<>();
 	
 	@SubscribeEvent
-	public static void registerItems(RegistryEvent.Register<Item> event)
-	{
-		LogHelper.info("Registering items");
-		for(Item item : items)
-		{
+	public static void registerItems(final RegistryEvent.Register<Item> event) {
+		ModLog.info("Registering items");
+		
+		
+		
+		for(Block block : blocks) {
+			Properties builder = new Properties();
+			
+			if(block instanceof ModBlock) {
+				if(((ModBlock) block).hasItem) {
+					builder.group(RuneMysteries.RUNE_GROUP);
+				}
+			}
+			else {
+				builder.group(RuneMysteries.RUNE_GROUP);
+			}
+			
+			ItemBlock itemBlock = new ItemBlock(block, builder);
+			itemBlock.setRegistryName(block.getRegistryName());
+			event.getRegistry().register(itemBlock);
+		}
+		
+		for(ItemBlock item : extraItems) {
+			item.setRegistryName(item.getBlock().getRegistryName());
 			event.getRegistry().register(item);
 		}
 		
-		for(Block block : blocks)
-		{
-			if(block instanceof RMModSlab)
-			{
-				RMModSlab.Half slab = (RMModSlab.Half) block;
-				RMModSlab.Double doubleSlab = slab.doubleSlab;
-				ItemBlock itemBlock = new ItemSlab(slab, slab, doubleSlab);
-				itemBlock.setRegistryName(slab.getRegistryName());
-				slab.setDroppedItem(itemBlock);
-				doubleSlab.setDroppedItem(itemBlock);
-				event.getRegistry().register(itemBlock);
-				itemBlocks.add(itemBlock);
-			}
-			else if(block instanceof RMRandomRotationBlock)
-			{
-				ItemBlock itemBlock = new ItemBlock(block);
-				itemBlock.setRegistryName(block.getRegistryName());
-				event.getRegistry().register(itemBlock);
-				itemBlocks.add(itemBlock);
-			}
-			else
-			{
-				ItemBlock itemBlock = new ItemBlock(block);
-				itemBlock.setRegistryName(block.getRegistryName());
-				event.getRegistry().register(itemBlock);
-				itemBlocks.add(itemBlock);
-			}
-		}
-		
-		RuneMysteries.proxy.registerRenders();
-	}
-	
-	public static void registerRenders()
-	{
-		for(Item item : items)
-		{
-			registerItemRender(item);
-		}
-		
-		for(ItemBlock itemBlock : itemBlocks)
-		{
-			registerBlockRender(itemBlock, "normal");
+		for(Item item : items) {
+			event.getRegistry().register(item);
 		}
 	}
 	
-	private static void registerItemRender(Item item)
-	{
-		final ModelResourceLocation fullModelLocation = new ModelResourceLocation(item.getRegistryName(), "inventory");
-		ModelBakery.registerItemVariants(item, fullModelLocation);
-		ModelLoader.setCustomMeshDefinition(item, stack -> fullModelLocation);
-	}
-	
-	private static void registerBlockRender(ItemBlock block, String variant)
-	{
-		ModelLoader.setCustomModelResourceLocation(block, 0, new ModelResourceLocation(block.getRegistryName(), variant));
-	}
-	
-	public static void addBlock(Block block)
-	{
+	public static void addBlock(Block block) {
 		blocks.add(block);
+	}
+	
+	public static void addExtraItemBlock(ItemBlock item) {
+		extraItems.add(item);
 	}
 }

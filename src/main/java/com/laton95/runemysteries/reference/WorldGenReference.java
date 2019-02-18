@@ -7,8 +7,7 @@ import java.util.List;
 import static net.minecraftforge.common.BiomeDictionary.Type;
 import static net.minecraftforge.common.BiomeDictionary.Type.*;
 
-public class WorldGenReference
-{
+public class WorldGenReference {
 	
 	public static final List<Type> AIR_ALTAR_BIOMES = ImmutableList.of(MESA, FOREST, PLAINS);
 	
@@ -69,8 +68,4 @@ public class WorldGenReference
 	public static final List<Type> OURANIA_ALTAR_BIOMES = ImmutableList.of();
 	
 	public static final List<Type> OURANIA_ALTAR_BIOMES_AVOID = ImmutableList.of(WATER);
-	
-	public static final List<Type> AIR_OBELISK_BIOMES = ImmutableList.of(MOUNTAIN, HILLS, MESA);
-	
-	public static final List<Type> WATER_OBELISK_BIOMES = ImmutableList.of(SWAMP, BEACH);
 }

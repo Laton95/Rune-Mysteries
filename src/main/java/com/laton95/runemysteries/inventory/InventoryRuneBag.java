@@ -1,94 +1,72 @@
 package com.laton95.runemysteries.inventory;
 
+import com.laton95.runemysteries.client.gui.inventory.GuiRuneBag;
 import com.laton95.runemysteries.item.ItemRune;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.NonNullList;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.TextComponentString;
-import net.minecraftforge.items.CapabilityItemHandler;
-import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraft.world.IInteractionObject;
+import net.minecraftforge.items.ItemStackHandler;
 
-public class InventoryRuneBag implements IItemHandlerModifiable
-{
-	
-	private final ItemStack bagItemStack;
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
-	private final IItemHandlerModifiable inventory;
+public class InventoryRuneBag extends ItemStackHandler implements IInteractionObject {
 	
-	public InventoryRuneBag(ItemStack stack)
-	{
-		bagItemStack = stack;
-		inventory = (IItemHandlerModifiable) bagItemStack.getCapability(CapabilityItemHandler.ITEM_HANDLER_CAPABILITY, null);
+	public static final int SIZE = 14;
+	
+	private final ItemStack bagStack;
+	
+	public InventoryRuneBag(ItemStack bagStack) {
+		super(SIZE);
+		this.bagStack = bagStack;
 	}
 	
-	public int getRuneCount(ItemRune rune, int metadata)
-	{
-		int count = 0;
-		for(int i = 0; i < getSlots(); i++)
-		{
-			ItemStack stack = getStackInSlot(i);
-			if(stack.getItem().equals(rune) && stack.getItemDamage() == metadata)
-			{
-				count += stack.getCount();
-			}
+	@Nonnull
+	@Override
+	public ItemStack insertItem(int slot, @Nonnull ItemStack stack, boolean simulate) {
+		if(!stack.isEmpty() && stack.getItem() instanceof ItemRune) {
+			return super.insertItem(slot, stack, simulate);
 		}
-		return count;
-	}
-	
-	@Override
-	public int getSlots()
-	{
-		return inventory.getSlots();
-	}
-	
-	@Override
-	public ItemStack getStackInSlot(int slot)
-	{
-		return inventory.getStackInSlot(slot);
-	}
-	
-	@Override
-	public ItemStack insertItem(int slot, ItemStack stack, boolean simulate)
-	{
-		return inventory.insertItem(slot, stack, simulate);
-	}
-	
-	@Override
-	public ItemStack extractItem(int slot, int amount, boolean simulate)
-	{
-		return inventory.extractItem(slot, amount, simulate);
-	}
-	
-	@Override
-	public int getSlotLimit(int slot)
-	{
-		return inventory.getSlotLimit(slot);
-	}
-	
-	public ITextComponent getDisplayName()
-	{
-		return new TextComponentString(bagItemStack.getDisplayName());
-	}
-	
-	public int removeRune(ItemRune rune, int count, int metadata)
-	{
-		int i = 0;
-		while(count > 0 && i < getSlots())
-		{
-			ItemStack itemstack = getStackInSlot(i);
-			if(itemstack.getItem().equals(rune) && itemstack.getItemDamage() == metadata)
-			{
-				int temp = count;
-				count -= itemstack.getCount();
-				itemstack.shrink(temp);
-			}
-			i++;
+		else {
+			return stack;
 		}
-		return count;
+	}
+	
+	public NonNullList<ItemStack> getStacks() {
+		return stacks;
+	}
+	
+	public void setStacks(NonNullList<ItemStack> stacks) {
+		this.stacks = stacks;
 	}
 	
 	@Override
-	public void setStackInSlot(int slot, ItemStack stack)
-	{
-		inventory.setStackInSlot(slot, stack);
+	public ITextComponent getName() {
+		return bagStack.getItem().getName();
+	}
+	
+	@Override
+	public boolean hasCustomName() {
+		return bagStack.hasDisplayName();
+	}
+	
+	@Nullable
+	@Override
+	public ITextComponent getCustomName() {
+		return bagStack.getDisplayName();
+	}
+	
+	@Override
+	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
+		return new ContainerRuneBag(playerInventory, this);
+	}
+	
+	@Override
+	public String getGuiID() {
+		return GuiRuneBag.RUNE_BAG_GUI_ID.toString();
 	}
 }

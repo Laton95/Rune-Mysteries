@@ -1,88 +1,62 @@
 package com.laton95.runemysteries;
 
-import com.laton95.runemysteries.capabilities.CapabilityHandler;
-import com.laton95.runemysteries.init.*;
-import com.laton95.runemysteries.network.NetworkHandler;
-import com.laton95.runemysteries.proxy.IProxy;
-import com.laton95.runemysteries.reference.MiscReference;
-import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.util.LogHelper;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.fluids.FluidRegistry;
+import com.laton95.runemysteries.config.Config;
+import com.laton95.runemysteries.init.ModItems;
+import com.laton95.runemysteries.item.crafting.AltarRecipe;
+import com.laton95.runemysteries.item.crafting.ObeliskRecipe;
+import com.laton95.runemysteries.network.RunemysteriesPacketHandler;
+import com.laton95.runemysteries.proxy.ClientProxy;
+import com.laton95.runemysteries.proxy.ServerProxy;
+import com.laton95.runemysteries.util.ModLog;
+import com.laton95.runemysteries.world.RuinTracker;
+import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.crafting.RecipeSerializers;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.DistExecutor;
+import net.minecraftforge.fml.ExtensionPoint;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.fml.common.Mod.Instance;
-import net.minecraftforge.fml.common.SidedProxy;
-import net.minecraftforge.fml.common.event.*;
-import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.config.ModConfig;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 
-import java.time.LocalDate;
-import java.time.Month;
+import static com.laton95.runemysteries.RuneMysteries.MOD_ID;
 
-@Mod(modid = ModReference.MOD_ID, name = ModReference.MOD_NAME, version = ModReference.VERSION)
-public class RuneMysteries
-{
+@Mod(MOD_ID)
+@Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class RuneMysteries {
 	
-	@Instance(ModReference.MOD_ID)
-	public static RuneMysteries instance;
+	public static final String MOD_ID = "runemysteries";
 	
-	@SidedProxy(clientSide = ModReference.CLIENT_PROXY_CLASS, serverSide = ModReference.SERVER_PROXY_CLASS)
-	public static IProxy proxy;
+	public static ServerProxy proxy = DistExecutor.runForDist(()->()->new ClientProxy(), () -> ServerProxy::new);
 	
-	static
-	{
-		FluidRegistry.enableUniversalBucket();
-	}
-	
-	@Mod.EventHandler
-	public void preInit(FMLPreInitializationEvent event)
-	{
-		proxy.preInit(event);
-		NetworkHandler.init();
-		NetworkRegistry.INSTANCE.registerGuiHandler(instance, new GuiHandler());
-		ModCapabilities.RegisterCapabilities();
-		
-		if(LocalDate.now().getMonth() == Month.APRIL && LocalDate.now().getDayOfMonth() == 1)
-		{
-			LogHelper.info("It's April Fools!");
-			MiscReference.isAprilFools = true;
+	public static final ItemGroup RUNE_GROUP = new ItemGroup(MOD_ID) {
+		@Override
+		public ItemStack createIcon() {
+			return new ItemStack(ModItems.FIRE_RUNE);
 		}
-		if(LocalDate.now().getMonth() == Month.DECEMBER && LocalDate.now().getDayOfMonth() == 25)
-		{
-			LogHelper.info("Merry Christmas!");
-			MiscReference.isChristmas = true;
+	};
+	
+	public static RuinTracker ruinTracker;
+	
+	public RuneMysteries() {
+		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverConfig);
+		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
+	}
+	
+	@SubscribeEvent
+	public static void setup(FMLCommonSetupEvent event) {
+		RunemysteriesPacketHandler.register();
+		RecipeSerializers.register(AltarRecipe.RUNE_ALTAR_SERIALIZER);
+		RecipeSerializers.register(ObeliskRecipe.OBELISK_SERIALIZER);
+		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandler::openGui);
+	}
+	
+	public void serverConfig(ModConfig.ModConfigEvent event) {
+		ModLog.info("Loading config");
+		if(event.getConfig().getSpec() == Config.SERVER_SPEC) {
+			Config.load();
 		}
-	}
-	
-	@Mod.EventHandler
-	public void init(FMLInitializationEvent event)
-	{
-		proxy.init(event);
-		MinecraftForge.EVENT_BUS.register(new ModLoot());
-		MinecraftForge.EVENT_BUS.register(new CapabilityHandler());
-		ModWorldGen.registerWorldGen();
-		ModDimensions.registerDimensions();
-		ModOreDict.registerOres();
-		ModVillagers.registerVillage();
-		ModAdvancements.registerAdvancementTriggers();
-	}
-	
-	@Mod.EventHandler
-	public void postInit(FMLPostInitializationEvent event)
-	{
-		proxy.postInit(event);
-		Spells.checkSpells();
-	}
-	
-	@Mod.EventHandler
-	public void serverStarting(FMLServerStartingEvent event)
-	{
-		proxy.serverStarting(event);
-	}
-	
-	@Mod.EventHandler
-	public void serverStopping(FMLServerStoppingEvent event)
-	{
-		proxy.serverStopping(event);
 	}
 }

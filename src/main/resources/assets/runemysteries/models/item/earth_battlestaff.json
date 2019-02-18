@@ -1,6 +1,6 @@
 {
   "parent": "item/handheld",
   "textures": {
-    "layer0": "runemysteries:items/battlestaff_earth"
+    "layer0": "runemysteries:item/earth_battlestaff"
   }
 }

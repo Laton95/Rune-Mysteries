@@ -1,193 +1,80 @@
 package com.laton95.runemysteries.item;
 
-import com.laton95.runemysteries.GuiHandler.GuiIDs;
-import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.init.ModPotions;
-import com.laton95.runemysteries.inventory.InventoryRuneBag;
-import com.laton95.runemysteries.reference.NamesReference;
-import com.laton95.runemysteries.spells.SpellBase;
-import com.laton95.runemysteries.spells.Spells;
-import com.laton95.runemysteries.util.ItemHelper;
-import com.laton95.runemysteries.util.ItemNBTHelper;
-import com.laton95.runemysteries.util.LogHelper;
+import com.laton95.runemysteries.init.ModBlocks;
+import com.laton95.runemysteries.util.ModLog;
+import net.minecraft.advancements.CriteriaTriggers;
+import net.minecraft.block.Block;
+import net.minecraft.block.SoundType;
+import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Blocks;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.text.TextComponentTranslation;
+import net.minecraft.item.ItemUseContext;
+import net.minecraft.util.*;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.RayTraceFluidMode;
+import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class ItemSpellbook extends RMModItem
-{
+public class ItemSpellbook extends ModItem {
 	
-	public ItemSpellbook()
-	{
-		super("spellbook", true);
-		setMaxStackSize(1);
+	
+	public ItemSpellbook() {
+		super("spellbook", new Properties().maxStackSize(1));
 	}
 	
 	@Override
-	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn)
-	{
-		ItemStack spellbook = playerIn.getHeldItem(handIn);
-		SpellBase spell = ItemNBTHelper.getSpell(spellbook);
-		if(playerIn.isSneaking() || spell == Spells.NONE_SPELL)
-		{
-			playerIn.openGui(RuneMysteries.instance, GuiIDs.SPELLBOOK.ordinal(), worldIn, (int) playerIn.posX, (int) playerIn.posY, (int) playerIn.posZ);
-			return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
+	public ActionResult<ItemStack> onItemRightClick(World worldIn, EntityPlayer playerIn, EnumHand handIn) {
+		RayTraceResult rayTrace = playerIn.rayTrace(20, 0.0f, RayTraceFluidMode.NEVER);
+		
+		if(rayTrace != null && rayTrace.type == RayTraceResult.Type.BLOCK) {
+			BlockPos pos = rayTrace.getBlockPos();
+			
+			EnumFacing facing = rayTrace.sideHit;
+			
+			tryPlace(new BlockItemUseContext(new ItemUseContext(playerIn, new ItemStack(Blocks.STONE.asItem()), pos, facing, (float) rayTrace.hitVec.x, (float) rayTrace.hitVec.y, (float) rayTrace.hitVec.z)));
 		}
-		else if(spell.canCast(worldIn, playerIn))
-		{
-			if(playerIn.isCreative() || ModPotions.STONETOUCHER.hasEffect(playerIn))
-			{
-				CastSpell(worldIn, playerIn, spell);
-				return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
-			}
-			else
-			{
-				ArrayList<InventoryRuneBag> bagInventories = ItemHelper.getBagInventories(playerIn);
+		
+		
+		return new ActionResult<>(EnumActionResult.SUCCESS, playerIn.getHeldItem(handIn));
+	}
+	
+	private EnumActionResult tryPlace(BlockItemUseContext p_195942_1_) {
+		if (!p_195942_1_.canPlace()) {
+			return EnumActionResult.FAIL;
+		} else {
+			IBlockState iblockstate = ModBlocks.WHITE_LIGHT.getStateForPlacement(p_195942_1_);
+			if (iblockstate == null) {
+				return EnumActionResult.FAIL;
+			} else if (!this.placeBlock(p_195942_1_, iblockstate)) {
+				return EnumActionResult.FAIL;
+			} else {
+				BlockPos blockpos = p_195942_1_.getPos();
 				
-				if(hasItems(playerIn, spell.getCosts(), bagInventories))
-				{
-					removeItems(playerIn, spell.getCosts(), bagInventories);
-					CastSpell(worldIn, playerIn, spell);
-					return new ActionResult<>(EnumActionResult.SUCCESS, spellbook);
-				}
-				else
-				{
-					if(!worldIn.isRemote)
-					{
-						playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.NO_RUNES));
+				World world = p_195942_1_.getWorld();
+				EntityPlayer entityplayer = p_195942_1_.getPlayer();
+				ItemStack itemstack = p_195942_1_.getItem();
+				IBlockState iblockstate1 = world.getBlockState(blockpos);
+				Block block = iblockstate1.getBlock();
+				if (block == iblockstate.getBlock()) {
+					block.onBlockPlacedBy(world, blockpos, iblockstate1, entityplayer, itemstack);
+					if (entityplayer instanceof EntityPlayerMP) {
+						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)entityplayer, blockpos, itemstack);
 					}
-					return new ActionResult<>(EnumActionResult.FAIL, spellbook);
 				}
+				
+				SoundType soundtype = iblockstate1.getSoundType(world, blockpos, p_195942_1_.getPlayer());
+				world.playSound(entityplayer, blockpos, soundtype.getPlaceSound(), SoundCategory.BLOCKS, (soundtype.getVolume() + 1.0F) / 2.0F, soundtype.getPitch() * 0.8F);
+				itemstack.shrink(1);
+				return EnumActionResult.SUCCESS;
 			}
-		}
-		
-		if(!worldIn.isRemote)
-		{
-			playerIn.sendMessage(new TextComponentTranslation(NamesReference.Spellbook.SPELL_FAIL));
-			playerIn.getCooldownTracker().setCooldown(this, 10);
-		}
-		
-		return new ActionResult<>(EnumActionResult.FAIL, spellbook);
-	}
-	
-	public void CastSpell(World worldIn, EntityPlayer playerIn, SpellBase spell)
-	{
-		if(!worldIn.isRemote)
-		{
-			spell.fireSpell(worldIn, playerIn);
-			playerIn.getCooldownTracker().setCooldown(this, spell.getCooldown());
 		}
 	}
 	
-	private boolean hasItems(EntityPlayer player, List<SpellBase.SpellCost> costs, ArrayList<InventoryRuneBag> bags)
-	{
-		ArrayList<SpellBase.SpellCost> tempCosts = new ArrayList<>(costs);
-		
-		for(SpellBase.SpellCost spellCost : costs)
-		{
-			if(hasItem(player, spellCost, bags))
-			{
-				tempCosts.remove(spellCost);
-			}
-		}
-		return tempCosts.isEmpty();
-	}
-	
-	private void removeItems(EntityPlayer player, List<SpellBase.SpellCost> costs, ArrayList<InventoryRuneBag> bags)
-	{
-		for(SpellBase.SpellCost spellCost : costs)
-		{
-			removeItem(player, spellCost, bags);
-		}
-	}
-	
-	private boolean hasItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
-	{
-		int count = 0;
-		
-		ItemStack source = getHeldRuneSources(player);
-		
-		if(cost.getItem() instanceof ItemRune && source != null && cost.getItem() == ((IRuneSource) source.getItem()).getRuneType().getRuneOfType())
-		{
-			return true;
-		}
-		
-		if(bags.size() > 0 && cost.getItem() instanceof ItemRune)
-		{
-			for(InventoryRuneBag bag : bags)
-			{
-				count += bag.getRuneCount((ItemRune) cost.getItem(), cost.getMetadata());
-			}
-		}
-		
-		for(int i = 0; i < player.inventory.getSizeInventory(); ++i)
-		{
-			ItemStack itemstack = player.inventory.getStackInSlot(i);
-			if(itemstack.getItem().equals(cost.getItem()) && (!cost.usesMetadata() || itemstack.getItemDamage() == cost.getMetadata()))
-			{
-				count += itemstack.getCount();
-			}
-		}
-		return count >= cost.getCount();
-	}
-	
-	private ItemStack getHeldRuneSources(EntityPlayer player)
-	{
-		if(player.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof IRuneSource)
-		{
-			return player.getHeldItem(EnumHand.MAIN_HAND);
-		}
-		else if(player.getHeldItem(EnumHand.OFF_HAND).getItem() instanceof IRuneSource)
-		{
-			return player.getHeldItem(EnumHand.OFF_HAND);
-		}
-		
-		return null;
-	}
-	
-	private void removeItem(EntityPlayer player, SpellBase.SpellCost cost, ArrayList<InventoryRuneBag> bags)
-	{
-		int count = cost.getCount();
-		
-		ItemStack source = getHeldRuneSources(player);
-		
-		if(cost.getItem() instanceof ItemRune && source != null && cost.getItem() == ((IRuneSource) source.getItem()).getRuneType().getRuneOfType())
-		{
-			source.damageItem(count, player);
-			count = 0;
-		}
-		
-		if(count > 0 && bags.size() > 0 && cost.getItem() instanceof ItemRune)
-		{
-			for(InventoryRuneBag bag : bags)
-			{
-				count = bag.removeRune((ItemRune) cost.getItem(), count, cost.getMetadata());
-			}
-		}
-		
-		int i = 0;
-		while(count > 0 && i < player.inventory.getSizeInventory())
-		{
-			ItemStack itemstack = player.inventory.getStackInSlot(i);
-			if(itemstack.getItem().equals(cost.getItem()) && (!cost.usesMetadata() || itemstack.getItemDamage() == cost.getMetadata()))
-			{
-				int temp = count;
-				count -= itemstack.getCount();
-				itemstack.shrink(temp);
-			}
-			i++;
-		}
-		
-		if(count > 0)
-		{
-			LogHelper.error("Error: Spell cost not fully paid");
-		}
+	private boolean placeBlock(BlockItemUseContext p_195941_1_, IBlockState p_195941_2_) {
+		return p_195941_1_.getWorld().setBlockState(p_195941_1_.getPos(), p_195941_2_, 11);
 	}
 }

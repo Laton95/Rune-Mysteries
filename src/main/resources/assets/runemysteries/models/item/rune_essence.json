@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "runemysteries:items/rune_essence"
+    "layer0": "runemysteries:item/rune_essence"
   }
 }

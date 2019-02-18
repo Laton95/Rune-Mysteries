@@ -1,16 +1,15 @@
 package com.laton95.runemysteries.util;
 
-import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.RuneMysteries;
 import net.minecraft.init.Blocks;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityChest;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.gen.structure.template.PlacementSettings;
-import net.minecraft.world.gen.structure.template.Template;
-import net.minecraft.world.gen.structure.template.TemplateManager;
+import net.minecraft.world.gen.feature.template.PlacementSettings;
+import net.minecraft.world.gen.feature.template.Template;
+import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Map;
 
@@ -40,10 +39,9 @@ public class StructureHelper
 			this.settings = settings;
 			this.pos = pos;
 			
-			MinecraftServer minecraftserver = world.getMinecraftServer();
 			TemplateManager templatemanager = world.getSaveHandler().getStructureTemplateManager();
-			ResourceLocation structureResource = new ResourceLocation(ModReference.MOD_ID, structureName);
-			template = templatemanager.getTemplate(minecraftserver, structureResource);
+			ResourceLocation structureResource = new ResourceLocation(RuneMysteries.MOD_ID, structureName);
+			template = templatemanager.getTemplate(structureResource);
 		}
 	}
 	

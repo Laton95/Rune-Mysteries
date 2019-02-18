@@ -1,28 +1,10 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "model": "runemysteries:flesh_block",
-    "transform": "forge:default-block"
-  },
   "variants": {
-    "normal": [
-      {
-        "model": "runemysteries:flesh_block"
-      },
-      {
-        "model": "runemysteries:flesh_block_mirrored"
-      },
-      {
-        "model": "runemysteries:flesh_block",
-        "y": 180
-      },
-      {
-        "model": "runemysteries:flesh_block_mirrored",
-        "y": 180
-      }
-    ],
-    "inventory": [
-      {}
+    "": [
+      { "model": "runemysteries:block/flesh_block" },
+      { "model": "runemysteries:block/flesh_block_mirrored" },
+      { "model": "runemysteries:block/flesh_block", "y": 180 },
+      { "model": "runemysteries:block/flesh_block_mirrored", "y": 180 }
     ]
   }
 }

@@ -4,87 +4,35 @@ import com.laton95.runemysteries.block.BlockParticleLight;
 import com.laton95.runemysteries.init.ModBlocks;
 import net.minecraft.item.EnumDyeColor;
 
-public enum EnumColour
-{
-	WHITE(228, 228, 228),
-	ORANGE(234, 126, 53),
-	MAGENTA(190, 73, 201),
-	LIGHT_BLUE(99, 135, 210),
-	YELLOW(194, 181, 28),
-	LIME(57, 186, 46),
-	PINK(217, 129, 153),
-	GRAY(65, 65, 65),
-	SILVER(160, 167, 167),
-	CYAN(38, 113, 145),
-	PURPLE(126, 52, 191),
-	BLUE(37, 49, 147),
-	BROWN(86, 51, 28),
-	GREEN(54, 75, 24),
-	RED(158, 43, 39),
-	BLACK(24, 20, 20);
+public enum EnumColour {
+	WHITE(228, 228, 228, EnumDyeColor.WHITE),
+	ORANGE(234, 126, 53, EnumDyeColor.ORANGE),
+	MAGENTA(190, 73, 201, EnumDyeColor.MAGENTA),
+	LIGHT_BLUE(99, 135, 210, EnumDyeColor.LIGHT_BLUE),
+	YELLOW(194, 181, 28, EnumDyeColor.YELLOW),
+	LIME(57, 186, 46, EnumDyeColor.LIME),
+	PINK(217, 129, 153, EnumDyeColor.PINK),
+	GRAY(65, 65, 65, EnumDyeColor.GRAY),
+	LIGHT_GRAY(160, 167, 167, EnumDyeColor.LIGHT_GRAY),
+	CYAN(38, 113, 145, EnumDyeColor.CYAN),
+	PURPLE(126, 52, 191, EnumDyeColor.PURPLE),
+	BLUE(37, 49, 147, EnumDyeColor.BLUE),
+	BROWN(86, 51, 28, EnumDyeColor.BROWN),
+	GREEN(54, 75, 24, EnumDyeColor.GREEN),
+	RED(158, 43, 39, EnumDyeColor.RED),
+	BLACK(24, 20, 20, EnumDyeColor.BLACK);
 	
 	private final Colour colour;
 	
-	EnumColour(float red, float green, float blue)
-	{
+	private final EnumDyeColor dye;
+	
+	EnumColour(float red, float green, float blue, EnumDyeColor dye) {
 		this.colour = new Colour(red, green, blue);
+		this.dye = dye;
 	}
 	
-	public Colour getRGB()
-	{
-		return colour;
-	}
-	
-	public int getDyeMeta()
-	{
-		return getDyeColour().getDyeDamage();
-	}
-	
-	public EnumDyeColor getDyeColour()
-	{
-		switch(this)
-		{
-			case WHITE:
-				return EnumDyeColor.WHITE;
-			case ORANGE:
-				return EnumDyeColor.ORANGE;
-			case MAGENTA:
-				return EnumDyeColor.MAGENTA;
-			case LIGHT_BLUE:
-				return EnumDyeColor.LIGHT_BLUE;
-			case YELLOW:
-				return EnumDyeColor.YELLOW;
-			case LIME:
-				return EnumDyeColor.LIME;
-			case PINK:
-				return EnumDyeColor.PINK;
-			case GRAY:
-				return EnumDyeColor.GRAY;
-			case SILVER:
-				return EnumDyeColor.SILVER;
-			case CYAN:
-				return EnumDyeColor.CYAN;
-			case PURPLE:
-				return EnumDyeColor.PURPLE;
-			case BLUE:
-				return EnumDyeColor.BLUE;
-			case BROWN:
-				return EnumDyeColor.BROWN;
-			case GREEN:
-				return EnumDyeColor.GREEN;
-			case RED:
-				return EnumDyeColor.RED;
-			case BLACK:
-				return EnumDyeColor.BLACK;
-			default:
-				return EnumDyeColor.WHITE;
-		}
-	}
-	
-	public EnumColour getColourFromDye(EnumDyeColor dye)
-	{
-		switch(dye)
-		{
+	public static EnumColour getColourFromDye(EnumDyeColor dye) {
+		switch(dye) {
 			case WHITE:
 				return WHITE;
 			case ORANGE:
@@ -101,8 +49,8 @@ public enum EnumColour
 				return PINK;
 			case GRAY:
 				return GRAY;
-			case SILVER:
-				return SILVER;
+			case LIGHT_GRAY:
+				return LIGHT_GRAY;
 			case CYAN:
 				return CYAN;
 			case PURPLE:
@@ -122,10 +70,16 @@ public enum EnumColour
 		}
 	}
 	
-	public BlockParticleLight getLight()
-	{
-		switch(this)
-		{
+	public Colour getRGB() {
+		return colour;
+	}
+	
+	public EnumDyeColor getDyeColour() {
+		return dye;
+	}
+	
+	public BlockParticleLight getLight() {
+		switch(this) {
 			case WHITE:
 				return ModBlocks.WHITE_LIGHT;
 			case ORANGE:
@@ -142,8 +96,8 @@ public enum EnumColour
 				return ModBlocks.PINK_LIGHT;
 			case GRAY:
 				return ModBlocks.GRAY_LIGHT;
-			case SILVER:
-				return ModBlocks.SILVER_LIGHT;
+			case LIGHT_GRAY:
+				return ModBlocks.LIGHT_GRAY_LIGHT;
 			case CYAN:
 				return ModBlocks.CYAN_LIGHT;
 			case PURPLE:
@@ -163,40 +117,29 @@ public enum EnumColour
 		}
 	}
 	
-	public class Colour
-	{
+	public class Colour {
+		
 		private float red;
 		
 		private float green;
 		
 		private float blue;
 		
-		Colour(float red, float green, float blue)
-		{
+		Colour(float red, float green, float blue) {
 			this.red = red;
 			this.green = green;
 			this.blue = blue;
 		}
 		
-		public void set(float red, float green, float blue)
-		{
-			this.red = red;
-			this.green = green;
-			this.blue = blue;
-		}
-		
-		public float getRed()
-		{
+		public float getRed() {
 			return red;
 		}
 		
-		public float getGreen()
-		{
+		public float getGreen() {
 			return green;
 		}
 		
-		public float getBlue()
-		{
+		public float getBlue() {
 			return blue;
 		}
 	}

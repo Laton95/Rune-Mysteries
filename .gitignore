@@ -16,3 +16,8 @@ MCMod-Testing_Server.launch
 Rune-Mysteries.iml
 *.xml
 out
+*.iml
+*.sqlite
+gradle/wrapper/gradle-wrapper.jar
+gradle/wrapper/gradle-wrapper.jar
+resources

@@ -1,34 +1,21 @@
 package com.laton95.runemysteries.init;
 
+import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.client.renderer.entity.RenderExExParrot;
-import com.laton95.runemysteries.client.renderer.entity.RenderFriendlyZombie;
-import com.laton95.runemysteries.client.renderer.entity.RenderProjectileSpell;
 import com.laton95.runemysteries.entity.passive.EntityExExParrot;
-import com.laton95.runemysteries.entity.passive.EntityFriendlyZombie;
-import com.laton95.runemysteries.entity.projectile.*;
-import com.laton95.runemysteries.reference.ModReference;
-import com.laton95.runemysteries.util.LogHelper;
-import net.minecraft.util.ResourceLocation;
+import com.laton95.runemysteries.util.ModLog;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
-public class ModRenders
-{
-	private static ResourceLocation blueGreen = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/blue-green.png");
+@Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+public class ModRenders {
 	
-	private static ResourceLocation pinkPurple = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/pink-purple.png");
-	
-	private static ResourceLocation redOrange = new ResourceLocation(ModReference.MOD_ID, "textures/entity/projectile/red-orange.png");
-	
-	public static void registerRenders()
-	{
-		LogHelper.info("Registering entity rendering");
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellBouncing.class, renderManager -> new RenderProjectileSpell(renderManager, blueGreen));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellDamage.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellExplosive.class, renderManager -> new RenderProjectileSpell(renderManager, redOrange));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellFollowing.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
-		RenderingRegistry.registerEntityRenderingHandler(EntityProjectileSpellTeleportBasic.class, renderManager -> new RenderProjectileSpell(renderManager, pinkPurple));
+	@SubscribeEvent
+	public static void registerRenders(final FMLClientSetupEvent event) {
+		ModLog.info("Registering renders");
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityExExParrot.class, renderManager -> new RenderExExParrot(renderManager));
-		RenderingRegistry.registerEntityRenderingHandler(EntityFriendlyZombie.class, renderManager -> new RenderFriendlyZombie(renderManager));
+		RenderingRegistry.registerEntityRenderingHandler(EntityExExParrot.class, RenderExExParrot::new);
 	}
 }

@@ -1,6 +1,6 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "runemysteries:blocks/flesh_block"
+    "all": "runemysteries:block/flesh_block"
   }
 }

@@ -1,40 +1,9 @@
 {
-  "forge_marker": 1,
-  "defaults": {
-    "textures": {
-      "top": "runemysteries:blocks/ruin_stone"
-    },
-    "model": "runemysteries:rune_altar",
-    "uvlock": true,
-    "transform": "forge:default-block"
-  },
   "variants": {
-    "corner=south_east": {
-      "model": "runemysteries:rune_altar",
-      "textures": {
-        "top": "runemysteries:blocks/chaos_altar_se"
-      }
-    },
-    "corner=north_west": {
-      "model": "runemysteries:rune_altar",
-      "textures": {
-        "top": "runemysteries:blocks/chaos_altar_nw"
-      }
-    },
-    "corner=north_east": {
-      "model": "runemysteries:rune_altar",
-      "textures": {
-        "top": "runemysteries:blocks/chaos_altar_ne"
-      }
-    },
-    "corner=south_west": {
-      "model": "runemysteries:rune_altar",
-      "textures": {
-        "top": "runemysteries:blocks/chaos_altar_sw"
-      }
-    },
-    "normal": [
-      {}
-    ]
+    "corner=south_east": { "model": "runemysteries:block/chaos_altar_se" },
+    "corner=north_west": { "model": "runemysteries:block/chaos_altar_nw" },
+    "corner=north_east": { "model": "runemysteries:block/chaos_altar_ne" },
+    "corner=south_west": { "model": "runemysteries:block/chaos_altar_sw" },
+    "corner=none": { "model": "runemysteries:block/blank_altar" }
   }
 }

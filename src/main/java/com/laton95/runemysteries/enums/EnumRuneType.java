@@ -1,18 +1,17 @@
 package com.laton95.runemysteries.enums;
 
-import com.laton95.runemysteries.config.ModConfig;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemTalisman;
-import net.minecraft.item.Item;
-import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.DimensionType;
+import net.minecraft.item.crafting.Ingredient;
+import net.minecraft.network.PacketBuffer;
+import net.minecraft.particles.RedstoneParticleData;
+import net.minecraft.world.dimension.DimensionType;
 
-import java.util.LinkedList;
-import java.util.List;
+import java.util.Random;
+import java.util.stream.Stream;
 
-public enum EnumRuneType
-{
+public enum EnumRuneType {
 	AIR,
 	ASTRAL,
 	BLOOD,
@@ -26,23 +25,10 @@ public enum EnumRuneType
 	MIND,
 	NATURE,
 	SOUL,
-	WATER;
+	WATER,
+	OURANIA;
 	
-	public static EnumRuneType getTypeFromRune(ItemRune rune)
-	{
-		for(EnumRuneType type : values())
-		{
-			if(rune == type.getRuneOfType())
-			{
-				return type;
-			}
-		}
-		
-		return AIR;
-	}
-	
-	public ItemRune getRuneOfType()
-	{
+	public ItemRune getRune() {
 		switch(this)
 		{
 			case AIR:
@@ -78,28 +64,7 @@ public enum EnumRuneType
 		}
 	}
 	
-	public static List<Item> getRunes()
-	{
-		List<Item> runes = new LinkedList<>();
-		for(EnumRuneType rune : EnumRuneType.values())
-		{
-			runes.add(rune.getRuneOfType());
-		}
-		return runes;
-	}
-	
-	public static List<Item> getTalismans()
-	{
-		List<Item> talismans = new LinkedList<>();
-		for(EnumRuneType rune : EnumRuneType.values())
-		{
-			talismans.add(rune.getTalismanOfType());
-		}
-		return talismans;
-	}
-	
-	public ItemTalisman getTalismanOfType()
-	{
+	public ItemTalisman getTalisman() {
 		switch(this)
 		{
 			case AIR:
@@ -135,10 +100,24 @@ public enum EnumRuneType
 		}
 	}
 	
-	public DimensionType gerRuinDimType()
-	{
-		switch(this)
-		{
+	public static EnumRuneType getRuneType(ItemRune rune) {
+		return rune.getRuneType();
+	}
+	
+	public static EnumRuneType getRuneType(ItemTalisman talisman) {
+		return talisman.getRuneType();
+	}
+	
+	public static EnumRuneType getRandomType(Random random) {
+		return EnumRuneType.values()[random.nextInt(EnumRuneType.values().length)];
+	}
+	
+	public boolean isOurania() {
+		return this == OURANIA;
+	}
+	
+	public DimensionType getRuinDimType() {
+		switch(this) {
 			case CHAOS:
 				return DimensionType.NETHER;
 			case COSMIC:
@@ -148,73 +127,47 @@ public enum EnumRuneType
 		}
 	}
 	
-	public int getTempleDimId()
-	{
-		switch(this)
-		{
+	public RedstoneParticleData getRuneColor() {
+		float size = 0.5f;
+		switch(this) {
 			case AIR:
-				return ModConfig.DIMENSIONS.airTempleDimID;
+				return new RedstoneParticleData(valueOf(255), valueOf(255), valueOf(255), size);
+			case ASTRAL:
+				return new RedstoneParticleData(valueOf(193), valueOf(174), valueOf(193), size);
 			case BLOOD:
-				return ModConfig.DIMENSIONS.bloodTempleDimID;
+				return new RedstoneParticleData(valueOf(193), valueOf(11), valueOf(11), size);
 			case BODY:
-				return ModConfig.DIMENSIONS.bodyTempleDimID;
+				return new RedstoneParticleData(valueOf(25), valueOf(47), valueOf(212), size);
 			case CHAOS:
-				return ModConfig.DIMENSIONS.chaosTempleDimID;
+				return new RedstoneParticleData(valueOf(248), valueOf(89), valueOf(3), size);
 			case COSMIC:
-				return ModConfig.DIMENSIONS.cosmicTempleDimID;
+				return new RedstoneParticleData(valueOf(155), valueOf(246), valueOf(0), size);
 			case DEATH:
-				return ModConfig.DIMENSIONS.deathTempleDimID;
+				return new RedstoneParticleData(valueOf(255), valueOf(255), valueOf(255), size);
 			case EARTH:
-				return ModConfig.DIMENSIONS.earthTempleDimID;
+				return new RedstoneParticleData(valueOf(108), valueOf(38), valueOf(0), size);
 			case FIRE:
-				return ModConfig.DIMENSIONS.fireTempleDimID;
+				return new RedstoneParticleData(valueOf(248), valueOf(89), valueOf(3), size);
 			case LAW:
-				return ModConfig.DIMENSIONS.lawTempleDimID;
+				return new RedstoneParticleData(valueOf(25), valueOf(37), valueOf(212), size);
 			case MIND:
-				return ModConfig.DIMENSIONS.mindTempleDimID;
+				return new RedstoneParticleData(valueOf(248), valueOf(89), valueOf(3), size);
 			case NATURE:
-				return ModConfig.DIMENSIONS.natureTempleDimID;
+				return new RedstoneParticleData(valueOf(4), valueOf(111), valueOf(27), size);
 			case SOUL:
-				return ModConfig.DIMENSIONS.soulTempleDimID;
+				return new RedstoneParticleData(valueOf(169), valueOf(184), valueOf(193), size);
 			case WATER:
-				return ModConfig.DIMENSIONS.waterTempleDimID;
+				return new RedstoneParticleData(valueOf(25), valueOf(47), valueOf(212), size);
 			default:
-				return 0;
+				return new RedstoneParticleData(valueOf(0), valueOf(0), valueOf(0), size);
 		}
 	}
 	
-	public BlockPos getTempleEntrancePoint()
-	{
-		switch(this)
-		{
-			case AIR:
-				return new BlockPos(2, 87, 2);
-			case BLOOD:
-				return new BlockPos(4, 66, 6);
-			case BODY:
-				return new BlockPos(2, 87, 2);
-			case CHAOS:
-				return new BlockPos(2, 87, 2);
-			case COSMIC:
-				return new BlockPos(10, 64, 10);
-			case DEATH:
-				return new BlockPos(2, 87, 2);
-			case EARTH:
-				return new BlockPos(2, 87, 2);
-			case FIRE:
-				return new BlockPos(10, 107, 10);
-			case LAW:
-				return new BlockPos(2, 87, 2);
-			case MIND:
-				return new BlockPos(2, 87, 2);
-			case NATURE:
-				return new BlockPos(2, 87, 2);
-			case SOUL:
-				return new BlockPos(2, 87, 2);
-			case WATER:
-				return new BlockPos(9, 65, 11);
-			default:
-				return new BlockPos(2, 87, 2);
-		}
+	public boolean hasObelisk() {
+		return this == AIR || this == EARTH || this == FIRE || this == WATER;
+	}
+	
+	private static float valueOf(int colorValue) {
+		return (float) colorValue / 255;
 	}
 }

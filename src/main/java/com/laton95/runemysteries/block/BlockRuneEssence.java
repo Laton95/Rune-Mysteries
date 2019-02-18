@@ -1,46 +1,67 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModItems;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.EnumPushReaction;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.renderer.EnumFaceDirection;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumParticleTypes;
+import net.minecraft.fluid.IFluidState;
+import net.minecraft.init.Particles;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockRuneEssence extends RMModBlock
-{
-	private final boolean isFinite;
+public class BlockRuneEssence extends ModBlock {
 	
-	public BlockRuneEssence(boolean isFinite)
-	{
-		super(isFinite ? "rune_essence_block_finite" : "rune_essence_block", Material.ROCK, 1.5f, 2000f, "pickaxe", 0, isFinite, isFinite);
-		this.isFinite = isFinite;
+	public static final BooleanProperty INFINITE = BooleanProperty.create("infinite");
+	
+	public BlockRuneEssence() {
+		super("rune_essence_block", Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f));
+		setDefaultState(stateContainer.getBaseState().with(INFINITE, false));
 	}
 	
-	@SideOnly(Side.CLIENT)
 	@Override
-	public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand)
-	{
-		if(!isFinite)
-		{
+	public boolean removedByPlayer(IBlockState state, World world, BlockPos pos, EntityPlayer player, boolean willHarvest, IFluidState fluid) {
+		onBlockHarvested(world, pos, state, player);
+		
+		if(state.get(INFINITE) && !player.isCreative()) {
+			world.setBlockState(pos, state, world.isRemote ? 11 : 3);
+			return true;
+		}
+		
+		return world.setBlockState(pos, fluid.getBlockState(), world.isRemote ? 11 : 3);
+	}
+	
+	@Override
+	public float getExplosionResistance(IBlockState state, IWorldReader world, BlockPos pos, @Nullable Entity exploder, Explosion explosion) {
+		if(state.get(INFINITE)) {
+			return 3600000.0F;
+		}
+		
+		return 6.0f;
+	}
+	
+	@Override
+	public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+		if(stateIn.get(INFINITE)) {
 			double xPos = 0;
 			double yPos = 0;
 			double zPos = 0;
 			
 			double offset = 0.1;
 			
-			switch(EnumFaceDirection.values()[rand.nextInt(EnumFaceDirection.values().length - 1) + 1])
-			{
+			switch(EnumFaceDirection.values()[rand.nextInt(EnumFaceDirection.values().length - 1) + 1]) {
 				case UP:
 					xPos += rand.nextFloat() + offset;
 					yPos += 1 + offset;
@@ -72,47 +93,30 @@ public class BlockRuneEssence extends RMModBlock
 			yPos += pos.getY();
 			zPos += pos.getZ();
 			
-			worldIn.spawnParticle(EnumParticleTypes.SPELL_INSTANT, xPos, yPos, zPos, 0, -0.09, 0);
+			worldIn.spawnParticle(Particles.INSTANT_EFFECT, xPos, yPos, zPos, 0, -0.9, 0);
 		}
 	}
 	
 	@Override
-	public int quantityDropped(Random random)
-	{
-		return 1 + random.nextInt(4);
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	@Nonnull
+	public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
 		return ModItems.RUNE_ESSENCE;
 	}
 	
 	@Override
-	public void dropBlockAsItemWithChance(World worldIn, BlockPos pos, IBlockState state, float chance, int fortune)
-	{
-		super.dropBlockAsItemWithChance(worldIn, pos, state, chance, fortune);
-		if(!isFinite)
-		{
-			worldIn.setBlockState(pos, state);
-		}
+	public int getItemsToDropCount(IBlockState state, int fortune, World worldIn, BlockPos pos, Random random) {
+		if(fortune > 4) { fortune = 4; }
+		return 1 + random.nextInt(5) + random.nextInt(fortune + 1);
 	}
 	
 	@Override
-	public int quantityDroppedWithBonus(int fortune, Random random)
-	{
-		return this.quantityDropped(random) + random.nextInt(fortune + 1);
+	@Nonnull
+	public EnumPushReaction getPushReaction(IBlockState state) {
+		return EnumPushReaction.BLOCK;
 	}
 	
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
-		return false;
-	}
-	
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-	{
-		return new ItemStack(Item.getItemFromBlock(ModBlocks.FINITE_RUNE_ESSENCE), 1, 0);
+	protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder) {
+		builder.add(INFINITE);
 	}
 }

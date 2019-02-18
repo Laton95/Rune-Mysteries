@@ -1,19 +1,19 @@
 package com.laton95.runemysteries.util;
 
-import com.laton95.runemysteries.reference.ModReference;
+import com.laton95.runemysteries.RuneMysteries;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import net.minecraft.world.storage.MapStorage;
+import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldSavedData;
+import net.minecraft.world.storage.WorldSavedDataStorage;
 
 import java.util.HashMap;
 import java.util.Map;
 
-public class RuinNBTHelper extends WorldSavedData
-{
+public class RuinNBTHelper extends WorldSavedData {
 	
-	private static final String DATA_NAME = ModReference.MOD_ID;
+	private static final String DATA_NAME = RuneMysteries.MOD_ID;
 	
 	public boolean overworldRuinsGenerated;
 	
@@ -23,34 +23,28 @@ public class RuinNBTHelper extends WorldSavedData
 	
 	public Map<String, BlockPos> posMap = new HashMap<>();
 	
-	// Required constructors
-	public RuinNBTHelper()
-	{
+	public RuinNBTHelper() {
 		super(DATA_NAME);
 	}
 	
-	public RuinNBTHelper(String s)
-	{
-		super(s);
-	}
-	
-	public static RuinNBTHelper get(World world)
-	{
-		MapStorage storage = world.getMapStorage();
-		RuinNBTHelper instance = (RuinNBTHelper) storage.getOrLoadData(RuinNBTHelper.class, DATA_NAME);
+	public static RuinNBTHelper get(World world) {
+		WorldSavedDataStorage storage = world.getMapStorage();
+		RuinNBTHelper instance = storage.func_212426_a(DimensionType.OVERWORLD, RuinNBTHelper::new, DATA_NAME);
 		
-		if(instance == null)
-		{
+		if(instance == null) {
 			instance = new RuinNBTHelper();
-			storage.setData(DATA_NAME, instance);
+			storage.func_212424_a(DimensionType.OVERWORLD, DATA_NAME, instance);
 			instance.markDirty();
 		}
 		return instance;
 	}
 	
+	public RuinNBTHelper(String s) {
+		super(s);
+	}
+	
 	@Override
-	public void readFromNBT(NBTTagCompound nbt)
-	{
+	public void read(NBTTagCompound nbt) {
 		overworldRuinsGenerated = nbt.getBoolean("overworldRuinsGenerated");
 		netherRuinsGenerated = nbt.getBoolean("netherRuinsGenerated");
 		endRuinsGenerated = nbt.getBoolean("endRuinsGenerated");
@@ -89,8 +83,7 @@ public class RuinNBTHelper extends WorldSavedData
 	}
 	
 	@Override
-	public NBTTagCompound writeToNBT(NBTTagCompound compound)
-	{
+	public NBTTagCompound write(NBTTagCompound compound) {
 		compound.setBoolean("overworldRuinsGenerated", overworldRuinsGenerated);
 		compound.setBoolean("netherRuinsGenerated", netherRuinsGenerated);
 		compound.setBoolean("endRuinsGenerated", endRuinsGenerated);
@@ -114,11 +107,9 @@ public class RuinNBTHelper extends WorldSavedData
 		return compound;
 	}
 	
-	private int[] blockPosToIntArray(BlockPos pos)
-	{
+	private int[] blockPosToIntArray(BlockPos pos) {
 		int[] array = new int[3];
-		if(pos != null & array != null)
-		{
+		if(pos != null & array != null) {
 			array[0] = pos.getX();
 			array[1] = pos.getY();
 			array[2] = pos.getZ();
@@ -126,8 +117,7 @@ public class RuinNBTHelper extends WorldSavedData
 		return array;
 	}
 	
-	private BlockPos intArrayToBlockPos(int[] array)
-	{
+	private BlockPos intArrayToBlockPos(int[] array) {
 		return new BlockPos(array[0], array[1], array[2]);
 	}
 }

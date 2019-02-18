@@ -1,147 +1,122 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.advancement.triggers.Triggers;
+import com.laton95.runemysteries.advancements.ModCriteriaTriggers;
+import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.reference.NamesReference;
+import com.laton95.runemysteries.inventory.InventoryObelisk;
+import com.laton95.runemysteries.item.crafting.ObeliskRecipe;
+import com.laton95.runemysteries.reference.StringReference;
+import net.minecraft.block.Block;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyBool;
-import net.minecraft.block.state.BlockStateContainer;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.init.Items;
+import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.state.BooleanProperty;
+import net.minecraft.state.StateContainer;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
+import net.minecraft.util.IItemProvider;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.util.text.TextComponentTranslation;
-import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.IWorld;
+import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
 
+import javax.annotation.Nullable;
 import java.util.Random;
 
-public class BlockElementalObelisk extends RMModBlock
-{
+public class BlockElementalObelisk extends ModBlock {
 	
-	private static final PropertyBool TOP = PropertyBool.create("top");
+	public static final BooleanProperty TOP = BooleanProperty.create("top");
 	
 	private final Item shardDrop;
 	
-	private final Item orb;
+	private final EnumRuneType runeType;
 	
-	public BlockElementalObelisk(String name, Item shardDrop, Item orb)
-	{
-		super(name, Material.ROCK, 1.5f, 2000f, "pickaxe", 3);
-		setDefaultState(blockState.getBaseState().withProperty(TOP, false));
-		setLightLevel(0.9375F);
+	public BlockElementalObelisk(String name, Item shardDrop, EnumRuneType runeType) {
+		super(name, Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).lightValue(15));
 		this.shardDrop = shardDrop;
-		this.orb = orb;
+		this.runeType = runeType;
 	}
 	
 	@Override
-	public int getMetaFromState(IBlockState state)
-	{
-		return 0;
-	}
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public IBlockState getActualState(IBlockState state, IBlockAccess worldIn, BlockPos pos)
-	{
-		boolean isTop = worldIn.getBlockState(pos.up()).getBlock() != this;
-		
-		return state.withProperty(TOP, isTop);
+	public IBlockState updatePostPlacement(IBlockState stateIn, EnumFacing facing, IBlockState facingState, IWorld worldIn, BlockPos currentPos, BlockPos facingPos) {
+		boolean isTop = worldIn.getBlockState(currentPos.up()).getBlock() != this;
+		return getDefaultState().with(TOP, isTop);
 	}
 	
 	@Override
-	public int quantityDropped(Random random)
-	{
-		return 1;
-	}
-	
-	@Override
-	public Item getItemDropped(IBlockState state, Random rand, int fortune)
-	{
+	public IItemProvider getItemDropped(IBlockState state, World worldIn, BlockPos pos, int fortune) {
 		return shardDrop;
 	}
 	
 	@Override
-	public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ)
-	{
-		
-		if(playerIn.getHeldItem(hand).getItem() == Item.getItemFromBlock(this))
-		{
+	public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
+		if(getBlockFromItem(player.getHeldItem(hand).getItem()) == this) {
 			return false;
 		}
 		
-		if(!worldIn.isRemote)
-		{
-			if(isCompleteObelisk(worldIn, pos))
-			{
-				if(playerIn.getHeldItem(hand).getItem() == ModItems.GLASS_ORB)
-				{
-					Triggers.CHARGE_ORB.trigger((EntityPlayerMP) playerIn);
-					ItemStack stack = new ItemStack(orb, 1);
-					playerIn.setHeldItem(hand, stack);
+		if(!worldIn.isRemote) {
+			if(isCompleteObelisk(worldIn, pos)) {
+				InventoryObelisk inventory = new InventoryObelisk(player.getHeldItem(hand), runeType);
+				ObeliskRecipe recipe = worldIn.getRecipeManager().getRecipe(inventory, worldIn, ObeliskRecipe.OBELISK_TYPE);
+				
+				if(recipe != null) {
+					if(player.getHeldItem(hand).getItem() == ModItems.GLASS_ORB) {
+						ModCriteriaTriggers.CHARGE_ORB.trigger((EntityPlayerMP) player);
+					}
+					
+					ItemStack result = recipe.getCraftingResult(inventory);
+					result.setCount(player.getHeldItem(hand).getCount());
+					player.setHeldItem(hand, result);
 				}
-				else
-				{
-					playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.OBELISK_INTERACT));
+				else {
+					player.sendMessage(new TextComponentTranslation(StringReference.BlockInteraction.OBELISK_INTERACT));
 				}
 			}
-			else
-			{
-				playerIn.sendMessage(new TextComponentTranslation(NamesReference.BlockInteraction.OBELISK_INTERACT_FAIL));
+			else {
+				player.sendMessage(new TextComponentTranslation(StringReference.BlockInteraction.OBELISK_INTERACT_FAIL));
 			}
 		}
 		
 		return true;
 	}
 	
+	@Nullable
 	@Override
-	public int quantityDroppedWithBonus(int fortune, Random random)
-	{
-		if(fortune == 3)
-		{
-			return this.quantityDropped(random) + random.nextInt(2);
-		}
-		else
-		{
-			return this.quantityDropped(random);
-		}
+	public IBlockState getStateForPlacement(BlockItemUseContext context) {
+		boolean isTop = context.getWorld().getBlockState(context.getPos().up()).getBlock() != this;
+		return super.getStateForPlacement(context).with(TOP, isTop);
 	}
 	
 	@Override
-	protected BlockStateContainer createBlockState()
-	{
-		return new BlockStateContainer(this, TOP);
+	public int getItemsToDropCount(IBlockState state, int fortune, World worldIn, BlockPos pos, Random random) {
+		return 1;
 	}
 	
 	@Override
-	public boolean canSilkHarvest(World world, BlockPos pos, IBlockState state, EntityPlayer player)
-	{
+	protected void fillStateContainer(StateContainer.Builder<Block, IBlockState> builder) {
+		builder.add(TOP);
+	}
+	
+	@Override
+	public boolean canSilkHarvest(IBlockState state, IWorldReader world, BlockPos pos, EntityPlayer player) {
 		return false;
 	}
 	
-	@Override
-	public ItemStack getPickBlock(IBlockState state, RayTraceResult target, World world, BlockPos pos, EntityPlayer player)
-	{
-		return new ItemStack(Item.getItemFromBlock(this), 1);
-	}
-	
-	private boolean isCompleteObelisk(World world, BlockPos pos)
-	{
+	private boolean isCompleteObelisk(World world, BlockPos pos) {
 		BlockPos bottom = pos;
-		while(world.getBlockState(bottom.down()).getBlock() == this)
-		{
+		while(world.getBlockState(bottom.down()).getBlock() == this) {
 			bottom = bottom.down();
 		}
 		
 		int height = 1;
 		
-		while(world.getBlockState(bottom.up()).getBlock() == this)
-		{
+		while(world.getBlockState(bottom.up()).getBlock() == this) {
 			height++;
 			bottom = bottom.up();
 		}

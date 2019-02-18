@@ -3,234 +3,155 @@
  */
 package com.laton95.runemysteries.util;
 
-import com.laton95.runemysteries.spells.SpellBase;
-import com.laton95.runemysteries.spells.Spells;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
 
-public class ItemNBTHelper
-{
+public class ItemNBTHelper {
 	
-	public static boolean hasTag(ItemStack itemStack, String keyName)
-	{
-		return itemStack != null && itemStack.hasTagCompound() && itemStack.getTagCompound().hasKey(keyName);
+	public static boolean hasTag(ItemStack itemStack, String keyName) {
+		return itemStack != null && itemStack.hasTag() && itemStack.getOrCreateTag().hasKey(keyName);
 	}
 	
-	public static void removeTag(ItemStack itemStack, String keyName)
-	{
-		if(itemStack.hasTagCompound())
-		{
-			itemStack.getTagCompound().removeTag(keyName);
+	public static void removeTag(ItemStack itemStack, String keyName) {
+		if(itemStack.hasTag()) {
+			itemStack.getOrCreateTag().removeTag(keyName);
 		}
 	}
 	
 	// String
-	public static String getString(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static String getString(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setString(itemStack, keyName, "");
 		}
 		
-		return itemStack.getTagCompound().getString(keyName);
+		return itemStack.getOrCreateTag().getString(keyName);
 	}
 	
-	/**
-	 * Initializes the NBT Tag Compound for the given ItemStack if it is null
-	 *
-	 * @param itemStack The ItemStack for which its NBT Tag Compound is being checked
-	 *                  for initialization
-	 */
-	private static void initNBTTagCompound(ItemStack itemStack)
-	{
-		if(!itemStack.hasTagCompound())
-		{
-			itemStack.setTagCompound(new NBTTagCompound());
-		}
+	public static void setString(ItemStack itemStack, String keyName, String keyValue) {
+		itemStack.getOrCreateTag().setString(keyName, keyValue);
 	}
 	
-	public static void setString(ItemStack itemStack, String keyName, String keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setString(keyName, keyValue);
+	public static boolean toggleBoolean(ItemStack itemStack, String keyName, boolean defaultValue) {
+		return setBoolean(itemStack, keyName, !getBoolean(itemStack, keyName, defaultValue));
+	}
+	
+	public static boolean setBoolean(ItemStack itemStack, String keyName, boolean keyValue) {
+		itemStack.getOrCreateTag().setBoolean(keyName, keyValue);
+		return keyValue;
 	}
 	
 	// boolean
-	public static boolean getBoolean(ItemStack itemStack, String keyName, boolean defaultValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static boolean getBoolean(ItemStack itemStack, String keyName, boolean defaultValue) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setBoolean(itemStack, keyName, defaultValue);
 		}
 		
-		return itemStack.getTagCompound().getBoolean(keyName);
-	}
-	
-	public static void setBoolean(ItemStack itemStack, String keyName, boolean keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setBoolean(keyName, keyValue);
-	}
-	
-	public static void toggleBoolean(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setBoolean(keyName, !itemStack.getTagCompound().getBoolean(keyName));
+		return itemStack.getOrCreateTag().getBoolean(keyName);
 	}
 	
 	// byte
-	public static byte getByte(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static byte getByte(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setByte(itemStack, keyName, (byte) 0);
 		}
 		
-		return itemStack.getTagCompound().getByte(keyName);
+		return itemStack.getOrCreateTag().getByte(keyName);
 	}
 	
-	public static void setByte(ItemStack itemStack, String keyName, byte keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setByte(keyName, keyValue);
+	public static void setByte(ItemStack itemStack, String keyName, byte keyValue) {
+		itemStack.getOrCreateTag().setByte(keyName, keyValue);
 	}
 	
 	// short
-	public static short getShort(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static short getShort(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setShort(itemStack, keyName, (short) 0);
 		}
 		
-		return itemStack.getTagCompound().getShort(keyName);
+		return itemStack.getOrCreateTag().getShort(keyName);
 	}
 	
-	public static void setShort(ItemStack itemStack, String keyName, short keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setShort(keyName, keyValue);
+	public static void setShort(ItemStack itemStack, String keyName, short keyValue) {
+		itemStack.getOrCreateTag().setShort(keyName, keyValue);
 	}
 	
 	// long
-	public static long getLong(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static long getLong(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setLong(itemStack, keyName, 0);
 		}
 		
-		return itemStack.getTagCompound().getLong(keyName);
+		return itemStack.getOrCreateTag().getLong(keyName);
 	}
 	
-	public static void setLong(ItemStack itemStack, String keyName, long keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setLong(keyName, keyValue);
+	public static void setLong(ItemStack itemStack, String keyName, long keyValue) {
+		itemStack.getOrCreateTag().setLong(keyName, keyValue);
 	}
 	
 	// float
-	public static float getFloat(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static float getFloat(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setFloat(itemStack, keyName, 0);
 		}
 		
-		return itemStack.getTagCompound().getFloat(keyName);
+		return itemStack.getOrCreateTag().getFloat(keyName);
 	}
 	
-	public static void setFloat(ItemStack itemStack, String keyName, float keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setFloat(keyName, keyValue);
+	public static void setFloat(ItemStack itemStack, String keyName, float keyValue) {
+		itemStack.getOrCreateTag().setFloat(keyName, keyValue);
 	}
 	
 	// double
-	public static double getDouble(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static double getDouble(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setDouble(itemStack, keyName, 0);
 		}
 		
-		return itemStack.getTagCompound().getDouble(keyName);
+		return itemStack.getOrCreateTag().getDouble(keyName);
 	}
 	
-	public static void setDouble(ItemStack itemStack, String keyName, double keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setDouble(keyName, keyValue);
+	public static void setDouble(ItemStack itemStack, String keyName, double keyValue) {
+		itemStack.getOrCreateTag().setDouble(keyName, keyValue);
 	}
 	
 	// Spell
-	public static SpellBase getSpell(ItemStack itemStack)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey("spell"))
-		{
-			setSpell(itemStack, Spells.NONE_SPELL);
-		}
-		
-		int spellID = ItemNBTHelper.getInt(itemStack, "spell");
-		if(spellID >= 0)
-		{
-			return Spells.spellList.get(spellID);
-		}
-		else
-		{
-			return Spells.NONE_SPELL;
-		}
-		
-	}
-	
-	public static void setSpell(ItemStack itemStack, SpellBase spell)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setInteger("spell", Spells.spellList.indexOf(spell));
-	}
+	//	public static SpellBase getSpell(ItemStack itemStack)
+	//	{
+	//		initNBTTagCompound(itemStack);
+	//
+	//		if(!itemStack.getOrCreateTag().hasKey("spell"))
+	//		{
+	//			setSpell(itemStack, Spells.NONE_SPELL);
+	//		}
+	//
+	//		int spellID = ItemNBTHelper.getInt(itemStack, "spell");
+	//		if(spellID >= 0)
+	//		{
+	//			return Spells.spellList.get(spellID);
+	//		}
+	//		else
+	//		{
+	//			return Spells.NONE_SPELL;
+	//		}
+	//
+	//	}
+	//
+	//	public static void setSpell(ItemStack itemStack, SpellBase spell)
+	//	{
+	//		initNBTTagCompound(itemStack);
+	//
+	//		itemStack.getOrCreateTag().setInteger("spell", Spells.spellList.indexOf(spell));
+	//	}
 	
 	// int
-	public static int getInt(ItemStack itemStack, String keyName)
-	{
-		initNBTTagCompound(itemStack);
-		
-		if(!itemStack.getTagCompound().hasKey(keyName))
-		{
+	public static int getInt(ItemStack itemStack, String keyName) {
+		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
 			setInteger(itemStack, keyName, 0);
 		}
 		
-		return itemStack.getTagCompound().getInteger(keyName);
+		return itemStack.getOrCreateTag().getInt(keyName);
 	}
 	
-	public static void setInteger(ItemStack itemStack, String keyName, int keyValue)
-	{
-		initNBTTagCompound(itemStack);
-		
-		itemStack.getTagCompound().setInteger(keyName, keyValue);
+	public static void setInteger(ItemStack itemStack, String keyName, int keyValue) {
+		itemStack.getOrCreateTag().setInt(keyName, keyValue);
 	}
 }
