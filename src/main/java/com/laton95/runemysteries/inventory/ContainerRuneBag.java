@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.inventory;
 
+import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -12,7 +13,7 @@ public class ContainerRuneBag extends ModContainer {
 	
 	private InventoryRuneBag bagInventory;
 	
-	public ContainerRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bagInventory) {
+	public ContainerRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bagInventory, int protectedSlot) {
 		this.bagInventory = bagInventory;
 		
 		int xOffset = 26;
@@ -26,7 +27,7 @@ public class ContainerRuneBag extends ModContainer {
 			}
 		}
 		
-		addPlayerSlots(playerInventory, 8, 69);
+		addPlayerSlots(playerInventory, 8, 69, protectedSlot);
 	}
 	
 	@Override

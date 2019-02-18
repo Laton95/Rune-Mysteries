@@ -111,6 +111,7 @@ public class ItemRuneBag extends ModItem {
 				InventoryRuneBag bagInventory = getInventory(stack);
 				PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
 				buffer.writeItemStack(stack);
+				buffer.writeInt(handIn == EnumHand.MAIN_HAND ? playerIn.inventory.currentItem : -1);
 				NetworkHooks.openGui((EntityPlayerMP) playerIn, bagInventory, buffer);
 			}
 			else {

@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.advancements.ModCriteriaTriggers;
+import com.laton95.runemysteries.capability.CapabilityRejected;
 import com.laton95.runemysteries.enums.EnumCorner;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModItems;
@@ -12,6 +13,7 @@ import com.laton95.runemysteries.potion.ModPotion;
 import com.laton95.runemysteries.reference.StringReference;
 import com.laton95.runemysteries.state.properties.ModBlockStateProperties;
 import com.laton95.runemysteries.tags.ModItemTags;
+import com.laton95.runemysteries.util.ItemNBTHelper;
 import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBubbleColumn;
@@ -149,7 +151,7 @@ public class BlockAltar extends ModBlock implements IBucketPickupHandler, ILiqui
 	
 	@Override
 	public void onEntityCollision(IBlockState state, World worldIn, BlockPos pos, Entity entityIn) {
-		if(!worldIn.isRemote && entityIn instanceof EntityItem && !entityIn.removed) {
+		if(!worldIn.isRemote && entityIn instanceof EntityItem && !entityIn.removed && !isRejected((EntityItem) entityIn)) {
 			EntityItem item = (EntityItem) entityIn;
 			ItemStack stack = item.getItem();
 			
@@ -159,8 +161,9 @@ public class BlockAltar extends ModBlock implements IBucketPickupHandler, ILiqui
 				if(runeType.isOurania() && stack.getItem() == ModItems.RUNE_ESSENCE) {
 					grantAdvancements(worldIn, uuid, item);
 					stack.shrink(1);
-					ItemStack output = new ItemStack(EnumRuneType.getRandomType(worldIn.rand).getRune(), 1);
+					ItemStack output = new ItemStack(EnumRuneType.getRandomType(worldIn.rand).getRune(), getMultiplier(worldIn, uuid, item));
 					EntityItem outputItem = new EntityItem(worldIn, item.posX, item.posY, item.posZ, output);
+					outputItem.setThrowerId(uuid);
 					worldIn.spawnEntity(outputItem);
 				}
 				else {
@@ -168,17 +171,29 @@ public class BlockAltar extends ModBlock implements IBucketPickupHandler, ILiqui
 					AltarRecipe recipe = worldIn.getRecipeManager().getRecipe(inventory, worldIn, AltarRecipe.RUNE_ALTAR_TYPE);
 					if(recipe != null) {
 						grantAdvancements(worldIn, uuid, item);
-						int multiplier = getMultiplier(worldIn, uuid, item);
 						stack.shrink(1);
 						ItemStack output = recipe.getCraftingResult(inventory);
-						output.setCount(output.getCount() * multiplier);
+						output.setCount(output.getCount() * getMultiplier(worldIn, uuid, item));
 						EntityItem outputItem = new EntityItem(worldIn, item.posX, item.posY, item.posZ, output);
 						outputItem.setThrowerId(uuid);
 						worldIn.spawnEntity(outputItem);
 					}
+					else {
+						setRejected((EntityItem) entityIn);
+					}
 				}
 			}
 		}
+	}
+	
+	private boolean isRejected(EntityItem item) {
+		CapabilityRejected.Rejected cap = item.getCapability(CapabilityRejected.REJECTED).orElseThrow(() -> new RuntimeException("Did not find capability"));
+		return cap.isRejected();
+	}
+	
+	private void setRejected(EntityItem item) {
+		CapabilityRejected.Rejected cap = item.getCapability(CapabilityRejected.REJECTED).orElseThrow(() -> new RuntimeException("Did not find capability"));
+		cap.setRejected();
 	}
 	
 	@Override

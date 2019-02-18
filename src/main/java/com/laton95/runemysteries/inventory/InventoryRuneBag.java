@@ -1,7 +1,9 @@
 package com.laton95.runemysteries.inventory;
 
 import com.laton95.runemysteries.client.gui.inventory.GuiRuneBag;
+import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
+import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
@@ -62,7 +64,12 @@ public class InventoryRuneBag extends ItemStackHandler implements IInteractionOb
 	
 	@Override
 	public Container createContainer(InventoryPlayer playerInventory, EntityPlayer playerIn) {
-		return new ContainerRuneBag(playerInventory, this);
+		int protectedSlot = -1;
+		if(playerIn.getHeldItemMainhand().getItem() == ModItems.RUNE_BAG) {
+			protectedSlot = playerInventory.currentItem;
+		}
+		
+		return new ContainerRuneBag(playerInventory, this, protectedSlot);
 	}
 	
 	@Override

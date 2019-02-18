@@ -1,5 +1,6 @@
 package com.laton95.runemysteries;
 
+import com.laton95.runemysteries.capability.CapabilityRejected;
 import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.crafting.AltarRecipe;
@@ -51,10 +52,10 @@ public class RuneMysteries {
 		RecipeSerializers.register(AltarRecipe.RUNE_ALTAR_SERIALIZER);
 		RecipeSerializers.register(ObeliskRecipe.OBELISK_SERIALIZER);
 		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandler::openGui);
+		CapabilityRejected.register();
 	}
 	
 	public void serverConfig(ModConfig.ModConfigEvent event) {
-		ModLog.info("Loading config");
 		if(event.getConfig().getSpec() == Config.SERVER_SPEC) {
 			Config.load();
 		}

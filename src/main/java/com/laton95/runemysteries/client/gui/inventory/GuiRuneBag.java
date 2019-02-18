@@ -18,8 +18,8 @@ public class GuiRuneBag extends GuiContainer {
 	
 	private final InventoryRuneBag bagInventory;
 	
-	public GuiRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bagInventory) {
-		super(bagInventory.createContainer(playerInventory, null));
+	public GuiRuneBag(InventoryPlayer playerInventory, InventoryRuneBag bagInventory, int protectedSlot) {
+		super(new ContainerRuneBag(playerInventory, bagInventory, protectedSlot));
 		this.playerInventory = playerInventory;
 		this.bagInventory = bagInventory;
 	}

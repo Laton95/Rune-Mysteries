@@ -12,7 +12,8 @@ public class GuiHandler {
 	public static GuiScreen openGui(FMLPlayMessages.OpenContainer openContainer) {
 		if(openContainer.getId().equals(GuiRuneBag.RUNE_BAG_GUI_ID)) {
 			ItemStack stack = openContainer.getAdditionalData().readItemStack();
-			return new GuiRuneBag(Minecraft.getInstance().player.inventory, ItemRuneBag.getInventory(stack));
+			int protectedSlot = openContainer.getAdditionalData().readInt();
+			return new GuiRuneBag(Minecraft.getInstance().player.inventory, ItemRuneBag.getInventory(stack), protectedSlot);
 		}
 		
 		return null;
