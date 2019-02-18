@@ -6,26 +6,22 @@ import com.laton95.runemysteries.inventory.InventoryRuneBag;
 import com.laton95.runemysteries.network.PacketSyncRuneBag;
 import com.laton95.runemysteries.network.RunemysteriesPacketHandler;
 import com.laton95.runemysteries.reference.StringReference;
-import com.laton95.runemysteries.util.PlayerInventoryHelper;
 import com.laton95.runemysteries.util.ItemNBTHelper;
-import com.laton95.runemysteries.util.ModLog;
+import com.laton95.runemysteries.util.PlayerInventoryHelper;
 import io.netty.buffer.Unpooled;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.SoundEvents;
-import net.minecraft.inventory.InventoryHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.INBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.network.play.server.SPacketCollectItem;
 import net.minecraft.util.*;
-import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.util.text.TextFormatting;
-import net.minecraft.world.IInteractionObject;
 import net.minecraft.world.World;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -37,11 +33,9 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.network.NetworkHooks;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
-import java.util.ArrayList;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID)
@@ -68,7 +62,7 @@ public class ItemRuneBag extends ModItem {
 				if(ItemNBTHelper.getBoolean(bagStack, AUTO_PICKUP_NBT, true)) {
 					boolean bagChanged = false;
 					InventoryRuneBag bagInventory = getInventory(bagStack);
-
+					
 					for(int i = 0; i < bagInventory.getSlots(); i++) {
 						if(tempStack.getCount() == 0) {
 							break;

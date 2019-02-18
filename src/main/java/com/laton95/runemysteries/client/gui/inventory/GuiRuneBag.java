@@ -34,7 +34,7 @@ public class GuiRuneBag extends GuiContainer {
 	@Override
 	protected void drawGuiContainerForegroundLayer(int mouseX, int mouseY) {
 		this.fontRenderer.drawString(bagInventory.getDisplayName().getFormattedText(), 8.0F, 6.0F, 4210752);
-		this.fontRenderer.drawString(playerInventory.getDisplayName().getFormattedText(), 8.0F, (float)(this.ySize - 109), 4210752);
+		this.fontRenderer.drawString(playerInventory.getDisplayName().getFormattedText(), 8.0F, (float) (this.ySize - 109), 4210752);
 	}
 	
 	@Override

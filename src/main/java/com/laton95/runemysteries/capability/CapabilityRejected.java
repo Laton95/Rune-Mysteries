@@ -1,20 +1,20 @@
 package com.laton95.runemysteries.capability;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.INBTBase;
-import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.nbt.NBTTagInt;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.common.capabilities.*;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.CapabilityInject;
+import net.minecraftforge.common.capabilities.CapabilityManager;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
@@ -24,8 +24,7 @@ public class CapabilityRejected {
 	@CapabilityInject(Rejected.class)
 	public static Capability<Rejected> REJECTED = null;
 	
-	public static void register()
-	{
+	public static void register() {
 		CapabilityManager.INSTANCE.register(Rejected.class, new Capability.IStorage<Rejected>() {
 			@Nullable
 			@Override

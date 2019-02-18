@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.potion;
 
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GlStateManager;
@@ -19,7 +18,7 @@ public class ModPotion extends Potion {
 		super(isBadEffect, liquidColor);
 		setRegistryName(name);
 		this.texture = texture;
-		if(isBeneficial) setBeneficial();
+		if(isBeneficial) { setBeneficial(); }
 	}
 	
 	@Override
@@ -37,8 +36,7 @@ public class ModPotion extends Potion {
 		render(x + 3, y + 3, alpha);
 	}
 	
-	private void render(int x, int y, float alpha)
-	{
+	private void render(int x, int y, float alpha) {
 		Minecraft.getInstance().textureManager.bindTexture(texture);
 		Tessellator tessellator = Tessellator.getInstance();
 		BufferBuilder buf = tessellator.getBuffer();
@@ -53,8 +51,7 @@ public class ModPotion extends Potion {
 		tessellator.draw();
 	}
 	
-	public boolean hasEffect(EntityLivingBase entity)
-	{
+	public boolean hasEffect(EntityLivingBase entity) {
 		return entity.getActivePotionEffect(this) != null;
 	}
 }

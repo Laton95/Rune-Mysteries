@@ -18,17 +18,14 @@ public class RunemysteriesPacketHandler {
 																				.networkProtocolVersion(() -> PROTOCOL_VERSION)
 																				.simpleChannel();
 	
-	public static void register()
-	{
+	public static void register() {
 		int disc = 0;
 		
 		INSTANCE.registerMessage(disc++, PacketSyncRuneBag.class, PacketSyncRuneBag::encode, PacketSyncRuneBag::decode, PacketSyncRuneBag.Handler::handle);
 	}
 	
-	public static void sendTo(Object msg, EntityPlayerMP player)
-	{
-		if (!(player instanceof FakePlayer))
-		{
+	public static void sendTo(Object msg, EntityPlayerMP player) {
+		if(!(player instanceof FakePlayer)) {
 			INSTANCE.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}

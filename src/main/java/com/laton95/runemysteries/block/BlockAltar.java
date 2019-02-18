@@ -7,14 +7,9 @@ import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.init.ModPotions;
 import com.laton95.runemysteries.inventory.InventoryAltar;
-import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.crafting.AltarRecipe;
-import com.laton95.runemysteries.potion.ModPotion;
 import com.laton95.runemysteries.reference.StringReference;
 import com.laton95.runemysteries.state.properties.ModBlockStateProperties;
-import com.laton95.runemysteries.tags.ModItemTags;
-import com.laton95.runemysteries.util.ItemNBTHelper;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockBubbleColumn;
 import net.minecraft.block.IBucketPickupHandler;
@@ -24,7 +19,6 @@ import net.minecraft.block.state.BlockFaceShape;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.EntityLiving;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -226,7 +220,7 @@ public class BlockAltar extends ModBlock implements IBucketPickupHandler, ILiqui
 		}
 		
 		EntityPlayer entity = worldIn.getPlayerEntityByUUID(uuid);
-		if(entity != null &&  ModPotions.STONETOUCHER.hasEffect(entity) && item.getItem().getItem() == ModItems.RUNE_ESSENCE) {
+		if(entity != null && ModPotions.STONETOUCHER.hasEffect(entity) && item.getItem().getItem() == ModItems.RUNE_ESSENCE) {
 			return 2;
 		}
 		

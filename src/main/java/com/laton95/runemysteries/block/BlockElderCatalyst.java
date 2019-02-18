@@ -32,7 +32,6 @@ import net.minecraft.world.World;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
 
@@ -43,20 +42,20 @@ public class BlockElderCatalyst extends ModBlock {
 	public static final BooleanProperty TOP = BooleanProperty.create("top");
 	
 	private static final VoxelShape[] topShapes = new VoxelShape[] {
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 16.0D, 12.0D, 16.0D),
-		Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 12.0D, 16.0D),
-		Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 16.0D, 12.0D, 14.0D),
-		Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 14.0D, 12.0D, 14.0D),
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
-	};
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 16.0D, 12.0D, 16.0D),
+			Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 12.0D, 16.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 16.0D, 12.0D, 14.0D),
+			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 14.0D, 12.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
+			};
 	
 	private static final VoxelShape[] bottomShapes = new VoxelShape[] {
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 16.0D, 16.0D, 16.0D),
-		Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 16.0D, 16.0D),
-		Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 16.0D, 16.0D, 14.0D),
-		Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D),
-		Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
-	};
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 16.0D, 16.0D, 16.0D),
+			Block.makeCuboidShape(0.0D, 0.0D, 2.0D, 14.0D, 16.0D, 16.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 0.0D, 16.0D, 16.0D, 14.0D),
+			Block.makeCuboidShape(0.0D, 0.0D, 0.0D, 14.0D, 16.0D, 14.0D),
+			Block.makeCuboidShape(2.0D, 0.0D, 2.0D, 14.0D, 12.0D, 14.0D),
+			};
 	
 	public BlockElderCatalyst() {
 		super("elder_catalyst", Properties.create(Material.ROCK).needsRandomTick().hardnessAndResistance(50.0F, 1200.0F));
@@ -69,7 +68,7 @@ public class BlockElderCatalyst extends ModBlock {
 	
 	@Override
 	public VoxelShape getShape(IBlockState state, IBlockReader worldIn, BlockPos pos) {
-		int cornerIndex = ((EnumCorner)state.get(CORNER)).ordinal();
+		int cornerIndex = ((EnumCorner) state.get(CORNER)).ordinal();
 		return state.get(TOP) ? topShapes[cornerIndex] : bottomShapes[cornerIndex];
 	}
 	
@@ -86,9 +85,9 @@ public class BlockElderCatalyst extends ModBlock {
 		if(!worldIn.isRemote) {
 			EnumFacing facing = placer != null ? placer.getHorizontalFacing() : EnumFacing.NORTH;
 			
-			for (int dx = 0; dx < 2; dx++) {
-				for (int dy = 0; dy < 2; dy++) {
-					for (int dz = 0; dz < 2; dz++) {
+			for(int dx = 0; dx < 2; dx++) {
+				for(int dy = 0; dy < 2; dy++) {
+					for(int dz = 0; dz < 2; dz++) {
 						BlockPos setPos = pos.up(dy).offset(facing, dx).offset(facing.rotateY(), dz);
 						worldIn.setBlockState(setPos, getDefaultState(), 2);
 					}
@@ -100,9 +99,9 @@ public class BlockElderCatalyst extends ModBlock {
 	private boolean canPlace(BlockItemUseContext context) {
 		BlockPos pos = context.getPos();
 		
-		for (int dx = 0; dx < 2; dx++) {
-			for (int dy = 0; dy < 2; dy++) {
-				for (int dz = 0; dz < 2; dz++) {
+		for(int dx = 0; dx < 2; dx++) {
+			for(int dy = 0; dy < 2; dy++) {
+				for(int dz = 0; dz < 2; dz++) {
 					BlockPos checkPos = pos.up(dy).offset(context.getPlacementHorizontalFacing(), dx).offset(context.getPlacementHorizontalFacing().rotateY(), dz);
 					if(!context.getWorld().getBlockState(checkPos).isReplaceable(context)) {
 						return false;
@@ -183,23 +182,18 @@ public class BlockElderCatalyst extends ModBlock {
 		List<BlockPos> stonePositions = new ArrayList<>();
 		
 		int radius = 10;
-		for(int y = -radius; y < radius; y++)
-		{
-			for(int x = -radius; x < radius; x++)
-			{
-				for(int z = -radius; z < radius; z++)
-				{
+		for(int y = -radius; y < radius; y++) {
+			for(int x = -radius; x < radius; x++) {
+				for(int z = -radius; z < radius; z++) {
 					BlockPos curPos = pos.add(x, y, z);
-					if(worldIn.getBlockState(curPos) == Blocks.STONE.getDefaultState())
-					{
+					if(worldIn.getBlockState(curPos) == Blocks.STONE.getDefaultState()) {
 						stonePositions.add(curPos);
 					}
 				}
 			}
 		}
 		
-		if(stonePositions.size() > 0)
-		{
+		if(stonePositions.size() > 0) {
 			BlockPos essPos = stonePositions.get(random.nextInt(stonePositions.size()));
 			
 			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE.getDefaultState().with(BlockRuneEssence.INFINITE, false));
@@ -208,8 +202,7 @@ public class BlockElderCatalyst extends ModBlock {
 	
 	@Override
 	public boolean onBlockActivated(IBlockState state, World worldIn, BlockPos pos, EntityPlayer player, EnumHand hand, EnumFacing side, float hitX, float hitY, float hitZ) {
-		if(!worldIn.isRemote)
-		{
+		if(!worldIn.isRemote) {
 			ModCriteriaTriggers.ELDER_CATALYST.trigger((EntityPlayerMP) player);
 			
 			player.sendMessage(new TextComponentTranslation(StringReference.BlockInteraction.ELDER_CATALYST_INTERACT, player.getDisplayName()));

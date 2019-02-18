@@ -6,12 +6,9 @@ import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.item.*;
 import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
-import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
-import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ItemWallOrFloor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -181,7 +178,6 @@ public class ModItems {
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		ModLog.info("Registering items");
-		
 		
 		
 		for(Block block : blocks) {

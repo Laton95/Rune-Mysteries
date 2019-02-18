@@ -32,6 +32,7 @@ import java.util.Random;
 public class BlockUnderwaterTorchWall extends BlockUnderwaterTorch {
 	
 	public static final DirectionProperty HORIZONTAL_FACING = BlockHorizontal.HORIZONTAL_FACING;
+	
 	private static final Map<EnumFacing, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(EnumFacing.NORTH, Block.makeCuboidShape(5.5D, 3.0D, 11.0D, 10.5D, 13.0D, 16.0D), EnumFacing.SOUTH, Block.makeCuboidShape(5.5D, 3.0D, 0.0D, 10.5D, 13.0D, 5.0D), EnumFacing.WEST, Block.makeCuboidShape(11.0D, 3.0D, 5.5D, 16.0D, 13.0D, 10.5D), EnumFacing.EAST, Block.makeCuboidShape(0.0D, 3.0D, 5.5D, 5.0D, 13.0D, 10.5D)));
 	
 	public BlockUnderwaterTorchWall() {
@@ -64,10 +65,10 @@ public class BlockUnderwaterTorchWall extends BlockUnderwaterTorch {
 		EnumFacing[] aenumfacing = context.getNearestLookingDirections();
 		
 		for(EnumFacing enumfacing : aenumfacing) {
-			if (enumfacing.getAxis().isHorizontal()) {
+			if(enumfacing.getAxis().isHorizontal()) {
 				EnumFacing enumfacing1 = enumfacing.getOpposite();
 				iblockstate = iblockstate.with(HORIZONTAL_FACING, enumfacing1);
-				if (iblockstate.isValidPosition(iworldreaderbase, blockpos)) {
+				if(iblockstate.isValidPosition(iworldreaderbase, blockpos)) {
 					return iblockstate;
 				}
 			}
@@ -83,12 +84,12 @@ public class BlockUnderwaterTorchWall extends BlockUnderwaterTorch {
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
 		EnumFacing enumfacing = stateIn.get(HORIZONTAL_FACING);
-		double d0 = (double)pos.getX() + 0.5D;
-		double d1 = (double)pos.getY() + 0.7D;
-		double d2 = (double)pos.getZ() + 0.5D;
+		double d0 = (double) pos.getX() + 0.5D;
+		double d1 = (double) pos.getY() + 0.7D;
+		double d2 = (double) pos.getZ() + 0.5D;
 		EnumFacing enumfacing1 = enumfacing.getOpposite();
-		worldIn.spawnParticle(Particles.BUBBLE, d0 + 0.27D * (double)enumfacing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double)enumfacing1.getZOffset(), 0.0D, 0.0D, 0.0D);
-		worldIn.spawnParticle(Particles.BUBBLE_COLUMN_UP, d0 + 0.27D * (double)enumfacing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double)enumfacing1.getZOffset(), 0.0D, 0.0D, 0.0D);
+		worldIn.spawnParticle(Particles.BUBBLE, d0 + 0.27D * (double) enumfacing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double) enumfacing1.getZOffset(), 0.0D, 0.0D, 0.0D);
+		worldIn.spawnParticle(Particles.BUBBLE_COLUMN_UP, d0 + 0.27D * (double) enumfacing1.getXOffset(), d1 + 0.22D, d2 + 0.27D * (double) enumfacing1.getZOffset(), 0.0D, 0.0D, 0.0D);
 	}
 	
 	public IBlockState rotate(IBlockState state, Rotation rot) {

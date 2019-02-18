@@ -13,8 +13,7 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.Map;
 
-public class StructureHelper
-{
+public class StructureHelper {
 	
 	private Template template;
 	
@@ -26,15 +25,12 @@ public class StructureHelper
 	
 	private ResourceLocation loot;
 	
-	public StructureHelper(World world, String structureName, BlockPos pos)
-	{
+	public StructureHelper(World world, String structureName, BlockPos pos) {
 		this(world, structureName, pos, new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID));
 	}
 	
-	public StructureHelper(World world, String structureName, BlockPos pos, PlacementSettings settings)
-	{
-		if(structureName != null)
-		{
+	public StructureHelper(World world, String structureName, BlockPos pos, PlacementSettings settings) {
+		if(structureName != null) {
 			this.world = world;
 			this.settings = settings;
 			this.pos = pos;
@@ -45,29 +41,23 @@ public class StructureHelper
 		}
 	}
 	
-	public StructureHelper(World world, String structureName, BlockPos pos, ResourceLocation loot)
-	{
+	public StructureHelper(World world, String structureName, BlockPos pos, ResourceLocation loot) {
 		this(world, structureName, pos, new PlacementSettings().setReplacedBlock(Blocks.STRUCTURE_VOID));
 		this.loot = loot;
 	}
 	
-	public void generate()
-	{
-		if(template != null)
-		{
+	public void generate() {
+		if(template != null) {
 			template.addBlocksToWorld(world, pos, settings, 2);
 			
 			Map<BlockPos, String> map = template.getDataBlocks(pos, settings);
-			for(Map.Entry<BlockPos, String> entry : map.entrySet())
-			{
-				if("chest".equals(entry.getValue()))
-				{
+			for(Map.Entry<BlockPos, String> entry : map.entrySet()) {
+				if("chest".equals(entry.getValue())) {
 					BlockPos chestPos = entry.getKey();
 					world.setBlockState(chestPos, Blocks.CHEST.getDefaultState());
 					TileEntity tileentity = world.getTileEntity(chestPos);
 					
-					if(tileentity instanceof TileEntityChest)
-					{
+					if(tileentity instanceof TileEntityChest) {
 						((TileEntityChest) tileentity).setLootTable(loot, world.rand.nextLong());
 					}
 				}

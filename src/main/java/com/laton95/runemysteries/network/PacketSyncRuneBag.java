@@ -9,7 +9,6 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketBuffer;
 import net.minecraft.util.NonNullList;
 import net.minecraftforge.fml.network.NetworkEvent;
-import net.minecraftforge.items.CapabilityItemHandler;
 
 import java.util.function.Supplier;
 
@@ -33,15 +32,13 @@ public class PacketSyncRuneBag {
 		}
 	}
 	
-	public static PacketSyncRuneBag decode(PacketBuffer buffer)
-	{
+	public static PacketSyncRuneBag decode(PacketBuffer buffer) {
 		int inventorySlot = buffer.readInt();
 		
 		int size = buffer.readInt();
 		NonNullList<ItemStack> stacks = NonNullList.withSize(size, ItemStack.EMPTY);
 		
-		for (int item = 0; item < size; item++)
-		{
+		for(int item = 0; item < size; item++) {
 			ItemStack itemStack = buffer.readItemStack();
 			
 			stacks.set(item, itemStack);
@@ -50,10 +47,9 @@ public class PacketSyncRuneBag {
 		return new PacketSyncRuneBag(stacks, inventorySlot);
 	}
 	
-	public static class Handler
-	{
-		public static void handle(final PacketSyncRuneBag message, Supplier<NetworkEvent.Context> context)
-		{
+	public static class Handler {
+		
+		public static void handle(final PacketSyncRuneBag message, Supplier<NetworkEvent.Context> context) {
 			context.get().enqueueWork(() -> {
 				EntityPlayerSP player = RuneMysteries.proxy.getClientPlayer();
 				

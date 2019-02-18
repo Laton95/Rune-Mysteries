@@ -3,13 +3,10 @@ package com.laton95.runemysteries.enums;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import com.laton95.runemysteries.item.ItemTalisman;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.network.PacketBuffer;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.world.dimension.DimensionType;
 
 import java.util.Random;
-import java.util.stream.Stream;
 
 public enum EnumRuneType {
 	AIR,
@@ -29,8 +26,7 @@ public enum EnumRuneType {
 	OURANIA;
 	
 	public ItemRune getRune() {
-		switch(this)
-		{
+		switch(this) {
 			case AIR:
 				return ModItems.AIR_RUNE;
 			case ASTRAL:
@@ -65,8 +61,7 @@ public enum EnumRuneType {
 	}
 	
 	public ItemTalisman getTalisman() {
-		switch(this)
-		{
+		switch(this) {
 			case AIR:
 				return ModItems.AIR_TALISMAN;
 			case ASTRAL:

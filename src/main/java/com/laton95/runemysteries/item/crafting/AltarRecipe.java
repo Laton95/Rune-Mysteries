@@ -20,9 +20,13 @@ import net.minecraftforge.common.crafting.RecipeType;
 public class AltarRecipe implements IRecipe {
 	
 	private final ResourceLocation id;
+	
 	private final Ingredient input;
+	
 	private final ItemStack output;
+	
 	private final EnumRuneType altarType;
+	
 	private final boolean anyAltar;
 	
 	public static final RecipeType<AltarRecipe> RUNE_ALTAR_TYPE = RecipeType.get(new ResourceLocation(RuneMysteries.MOD_ID, "rune_altar"), AltarRecipe.class);
@@ -91,9 +95,10 @@ public class AltarRecipe implements IRecipe {
 			boolean anyAltar = false;
 			
 			Ingredient ingredient;
-			if (JsonUtils.isJsonArray(json, "ingredient")) {
+			if(JsonUtils.isJsonArray(json, "ingredient")) {
 				ingredient = Ingredient.fromJson(JsonUtils.getJsonArray(json, "ingredient"));
-			} else {
+			}
+			else {
 				ingredient = Ingredient.fromJson(JsonUtils.getJsonObject(json, "ingredient"));
 			}
 			

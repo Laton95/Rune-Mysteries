@@ -20,9 +20,13 @@ import net.minecraftforge.common.crafting.RecipeType;
 public class ObeliskRecipe implements IRecipe {
 	
 	private final ResourceLocation id;
+	
 	private final Ingredient input;
+	
 	private final ItemStack output;
+	
 	private final EnumRuneType obeliskType;
+	
 	private final boolean anyObelisk;
 	
 	public static final RecipeType<ObeliskRecipe> OBELISK_TYPE = RecipeType.get(new ResourceLocation(RuneMysteries.MOD_ID, "obelisk"), ObeliskRecipe.class);
@@ -91,9 +95,10 @@ public class ObeliskRecipe implements IRecipe {
 			boolean anyObelisk = false;
 			
 			Ingredient ingredient;
-			if (JsonUtils.isJsonArray(json, "ingredient")) {
+			if(JsonUtils.isJsonArray(json, "ingredient")) {
 				ingredient = Ingredient.fromJson(JsonUtils.getJsonArray(json, "ingredient"));
-			} else {
+			}
+			else {
 				ingredient = Ingredient.fromJson(JsonUtils.getJsonObject(json, "ingredient"));
 			}
 			

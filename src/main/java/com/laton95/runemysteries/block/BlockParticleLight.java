@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.enums.EnumColour;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.IBucketPickupHandler;
 import net.minecraft.block.ILiquidContainer;
@@ -21,7 +20,6 @@ import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.EnumBlockRenderType;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
 import net.minecraft.util.math.BlockPos;

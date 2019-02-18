@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.inventory;
 
-import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
@@ -19,10 +18,8 @@ public class ContainerRuneBag extends ModContainer {
 		int xOffset = 26;
 		int yOffset = 20;
 		
-		for(int i = 0; i < 2; ++i)
-		{
-			for(int j = 0; j < 7; ++j)
-			{
+		for(int i = 0; i < 2; ++i) {
+			for(int j = 0; j < 7; ++j) {
 				addSlot(new RuneSlot(this.bagInventory, j + i * 7, xOffset + j * 18, yOffset + i * 18));
 			}
 		}
@@ -45,17 +42,14 @@ public class ContainerRuneBag extends ModContainer {
 		int hotbarStart = invEnd + 1;
 		int hotbarEnd = hotbarStart + 8;
 		
-		if(slot != null && slot.getHasStack())
-		{
+		if(slot != null && slot.getHasStack()) {
 			ItemStack itemstack1 = slot.getStack();
 			itemstack = itemstack1.copy();
 			
 			// If item is in our custom inventory
-			if(index < invStart)
-			{
+			if(index < invStart) {
 				// try to place in player inventory / action bar
-				if(!mergeItemStack(itemstack1, invStart, hotbarEnd + 1, true))
-				{
+				if(!mergeItemStack(itemstack1, invStart, hotbarEnd + 1, true)) {
 					return ItemStack.EMPTY;
 				}
 				
@@ -63,25 +57,20 @@ public class ContainerRuneBag extends ModContainer {
 			}
 			// Item is in inventory / hotbar, try to place in custom
 			// inventory
-			else
-			{
-				if(!mergeItemStack(itemstack1, 0, invStart, false))
-				{
+			else {
+				if(!mergeItemStack(itemstack1, 0, invStart, false)) {
 					return ItemStack.EMPTY;
 				}
 			}
 			
-			if(itemstack1.isEmpty())
-			{
+			if(itemstack1.isEmpty()) {
 				slot.putStack(ItemStack.EMPTY);
 			}
-			else
-			{
+			else {
 				slot.onSlotChanged();
 			}
 			
-			if(itemstack1.getCount() == itemstack.getCount())
-			{
+			if(itemstack1.getCount() == itemstack.getCount()) {
 				return ItemStack.EMPTY;
 			}
 			
@@ -91,23 +80,18 @@ public class ContainerRuneBag extends ModContainer {
 		return itemstack;
 	}
 	
-	private class RuneSlot extends SlotItemHandler
-	{
+	private class RuneSlot extends SlotItemHandler {
 		
-		public RuneSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition)
-		{
+		public RuneSlot(IItemHandler itemHandler, int index, int xPosition, int yPosition) {
 			super(itemHandler, index, xPosition, yPosition);
 		}
 		
 		@Override
-		public boolean isItemValid(ItemStack stack)
-		{
-			if(stack.getItem() instanceof ItemRune)
-			{
+		public boolean isItemValid(ItemStack stack) {
+			if(stack.getItem() instanceof ItemRune) {
 				return super.isItemValid(stack);
 			}
-			else
-			{
+			else {
 				return false;
 			}
 		}

@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.item;
 
 import com.laton95.runemysteries.init.ModBlocks;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
@@ -16,7 +15,6 @@ import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.RayTraceFluidMode;
 import net.minecraft.util.math.RayTraceResult;
-import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 
 public class ItemSpellbook extends ModItem {
@@ -43,15 +41,18 @@ public class ItemSpellbook extends ModItem {
 	}
 	
 	private EnumActionResult tryPlace(BlockItemUseContext p_195942_1_) {
-		if (!p_195942_1_.canPlace()) {
+		if(!p_195942_1_.canPlace()) {
 			return EnumActionResult.FAIL;
-		} else {
+		}
+		else {
 			IBlockState iblockstate = ModBlocks.WHITE_LIGHT.getStateForPlacement(p_195942_1_);
-			if (iblockstate == null) {
+			if(iblockstate == null) {
 				return EnumActionResult.FAIL;
-			} else if (!this.placeBlock(p_195942_1_, iblockstate)) {
+			}
+			else if(!this.placeBlock(p_195942_1_, iblockstate)) {
 				return EnumActionResult.FAIL;
-			} else {
+			}
+			else {
 				BlockPos blockpos = p_195942_1_.getPos();
 				
 				World world = p_195942_1_.getWorld();
@@ -59,10 +60,10 @@ public class ItemSpellbook extends ModItem {
 				ItemStack itemstack = p_195942_1_.getItem();
 				IBlockState iblockstate1 = world.getBlockState(blockpos);
 				Block block = iblockstate1.getBlock();
-				if (block == iblockstate.getBlock()) {
+				if(block == iblockstate.getBlock()) {
 					block.onBlockPlacedBy(world, blockpos, iblockstate1, entityplayer, itemstack);
-					if (entityplayer instanceof EntityPlayerMP) {
-						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP)entityplayer, blockpos, itemstack);
+					if(entityplayer instanceof EntityPlayerMP) {
+						CriteriaTriggers.PLACED_BLOCK.trigger((EntityPlayerMP) entityplayer, blockpos, itemstack);
 					}
 				}
 				

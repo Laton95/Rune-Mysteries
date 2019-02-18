@@ -3,7 +3,6 @@ package com.laton95.runemysteries.inventory;
 import com.laton95.runemysteries.client.gui.inventory.GuiRuneBag;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.ItemRune;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;

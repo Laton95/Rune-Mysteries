@@ -65,9 +65,9 @@ public class BlockUnderwaterTorch extends ModBlock implements IBucketPickupHandl
 	
 	@OnlyIn(Dist.CLIENT)
 	public void animateTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-		double d0 = (double)pos.getX() + 0.5D;
-		double d1 = (double)pos.getY() + 0.7D;
-		double d2 = (double)pos.getZ() + 0.5D;
+		double d0 = (double) pos.getX() + 0.5D;
+		double d1 = (double) pos.getY() + 0.7D;
+		double d2 = (double) pos.getZ() + 0.5D;
 		worldIn.spawnParticle(Particles.BUBBLE, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 		worldIn.spawnParticle(Particles.BUBBLE_COLUMN_UP, d0, d1, d2, 0.0D, 0.0D, 0.0D);
 	}

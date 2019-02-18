@@ -14,8 +14,7 @@ public class ModPotions {
 	public static final ModPotion STONETOUCHER = new ModPotion("stonetoucher", false, true, 0, new ResourceLocation(RuneMysteries.MOD_ID, "textures/gui/potion/stonetoucher.png"));
 	
 	@SubscribeEvent
-	public static void RegisterPotions(RegistryEvent.Register<Potion> event)
-	{
+	public static void RegisterPotions(RegistryEvent.Register<Potion> event) {
 		event.getRegistry().register(STONETOUCHER);
 	}
 }

@@ -1,13 +1,10 @@
 package com.laton95.runemysteries.inventory;
 
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.IInventory;
 import net.minecraft.inventory.Slot;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
 
 public abstract class ModContainer extends Container {
 	
@@ -15,12 +12,9 @@ public abstract class ModContainer extends Container {
 		this.addPlayerSlots(playerInventory, x, y, -1);
 	}
 	
-	protected void addPlayerSlots(InventoryPlayer playerInventory, int x, int y, int protectedSlot)
-	{
-		for(int i = 0; i < 3; ++i)
-		{
-			for(int j = 0; j < 9; ++j)
-			{
+	protected void addPlayerSlots(InventoryPlayer playerInventory, int x, int y, int protectedSlot) {
+		for(int i = 0; i < 3; ++i) {
+			for(int j = 0; j < 9; ++j) {
 				int index = j + i * 9 + 9;
 				if(index != protectedSlot) {
 					addSlot(new Slot(playerInventory, index, x + j * 18, y + i * 18));
@@ -32,8 +26,7 @@ public abstract class ModContainer extends Container {
 			}
 		}
 		
-		for(int i = 0; i < 9; ++i)
-		{
+		for(int i = 0; i < 9; ++i) {
 			if(i != protectedSlot) {
 				addSlot(new Slot(playerInventory, i, x + i * 18, y + 58));
 			}

@@ -8,7 +8,6 @@ import com.laton95.runemysteries.item.crafting.ObeliskRecipe;
 import com.laton95.runemysteries.network.RunemysteriesPacketHandler;
 import com.laton95.runemysteries.proxy.ClientProxy;
 import com.laton95.runemysteries.proxy.ServerProxy;
-import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.world.RuinTracker;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
@@ -30,7 +29,7 @@ public class RuneMysteries {
 	
 	public static final String MOD_ID = "runemysteries";
 	
-	public static ServerProxy proxy = DistExecutor.runForDist(()->()->new ClientProxy(), () -> ServerProxy::new);
+	public static ServerProxy proxy = DistExecutor.runForDist(() -> () -> new ClientProxy(), () -> ServerProxy::new);
 	
 	public static final ItemGroup RUNE_GROUP = new ItemGroup(MOD_ID) {
 		@Override
