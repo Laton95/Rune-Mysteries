@@ -1,0 +1,6 @@
+{
+  "parent": "runemysteries:block/altar",
+  "textures": {
+    "top": "runemysteries:block/ruin_stone"
+  }
+}

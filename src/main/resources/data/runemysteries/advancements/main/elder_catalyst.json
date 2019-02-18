@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/root",
+  "display": {
+    "icon": {
+      "item": "runemysteries:elder_catalyst"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.elder_catalyst.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.elder_catalyst.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "elder_catalyst": {
+      "trigger": "runemysteries:elder_catalyst",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "elder_catalyst"
+    ]
+  ]
+}

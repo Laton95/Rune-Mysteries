@@ -1,0 +1,35 @@
+{
+  "display": {
+    "icon": {
+      "item": "runemysteries:fire_rune"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.root.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.root.description"
+    },
+    "frame": "task",
+    "show_toast": false,
+    "announce_to_chat": false,
+    "hidden": false,
+    "background": "runemysteries:textures/block/ruin_stone.png"
+  },
+  "criteria": {
+    "rune_essence": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:rune_essence"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "rune_essence"
+    ]
+  ]
+}

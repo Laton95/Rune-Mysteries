@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " #",
+    "@ "
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:air_orb"
+    },
+    "@": {
+      "item": "runemysteries:battlestaff"
+    }
+  },
+  "result": {
+    "item": "runemysteries:air_battlestaff",
+    "count": 1
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "runemysteries:block/railing_inventory",
+  "textures": {
+    "railing": "block/stone_bricks"
+  }
+}

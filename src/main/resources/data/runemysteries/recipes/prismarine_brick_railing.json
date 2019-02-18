@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:prismarine_bricks"
+    },
+    "@": {
+      "item": "minecraft:prismarine_brick_slab"
+    }
+  },
+  "result": {
+    "item": "runemysteries:prismarine_brick_railing",
+    "count": 6
+  }
+}

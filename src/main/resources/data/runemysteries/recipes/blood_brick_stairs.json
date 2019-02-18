@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#  ",
+    "## ",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:blood_bricks"
+    }
+  },
+  "result": {
+    "item": "runemysteries:blood_brick_stairs",
+    "count": 6
+  }
+}

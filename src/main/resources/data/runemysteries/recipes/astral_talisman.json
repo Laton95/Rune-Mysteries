@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "astral",
+  "result": {
+    "item": "runemysteries:astral_talisman",
+    "count": 1
+  }
+}

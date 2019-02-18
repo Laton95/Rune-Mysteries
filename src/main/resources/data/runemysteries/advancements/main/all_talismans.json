@@ -1,0 +1,204 @@
+{
+  "parent": "runemysteries:main/talisman",
+  "display": {
+    "icon": {
+      "item": "runemysteries:fire_talisman"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.all_talismans.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.all_talismans.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "air_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:air_talisman"
+          }
+        ]
+      }
+    },
+    "astral_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:air_talisman"
+          }
+        ]
+      }
+    },
+    "blood_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:blood_talisman"
+          }
+        ]
+      }
+    },
+    "body_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:body_talisman"
+          }
+        ]
+      }
+    },
+    "chaos_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:chaos_talisman"
+          }
+        ]
+      }
+    },
+    "cosmic_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:cosmic_talisman"
+          }
+        ]
+      }
+    },
+    "death_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:death_talisman"
+          }
+        ]
+      }
+    },
+    "earth_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:earth_talisman"
+          }
+        ]
+      }
+    },
+    "fire_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:fire_talisman"
+          }
+        ]
+      }
+    },
+    "law_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:law_talisman"
+          }
+        ]
+      }
+    },
+    "mind_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:mind_talisman"
+          }
+        ]
+      }
+    },
+    "nature_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:nature_talisman"
+          }
+        ]
+      }
+    },
+    "soul_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:soul_talisman"
+          }
+        ]
+      }
+    },
+    "water_talisman": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "runemysteries:water_talisman"
+          }
+        ]
+      }
+    }
+  },
+  "requirements": [
+    [
+      "air_talisman"
+    ],
+    [
+      "astral_talisman"
+    ],
+    [
+      "blood_talisman"
+    ],
+    [
+      "body_talisman"
+    ],
+    [
+      "chaos_talisman"
+    ],
+    [
+      "cosmic_talisman"
+    ],
+    [
+      "death_talisman"
+    ],
+    [
+      "earth_talisman"
+    ],
+    [
+      "fire_talisman"
+    ],
+    [
+      "law_talisman"
+    ],
+    [
+      "mind_talisman"
+    ],
+    [
+      "nature_talisman"
+    ],
+    [
+      "soul_talisman"
+    ],
+    [
+      "water_talisman"
+    ]
+  ]
+}

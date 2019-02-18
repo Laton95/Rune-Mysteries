@@ -1,23 +1,23 @@
-/bin/
-/.gradle/
-/.metadata/
-/build/
-/eclipse/
-/run/
+# eclipse
+bin
+*.launch
+.settings
+.metadata
 .classpath
 .project
-gradle.properties
-MCMod-Testing_Client.launch
-MCMod-Testing_Server.launch
-.settings/org.eclipse.jdt.core.prefs
-*.launch
-*.log
-*.prefs
-Rune-Mysteries.iml
-*.xml
+
+# idea
 out
+*.ipr
+*.iws
 *.iml
+.idea
+
+# gradle
+build
+.gradle
+
+# other
+eclipse
+run
 *.sqlite
-gradle/wrapper/gradle-wrapper.jar
-gradle/wrapper/gradle-wrapper.jar
-resources

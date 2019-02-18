@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "runemysteries:block/blood_bricks"
+  }
+}

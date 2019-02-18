@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$#$",
+    "#@#",
+    "$#$"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:fire_shard"
+    },
+    "@": {
+      "item": "runemysteries:rune_essence_block"
+    },
+    "$": {
+      "item": "runemysteries:fire_rune"
+    }
+  },
+  "result": {
+    "item": "runemysteries:fire_obelisk",
+    "count": 1
+  }
+}

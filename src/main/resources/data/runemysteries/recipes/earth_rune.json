@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:rune_essence"
+  },
+  "altar": "earth",
+  "result": {
+    "item": "runemysteries:earth_rune",
+    "count": 1
+  }
+}

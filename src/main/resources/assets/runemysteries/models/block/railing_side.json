@@ -1,0 +1,37 @@
+{
+  "textures": {
+    "particle": "#railing"
+  },
+  "elements": [
+    {
+      "from": [ 6, 12, 0 ],
+      "to": [ 10, 14, 8 ],
+      "faces": {
+        "down":  { "texture": "#railing" },
+        "up":    { "texture": "#railing" },
+        "west":  { "texture": "#railing" },
+        "east":  { "texture": "#railing" }
+      }
+    },
+    {
+      "from": [ 6, 2, 0 ],
+      "to": [ 10, 4, 8 ],
+      "faces": {
+        "down":  { "texture": "#railing" },
+        "up":    { "texture": "#railing" },
+        "west":  { "texture": "#railing" },
+        "east":  { "texture": "#railing" }
+      }
+    },
+    {
+      "from": [ 7, 4, 3 ],
+      "to": [ 9, 12, 5 ],
+      "faces": {
+        "north": { "texture": "#railing" },
+        "south": { "texture": "#railing" },
+        "west":  { "texture": "#railing" },
+        "east":  { "texture": "#railing" }
+      }
+    }
+  ]
+}

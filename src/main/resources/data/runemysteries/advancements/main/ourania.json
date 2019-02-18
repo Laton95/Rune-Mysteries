@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/craft_rune",
+  "display": {
+    "icon": {
+      "item": "runemysteries:ourania_altar"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.ourania.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.ourania.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "ourania": {
+      "trigger": "runemysteries:ourania",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "ourania"
+    ]
+  ]
+}

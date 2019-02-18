@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "soul",
+  "result": {
+    "item": "runemysteries:soul_talisman",
+    "count": 1
+  }
+}

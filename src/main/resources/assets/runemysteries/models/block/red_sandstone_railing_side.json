@@ -1,0 +1,6 @@
+{
+  "parent": "runemysteries:block/railing_side",
+  "textures": {
+    "railing": "block/red_sandstone_top"
+  }
+}

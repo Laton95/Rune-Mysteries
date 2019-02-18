@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:polished_granite"
+    },
+    "@": {
+      "item": "minecraft:granite"
+    }
+  },
+  "result": {
+    "item": "runemysteries:polished_granite_railing",
+    "count": 6
+  }
+}

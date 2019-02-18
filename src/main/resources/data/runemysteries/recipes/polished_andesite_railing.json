@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:polished_andesite"
+    },
+    "@": {
+      "item": "minecraft:andesite"
+    }
+  },
+  "result": {
+    "item": "runemysteries:polished_andesite_railing",
+    "count": 6
+  }
+}

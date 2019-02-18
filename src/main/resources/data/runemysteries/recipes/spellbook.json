@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "minecraft:book"
+  },
+  "altar": "any",
+  "result": {
+    "item": "runemysteries:spellbook",
+    "count": 1
+  }
+}

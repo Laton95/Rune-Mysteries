@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$#$",
+    "#@#",
+    "$#$"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:earth_shard"
+    },
+    "@": {
+      "item": "runemysteries:rune_essence_block"
+    },
+    "$": {
+      "item": "runemysteries:earth_rune"
+    }
+  },
+  "result": {
+    "item": "runemysteries:earth_obelisk",
+    "count": 1
+  }
+}

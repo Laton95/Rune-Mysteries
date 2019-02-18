@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/black_monolith",
+  "display": {
+    "icon": {
+      "item": "runemysteries:ex_parrot"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.ex_parrot.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.ex_parrot.description"
+    },
+    "frame": "challenge",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "ex_parrot": {
+      "trigger": "runemysteries:ex_parrot",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "ex_parrot"
+    ]
+  ]
+}

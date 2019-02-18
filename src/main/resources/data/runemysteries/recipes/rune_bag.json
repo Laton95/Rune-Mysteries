@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "SWS",
+    "WRW",
+    "WWW"
+  ],
+  "key": {
+    "W": {
+    "tag": "minecraft:wool"
+    },
+    "S": {
+      "item": "minecraft:string"
+    },
+    "R": {
+      "tag": "runemysteries:runes"
+    }
+  },
+  "result": {
+    "item": "runemysteries:rune_bag",
+    "count": 1
+  }
+}

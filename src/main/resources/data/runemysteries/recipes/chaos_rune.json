@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:rune_essence"
+  },
+  "altar": "chaos",
+  "result": {
+    "item": "runemysteries:chaos_rune",
+    "count": 1
+  }
+}

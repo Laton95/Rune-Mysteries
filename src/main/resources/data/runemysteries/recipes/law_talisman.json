@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "law",
+  "result": {
+    "item": "runemysteries:law_talisman",
+    "count": 1
+  }
+}

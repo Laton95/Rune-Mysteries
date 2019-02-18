@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_column",
+  "textures": {
+    "end": "runemysteries:block/obelisk_top",
+    "side": "runemysteries:block/air_obelisk_top"
+  }
+}

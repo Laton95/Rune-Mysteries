@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:obsidian"
+    },
+    "@": {
+      "item": "minecraft:coal"
+    }
+  },
+  "result": {
+    "item": "runemysteries:obsidian_railing",
+    "count": 6
+  }
+}

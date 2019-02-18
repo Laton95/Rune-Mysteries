@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "nature",
+  "result": {
+    "item": "runemysteries:nature_talisman",
+    "count": 1
+  }
+}

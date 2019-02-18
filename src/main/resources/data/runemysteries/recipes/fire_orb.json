@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:obelisk",
+  "ingredient": {
+    "item": "runemysteries:glass_orb"
+  },
+  "obelisk": "fire",
+  "result": {
+    "item": "runemysteries:fire_orb",
+    "count": 1
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "type=bottom": { "model": "runemysteries:block/temple_brick_slab" },
+    "type=top": { "model": "runemysteries:block/temple_brick_slab_top" },
+    "type=double": { "model": "runemysteries:block/temple_bricks" }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "runemysteries:air_rune",
+    "runemysteries:astral_rune",
+    "runemysteries:blood_rune",
+    "runemysteries:body_rune",
+    "runemysteries:chaos_rune",
+    "runemysteries:cosmic_rune",
+    "runemysteries:death_rune",
+    "runemysteries:earth_rune",
+    "runemysteries:fire_rune",
+    "runemysteries:law_rune",
+    "runemysteries:mind_rune",
+    "runemysteries:nature_rune",
+    "runemysteries:soul_rune",
+    "runemysteries:water_rune"
+  ]
+}

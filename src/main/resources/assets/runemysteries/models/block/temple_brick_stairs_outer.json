@@ -1,0 +1,8 @@
+{
+  "parent": "block/outer_stairs",
+  "textures": {
+    "bottom": "runemysteries:block/temple_bricks",
+    "top": "runemysteries:block/temple_bricks",
+    "side": "runemysteries:block/temple_bricks"
+  }
+}

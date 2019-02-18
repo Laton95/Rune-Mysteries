@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:ruin_stone"
+    }
+  },
+  "result": {
+    "item": "runemysteries:ruin_stone_slab",
+    "count": 6
+  }
+}

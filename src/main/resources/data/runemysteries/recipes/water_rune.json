@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:rune_essence"
+  },
+  "altar": "water",
+  "result": {
+    "item": "runemysteries:water_rune",
+    "count": 1
+  }
+}

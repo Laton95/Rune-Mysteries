@@ -1,0 +1,6 @@
+{
+  "parent": "runemysteries:block/railing_post",
+  "textures": {
+    "railing": "block/polished_diorite"
+  }
+}

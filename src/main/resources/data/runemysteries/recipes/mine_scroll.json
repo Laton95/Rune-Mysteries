@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " # ",
+    "@#@",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:paper"
+    },
+    "@": {
+      "item": "runemysteries:law_rune"
+    }
+  },
+  "result": {
+    "item": "runemysteries:mine_scroll",
+    "count": 3
+  }
+}

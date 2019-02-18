@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "fire",
+  "result": {
+    "item": "runemysteries:fire_talisman",
+    "count": 1
+  }
+}

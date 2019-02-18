@@ -1,0 +1,6 @@
+{
+  "parent": "runemysteries:block/altar_ne",
+  "textures": {
+    "top": "runemysteries:block/blood_altar"
+  }
+}

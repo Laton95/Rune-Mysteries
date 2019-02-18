@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/root",
+  "display": {
+    "icon": {
+      "item": "runemysteries:fire_orb"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.charge_orb.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.charge_orb.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "charge_orb": {
+      "trigger": "runemysteries:charge_orb",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "charge_orb"
+    ]
+  ]
+}

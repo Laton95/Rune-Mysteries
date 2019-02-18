@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:rune_essence"
+  },
+  "altar": "blood",
+  "result": {
+    "item": "runemysteries:blood_rune",
+    "count": 1
+  }
+}

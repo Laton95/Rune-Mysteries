@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "death",
+  "result": {
+    "item": "runemysteries:death_talisman",
+    "count": 1
+  }
+}

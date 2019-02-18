@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:rune_essence"
+  },
+  "altar": "astral",
+  "result": {
+    "item": "runemysteries:astral_rune",
+    "count": 1
+  }
+}

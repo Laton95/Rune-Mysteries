@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "#@#",
+    "#@#"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:smooth_stone"
+    },
+    "@": {
+      "item": "minecraft:stone_slab"
+    }
+  },
+  "result": {
+    "item": "runemysteries:smooth_stone_railing",
+    "count": 6
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "$#$",
+    "#@#",
+    "$#$"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:air_shard"
+    },
+    "@": {
+      "item": "runemysteries:rune_essence_block"
+    },
+    "$": {
+      "item": "runemysteries:air_rune"
+    }
+  },
+  "result": {
+    "item": "runemysteries:air_obelisk",
+    "count": 1
+  }
+}

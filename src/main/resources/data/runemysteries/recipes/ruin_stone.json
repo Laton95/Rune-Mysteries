@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#@#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stone"
+    },
+    "@": {
+      "item": "runemysteries:rune_essence"
+    }
+  },
+  "result": {
+    "item": "runemysteries:ruin_stone",
+    "count": 8
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "type": "runemysteries:rune_altar",
+  "ingredient": {
+    "item": "runemysteries:blank_talisman"
+  },
+  "altar": "chaos",
+  "result": {
+    "item": "runemysteries:chaos_talisman",
+    "count": 1
+  }
+}

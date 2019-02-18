@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/temple",
+  "display": {
+    "icon": {
+      "item": "minecraft:lava_bucket"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.fire_altar_death.title"
+    },
+    "description": {
+      "translate": "advancements..runemysteries.main.fire_altar_death.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "fire_altar_death": {
+      "trigger": "runemysteries:fire_altar_death",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "fire_altar_death"
+    ]
+  ]
+}

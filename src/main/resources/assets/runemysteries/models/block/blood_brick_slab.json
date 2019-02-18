@@ -1,0 +1,8 @@
+{
+  "parent": "block/slab",
+  "textures": {
+    "bottom": "runemysteries:block/blood_bricks",
+    "top": "runemysteries:block/blood_bricks",
+    "side": "runemysteries:block/blood_bricks"
+  }
+}

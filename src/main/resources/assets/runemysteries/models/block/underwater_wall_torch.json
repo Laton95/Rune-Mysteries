@@ -1,0 +1,6 @@
+{
+  "parent": "block/torch_wall",
+  "textures": {
+    "torch": "runemysteries:block/underwater_torch"
+  }
+}

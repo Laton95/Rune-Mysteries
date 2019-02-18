@@ -1,0 +1,23 @@
+{
+  "parent": "runemysteries:main/temple",
+  "display": {
+    "icon": {
+      "item": "runemysteries:air_rune"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.craft_rune.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.craft_rune.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "craft_rune": {
+      "trigger": "runemysteries:craft_rune"
+    }
+  }
+}

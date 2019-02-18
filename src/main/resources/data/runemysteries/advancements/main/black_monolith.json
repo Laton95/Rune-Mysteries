@@ -1,0 +1,29 @@
+{
+  "parent": "runemysteries:main/root",
+  "display": {
+    "icon": {
+      "item": "runemysteries:black_monolith"
+    },
+    "title": {
+      "translate": "advancements.runemysteries.main.black_monolith.title"
+    },
+    "description": {
+      "translate": "advancements.runemysteries.main.black_monolith.description"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": true
+  },
+  "criteria": {
+    "black_monolith": {
+      "trigger": "runemysteries:black_monolith",
+      "conditions": {}
+    }
+  },
+  "requirements": [
+    [
+      "black_monolith"
+    ]
+  ]
+}
