@@ -61,7 +61,7 @@ public class BlockAltar extends ModBlock implements IBucketPickupHandler, ILiqui
 	private final EnumRuneType runeType;
 	
 	public BlockAltar(EnumRuneType runeType) {
-		super(runeType.toString().toLowerCase() + "_altar", Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F));
+		super(Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F));
 		this.runeType = runeType;
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}

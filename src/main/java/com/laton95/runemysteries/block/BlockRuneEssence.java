@@ -27,7 +27,7 @@ public class BlockRuneEssence extends ModBlock {
 	public static final BooleanProperty INFINITE = BooleanProperty.create("infinite");
 	
 	public BlockRuneEssence() {
-		super("rune_essence_block", Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f));
+		super(Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f));
 		setDefaultState(stateContainer.getBaseState().with(INFINITE, false));
 	}
 	

@@ -5,8 +5,7 @@ import net.minecraft.block.BlockSlab;
 
 public class ModBlockSlab extends BlockSlab {
 	
-	public ModBlockSlab(String name, Block block) {
+	public ModBlockSlab(Block block) {
 		super(Properties.from(block));
-		setRegistryName(name);
 	}
 }

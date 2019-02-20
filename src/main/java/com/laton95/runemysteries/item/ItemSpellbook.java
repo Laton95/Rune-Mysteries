@@ -21,7 +21,7 @@ public class ItemSpellbook extends ModItem {
 	
 	
 	public ItemSpellbook() {
-		super("spellbook", new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1));
 	}
 	
 	@Override

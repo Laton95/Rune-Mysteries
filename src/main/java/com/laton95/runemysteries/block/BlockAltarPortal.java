@@ -16,7 +16,7 @@ import java.util.Random;
 public class BlockAltarPortal extends ModBlock {
 	
 	public BlockAltarPortal() {
-		super("altar_portal", Properties.create(Material.BARRIER).lightValue(14).hardnessAndResistance(-1.0F, 3600000.0F), false, false);
+		super(Properties.create(Material.BARRIER).lightValue(14).hardnessAndResistance(-1.0F, 3600000.0F), false);
 	}
 	
 	@Override

@@ -7,7 +7,7 @@ public class ItemRune extends ModItem {
 	private final EnumRuneType runeType;
 	
 	public ItemRune(EnumRuneType runeType) {
-		super(runeType.toString().toLowerCase() + "_rune");
+		super();
 		this.runeType = runeType;
 	}
 	

@@ -11,7 +11,7 @@ import net.minecraft.util.text.TextComponentTranslation;
 public class ItemDebug extends ModItem {
 	
 	public ItemDebug() {
-		super("debug", new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1));
 	}
 	
 	@Override

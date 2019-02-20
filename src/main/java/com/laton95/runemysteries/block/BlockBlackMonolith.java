@@ -47,7 +47,7 @@ public class BlockBlackMonolith extends ModBlock implements IBucketPickupHandler
 	private static final VoxelShape X_AXIS_SHAPE = Block.makeCuboidShape(6.0D, 0.0D, 2.0D, 10.0D, 16.0D, 14.0D);
 	
 	public BlockBlackMonolith() {
-		super("black_monolith", Properties.create(Material.ROCK).hardnessAndResistance(50.0F, 1200.0F));
+		super(Properties.create(Material.ROCK).hardnessAndResistance(50.0F, 1200.0F));
 		this.setDefaultState(stateContainer.getBaseState().with(FACING, EnumFacing.NORTH).with(WATERLOGGED, false));
 	}
 	

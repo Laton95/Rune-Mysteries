@@ -36,8 +36,8 @@ public class BlockElementalObelisk extends ModBlock {
 	
 	private final EnumRuneType runeType;
 	
-	public BlockElementalObelisk(String name, Item shardDrop, EnumRuneType runeType) {
-		super(name, Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).lightValue(15));
+	public BlockElementalObelisk(Item shardDrop, EnumRuneType runeType) {
+		super(Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).lightValue(15));
 		this.shardDrop = shardDrop;
 		this.runeType = runeType;
 	}

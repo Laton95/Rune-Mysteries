@@ -40,7 +40,7 @@ public class BlockParticleLight extends ModBlock implements IBucketPickupHandler
 	private final EnumColour colour;
 	
 	public BlockParticleLight(EnumColour colour) {
-		super(colour.toString().toLowerCase() + "_light", Properties.create(Material.GLASS).lightValue(15).doesNotBlockMovement(), false, false);
+		super(Properties.create(Material.GLASS).lightValue(15).doesNotBlockMovement(), false);
 		this.colour = colour;
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}

@@ -5,8 +5,7 @@ import net.minecraft.item.ItemFood;
 
 public class ModFood extends ItemFood {
 	
-	public ModFood(String name, int healAmountIn, float saturation, boolean meat) {
+	public ModFood(int healAmountIn, float saturation, boolean meat) {
 		super(healAmountIn, saturation, meat, new Properties().group(RuneMysteries.RUNE_GROUP));
-		setRegistryName(RuneMysteries.MOD_ID, name.toLowerCase());
 	}
 }

@@ -58,7 +58,7 @@ public class BlockElderCatalyst extends ModBlock {
 			};
 	
 	public BlockElderCatalyst() {
-		super("elder_catalyst", Properties.create(Material.ROCK).needsRandomTick().hardnessAndResistance(50.0F, 1200.0F));
+		super(Properties.create(Material.ROCK).needsRandomTick().hardnessAndResistance(50.0F, 1200.0F));
 	}
 	
 	@Override

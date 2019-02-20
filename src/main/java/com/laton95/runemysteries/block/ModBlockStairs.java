@@ -5,8 +5,7 @@ import net.minecraft.block.BlockStairs;
 
 public class ModBlockStairs extends BlockStairs {
 	
-	public ModBlockStairs(String name, Block block) {
+	public ModBlockStairs(Block block) {
 		super(block.getDefaultState(), Properties.from(block));
-		setRegistryName(name);
 	}
 }

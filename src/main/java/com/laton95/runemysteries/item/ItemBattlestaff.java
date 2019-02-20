@@ -22,7 +22,7 @@ public class ItemBattlestaff extends ModItem implements IRuneSource {
 	private final EnumRuneType runeType;
 	
 	public ItemBattlestaff(EnumRuneType runeType) {
-		super(runeType.toString().toLowerCase() + "_battlestaff", new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1));
 		this.runeType = runeType;
 	}
 	

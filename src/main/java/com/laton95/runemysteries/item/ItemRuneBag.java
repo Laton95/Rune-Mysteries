@@ -44,7 +44,7 @@ public class ItemRuneBag extends ModItem {
 	public static final String AUTO_PICKUP_NBT = "autoPickup";
 	
 	public ItemRuneBag() {
-		super("rune_bag", new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1));
 	}
 	
 	@SubscribeEvent

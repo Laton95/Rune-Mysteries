@@ -9,184 +9,235 @@ import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.Item.Properties;
 import net.minecraft.item.ItemBlock;
+import net.minecraft.item.ItemWallOrFloor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ObjectHolder;
 
 import java.util.ArrayList;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModItems {
 	
-	public static final ModItem RUNE_ESSENCE = new ModItem("rune_essence");
+	@ObjectHolder(RuneMysteries.MOD_ID + ":rune_essence")
+	public static ModItem RUNE_ESSENCE;
 	
-	public static final ItemRune AIR_RUNE = new ItemRune(EnumRuneType.AIR);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":air_rune")
+	public static ItemRune AIR_RUNE;
 	
-	public static final ItemRune ASTRAL_RUNE = new ItemRune(EnumRuneType.ASTRAL);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":astral_rune")
+	public static ItemRune ASTRAL_RUNE;
 	
-	public static final ItemRune BLOOD_RUNE = new ItemRune(EnumRuneType.BLOOD);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_rune")
+	public static ItemRune BLOOD_RUNE;
 	
-	public static final ItemRune BODY_RUNE = new ItemRune(EnumRuneType.BODY);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":body_rune")
+	public static ItemRune BODY_RUNE;
 	
-	public static final ItemRune CHAOS_RUNE = new ItemRune(EnumRuneType.CHAOS);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_rune")
+	public static ItemRune CHAOS_RUNE;
 	
-	public static final ItemRune COSMIC_RUNE = new ItemRune(EnumRuneType.COSMIC);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_rune")
+	public static ItemRune COSMIC_RUNE;
 	
-	public static final ItemRune DEATH_RUNE = new ItemRune(EnumRuneType.DEATH);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":death_rune")
+	public static ItemRune DEATH_RUNE;
 	
-	public static final ItemRune EARTH_RUNE = new ItemRune(EnumRuneType.EARTH);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_rune")
+	public static ItemRune EARTH_RUNE;
 	
-	public static final ItemRune FIRE_RUNE = new ItemRune(EnumRuneType.FIRE);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_rune")
+	public static ItemRune FIRE_RUNE;
 	
-	public static final ItemRune LAW_RUNE = new ItemRune(EnumRuneType.LAW);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":law_rune")
+	public static ItemRune LAW_RUNE;
 	
-	public static final ItemRune MIND_RUNE = new ItemRune(EnumRuneType.MIND);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_rune")
+	public static ItemRune MIND_RUNE;
 	
-	public static final ItemRune NATURE_RUNE = new ItemRune(EnumRuneType.NATURE);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_rune")
+	public static ItemRune NATURE_RUNE;
 	
-	public static final ItemRune SOUL_RUNE = new ItemRune(EnumRuneType.SOUL);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_rune")
+	public static ItemRune SOUL_RUNE;
 	
-	public static final ItemRune WATER_RUNE = new ItemRune(EnumRuneType.WATER);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":water_rune")
+	public static ItemRune WATER_RUNE;
 	
-	public static final ModItem BLANK_TALISMAN = new ModItem("blank_talisman", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":blank_talisman")
+	public static ModItem BLANK_TALISMAN;
 	
-	public static final ItemTalisman AIR_TALISMAN = new ItemTalisman(EnumRuneType.AIR);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":air_talisman")
+	public static ItemTalisman AIR_TALISMAN;
 	
-	public static final ItemTalisman ASTRAL_TALISMAN = new ItemTalisman(EnumRuneType.ASTRAL);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":astral_talisman")
+	public static ItemTalisman ASTRAL_TALISMAN;
 	
-	public static final ItemTalisman BLOOD_TALISMAN = new ItemTalisman(EnumRuneType.BLOOD);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_talisman")
+	public static ItemTalisman BLOOD_TALISMAN;
 	
-	public static final ItemTalisman BODY_TALISMAN = new ItemTalisman(EnumRuneType.BODY);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":body_talisman")
+	public static ItemTalisman BODY_TALISMAN;
 	
-	public static final ItemTalisman CHAOS_TALISMAN = new ItemTalisman(EnumRuneType.CHAOS);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_talisman")
+	public static ItemTalisman CHAOS_TALISMAN;
 	
-	public static final ItemTalisman COSMIC_TALISMAN = new ItemTalisman(EnumRuneType.COSMIC);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_talisman")
+	public static ItemTalisman COSMIC_TALISMAN;
 	
-	public static final ItemTalisman DEATH_TALISMAN = new ItemTalisman(EnumRuneType.DEATH);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":death_talisman")
+	public static ItemTalisman DEATH_TALISMAN;
 	
-	public static final ItemTalisman EARTH_TALISMAN = new ItemTalisman(EnumRuneType.EARTH);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_talisman")
+	public static ItemTalisman EARTH_TALISMAN;
 	
-	public static final ItemTalisman FIRE_TALISMAN = new ItemTalisman(EnumRuneType.FIRE);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_talisman")
+	public static ItemTalisman FIRE_TALISMAN;
 	
-	public static final ItemTalisman LAW_TALISMAN = new ItemTalisman(EnumRuneType.LAW);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":law_talisman")
+	public static ItemTalisman LAW_TALISMAN;
 	
-	public static final ItemTalisman MIND_TALISMAN = new ItemTalisman(EnumRuneType.MIND);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_talisman")
+	public static ItemTalisman MIND_TALISMAN;
 	
-	public static final ItemTalisman NATURE_TALISMAN = new ItemTalisman(EnumRuneType.NATURE);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_talisman")
+	public static ItemTalisman NATURE_TALISMAN;
 	
-	public static final ItemTalisman SOUL_TALISMAN = new ItemTalisman(EnumRuneType.SOUL);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_talisman")
+	public static ItemTalisman SOUL_TALISMAN;
 	
-	public static final ItemTalisman WATER_TALISMAN = new ItemTalisman(EnumRuneType.WATER);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":water_talisman")
+	public static ItemTalisman WATER_TALISMAN;
 	
-	public static final ModItem GLASS_ORB = new ModItem("glass_orb", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":glass_orb")
+	public static ModItem GLASS_ORB;
 	
-	public static final ModItem AIR_ORB = new ModItem("air_orb", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":air_orb")
+	public static ModItem AIR_ORB;
 	
-	public static final ModItem EARTH_ORB = new ModItem("earth_orb", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_orb")
+	public static ModItem EARTH_ORB;
 	
-	public static final ModItem FIRE_ORB = new ModItem("fire_orb", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_orb")
+	public static ModItem FIRE_ORB;
 	
-	public static final ModItem WATER_ORB = new ModItem("water_orb", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":water_orb")
+	public static ModItem WATER_ORB;
 	
-	public static final ModItem BATTLESTAFF = new ModItem("battlestaff", new Properties().maxStackSize(1));
+	@ObjectHolder(RuneMysteries.MOD_ID + ":battlestaff")
+	public static ModItem BATTLESTAFF;
 	
-	public static final ItemBattlestaff AIR_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.AIR);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":air_battlestaff")
+	public static ModItem AIR_BATTLESTAFF;
 	
-	public static final ItemBattlestaff EARTH_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.EARTH);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_battlestaff")
+	public static ModItem EARTH_BATTLESTAFF;
 	
-	public static final ItemBattlestaff FIRE_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.FIRE);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_battlestaff")
+	public static ModItem FIRE_BATTLESTAFF;
 	
-	public static final ItemBattlestaff WATER_BATTLESTAFF = new ItemBattlestaff(EnumRuneType.WATER);
+	@ObjectHolder(RuneMysteries.MOD_ID + ":water_battlestaff")
+	public static ModItem WATER_BATTLESTAFF;
 	
-	public static final ModItem AIR_SHARD = new ModItem("air_shard");
+	@ObjectHolder(RuneMysteries.MOD_ID + ":air_shard")
+	public static ModItem AIR_SHARD;
 	
-	public static final ModItem EARTH_SHARD = new ModItem("earth_shard");
+	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_shard")
+	public static ModItem EARTH_SHARD;
 	
-	public static final ModItem FIRE_SHARD = new ModItem("fire_shard");
+	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_shard")
+	public static ModItem FIRE_SHARD;
 	
-	public static final ModItem WATER_SHARD = new ModItem("water_shard");
+	@ObjectHolder(RuneMysteries.MOD_ID + ":water_shard")
+	public static ModItem WATER_SHARD;
 	
-	public static final ItemDebug DEBUG = new ItemDebug();
+	@ObjectHolder(RuneMysteries.MOD_ID + "debug")
+	public static ItemDebug DEBUG;
 	
-	public static final ItemSpellbook SPELLBOOK = new ItemSpellbook();
+	@ObjectHolder(RuneMysteries.MOD_ID + "spellbook")
+	public static ItemSpellbook SPELLBOOK;
 	
-	public static final ItemRuneBag RUNE_BAG = new ItemRuneBag();
+	@ObjectHolder(RuneMysteries.MOD_ID + "rune_bag")
+	public static ItemRuneBag RUNE_BAG;
 	
-	public static final ModItem EX_PARROT = new ModItem("ex_parrot");
+	@ObjectHolder(RuneMysteries.MOD_ID + "ex_parrot")
+	public static ModItem EX_PARROT;
 	
-	public static final ItemScroll MINE_SCROLL = new ItemScroll("mine_scroll", 1);
+	@ObjectHolder(RuneMysteries.MOD_ID + "mine_scroll")
+	public static ItemScroll MINE_SCROLL;
 	
-	public static final ModFood BANANA = new ModFood("banana", 4, 4, false);
-	
-	private static Item[] items = {
-			RUNE_ESSENCE,
-			AIR_RUNE,
-			ASTRAL_RUNE,
-			BLOOD_RUNE,
-			BODY_RUNE,
-			CHAOS_RUNE,
-			COSMIC_RUNE,
-			DEATH_RUNE,
-			EARTH_RUNE,
-			FIRE_RUNE,
-			LAW_RUNE,
-			MIND_RUNE,
-			NATURE_RUNE,
-			SOUL_RUNE,
-			WATER_RUNE,
-			BLANK_TALISMAN,
-			AIR_TALISMAN,
-			ASTRAL_TALISMAN,
-			BLOOD_TALISMAN,
-			BODY_TALISMAN,
-			CHAOS_TALISMAN,
-			COSMIC_TALISMAN,
-			DEATH_TALISMAN,
-			EARTH_TALISMAN,
-			FIRE_TALISMAN,
-			LAW_TALISMAN,
-			MIND_TALISMAN,
-			NATURE_TALISMAN,
-			SOUL_TALISMAN,
-			WATER_TALISMAN,
-			GLASS_ORB,
-			AIR_ORB,
-			EARTH_ORB,
-			FIRE_ORB,
-			WATER_ORB,
-			BATTLESTAFF,
-			AIR_BATTLESTAFF,
-			EARTH_BATTLESTAFF,
-			FIRE_BATTLESTAFF,
-			WATER_BATTLESTAFF,
-			AIR_SHARD,
-			EARTH_SHARD,
-			FIRE_SHARD,
-			WATER_SHARD,
-			DEBUG,
-			SPELLBOOK,
-			RUNE_BAG,
-			EX_PARROT,
-			MINE_SCROLL,
-			BANANA
-	};
+	@ObjectHolder(RuneMysteries.MOD_ID + "banana")
+	public static ModFood BANANA;
 	
 	private static ArrayList<Block> blocks = new ArrayList<>();
-	
-	private static ArrayList<ItemBlock> extraItems = new ArrayList<>();
 	
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		ModLog.info("Registering items");
 		
+		register(event, new ModItem(), "rune_essence");
+		register(event, new ItemRune(EnumRuneType.AIR), "air_rune");
+		register(event, new ItemRune(EnumRuneType.ASTRAL), "astral_rune");
+		register(event, new ItemRune(EnumRuneType.BLOOD), "blood_rune");
+		register(event, new ItemRune(EnumRuneType.BODY), "body_rune");
+		register(event, new ItemRune(EnumRuneType.CHAOS), "chaos_rune");
+		register(event, new ItemRune(EnumRuneType.COSMIC), "cosmic_rune");
+		register(event, new ItemRune(EnumRuneType.DEATH), "death_rune");
+		register(event, new ItemRune(EnumRuneType.EARTH), "earth_rune");
+		register(event, new ItemRune(EnumRuneType.FIRE), "fire_rune");
+		register(event, new ItemRune(EnumRuneType.LAW), "law_rune");
+		register(event, new ItemRune(EnumRuneType.MIND), "mind_rune");
+		register(event, new ItemRune(EnumRuneType.NATURE), "nature_rune");
+		register(event, new ItemRune(EnumRuneType.SOUL), "soul_rune");
+		register(event, new ItemRune(EnumRuneType.WATER), "water_rune");
+		
+		register(event, new ModItem(new Properties().maxStackSize(1)), "blank_talisman");
+		register(event, new ItemTalisman(EnumRuneType.AIR), "air_talisman");
+		register(event, new ItemTalisman(EnumRuneType.ASTRAL), "astral_talisman");
+		register(event, new ItemTalisman(EnumRuneType.BLOOD), "blood_talisman");
+		register(event, new ItemTalisman(EnumRuneType.BODY), "body_talisman");
+		register(event, new ItemTalisman(EnumRuneType.CHAOS), "chaos_talisman");
+		register(event, new ItemTalisman(EnumRuneType.COSMIC), "cosmic_talisman");
+		register(event, new ItemTalisman(EnumRuneType.DEATH), "death_talisman");
+		register(event, new ItemTalisman(EnumRuneType.EARTH), "earth_talisman");
+		register(event, new ItemTalisman(EnumRuneType.FIRE), "fire_talisman");
+		register(event, new ItemTalisman(EnumRuneType.LAW), "law_talisman");
+		register(event, new ItemTalisman(EnumRuneType.MIND), "mind_talisman");
+		register(event, new ItemTalisman(EnumRuneType.NATURE), "nature_talisman");
+		register(event, new ItemTalisman(EnumRuneType.SOUL), "soul_talisman");
+		register(event, new ItemTalisman(EnumRuneType.WATER), "water_talisman");
+		
+		register(event, new ModItem(new Properties().maxStackSize(1)), "glass_orb");
+		register(event, new ModItem(new Properties().maxStackSize(1)), "air_orb");
+		register(event, new ModItem(new Properties().maxStackSize(1)), "earth_orb");
+		register(event, new ModItem(new Properties().maxStackSize(1)), "fire_orb");
+		register(event, new ModItem(new Properties().maxStackSize(1)), "water_orb");
+		
+		register(event, new ModItem(new Properties().maxStackSize(1)), "battlestaff");
+		register(event, new ItemBattlestaff(EnumRuneType.AIR), "air_battlestaff");
+		register(event, new ItemBattlestaff(EnumRuneType.EARTH), "earth_battlestaff");
+		register(event, new ItemBattlestaff(EnumRuneType.FIRE), "fire_battlestaff");
+		register(event, new ItemBattlestaff(EnumRuneType.WATER), "water_battlestaff");
+		
+		register(event, new ModItem(), "air_shard");
+		register(event, new ModItem(), "earth_shard");
+		register(event, new ModItem(), "fire_shard");
+		register(event, new ModItem(), "water_shard");
+		
+		register(event, new ItemDebug(), "debug");
+		register(event, new ItemSpellbook(), "spellbook");
+		register(event, new ItemRuneBag(), "rune_bag");
+		register(event, new ModItem(), "ex_parrot");
+		register(event, new ItemScroll(1), "mine_scroll");
+		register(event, new ModFood(4, 4, false), "banana");
+		register(event, new ItemWallOrFloor(ModBlocks.UNDERWATER_TORCH, ModBlocks.UNDERWATER_WALL_TORCH, new Item.Properties().group(RuneMysteries.RUNE_GROUP)), "underwater_torch");
 		
 		for(Block block : blocks) {
 			Properties builder = new Properties();
 			
-			if(block instanceof ModBlock) {
-				if(((ModBlock) block).hasItem) {
-					builder.group(RuneMysteries.RUNE_GROUP);
-				}
+			if(block instanceof ModBlock && ((ModBlock) block).showInCreative) {
+				builder.group(RuneMysteries.RUNE_GROUP);
 			}
 			else {
 				builder.group(RuneMysteries.RUNE_GROUP);
@@ -196,22 +247,14 @@ public class ModItems {
 			itemBlock.setRegistryName(block.getRegistryName());
 			event.getRegistry().register(itemBlock);
 		}
-		
-		for(ItemBlock item : extraItems) {
-			item.setRegistryName(item.getBlock().getRegistryName());
-			event.getRegistry().register(item);
-		}
-		
-		for(Item item : items) {
-			event.getRegistry().register(item);
-		}
 	}
 	
 	public static void addBlock(Block block) {
 		blocks.add(block);
 	}
 	
-	public static void addExtraItemBlock(ItemBlock item) {
-		extraItems.add(item);
+	private static void register(RegistryEvent.Register<Item> event, Item item, String name) {
+		item.setRegistryName(RuneMysteries.MOD_ID, name);
+		event.getRegistry().register(item);
 	}
 }

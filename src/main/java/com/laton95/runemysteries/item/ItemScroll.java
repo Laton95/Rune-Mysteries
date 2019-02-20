@@ -12,8 +12,8 @@ public class ItemScroll extends ModItem {
 	
 	private final int dimensionId;
 	
-	public ItemScroll(String name, int dimensionId) {
-		super(name, new Properties().maxStackSize(16));
+	public ItemScroll(int dimensionId) {
+		super(new Properties().maxStackSize(16));
 		this.dimensionId = dimensionId;
 	}
 	

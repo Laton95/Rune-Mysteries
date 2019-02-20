@@ -36,7 +36,7 @@ public class BlockUnderwaterTorchWall extends BlockUnderwaterTorch {
 	private static final Map<EnumFacing, VoxelShape> SHAPES = Maps.newEnumMap(ImmutableMap.of(EnumFacing.NORTH, Block.makeCuboidShape(5.5D, 3.0D, 11.0D, 10.5D, 13.0D, 16.0D), EnumFacing.SOUTH, Block.makeCuboidShape(5.5D, 3.0D, 0.0D, 10.5D, 13.0D, 5.0D), EnumFacing.WEST, Block.makeCuboidShape(11.0D, 3.0D, 5.5D, 16.0D, 13.0D, 10.5D), EnumFacing.EAST, Block.makeCuboidShape(0.0D, 3.0D, 5.5D, 5.0D, 13.0D, 10.5D)));
 	
 	public BlockUnderwaterTorchWall() {
-		super("underwater_wall_torch");
+		super();
 		this.setDefaultState((this.stateContainer.getBaseState()).with(HORIZONTAL_FACING, EnumFacing.NORTH).with(WATERLOGGED, false));
 	}
 	

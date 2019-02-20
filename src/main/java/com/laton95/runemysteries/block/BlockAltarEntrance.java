@@ -36,7 +36,7 @@ public class BlockAltarEntrance extends ModBlock implements IBucketPickupHandler
 	private final EnumRuneType runeType;
 	
 	public BlockAltarEntrance(EnumRuneType runeType) {
-		super(runeType.toString().toLowerCase() + "_altar_entrance", Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F), false, false);
+		super(Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F), false);
 		this.runeType = runeType;
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}

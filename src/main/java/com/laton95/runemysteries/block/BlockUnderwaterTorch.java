@@ -37,11 +37,7 @@ public class BlockUnderwaterTorch extends ModBlock implements IBucketPickupHandl
 	protected static final VoxelShape SHAPE = Block.makeCuboidShape(6.0D, 0.0D, 6.0D, 10.0D, 10.0D, 10.0D);
 	
 	public BlockUnderwaterTorch() {
-		this("underwater_torch");
-	}
-	
-	public BlockUnderwaterTorch(String name) {
-		super(name, Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0).lightValue(14).sound(SoundType.WOOD), false, false);
+		super(Properties.create(Material.WOOD).doesNotBlockMovement().hardnessAndResistance(0).lightValue(14).sound(SoundType.WOOD), false);
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}
 	

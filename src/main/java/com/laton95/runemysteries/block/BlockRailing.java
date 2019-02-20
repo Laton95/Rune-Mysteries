@@ -31,13 +31,12 @@ public class BlockRailing extends BlockFourWay {
 	
 	private final VoxelShape[] collisionShape = this.func_196408_a(3.0F, 2.0F, 19.0F, 0.0F, 19.0F);
 	
-	public BlockRailing(String name, Block block) {
-		this(name, block, false);
+	public BlockRailing(Block block) {
+		this( block, false);
 	}
 	
-	public BlockRailing(String name, Block block, boolean isTranslucent) {
+	public BlockRailing(Block block, boolean isTranslucent) {
 		super(0.0F, 2.0F, 0.0F, 14.0F, 19.0F, Properties.from(block));
-		setRegistryName(RuneMysteries.MOD_ID, name);
 		this.setDefaultState((this.stateContainer.getBaseState()).with(UP, true).with(NORTH, false).with(EAST, false).with(SOUTH, false).with(WEST, false).with(WATERLOGGED, false));
 		this.isTranslucent = isTranslucent;
 	}

@@ -21,7 +21,7 @@ public class ItemTalisman extends ModItem {
 	private final EnumRuneType runeType;
 	
 	public ItemTalisman(EnumRuneType runeType) {
-		super(runeType.toString().toLowerCase() + "_talisman", new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1));
 		this.runeType = runeType;
 	}
 	
