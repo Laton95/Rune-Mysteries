@@ -103,10 +103,10 @@ public class ItemRuneBag extends ModItem {
 		if(!worldIn.isRemote) {
 			if(!playerIn.isSneaking()) {
 				InventoryRuneBag bagInventory = getInventory(stack);
-				PacketBuffer buffer = new PacketBuffer(Unpooled.buffer());
-				buffer.writeItemStack(stack);
-				buffer.writeInt(handIn == EnumHand.MAIN_HAND ? playerIn.inventory.currentItem : -1);
-				NetworkHooks.openGui((EntityPlayerMP) playerIn, bagInventory, buffer);
+				NetworkHooks.openGui((EntityPlayerMP) playerIn, bagInventory, buffer -> {
+					buffer.writeItemStack(stack);
+					buffer.writeInt(handIn == EnumHand.MAIN_HAND ? playerIn.inventory.currentItem : -1);
+				});
 			}
 			else {
 				if(ItemNBTHelper.toggleBoolean(stack, AUTO_PICKUP_NBT, true)) {

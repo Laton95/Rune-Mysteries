@@ -18,157 +18,108 @@ import net.minecraftforge.registries.ObjectHolder;
 import java.util.ArrayList;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(RuneMysteries.MOD_ID)
 public class ModItems {
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":rune_essence")
-	public static ModItem RUNE_ESSENCE;
+	public static final ModItem RUNE_ESSENCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_rune")
-	public static ItemRune AIR_RUNE;
+	public static final ItemRune AIR_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":astral_rune")
-	public static ItemRune ASTRAL_RUNE;
+	public static final ItemRune ASTRAL_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_rune")
-	public static ItemRune BLOOD_RUNE;
+	public static final ItemRune BLOOD_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":body_rune")
-	public static ItemRune BODY_RUNE;
+	public static final ItemRune BODY_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_rune")
-	public static ItemRune CHAOS_RUNE;
+	public static final ItemRune CHAOS_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_rune")
-	public static ItemRune COSMIC_RUNE;
+	public static final ItemRune COSMIC_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":death_rune")
-	public static ItemRune DEATH_RUNE;
+	public static final ItemRune DEATH_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_rune")
-	public static ItemRune EARTH_RUNE;
+	public static final ItemRune EARTH_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_rune")
-	public static ItemRune FIRE_RUNE;
+	public static final ItemRune FIRE_RUNE = null;
+	public static final ItemRune LAW_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":law_rune")
-	public static ItemRune LAW_RUNE;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_rune")
-	public static ItemRune MIND_RUNE;
+	public static final ItemRune MIND_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_rune")
-	public static ItemRune NATURE_RUNE;
+	public static final ItemRune NATURE_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_rune")
-	public static ItemRune SOUL_RUNE;
+	public static final ItemRune SOUL_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_rune")
-	public static ItemRune WATER_RUNE;
+	public static final ItemRune WATER_RUNE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blank_talisman")
-	public static ModItem BLANK_TALISMAN;
+	public static final ModItem BLANK_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_talisman")
-	public static ItemTalisman AIR_TALISMAN;
+	public static final ItemTalisman AIR_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":astral_talisman")
-	public static ItemTalisman ASTRAL_TALISMAN;
+	public static final ItemTalisman ASTRAL_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_talisman")
-	public static ItemTalisman BLOOD_TALISMAN;
+	public static final ItemTalisman BLOOD_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":body_talisman")
-	public static ItemTalisman BODY_TALISMAN;
+	public static final ItemTalisman BODY_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_talisman")
-	public static ItemTalisman CHAOS_TALISMAN;
+	public static final ItemTalisman CHAOS_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_talisman")
-	public static ItemTalisman COSMIC_TALISMAN;
+	public static final ItemTalisman COSMIC_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":death_talisman")
-	public static ItemTalisman DEATH_TALISMAN;
+	public static final ItemTalisman DEATH_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_talisman")
-	public static ItemTalisman EARTH_TALISMAN;
+	public static final ItemTalisman EARTH_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_talisman")
-	public static ItemTalisman FIRE_TALISMAN;
+	public static final ItemTalisman FIRE_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":law_talisman")
-	public static ItemTalisman LAW_TALISMAN;
+	public static final ItemTalisman LAW_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_talisman")
-	public static ItemTalisman MIND_TALISMAN;
+	public static final ItemTalisman MIND_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_talisman")
-	public static ItemTalisman NATURE_TALISMAN;
+	public static final ItemTalisman NATURE_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_talisman")
-	public static ItemTalisman SOUL_TALISMAN;
+	public static final ItemTalisman SOUL_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_talisman")
-	public static ItemTalisman WATER_TALISMAN;
+	public static final ItemTalisman WATER_TALISMAN = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":glass_orb")
-	public static ModItem GLASS_ORB;
+	public static final ModItem GLASS_ORB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_orb")
-	public static ModItem AIR_ORB;
+	public static final ModItem AIR_ORB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_orb")
-	public static ModItem EARTH_ORB;
+	public static final ModItem EARTH_ORB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_orb")
-	public static ModItem FIRE_ORB;
+	public static final ModItem FIRE_ORB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_orb")
-	public static ModItem WATER_ORB;
+	public static final ModItem WATER_ORB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":battlestaff")
-	public static ModItem BATTLESTAFF;
+	public static final ModItem BATTLESTAFF = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_battlestaff")
-	public static ModItem AIR_BATTLESTAFF;
+	public static final ModItem AIR_BATTLESTAFF = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_battlestaff")
-	public static ModItem EARTH_BATTLESTAFF;
+	public static final ModItem EARTH_BATTLESTAFF = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_battlestaff")
-	public static ModItem FIRE_BATTLESTAFF;
+	public static final ModItem FIRE_BATTLESTAFF = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_battlestaff")
-	public static ModItem WATER_BATTLESTAFF;
+	public static final ModItem WATER_BATTLESTAFF = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_shard")
-	public static ModItem AIR_SHARD;
+	public static final ModItem AIR_SHARD = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_shard")
-	public static ModItem EARTH_SHARD;
+	public static final ModItem EARTH_SHARD = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_shard")
-	public static ModItem FIRE_SHARD;
+	public static final ModItem FIRE_SHARD = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_shard")
-	public static ModItem WATER_SHARD;
+	public static final ModItem WATER_SHARD = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "debug")
-	public static ItemDebug DEBUG;
+	public static final ItemDebug DEBUG = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "spellbook")
-	public static ItemSpellbook SPELLBOOK;
+	public static final ItemSpellbook SPELLBOOK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "rune_bag")
-	public static ItemRuneBag RUNE_BAG;
+	public static final ItemRuneBag RUNE_BAG = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "ex_parrot")
-	public static ModItem EX_PARROT;
+	public static final ModItem EX_PARROT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "mine_scroll")
-	public static ItemScroll MINE_SCROLL;
+	public static final ItemScroll MINE_SCROLL = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + "banana")
-	public static ModFood BANANA;
+	public static final ModFood BANANA = null;
 	
 	private static ArrayList<Block> blocks = new ArrayList<>();
 	

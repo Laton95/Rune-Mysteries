@@ -196,7 +196,7 @@ public class BlockElderCatalyst extends ModBlock {
 		if(stonePositions.size() > 0) {
 			BlockPos essPos = stonePositions.get(random.nextInt(stonePositions.size()));
 			
-			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE.getDefaultState().with(BlockRuneEssence.INFINITE, false));
+			worldIn.setBlockState(essPos, ModBlocks.RUNE_ESSENCE_BLOCK.getDefaultState().with(BlockRuneEssence.INFINITE, false));
 		}
 	}
 	

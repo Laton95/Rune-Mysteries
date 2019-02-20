@@ -1,3 +1,6 @@
 {
-  "parent": "runemysteries:block/blank_altar"
+  "parent": "runemysteries:block/altar",
+  "textures": {
+    "top": "runemysteries:block/cosmic_altar"
+  }
 }

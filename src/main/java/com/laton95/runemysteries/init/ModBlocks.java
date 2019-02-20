@@ -15,274 +15,186 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(RuneMysteries.MOD_ID)
 public class ModBlocks {
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_altar")
-	public static BlockAltar AIR_ALTAR;
+	public static final BlockAltar AIR_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":astral_altar")
-	public static BlockAltar ASTRAL_ALTAR;
+	public static final BlockAltar ASTRAL_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_altar")
-	public static BlockAltar BLOOD_ALTAR;
+	public static final BlockAltar BLOOD_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":body_altar")
-	public static BlockAltar BODY_ALTAR;
+	public static final BlockAltar BODY_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_altar")
-	public static BlockAltar CHAOS_ALTAR;
+	public static final BlockAltar CHAOS_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_altar")
-	public static BlockAltar COSMIC_ALTAR;
+	public static final BlockAltar COSMIC_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":death_altar")
-	public static BlockAltar DEATH_ALTAR;
+	public static final BlockAltar DEATH_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_altar")
-	public static BlockAltar EARTH_ALTAR;
+	public static final BlockAltar EARTH_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_altar")
-	public static BlockAltar FIRE_ALTAR;
+	public static final BlockAltar FIRE_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":law_altar")
-	public static BlockAltar LAW_ALTAR;
+	public static final BlockAltar LAW_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_altar")
-	public static BlockAltar MIND_ALTAR;
+	public static final BlockAltar MIND_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_altar")
-	public static BlockAltar NATURE_ALTAR;
+	public static final BlockAltar NATURE_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_altar")
-	public static BlockAltar SOUL_ALTAR;
+	public static final BlockAltar SOUL_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_altar")
-	public static BlockAltar WATER_ALTAR;
+	public static final BlockAltar WATER_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ourania_altar")
-	public static BlockAltar OURANIA_ALTAR;
+	public static final BlockAltar OURANIA_ALTAR = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_altar_entrance")
-	public static BlockAltarEntrance AIR_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance AIR_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_altar_entrance")
-	public static BlockAltarEntrance BLOOD_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance BLOOD_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":body_altar_entrance")
-	public static BlockAltarEntrance BODY_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance BODY_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":chaos_altar_entrance")
-	public static BlockAltarEntrance CHAOS_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance CHAOS_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":cosmic_altar_entrance")
-	public static BlockAltarEntrance COSMIC_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance COSMIC_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":death_altar_entrance")
-	public static BlockAltarEntrance DEATH_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance DEATH_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_altar_entrance")
-	public static BlockAltarEntrance EARTH_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance EARTH_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_altar_entrance")
-	public static BlockAltarEntrance FIRE_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance FIRE_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":law_altar_entrance")
-	public static BlockAltarEntrance LAW_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance LAW_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":mind_altar_entrance")
-	public static BlockAltarEntrance MIND_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance MIND_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":nature_altar_entrance")
-	public static BlockAltarEntrance NATURE_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance NATURE_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":soul_altar_entrance")
-	public static BlockAltarEntrance SOUL_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance SOUL_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_altar_entrance")
-	public static BlockAltarEntrance WATER_ALTAR_ENTRANCE;
+	public static final BlockAltarEntrance WATER_ALTAR_ENTRANCE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":altar_portal")
-	public static BlockAltarPortal ALTAR_PORTAL;
+	public static final BlockAltarPortal ALTAR_PORTAL = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":rune_essence")
-	public static BlockRuneEssence RUNE_ESSENCE;
+	public static final BlockRuneEssence RUNE_ESSENCE_BLOCK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":air_obelisk")
-	public static BlockElementalObelisk AIR_OBELISK;
+	public static final BlockElementalObelisk AIR_OBELISK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":earth_obelisk")
-	public static BlockElementalObelisk EARTH_OBELISK;
+	public static final BlockElementalObelisk EARTH_OBELISK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":fire_obelisk")
-	public static BlockElementalObelisk FIRE_OBELISK;
+	public static final BlockElementalObelisk FIRE_OBELISK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":water_obelisk")
-	public static BlockElementalObelisk WATER_OBELISK;
+	public static final BlockElementalObelisk WATER_OBELISK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":black_monolith")
-	public static BlockBlackMonolith BLACK_MONOLITH;
+	public static final BlockBlackMonolith BLACK_MONOLITH = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ruin_stone")
-	public static ModBlock RUIN_STONE;
+	public static final ModBlock RUIN_STONE = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ruin_stone_stairs")
-	public static ModBlockStairs RUIN_STONE_STAIRS;
+	public static final ModBlockStairs RUIN_STONE_STAIRS = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ruin_stone_slab")
-	public static ModBlockSlab RUIN_STONE_SLAB;
+	public static final ModBlockSlab RUIN_STONE_SLAB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ruin_stone_railing")
-	public static BlockRailing RUIN_STONE_RAILING;
+	public static final BlockRailing RUIN_STONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":temple_bricks")
-	public static ModBlock TEMPLE_BRICKS;
+	public static final ModBlock TEMPLE_BRICKS = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":temple_brick_stairs")
-	public static ModBlockStairs TEMPLE_BRICK_STAIRS;
+	public static final ModBlockStairs TEMPLE_BRICK_STAIRS = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":temple_brick_slab")
-	public static ModBlockSlab TEMPLE_BRICK_SLAB;
+	public static final ModBlockSlab TEMPLE_BRICK_SLAB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":temple_brick_railing")
-	public static BlockRailing TEMPLE_BRICK_RAILING;
+	public static final BlockRailing TEMPLE_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_bricks")
-	public static ModBlock BLOOD_BRICKS;
+	public static final ModBlock BLOOD_BRICKS = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_brick_stairs")
-	public static ModBlockStairs BLOOD_BRICK_STAIRS;
+	public static final ModBlockStairs BLOOD_BRICK_STAIRS = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_brick_slab")
-	public static ModBlockSlab BLOOD_BRICK_SLAB;
+	public static final ModBlockSlab BLOOD_BRICK_SLAB = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blood_brick_railing")
-	public static BlockRailing BLOOD_BRICK_RAILING;
+	public static final BlockRailing BLOOD_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":flesh_block")
-	public static ModBlock FLESH_BLOCK;
+	public static final ModBlock FLESH_BLOCK = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":stone_railing")
-	public static BlockRailing STONE_RAILING;
+	public static final BlockRailing STONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":polished_granite_railing")
-	public static BlockRailing POLISHED_GRANITE_RAILING;
+	public static final BlockRailing POLISHED_GRANITE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":polished_diorite_railing")
-	public static BlockRailing POLISHED_DIORITE_RAILING;
+	public static final BlockRailing POLISHED_DIORITE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":polished_andesite_railing")
-	public static BlockRailing POLISHED_ANDESITE_RAILING;
+	public static final BlockRailing POLISHED_ANDESITE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":quartz_railing")
-	public static BlockRailing QUARTZ_RAILING;
+	public static final BlockRailing QUARTZ_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":red_sandstone_railing")
-	public static BlockRailing RED_SANDSTONE_RAILING;
+	public static final BlockRailing RED_SANDSTONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":sandstone_railing")
-	public static BlockRailing SANDSTONE_RAILING;
+	public static final BlockRailing SANDSTONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":smooth_stone_railing")
-	public static BlockRailing SMOOTH_STONE_RAILING;
+	public static final BlockRailing SMOOTH_STONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":brick_railing")
-	public static BlockRailing BRICK_RAILING;
+	public static final BlockRailing BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":obsidian_railing")
-	public static BlockRailing OBSIDIAN_RAILING;
+	public static final BlockRailing OBSIDIAN_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":purpur_railing")
-	public static BlockRailing PURPUR_RAILING;
+	public static final BlockRailing PURPUR_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":ice_railing")
-	public static BlockRailing ICE_RAILING;
+	public static final BlockRailing ICE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":stone_brick_railing")
-	public static BlockRailing STONE_BRICK_RAILING;
+	public static final BlockRailing STONE_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":nether_brick_railing")
-	public static BlockRailing NETHER_BRICK_RAILING;
+	public static final BlockRailing NETHER_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":end_stone_brick_railing")
-	public static BlockRailing END_STONE_BRICK_RAILING;
+	public static final BlockRailing END_STONE_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":packed_ice_railing")
-	public static BlockRailing PACKED_ICE_RAILING;
+	public static final BlockRailing PACKED_ICE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":prismarine_railing")
-	public static BlockRailing PRISMARINE_RAILING;
+	public static final BlockRailing PRISMARINE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":prismarine_brick_railing")
-	public static BlockRailing PRISMARINE_BRICK_RAILING;
+	public static final BlockRailing PRISMARINE_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":dark_prismarine_railing")
-	public static BlockRailing DARK_PRISMARINE_RAILING;
+	public static final BlockRailing DARK_PRISMARINE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":red_nether_brick_railing")
-	public static BlockRailing RED_NETHER_BRICK_RAILING;
+	public static final BlockRailing RED_NETHER_BRICK_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":bone_railing")
-	public static BlockRailing BONE_RAILING;
+	public static final BlockRailing BONE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blue_ice_railing")
-	public static BlockRailing BLUE_ICE_RAILING;
+	public static final BlockRailing BLUE_ICE_RAILING = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":white_light")
-	public static BlockParticleLight WHITE_LIGHT;
+	public static final BlockParticleLight WHITE_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":orange_light")
-	public static BlockParticleLight ORANGE_LIGHT;
+	public static final BlockParticleLight ORANGE_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":magenta_light")
-	public static BlockParticleLight MAGENTA_LIGHT;
+	public static final BlockParticleLight MAGENTA_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":light_blue_light")
-	public static BlockParticleLight LIGHT_BLUE_LIGHT;
+	public static final BlockParticleLight LIGHT_BLUE_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":yellow_light")
-	public static BlockParticleLight YELLOW_LIGHT;
+	public static final BlockParticleLight YELLOW_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":lime_light")
-	public static BlockParticleLight LIME_LIGHT;
+	public static final BlockParticleLight LIME_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":pink_light")
-	public static BlockParticleLight PINK_LIGHT;
+	public static final BlockParticleLight PINK_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":gray_light")
-	public static BlockParticleLight GRAY_LIGHT;
+	public static final BlockParticleLight GRAY_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":light_gray_light")
-	public static BlockParticleLight LIGHT_GRAY_LIGHT;
+	public static final BlockParticleLight LIGHT_GRAY_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":cyan_light")
-	public static BlockParticleLight CYAN_LIGHT;
+	public static final BlockParticleLight CYAN_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":purple_light")
-	public static BlockParticleLight PURPLE_LIGHT;
+	public static final BlockParticleLight PURPLE_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":blue_light")
-	public static BlockParticleLight BLUE_LIGHT;
+	public static final BlockParticleLight BLUE_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":brown_light")
-	public static BlockParticleLight BROWN_LIGHT;
+	public static final BlockParticleLight BROWN_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":green_light")
-	public static BlockParticleLight GREEN_LIGHT;
+	public static final BlockParticleLight GREEN_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":red_light")
-	public static BlockParticleLight RED_LIGHT;
+	public static final BlockParticleLight RED_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":black_light")
-	public static BlockParticleLight BLACK_LIGHT;
+	public static final BlockParticleLight BLACK_LIGHT = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":underwater_torch")
-	public static BlockUnderwaterTorch UNDERWATER_TORCH;
+	public static final BlockUnderwaterTorch UNDERWATER_TORCH = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":underwater_wall_torch")
-	public static BlockUnderwaterTorchWall UNDERWATER_WALL_TORCH;
+	public static final BlockUnderwaterTorchWall UNDERWATER_WALL_TORCH = null;
 	
-	@ObjectHolder(RuneMysteries.MOD_ID + ":elder_catalyst")
-	public static BlockElderCatalyst ELDER_CATALYST;
+	public static final BlockElderCatalyst ELDER_CATALYST = null;
 	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
@@ -319,7 +231,7 @@ public class ModBlocks {
 		registerWithoutItem(event, new BlockAltarEntrance(EnumRuneType.WATER), "water_altar_entrance");
 		
 		registerWithoutItem(event, new BlockAltarPortal(), "altar_portal");
-		register(event, new BlockRuneEssence(), "rune_essence");
+		register(event, new BlockRuneEssence(), "rune_essence_block");
 		
 		register(event, new BlockElementalObelisk(ModItems.AIR_SHARD, EnumRuneType.AIR), "air_obelisk");
 		register(event, new BlockElementalObelisk(ModItems.EARTH_SHARD, EnumRuneType.EARTH), "earth_obelisk");
@@ -329,19 +241,19 @@ public class ModBlocks {
 		register(event, new BlockBlackMonolith(), "black_monolith");
 		
 		register(event, new ModBlock(), "ruin_stone");
-		register(event, new ModBlockStairs(RUIN_STONE), "ruin_stone_stairs");
-		register(event, new ModBlockSlab(RUIN_STONE), "ruin_stone_slab");
-		register(event, new BlockRailing(RUIN_STONE), "ruin_stone_railing");
+		register(event, new ModBlockStairs(Blocks.STONE), "ruin_stone_stairs");
+		register(event, new ModBlockSlab(Blocks.STONE), "ruin_stone_slab");
+		register(event, new BlockRailing(Blocks.STONE), "ruin_stone_railing");
 		register(event, new ModBlock(), "temple_bricks");
-		register(event, new ModBlockStairs(TEMPLE_BRICKS), "temple_brick_stairs");
-		register(event, new ModBlockSlab(TEMPLE_BRICKS), "temple_brick_slab");
-		register(event, new ModBlock(), "temple_brick_railing");
+		register(event, new ModBlockStairs(Blocks.STONE), "temple_brick_stairs");
+		register(event, new ModBlockSlab(Blocks.STONE), "temple_brick_slab");
+		register(event, new BlockRailing(Blocks.STONE), "temple_brick_railing");
 		register(event, new ModBlock(), "blood_bricks");
-		register(event, new ModBlockStairs(BLOOD_BRICKS), "blood_brick_stairs");
-		register(event, new ModBlockSlab(BLOOD_BRICKS), "blood_brick_slab");
-		register(event, new BlockRailing(BLOOD_BRICKS), "blood_brick_railing");
+		register(event, new ModBlockStairs(Blocks.STONE), "blood_brick_stairs");
+		register(event, new ModBlockSlab(Blocks.STONE), "blood_brick_slab");
+		register(event, new BlockRailing(Blocks.STONE), "blood_brick_railing");
 		register(event, new ModBlock(Block.Properties.create(Material.CLAY).slipperiness(0.8F).sound(SoundType.SLIME)), "flesh_block");
-		
+
 		register(event, new BlockRailing(Blocks.STONE), "stone_railing");
 		register(event, new BlockRailing(Blocks.POLISHED_GRANITE), "polished_granite_railing");
 		register(event, new BlockRailing(Blocks.POLISHED_DIORITE), "polished_diorite_railing");
