@@ -64,28 +64,19 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 		this.legRight.setRotationPoint(-1.0F, 22.0F, -1.05F);
 	}
 	
-	@Override
-	public void render(ExExParrotEntity parrot, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch, float scale) {
-		this.renderParrot(scale);
+	public void render(ExExParrotEntity entityIn, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scale) {
+		render(scale);
 	}
 	
-	@Override
-	public void setRotationAngles(ExExParrotEntity parrot, float scale, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
-		this.setParrotRotationAngles(getState(parrot), parrot.ticksExisted, limbSwing, limbSwingAmount, ageInTicks, headYaw, headPitch);
+	public void setRotationAngles(ExExParrotEntity parrot, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch, float scaleFactor) {
+		setRotationAngles(getState(parrot), parrot.ticksExisted, limbSwing, limbSwingAmount, ageInTicks, netHeadYaw, headPitch);
 	}
 	
-	@Override
-	public void setLivingAnimations(ExExParrotEntity parrot, float limbSwing, float limbSwingAmount, float partialTickTime) {
-		this.setParrotLivingAnimations(getState(parrot));
+	public void setLivingAnimations(ExExParrotEntity parrot, float limbSwing, float limbSwingAmount, float partialTick) {
+		setLivingAnimations(getState(parrot));
 	}
 	
-	public void setOnShoulder(float limbSwing, float limbSwingAmount, float headYaw, float headPitch, float scale, int ticksExisted) {
-		this.setParrotLivingAnimations(ExExParrotModel.State.ON_SHOULDER);
-		this.setParrotRotationAngles(ExExParrotModel.State.ON_SHOULDER, ticksExisted, limbSwing, limbSwingAmount, 0.0F, headYaw, headPitch);
-		this.renderParrot(scale);
-	}
-	
-	private void renderParrot(float scale) {
+	private void render(float scale) {
 		this.body.render(scale);
 		this.wingLeft.render(scale);
 		this.wingRight.render(scale);
@@ -95,9 +86,9 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 		this.legRight.render(scale);
 	}
 	
-	private void setParrotRotationAngles(ExExParrotModel.State state, int ticksExisted, float limbSwing, float limbSwingAmount, float ageInTicks, float headYaw, float headPitch) {
-		this.head.rotateAngleX = headPitch * 0.017453292F;
-		this.head.rotateAngleY = headYaw * 0.017453292F;
+	private void setRotationAngles(State state, int ticksExisted, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
+		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
 		this.head.rotateAngleZ = 0.0F;
 		this.head.rotationPointX = 0.0F;
 		this.body.rotationPointX = 0.0F;
@@ -106,52 +97,54 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 		this.wingLeft.rotationPointX = 1.5F;
 		switch(state) {
 			case SITTING:
-				float rotationPointX = MathHelper.cos((float)ticksExisted);
-				float rotationPointY = MathHelper.sin((float)ticksExisted);
-				this.head.rotationPointX = rotationPointX;
-				this.head.rotationPointY = 15.69F + rotationPointY;
+				break;
+			case PARTY:
+				float xOffset = MathHelper.cos((float)ticksExisted);
+				float yOffset = MathHelper.sin((float)ticksExisted);
+				this.head.rotationPointX = xOffset;
+				this.head.rotationPointY = 15.69F + yOffset;
 				this.head.rotateAngleX = 0.0F;
 				this.head.rotateAngleY = 0.0F;
 				this.head.rotateAngleZ = MathHelper.sin((float)ticksExisted) * 0.4F;
-				this.body.rotationPointX = rotationPointX;
-				this.body.rotationPointY = 16.5F + rotationPointY;
+				this.body.rotationPointX = xOffset;
+				this.body.rotationPointY = 16.5F + yOffset;
 				this.wingLeft.rotateAngleZ = -0.0873F - ageInTicks;
-				this.wingLeft.rotationPointX = 1.5F + rotationPointX;
-				this.wingLeft.rotationPointY = 16.94F + rotationPointY;
+				this.wingLeft.rotationPointX = 1.5F + xOffset;
+				this.wingLeft.rotationPointY = 16.94F + yOffset;
 				this.wingRight.rotateAngleZ = 0.0873F + ageInTicks;
-				this.wingRight.rotationPointX = -1.5F + rotationPointX;
-				this.wingRight.rotationPointY = 16.94F + rotationPointY;
-				this.tail.rotationPointX = rotationPointX;
-				this.tail.rotationPointY = 21.07F + rotationPointY;
+				this.wingRight.rotationPointX = -1.5F + xOffset;
+				this.wingRight.rotationPointY = 16.94F + yOffset;
+				this.tail.rotationPointX = xOffset;
+				this.tail.rotationPointY = 21.07F + yOffset;
 				break;
-			case PARTY:
-				RendererModel leg = this.legLeft;
-				leg.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-				leg = this.legRight;
-				leg.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + 3.1415927F) * 1.4F * limbSwingAmount;
+			case STANDING:
+				this.legLeft.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
+				this.legRight.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+			case FLYING:
+			case ON_SHOULDER:
 			default:
-				float rotationYOffset = ageInTicks * 0.3F;
-				this.head.rotationPointY = 15.69F + rotationYOffset;
+				float reducedAge = ageInTicks * 0.3F;
+				this.head.rotationPointY = 15.69F + reducedAge;
 				this.tail.rotateAngleX = 1.015F + MathHelper.cos(limbSwing * 0.6662F) * 0.3F * limbSwingAmount;
-				this.tail.rotationPointY = 21.07F + rotationYOffset;
-				this.body.rotationPointY = 16.5F + rotationYOffset;
+				this.tail.rotationPointY = 21.07F + reducedAge;
+				this.body.rotationPointY = 16.5F + reducedAge;
 				this.wingLeft.rotateAngleZ = -0.0873F - ageInTicks;
-				this.wingLeft.rotationPointY = 16.94F + rotationYOffset;
+				this.wingLeft.rotationPointY = 16.94F + reducedAge;
 				this.wingRight.rotateAngleZ = 0.0873F + ageInTicks;
-				this.wingRight.rotationPointY = 16.94F + rotationYOffset;
-				this.legLeft.rotationPointY = 22.0F + rotationYOffset;
-				this.legRight.rotationPointY = 22.0F + rotationYOffset;
+				this.wingRight.rotationPointY = 16.94F + reducedAge;
+				this.legLeft.rotationPointY = 22.0F + reducedAge;
+				this.legRight.rotationPointY = 22.0F + reducedAge;
 		}
 		
 	}
 	
-	private void setParrotLivingAnimations(ExExParrotModel.State state) {
+	private void setLivingAnimations(State state) {
 		this.feather.rotateAngleX = -0.2214F;
 		this.body.rotateAngleX = 0.4937F;
 		this.wingLeft.rotateAngleX = -0.6981F;
-		this.wingLeft.rotateAngleY = -3.1415927F;
+		this.wingLeft.rotateAngleY = -(float)Math.PI;
 		this.wingRight.rotateAngleX = -0.6981F;
-		this.wingRight.rotateAngleY = -3.1415927F;
+		this.wingRight.rotateAngleY = -(float)Math.PI;
 		this.legLeft.rotateAngleX = -0.0299F;
 		this.legRight.rotateAngleX = -0.0299F;
 		this.legLeft.rotationPointY = 22.0F;
@@ -159,7 +152,8 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 		this.legLeft.rotateAngleZ = 0.0F;
 		this.legRight.rotateAngleZ = 0.0F;
 		switch(state) {
-			case STANDING:
+			case SITTING:
+				float f = 1.9F;
 				this.head.rotationPointY = 17.59F;
 				this.tail.rotateAngleX = 1.5388988F;
 				this.tail.rotationPointY = 22.97F;
@@ -173,32 +167,32 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 				++this.legLeft.rotateAngleX;
 				++this.legRight.rotateAngleX;
 				break;
-			case SITTING:
+			case PARTY:
 				this.legLeft.rotateAngleZ = -0.34906584F;
 				this.legRight.rotateAngleZ = 0.34906584F;
+			case STANDING:
 			case ON_SHOULDER:
-				RendererModel leg = this.legLeft;
-				leg.rotateAngleX += 0.6981317F;
-				leg = this.legRight;
-				leg.rotateAngleX += 0.6981317F;
 			default:
 				break;
+			case FLYING:
+				this.legLeft.rotateAngleX += 0.6981317F;
+				this.legRight.rotateAngleX += 0.6981317F;
 		}
 		
 	}
 	
-	private static ExExParrotModel.State getState(ExExParrotEntity parrot) {
+	private static State getState(ExExParrotEntity parrot) {
 		if (parrot.isPartying()) {
-			return ExExParrotModel.State.PARTY;
+			return State.PARTY;
 		} else if (parrot.isSitting()) {
-			return ExExParrotModel.State.SITTING;
+			return State.SITTING;
 		} else {
-			return parrot.isFlying() ? ExExParrotModel.State.FLYING : ExExParrotModel.State.STANDING;
+			return parrot.isFlying() ? State.FLYING : State.STANDING;
 		}
 	}
 	
 	@OnlyIn(Dist.CLIENT)
-	public enum State {
+	public static enum State {
 		FLYING,
 		STANDING,
 		SITTING,

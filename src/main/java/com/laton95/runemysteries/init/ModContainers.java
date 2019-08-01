@@ -16,7 +16,7 @@ import com.laton95.runemysteries.client.gui.screen.inventory.RuneBagScreen;
 @ObjectHolder(RuneMysteries.MOD_ID)
 public class ModContainers {
 	
-	public static ContainerType<RuneBagContainer> RUNE_BAG;
+	public static final ContainerType<RuneBagContainer> RUNE_BAG = null;
 	
 	@SubscribeEvent
 	public static void clientSetup(FMLClientSetupEvent event) {

@@ -24,16 +24,9 @@ public class ExExParrotRender extends LivingRenderer<ExExParrotEntity, ExExParro
 		return new ResourceLocation("runemysteries:textures/entity/ex_ex_parrot/ex_ex_parrot.png");
 	}
 	
-	/**
-	 * Defines what float the third param in setRotationAngles of ModelBase is
-	 */
-	public float handleRotationFloat(ExExParrotEntity livingBase, float partialTicks) {
-		return this.getCustomBob(livingBase, partialTicks);
-	}
-	
-	private float getCustomBob(ExExParrotEntity parrot, float p_192861_2_) {
-		float f = parrot.oFlap + (parrot.flap - parrot.oFlap) * p_192861_2_;
-		float f1 = parrot.oFlapSpeed + (parrot.flapSpeed - parrot.oFlapSpeed) * p_192861_2_;
-		return (MathHelper.sin(f) + 1.0F) * f1;
+	public float handleRotationFloat(ExExParrotEntity parrot, float partialTicks) {
+		float flap = MathHelper.lerp(partialTicks, parrot.oFlap, parrot.flap);
+		float flapSpeed = MathHelper.lerp(partialTicks, parrot.oFlapSpeed, parrot.flapSpeed);
+		return (MathHelper.sin(flap) + 1.0F) * flapSpeed;
 	}
 }

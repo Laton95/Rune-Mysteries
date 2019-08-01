@@ -12,7 +12,7 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
 	
-	public static EntityType<ExExParrotEntity> EX_EX_PARROT = EntityType.Builder.create(ExExParrotEntity::new, EntityClassification.AMBIENT).build("ex_ex_parrot");
+	public static EntityType<ExExParrotEntity> EX_EX_PARROT = EntityType.Builder.create(ExExParrotEntity::new, EntityClassification.AMBIENT).size(0.5F, 0.9F).build("ex_ex_parrot");
 	
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {

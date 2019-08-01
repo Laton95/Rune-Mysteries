@@ -1,8 +1,13 @@
 package com.laton95.runemysteries.entity.passive;
 
+import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
+import com.google.common.collect.Sets;
 import com.laton95.runemysteries.init.ModEntities;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
+import net.minecraft.block.LogBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
@@ -11,43 +16,56 @@ import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.passive.ShoulderRidingEntity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.world.DifficultyInstance;
+import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.event.ForgeEventFactory;
 
+import javax.annotation.Nullable;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
+import java.util.Set;
+import java.util.function.Predicate;
 
 public class ExExParrotEntity extends ParrotEntity {
 	
 	public float flap;
-	
 	public float flapSpeed;
-	
 	public float oFlapSpeed;
-	
 	public float oFlap;
-	
 	public float flapping = 1.0F;
-	
 	private boolean partyParrot;
-	
 	private BlockPos jukeboxPosition;
 	
-	public ExExParrotEntity(EntityType<? extends ExExParrotEntity> entityType, World world) {
-		super(entityType, world);
+	public ExExParrotEntity(EntityType<? extends ExExParrotEntity> type, World world) {
+		super(type, world);
 		this.moveController = new FlyingMovementController(this);
 	}
 	
-	@Override
+	@Nullable
+	public ILivingEntityData onInitialSpawn(IWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT dataTag) {
+		return super.onInitialSpawn(world, difficulty, reason, data, dataTag);
+	}
+	
 	protected void registerGoals() {
 		this.sitGoal = new SitGoal(this);
 		this.goalSelector.addGoal(0, new PanicGoal(this, 1.25D));
@@ -56,20 +74,19 @@ public class ExExParrotEntity extends ParrotEntity {
 		this.goalSelector.addGoal(2, this.sitGoal);
 		this.goalSelector.addGoal(2, new FollowOwnerFlyingGoal(this, 1.0D, 5.0F, 1.0F));
 		this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
-		this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
 		this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
 	}
 	
-	@Override
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttributes().registerAttribute(SharedMonsterAttributes.FLYING_SPEED);
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-		this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.4F);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
+		this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double)0.4F);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.2F);
 	}
 	
-	@Override
+	/**
+	 * Returns new PathNavigateGround instance
+	 */
 	protected PathNavigator createNavigator(World world) {
 		FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, world);
 		flyingpathnavigator.setCanOpenDoors(false);
@@ -78,12 +95,14 @@ public class ExExParrotEntity extends ParrotEntity {
 		return flyingpathnavigator;
 	}
 	
-	@Override
-	protected float getStandingEyeHeight(Pose pose, EntitySize size) {
-		return size.height * 0.6F;
+	protected float getStandingEyeHeight(Pose poseIn, EntitySize sizeIn) {
+		return sizeIn.height * 0.6F;
 	}
 	
-	@Override
+	/**
+	 * Called frequently so the entity can update its state every tick as required. For example, zombies and skeletons
+	 * use this to react to sunlight and start to burn.
+	 */
 	public void livingTick() {
 		if (this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || this.world.getBlockState(this.jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.partyParrot = false;
@@ -94,6 +113,9 @@ public class ExExParrotEntity extends ParrotEntity {
 		this.calculateFlapping();
 	}
 	
+	/**
+	 * Called when a record starts or stops playing. Used to make parrots start or stop partying.
+	 */
 	@OnlyIn(Dist.CLIENT)
 	public void setPartying(BlockPos pos, boolean isPartying) {
 		this.jukeboxPosition = pos;
@@ -123,7 +145,6 @@ public class ExExParrotEntity extends ParrotEntity {
 		this.flap += this.flapping * 2.0F;
 	}
 	
-	@Override
 	public boolean processInteract(PlayerEntity player, Hand hand) {
 		if (!this.isTamed()) {
 			if (!this.isSilent()) {
@@ -131,7 +152,7 @@ public class ExExParrotEntity extends ParrotEntity {
 			}
 			
 			if (!this.world.isRemote) {
-				if (this.rand.nextInt(10) == 0 && !ForgeEventFactory.onAnimalTame(this, player)) {
+				if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
 					this.setTamedBy(player);
 					this.playTameEffect(true);
 					this.world.setEntityState(this, (byte)7);
@@ -151,73 +172,65 @@ public class ExExParrotEntity extends ParrotEntity {
 		}
 	}
 	
-	@Override
+	/**
+	 * Checks if the parameter is an item which this animal can be fed to breed it (wheat, carrots or seeds depending on
+	 * the animal type)
+	 */
 	public boolean isBreedingItem(ItemStack stack) {
 		return false;
 	}
 	
-	@Override
 	public void fall(float distance, float damageMultiplier) {
 	}
 	
-	@Override
 	protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
 	}
 	
-	@Override
+	/**
+	 * Returns true if the mob is currently able to mate with the specified mob.
+	 */
 	public boolean canMateWith(AnimalEntity otherAnimal) {
 		return false;
 	}
 	
-	@Override
-	public AgeableEntity createChild(AgeableEntity ageableEntity) {
+	@Nullable
+	public AgeableEntity createChild(AgeableEntity entity) {
 		return null;
 	}
 	
-	@Override
-	public void playAmbientSound() {
-		if (!this.isSilent() && world.rand.nextInt(200) == 0) {
-			world.playSound(null, this.posX, this.posY, this.posZ, getAmbientSound(), this.getSoundCategory(), 1.0F, getPitch(world.rand));
-		}
+	public boolean attackEntityAsMob(Entity entity) {
+		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
 	}
 	
-	@Override
-	public boolean attackEntityAsMob(Entity entityIn) {
-		return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 4.0F);
-	}
-	
-	@Override
+	@Nullable
 	public SoundEvent getAmbientSound() {
 		return SoundEvents.ENTITY_PARROT_IMITATE_ZOMBIE;
 	}
 	
-	@Override
 	protected SoundEvent getHurtSound(DamageSource damageSourceIn) {
 		return SoundEvents.ENTITY_ZOMBIE_HURT;
 	}
 	
-	@Override
 	protected SoundEvent getDeathSound() {
 		return SoundEvents.ENTITY_ZOMBIE_DEATH;
 	}
 	
-	@Override
-	protected void playStepSound(BlockPos pos, BlockState state) {
+	protected void playStepSound(BlockPos pos, BlockState block) {
 		this.playSound(SoundEvents.ENTITY_PARROT_STEP, 0.15F, 1.0F);
 	}
 	
-	@Override
 	protected float playFlySound(float volume) {
 		this.playSound(SoundEvents.ENTITY_PARROT_FLY, 0.15F, 1.0F);
 		return volume + this.flapSpeed / 2.0F;
 	}
 	
-	@Override
 	protected boolean makeFlySound() {
 		return true;
 	}
 	
-	@Override
+	/**
+	 * Gets the pitch of living sounds in living entities.
+	 */
 	protected float getSoundPitch() {
 		return getPitch(this.rand);
 	}
@@ -226,30 +239,31 @@ public class ExExParrotEntity extends ParrotEntity {
 		return (random.nextFloat() - random.nextFloat()) * 0.2F + 1.0F;
 	}
 	
-	@Override
 	public SoundCategory getSoundCategory() {
 		return SoundCategory.NEUTRAL;
 	}
 	
-	@Override
+	/**
+	 * Returns true if this entity should push and be pushed by other entities when colliding.
+	 */
 	public boolean canBePushed() {
 		return true;
 	}
 	
-	@Override
 	protected void collideWithEntity(Entity entity) {
-		if(!(entity instanceof PlayerEntity)) {
+		if (!(entity instanceof PlayerEntity)) {
 			super.collideWithEntity(entity);
 		}
 	}
 	
-	@Override
+	/**
+	 * Called when the entity is attacked.
+	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if(this.isInvulnerableTo(source)) {
+		if (this.isInvulnerableTo(source)) {
 			return false;
-		}
-		else {
-			if(this.sitGoal != null) {
+		} else {
+			if (this.sitGoal != null) {
 				this.sitGoal.setSitting(false);
 			}
 			
@@ -257,17 +271,17 @@ public class ExExParrotEntity extends ParrotEntity {
 		}
 	}
 	
-	@Override
 	protected void registerData() {
 		super.registerData();
 	}
 	
-	@Override
 	public void writeAdditional(CompoundNBT compound) {
 		super.writeAdditional(compound);
 	}
 	
-	@Override
+	/**
+	 * (abstract) Protected helper method to read subclass entity data from NBT.
+	 */
 	public void readAdditional(CompoundNBT compound) {
 		super.readAdditional(compound);
 	}

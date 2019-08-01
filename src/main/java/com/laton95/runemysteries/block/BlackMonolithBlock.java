@@ -28,6 +28,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
 	
@@ -61,7 +62,10 @@ public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
 			ModCriteriaTriggers.TOUCH_MONOLITH.trigger((ServerPlayerEntity) player);
 			
 			if(player.getHeldItem(hand).getItem() == ModItems.EX_PARROT) {
-				world.addEntity(new LightningBoltEntity(world, (double) pos.getX(), (double) pos.getY() + 1.0f, (double) pos.getZ(), true));
+				
+				LightningBoltEntity lightningboltentity = new LightningBoltEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, true);
+				((ServerWorld)world).addLightningBolt(lightningboltentity);
+				
 				ModCriteriaTriggers.EX_PARROT.trigger((ServerPlayerEntity) player);
 				if(!player.isCreative()) {
 					player.getHeldItem(hand).shrink(1);
