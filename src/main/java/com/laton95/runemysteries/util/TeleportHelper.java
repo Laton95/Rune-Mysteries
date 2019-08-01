@@ -1,18 +1,18 @@
 package com.laton95.runemysteries.util;
 
 import net.minecraft.entity.Entity;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.play.server.SPacketEntityEffect;
-import net.minecraft.network.play.server.SPacketRespawn;
-import net.minecraft.network.play.server.SPacketSetPassengers;
-import net.minecraft.potion.PotionEffect;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.nbt.CompoundNBT;
+import net.minecraft.network.play.server.SPlayEntityEffectPacket;
+import net.minecraft.network.play.server.SRespawnPacket;
+import net.minecraft.network.play.server.SSetPassengersPacket;
+import net.minecraft.potion.EffectInstance;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.management.PlayerList;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.WorldServer;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 import net.minecraftforge.common.ForgeHooks;
 
 import java.util.LinkedList;
@@ -86,16 +86,16 @@ public class TeleportHelper {
 		}
 		
 		if(interDimensional) {
-			if(entity instanceof EntityPlayerMP) {
-				return teleportPlayerInternational((EntityPlayerMP) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
+			if(entity instanceof ServerPlayerEntity) {
+				return teleportPlayerInternational((ServerPlayerEntity) entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
 			}
 			else {
 				return teleportEntityInternational(entity, server, sourceDim, targetDim, xCoord, yCoord, zCoord, yaw, pitch);
 			}
 		}
 		else {
-			if(entity instanceof EntityPlayerMP) {
-				EntityPlayerMP player = (EntityPlayerMP) entity;
+			if(entity instanceof ServerPlayerEntity) {
+				ServerPlayerEntity player = (ServerPlayerEntity) entity;
 				player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
 				player.setRotationYawHead(yaw);
 			}
@@ -112,28 +112,28 @@ public class TeleportHelper {
 	 * This is the black magic responsible for teleporting players between
 	 * dimensions!
 	 */
-	private static EntityPlayer teleportPlayerInternational(EntityPlayerMP player, MinecraftServer server, DimensionType sourceDim, DimensionType targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch) {
-		WorldServer sourceWorld = server.getWorld(sourceDim);
-		WorldServer targetWorld = server.getWorld(targetDim);
+	private static PlayerEntity teleportPlayerInternational(ServerPlayerEntity player, MinecraftServer server, DimensionType sourceDim, DimensionType targetDim, double xCoord, double yCoord, double zCoord, float yaw, float pitch) {
+		ServerWorld sourceWorld = server.getWorld(sourceDim);
+		ServerWorld targetWorld = server.getWorld(targetDim);
 		PlayerList playerList = server.getPlayerList();
 		
 		player.dimension = targetDim;
-		player.connection.sendPacket(new SPacketRespawn(player.dimension, targetWorld.getDifficulty(), targetWorld.getWorldInfo().getTerrainType(), player.interactionManager.getGameType()));
+		player.connection.sendPacket(new SRespawnPacket(player.dimension, targetWorld.getWorldInfo().getGenerator(), player.interactionManager.getGameType()));
 		playerList.updatePermissionLevel(player);
-		sourceWorld.removeEntityDangerously(player);
+		sourceWorld.removePlayer(player);
 		player.removed = false;
 		
 		// region Transfer to world
 		
 		player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
 		player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
-		targetWorld.spawnEntity(player);
-		targetWorld.tickEntity(player, false);
+		targetWorld.addEntity(player);
+		//targetWorld.tickEntity(player, false);
 		player.setWorld(targetWorld);
 		
 		// endregion
 		
-		playerList.preparePlayer(player, sourceWorld);
+		//playerList.preparePlayer(player, sourceWorld);
 		player.connection.setPlayerLocation(xCoord, yCoord, zCoord, yaw, pitch);
 		player.interactionManager.setWorld(targetWorld);
 		//player.connection.sendPacket(new SPacketPlayerAbilities(player.capabilities)); //TODO find out how to get all player capabilities
@@ -141,8 +141,8 @@ public class TeleportHelper {
 		playerList.sendWorldInfo(player, targetWorld);
 		playerList.sendInventory(player);
 		
-		for(PotionEffect potioneffect : player.getActivePotionEffects()) {
-			player.connection.sendPacket(new SPacketEntityEffect(player.getEntityId(), potioneffect));
+		for(EffectInstance potioneffect : player.getActivePotionEffects()) {
+			player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), potioneffect));
 		}
 		//net.minecraftforge.fml.common.FMLCommonHandler.instance().firePlayerChangedDimensionEvent(player, sourceDim, targetDim); //TODO find out how to send changed dimension event
 		player.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
@@ -155,28 +155,28 @@ public class TeleportHelper {
 			return null;
 		}
 		
-		WorldServer sourceWorld = server.getWorld(sourceDim);
-		WorldServer targetWorld = server.getWorld(targetDim);
+		ServerWorld sourceWorld = server.getWorld(sourceDim);
+		ServerWorld targetWorld = server.getWorld(targetDim);
 		entity.dimension = targetDim;
 		
 		sourceWorld.removeEntity(entity);
 		entity.removed = false;
 		entity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
-		sourceWorld.tickEntity(entity, false);
+		//sourceWorld.tickEntity(entity, false);
 		
 		Entity newEntity = null; //EntityList.createEntityByIDFromName(new ResourceLocation(EntityList.getEntityString(entity)), targetWorld); //TODO find the new version of this method
 		if(newEntity != null) {
 			/** copyDataFromOld */
-			NBTTagCompound nbttagcompound = entity.writeWithoutTypeId(new NBTTagCompound());
-			nbttagcompound.removeTag("Dimension");
+			CompoundNBT nbttagcompound = entity.writeWithoutTypeId(new CompoundNBT());
+			nbttagcompound.remove("Dimension");
 			newEntity.read(nbttagcompound);
 			newEntity.timeUntilPortal = entity.timeUntilPortal;
 			newEntity.setLocationAndAngles(xCoord, yCoord, zCoord, yaw, pitch);
 			boolean flag = newEntity.forceSpawn;
 			newEntity.forceSpawn = true;
-			targetWorld.spawnEntity(newEntity);
+			targetWorld.addEntity(newEntity);
 			newEntity.forceSpawn = flag;
-			targetWorld.tickEntity(newEntity, false);
+			//targetWorld.tickEntity(newEntity, false);
 		}
 		
 		entity.removed = true;
@@ -269,8 +269,8 @@ public class TeleportHelper {
 		 * with the entity stack.
 		 */
 		public void updateClients() {
-			if(entity instanceof EntityPlayerMP) {
-				updateClient((EntityPlayerMP) entity);
+			if(entity instanceof ServerPlayerEntity) {
+				updateClient((ServerPlayerEntity) entity);
 			}
 			for(PassengerHelper passenger : passengers) {
 				passenger.updateClients();
@@ -283,9 +283,9 @@ public class TeleportHelper {
 		 *
 		 * @param playerMP The Player.
 		 */
-		private void updateClient(EntityPlayerMP playerMP) {
+		private void updateClient(ServerPlayerEntity playerMP) {
 			if(entity.isBeingRidden()) {
-				playerMP.connection.sendPacket(new SPacketSetPassengers(entity));
+				playerMP.connection.sendPacket(new SSetPassengersPacket(entity));
 			}
 			for(PassengerHelper passenger : passengers) {
 				passenger.updateClients();

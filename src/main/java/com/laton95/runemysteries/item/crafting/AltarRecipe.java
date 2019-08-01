@@ -3,21 +3,21 @@ package com.laton95.runemysteries.item.crafting;
 import com.google.gson.JsonObject;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
-import com.laton95.runemysteries.inventory.InventoryAltar;
-import net.minecraft.inventory.IInventory;
+import com.laton95.runemysteries.init.ModBlocks;
+import com.laton95.runemysteries.inventory.crafting.RuneCraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.RecipeType;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class AltarRecipe implements IRecipe {
+public class AltarRecipe implements IRecipe<RuneCraftingInventory> {
+	
+	public static final IRecipeType<AltarRecipe> RUNE_ALTAR_RECIPE = new RuneAltarRecipeType();
+	
+	public static final Serializer SERIALIZER = new Serializer();
 	
 	private final ResourceLocation id;
 	
@@ -29,10 +29,6 @@ public class AltarRecipe implements IRecipe {
 	
 	private final boolean anyAltar;
 	
-	public static final RecipeType<AltarRecipe> RUNE_ALTAR_TYPE = RecipeType.get(new ResourceLocation(RuneMysteries.MOD_ID, "rune_altar"), AltarRecipe.class);
-	
-	public static final IRecipeSerializer<AltarRecipe> RUNE_ALTAR_SERIALIZER = new AltarRecipe.Serializer();
-	
 	public AltarRecipe(ResourceLocation id, Ingredient input, ItemStack output, EnumRuneType altarType, boolean anyAltar) {
 		this.id = id;
 		this.input = input;
@@ -42,16 +38,12 @@ public class AltarRecipe implements IRecipe {
 	}
 	
 	@Override
-	public boolean matches(IInventory inventory, World worldIn) {
-		if(inventory instanceof InventoryAltar) {
-			boolean validAltar = anyAltar || ((InventoryAltar) inventory).getRuneType() == altarType;
-			return validAltar && input.test(((InventoryAltar) inventory).getContents());
-		}
-		return false;
+	public boolean matches(RuneCraftingInventory inv, World worldIn) {
+		return this.input.test(inv.getInput()) && (inv.getRuneType() == altarType || anyAltar);
 	}
 	
 	@Override
-	public ItemStack getCraftingResult(IInventory inventory) {
+	public ItemStack getCraftingResult(RuneCraftingInventory inv) {
 		return output.copy();
 	}
 	
@@ -60,16 +52,13 @@ public class AltarRecipe implements IRecipe {
 		return true;
 	}
 	
-	@Override
-	public ItemStack getRecipeOutput() {
-		return output;
+	public ItemStack getCraftingResult() {
+		return output.copy();
 	}
 	
 	@Override
-	public NonNullList<Ingredient> getIngredients() {
-		NonNullList<Ingredient> ingredients = NonNullList.create();
-		ingredients.add(this.input);
-		return ingredients;
+	public ItemStack getRecipeOutput() {
+		return output;
 	}
 	
 	@Override
@@ -79,30 +68,46 @@ public class AltarRecipe implements IRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return RUNE_ALTAR_SERIALIZER;
+		return null;
 	}
 	
 	@Override
-	public RecipeType<? extends IRecipe> getType() {
-		return RUNE_ALTAR_TYPE;
+	public IRecipeType<?> getType() {
+		return RUNE_ALTAR_RECIPE;
 	}
 	
-	public static class Serializer implements IRecipeSerializer<AltarRecipe> {
+	@Override
+	public ItemStack getIcon() {
+		return new ItemStack(ModBlocks.AIR_ALTAR);
+	}
+	
+	public static class RuneAltarRecipeType implements IRecipeType<AltarRecipe> {
 		
-		private static ResourceLocation NAME = new ResourceLocation(RuneMysteries.MOD_ID, "rune_altar");
+		@Override
+		public String toString() {
+			return RuneMysteries.MOD_ID + ":rune_altar";
+		}
+	}
+	
+	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<AltarRecipe> {
 		
+		Serializer() {
+			setRegistryName(new ResourceLocation(RuneMysteries.MOD_ID, "rune_altar"));
+		}
+		
+		@Override
 		public AltarRecipe read(ResourceLocation recipeId, JsonObject json) {
 			boolean anyAltar = false;
 			
 			Ingredient ingredient;
-			if(JsonUtils.isJsonArray(json, "ingredient")) {
-				ingredient = Ingredient.fromJson(JsonUtils.getJsonArray(json, "ingredient"));
+			if(JSONUtils.isJsonArray(json, "ingredient")) {
+				ingredient = Ingredient.deserialize(JSONUtils.getJsonArray(json, "ingredient"));
 			}
 			else {
-				ingredient = Ingredient.fromJson(JsonUtils.getJsonObject(json, "ingredient"));
+				ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
 			}
 			
-			String altarName = JsonUtils.getString(json, "altar");
+			String altarName = JSONUtils.getString(json, "altar");
 			EnumRuneType altarType;
 			try {
 				altarType = EnumRuneType.valueOf(altarName.toUpperCase());
@@ -117,29 +122,26 @@ public class AltarRecipe implements IRecipe {
 				}
 			}
 			
-			ItemStack itemstack = ShapedRecipe.deserializeItem(JsonUtils.getJsonObject(json, "result"));
+			ItemStack itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
 			
 			return new AltarRecipe(recipeId, ingredient, itemstack, altarType, anyAltar);
 		}
 		
+		@Override
 		public AltarRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-			Ingredient ingredient = Ingredient.fromBuffer(buffer);
+			Ingredient ingredient = Ingredient.read(buffer);
 			ItemStack itemstack = buffer.readItemStack();
 			EnumRuneType runeType = EnumRuneType.values()[buffer.readVarInt()];
 			boolean anyAltar = buffer.readBoolean();
 			return new AltarRecipe(recipeId, ingredient, itemstack, runeType, anyAltar);
 		}
 		
+		@Override
 		public void write(PacketBuffer buffer, AltarRecipe recipe) {
-			recipe.input.writeToBuffer(buffer);
+			recipe.input.write(buffer);
 			buffer.writeItemStack(recipe.output);
 			buffer.writeVarInt(recipe.altarType.ordinal());
 			buffer.writeBoolean(recipe.anyAltar);
-		}
-		
-		@Override
-		public ResourceLocation getName() {
-			return NAME;
 		}
 	}
 }

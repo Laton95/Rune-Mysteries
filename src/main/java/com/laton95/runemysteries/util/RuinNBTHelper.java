@@ -1,12 +1,11 @@
 package com.laton95.runemysteries.util;
 
 import com.laton95.runemysteries.RuneMysteries;
-import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.storage.WorldSavedData;
-import net.minecraft.world.storage.WorldSavedDataStorage;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,15 +27,16 @@ public class RuinNBTHelper extends WorldSavedData {
 	}
 	
 	public static RuinNBTHelper get(World world) {
-		WorldSavedDataStorage storage = world.getMapStorage();
-		RuinNBTHelper instance = storage.func_212426_a(DimensionType.OVERWORLD, RuinNBTHelper::new, DATA_NAME);
-		
-		if(instance == null) {
-			instance = new RuinNBTHelper();
-			storage.func_212424_a(DimensionType.OVERWORLD, DATA_NAME, instance);
-			instance.markDirty();
-		}
-		return instance;
+		return null;
+//		WorldSavedDataStorage storage = world.getSavedDataStorage();
+//		RuinNBTHelper instance = storage.get(DimensionType.OVERWORLD, RuinNBTHelper::new, DATA_NAME);
+//
+//		if(instance == null) {
+//			instance = new RuinNBTHelper();
+//			storage.set(DimensionType.OVERWORLD, DATA_NAME, instance);
+//			instance.markDirty();
+//		}
+//		return instance;
 	}
 	
 	public RuinNBTHelper(String s) {
@@ -44,7 +44,7 @@ public class RuinNBTHelper extends WorldSavedData {
 	}
 	
 	@Override
-	public void read(NBTTagCompound nbt) {
+	public void read(CompoundNBT nbt) {
 		overworldRuinsGenerated = nbt.getBoolean("overworldRuinsGenerated");
 		netherRuinsGenerated = nbt.getBoolean("netherRuinsGenerated");
 		endRuinsGenerated = nbt.getBoolean("endRuinsGenerated");
@@ -83,26 +83,26 @@ public class RuinNBTHelper extends WorldSavedData {
 	}
 	
 	@Override
-	public NBTTagCompound write(NBTTagCompound compound) {
-		compound.setBoolean("overworldRuinsGenerated", overworldRuinsGenerated);
-		compound.setBoolean("netherRuinsGenerated", netherRuinsGenerated);
-		compound.setBoolean("endRuinsGenerated", endRuinsGenerated);
+	public CompoundNBT write(CompoundNBT compound) {
+		compound.putBoolean("overworldRuinsGenerated", overworldRuinsGenerated);
+		compound.putBoolean("netherRuinsGenerated", netherRuinsGenerated);
+		compound.putBoolean("endRuinsGenerated", endRuinsGenerated);
 		
-		compound.setIntArray("airRuinPos", blockPosToIntArray(posMap.get("air")));
-		compound.setIntArray("astralRuinPos", blockPosToIntArray(posMap.get("astral")));
-		compound.setIntArray("bloodRuinPos", blockPosToIntArray(posMap.get("blood")));
-		compound.setIntArray("bodyRuinPos", blockPosToIntArray(posMap.get("body")));
-		compound.setIntArray("chaosRuinPos", blockPosToIntArray(posMap.get("chaos")));
-		compound.setIntArray("cosmicRuinPos", blockPosToIntArray(posMap.get("cosmic")));
-		compound.setIntArray("deathRuinPos", blockPosToIntArray(posMap.get("death")));
-		compound.setIntArray("earthRuinPos", blockPosToIntArray(posMap.get("earth")));
-		compound.setIntArray("fireRuinPos", blockPosToIntArray(posMap.get("fire")));
-		compound.setIntArray("lawRuinPos", blockPosToIntArray(posMap.get("law")));
-		compound.setIntArray("mindRuinPos", blockPosToIntArray(posMap.get("mind")));
-		compound.setIntArray("natureRuinPos", blockPosToIntArray(posMap.get("nature")));
-		compound.setIntArray("soulRuinPos", blockPosToIntArray(posMap.get("soul")));
-		compound.setIntArray("waterRuinPos", blockPosToIntArray(posMap.get("water")));
-		compound.setIntArray("ouraniaRuinPos", blockPosToIntArray(posMap.get("ourania")));
+		compound.putIntArray("airRuinPos", blockPosToIntArray(posMap.get("air")));
+		compound.putIntArray("astralRuinPos", blockPosToIntArray(posMap.get("astral")));
+		compound.putIntArray("bloodRuinPos", blockPosToIntArray(posMap.get("blood")));
+		compound.putIntArray("bodyRuinPos", blockPosToIntArray(posMap.get("body")));
+		compound.putIntArray("chaosRuinPos", blockPosToIntArray(posMap.get("chaos")));
+		compound.putIntArray("cosmicRuinPos", blockPosToIntArray(posMap.get("cosmic")));
+		compound.putIntArray("deathRuinPos", blockPosToIntArray(posMap.get("death")));
+		compound.putIntArray("earthRuinPos", blockPosToIntArray(posMap.get("earth")));
+		compound.putIntArray("fireRuinPos", blockPosToIntArray(posMap.get("fire")));
+		compound.putIntArray("lawRuinPos", blockPosToIntArray(posMap.get("law")));
+		compound.putIntArray("mindRuinPos", blockPosToIntArray(posMap.get("mind")));
+		compound.putIntArray("natureRuinPos", blockPosToIntArray(posMap.get("nature")));
+		compound.putIntArray("soulRuinPos", blockPosToIntArray(posMap.get("soul")));
+		compound.putIntArray("waterRuinPos", blockPosToIntArray(posMap.get("water")));
+		compound.putIntArray("ouraniaRuinPos", blockPosToIntArray(posMap.get("ourania")));
 		
 		return compound;
 	}

@@ -1,8 +1,8 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.client.renderer.entity.RenderExExParrot;
-import com.laton95.runemysteries.entity.passive.EntityExExParrot;
+import com.laton95.runemysteries.client.renderer.entity.ExExParrotRender;
+import com.laton95.runemysteries.entity.passive.ExExParrotEntity;
 import com.laton95.runemysteries.util.ModLog;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
@@ -16,6 +16,6 @@ public class ModRenders {
 	public static void registerRenders(final FMLClientSetupEvent event) {
 		ModLog.info("Registering renders");
 		
-		RenderingRegistry.registerEntityRenderingHandler(EntityExExParrot.class, RenderExExParrot::new);
+		RenderingRegistry.registerEntityRenderingHandler(ExExParrotEntity.class, ExExParrotRender::new);
 	}
 }

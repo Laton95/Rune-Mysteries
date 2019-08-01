@@ -1,6 +1,6 @@
 package com.laton95.runemysteries;
 
-import com.laton95.runemysteries.capability.CapabilityRejected;
+import com.laton95.runemysteries.capability.RejectedCapability;
 import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.crafting.AltarRecipe;
@@ -8,13 +8,16 @@ import com.laton95.runemysteries.item.crafting.ObeliskRecipe;
 import com.laton95.runemysteries.network.RunemysteriesPacketHandler;
 import com.laton95.runemysteries.proxy.ClientProxy;
 import com.laton95.runemysteries.proxy.ServerProxy;
+import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.world.RuinTracker;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.RecipeSerializers;
+import net.minecraft.item.crafting.IRecipeSerializer;
+import net.minecraft.util.ResourceLocation;
+import net.minecraft.util.registry.Registry;
+import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
-import net.minecraftforge.fml.ExtensionPoint;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.config.ModConfig;
@@ -48,10 +51,17 @@ public class RuneMysteries {
 	@SubscribeEvent
 	public static void setup(FMLCommonSetupEvent event) {
 		RunemysteriesPacketHandler.register();
-		RecipeSerializers.register(AltarRecipe.RUNE_ALTAR_SERIALIZER);
-		RecipeSerializers.register(ObeliskRecipe.OBELISK_SERIALIZER);
-		ModLoadingContext.get().registerExtensionPoint(ExtensionPoint.GUIFACTORY, () -> GuiHandler::openGui);
-		CapabilityRejected.register();
+		RejectedCapability.register();
+	}
+	
+	@SubscribeEvent
+	public static void registerRecipeSerializers(RegistryEvent.Register<IRecipeSerializer<?>> event) {
+		ModLog.info("Registering recipe serializers");
+		Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(AltarRecipe.RUNE_ALTAR_RECIPE.toString()), AltarRecipe.RUNE_ALTAR_RECIPE);
+		event.getRegistry().register(AltarRecipe.SERIALIZER);
+		
+		Registry.register(Registry.RECIPE_TYPE, new ResourceLocation(ObeliskRecipe.OBELISK_RECIPE.toString()), ObeliskRecipe.OBELISK_RECIPE);
+		event.getRegistry().register(ObeliskRecipe.SERIALIZER);
 	}
 	
 	public void serverConfig(ModConfig.ModConfigEvent event) {

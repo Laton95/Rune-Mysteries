@@ -8,18 +8,18 @@ import net.minecraft.item.ItemStack;
 public class ItemNBTHelper {
 	
 	public static boolean hasTag(ItemStack itemStack, String keyName) {
-		return itemStack != null && itemStack.hasTag() && itemStack.getOrCreateTag().hasKey(keyName);
+		return itemStack != null && itemStack.hasTag() && itemStack.getOrCreateTag().contains(keyName);
 	}
 	
 	public static void removeTag(ItemStack itemStack, String keyName) {
 		if(itemStack.hasTag()) {
-			itemStack.getOrCreateTag().removeTag(keyName);
+			itemStack.getOrCreateTag().remove(keyName);
 		}
 	}
 	
 	// String
 	public static String getString(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setString(itemStack, keyName, "");
 		}
 		
@@ -27,7 +27,7 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setString(ItemStack itemStack, String keyName, String keyValue) {
-		itemStack.getOrCreateTag().setString(keyName, keyValue);
+		itemStack.getOrCreateTag().putString(keyName, keyValue);
 	}
 	
 	public static boolean toggleBoolean(ItemStack itemStack, String keyName, boolean defaultValue) {
@@ -35,13 +35,13 @@ public class ItemNBTHelper {
 	}
 	
 	public static boolean setBoolean(ItemStack itemStack, String keyName, boolean keyValue) {
-		itemStack.getOrCreateTag().setBoolean(keyName, keyValue);
+		itemStack.getOrCreateTag().putBoolean(keyName, keyValue);
 		return keyValue;
 	}
 	
 	// boolean
 	public static boolean getBoolean(ItemStack itemStack, String keyName, boolean defaultValue) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setBoolean(itemStack, keyName, defaultValue);
 		}
 		
@@ -50,7 +50,7 @@ public class ItemNBTHelper {
 	
 	// byte
 	public static byte getByte(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setByte(itemStack, keyName, (byte) 0);
 		}
 		
@@ -58,12 +58,12 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setByte(ItemStack itemStack, String keyName, byte keyValue) {
-		itemStack.getOrCreateTag().setByte(keyName, keyValue);
+		itemStack.getOrCreateTag().putByte(keyName, keyValue);
 	}
 	
 	// short
 	public static short getShort(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setShort(itemStack, keyName, (short) 0);
 		}
 		
@@ -71,12 +71,12 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setShort(ItemStack itemStack, String keyName, short keyValue) {
-		itemStack.getOrCreateTag().setShort(keyName, keyValue);
+		itemStack.getOrCreateTag().putShort(keyName, keyValue);
 	}
 	
 	// long
 	public static long getLong(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setLong(itemStack, keyName, 0);
 		}
 		
@@ -84,12 +84,12 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setLong(ItemStack itemStack, String keyName, long keyValue) {
-		itemStack.getOrCreateTag().setLong(keyName, keyValue);
+		itemStack.getOrCreateTag().putLong(keyName, keyValue);
 	}
 	
 	// float
 	public static float getFloat(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setFloat(itemStack, keyName, 0);
 		}
 		
@@ -97,12 +97,12 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setFloat(ItemStack itemStack, String keyName, float keyValue) {
-		itemStack.getOrCreateTag().setFloat(keyName, keyValue);
+		itemStack.getOrCreateTag().putFloat(keyName, keyValue);
 	}
 	
 	// double
 	public static double getDouble(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setDouble(itemStack, keyName, 0);
 		}
 		
@@ -110,7 +110,7 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setDouble(ItemStack itemStack, String keyName, double keyValue) {
-		itemStack.getOrCreateTag().setDouble(keyName, keyValue);
+		itemStack.getOrCreateTag().putDouble(keyName, keyValue);
 	}
 	
 	// Spell
@@ -118,7 +118,7 @@ public class ItemNBTHelper {
 	//	{
 	//		initNBTTagCompound(itemStack);
 	//
-	//		if(!itemStack.getOrCreateTag().hasKey("spell"))
+	//		if(!itemStack.getOrCreateTag().contains("spell"))
 	//		{
 	//			setSpell(itemStack, Spells.NONE_SPELL);
 	//		}
@@ -139,12 +139,12 @@ public class ItemNBTHelper {
 	//	{
 	//		initNBTTagCompound(itemStack);
 	//
-	//		itemStack.getOrCreateTag().setInteger("spell", Spells.spellList.indexOf(spell));
+	//		itemStack.getOrCreateTag().putInteger("spell", Spells.spellList.indexOf(spell));
 	//	}
 	
 	// int
 	public static int getInt(ItemStack itemStack, String keyName) {
-		if(!itemStack.getOrCreateTag().hasKey(keyName)) {
+		if(!itemStack.getOrCreateTag().contains(keyName)) {
 			setInteger(itemStack, keyName, 0);
 		}
 		
@@ -152,6 +152,6 @@ public class ItemNBTHelper {
 	}
 	
 	public static void setInteger(ItemStack itemStack, String keyName, int keyValue) {
-		itemStack.getOrCreateTag().setInt(keyName, keyValue);
+		itemStack.getOrCreateTag().putInt(keyName, keyValue);
 	}
 }

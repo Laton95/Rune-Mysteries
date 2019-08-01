@@ -1,7 +1,7 @@
 package com.laton95.runemysteries.network;
 
 import com.laton95.runemysteries.RuneMysteries;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.fml.network.NetworkDirection;
@@ -21,10 +21,10 @@ public class RunemysteriesPacketHandler {
 	public static void register() {
 		int disc = 0;
 		
-		INSTANCE.registerMessage(disc++, PacketSyncRuneBag.class, PacketSyncRuneBag::encode, PacketSyncRuneBag::decode, PacketSyncRuneBag.Handler::handle);
+		INSTANCE.registerMessage(disc++, SyncRuneBagPacket.class, SyncRuneBagPacket::encode, SyncRuneBagPacket::decode, SyncRuneBagPacket.Handler::handle);
 	}
 	
-	public static void sendTo(Object msg, EntityPlayerMP player) {
+	public static void sendTo(Object msg, ServerPlayerEntity player) {
 		if(!(player instanceof FakePlayer)) {
 			INSTANCE.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}

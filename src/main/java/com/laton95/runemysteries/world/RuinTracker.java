@@ -99,7 +99,7 @@ public class RuinTracker {
 	}
 	
 	public void updateNetherLocations(World world) {
-		if(world.dimension.getType() == DimensionType.NETHER) {
+		if(world.dimension.getType() == DimensionType.THE_NETHER) {
 			RuinNBTHelper nbt = RuinNBTHelper.get(world);
 			
 			if(nbt.netherRuinsGenerated) {

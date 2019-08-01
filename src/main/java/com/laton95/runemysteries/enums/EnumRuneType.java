@@ -1,8 +1,8 @@
 package com.laton95.runemysteries.enums;
 
 import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.item.ItemRune;
-import com.laton95.runemysteries.item.ItemTalisman;
+import com.laton95.runemysteries.item.RuneItem;
+import com.laton95.runemysteries.item.TalismanItem;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.world.dimension.DimensionType;
 
@@ -25,7 +25,7 @@ public enum EnumRuneType {
 	WATER,
 	OURANIA;
 	
-	public ItemRune getRune() {
+	public RuneItem getRune() {
 		switch(this) {
 			case AIR:
 				return ModItems.AIR_RUNE;
@@ -60,7 +60,7 @@ public enum EnumRuneType {
 		}
 	}
 	
-	public ItemTalisman getTalisman() {
+	public TalismanItem getTalisman() {
 		switch(this) {
 			case AIR:
 				return ModItems.AIR_TALISMAN;
@@ -95,11 +95,11 @@ public enum EnumRuneType {
 		}
 	}
 	
-	public static EnumRuneType getRuneType(ItemRune rune) {
+	public static EnumRuneType getRuneType(RuneItem rune) {
 		return rune.getRuneType();
 	}
 	
-	public static EnumRuneType getRuneType(ItemTalisman talisman) {
+	public static EnumRuneType getRuneType(TalismanItem talisman) {
 		return talisman.getRuneType();
 	}
 	
@@ -114,7 +114,7 @@ public enum EnumRuneType {
 	public DimensionType getRuinDimType() {
 		switch(this) {
 			case CHAOS:
-				return DimensionType.NETHER;
+				return DimensionType.THE_NETHER;
 			case COSMIC:
 				return DimensionType.THE_END;
 			default:

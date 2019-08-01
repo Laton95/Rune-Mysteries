@@ -1,10 +1,10 @@
 package com.laton95.runemysteries.proxy;
 
-import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.entity.player.PlayerEntity;
 
 public class ServerProxy {
 	
-	public EntityPlayerSP getClientPlayer() {
+	public PlayerEntity getClientPlayer() {
 		return null;
 	}
 }

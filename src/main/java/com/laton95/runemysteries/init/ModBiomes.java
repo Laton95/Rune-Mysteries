@@ -2,19 +2,13 @@ package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.util.ModLog;
-import com.laton95.runemysteries.world.gen.feature.ModFeature;
-import net.minecraft.init.Biomes;
 import net.minecraft.world.biome.Biome;
-import net.minecraft.world.gen.GenerationStage;
-import net.minecraft.world.gen.feature.NoFeatureConfig;
-import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.biome.Biomes;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
 import java.util.ArrayList;
-
-import static net.minecraft.world.biome.Biome.TOP_SURFACE_WITH_CHANCE;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModBiomes {
@@ -32,7 +26,8 @@ public class ModBiomes {
 				case EXTREME_HILLS:
 					break;
 				case JUNGLE:
-					biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createCompositeFeature(ModFeature.BLACK_MONOLITH, new NoFeatureConfig(), TOP_SURFACE_WITH_CHANCE, new ChanceConfig(16)));
+					//TODO fix this
+					//biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createCompositeFeature(ModFeature.BLACK_MONOLITH, new NoFeatureConfig(), TOP_SURFACE_WITH_CHANCE, new ChanceConfig(16)));
 					break;
 				case MESA:
 					break;
@@ -139,7 +134,7 @@ public class ModBiomes {
 				Biomes.ERODED_BADLANDS,
 				Biomes.MODIFIED_WOODED_BADLANDS_PLATEAU,
 				Biomes.MODIFIED_BADLANDS_PLATEAU,
-				};
+			};
 	}
 	
 	public static ArrayList<Biome> getBiomesWithCategories(Biome.Category... categories) {

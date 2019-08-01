@@ -1,37 +1,37 @@
 package com.laton95.runemysteries.enums;
 
-import com.laton95.runemysteries.block.BlockParticleLight;
+import com.laton95.runemysteries.block.ParticleLightBlock;
 import com.laton95.runemysteries.init.ModBlocks;
-import net.minecraft.item.EnumDyeColor;
+import net.minecraft.item.DyeColor;
 
 public enum EnumColour {
-	WHITE(228, 228, 228, EnumDyeColor.WHITE),
-	ORANGE(234, 126, 53, EnumDyeColor.ORANGE),
-	MAGENTA(190, 73, 201, EnumDyeColor.MAGENTA),
-	LIGHT_BLUE(99, 135, 210, EnumDyeColor.LIGHT_BLUE),
-	YELLOW(194, 181, 28, EnumDyeColor.YELLOW),
-	LIME(57, 186, 46, EnumDyeColor.LIME),
-	PINK(217, 129, 153, EnumDyeColor.PINK),
-	GRAY(65, 65, 65, EnumDyeColor.GRAY),
-	LIGHT_GRAY(160, 167, 167, EnumDyeColor.LIGHT_GRAY),
-	CYAN(38, 113, 145, EnumDyeColor.CYAN),
-	PURPLE(126, 52, 191, EnumDyeColor.PURPLE),
-	BLUE(37, 49, 147, EnumDyeColor.BLUE),
-	BROWN(86, 51, 28, EnumDyeColor.BROWN),
-	GREEN(54, 75, 24, EnumDyeColor.GREEN),
-	RED(158, 43, 39, EnumDyeColor.RED),
-	BLACK(24, 20, 20, EnumDyeColor.BLACK);
+	WHITE(228, 228, 228, DyeColor.WHITE),
+	ORANGE(234, 126, 53, DyeColor.ORANGE),
+	MAGENTA(190, 73, 201, DyeColor.MAGENTA),
+	LIGHT_BLUE(99, 135, 210, DyeColor.LIGHT_BLUE),
+	YELLOW(194, 181, 28, DyeColor.YELLOW),
+	LIME(57, 186, 46, DyeColor.LIME),
+	PINK(217, 129, 153, DyeColor.PINK),
+	GRAY(65, 65, 65, DyeColor.GRAY),
+	LIGHT_GRAY(160, 167, 167, DyeColor.LIGHT_GRAY),
+	CYAN(38, 113, 145, DyeColor.CYAN),
+	PURPLE(126, 52, 191, DyeColor.PURPLE),
+	BLUE(37, 49, 147, DyeColor.BLUE),
+	BROWN(86, 51, 28, DyeColor.BROWN),
+	GREEN(54, 75, 24, DyeColor.GREEN),
+	RED(158, 43, 39, DyeColor.RED),
+	BLACK(24, 20, 20, DyeColor.BLACK);
 	
 	private final Colour colour;
 	
-	private final EnumDyeColor dye;
+	private final DyeColor dye;
 	
-	EnumColour(float red, float green, float blue, EnumDyeColor dye) {
+	EnumColour(float red, float green, float blue, DyeColor dye) {
 		this.colour = new Colour(red, green, blue);
 		this.dye = dye;
 	}
 	
-	public static EnumColour getColourFromDye(EnumDyeColor dye) {
+	public static EnumColour getColourFromDye(DyeColor dye) {
 		switch(dye) {
 			case WHITE:
 				return WHITE;
@@ -74,11 +74,11 @@ public enum EnumColour {
 		return colour;
 	}
 	
-	public EnumDyeColor getDyeColour() {
+	public DyeColor getDyeColour() {
 		return dye;
 	}
 	
-	public BlockParticleLight getLight() {
+	public ParticleLightBlock getLight() {
 		switch(this) {
 			case WHITE:
 				return ModBlocks.WHITE_LIGHT;

@@ -1,6 +1,6 @@
 package com.laton95.runemysteries.util;
 
-import net.minecraft.util.EnumFacing;
+import net.minecraft.util.Direction;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -21,7 +21,7 @@ public class WorldHelper {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(x, world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z), z);
 		
 		while(!world.getBlockState(pos).isSolid()) {
-			pos.move(EnumFacing.DOWN);
+			pos.move(Direction.DOWN);
 		}
 		
 		return pos;

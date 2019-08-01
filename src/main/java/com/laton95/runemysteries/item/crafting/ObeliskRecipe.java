@@ -3,21 +3,21 @@ package com.laton95.runemysteries.item.crafting;
 import com.google.gson.JsonObject;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
-import com.laton95.runemysteries.inventory.InventoryObelisk;
-import net.minecraft.inventory.IInventory;
+import com.laton95.runemysteries.init.ModBlocks;
+import com.laton95.runemysteries.inventory.crafting.RuneCraftingInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.crafting.IRecipe;
-import net.minecraft.item.crafting.IRecipeSerializer;
-import net.minecraft.item.crafting.Ingredient;
-import net.minecraft.item.crafting.ShapedRecipe;
+import net.minecraft.item.crafting.*;
 import net.minecraft.network.PacketBuffer;
-import net.minecraft.util.JsonUtils;
-import net.minecraft.util.NonNullList;
+import net.minecraft.util.JSONUtils;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.world.World;
-import net.minecraftforge.common.crafting.RecipeType;
+import net.minecraftforge.registries.ForgeRegistryEntry;
 
-public class ObeliskRecipe implements IRecipe {
+public class ObeliskRecipe implements IRecipe<RuneCraftingInventory> {
+	
+	public static final IRecipeType<ObeliskRecipe> OBELISK_RECIPE = new ObeliskRecipeType();
+	
+	public static final Serializer SERIALIZER = new Serializer();
 	
 	private final ResourceLocation id;
 	
@@ -29,10 +29,6 @@ public class ObeliskRecipe implements IRecipe {
 	
 	private final boolean anyObelisk;
 	
-	public static final RecipeType<ObeliskRecipe> OBELISK_TYPE = RecipeType.get(new ResourceLocation(RuneMysteries.MOD_ID, "obelisk"), ObeliskRecipe.class);
-	
-	public static final IRecipeSerializer<ObeliskRecipe> OBELISK_SERIALIZER = new ObeliskRecipe.Serializer();
-	
 	public ObeliskRecipe(ResourceLocation id, Ingredient input, ItemStack output, EnumRuneType obeliskType, boolean anyObelisk) {
 		this.id = id;
 		this.input = input;
@@ -42,16 +38,12 @@ public class ObeliskRecipe implements IRecipe {
 	}
 	
 	@Override
-	public boolean matches(IInventory inventory, World worldIn) {
-		if(inventory instanceof InventoryObelisk) {
-			boolean validObelisk = anyObelisk || ((InventoryObelisk) inventory).getRuneType() == obeliskType;
-			return validObelisk && input.test(((InventoryObelisk) inventory).getContents());
-		}
-		return false;
+	public boolean matches(RuneCraftingInventory inv, World worldIn) {
+		return this.input.test(inv.getInput()) && (inv.getRuneType() == obeliskType || anyObelisk);
 	}
 	
 	@Override
-	public ItemStack getCraftingResult(IInventory inventory) {
+	public ItemStack getCraftingResult(RuneCraftingInventory inv) {
 		return output.copy();
 	}
 	
@@ -60,16 +52,13 @@ public class ObeliskRecipe implements IRecipe {
 		return true;
 	}
 	
-	@Override
-	public ItemStack getRecipeOutput() {
-		return output;
+	public ItemStack getCraftingResult() {
+		return output.copy();
 	}
 	
 	@Override
-	public NonNullList<Ingredient> getIngredients() {
-		NonNullList<Ingredient> ingredients = NonNullList.create();
-		ingredients.add(this.input);
-		return ingredients;
+	public ItemStack getRecipeOutput() {
+		return output;
 	}
 	
 	@Override
@@ -79,30 +68,46 @@ public class ObeliskRecipe implements IRecipe {
 	
 	@Override
 	public IRecipeSerializer<?> getSerializer() {
-		return OBELISK_SERIALIZER;
+		return SERIALIZER;
 	}
 	
 	@Override
-	public RecipeType<? extends IRecipe> getType() {
-		return OBELISK_TYPE;
+	public IRecipeType<?> getType() {
+		return OBELISK_RECIPE;
 	}
 	
-	public static class Serializer implements IRecipeSerializer<ObeliskRecipe> {
+	@Override
+	public ItemStack getIcon() {
+		return new ItemStack(ModBlocks.AIR_OBELISK);
+	}
+	
+	public static class ObeliskRecipeType implements IRecipeType<ObeliskRecipe> {
 		
-		private static ResourceLocation NAME = new ResourceLocation(RuneMysteries.MOD_ID, "obelisk");
+		@Override
+		public String toString() {
+			return RuneMysteries.MOD_ID + ":obelisk";
+		}
+	}
+	
+	private static class Serializer extends ForgeRegistryEntry<IRecipeSerializer<?>> implements IRecipeSerializer<ObeliskRecipe> {
 		
+		Serializer() {
+			setRegistryName(new ResourceLocation(RuneMysteries.MOD_ID, "obelisk"));
+		}
+		
+		@Override
 		public ObeliskRecipe read(ResourceLocation recipeId, JsonObject json) {
 			boolean anyObelisk = false;
 			
 			Ingredient ingredient;
-			if(JsonUtils.isJsonArray(json, "ingredient")) {
-				ingredient = Ingredient.fromJson(JsonUtils.getJsonArray(json, "ingredient"));
+			if(JSONUtils.isJsonArray(json, "ingredient")) {
+				ingredient = Ingredient.deserialize(JSONUtils.getJsonArray(json, "ingredient"));
 			}
 			else {
-				ingredient = Ingredient.fromJson(JsonUtils.getJsonObject(json, "ingredient"));
+				ingredient = Ingredient.deserialize(JSONUtils.getJsonObject(json, "ingredient"));
 			}
 			
-			String obeliskName = JsonUtils.getString(json, "obelisk");
+			String obeliskName = JSONUtils.getString(json, "obelisk");
 			EnumRuneType obeliskType;
 			try {
 				obeliskType = EnumRuneType.valueOf(obeliskName.toUpperCase());
@@ -121,7 +126,7 @@ public class ObeliskRecipe implements IRecipe {
 				throw new IllegalArgumentException("Invalid obelisk type: " + obeliskName);
 			}
 			
-			ItemStack itemstack = ShapedRecipe.deserializeItem(JsonUtils.getJsonObject(json, "result"));
+			ItemStack itemstack = ShapedRecipe.deserializeItem(JSONUtils.getJsonObject(json, "result"));
 			
 			if(itemstack.getCount() > 1) {
 				throw new IllegalArgumentException("Obelisk recipes cannot result in more than 1 item " + recipeId);
@@ -130,24 +135,21 @@ public class ObeliskRecipe implements IRecipe {
 			return new ObeliskRecipe(recipeId, ingredient, itemstack, obeliskType, anyObelisk);
 		}
 		
+		@Override
 		public ObeliskRecipe read(ResourceLocation recipeId, PacketBuffer buffer) {
-			Ingredient ingredient = Ingredient.fromBuffer(buffer);
+			Ingredient ingredient = Ingredient.read(buffer);
 			ItemStack itemstack = buffer.readItemStack();
 			EnumRuneType runeType = EnumRuneType.values()[buffer.readVarInt()];
 			boolean anyObelisk = buffer.readBoolean();
 			return new ObeliskRecipe(recipeId, ingredient, itemstack, runeType, anyObelisk);
 		}
 		
+		@Override
 		public void write(PacketBuffer buffer, ObeliskRecipe recipe) {
-			recipe.input.writeToBuffer(buffer);
+			recipe.input.write(buffer);
 			buffer.writeItemStack(recipe.output);
 			buffer.writeVarInt(recipe.obeliskType.ordinal());
 			buffer.writeBoolean(recipe.anyObelisk);
-		}
-		
-		@Override
-		public ResourceLocation getName() {
-			return NAME;
 		}
 	}
 }

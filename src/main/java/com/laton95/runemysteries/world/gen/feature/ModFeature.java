@@ -5,7 +5,7 @@ import net.minecraft.world.gen.feature.NoFeatureConfig;
 
 public class ModFeature {
 	
-	public static final Feature<NoFeatureConfig> OBELISK = new ObeliskFeature();
+	public static final Feature<NoFeatureConfig> OBELISK = new ObeliskFeature(NoFeatureConfig::deserialize);
 	
-	public static final Feature<NoFeatureConfig> BLACK_MONOLITH = new MonolithFeature();
+	public static final Feature<NoFeatureConfig> BLACK_MONOLITH = new MonolithFeature(NoFeatureConfig::deserialize);
 }

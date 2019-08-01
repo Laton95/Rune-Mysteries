@@ -1,6 +1,6 @@
 {
   "parent": "runemysteries:block/railing_inventory",
   "textures": {
-    "railing": "block/stone_slab_top"
+    "railing": "block/smooth_stone"
   }
 }
