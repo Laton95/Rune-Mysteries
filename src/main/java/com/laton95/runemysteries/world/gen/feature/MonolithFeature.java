@@ -2,6 +2,7 @@ package com.laton95.runemysteries.world.gen.feature;
 
 import com.laton95.runemysteries.block.BlackMonolithBlock;
 import com.laton95.runemysteries.init.ModBlocks;
+import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.fluid.Fluids;
@@ -29,7 +30,6 @@ public class MonolithFeature extends Feature<NoFeatureConfig> {
 		IFluidState ifluidstate = world.getFluidState(pos);
 		Direction facing = Direction.values()[rand.nextInt(4) + 2];
 		world.setBlockState(pos, ModBlocks.BLACK_MONOLITH.getDefaultState().with(BlackMonolithBlock.FACING, facing).with(BlackMonolithBlock.WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER), 16);
-		
 		return true;
 	}
 }
