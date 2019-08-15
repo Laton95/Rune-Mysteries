@@ -3,16 +3,20 @@ package com.laton95.runemysteries.init;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.world.gen.feature.MonolithFeature;
-import com.laton95.runemysteries.world.gen.feature.structure.*;
+import com.laton95.runemysteries.world.gen.feature.structure.altar.*;
+import com.laton95.runemysteries.world.gen.feature.structure.obelisk.*;
+import net.minecraft.block.Blocks;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import net.minecraft.world.gen.feature.structure.IStructurePieceType;
 import net.minecraft.world.gen.feature.structure.Structure;
 import net.minecraft.world.gen.placement.ChanceConfig;
+import net.minecraft.world.gen.placement.CountRangeConfig;
 import net.minecraft.world.gen.placement.IPlacementConfig;
 import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
@@ -34,55 +38,131 @@ public class ModFeatures {
 	
 	public static Structure<NoFeatureConfig> WATER_OBELISK;
 	
+	public static Structure<NoFeatureConfig> AIR_RUIN;
+	
+	public static Structure<NoFeatureConfig> ASTRAL_RUIN;
+	
+	public static Structure<NoFeatureConfig> BLOOD_RUIN;
+	
+	public static Structure<NoFeatureConfig> BODY_RUIN;
+	
+	public static Structure<NoFeatureConfig> CHAOS_RUIN;
+	
+	public static Structure<NoFeatureConfig> COSMIC_RUIN;
+	
+	public static Structure<NoFeatureConfig> DEATH_RUIN;
+	
+	public static Structure<NoFeatureConfig> EARTH_RUIN;
+	
+	public static Structure<NoFeatureConfig> FIRE_RUIN;
+	
+	public static Structure<NoFeatureConfig> LAW_RUIN;
+	
+	public static Structure<NoFeatureConfig> MIND_RUIN;
+	
+	public static Structure<NoFeatureConfig> NATURE_RUIN;
+	
+	public static Structure<NoFeatureConfig> SOUL_RUIN;
+	
+	public static Structure<NoFeatureConfig> WATER_RUIN;
+	
+	public static Structure<NoFeatureConfig> OURANIA_RUIN;
+	
 	public static Feature<NoFeatureConfig> MONOLITH;
 	
-	public static IStructurePieceType OBSK;
+	public static IStructurePieceType OBELISK;
+	
+	public static IStructurePieceType SURFACE_RUIN;
+	
+	public static IStructurePieceType UNDERGROUND_RUIN;
+	
+	public static IStructurePieceType ISLAND_RUIN;
+	
+	public static IStructurePieceType WELL_RUIN;
 	
 	@SubscribeEvent
 	public static void onFeaturesRegistry(RegistryEvent.Register<Feature<?>> event) {
 		ModLog.info("Registering features");
 		
-		MONOLITH = new MonolithFeature(NoFeatureConfig::deserialize);
-		MONOLITH.setRegistryName(RuneMysteries.MOD_ID, "monolith");
-		event.getRegistry().register(MONOLITH);
+		OBELISK = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:obelisk", ObeliskPieces.Piece::new);
+		SURFACE_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:surface_ruin", SurfaceRuinPieces.Piece::new);
+		UNDERGROUND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:underground_ruin", UndergroundRuinPieces.Piece::new);
+		ISLAND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:island_ruin", IslandRuinPieces.Piece::new);
+		WELL_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:well_ruin", SoulRuinPieces.Piece::new);
 		
-		OBSK = Registry.register(Registry.STRUCTURE_PIECE, "obelisk", BaseObeliskPieces.Piece::new);
+		MONOLITH = new MonolithFeature(NoFeatureConfig::deserialize);
+		registerFeature(event, MONOLITH, "monolith");
 		
 		AIR_OBELISK = new AirObeliskStructure(NoFeatureConfig::deserialize);
-		AIR_OBELISK.setRegistryName(RuneMysteries.MOD_ID, "air_obelisk");
-		event.getRegistry().register(AIR_OBELISK);
-		Feature.STRUCTURES.put("air_obelisk", AIR_OBELISK);
-		Registry.register(Registry.STRUCTURE_FEATURE, "air_obelisk", AIR_OBELISK);
+		registerFeature(event, AIR_OBELISK, "air_obelisk");
 		
 		EARTH_OBELISK = new EarthObeliskStructure(NoFeatureConfig::deserialize);
-		EARTH_OBELISK.setRegistryName(RuneMysteries.MOD_ID, "earth_obelisk");
-		event.getRegistry().register(EARTH_OBELISK);
-		Feature.STRUCTURES.put("earth_obelisk", EARTH_OBELISK);
-		Registry.register(Registry.STRUCTURE_FEATURE, "earth_obelisk", EARTH_OBELISK);
+		registerFeature(event, EARTH_OBELISK, "earth_obelisk");
 		
 		FIRE_OBELISK = new FireObeliskStructure(NoFeatureConfig::deserialize);
-		FIRE_OBELISK.setRegistryName(RuneMysteries.MOD_ID, "fire_obelisk");
-		event.getRegistry().register(FIRE_OBELISK);
-		Feature.STRUCTURES.put("fire_obelisk", FIRE_OBELISK);
-		Registry.register(Registry.STRUCTURE_FEATURE, "fire_obelisk", FIRE_OBELISK);
+		registerFeature(event, FIRE_OBELISK, "fire_obelisk");
 		
 		WATER_OBELISK = new WaterObeliskStructure(NoFeatureConfig::deserialize);
-		WATER_OBELISK.setRegistryName(RuneMysteries.MOD_ID, "water_obelisk");
-		event.getRegistry().register(WATER_OBELISK);
-		Feature.STRUCTURES.put("water_obelisk", WATER_OBELISK);
-		Registry.register(Registry.STRUCTURE_FEATURE, "water_obelisk", WATER_OBELISK);
+		registerFeature(event, WATER_OBELISK, "water_obelisk");
+		
+		AIR_RUIN = new AirRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, AIR_RUIN, "air_ruin");
+		
+		ASTRAL_RUIN = new AstralRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, ASTRAL_RUIN, "astral_ruin");
+		
+		BLOOD_RUIN = new BloodRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, BLOOD_RUIN, "blood_ruin");
+		
+		BODY_RUIN = new BodyRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, BODY_RUIN, "body_ruin");
+		
+		CHAOS_RUIN = new ChaosRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, CHAOS_RUIN, "chaos_ruin");
+		
+		COSMIC_RUIN = new CosmicRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, COSMIC_RUIN, "cosmic_ruin");
+		
+		DEATH_RUIN = new DeathRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, DEATH_RUIN, "death_ruin");
+		
+		EARTH_RUIN = new EarthRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, EARTH_RUIN, "earth_ruin");
+		
+		FIRE_RUIN = new FireRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, FIRE_RUIN, "fire_ruin");
+		
+		LAW_RUIN = new LawRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, LAW_RUIN, "law_ruin");
+		
+		MIND_RUIN = new MindRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, MIND_RUIN, "mind_ruin");
+		
+		NATURE_RUIN = new NatureRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, NATURE_RUIN, "nature_ruin");
+		
+		SOUL_RUIN = new SoulRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, SOUL_RUIN, "soul_ruin");
+		
+		WATER_RUIN = new WaterRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, WATER_RUIN, "water_ruin");
+		
+		OURANIA_RUIN = new OuraniaRuinStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, OURANIA_RUIN, "ourania_ruin");
 		
 		applyFeatures();
 	}
 	
-	private static List<Biome> airBiomes = new LinkedList<>();
-	private static List<Biome> earthBiomes = new LinkedList<>();
-	private static List<Biome> fireBiomes = new LinkedList<>();
-	private static List<Biome> waterBiomes = new LinkedList<>();
-	
+	private static void registerFeature(RegistryEvent.Register<Feature<?>> event, Feature<?> feature, String name) {
+		feature.setRegistryName(RuneMysteries.MOD_ID, name);
+		event.getRegistry().register(feature);
+		if(feature instanceof Structure) {
+			Feature.STRUCTURES.put("runemyseries:" + name, (Structure<?>) feature);
+			Registry.register(Registry.STRUCTURE_FEATURE, "runemyseries:" + name, (Structure<?>) feature);
+		}
+	}
 	
 	private static void applyFeatures() {
-		
 		for(Biome biome : ForgeRegistries.BIOMES.getValues()) {
 			switch(biome.getCategory()){
 				case NONE:
@@ -90,13 +170,13 @@ public class ModFeatures {
 				case TAIGA:
 					break;
 				case EXTREME_HILLS:
-					addAirObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_OBELISK);
 					break;
 				case JUNGLE:
 					biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.MONOLITH, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, new ChanceConfig(100)));
 					break;
 				case MESA:
-					addAirObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_OBELISK);
 					break;
 				case PLAINS:
 					break;
@@ -105,83 +185,61 @@ public class ModFeatures {
 				case ICY:
 					break;
 				case THEEND:
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, COSMIC_RUIN);
 					break;
 				case BEACH:
-					addWaterObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_OBELISK);
 					break;
 				case FOREST:
 					break;
 				case OCEAN:
-					addWaterObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_OBELISK);
 					break;
 				case DESERT:
 					break;
 				case RIVER:
-					addWaterObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_OBELISK);
 					break;
 				case SWAMP:
-					addWaterObelisk(biome);
+					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_OBELISK);
 					break;
 				case MUSHROOM:
 					break;
 				case NETHER:
+					addStructure(biome, GenerationStage.Decoration.UNDERGROUND_DECORATION, CHAOS_RUIN);
 					break;
 			}
 			
-			addFireObelisk(biome);
+			if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, ASTRAL_RUIN);
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BLOOD_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, BODY_RUIN);
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, DEATH_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, EARTH_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, FIRE_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, LAW_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, MIND_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, NATURE_RUIN);
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, SOUL_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_RUIN);
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, OURANIA_RUIN);
+				
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUNE_ESSENCE_BLOCK.getDefaultState(), 5), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 64)));
+			}
 			
-			if(biome.getCategory() != Biome.Category.OCEAN) {
-				addEarthObelisk(biome);
+			if(biome.getCategory() != Biome.Category.THEEND) {
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, FIRE_OBELISK);
+			}
+			
+			if(biome.getCategory() != Biome.Category.OCEAN && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
+				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, EARTH_OBELISK);
 			}
 		}
-		
-		StringBuilder airBiomeOutput = new StringBuilder("Air obelisk biomes: \n");
-		for(Biome biome : airBiomes) {
-			airBiomeOutput.append(biome.getDisplayName().getFormattedText()).append("\n");
-		}
-		ModLog.info(airBiomeOutput.toString());
-		
-		StringBuilder earthBiomeOutput = new StringBuilder("Earth obelisk biomes: \n");
-		for(Biome biome : earthBiomes) {
-			earthBiomeOutput.append(biome.getDisplayName().getFormattedText()).append("\n");
-		}
-		ModLog.info(earthBiomeOutput.toString());
-		
-		StringBuilder fireBiomeOutput = new StringBuilder("Fire obelisk biomes: \n");
-		for(Biome biome : fireBiomes) {
-			fireBiomeOutput.append(biome.getDisplayName().getFormattedText()).append("\n");
-		}
-		ModLog.info(fireBiomeOutput.toString());
-		
-		StringBuilder waterBiomeOutput = new StringBuilder("Water obelisk biomes: \n");
-		for(Biome biome : waterBiomes) {
-			waterBiomeOutput.append(biome.getDisplayName().getFormattedText()).append("\n");
-		}
-		ModLog.info(waterBiomeOutput.toString());
-		
 	}
 	
-	private static void addAirObelisk(Biome biome) {
-		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(AIR_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(AIR_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG);
-		airBiomes.add(biome);
-	}
-	
-	private static void addEarthObelisk(Biome biome) {
-		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(EARTH_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(EARTH_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG);
-		earthBiomes.add(biome);
-	}
-	
-	private static void addFireObelisk(Biome biome) {
-		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(FIRE_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(FIRE_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG);
-		fireBiomes.add(biome);
-	}
-	
-	private static void addWaterObelisk(Biome biome) {
-		biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(WATER_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(WATER_OBELISK, IFeatureConfig.NO_FEATURE_CONFIG);
-		waterBiomes.add(biome);
+	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure){
+		biome.addFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
 	}
 }

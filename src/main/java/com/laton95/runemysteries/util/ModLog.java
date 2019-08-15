@@ -3,6 +3,9 @@ package com.laton95.runemysteries.util;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+import java.util.function.Function;
+
 public class ModLog {
 	
 	private static final Logger logger = LogManager.getLogger();
@@ -23,5 +26,13 @@ public class ModLog {
 	
 	public static void error(String message, Object... params) {
 		logger.error(prefix + message, params);
+	}
+	
+	public static <T> void printList(String header, List<T> list, Function<T, String> function) {
+		StringBuilder output = new StringBuilder(header +  "\n");
+		for(T listItem : list) {
+			output.append(function.apply(listItem)).append("\n");
+		}
+		info(output.toString());
 	}
 }

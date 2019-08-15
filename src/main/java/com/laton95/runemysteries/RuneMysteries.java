@@ -9,12 +9,13 @@ import com.laton95.runemysteries.network.RunemysteriesPacketHandler;
 import com.laton95.runemysteries.proxy.ClientProxy;
 import com.laton95.runemysteries.proxy.ServerProxy;
 import com.laton95.runemysteries.util.ModLog;
-import com.laton95.runemysteries.world.RuinTracker;
+import com.laton95.runemysteries.world.RuinManager;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.crafting.IRecipeSerializer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.registry.Registry;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.DistExecutor;
@@ -41,10 +42,11 @@ public class RuneMysteries {
 		}
 	};
 	
-	public static RuinTracker ruinTracker;
+	public static RuinManager ruinManager = new RuinManager();
 	
 	public RuneMysteries() {
 		FMLJavaModLoadingContext.get().getModEventBus().addListener(this::serverConfig);
+		MinecraftForge.EVENT_BUS.register(ruinManager);
 		ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, Config.SERVER_SPEC);
 	}
 	

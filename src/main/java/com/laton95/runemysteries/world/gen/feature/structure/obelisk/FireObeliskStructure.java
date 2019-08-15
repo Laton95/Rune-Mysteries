@@ -1,6 +1,8 @@
-package com.laton95.runemysteries.world.gen.feature.structure;
+package com.laton95.runemysteries.world.gen.feature.structure.obelisk;
 
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.util.ModLog;
+import com.laton95.runemysteries.world.gen.feature.structure.ModifiableRarityStructure;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -14,11 +16,11 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 
 import java.util.function.Function;
 
-public class EarthObeliskStructure extends ModifiableRarityStructure {
+public class FireObeliskStructure extends ModifiableRarityStructure {
 	
-	public static final ResourceLocation EARTH_OBELISK = new ResourceLocation(RuneMysteries.MOD_ID, "obelisk/earth_obelisk");
+	public static final ResourceLocation FIRE_OBELISK = new ResourceLocation(RuneMysteries.MOD_ID, "obelisk/fire_obelisk");
 	
-	public EarthObeliskStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
+	public FireObeliskStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
 		super(function);
 	}
 	
@@ -39,7 +41,7 @@ public class EarthObeliskStructure extends ModifiableRarityStructure {
 	
 	@Override
 	public String getStructureName() {
-		return "earth_obelisk";
+		return "Fire_obelisk";
 	}
 	
 	@Override
@@ -49,20 +51,20 @@ public class EarthObeliskStructure extends ModifiableRarityStructure {
 	
 	@Override
 	protected int getSeedModifier() {
-		return 90161713;
+		return 73596167;
 	}
 	
 	public class Start extends StructureStart {
 		
-		public Start(Structure<?> structure, int p_i50678_2_, int p_i50678_3_, Biome p_i50678_4_, MutableBoundingBox p_i50678_5_, int p_i50678_6_, long p_i50678_7_) {
-			super(structure, p_i50678_2_, p_i50678_3_, p_i50678_4_, p_i50678_5_, p_i50678_6_, p_i50678_7_);
+		public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biome, MutableBoundingBox boundingBox, int reference, long seed) {
+			super(structure, chunkX, chunkZ, biome, boundingBox, reference, seed);
 		}
 		
 		public void init(ChunkGenerator<?> generator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome) {
 			int i = chunkX * 16;
 			int j = chunkZ * 16;
-			BlockPos pos = new BlockPos(i, 90, j);
-			BaseObeliskPieces.addPieces(templateManager, pos, this.components, EARTH_OBELISK, 40);
+			BlockPos pos = new BlockPos(i + rand.nextInt(27), 90, j + rand.nextInt(27));
+			ObeliskPieces.addPieces(templateManager, pos, this.components, FIRE_OBELISK, biome.getCategory() == Biome.Category.NETHER ? 31 : 10);
 			this.recalculateStructureSize();
 		}
 	}

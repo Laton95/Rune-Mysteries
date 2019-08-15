@@ -39,7 +39,7 @@ public class TalismanItem extends ModItem {
 			
 			//Get altar position
 			try {
-				pos = RuneMysteries.ruinTracker.getRuinByRune(runeType).getRuinPos();
+				pos = RuneMysteries.ruinManager.getRuinPosition(runeType, world.getChunkProvider().getChunkGenerator());
 			}
 			catch(Exception e) {
 				pos = new BlockPos(world.rand.nextInt(20000) - 10000, 100, world.rand.nextInt(20000) - 10000);
@@ -56,7 +56,7 @@ public class TalismanItem extends ModItem {
 			
 			if(player.isCreative() && player.isSneaking()) {
 				if(pos.getY() != 0) {
-					TeleportHelper.teleportEntity(player, dimType, pos.getX() + 2, pos.getY(), pos.getZ() + 2);
+					TeleportHelper.teleportEntity(player, dimType, pos.getX() + 2.5, pos.getY(), pos.getZ() + 2.5);
 				}
 				else {
 					TeleportHelper.teleportEntity(player, dimType, pos.getX(), 100, pos.getZ());

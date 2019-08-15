@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.gen.feature.structure;
+package com.laton95.runemysteries.world.gen.feature.structure.obelisk;
 
 import com.laton95.runemysteries.init.ModFeatures;
 import com.laton95.runemysteries.util.ModLog;
@@ -19,10 +19,10 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.List;
 import java.util.Random;
 
-public class BaseObeliskPieces {
+public class ObeliskPieces {
 	
 	public static void addPieces(TemplateManager templateManager, BlockPos pos, List<StructurePiece> components, ResourceLocation structure, int yLevel) {
-		components.add(new BaseObeliskPieces.Piece(templateManager, pos, structure, yLevel));
+		components.add(new ObeliskPieces.Piece(templateManager, pos, structure, yLevel));
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
@@ -30,7 +30,7 @@ public class BaseObeliskPieces {
 		private final int yLevel;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, int yLevel) {
-			super(ModFeatures.OBSK, 0);
+			super(ModFeatures.OBELISK, 0);
 			obeliskStructure = structure;
 			this.templatePosition = pos;
 			this.yLevel = yLevel;
@@ -38,7 +38,7 @@ public class BaseObeliskPieces {
 		}
 		
 		public Piece(TemplateManager templateManager, CompoundNBT NBT) {
-			super(ModFeatures.OBSK, NBT);
+			super(ModFeatures.OBELISK, NBT);
 			obeliskStructure = new ResourceLocation(NBT.getString("Template"));
 			yLevel = NBT.getInt("yLevel");
 			this.func_207614_a(templateManager);
@@ -64,11 +64,7 @@ public class BaseObeliskPieces {
 			BlockPos pos = this.templatePosition;
 			int y = yLevel > 0 ? yLevel : world.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
 			this.templatePosition = this.templatePosition.add(0, y - 90, 0);
-			boolean flag = super.addComponentParts(world, random, boundingBox, chunkPos);
-			ModLog.info(obeliskStructure.toString());
-			ModLog.info(templatePosition.toString());
-			this.templatePosition = pos;
-			return flag;
+			return super.addComponentParts(world, random, boundingBox, chunkPos);
 		}
 	}
 }

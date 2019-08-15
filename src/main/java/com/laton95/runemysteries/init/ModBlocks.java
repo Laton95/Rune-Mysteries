@@ -9,6 +9,7 @@ import net.minecraft.block.Block;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
+import net.minecraft.block.material.MaterialColor;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -192,6 +193,8 @@ public class ModBlocks {
 	
 	public static final ElderCatalystBlock ELDER_CATALYST = null;
 	
+	public static final ModBlock MENAPHITE_SANDSTONE = null;
+	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		ModLog.info("Registering blocks");
@@ -291,6 +294,9 @@ public class ModBlocks {
 		registerWithoutItem(event, new ParticleLightBlock(EnumColour.BLACK), "black_light");
 		
 		register(event, new ElderCatalystBlock(), "elder_catalyst");
+		
+		register(event, new ModBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(0.8F)), "menaphite_sandstone");
+		
 	}
 	
 	private static void register(RegistryEvent.Register<Block> event, Block block, String name) {
