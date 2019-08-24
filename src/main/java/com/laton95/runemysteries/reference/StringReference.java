@@ -10,7 +10,7 @@ public class StringReference {
 		
 		public static final String MONOLITH_INTERACT = "block.runemysteries.black_monolith.right_click";
 		
-		public static final String ALTAR_TELEPORT = "block.runemysteries.altar_portal.teleport";
+		public static final String ALTAR_TELEPORT = "block.runemysteries.altar_portal.changePlayerDimension";
 		
 		public static final String ALTAR_INTERACT = "block.runemysteries.altar.right_click";
 		
@@ -29,6 +29,8 @@ public class StringReference {
 		public static final String FAIL = "item.runemysteries.talisman.fail";
 		
 		public static final String NEARBY = "item.runemysteries.talisman.nearby";
+		
+		public static final String TEMPLE = "item.runemysteries.talisman.temple";
 		
 		public static final String OVERWORLD = "item.runemysteries.talisman.overworld";
 		

@@ -229,7 +229,7 @@ public class ModBlocks {
 		registerWithoutItem(event, new AltarEntranceBlock(EnumRuneType.SOUL), "soul_altar_entrance");
 		registerWithoutItem(event, new AltarEntranceBlock(EnumRuneType.WATER), "water_altar_entrance");
 		
-		registerWithoutItem(event, new AltarPortalBlock(), "altar_portal");
+		register(event, new AltarPortalBlock(), "altar_portal");
 		register(event, new RuneEssenceBlock(), "rune_essence_block");
 		
 		register(event, new ElementalObeliskBlock(ModItems.AIR_SHARD, EnumRuneType.AIR), "air_obelisk");

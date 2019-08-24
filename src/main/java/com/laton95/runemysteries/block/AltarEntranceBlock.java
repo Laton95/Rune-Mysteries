@@ -2,11 +2,13 @@ package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference;
+import com.laton95.runemysteries.util.TeleportHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
 import net.minecraft.item.BlockItemUseContext;
@@ -22,8 +24,8 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.dimension.DimensionType;
 
-import javax.annotation.Nullable;
 import java.util.Random;
 
 public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
@@ -51,8 +53,7 @@ public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
 			if(player.getHeldItemMainhand().getItem() == runeType.getTalisman() || player.getHeldItemOffhand().getItem() == runeType.getTalisman()) {
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_ENTER));
 				
-				//TODO add teleport
-				//TeleportHelper.teleportEntity(player, runeType.getTempleDimId(), runeType.getTempleEntrancePoint());
+				TeleportHelper.teleportPlayer((ServerPlayerEntity) player, runeType.getTempleDimension(), runeType.getTempleArrivalPoint());
 			}
 			else {
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_INTERACT));

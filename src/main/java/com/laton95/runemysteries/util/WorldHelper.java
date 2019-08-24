@@ -1,6 +1,5 @@
 package com.laton95.runemysteries.util;
 
-import net.minecraft.util.Direction;
 import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
@@ -21,27 +20,10 @@ public class WorldHelper {
 		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(x, world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z), z);
 		
 		while(!world.getBlockState(pos).isSolid()) {
-			pos.move(Direction.DOWN);
+			pos.move(net.minecraft.util.Direction.DOWN);
 		}
 		
 		return pos;
-	}
-	
-	public static boolean biomeIsOfType(List<BiomeDictionary.Type> biomeTypes, Biome biome) {
-		for(BiomeDictionary.Type type : biomeTypes) {
-			if(BiomeDictionary.hasType(biome, type)) {
-				return true;
-			}
-		}
-		
-		return false;
-	}
-	
-	public static boolean isNearby(ChunkPos chunkA, ChunkPos chunkB, int range) {
-		int x = Math.abs(chunkA.x - chunkB.x);
-		int z = Math.abs(chunkA.z - chunkB.z);
-		
-		return Math.max(z, x) < range;
 	}
 	
 	public static boolean isNearby(BlockPos blockA, BlockPos blockB, int range) {
@@ -52,9 +34,8 @@ public class WorldHelper {
 		return Math.max(Math.max(z, x), y * 2) < range;
 	}
 	
-	public static Tuple<HorizontalDirection, VerticalDirection> getDirection(BlockPos from, BlockPos to) {
-		HorizontalDirection horizontalDirection;
-		VerticalDirection verticalDirection = VerticalDirection.NONE;
+	public static Direction getDirection(BlockPos from, BlockPos to) {
+		Direction direction;
 		
 		double horizontalDistanceX = from.getX() - to.getX();
 		double verticalDistance = from.getY() - to.getY();
@@ -67,62 +48,46 @@ public class WorldHelper {
 		double horizontalAngle = Math.atan2(horizontalDistanceX, horizontalDistanceZ);
 		
 		double offset = Math.PI / 8;
-		
-		//Calculate horizontal direction
-		if(Math.abs(horizontalDistance) < 5) {
-			horizontalDirection = HorizontalDirection.NONE;
-		}
-		else if(horizontalAngle >= Math.PI - offset) {
-			horizontalDirection = HorizontalDirection.SOUTH;
+		if(horizontalAngle >= Math.PI - offset) {
+			direction = Direction.SOUTH;
 		}
 		else if(horizontalAngle > 6 * Math.PI / 8 - offset) {
-			horizontalDirection = HorizontalDirection.SOUTH_WEST;
+			direction = Direction.SOUTH_WEST;
 		}
 		else if(horizontalAngle >= 4 * Math.PI / 8 - offset) {
-			horizontalDirection = HorizontalDirection.WEST;
+			direction = Direction.WEST;
 		}
 		else if(horizontalAngle > 2 * Math.PI / 8 - offset) {
-			horizontalDirection = HorizontalDirection.NORTH_WEST;
+			direction = Direction.NORTH_WEST;
 		}
 		else if(horizontalAngle >= -2 * Math.PI / 8 + offset) {
-			horizontalDirection = HorizontalDirection.NORTH;
+			direction = Direction.NORTH;
 		}
 		else if(horizontalAngle > -4 * Math.PI / 8 + offset) {
-			horizontalDirection = HorizontalDirection.NORTH_EAST;
+			direction = Direction.NORTH_EAST;
 		}
 		else if(horizontalAngle >= -6 * Math.PI / 8 + offset) {
-			horizontalDirection = HorizontalDirection.EAST;
+			direction = Direction.EAST;
 		}
 		else if(horizontalAngle > -8 * Math.PI / 8 + offset) {
-			horizontalDirection = HorizontalDirection.SOUTH_EAST;
+			direction = Direction.SOUTH_EAST;
 		}
 		else {
-			horizontalDirection = HorizontalDirection.SOUTH;
+			direction = Direction.SOUTH;
 		}
 		
-		//Calculate vertical direction
 		double cutoffAngle = Math.PI / 4;
 		if(verticalAngle > cutoffAngle) {
-			verticalDirection = VerticalDirection.DOWN;
-		}
-		else if(verticalAngle > 0) {
-			verticalDirection = VerticalDirection.SLIGHT_DOWN;
+			direction = Direction.DOWN;
 		}
 		else if(verticalAngle < -cutoffAngle) {
-			verticalDirection = VerticalDirection.UP;
-		}
-		else if(verticalAngle < 0) {
-			verticalDirection = VerticalDirection.SLIGHT_UP;
+			direction = Direction.UP;
 		}
 		
-		return new Tuple<>(horizontalDirection, verticalDirection);
+		return direction;
 	}
 	
-	public enum HorizontalDirection {
-		NONE, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST
-	}
-	
-	public enum VerticalDirection {
-		NONE, UP, DOWN, SLIGHT_UP, SLIGHT_DOWN
+	public enum Direction {
+		UP, DOWN, NORTH, NORTH_EAST, EAST, SOUTH_EAST, SOUTH, SOUTH_WEST, WEST, NORTH_WEST
 	}
 }

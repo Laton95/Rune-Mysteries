@@ -1,15 +1,21 @@
 package com.laton95.runemysteries.block;
 
+import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference.BlockInteraction;
+import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.util.TeleportHelper;
+import com.laton95.runemysteries.world.dimension.RuneTempleDimension;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
+import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -44,10 +50,13 @@ public class AltarPortalBlock extends ModBlock {
 	
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-		if(!world.isRemote()) {
+
+		if(!world.isRemote() && entity instanceof ServerPlayerEntity && world.getDimension() instanceof RuneTempleDimension) {
 			entity.sendMessage(new TranslationTextComponent(BlockInteraction.ALTAR_TELEPORT));
 			
-			TeleportHelper.teleportEntity(entity, DimensionType.OVERWORLD, new BlockPos(0, 60, 0));
+			EnumRuneType rune = ((RuneTempleDimension) world.getDimension()).runeType;
+			
+			TeleportHelper.teleportPlayer((ServerPlayerEntity) entity, rune.getRuinDimension(), RuneMysteries.ruinManager.getRuinPosition(rune, (ServerWorld) world).add(2, 0, 2));
 		}
 	}
 }

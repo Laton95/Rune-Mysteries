@@ -61,19 +61,7 @@ public class RuinManager extends WorldSavedData {
 		}
 		
 		if(seed != generator.getSeed()) {
-			ruinPositions = new HashMap<>();
-			generatedDimension = new HashMap<>();
-			seed = generator.getSeed();
-			
-			ModLog.info("Loading ruin positions");
-			long timer = System.currentTimeMillis();
-			try {
-				read(load((ServerWorld) world));
-			}
-			catch(IOException e) {
-				ModLog.error("Failed to load ruin positions: " + e.getMessage());
-			}
-			ModLog.info(String.format("Ruin positions loaded, took %d milliseconds", System.currentTimeMillis() - timer));
+			reload((ServerWorld) world);
 		}
 		
 		if(!(generatedDimension.get(dimension) == null ? false : generatedDimension.get(dimension))) {
@@ -82,6 +70,31 @@ public class RuinManager extends WorldSavedData {
 		}
 		
 		return ruinPositions.get(rune);
+	}
+	
+	@Nullable
+	public BlockPos getRuinPosition(EnumRuneType rune, ServerWorld world) {
+		if(seed != world.getServer().getWorld(DimensionType.OVERWORLD).getSeed()) {
+			reload(world);
+		}
+		
+		return ruinPositions.get(rune);
+	}
+	
+	private void reload(ServerWorld world) {
+		ruinPositions = new HashMap<>();
+		generatedDimension = new HashMap<>();
+		seed = world.getSeed();
+		
+		ModLog.info("Loading ruin positions");
+		long timer = System.currentTimeMillis();
+		try {
+			read(load(world));
+		}
+		catch(IOException e) {
+			ModLog.error("Failed to load ruin positions: " + e.getMessage());
+		}
+		ModLog.info(String.format("Ruin positions loaded, took %d milliseconds", System.currentTimeMillis() - timer));
 	}
 	
 	public void setRuinPosition(EnumRuneType rune, BlockPos pos) {
@@ -167,6 +180,10 @@ public class RuinManager extends WorldSavedData {
 			ModLog.info(String.format("%s location found in %d tries", rune.name(), tries));
 		}
 		
+		if(pos.getY() == 0) {
+			pos = pos.add(0, 100, 0);
+		}
+		
 		ruinPositions.put(rune, pos);
 		ModLog.info(String.format("%s at x:%d z:%d", rune.name(), pos.getX(), pos.getZ()));
 	}
@@ -181,7 +198,6 @@ public class RuinManager extends WorldSavedData {
 	
 	@Override
 	public void read(CompoundNBT compound) {
-		ModLog.info(compound.keySet().size() + "");
 		for(EnumRuneType rune : EnumRuneType.values()) {
 			if(compound.contains(rune.name())) {
 				int[] coords = compound.getIntArray(rune.name());

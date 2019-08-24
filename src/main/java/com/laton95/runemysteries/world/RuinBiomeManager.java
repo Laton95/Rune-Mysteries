@@ -99,21 +99,21 @@ public class RuinBiomeManager {
 			
 			ranBiomeCheck = true;
 			
-			ModLog.printList("Air ruin biomes: ", airRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Astral ruin biomes: ", astralRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Blood ruin biomes: ", bloodRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Body ruin biomes: ", bodyRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Chaos ruin biomes: ", chaosRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Cosmic ruin biomes: ", cosmicRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Death ruin biomes: ", deathRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Earth ruin biomes: ", earthRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Fire ruin biomes: ", fireRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Law ruin biomes: ", lawRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Mind ruin biomes: ", mindRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Nature ruin biomes: ", natureRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Soul ruin biomes: ", soulRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Water ruin biomes: ", waterRuinBiomes, b -> b.getDisplayName().getFormattedText());
-			ModLog.printList("Ourania ruin biomes: ", ouraniaRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Air ruin biomes: ", airRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Astral ruin biomes: ", astralRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Blood ruin biomes: ", bloodRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Body ruin biomes: ", bodyRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Chaos ruin biomes: ", chaosRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Cosmic ruin biomes: ", cosmicRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Death ruin biomes: ", deathRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Earth ruin biomes: ", earthRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Fire ruin biomes: ", fireRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Law ruin biomes: ", lawRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Mind ruin biomes: ", mindRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Nature ruin biomes: ", natureRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Soul ruin biomes: ", soulRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Water ruin biomes: ", waterRuinBiomes, b -> b.getDisplayName().getFormattedText());
+//			ModLog.printList("Ourania ruin biomes: ", ouraniaRuinBiomes, b -> b.getDisplayName().getFormattedText());
 			
 			ModLog.info(String.format("Biome check complete, took %d milliseconds", System.currentTimeMillis() - timer));
 		}

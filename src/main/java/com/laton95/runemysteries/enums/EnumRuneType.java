@@ -1,10 +1,15 @@
 package com.laton95.runemysteries.enums;
 
+import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.RuneItem;
 import com.laton95.runemysteries.item.TalismanItem;
+import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.particles.RedstoneParticleData;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraftforge.common.ModDimension;
+import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
@@ -111,7 +116,7 @@ public enum EnumRuneType {
 		return this == OURANIA;
 	}
 	
-	public DimensionType getRuinDimType() {
+	public DimensionType getRuinDimension() {
 		switch(this) {
 			case CHAOS:
 				return DimensionType.THE_NETHER;
@@ -164,5 +169,42 @@ public enum EnumRuneType {
 	
 	private static float valueOf(int colorValue) {
 		return (float) colorValue / 255;
+	}
+	
+	public DimensionType getTempleDimension() {
+		switch(this) {
+			case AIR:
+				return DimensionType.byName(ModDimensions.AIR_TEMPLE.getRegistryName());
+			case BLOOD:
+				return DimensionType.byName(ModDimensions.BLOOD_TEMPLE.getRegistryName());
+			case BODY:
+				return DimensionType.byName(ModDimensions.BODY_TEMPLE.getRegistryName());
+			case CHAOS:
+				return DimensionType.byName(ModDimensions.CHAOS_TEMPLE.getRegistryName());
+			case COSMIC:
+				return DimensionType.byName(ModDimensions.COSMIC_TEMPLE.getRegistryName());
+			case DEATH:
+				return DimensionType.byName(ModDimensions.DEATH_TEMPLE.getRegistryName());
+			case EARTH:
+				return DimensionType.byName(ModDimensions.EARTH_TEMPLE.getRegistryName());
+			case FIRE:
+				return DimensionType.byName(ModDimensions.FIRE_TEMPLE.getRegistryName());
+			case LAW:
+				return DimensionType.byName(ModDimensions.LAW_TEMPLE.getRegistryName());
+			case MIND:
+				return DimensionType.byName(ModDimensions.MIND_TEMPLE.getRegistryName());
+			case NATURE:
+				return DimensionType.byName(ModDimensions.NATURE_TEMPLE.getRegistryName());
+			case SOUL:
+				return DimensionType.byName(ModDimensions.SOUL_TEMPLE.getRegistryName());
+			case WATER:
+				return DimensionType.byName(ModDimensions.WATER_TEMPLE.getRegistryName());
+			default:
+				return null;
+		}
+	}
+	
+	public BlockPos getTempleArrivalPoint() {
+		return new BlockPos(0, 100, 0);
 	}
 }

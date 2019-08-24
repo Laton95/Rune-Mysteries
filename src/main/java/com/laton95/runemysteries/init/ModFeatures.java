@@ -2,10 +2,13 @@ package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.util.ModLog;
+import com.laton95.runemysteries.world.biome.RuneTempleBiome;
 import com.laton95.runemysteries.world.gen.feature.MonolithFeature;
 import com.laton95.runemysteries.world.gen.feature.structure.altar.*;
 import com.laton95.runemysteries.world.gen.feature.structure.obelisk.*;
-import net.minecraft.block.Blocks;
+import com.laton95.runemysteries.world.gen.feature.structure.temple.BloodTempleStructure;
+import com.laton95.runemysteries.world.gen.feature.structure.temple.CosmicTempleStructure;
+import com.laton95.runemysteries.world.gen.feature.structure.temple.RuneTemplePieces;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -23,9 +26,6 @@ import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.LinkedList;
-import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModFeatures {
@@ -68,6 +68,10 @@ public class ModFeatures {
 	
 	public static Structure<NoFeatureConfig> OURANIA_RUIN;
 	
+	public static Structure<NoFeatureConfig> BLOOD_TEMPLE;
+	
+	public static Structure<NoFeatureConfig> COSMIC_TEMPLE;
+	
 	public static Feature<NoFeatureConfig> MONOLITH;
 	
 	public static IStructurePieceType OBELISK;
@@ -80,15 +84,18 @@ public class ModFeatures {
 	
 	public static IStructurePieceType WELL_RUIN;
 	
+	public static IStructurePieceType RUNE_TEMPLE;
+	
 	@SubscribeEvent
 	public static void onFeaturesRegistry(RegistryEvent.Register<Feature<?>> event) {
 		ModLog.info("Registering features");
 		
-		OBELISK = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:obelisk", ObeliskPieces.Piece::new);
-		SURFACE_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:surface_ruin", SurfaceRuinPieces.Piece::new);
-		UNDERGROUND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:underground_ruin", UndergroundRuinPieces.Piece::new);
-		ISLAND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:island_ruin", IslandRuinPieces.Piece::new);
-		WELL_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemyseries:well_ruin", SoulRuinPieces.Piece::new);
+		OBELISK = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:obelisk", ObeliskPieces.Piece::new);
+		SURFACE_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:surface_ruin", SurfaceRuinPieces.Piece::new);
+		UNDERGROUND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:underground_ruin", UndergroundRuinPieces.Piece::new);
+		ISLAND_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:island_ruin", IslandRuinPieces.Piece::new);
+		WELL_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:well_ruin", SoulRuinPieces.Piece::new);
+		RUNE_TEMPLE = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:rune_temple", RuneTemplePieces.Piece::new);
 		
 		MONOLITH = new MonolithFeature(NoFeatureConfig::deserialize);
 		registerFeature(event, MONOLITH, "monolith");
@@ -150,6 +157,12 @@ public class ModFeatures {
 		OURANIA_RUIN = new OuraniaRuinStructure(NoFeatureConfig::deserialize);
 		registerFeature(event, OURANIA_RUIN, "ourania_ruin");
 		
+		BLOOD_TEMPLE = new BloodTempleStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, BLOOD_TEMPLE, "blood_temple");
+		
+		COSMIC_TEMPLE = new CosmicTempleStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, COSMIC_TEMPLE, "cosmic_temple");
+		
 		applyFeatures();
 	}
 	
@@ -157,8 +170,8 @@ public class ModFeatures {
 		feature.setRegistryName(RuneMysteries.MOD_ID, name);
 		event.getRegistry().register(feature);
 		if(feature instanceof Structure) {
-			Feature.STRUCTURES.put("runemyseries:" + name, (Structure<?>) feature);
-			Registry.register(Registry.STRUCTURE_FEATURE, "runemyseries:" + name, (Structure<?>) feature);
+			Feature.STRUCTURES.put("runemysteries:" + name, (Structure<?>) feature);
+			Registry.register(Registry.STRUCTURE_FEATURE, "runemysteries:" + name, (Structure<?>) feature);
 		}
 	}
 	
@@ -210,7 +223,7 @@ public class ModFeatures {
 					break;
 			}
 			
-			if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
+			if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome.getCategory() != Biome.Category.NONE) {
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_RUIN);
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, ASTRAL_RUIN);
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BLOOD_RUIN);
@@ -236,10 +249,18 @@ public class ModFeatures {
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, EARTH_OBELISK);
 			}
 		}
+		
+		addTempleStructure((RuneTempleBiome) ModBiomes.BLOOD_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, BLOOD_TEMPLE);
+		addTempleStructure((RuneTempleBiome) ModBiomes.COSMIC_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, COSMIC_TEMPLE);
 	}
 	
 	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure){
 		biome.addFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
+		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
+	}
+	
+	private static void addTempleStructure(RuneTempleBiome biome, GenerationStage.Decoration stage, Structure structure){
+		biome.actuallyAddFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
 	}
 }
