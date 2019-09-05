@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.world.gen.feature.structure.obelisk;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.world.gen.feature.structure.ModifiableRarityStructure;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.ResourceLocation;

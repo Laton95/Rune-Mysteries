@@ -3,7 +3,6 @@ package com.laton95.runemysteries.block;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference.BlockInteraction;
-import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.world.dimension.RuneTempleDimension;
 import net.minecraft.block.BlockState;
@@ -14,7 +13,6 @@ import net.minecraft.particles.ParticleTypes;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;

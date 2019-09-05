@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/blood_bricks" }
+    "": {
+      "model": "runemysteries:block/blood_bricks"
+    }
   }
 }

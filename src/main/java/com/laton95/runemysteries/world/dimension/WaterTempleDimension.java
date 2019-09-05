@@ -3,8 +3,6 @@ package com.laton95.runemysteries.world.dimension;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModBiomeProviders;
 import com.laton95.runemysteries.init.ModChunkGenerators;
-import com.laton95.runemysteries.init.ModEffects;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.potion.EffectInstance;
 import net.minecraft.potion.Effects;
@@ -62,7 +60,7 @@ public class WaterTempleDimension extends RuneTempleDimension {
 	
 	@Override
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
-		float f = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
+		float f = MathHelper.cos(celestialAngle * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0.7529412F;
 		float f2 = 0.84705883F;
@@ -70,7 +68,7 @@ public class WaterTempleDimension extends RuneTempleDimension {
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
-		return new Vec3d((double)f1, (double)f2, (double)f3);
+		return new Vec3d((double) f1, (double) f2, (double) f3);
 	}
 	
 	@Override

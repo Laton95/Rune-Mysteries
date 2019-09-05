@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.client.gui.screen.inventory.RuneBagScreen;
 import com.laton95.runemysteries.inventory.RuneBagContainer;
 import net.minecraft.client.gui.ScreenManager;
 import net.minecraft.inventory.container.ContainerType;
@@ -10,7 +11,6 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.registries.ObjectHolder;
-import com.laton95.runemysteries.client.gui.screen.inventory.RuneBagScreen;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(RuneMysteries.MOD_ID)

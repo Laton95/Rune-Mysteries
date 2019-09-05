@@ -1,9 +1,7 @@
 package com.laton95.runemysteries.block;
 
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.FenceGateBlock;
 import net.minecraft.block.FourWayBlock;
 import net.minecraft.fluid.Fluids;
 import net.minecraft.fluid.IFluidState;
@@ -12,7 +10,6 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
@@ -33,7 +30,7 @@ public class RailingBlock extends FourWayBlock {
 	private final VoxelShape[] collisionShapes = this.makeShapes(3.0F, 2.0F, 19.0F, 0.0F, 19.0F);
 	
 	public RailingBlock(Block block) {
-		this( block, false);
+		this(block, false);
 	}
 	
 	public RailingBlock(Block block, boolean isTranslucent) {
@@ -81,19 +78,20 @@ public class RailingBlock extends FourWayBlock {
 		boolean connectSouth = connectsTo(southState, southState.func_224755_d(world, southPos, Direction.NORTH), Direction.NORTH);
 		boolean connectWest = connectsTo(westState, westState.func_224755_d(world, westPos, Direction.EAST), Direction.EAST);
 		boolean hasUp = (!connectNorth || connectEast || !connectSouth || connectWest) && (connectNorth || !connectEast || connectSouth || !connectWest);
-	
+
 		return this.getDefaultState().with(UP, hasUp || !world.isAirBlock(pos.up())).with(NORTH, connectNorth).with(EAST, connectEast).with(SOUTH, connectSouth).with(WEST, connectWest).with(WATERLOGGED, fluid.getFluid() == Fluids.WATER);
 	}
 	
 	@Override
 	public BlockState updatePostPlacement(BlockState state, Direction facing, BlockState facingState, IWorld world, BlockPos currentPos, BlockPos facingPos) {
-		if (state.get(WATERLOGGED)) {
+		if(state.get(WATERLOGGED)) {
 			world.getPendingFluidTicks().scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickRate(world));
 		}
 		
-		if (facing == Direction.DOWN) {
+		if(facing == Direction.DOWN) {
 			return super.updatePostPlacement(state, facing, facingState, world, currentPos, facingPos);
-		} else {
+		}
+		else {
 			Direction opposite = facing.getOpposite();
 			boolean connectsNorth = facing == Direction.NORTH ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(NORTH);
 			boolean connectsEast = facing == Direction.EAST ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(EAST);

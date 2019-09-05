@@ -1,9 +1,19 @@
 {
   "variants": {
-    "corner=south_east": { "model": "runemysteries:block/air_altar_se" },
-    "corner=north_west": { "model": "runemysteries:block/air_altar_nw" },
-    "corner=north_east": { "model": "runemysteries:block/air_altar_ne" },
-    "corner=south_west": { "model": "runemysteries:block/air_altar_sw" },
-    "corner=none": { "model": "runemysteries:block/blank_altar" }
+    "corner=south_east": {
+      "model": "runemysteries:block/air_altar_se"
+    },
+    "corner=north_west": {
+      "model": "runemysteries:block/air_altar_nw"
+    },
+    "corner=north_east": {
+      "model": "runemysteries:block/air_altar_ne"
+    },
+    "corner=south_west": {
+      "model": "runemysteries:block/air_altar_sw"
+    },
+    "corner=none": {
+      "model": "runemysteries:block/blank_altar"
+    }
   }
 }

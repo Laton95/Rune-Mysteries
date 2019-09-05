@@ -11,15 +11,25 @@ import net.minecraftforge.api.distmarker.OnlyIn;
 public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 	
 	private final RendererModel body;
+
 	private final RendererModel tail;
+
 	private final RendererModel wingLeft;
+
 	private final RendererModel wingRight;
+
 	private final RendererModel head;
+
 	private final RendererModel head2;
+
 	private final RendererModel beak1;
+
 	private final RendererModel beak2;
+
 	private final RendererModel feather;
+
 	private final RendererModel legLeft;
+
 	private final RendererModel legRight;
 	
 	public ExExParrotModel() {
@@ -87,8 +97,8 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 	}
 	
 	private void setRotationAngles(State state, int ticksExisted, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
-		this.head.rotateAngleX = headPitch * ((float)Math.PI / 180F);
-		this.head.rotateAngleY = netHeadYaw * ((float)Math.PI / 180F);
+		this.head.rotateAngleX = headPitch * ((float) Math.PI / 180F);
+		this.head.rotateAngleY = netHeadYaw * ((float) Math.PI / 180F);
 		this.head.rotateAngleZ = 0.0F;
 		this.head.rotationPointX = 0.0F;
 		this.body.rotationPointX = 0.0F;
@@ -99,13 +109,13 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 			case SITTING:
 				break;
 			case PARTY:
-				float xOffset = MathHelper.cos((float)ticksExisted);
-				float yOffset = MathHelper.sin((float)ticksExisted);
+				float xOffset = MathHelper.cos((float) ticksExisted);
+				float yOffset = MathHelper.sin((float) ticksExisted);
 				this.head.rotationPointX = xOffset;
 				this.head.rotationPointY = 15.69F + yOffset;
 				this.head.rotateAngleX = 0.0F;
 				this.head.rotateAngleY = 0.0F;
-				this.head.rotateAngleZ = MathHelper.sin((float)ticksExisted) * 0.4F;
+				this.head.rotateAngleZ = MathHelper.sin((float) ticksExisted) * 0.4F;
 				this.body.rotationPointX = xOffset;
 				this.body.rotationPointY = 16.5F + yOffset;
 				this.wingLeft.rotateAngleZ = -0.0873F - ageInTicks;
@@ -119,7 +129,7 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 				break;
 			case STANDING:
 				this.legLeft.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F) * 1.4F * limbSwingAmount;
-				this.legRight.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float)Math.PI) * 1.4F * limbSwingAmount;
+				this.legRight.rotateAngleX += MathHelper.cos(limbSwing * 0.6662F + (float) Math.PI) * 1.4F * limbSwingAmount;
 			case FLYING:
 			case ON_SHOULDER:
 			default:
@@ -142,9 +152,9 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 		this.feather.rotateAngleX = -0.2214F;
 		this.body.rotateAngleX = 0.4937F;
 		this.wingLeft.rotateAngleX = -0.6981F;
-		this.wingLeft.rotateAngleY = -(float)Math.PI;
+		this.wingLeft.rotateAngleY = -(float) Math.PI;
 		this.wingRight.rotateAngleX = -0.6981F;
-		this.wingRight.rotateAngleY = -(float)Math.PI;
+		this.wingRight.rotateAngleY = -(float) Math.PI;
 		this.legLeft.rotateAngleX = -0.0299F;
 		this.legRight.rotateAngleX = -0.0299F;
 		this.legLeft.rotationPointY = 22.0F;
@@ -182,11 +192,13 @@ public class ExExParrotModel extends EntityModel<ExExParrotEntity> {
 	}
 	
 	private static State getState(ExExParrotEntity parrot) {
-		if (parrot.isPartying()) {
+		if(parrot.isPartying()) {
 			return State.PARTY;
-		} else if (parrot.isSitting()) {
+		}
+		else if(parrot.isSitting()) {
 			return State.SITTING;
-		} else {
+		}
+		else {
 			return parrot.isFlying() ? State.FLYING : State.STANDING;
 		}
 	}

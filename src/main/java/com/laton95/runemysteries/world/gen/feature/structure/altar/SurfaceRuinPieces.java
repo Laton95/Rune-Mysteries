@@ -35,10 +35,15 @@ public class SurfaceRuinPieces {
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
+
 		private final EnumRuneType rune;
+
 		private final ResourceLocation altarStructure;
+
 		private final ResourceLocation baseStructure;
+
 		private Template circleTemplate;
+
 		private Template baseTemplate;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, ResourceLocation base, EnumRuneType rune) {

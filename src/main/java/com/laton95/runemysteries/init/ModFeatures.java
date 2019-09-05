@@ -190,7 +190,7 @@ public class ModFeatures {
 	
 	private static void applyFeatures() {
 		for(Biome biome : ForgeRegistries.BIOMES.getValues()) {
-			switch(biome.getCategory()){
+			switch(biome.getCategory()) {
 				case NONE:
 					break;
 				case TAIGA:
@@ -270,12 +270,12 @@ public class ModFeatures {
 		addTempleStructure((RuneTempleBiome) ModBiomes.WATER_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_TEMPLE);
 	}
 	
-	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure){
+	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure) {
 		biome.addFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
 	}
 	
-	private static void addTempleStructure(RuneTempleBiome biome, GenerationStage.Decoration stage, Structure structure){
+	private static void addTempleStructure(RuneTempleBiome biome, GenerationStage.Decoration stage, Structure structure) {
 		biome.actuallyAddFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
 		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
 	}

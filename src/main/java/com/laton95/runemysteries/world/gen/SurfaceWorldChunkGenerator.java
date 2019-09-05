@@ -31,6 +31,7 @@ import net.minecraft.world.gen.feature.structure.StructureStart;
 import net.minecraft.world.spawner.WorldEntitySpawner;
 
 public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSettings> {
+
 	private static final float[] jigsawSmootherMask = Util.make(new float[13824], (p_222557_0_) -> {
 		for(int i = 0; i < 24; ++i) {
 			for(int j = 0; j < 24; ++j) {
@@ -45,7 +46,7 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 	private static final float[] biomeSmootherMask = Util.make(new float[25], (p_222575_0_) -> {
 		for(int i = -2; i <= 2; ++i) {
 			for(int j = -2; j <= 2; ++j) {
-				float f = 10.0F / MathHelper.sqrt((float)(i * i + j * j) + 0.2F);
+				float f = 10.0F / MathHelper.sqrt((float) (i * i + j * j) + 0.2F);
 				p_222575_0_[i + 2 + (j + 2) * 5] = f;
 			}
 		}
@@ -53,18 +54,31 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 	});
 	
 	private static final BlockState AIR = Blocks.AIR.getDefaultState();
+
 	private final int verticalNoiseGranularity;
+
 	private final int horizontalNoiseGranularity;
+
 	private final int noiseSizeX;
+
 	private final int noiseSizeY;
+
 	private final int noiseSizeZ;
+
 	protected final SharedSeedRandom randomSeed;
+
 	private final OctavesNoiseGenerator field_222568_o;
+
 	private final OctavesNoiseGenerator field_222569_p;
+
 	private final OctavesNoiseGenerator field_222570_q;
+
 	private final INoiseGenerator surfaceDepthNoise;
+
 	private final OctavesNoiseGenerator depthNoise;
+
 	protected final BlockState defaultBlock;
+
 	protected final BlockState defaultFluid;
 	
 	public SurfaceWorldChunkGenerator(IWorld world, BiomeProvider biomeProvider, GenerationSettings settings) {
@@ -107,14 +121,14 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 		double d3 = 1.0D;
 		
 		for(int i = 0; i < 16; ++i) {
-			double d4 = OctavesNoiseGenerator.maintainPrecision((double)quarterChunkX * p_222552_4_ * d3);
-			double d5 = OctavesNoiseGenerator.maintainPrecision((double)p_222552_2_ * p_222552_6_ * d3);
-			double d6 = OctavesNoiseGenerator.maintainPrecision((double)quarterChunkZ * p_222552_4_ * d3);
+			double d4 = OctavesNoiseGenerator.maintainPrecision((double) quarterChunkX * p_222552_4_ * d3);
+			double d5 = OctavesNoiseGenerator.maintainPrecision((double) p_222552_2_ * p_222552_6_ * d3);
+			double d6 = OctavesNoiseGenerator.maintainPrecision((double) quarterChunkZ * p_222552_4_ * d3);
 			double d7 = p_222552_6_ * d3;
-			d0 += this.field_222568_o.getOctave(i).func_215456_a(d4, d5, d6, d7, (double)p_222552_2_ * d7) / d3;
-			d1 += this.field_222569_p.getOctave(i).func_215456_a(d4, d5, d6, d7, (double)p_222552_2_ * d7) / d3;
-			if (i < 8) {
-				d2 += this.field_222570_q.getOctave(i).func_215456_a(OctavesNoiseGenerator.maintainPrecision((double)quarterChunkX * p_222552_8_ * d3), OctavesNoiseGenerator.maintainPrecision((double)p_222552_2_ * p_222552_10_ * d3), OctavesNoiseGenerator.maintainPrecision((double)quarterChunkZ * p_222552_8_ * d3), p_222552_10_ * d3, (double)p_222552_2_ * p_222552_10_ * d3) / d3;
+			d0 += this.field_222568_o.getOctave(i).func_215456_a(d4, d5, d6, d7, (double) p_222552_2_ * d7) / d3;
+			d1 += this.field_222569_p.getOctave(i).func_215456_a(d4, d5, d6, d7, (double) p_222552_2_ * d7) / d3;
+			if(i < 8) {
+				d2 += this.field_222570_q.getOctave(i).func_215456_a(OctavesNoiseGenerator.maintainPrecision((double) quarterChunkX * p_222552_8_ * d3), OctavesNoiseGenerator.maintainPrecision((double) p_222552_2_ * p_222552_10_ * d3), OctavesNoiseGenerator.maintainPrecision((double) quarterChunkZ * p_222552_8_ * d3), p_222552_10_ * d3, (double) p_222552_2_ * p_222552_10_ * d3) / d3;
 			}
 			
 			d3 /= 2.0D;
@@ -139,10 +153,11 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 		for(int i = 0; i < this.getNoiseSizePlusOne(); ++i) {
 			double octaveNoise = this.func_222552_a(quarterChunkX, i, quarterChunkZ, p_222546_4_, p_222546_6_, p_222546_8_, p_222546_10_);
 			octaveNoise = octaveNoise - this.getBiomeContribution(biomeDepth, biomeScale, i);
-			if ((double)i > d2) {
-				octaveNoise = MathHelper.clampedLerp(octaveNoise, (double)p_222546_13_, ((double)i - d2) / (double)p_222546_12_);
-			} else if ((double)i < d3) {
-				octaveNoise = MathHelper.clampedLerp(octaveNoise, -30.0D, (d3 - (double)i) / (d3 - 1.0D));
+			if((double) i > d2) {
+				octaveNoise = MathHelper.clampedLerp(octaveNoise, (double) p_222546_13_, ((double) i - d2) / (double) p_222546_12_);
+			}
+			else if((double) i < d3) {
+				octaveNoise = MathHelper.clampedLerp(octaveNoise, -30.0D, (d3 - (double) i) / (d3 - 1.0D));
 			}
 			
 			noises[i] = octaveNoise;
@@ -164,7 +179,7 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 				float adjacentBiomeScale = adjacentBiome.getScale();
 				
 				float maskValue = biomeSmootherMask[xOffset + 2 + (zOffset + 2) * 5] / (adjacentBiomeDepth + 2.0F);
-				if (adjacentBiome.getDepth() > biomeDepth) {
+				if(adjacentBiome.getDepth() > biomeDepth) {
 					maskValue /= 2.0F;
 				}
 				
@@ -178,22 +193,23 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 		depth = depth / totalBiomeMask;
 		scale = scale * 0.9F + 0.1F;
 		depth = (depth * 4.0F - 1.0F) / 8.0F;
-		noises[0] = (double)depth + this.getDepthNoiseAt(quarterChunkX, quarterChunkZ);
-		noises[1] = (double)scale;
+		noises[0] = (double) depth + this.getDepthNoiseAt(quarterChunkX, quarterChunkZ);
+		noises[1] = (double) scale;
 		return noises;
 	}
 	
 	private double getDepthNoiseAt(int quarterChunkX, int quarterChunkZ) {
-		double noise = this.depthNoise.func_215462_a((double)(quarterChunkX * 200), 10.0D, (double)(quarterChunkZ * 200), 1.0D, 0.0D, true) / 8000.0D;
-		if (noise < 0.0D) {
+		double noise = this.depthNoise.func_215462_a((double) (quarterChunkX * 200), 10.0D, (double) (quarterChunkZ * 200), 1.0D, 0.0D, true) / 8000.0D;
+		if(noise < 0.0D) {
 			noise = -noise * 0.3D;
 		}
 		
 		noise = noise * 3.0D - 2.0D;
-		if (noise < 0.0D) {
+		if(noise < 0.0D) {
 			noise = noise / 28.0D;
-		} else {
-			if (noise > 1.0D) {
+		}
+		else {
+			if(noise > 1.0D) {
 				noise = 1.0D;
 			}
 			
@@ -205,8 +221,8 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 	
 	protected double getBiomeContribution(double biomeDepth, double biomeScale, int p_222545_5_) {
 		double d0 = 8.5D;
-		double d1 = ((double)p_222545_5_ - (d0 + biomeDepth * d0 / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / biomeScale;
-		if (d1 < 0.0D) {
+		double d1 = ((double) p_222545_5_ - (d0 + biomeDepth * d0 / 8.0D * 4.0D)) * 12.0D * 128.0D / 256.0D / biomeScale;
+		if(d1 < 0.0D) {
 			d1 *= 4.0D;
 		}
 		
@@ -214,7 +230,7 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 	}
 	
 	protected double getNoiseSizeMinusThree() {
-		return (double)(this.getNoiseSizePlusOne() - 4);
+		return (double) (this.getNoiseSizePlusOne() - 4);
 	}
 	
 	protected double func_222553_h() {
@@ -227,9 +243,9 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 		int j = Math.floorDiv(p_222529_2_, this.horizontalNoiseGranularity);
 		int k = Math.floorMod(p_222529_1_, this.horizontalNoiseGranularity);
 		int l = Math.floorMod(p_222529_2_, this.horizontalNoiseGranularity);
-		double d0 = (double)k / (double)this.horizontalNoiseGranularity;
-		double d1 = (double)l / (double)this.horizontalNoiseGranularity;
-		double[][] adouble = new double[][]{this.getNoiseAtDefault(i, j), this.getNoiseAtDefault(i, j + 1), this.getNoiseAtDefault(i + 1, j), this.getNoiseAtDefault(i + 1, j + 1)};
+		double d0 = (double) k / (double) this.horizontalNoiseGranularity;
+		double d1 = (double) l / (double) this.horizontalNoiseGranularity;
+		double[][] adouble = new double[][] {this.getNoiseAtDefault(i, j), this.getNoiseAtDefault(i, j + 1), this.getNoiseAtDefault(i + 1, j), this.getNoiseAtDefault(i + 1, j + 1)};
 		
 		for(int j1 = this.noiseSizeY - 1; j1 >= 0; --j1) {
 			double d2 = adouble[0][j1];
@@ -242,18 +258,19 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 			double d9 = adouble[3][j1 + 1];
 			
 			for(int k1 = this.verticalNoiseGranularity - 1; k1 >= 0; --k1) {
-				double d10 = (double)k1 / (double)this.verticalNoiseGranularity;
+				double d10 = (double) k1 / (double) this.verticalNoiseGranularity;
 				double d11 = MathHelper.lerp3(d10, d0, d1, d2, d6, d4, d8, d3, d7, d5, d9);
 				int l1 = j1 * this.verticalNoiseGranularity + k1;
-				if (d11 > 0.0D || l1 < this.getSeaLevel()) {
+				if(d11 > 0.0D || l1 < this.getSeaLevel()) {
 					BlockState state;
-					if (d11 > 0.0D) {
+					if(d11 > 0.0D) {
 						state = this.defaultBlock;
-					} else {
+					}
+					else {
 						state = this.defaultFluid;
 					}
 					
-					if (heightmap.func_222684_d().test(state)) {
+					if(heightmap.func_222684_d().test(state)) {
 						return l1 + 1;
 					}
 				}
@@ -264,8 +281,8 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 	}
 	
 	protected void getNoiseAtDefault(double[] noises, int quarterChunkX, int quarterChunkZ) {
-		double d0 = (double)684.412F;
-		double d1 = (double)684.412F;
+		double d0 = (double) 684.412F;
+		double d1 = (double) 684.412F;
 		double d2 = 8.555149841308594D;
 		double d3 = 4.277574920654297D;
 		int i = -10;
@@ -473,20 +490,22 @@ public class SurfaceWorldChunkGenerator extends ChunkGenerator<GenerationSetting
 		int i = sourceX + 12;
 		int j = sourceY + 12;
 		int k = sourceZ + 12;
-		if (i >= 0 && i < 24) {
-			if (j >= 0 && j < 24) {
+		if(i >= 0 && i < 24) {
+			if(j >= 0 && j < 24) {
 				return k >= 0 && k < 24 ? (double) jigsawSmootherMask[k * 24 * 24 + i * 24 + j] : 0.0D;
-			} else {
+			}
+			else {
 				return 0.0D;
 			}
-		} else {
+		}
+		else {
 			return 0.0D;
 		}
 	}
 	
 	private static double makeJigsawSmoother(int x, int y, int z) {
-		double d0 = (double)(x * x + z * z);
-		double d1 = (double)y + 0.5D;
+		double d0 = (double) (x * x + z * z);
+		double d1 = (double) y + 0.5D;
 		double d2 = d1 * d1;
 		double d3 = Math.pow(Math.E, -(d2 / 16.0D + d0 / 16.0D));
 		double d4 = -d1 * MathHelper.fastInvSqrt(d2 / 2.0D + d0 / 2.0D) / 2.0D;

@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/ruin_stone" }
+    "": {
+      "model": "runemysteries:block/ruin_stone"
+    }
   }
 }

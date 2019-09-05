@@ -1,10 +1,20 @@
 {
   "variants": {
     "": [
-      { "model": "runemysteries:block/flesh_block" },
-      { "model": "runemysteries:block/flesh_block_mirrored" },
-      { "model": "runemysteries:block/flesh_block", "y": 180 },
-      { "model": "runemysteries:block/flesh_block_mirrored", "y": 180 }
+      {
+        "model": "runemysteries:block/flesh_block"
+      },
+      {
+        "model": "runemysteries:block/flesh_block_mirrored"
+      },
+      {
+        "model": "runemysteries:block/flesh_block",
+        "y": 180
+      },
+      {
+        "model": "runemysteries:block/flesh_block_mirrored",
+        "y": 180
+      }
     ]
   }
 }

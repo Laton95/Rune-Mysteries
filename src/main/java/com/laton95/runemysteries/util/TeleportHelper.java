@@ -16,8 +16,8 @@ import net.minecraft.world.storage.WorldInfo;
 public class TeleportHelper {
 	
 	public static void changePlayerDimension(ServerPlayerEntity player, DimensionType destination) {
-		if (!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination)) return;
-		if(destination == null) return;
+		if(!net.minecraftforge.common.ForgeHooks.onTravelToDimension(player, destination)) { return; }
+		if(destination == null) { return; }
 		//player.invulnerableDimensionChange = true;
 		DimensionType dimensiontype = player.dimension;
 		ServerWorld serverworld = player.server.getWorld(dimensiontype);
@@ -62,9 +62,9 @@ public class TeleportHelper {
 			player.connection.sendPacket(new SPlayEntityEffectPacket(player.getEntityId(), effectinstance));
 		}
 		
-//		player.lastExperience = -1;
-//		player.lastHealth = -1.0F;
-//		player.lastFoodLevel = -1;
+		//		player.lastExperience = -1;
+		//		player.lastHealth = -1.0F;
+		//		player.lastFoodLevel = -1;
 		net.minecraftforge.fml.hooks.BasicEventHooks.firePlayerChangedDimensionEvent(player, dimensiontype, destination);
 	}
 	

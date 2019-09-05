@@ -1,6 +1,5 @@
 {
   "itemGroup.runemysteries": "Rune Mysteries",
-
   "_BLOCKS": "",
   "block.runemysteries.ruin_stone": "Ruin Stone",
   "block.runemysteries.temple_bricks": "Temple Bricks",
@@ -63,7 +62,6 @@
   "block.runemysteries.flesh_block": "Flesh Block",
   "block.runemysteries.menaphite_sandstone": "Menaphite Sandstone",
   "block.runemysteries.cloud": "Cloud",
-
   "_BLOCK INTERACTION": "",
   "block.runemysteries.elemental_obelisk.right_click": "The obelisk hums with power",
   "block.runemysteries.elemental_obelisk.right_click_fail": "The obelisk is not tall enough",
@@ -72,7 +70,6 @@
   "block.runemysteries.altar.right_click": "A mysterious power emanates from the shrine",
   "block.runemysteries.altar.right_click_talisman": "You feel a powerful force take hold of you",
   "block.runemysteries.elder_catalyst.right_click": "You feel a rush of energy flow through your body",
-
   "_ITEMS": "",
   "item.runemysteries.rune_essence": "Rune Essence",
   "item.runemysteries.air_rune": "Air Rune",
@@ -124,7 +121,6 @@
   "item.runemysteries.ex_parrot": "Ex-Parrot",
   "item.runemysteries.mine_scroll": "Rune Essence Mine Teleport Scroll",
   "item.runemysteries.banana": "Banana",
-
   "_ITEM INTERACTION": "",
   "item.runemysteries.talisman.fail": "The talisman is motionless",
   "item.runemysteries.talisman.nearby": "The talisman pulls toward the altar stone",
@@ -142,11 +138,9 @@
   "item.runemysteries.talisman.pull.north_west": "The talisman pulls to the North-West",
   "item.runemysteries.talisman.pull.up": "The talisman pulls upwards",
   "item.runemysteries.talisman.pull.down": "The talisman pulls downwards",
-
   "_ENTITIES": "",
   "entity.runemysteries.ex_ex_parrot": "Ex-Ex-Parrot",
-
-  "advancements.runemysteries.main.root.title" : "Runecrafting",
+  "advancements.runemysteries.main.root.title": "Runecrafting",
   "advancements.runemysteries.main.root.description": "The forgotten art of runecrafting",
   "advancements.runemysteries.main.rune_essence.title": "Essentials",
   "advancements.runemysteries.main.rune_essence.description": "Find some rune essence",
@@ -174,16 +168,13 @@
   "advancements.runemysteries.main.elder_catalyst.description": "The God Wars are over... as long as the thing they were fighting over remains hidden",
   "advancements.runemysteries.main.fire_altar_death.title": "Watch Your Step",
   "advancements.runemysteries.main.fire_altar_death.description": "Take a lava bath in the fire temple",
-
   "_TOOLTIPS": "",
   "block.runemysteries.rune_altar.tooltip": "Creative only, cannot be broken in survival",
   "item.runemysteries.battlestaff.tooltip": "Provides %s runes",
   "item.runemysteries.rune_bag.pickup_on": "Auto pickup on",
   "item.runemysteries.rune_bag.pickup_off": "Auto pickup off",
-
   "_DEATH MESSAGES": "",
   "death.attack.chaos_talisman": "$s was burned by the heat of the nether",
-
   "_POTIONS": "",
-  "effect.runemysteries.stonetoucher" : "Stonetoucher"
+  "effect.runemysteries.stonetoucher": "Stonetoucher"
 }

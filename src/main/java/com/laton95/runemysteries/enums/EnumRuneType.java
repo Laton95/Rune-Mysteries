@@ -4,12 +4,9 @@ import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.RuneItem;
 import com.laton95.runemysteries.item.TalismanItem;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
-import net.minecraftforge.common.ModDimension;
-import net.minecraftforge.fml.common.Mod;
 
 import java.util.Random;
 
@@ -207,31 +204,31 @@ public enum EnumRuneType {
 	public BlockPos getAltarNorthWestPoint() {
 		switch(this) {
 			case AIR:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case BLOOD:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case BODY:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case CHAOS:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case COSMIC:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case DEATH:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case EARTH:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case FIRE:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case LAW:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case MIND:
-				return new BlockPos(-1, 61 ,-1);
+				return new BlockPos(-1, 61, -1);
 			case NATURE:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case SOUL:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			case WATER:
-				return new BlockPos(0, 100 ,0);
+				return new BlockPos(0, 100, 0);
 			default:
 				return null;
 		}

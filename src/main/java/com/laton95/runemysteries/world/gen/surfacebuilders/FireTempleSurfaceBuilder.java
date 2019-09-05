@@ -19,16 +19,16 @@ public class FireTempleSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfi
 	
 	@Override
 	public void buildSurface(Random random, IChunk chunk, Biome biome, int x, int z, int startHeight, double noise, BlockState defaultBlock, BlockState defaultFluid, int seaLevel, long seed, SurfaceBuilderConfig config) {
-		double d0 = Biome.INFO_NOISE.getValue((double)x * 0.25D, (double)z * 0.25D);
-		if (d0 > 0.0D) {
+		double d0 = Biome.INFO_NOISE.getValue((double) x * 0.25D, (double) z * 0.25D);
+		if(d0 > 0.0D) {
 			int i = x & 15;
 			int j = z & 15;
 			BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 			
 			for(int k = startHeight; k >= 0; --k) {
 				blockpos$mutableblockpos.setPos(i, k, j);
-				if (!chunk.getBlockState(blockpos$mutableblockpos).isAir()) {
-					if (k == 62 && chunk.getBlockState(blockpos$mutableblockpos).getBlock() != defaultFluid.getBlock()) {
+				if(!chunk.getBlockState(blockpos$mutableblockpos).isAir()) {
+					if(k == 62 && chunk.getBlockState(blockpos$mutableblockpos).getBlock() != defaultFluid.getBlock()) {
 						chunk.setBlockState(blockpos$mutableblockpos, defaultFluid, false);
 					}
 					break;
@@ -36,9 +36,10 @@ public class FireTempleSurfaceBuilder extends SurfaceBuilder<SurfaceBuilderConfi
 			}
 		}
 		
-		if (noise > 2.0D || noise < 1.0D) {
+		if(noise > 2.0D || noise < 1.0D) {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunk, biome, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, SurfaceBuilder.STONE_STONE_GRAVEL_CONFIG);
-		} else {
+		}
+		else {
 			SurfaceBuilder.DEFAULT.buildSurface(random, chunk, biome, x, z, startHeight, noise, defaultBlock, defaultFluid, seaLevel, seed, SurfaceBuilder.GRAVEL_CONFIG);
 		}
 	}

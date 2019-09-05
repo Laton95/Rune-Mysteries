@@ -1,8 +1,6 @@
 package com.laton95.runemysteries.tags;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.init.ModItems;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.item.Item;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.Tag;
@@ -12,8 +10,7 @@ public class ModItemTags {
 	
 	public static final Tag<Item> RUNES = tag("runes");
 	
-	private static Tag<Item> tag(String name)
-	{
+	private static Tag<Item> tag(String name) {
 		return new ItemTags.Wrapper(new ResourceLocation(RuneMysteries.MOD_ID, name));
 	}
 }

@@ -8,7 +8,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.BufferBuilder;
 import net.minecraft.client.renderer.GLAllocation;
-import net.minecraft.client.renderer.RenderHelper;
 import net.minecraft.client.renderer.Tessellator;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
 import net.minecraft.client.renderer.vertex.VertexBuffer;
@@ -22,7 +21,6 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.ChunkGeneratorType;
 import net.minecraftforge.client.IRenderHandler;
 
 import javax.annotation.Nullable;
@@ -72,7 +70,7 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 	
 	@Override
 	public Vec3d getFogColor(float celestialAngle, float partialTicks) {
-		float f = MathHelper.cos(celestialAngle * ((float)Math.PI * 2F)) * 2.0F + 0.5F;
+		float f = MathHelper.cos(celestialAngle * ((float) Math.PI * 2F)) * 2.0F + 0.5F;
 		f = MathHelper.clamp(f, 0.0F, 1.0F);
 		float f1 = 0.7529412F;
 		float f2 = 0.84705883F;
@@ -80,7 +78,7 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
-		return new Vec3d((double)f1, (double)f2, (double)f3);
+		return new Vec3d((double) f1, (double) f2, (double) f3);
 	}
 	
 	@Override
@@ -119,6 +117,7 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 	}
 	
 	private class ExtraStarsRenderer implements IRenderHandler {
+
 		private final boolean vboEnabled = true;
 		
 		private final VertexFormat vertexBufferFormat = new VertexFormat().addElement(new VertexFormatElement(0, VertexFormatElement.Type.FLOAT, VertexFormatElement.Usage.POSITION, 3));
@@ -141,8 +140,7 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 			
 			GlStateManager.color4f(starBrightness * 0.8f, starBrightness, starBrightness, starBrightness);
 			
-			if(this.vboEnabled)
-			{
+			if(this.vboEnabled) {
 				this.starVBO.bindBuffer();
 				GlStateManager.enableClientState(32884);
 				GlStateManager.vertexPointer(3, 5126, 12, 0);
@@ -150,8 +148,7 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 				this.starVBO.unbindBuffer();
 				GlStateManager.disableClientState(32884);
 			}
-			else
-			{
+			else {
 				GlStateManager.callList(this.starGLCallList);
 			}
 			
@@ -197,12 +194,12 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 			bufferBuilderIn.begin(7, DefaultVertexFormats.POSITION);
 			
 			for(int i = 0; i < 6000; ++i) {
-				double d0 = (double)(random.nextFloat() * 2.0F - 1.0F);
-				double d1 = (double)(random.nextFloat() * 2.0F - 1.0F);
-				double d2 = (double)(random.nextFloat() * 2.0F - 1.0F);
-				double d3 = (double)(0.15F + random.nextFloat() * 0.1F);
+				double d0 = (double) (random.nextFloat() * 2.0F - 1.0F);
+				double d1 = (double) (random.nextFloat() * 2.0F - 1.0F);
+				double d2 = (double) (random.nextFloat() * 2.0F - 1.0F);
+				double d3 = (double) (0.15F + random.nextFloat() * 0.1F);
 				double d4 = d0 * d0 + d1 * d1 + d2 * d2;
-				if (d4 < 1.0D && d4 > 0.01D) {
+				if(d4 < 1.0D && d4 > 0.01D) {
 					d4 = 1.0D / Math.sqrt(d4);
 					d0 = d0 * d4;
 					d1 = d1 * d4;
@@ -222,8 +219,8 @@ public class CosmicTempleDimension extends RuneTempleDimension {
 					
 					for(int j = 0; j < 4; ++j) {
 						double d17 = 0.0D;
-						double d18 = (double)((j & 2) - 1) * d3;
-						double d19 = (double)((j + 1 & 2) - 1) * d3;
+						double d18 = (double) ((j & 2) - 1) * d3;
+						double d19 = (double) ((j + 1 & 2) - 1) * d3;
 						double d20 = 0.0D;
 						double d21 = d18 * d16 - d19 * d15;
 						double d22 = d19 * d16 + d18 * d15;

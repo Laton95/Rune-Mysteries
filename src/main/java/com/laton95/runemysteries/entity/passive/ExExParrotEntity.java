@@ -1,33 +1,17 @@
 package com.laton95.runemysteries.entity.passive;
 
-import com.google.common.collect.Lists;
-import com.google.common.collect.Maps;
-import com.google.common.collect.Sets;
-import com.laton95.runemysteries.init.ModEntities;
-import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.block.LogBlock;
 import net.minecraft.entity.*;
 import net.minecraft.entity.ai.controller.FlyingMovementController;
 import net.minecraft.entity.ai.goal.*;
 import net.minecraft.entity.passive.AnimalEntity;
-import net.minecraft.entity.passive.IFlyingAnimal;
 import net.minecraft.entity.passive.ParrotEntity;
-import net.minecraft.entity.passive.ShoulderRidingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.datasync.DataParameter;
-import net.minecraft.network.datasync.DataSerializers;
-import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
-import net.minecraft.potion.EffectInstance;
-import net.minecraft.potion.Effects;
-import net.minecraft.tags.BlockTags;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -37,23 +21,24 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.event.ForgeEventFactory;
 
 import javax.annotation.Nullable;
-import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
-import java.util.function.Predicate;
 
 public class ExExParrotEntity extends ParrotEntity {
 	
 	public float flap;
+	
 	public float flapSpeed;
+	
 	public float oFlapSpeed;
+	
 	public float oFlap;
+	
 	public float flapping = 1.0F;
+	
 	private boolean partyParrot;
+	
 	private BlockPos jukeboxPosition;
 	
 	public ExExParrotEntity(EntityType<? extends ExExParrotEntity> type, World world) {
@@ -80,8 +65,8 @@ public class ExExParrotEntity extends ParrotEntity {
 	protected void registerAttributes() {
 		super.registerAttributes();
 		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-		this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double)0.4F);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double)0.2F);
+		this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.4F);
+		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
 	}
 	
 	/**
@@ -104,7 +89,7 @@ public class ExExParrotEntity extends ParrotEntity {
 	 * use this to react to sunlight and start to burn.
 	 */
 	public void livingTick() {
-		if (this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || this.world.getBlockState(this.jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
+		if(this.jukeboxPosition == null || !this.jukeboxPosition.withinDistance(this.getPositionVec(), 3.46D) || this.world.getBlockState(this.jukeboxPosition).getBlock() != Blocks.JUKEBOX) {
 			this.partyParrot = false;
 			this.jukeboxPosition = null;
 		}
@@ -130,15 +115,15 @@ public class ExExParrotEntity extends ParrotEntity {
 	private void calculateFlapping() {
 		this.oFlap = this.flap;
 		this.oFlapSpeed = this.flapSpeed;
-		this.flapSpeed = (float)((double)this.flapSpeed + (double)(!this.onGround && !this.isPassenger() ? 4 : -1) * 0.3D);
+		this.flapSpeed = (float) ((double) this.flapSpeed + (double) (!this.onGround && !this.isPassenger() ? 4 : -1) * 0.3D);
 		this.flapSpeed = MathHelper.clamp(this.flapSpeed, 0.0F, 1.0F);
-		if (!this.onGround && this.flapping < 1.0F) {
+		if(!this.onGround && this.flapping < 1.0F) {
 			this.flapping = 1.0F;
 		}
 		
-		this.flapping = (float)((double)this.flapping * 0.9D);
+		this.flapping = (float) ((double) this.flapping * 0.9D);
 		Vec3d vec3d = this.getMotion();
-		if (!this.onGround && vec3d.y < 0.0D) {
+		if(!this.onGround && vec3d.y < 0.0D) {
 			this.setMotion(vec3d.mul(1.0D, 0.6D, 1.0D));
 		}
 		
@@ -146,25 +131,27 @@ public class ExExParrotEntity extends ParrotEntity {
 	}
 	
 	public boolean processInteract(PlayerEntity player, Hand hand) {
-		if (!this.isTamed()) {
-			if (!this.isSilent()) {
+		if(!this.isTamed()) {
+			if(!this.isSilent()) {
 				this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
 			}
 			
-			if (!this.world.isRemote) {
-				if (this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+			if(!this.world.isRemote) {
+				if(this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
 					this.setTamedBy(player);
 					this.playTameEffect(true);
-					this.world.setEntityState(this, (byte)7);
-				} else {
+					this.world.setEntityState(this, (byte) 7);
+				}
+				else {
 					this.playTameEffect(false);
-					this.world.setEntityState(this, (byte)6);
+					this.world.setEntityState(this, (byte) 6);
 				}
 			}
 			
 			return true;
-		} else {
-			if (!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player)) {
+		}
+		else {
+			if(!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player)) {
 				this.sitGoal.setSitting(!this.isSitting());
 			}
 			
@@ -251,7 +238,7 @@ public class ExExParrotEntity extends ParrotEntity {
 	}
 	
 	protected void collideWithEntity(Entity entity) {
-		if (!(entity instanceof PlayerEntity)) {
+		if(!(entity instanceof PlayerEntity)) {
 			super.collideWithEntity(entity);
 		}
 	}
@@ -260,10 +247,11 @@ public class ExExParrotEntity extends ParrotEntity {
 	 * Called when the entity is attacked.
 	 */
 	public boolean attackEntityFrom(DamageSource source, float amount) {
-		if (this.isInvulnerableTo(source)) {
+		if(this.isInvulnerableTo(source)) {
 			return false;
-		} else {
-			if (this.sitGoal != null) {
+		}
+		else {
+			if(this.sitGoal != null) {
 				this.sitGoal.setSitting(false);
 			}
 			

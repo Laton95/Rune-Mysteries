@@ -29,7 +29,7 @@ public class ModLog {
 	}
 	
 	public static <T> void printList(String header, List<T> list, Function<T, String> function) {
-		StringBuilder output = new StringBuilder(header +  "\n");
+		StringBuilder output = new StringBuilder(header + "\n");
 		for(T listItem : list) {
 			output.append(function.apply(listItem)).append("\n");
 		}

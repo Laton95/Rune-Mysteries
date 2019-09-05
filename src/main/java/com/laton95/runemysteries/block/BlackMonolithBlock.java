@@ -63,8 +63,8 @@ public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
 			
 			if(player.getHeldItem(hand).getItem() == ModItems.EX_PARROT) {
 				
-				LightningBoltEntity lightningboltentity = new LightningBoltEntity(world, (double)pos.getX() + 0.5D, (double)pos.getY(), (double)pos.getZ() + 0.5D, true);
-				((ServerWorld)world).addLightningBolt(lightningboltentity);
+				LightningBoltEntity lightningboltentity = new LightningBoltEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, true);
+				((ServerWorld) world).addLightningBolt(lightningboltentity);
 				
 				ModCriteriaTriggers.EX_PARROT.trigger((ServerPlayerEntity) player);
 				if(!player.isCreative()) {

@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/cloud" }
+    "": {
+      "model": "runemysteries:block/cloud"
+    }
   }
 }

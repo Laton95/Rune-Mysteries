@@ -27,7 +27,7 @@ public abstract class ModifiableRarityStructure extends ScatteredStructure<NoFea
 		int z2 = z1 < 0 ? z1 - distance + 1 : z1;
 		int x3 = x2 / distance;
 		int z3 = z2 / distance;
-		((SharedSeedRandom)random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), x3, z3, this.getSeedModifier());
+		((SharedSeedRandom) random).setLargeFeatureSeedWithSalt(chunkGenerator.getSeed(), x3, z3, this.getSeedModifier());
 		x3 = x3 * distance;
 		z3 = z3 * distance;
 		x3 = x3 + random.nextInt(distance - separation);

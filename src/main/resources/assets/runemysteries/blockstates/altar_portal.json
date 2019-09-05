@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/altar_portal" }
+    "": {
+      "model": "runemysteries:block/altar_portal"
+    }
   }
 }

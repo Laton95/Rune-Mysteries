@@ -17,18 +17,24 @@ import net.minecraft.world.server.ServerWorld;
 import net.minecraft.world.storage.WorldSavedData;
 import net.minecraftforge.event.world.WorldEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.ObfuscationReflectionHelper;
 
 import javax.annotation.Nullable;
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.PushbackInputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
 
 public class RuinManager extends WorldSavedData {
+	
 	private long seed = 0;
+	
 	private Map<EnumRuneType, BlockPos> ruinPositions = new HashMap<>();
+	
 	private Map<DimensionType, Boolean> generatedDimension = new HashMap<>();
+	
 	private String dataFolder = "data/runemysteries.dat";
 	
 	public RuinManager() {
@@ -157,7 +163,7 @@ public class RuinManager extends WorldSavedData {
 		
 		//Fallback 1, try to get ruin position in any normal biome
 		while(pos == null) {
-			if(tries >= maxTries*2) {
+			if(tries >= maxTries * 2) {
 				break;
 			}
 			
@@ -206,10 +212,10 @@ public class RuinManager extends WorldSavedData {
 	
 	@Override
 	public CompoundNBT write(CompoundNBT compound) {
-		for (Map.Entry<EnumRuneType, BlockPos> ruin : ruinPositions.entrySet()) {
+		for(Map.Entry<EnumRuneType, BlockPos> ruin : ruinPositions.entrySet()) {
 			compound.putIntArray(ruin.getKey().name(), new int[] {ruin.getValue().getX(), ruin.getValue().getY(), ruin.getValue().getZ()});
 		}
-		for (Map.Entry<DimensionType, Boolean> generated : generatedDimension.entrySet()) {
+		for(Map.Entry<DimensionType, Boolean> generated : generatedDimension.entrySet()) {
 			compound.putBoolean(generated.getKey().getRegistryName().toString(), generated.getValue());
 		}
 		return compound;
@@ -219,11 +225,11 @@ public class RuinManager extends WorldSavedData {
 		File dataFile = new File(world.getSaveHandler().getWorldDirectory(), dataFolder);
 		
 		CompoundNBT data;
-		try (PushbackInputStream pushbackinputstream = new PushbackInputStream(new FileInputStream(dataFile), 2)) {
+		try(PushbackInputStream pushbackinputstream = new PushbackInputStream(new FileInputStream(dataFile), 2)) {
 			data = CompressedStreamTools.readCompressed(pushbackinputstream);
 			data = data.getCompound("data");
 		}
-
+		
 		return data;
 	}
 }

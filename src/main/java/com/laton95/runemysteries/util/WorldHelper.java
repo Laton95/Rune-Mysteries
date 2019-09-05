@@ -1,14 +1,8 @@
 package com.laton95.runemysteries.util;
 
-import net.minecraft.util.Tuple;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.Heightmap;
-import net.minecraftforge.common.BiomeDictionary;
-
-import java.util.List;
 
 public class WorldHelper {
 	

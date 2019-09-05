@@ -5,7 +5,10 @@ import net.minecraft.world.IWorld;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
-import net.minecraft.world.gen.*;
+import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraft.world.gen.GenerationSettings;
+import net.minecraft.world.gen.GenerationStage;
+import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
@@ -22,12 +25,12 @@ public class VoidWorldChunkGenerator extends ChunkGenerator<GenerationSettings> 
 	
 	@Override
 	public void carve(IChunk p_222538_1_, GenerationStage.Carving p_222538_2_) {
-	
+
 	}
 	
 	@Override
 	public void generateSurface(IChunk iChunk) {
-	
+
 	}
 	
 	@Override
@@ -37,7 +40,7 @@ public class VoidWorldChunkGenerator extends ChunkGenerator<GenerationSettings> 
 	
 	@Override
 	public void makeBase(IWorld iWorld, IChunk iChunk) {
-	
+
 	}
 	
 	@Override

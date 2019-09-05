@@ -3,15 +3,12 @@ package com.laton95.runemysteries.world.gen.feature.structure.temple;
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModFeatures;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
-import net.minecraft.world.dimension.DimensionType;
-import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -34,6 +31,7 @@ public class RuneTemplePieces {
 	public static class Piece extends TemplateStructurePiece {
 		
 		private final ResourceLocation structure;
+
 		private final EnumRuneType rune;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, EnumRuneType rune) {

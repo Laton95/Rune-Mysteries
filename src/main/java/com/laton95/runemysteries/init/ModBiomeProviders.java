@@ -2,7 +2,6 @@ package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.world.biome.provider.RuneTempleBiomeProvider;
-import net.minecraft.world.biome.Biomes;
 import net.minecraft.world.biome.provider.BiomeProviderType;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;

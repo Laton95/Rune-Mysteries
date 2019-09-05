@@ -2,7 +2,6 @@ package com.laton95.runemysteries.world.gen.feature;
 
 import com.laton95.runemysteries.block.BlackMonolithBlock;
 import com.laton95.runemysteries.init.ModBlocks;
-import com.laton95.runemysteries.util.ModLog;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.fluid.Fluids;

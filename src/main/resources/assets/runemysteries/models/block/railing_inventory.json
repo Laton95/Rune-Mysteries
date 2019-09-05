@@ -2,14 +2,38 @@
   "parent": "block/block",
   "display": {
     "gui": {
-      "rotation": [ 30, 135, 0 ],
-      "translation": [ 0, 0, 0],
-      "scale":[ 0.625, 0.625, 0.625 ]
+      "rotation": [
+        30,
+        135,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.625,
+        0.625,
+        0.625
+      ]
     },
     "fixed": {
-      "rotation": [ 0, 90, 0 ],
-      "translation": [ 0, 0, 0 ],
-      "scale": [ 0.5, 0.5, 0.5 ]
+      "rotation": [
+        0,
+        90,
+        0
+      ],
+      "translation": [
+        0,
+        0,
+        0
+      ],
+      "scale": [
+        0.5,
+        0.5,
+        0.5
+      ]
     }
   },
   "ambientocclusion": false,
@@ -18,64 +42,168 @@
   },
   "elements": [
     {
-      "from": [ 5, 0, 5 ],
-      "to": [ 11, 16, 11 ],
+      "from": [
+        5,
+        0,
+        5
+      ],
+      "to": [
+        11,
+        16,
+        11
+      ],
       "faces": {
-        "down":  { "texture": "#railing", "cullface": "down" },
-        "up":    { "texture": "#railing", "cullface": "up" },
-        "north": { "texture": "#railing" },
-        "south": { "texture": "#railing" },
-        "west":  { "texture": "#railing" },
-        "east":  { "texture": "#railing" }
+        "down": {
+          "texture": "#railing",
+          "cullface": "down"
+        },
+        "up": {
+          "texture": "#railing",
+          "cullface": "up"
+        },
+        "north": {
+          "texture": "#railing"
+        },
+        "south": {
+          "texture": "#railing"
+        },
+        "west": {
+          "texture": "#railing"
+        },
+        "east": {
+          "texture": "#railing"
+        }
       },
       "__comment": "Center post"
     },
     {
-      "from": [ 6, 12, 0 ],
-      "to": [ 10, 14, 16 ],
+      "from": [
+        6,
+        12,
+        0
+      ],
+      "to": [
+        10,
+        14,
+        16
+      ],
       "faces": {
-        "down":  { "texture": "#railing" },
-        "up":    { "texture": "#railing" },
-        "north": { "texture": "#railing", "cullface": "north" },
-        "south": { "texture": "#railing", "cullface": "south" },
-        "west":  { "texture": "#railing" },
-        "east":  { "texture": "#railing" }
+        "down": {
+          "texture": "#railing"
+        },
+        "up": {
+          "texture": "#railing"
+        },
+        "north": {
+          "texture": "#railing",
+          "cullface": "north"
+        },
+        "south": {
+          "texture": "#railing",
+          "cullface": "south"
+        },
+        "west": {
+          "texture": "#railing"
+        },
+        "east": {
+          "texture": "#railing"
+        }
       }
     },
     {
-      "from": [ 6, 2, 0 ],
-      "to": [ 10, 4, 16 ],
+      "from": [
+        6,
+        2,
+        0
+      ],
+      "to": [
+        10,
+        4,
+        16
+      ],
       "faces": {
-        "down":  { "texture": "#railing" },
-        "up":    { "texture": "#railing" },
-        "north": { "texture": "#railing" },
-        "south": { "texture": "#railing" },
-        "west":  { "texture": "#railing" },
-        "east":  { "texture": "#railing" }
+        "down": {
+          "texture": "#railing"
+        },
+        "up": {
+          "texture": "#railing"
+        },
+        "north": {
+          "texture": "#railing"
+        },
+        "south": {
+          "texture": "#railing"
+        },
+        "west": {
+          "texture": "#railing"
+        },
+        "east": {
+          "texture": "#railing"
+        }
       }
     },
     {
-      "from": [ 7, 4, 3 ],
-      "to": [ 9, 12, 5 ],
+      "from": [
+        7,
+        4,
+        3
+      ],
+      "to": [
+        9,
+        12,
+        5
+      ],
       "faces": {
-        "down":  { "texture": "#railing" },
-        "up":    { "texture": "#railing" },
-        "north": { "texture": "#railing" },
-        "south": { "texture": "#railing" },
-        "west":  { "texture": "#railing" },
-        "east":  { "texture": "#railing" }
+        "down": {
+          "texture": "#railing"
+        },
+        "up": {
+          "texture": "#railing"
+        },
+        "north": {
+          "texture": "#railing"
+        },
+        "south": {
+          "texture": "#railing"
+        },
+        "west": {
+          "texture": "#railing"
+        },
+        "east": {
+          "texture": "#railing"
+        }
       }
     },
     {
-      "from": [ 7, 4, 11 ],
-      "to": [ 9, 12, 13 ],
+      "from": [
+        7,
+        4,
+        11
+      ],
+      "to": [
+        9,
+        12,
+        13
+      ],
       "faces": {
-        "down":  { "texture": "#railing" },
-        "up":    { "texture": "#railing" },
-        "north": { "texture": "#railing" },
-        "south": { "texture": "#railing" },
-        "west":  { "texture": "#railing" },
-        "east":  { "texture": "#railing" }
+        "down": {
+          "texture": "#railing"
+        },
+        "up": {
+          "texture": "#railing"
+        },
+        "north": {
+          "texture": "#railing"
+        },
+        "south": {
+          "texture": "#railing"
+        },
+        "west": {
+          "texture": "#railing"
+        },
+        "east": {
+          "texture": "#railing"
+        }
       }
     }
   ]

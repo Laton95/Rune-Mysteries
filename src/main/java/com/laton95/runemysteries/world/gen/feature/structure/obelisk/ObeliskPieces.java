@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.world.gen.feature.structure.obelisk;
 
 import com.laton95.runemysteries.init.ModFeatures;
-import com.laton95.runemysteries.util.ModLog;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
@@ -26,7 +25,9 @@ public class ObeliskPieces {
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
+
 		private final ResourceLocation obeliskStructure;
+
 		private final int yLevel;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, int yLevel) {

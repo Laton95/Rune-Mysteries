@@ -254,7 +254,7 @@ public class ModBlocks {
 		register(event, new ModSlabBlock(Blocks.STONE_BRICKS), "blood_brick_slab");
 		register(event, new RailingBlock(Blocks.STONE_BRICKS), "blood_brick_railing");
 		register(event, new ModBlock(Block.Properties.create(Material.CLAY).slipperiness(0.8F).sound(SoundType.SLIME)), "flesh_block");
-
+		
 		register(event, new RailingBlock(Blocks.STONE), "stone_railing");
 		register(event, new RailingBlock(Blocks.POLISHED_GRANITE), "polished_granite_railing");
 		register(event, new RailingBlock(Blocks.POLISHED_DIORITE), "polished_diorite_railing");
