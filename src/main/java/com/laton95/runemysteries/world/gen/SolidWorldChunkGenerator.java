@@ -11,9 +11,9 @@ import net.minecraft.world.gen.*;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
-public class SolidWorldChunkGenerator extends ChunkGenerator<GenerationSettings> {
+public class SolidWorldChunkGenerator extends ChunkGenerator<SolidGenerationSettings> {
 	
-	public SolidWorldChunkGenerator(IWorld p_i49954_1_, BiomeProvider p_i49954_2_, GenerationSettings p_i49954_3_) {
+	public SolidWorldChunkGenerator(IWorld p_i49954_1_, BiomeProvider p_i49954_2_, SolidGenerationSettings p_i49954_3_) {
 		super(p_i49954_1_, p_i49954_2_, p_i49954_3_);
 	}
 	
@@ -44,7 +44,7 @@ public class SolidWorldChunkGenerator extends ChunkGenerator<GenerationSettings>
 		Heightmap oceanHeightmap = chunk.func_217303_b(Heightmap.Type.OCEAN_FLOOR_WG);
 		Heightmap surfaceHeightmap = chunk.func_217303_b(Heightmap.Type.WORLD_SURFACE_WG);
 		
-		for(int y = 0; y < 255; ++y) {
+		for(int y = 0; y <= this.settings.getHeight(); ++y) {
 			for(int x = 0; x < 16; ++x) {
 				for(int z = 0; z < 16; ++z) {
 					chunk.setBlockState(pos.setPos(x, y, z), state, false);

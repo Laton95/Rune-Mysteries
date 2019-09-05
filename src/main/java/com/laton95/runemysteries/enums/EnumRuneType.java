@@ -204,7 +204,36 @@ public enum EnumRuneType {
 		}
 	}
 	
-	public BlockPos getTempleArrivalPoint() {
-		return new BlockPos(0, 100, 0);
+	public BlockPos getAltarNorthWestPoint() {
+		switch(this) {
+			case AIR:
+				return new BlockPos(0, 100 ,0);
+			case BLOOD:
+				return new BlockPos(0, 100 ,0);
+			case BODY:
+				return new BlockPos(0, 100 ,0);
+			case CHAOS:
+				return new BlockPos(0, 100 ,0);
+			case COSMIC:
+				return new BlockPos(0, 100 ,0);
+			case DEATH:
+				return new BlockPos(0, 100 ,0);
+			case EARTH:
+				return new BlockPos(0, 100 ,0);
+			case FIRE:
+				return new BlockPos(0, 100 ,0);
+			case LAW:
+				return new BlockPos(0, 100 ,0);
+			case MIND:
+				return new BlockPos(-1, 61 ,-1);
+			case NATURE:
+				return new BlockPos(0, 100 ,0);
+			case SOUL:
+				return new BlockPos(0, 100 ,0);
+			case WATER:
+				return new BlockPos(0, 100 ,0);
+			default:
+				return null;
+		}
 	}
 }

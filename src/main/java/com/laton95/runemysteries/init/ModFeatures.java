@@ -6,9 +6,7 @@ import com.laton95.runemysteries.world.biome.RuneTempleBiome;
 import com.laton95.runemysteries.world.gen.feature.MonolithFeature;
 import com.laton95.runemysteries.world.gen.feature.structure.altar.*;
 import com.laton95.runemysteries.world.gen.feature.structure.obelisk.*;
-import com.laton95.runemysteries.world.gen.feature.structure.temple.BloodTempleStructure;
-import com.laton95.runemysteries.world.gen.feature.structure.temple.CosmicTempleStructure;
-import com.laton95.runemysteries.world.gen.feature.structure.temple.RuneTemplePieces;
+import com.laton95.runemysteries.world.gen.feature.structure.temple.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
@@ -71,6 +69,12 @@ public class ModFeatures {
 	public static Structure<NoFeatureConfig> BLOOD_TEMPLE;
 	
 	public static Structure<NoFeatureConfig> COSMIC_TEMPLE;
+	
+	public static Structure<NoFeatureConfig> MIND_TEMPLE;
+	
+	public static Structure<NoFeatureConfig> NATURE_TEMPLE;
+	
+	public static Structure<NoFeatureConfig> WATER_TEMPLE;
 	
 	public static Feature<NoFeatureConfig> MONOLITH;
 	
@@ -163,6 +167,15 @@ public class ModFeatures {
 		COSMIC_TEMPLE = new CosmicTempleStructure(NoFeatureConfig::deserialize);
 		registerFeature(event, COSMIC_TEMPLE, "cosmic_temple");
 		
+		MIND_TEMPLE = new MindTempleStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, MIND_TEMPLE, "mind_temple");
+		
+		NATURE_TEMPLE = new NatureTempleStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, NATURE_TEMPLE, "nature_temple");
+		
+		WATER_TEMPLE = new WaterTempleStructure(NoFeatureConfig::deserialize);
+		registerFeature(event, WATER_TEMPLE, "water_temple");
+		
 		applyFeatures();
 	}
 	
@@ -252,6 +265,9 @@ public class ModFeatures {
 		
 		addTempleStructure((RuneTempleBiome) ModBiomes.BLOOD_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, BLOOD_TEMPLE);
 		addTempleStructure((RuneTempleBiome) ModBiomes.COSMIC_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, COSMIC_TEMPLE);
+		addTempleStructure((RuneTempleBiome) ModBiomes.MIND_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, MIND_TEMPLE);
+		addTempleStructure((RuneTempleBiome) ModBiomes.NATURE_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, NATURE_TEMPLE);
+		addTempleStructure((RuneTempleBiome) ModBiomes.WATER_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_TEMPLE);
 	}
 	
 	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure){

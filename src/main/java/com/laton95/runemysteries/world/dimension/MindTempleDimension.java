@@ -26,7 +26,7 @@ public class MindTempleDimension extends RuneTempleDimension {
 	
 	@Override
 	public ChunkGenerator<?> createChunkGenerator() {
-		return ModChunkGenerators.SOLID_WORLD.create(world, ModBiomeProviders.MIND_TEMPLE.create(ModBiomeProviders.MIND_TEMPLE.createSettings()), ModChunkGenerators.SOLID_WORLD.createSettings());
+		return ModChunkGenerators.SOLID_WORLD.create(world, ModBiomeProviders.MIND_TEMPLE.create(ModBiomeProviders.MIND_TEMPLE.createSettings()), ModChunkGenerators.SOLID_WORLD.createSettings().setHeight(74));
 	}
 	
 	@Nullable

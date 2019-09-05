@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.block;
 
+import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference;
 import com.laton95.runemysteries.util.TeleportHelper;
@@ -24,7 +25,7 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
-import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
@@ -53,7 +54,14 @@ public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
 			if(player.getHeldItemMainhand().getItem() == runeType.getTalisman() || player.getHeldItemOffhand().getItem() == runeType.getTalisman()) {
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_ENTER));
 				
-				TeleportHelper.teleportPlayer((ServerPlayerEntity) player, runeType.getTempleDimension(), runeType.getTempleArrivalPoint());
+				BlockPos pos1 = RuneMysteries.ruinManager.getRuinPosition(runeType, (ServerWorld) world);
+				BlockPos pos2 = runeType.getAltarNorthWestPoint();
+				
+				double x = pos1.getX() - player.posX;
+				double y = pos.getY() - player.posY;
+				double z = pos1.getZ() - player.posZ;
+				
+				TeleportHelper.teleportPlayer((ServerPlayerEntity) player, runeType.getTempleDimension(), pos2.getX() - x, Math.max(pos2.getY(), pos2.getY() - y), pos2.getZ() - z);
 			}
 			else {
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_INTERACT));

@@ -12,10 +12,13 @@ import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.registry.Registry;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.server.ServerWorld;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class TalismanItem extends ModItem {
 	
@@ -35,6 +38,10 @@ public class TalismanItem extends ModItem {
 		ItemStack talisman = player.getHeldItem(hand);
 		
 		if(!world.isRemote) {
+			for(ResourceLocation f : Registry.STRUCTURE_FEATURE.keySet()) {
+				ModLog.info(f.toString());
+			}
+			
 			player.getCooldownTracker().setCooldown(this, 30);
 			
 			DimensionType ruinDimension = runeType.getRuinDimension();

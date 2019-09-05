@@ -195,6 +195,8 @@ public class ModBlocks {
 	
 	public static final ModBlock MENAPHITE_SANDSTONE = null;
 	
+	public static final CloudBlock CLOUD = null;
+	
 	@SubscribeEvent
 	public static void registerBlocks(final RegistryEvent.Register<Block> event) {
 		ModLog.info("Registering blocks");
@@ -296,7 +298,7 @@ public class ModBlocks {
 		register(event, new ElderCatalystBlock(), "elder_catalyst");
 		
 		register(event, new ModBlock(Block.Properties.create(Material.ROCK, MaterialColor.SAND).hardnessAndResistance(0.8F)), "menaphite_sandstone");
-		
+		register(event, new CloudBlock(), "cloud");
 	}
 	
 	private static void register(RegistryEvent.Register<Block> event, Block block, String name) {

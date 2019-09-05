@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "###",
+    "#@#",
+    "###"
+  ],
+  "key": {
+    "#": {
+      "item": "runemysteries:air_rune"
+    },
+    "@": {
+      "item": "minecraft:water_bucket"
+    }
+  },
+  "result": {
+    "item": "runemysteries:cloud",
+    "count": 8
+  }
+}

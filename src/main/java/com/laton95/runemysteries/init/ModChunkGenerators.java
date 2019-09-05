@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.world.gen.SolidGenerationSettings;
 import com.laton95.runemysteries.world.gen.SolidWorldChunkGenerator;
 import com.laton95.runemysteries.world.gen.SurfaceWorldChunkGenerator;
 import com.laton95.runemysteries.world.gen.VoidWorldChunkGenerator;
@@ -20,12 +21,12 @@ public class ModChunkGenerators {
 	
 	public static final ChunkGeneratorType VOID_WORLD = null;
 	
-	public static final ChunkGeneratorType SOLID_WORLD = null;
+	public static final ChunkGeneratorType<SolidGenerationSettings, SolidWorldChunkGenerator> SOLID_WORLD = null;
 	
 	@SubscribeEvent
 	public static void registerChunkGenerators(RegistryEvent.Register<ChunkGeneratorType<?, ?>> event) {
 		event.getRegistry().register(new ChunkGeneratorType<>(SurfaceWorldChunkGenerator::new, false, OverworldGenSettings::new).setRegistryName(RuneMysteries.MOD_ID, "surface_world"));
 		event.getRegistry().register(new ChunkGeneratorType<>(VoidWorldChunkGenerator::new, false, GenerationSettings::new).setRegistryName(RuneMysteries.MOD_ID, "void_world"));
-		event.getRegistry().register(new ChunkGeneratorType<>(SolidWorldChunkGenerator::new, false, GenerationSettings::new).setRegistryName(RuneMysteries.MOD_ID, "solid_world"));
+		event.getRegistry().register(new ChunkGeneratorType<>(SolidWorldChunkGenerator::new, false, SolidGenerationSettings::new).setRegistryName(RuneMysteries.MOD_ID, "solid_world"));
 	}
 }

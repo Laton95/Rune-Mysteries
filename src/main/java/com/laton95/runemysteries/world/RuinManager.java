@@ -53,7 +53,7 @@ public class RuinManager extends WorldSavedData {
 	
 	@Nullable
 	public BlockPos getRuinPosition(EnumRuneType rune, ChunkGenerator<?> generator) {
-		IWorld world = getWorldFromDimension(generator);
+		IWorld world = generator.world;
 		DimensionType dimension = world.getDimension().getType();
 		
 		if(!dimension.isVanilla()) {
@@ -186,14 +186,6 @@ public class RuinManager extends WorldSavedData {
 		
 		ruinPositions.put(rune, pos);
 		ModLog.info(String.format("%s at x:%d z:%d", rune.name(), pos.getX(), pos.getZ()));
-	}
-	
-	private IWorld getWorldFromDimension(ChunkGenerator generator) {
-		IWorld world;
-		
-		world = ObfuscationReflectionHelper.getPrivateValue(ChunkGenerator.class, generator, "world");
-		
-		return world;
 	}
 	
 	@Override

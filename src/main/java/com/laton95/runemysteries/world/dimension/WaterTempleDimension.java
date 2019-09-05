@@ -3,6 +3,11 @@ package com.laton95.runemysteries.world.dimension;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModBiomeProviders;
 import com.laton95.runemysteries.init.ModChunkGenerators;
+import com.laton95.runemysteries.init.ModEffects;
+import com.laton95.runemysteries.util.ModLog;
+import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.potion.EffectInstance;
+import net.minecraft.potion.Effects;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -10,9 +15,13 @@ import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 import javax.annotation.Nullable;
 
+@Mod.EventBusSubscriber
 public class WaterTempleDimension extends RuneTempleDimension {
 	
 	public WaterTempleDimension(World world, DimensionType type) {
@@ -72,5 +81,17 @@ public class WaterTempleDimension extends RuneTempleDimension {
 	@Override
 	public boolean doesXZShowFog(int x, int z) {
 		return false;
+	}
+	
+	@SubscribeEvent
+	public static void giveWaterBreathing(EntityTravelToDimensionEvent event) {
+		if(!event.getEntity().getEntityWorld().isRemote && event.getEntity() instanceof PlayerEntity) {
+			if(event.getDimension() == EnumRuneType.WATER.getTempleDimension()) {
+				((PlayerEntity) event.getEntity()).addPotionEffect(new EffectInstance(Effects.WATER_BREATHING, Integer.MAX_VALUE, 0, true, false));
+			}
+			else if(event.getEntity().dimension == EnumRuneType.WATER.getTempleDimension()) {
+				((PlayerEntity) event.getEntity()).clearActivePotions();
+			}
+		}
 	}
 }

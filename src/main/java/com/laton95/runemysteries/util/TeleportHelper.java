@@ -69,9 +69,13 @@ public class TeleportHelper {
 	}
 	
 	public static void teleportPlayer(ServerPlayerEntity player, DimensionType destinationDimension, BlockPos pos) {
+		teleportPlayer(player, destinationDimension, pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5);
+	}
+	
+	public static void teleportPlayer(ServerPlayerEntity player, DimensionType destinationDimension, double x, double y, double z) {
 		if(player != null && !player.world.isRemote && !player.isPassenger() && !player.isBeingRidden()) {
-			player.setLocationAndAngles(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, player.rotationPitch, player.rotationYaw);
-			player.connection.setPlayerLocation(pos.getX() + 0.5, pos.getY(), pos.getZ() + 0.5, player.rotationPitch, player.rotationYaw);
+			player.setLocationAndAngles(x, y, z, player.rotationPitch, player.rotationYaw);
+			player.connection.setPlayerLocation(x, y, z, player.rotationPitch, player.rotationYaw);
 			
 			if(player.dimension != destinationDimension) {
 				changePlayerDimension(player, destinationDimension);

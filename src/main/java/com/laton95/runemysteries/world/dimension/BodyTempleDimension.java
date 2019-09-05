@@ -4,6 +4,7 @@ import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.init.ModBiomeProviders;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModChunkGenerators;
+import com.laton95.runemysteries.world.gen.SolidGenerationSettings;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -28,7 +29,7 @@ public class BodyTempleDimension extends RuneTempleDimension {
 	
 	@Override
 	public ChunkGenerator<?> createChunkGenerator() {
-		GenerationSettings settings = ModChunkGenerators.SOLID_WORLD.createSettings();
+		SolidGenerationSettings settings = ModChunkGenerators.SOLID_WORLD.createSettings();
 		settings.setDefaultBlock(ModBlocks.FLESH_BLOCK.getDefaultState());
 		return ModChunkGenerators.SOLID_WORLD.create(world, ModBiomeProviders.BODY_TEMPLE.create(ModBiomeProviders.BODY_TEMPLE.createSettings()), settings);
 	}
