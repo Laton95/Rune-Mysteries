@@ -1,6 +1,10 @@
 {
   "variants": {
-    "top=false": { "model": "runemysteries:block/earth_obelisk" },
-    "top=true":    { "model": "runemysteries:block/earth_obelisk_top" }
+    "top=false": {
+      "model": "runemysteries:block/earth_obelisk"
+    },
+    "top=true": {
+      "model": "runemysteries:block/earth_obelisk_top"
+    }
   }
 }

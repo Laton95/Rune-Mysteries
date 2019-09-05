@@ -1,14 +1,40 @@
 {
   "variants": {
-    "corner=north_west,top=false": { "model": "runemysteries:block/elder_catalyst_bottom" },
-    "corner=north_east,top=false": { "model": "runemysteries:block/elder_catalyst_bottom", "y": 90 },
-    "corner=south_west,top=false":  { "model": "runemysteries:block/elder_catalyst_bottom", "y": 270 },
-    "corner=south_east,top=false":  { "model": "runemysteries:block/elder_catalyst_bottom", "y": 180 },
-    "corner=north_west,top=true": { "model": "runemysteries:block/elder_catalyst_top" },
-    "corner=north_east,top=true": { "model": "runemysteries:block/elder_catalyst_top", "y": 90 },
-    "corner=south_west,top=true":  { "model": "runemysteries:block/elder_catalyst_top", "y": 270 },
-    "corner=south_east,top=true":  { "model": "runemysteries:block/elder_catalyst_top", "y": 180 },
-    "corner=none,top=true":  { "model": "runemysteries:block/elder_catalyst"},
-    "corner=none,top=false":  { "model": "runemysteries:block/elder_catalyst"}
+    "corner=north_west,top=false": {
+      "model": "runemysteries:block/elder_catalyst_bottom"
+    },
+    "corner=north_east,top=false": {
+      "model": "runemysteries:block/elder_catalyst_bottom",
+      "y": 90
+    },
+    "corner=south_west,top=false": {
+      "model": "runemysteries:block/elder_catalyst_bottom",
+      "y": 270
+    },
+    "corner=south_east,top=false": {
+      "model": "runemysteries:block/elder_catalyst_bottom",
+      "y": 180
+    },
+    "corner=north_west,top=true": {
+      "model": "runemysteries:block/elder_catalyst_top"
+    },
+    "corner=north_east,top=true": {
+      "model": "runemysteries:block/elder_catalyst_top",
+      "y": 90
+    },
+    "corner=south_west,top=true": {
+      "model": "runemysteries:block/elder_catalyst_top",
+      "y": 270
+    },
+    "corner=south_east,top=true": {
+      "model": "runemysteries:block/elder_catalyst_top",
+      "y": 180
+    },
+    "corner=none,top=true": {
+      "model": "runemysteries:block/elder_catalyst"
+    },
+    "corner=none,top=false": {
+      "model": "runemysteries:block/elder_catalyst"
+    }
   }
 }

@@ -1,8 +1,19 @@
 {
   "variants": {
-    "facing=north": { "model": "runemysteries:block/black_monolith", "y": 90 },
-    "facing=south": { "model": "runemysteries:block/black_monolith", "y": 270 },
-    "facing=west":  { "model": "runemysteries:block/black_monolith" },
-    "facing=east":  { "model": "runemysteries:block/black_monolith", "y": 180 }
+    "facing=north": {
+      "model": "runemysteries:block/black_monolith",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "runemysteries:block/black_monolith",
+      "y": 270
+    },
+    "facing=west": {
+      "model": "runemysteries:block/black_monolith"
+    },
+    "facing=east": {
+      "model": "runemysteries:block/black_monolith",
+      "y": 180
+    }
   }
 }

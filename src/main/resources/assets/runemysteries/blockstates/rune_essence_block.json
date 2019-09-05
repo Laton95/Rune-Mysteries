@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/rune_essence_block" }
+    "": {
+      "model": "runemysteries:block/rune_essence_block"
+    }
   }
 }

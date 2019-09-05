@@ -1,8 +1,0 @@
-{
-    "variants": {
-        "facing=east": { "model": "runemysteries:block/underwater_wall_torch" },
-        "facing=south": { "model": "runemysteries:block/underwater_wall_torch", "y": 90 },
-        "facing=west": { "model": "runemysteries:block/underwater_wall_torch", "y": 180 },
-        "facing=north": { "model": "runemysteries:block/underwater_wall_torch", "y": 270 }
-    }
-}

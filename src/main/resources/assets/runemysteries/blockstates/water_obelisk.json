@@ -1,6 +1,10 @@
 {
   "variants": {
-    "top=false": { "model": "runemysteries:block/water_obelisk" },
-    "top=true":    { "model": "runemysteries:block/water_obelisk_top" }
+    "top=false": {
+      "model": "runemysteries:block/water_obelisk"
+    },
+    "top=true": {
+      "model": "runemysteries:block/water_obelisk_top"
+    }
   }
 }

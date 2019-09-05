@@ -1,7 +1,13 @@
 {
   "variants": {
-    "type=bottom": { "model": "runemysteries:block/blood_brick_slab" },
-    "type=top": { "model": "runemysteries:block/blood_brick_slab_top" },
-    "type=double": { "model": "runemysteries:block/blood_bricks" }
+    "type=bottom": {
+      "model": "runemysteries:block/blood_brick_slab"
+    },
+    "type=top": {
+      "model": "runemysteries:block/blood_brick_slab_top"
+    },
+    "type=double": {
+      "model": "runemysteries:block/blood_bricks"
+    }
   }
 }

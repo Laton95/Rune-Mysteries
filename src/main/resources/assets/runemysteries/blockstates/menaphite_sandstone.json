@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/menaphite_sandstone" }
+    "": {
+      "model": "runemysteries:block/menaphite_sandstone"
+    }
   }
 }

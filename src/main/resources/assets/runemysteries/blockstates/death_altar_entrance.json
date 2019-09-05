@@ -1,5 +1,7 @@
 {
   "variants": {
-    "": { "model": "runemysteries:block/blank_altar" }
+    "": {
+      "model": "runemysteries:block/blank_altar"
+    }
   }
 }
