@@ -23,60 +23,63 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.ObjectHolder;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ObjectHolder(RuneMysteries.MOD_ID)
 public class ModFeatures {
 	
-	public static Structure<NoFeatureConfig> AIR_OBELISK;
+	public static final Structure<NoFeatureConfig> AIR_OBELISK = null;
 	
-	public static Structure<NoFeatureConfig> EARTH_OBELISK;
+	public static final Structure<NoFeatureConfig> EARTH_OBELISK = null;
 	
-	public static Structure<NoFeatureConfig> FIRE_OBELISK;
+	public static final Structure<NoFeatureConfig> FIRE_OBELISK = null;
 	
-	public static Structure<NoFeatureConfig> WATER_OBELISK;
+	public static final Structure<NoFeatureConfig> WATER_OBELISK = null;
 	
-	public static Structure<NoFeatureConfig> AIR_RUIN;
+	public static final Structure<NoFeatureConfig> AIR_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> ASTRAL_RUIN;
+	public static final Structure<NoFeatureConfig> ASTRAL_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> BLOOD_RUIN;
+	public static final Structure<NoFeatureConfig> BLOOD_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> BODY_RUIN;
+	public static final Structure<NoFeatureConfig> BODY_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> CHAOS_RUIN;
+	public static final Structure<NoFeatureConfig> CHAOS_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> COSMIC_RUIN;
+	public static final Structure<NoFeatureConfig> COSMIC_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> DEATH_RUIN;
+	public static final Structure<NoFeatureConfig> DEATH_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> EARTH_RUIN;
+	public static final Structure<NoFeatureConfig> EARTH_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> FIRE_RUIN;
+	public static final Structure<NoFeatureConfig> FIRE_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> LAW_RUIN;
+	public static final Structure<NoFeatureConfig> LAW_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> MIND_RUIN;
+	public static final Structure<NoFeatureConfig> MIND_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> NATURE_RUIN;
+	public static final Structure<NoFeatureConfig> NATURE_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> SOUL_RUIN;
+	public static final Structure<NoFeatureConfig> SOUL_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> WATER_RUIN;
+	public static final Structure<NoFeatureConfig> WATER_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> OURANIA_RUIN;
+	public static final Structure<NoFeatureConfig> OURANIA_RUIN = null;
 	
-	public static Structure<NoFeatureConfig> BLOOD_TEMPLE;
+	public static final Structure<NoFeatureConfig> BLOOD_TEMPLE = null;
 	
-	public static Structure<NoFeatureConfig> COSMIC_TEMPLE;
+	public static final Structure<NoFeatureConfig> COSMIC_TEMPLE = null;
 	
-	public static Structure<NoFeatureConfig> MIND_TEMPLE;
+	public static final Structure<NoFeatureConfig> MIND_TEMPLE = null;
 	
-	public static Structure<NoFeatureConfig> NATURE_TEMPLE;
+	public static final Structure<NoFeatureConfig> NATURE_TEMPLE = null;
 	
-	public static Structure<NoFeatureConfig> WATER_TEMPLE;
+	public static final Structure<NoFeatureConfig> WATER_TEMPLE = null;
 	
-	public static Feature<NoFeatureConfig> MONOLITH;
+	public static final Feature<NoFeatureConfig> MONOLITH = null;
 	
 	public static IStructurePieceType OBELISK;
 	
@@ -101,94 +104,45 @@ public class ModFeatures {
 		WELL_RUIN = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:well_ruin", SoulRuinPieces.Piece::new);
 		RUNE_TEMPLE = Registry.register(Registry.STRUCTURE_PIECE, "runemysteries:rune_temple", RuneTemplePieces.Piece::new);
 		
-		MONOLITH = new MonolithFeature(NoFeatureConfig::deserialize);
-		registerFeature(event, MONOLITH, "monolith");
+		registerFeature(event, new MonolithFeature(NoFeatureConfig::deserialize), "monolith");
 		
-		AIR_OBELISK = new AirObeliskStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, AIR_OBELISK, "air_obelisk");
+		registerFeature(event, new AirObeliskStructure(NoFeatureConfig::deserialize), "air_obelisk");
+		registerFeature(event, new EarthObeliskStructure(NoFeatureConfig::deserialize), "earth_obelisk");
+		registerFeature(event, new FireObeliskStructure(NoFeatureConfig::deserialize), "fire_obelisk");
+		registerFeature(event, new WaterObeliskStructure(NoFeatureConfig::deserialize), "water_obelisk");
 		
-		EARTH_OBELISK = new EarthObeliskStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, EARTH_OBELISK, "earth_obelisk");
+		registerFeature(event, new AirRuinStructure(NoFeatureConfig::deserialize), "air_ruin");
+		registerFeature(event, new AstralRuinStructure(NoFeatureConfig::deserialize), "astral_ruin");
+		registerFeature(event, new BloodRuinStructure(NoFeatureConfig::deserialize), "blood_ruin");
+		registerFeature(event, new BodyRuinStructure(NoFeatureConfig::deserialize), "body_ruin");
+		registerFeature(event, new ChaosRuinStructure(NoFeatureConfig::deserialize), "chaos_ruin");
+		registerFeature(event, new CosmicRuinStructure(NoFeatureConfig::deserialize), "cosmic_ruin");
+		registerFeature(event, new DeathRuinStructure(NoFeatureConfig::deserialize), "death_ruin");
+		registerFeature(event, new EarthRuinStructure(NoFeatureConfig::deserialize), "earth_ruin");
+		registerFeature(event, new FireRuinStructure(NoFeatureConfig::deserialize), "fire_ruin");
+		registerFeature(event, new LawRuinStructure(NoFeatureConfig::deserialize), "law_ruin");
+		registerFeature(event, new MindRuinStructure(NoFeatureConfig::deserialize), "mind_ruin");
+		registerFeature(event, new NatureRuinStructure(NoFeatureConfig::deserialize), "nature_ruin");
+		registerFeature(event, new SoulRuinStructure(NoFeatureConfig::deserialize), "soul_ruin");
+		registerFeature(event, new WaterRuinStructure(NoFeatureConfig::deserialize), "water_ruin");
+		registerFeature(event, new OuraniaRuinStructure(NoFeatureConfig::deserialize), "ourania_ruin");
 		
-		FIRE_OBELISK = new FireObeliskStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, FIRE_OBELISK, "fire_obelisk");
-		
-		WATER_OBELISK = new WaterObeliskStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, WATER_OBELISK, "water_obelisk");
-		
-		AIR_RUIN = new AirRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, AIR_RUIN, "air_ruin");
-		
-		ASTRAL_RUIN = new AstralRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, ASTRAL_RUIN, "astral_ruin");
-		
-		BLOOD_RUIN = new BloodRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, BLOOD_RUIN, "blood_ruin");
-		
-		BODY_RUIN = new BodyRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, BODY_RUIN, "body_ruin");
-		
-		CHAOS_RUIN = new ChaosRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, CHAOS_RUIN, "chaos_ruin");
-		
-		COSMIC_RUIN = new CosmicRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, COSMIC_RUIN, "cosmic_ruin");
-		
-		DEATH_RUIN = new DeathRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, DEATH_RUIN, "death_ruin");
-		
-		EARTH_RUIN = new EarthRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, EARTH_RUIN, "earth_ruin");
-		
-		FIRE_RUIN = new FireRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, FIRE_RUIN, "fire_ruin");
-		
-		LAW_RUIN = new LawRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, LAW_RUIN, "law_ruin");
-		
-		MIND_RUIN = new MindRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, MIND_RUIN, "mind_ruin");
-		
-		NATURE_RUIN = new NatureRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, NATURE_RUIN, "nature_ruin");
-		
-		SOUL_RUIN = new SoulRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, SOUL_RUIN, "soul_ruin");
-		
-		WATER_RUIN = new WaterRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, WATER_RUIN, "water_ruin");
-		
-		OURANIA_RUIN = new OuraniaRuinStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, OURANIA_RUIN, "ourania_ruin");
-		
-		BLOOD_TEMPLE = new BloodTempleStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, BLOOD_TEMPLE, "blood_temple");
-		
-		COSMIC_TEMPLE = new CosmicTempleStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, COSMIC_TEMPLE, "cosmic_temple");
-		
-		MIND_TEMPLE = new MindTempleStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, MIND_TEMPLE, "mind_temple");
-		
-		NATURE_TEMPLE = new NatureTempleStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, NATURE_TEMPLE, "nature_temple");
-		
-		WATER_TEMPLE = new WaterTempleStructure(NoFeatureConfig::deserialize);
-		registerFeature(event, WATER_TEMPLE, "water_temple");
-		
-		applyFeatures();
+		registerFeature(event, new BloodTempleStructure(NoFeatureConfig::deserialize), "blood_temple");
+		registerFeature(event, new CosmicTempleStructure(NoFeatureConfig::deserialize), "cosmic_temple");
+		registerFeature(event, new MindTempleStructure(NoFeatureConfig::deserialize), "mind_temple");
+		registerFeature(event, new NatureTempleStructure(NoFeatureConfig::deserialize), "nature_temple");
+		registerFeature(event, new WaterTempleStructure(NoFeatureConfig::deserialize), "water_temple");
 	}
 	
 	private static void registerFeature(RegistryEvent.Register<Feature<?>> event, Feature<?> feature, String name) {
 		feature.setRegistryName(RuneMysteries.MOD_ID, name);
 		event.getRegistry().register(feature);
-		if(feature instanceof Structure) {
-			Feature.STRUCTURES.put("runemysteries:" + name, (Structure<?>) feature);
-			Registry.register(Registry.STRUCTURE_FEATURE, "runemysteries:" + name, (Structure<?>) feature);
-		}
 	}
 	
-	private static void applyFeatures() {
+	@SubscribeEvent
+	public static void applyFeatures(FMLCommonSetupEvent event) {
+		ModLog.info("Applying features to biomes");
+		
 		for(Biome biome : ForgeRegistries.BIOMES.getValues()) {
 			switch(biome.getCategory()) {
 				case NONE:
@@ -247,18 +201,18 @@ public class ModFeatures {
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, LAW_RUIN);
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, MIND_RUIN);
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, NATURE_RUIN);
-				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, SOUL_RUIN);
+				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, SOUL_RUIN);
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_RUIN);
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, OURANIA_RUIN);
 				
 				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUNE_ESSENCE_BLOCK.getDefaultState(), 5), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 64)));
 			}
 			
-			if(biome.getCategory() != Biome.Category.THEEND) {
+			if(biome.getCategory() != Biome.Category.THEEND && biome.getCategory() != Biome.Category.NONE) {
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, FIRE_OBELISK);
 			}
 			
-			if(biome.getCategory() != Biome.Category.OCEAN && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
+			if(biome.getCategory() != Biome.Category.OCEAN && biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome.getCategory() != Biome.Category.NONE) {
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, EARTH_OBELISK);
 			}
 		}
@@ -277,6 +231,6 @@ public class ModFeatures {
 	
 	private static void addTempleStructure(RuneTempleBiome biome, GenerationStage.Decoration stage, Structure structure) {
 		biome.actuallyAddFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
+		biome.actuallyAddStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
 	}
 }

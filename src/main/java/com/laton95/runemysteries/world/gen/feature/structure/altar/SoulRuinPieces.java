@@ -50,9 +50,9 @@ public class SoulRuinPieces {
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
-
+		
 		private final ResourceLocation structure;
-
+		
 		private final BlockPos offset;
 		
 		public Piece(TemplateManager templateManager, ResourceLocation structure, BlockPos pos, BlockPos offset, int yOffset) {

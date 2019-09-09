@@ -38,7 +38,7 @@ public abstract class RuneTempleStructure extends Structure<NoFeatureConfig> {
 	
 	@Override
 	public String getStructureName() {
-		return rune.name().substring(0, 1).toUpperCase() + rune.name().substring(1).toLowerCase() + "_temple";
+		return "runemysteries:" + rune.name().toLowerCase() + "_temple";
 	}
 	
 	@Override

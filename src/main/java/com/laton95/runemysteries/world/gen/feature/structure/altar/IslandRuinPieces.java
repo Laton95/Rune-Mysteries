@@ -35,9 +35,9 @@ public class IslandRuinPieces {
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
-
+		
 		private final EnumRuneType rune;
-
+		
 		private final ResourceLocation structure;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, EnumRuneType rune) {

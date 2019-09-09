@@ -36,10 +36,6 @@ public class TalismanItem extends ModItem {
 		ItemStack talisman = player.getHeldItem(hand);
 		
 		if(!world.isRemote) {
-			for(ResourceLocation f : Registry.STRUCTURE_FEATURE.keySet()) {
-				ModLog.info(f.toString());
-			}
-			
 			player.getCooldownTracker().setCooldown(this, 30);
 			
 			DimensionType ruinDimension = runeType.getRuinDimension();

@@ -25,9 +25,9 @@ public class ObeliskPieces {
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
-
+		
 		private final ResourceLocation obeliskStructure;
-
+		
 		private final int yLevel;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, int yLevel) {

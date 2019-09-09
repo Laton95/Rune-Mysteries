@@ -31,7 +31,7 @@ public class RuneTemplePieces {
 	public static class Piece extends TemplateStructurePiece {
 		
 		private final ResourceLocation structure;
-
+		
 		private final EnumRuneType rune;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, EnumRuneType rune) {
