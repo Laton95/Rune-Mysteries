@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.gen.feature.structure.altar;
+package com.laton95.runemysteries.world.gen.feature.structure.ruin;
 
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.mojang.datafixers.Dynamic;

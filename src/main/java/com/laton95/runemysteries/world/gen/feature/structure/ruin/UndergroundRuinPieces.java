@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.gen.feature.structure.altar;
+package com.laton95.runemysteries.world.gen.feature.structure.ruin;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
@@ -20,18 +20,15 @@ import net.minecraft.world.gen.feature.template.TemplateManager;
 import java.util.List;
 import java.util.Random;
 
-public class IslandRuinPieces {
+public class UndergroundRuinPieces {
 	
-	public static ResourceLocation STONE_CIRCLE = new ResourceLocation(RuneMysteries.MOD_ID, "stone_circle");
+	public static final ResourceLocation LANTERNS = new ResourceLocation(RuneMysteries.MOD_ID, "circle_lanterns");
 	
-	public static ResourceLocation NETHER_ISLAND = new ResourceLocation(RuneMysteries.MOD_ID, "nether_island");
-	
-	public static ResourceLocation END_ISLAND = new ResourceLocation(RuneMysteries.MOD_ID, "end_island");
-	
-	public static void addPieces(TemplateManager templateManager, BlockPos pos, List<StructurePiece> components, ResourceLocation structure, ResourceLocation island, EnumRuneType rune) {
-		components.add(new IslandRuinPieces.Piece(templateManager, pos, island, rune));
-		components.add(new IslandRuinPieces.Piece(templateManager, pos.add(1, 5, 1), STONE_CIRCLE, rune));
-		components.add(new IslandRuinPieces.Piece(templateManager, pos.add(1, 5, 1), structure, rune));
+	public static void addPieces(TemplateManager templateManager, BlockPos pos, List<StructurePiece> components, ResourceLocation structure, ResourceLocation room, EnumRuneType rune) {
+		components.add(new UndergroundRuinPieces.Piece(templateManager, pos, room, rune));
+		components.add(new UndergroundRuinPieces.Piece(templateManager, pos.add(5, 1, 5), SurfaceRuinPieces.STONE_CIRCLE, rune));
+		components.add(new UndergroundRuinPieces.Piece(templateManager, pos.add(5, 1, 5), structure, rune));
+		components.add(new UndergroundRuinPieces.Piece(templateManager, pos.add(5, 1, 5), LANTERNS, rune));
 	}
 	
 	public static class Piece extends TemplateStructurePiece {
@@ -41,7 +38,7 @@ public class IslandRuinPieces {
 		private final ResourceLocation structure;
 		
 		public Piece(TemplateManager templateManager, BlockPos pos, ResourceLocation structure, EnumRuneType rune) {
-			super(ModFeatures.ISLAND_RUIN, 0);
+			super(ModFeatures.UNDERGROUND_RUIN, 0);
 			this.rune = rune;
 			this.structure = structure;
 			this.templatePosition = pos;
@@ -49,7 +46,7 @@ public class IslandRuinPieces {
 		}
 		
 		public Piece(TemplateManager templateManager, CompoundNBT NBT) {
-			super(ModFeatures.ISLAND_RUIN, NBT);
+			super(ModFeatures.UNDERGROUND_RUIN, NBT);
 			structure = new ResourceLocation(NBT.getString("Template"));
 			rune = EnumRuneType.valueOf(NBT.getString("Rune"));
 			this.func_207614_a(templateManager);
@@ -74,7 +71,7 @@ public class IslandRuinPieces {
 		public boolean addComponentParts(IWorld world, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 			if(world.getDimension().getType() == DimensionType.OVERWORLD || world.getDimension().getType() == DimensionType.THE_NETHER || world.getDimension().getType() == DimensionType.THE_END) {
 				
-				if(structure.equals(STONE_CIRCLE)) {
+				if(structure.equals(SurfaceRuinPieces.STONE_CIRCLE)) {
 					RuneMysteries.ruinManager.setRuinPosition(rune, templatePosition.add(4, 0, 4));
 				}
 				

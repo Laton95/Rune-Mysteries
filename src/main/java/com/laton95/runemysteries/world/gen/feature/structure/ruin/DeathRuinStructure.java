@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.gen.feature.structure.altar;
+package com.laton95.runemysteries.world.gen.feature.structure.ruin;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
@@ -13,19 +13,19 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class OuraniaRuinStructure extends RuinStructure {
+public class DeathRuinStructure extends RuinStructure {
 	
-	public static final ResourceLocation OURANIA_RUIN = new ResourceLocation(RuneMysteries.MOD_ID, "ruin/ourania_ruin");
+	public static ResourceLocation DEATH_RUIN = new ResourceLocation(RuneMysteries.MOD_ID, "ruin/death_ruin");
 	
-	public static final ResourceLocation OURANIA_ROOM = new ResourceLocation(RuneMysteries.MOD_ID, "ourania_room");
+	public static ResourceLocation DEATH_ROOM = new ResourceLocation(RuneMysteries.MOD_ID, "death_room");
 	
-	public OuraniaRuinStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
-		super(function, EnumRuneType.OURANIA);
+	public DeathRuinStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
+		super(function, EnumRuneType.DEATH);
 	}
 	
 	@Override
 	protected void addPieces(List<StructurePiece> components, TemplateManager templateManager, int chunkX, int chunkZ, Random rand) {
-		BlockPos pos = new BlockPos(chunkX * 16, 10, chunkZ * 16);
-		UndergroundRuinPieces.addPieces(templateManager, pos, components, OURANIA_RUIN, OURANIA_ROOM, rune);
+		BlockPos pos = new BlockPos(chunkX * 16, rand.nextInt(30) + 10, chunkZ * 16);
+		UndergroundRuinPieces.addPieces(templateManager, pos, components, DEATH_RUIN, DEATH_ROOM, rune);
 	}
 }

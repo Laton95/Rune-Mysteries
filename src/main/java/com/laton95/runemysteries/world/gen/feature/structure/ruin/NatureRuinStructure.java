@@ -1,4 +1,4 @@
-package com.laton95.runemysteries.world.gen.feature.structure.altar;
+package com.laton95.runemysteries.world.gen.feature.structure.ruin;
 
 import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
@@ -13,17 +13,17 @@ import java.util.List;
 import java.util.Random;
 import java.util.function.Function;
 
-public class AstralRuinStructure extends RuinStructure {
+public class NatureRuinStructure extends RuinStructure {
 	
-	public static final ResourceLocation ASTRAL_RUIN = new ResourceLocation(RuneMysteries.MOD_ID, "ruin/astral_ruin");
+	public static final ResourceLocation NATURE_RUIN = new ResourceLocation(RuneMysteries.MOD_ID, "ruin/nature_ruin");
 	
-	public AstralRuinStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
-		super(function, EnumRuneType.ASTRAL);
+	public NatureRuinStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
+		super(function, EnumRuneType.NATURE);
 	}
 	
 	@Override
 	protected void addPieces(List<StructurePiece> components, TemplateManager templateManager, int chunkX, int chunkZ, Random rand) {
 		BlockPos pos = new BlockPos(chunkX * 16, 90, chunkZ * 16);
-		SurfaceRuinPieces.addPieces(templateManager, pos, components, ASTRAL_RUIN, SurfaceRuinPieces.DIRT_ISLAND, rune);
+		SurfaceRuinPieces.addPieces(templateManager, pos, components, NATURE_RUIN, SurfaceRuinPieces.DIRT_ISLAND, rune);
 	}
 }
