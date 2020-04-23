@@ -25,7 +25,7 @@ public class RejectedCapability {
 		CapabilityManager.INSTANCE.register(Rejected.class, new Capability.IStorage<Rejected>() {
 			@Override
 			public INBT writeNBT(Capability<Rejected> capability, Rejected instance, Direction direction) {
-				return new IntNBT(instance.isRejected() ? 1 : 0);
+				return IntNBT.valueOf(instance.isRejected() ? 1 : 0);
 			}
 			
 			@Override

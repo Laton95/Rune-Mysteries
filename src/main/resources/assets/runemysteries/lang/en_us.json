@@ -61,6 +61,7 @@
   "block.runemysteries.flesh_block": "Flesh Block",
   "block.runemysteries.menaphite_sandstone": "Menaphite Sandstone",
   "block.runemysteries.cloud": "Cloud",
+  "block.runemysteries.gravestone": "Gravestone",
   "_BLOCK INTERACTION": "",
   "block.runemysteries.elemental_obelisk.right_click": "The obelisk hums with power",
   "block.runemysteries.elemental_obelisk.right_click_fail": "The obelisk is not tall enough",

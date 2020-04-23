@@ -8,6 +8,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.World;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.GenerationSettings;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
@@ -30,12 +31,6 @@ public abstract class RuinStructure extends Structure<NoFeatureConfig> {
 		this.rune = rune;
 	}
 	
-	@Override
-	public boolean hasStartAt(ChunkGenerator<?> chunkGenerator, Random random, int chunkPosX, int chunkPosZ) {
-		return RuneMysteries.ruinManager.isRuinInChunk(rune, chunkGenerator, new ChunkPos(chunkPosX, chunkPosZ));
-		
-	}
-	
 	@Nullable
 	@Override
 	public BlockPos findNearest(World world, ChunkGenerator<? extends GenerationSettings> chunkGenerator, BlockPos pos, int chunkPosX, boolean chunkPosZ) {
@@ -52,17 +47,22 @@ public abstract class RuinStructure extends Structure<NoFeatureConfig> {
 		return 1;
 	}
 	
+	@Override
+	public boolean func_225558_a_(BiomeManager biomeManager, ChunkGenerator<?> chunkGenerator, Random random, int chunkPosX, int chunkPosZ, Biome biome) {
+		return RuneMysteries.ruinManager.isRuinInChunk(rune, chunkGenerator, new ChunkPos(chunkPosX, chunkPosZ));
+	}
+	
 	protected abstract void addPieces(List<StructurePiece> components, TemplateManager templateManager, int chunkX, int chunkZ, Random rand);
 	
 	@Override
 	public IStartFactory getStartFactory() {
-		return AirRuinStructure.Start::new;
+		return Start::new;
 	}
 	
 	public class Start extends StructureStart {
 		
-		public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biome, MutableBoundingBox boundingBox, int reference, long seed) {
-			super(structure, chunkX, chunkZ, biome, boundingBox, reference, seed);
+		public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int reference, long seed) {
+			super(structure, chunkX, chunkZ, boundingBox, reference, seed);
 		}
 		
 		public void init(ChunkGenerator<?> generator, TemplateManager templateManager, int chunkX, int chunkZ, Biome biome) {

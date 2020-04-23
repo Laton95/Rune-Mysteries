@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -67,9 +68,9 @@ public class RuneTemplePieces {
 		}
 		
 		@Override
-		public boolean addComponentParts(IWorld world, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
+		public boolean func_225577_a_(IWorld world, ChunkGenerator<?> chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 			if(world.getDimension().getType() == rune.getTempleDimension()) {
-				return super.addComponentParts(world, random, boundingBox, chunkPos);
+				return super.func_225577_a_(world, chunkGenerator, random, boundingBox, chunkPos);
 			}
 			
 			return false;

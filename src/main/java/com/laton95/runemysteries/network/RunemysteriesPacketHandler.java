@@ -29,4 +29,8 @@ public class RunemysteriesPacketHandler {
 			INSTANCE.sendTo(msg, player.connection.netManager, NetworkDirection.PLAY_TO_CLIENT);
 		}
 	}
+	
+	public static void sendToServer(Object msg) {
+		INSTANCE.sendToServer(msg);
+	}
 }

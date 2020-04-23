@@ -17,7 +17,6 @@ public class ModEntities {
 	@SubscribeEvent
 	public static void registerEntities(RegistryEvent.Register<EntityType<?>> event) {
 		ModLog.info("Registering entities");
-		
 		EX_EX_PARROT.setRegistryName("ex_ex_parrot");
 		event.getRegistry().register(EX_EX_PARROT);
 		

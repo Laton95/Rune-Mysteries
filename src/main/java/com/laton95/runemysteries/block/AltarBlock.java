@@ -38,13 +38,15 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.IWorldReader;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 
 import javax.annotation.Nullable;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 
-public class AltarBlock extends ModBlock implements IWaterLoggable {
+public class AltarBlock extends Block implements IWaterLoggable {
 	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	
@@ -106,7 +108,7 @@ public class AltarBlock extends ModBlock implements IWaterLoggable {
 					grantAdvancements(world, uuid, item);
 					stack.shrink(1);
 					ItemStack output = new ItemStack(EnumRuneType.getRandomType(world.rand).getRune(), getMultiplier(world, uuid, item));
-					ItemEntity outputItem = new ItemEntity(world, item.posX, item.posY, item.posZ, output);
+					ItemEntity outputItem = new ItemEntity(world, item.getPosX(), item.getPosY(), item.getPosZ(), output);
 					outputItem.setThrowerId(uuid);
 					world.addEntity(outputItem);
 				}
@@ -117,7 +119,7 @@ public class AltarBlock extends ModBlock implements IWaterLoggable {
 						stack.shrink(1);
 						ItemStack output = recipe.getCraftingResult();
 						output.setCount(output.getCount() * getMultiplier(world, uuid, item));
-						ItemEntity outputItem = new ItemEntity(world, item.posX, item.posY, item.posZ, output);
+						ItemEntity outputItem = new ItemEntity(world, item.getPosX(), item.getPosY(), item.getPosZ(), output);
 						outputItem.setThrowerId(uuid);
 						world.addEntity(outputItem);
 					}
@@ -188,6 +190,7 @@ public class AltarBlock extends ModBlock implements IWaterLoggable {
 	}
 	
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, @Nullable IBlockReader world, List<ITextComponent> tooltip, ITooltipFlag flag) {
 		tooltip.add(new TranslationTextComponent(StringReference.BlockTooltip.ALTAR_TOOLTIP).applyTextStyle(TextFormatting.GRAY));
 	}

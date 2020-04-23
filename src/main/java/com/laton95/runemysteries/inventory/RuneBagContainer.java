@@ -15,7 +15,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class RuneBagContainer extends Container {
 	
-	private RuneBagInventory bagInventory;
+	private final RuneBagInventory bagInventory;
 	
 	public RuneBagContainer(int id, PlayerInventory playerInventory, PacketBuffer packetBuffer) {
 		this(id, playerInventory, new RuneBagInventory(new ItemStack(ModItems.RUNE_BAG)), -1);

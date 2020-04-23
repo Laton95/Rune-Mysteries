@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import com.laton95.runemysteries.advancements.ModCriteriaTriggers;
+import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.enums.EnumCorner;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModEffects;
@@ -20,6 +21,7 @@ import net.minecraft.potion.EffectInstance;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.EnumProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -30,13 +32,14 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerWorld;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class ElderCatalystBlock extends ModBlock {
+public class ElderCatalystBlock extends Block {
 	
 	public static final EnumProperty CORNER = ModBlockStateProperties.CORNER;
 	
@@ -168,7 +171,7 @@ public class ElderCatalystBlock extends ModBlock {
 	}
 	
 	@Override
-	public void randomTick(BlockState state, World world, BlockPos pos, Random random) {
+	public void randomTick(BlockState state, ServerWorld world, BlockPos pos, Random random) {
 		List<BlockPos> stonePositions = new ArrayList<>();
 		
 		int radius = 10;
@@ -191,15 +194,15 @@ public class ElderCatalystBlock extends ModBlock {
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World worldIn, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(!worldIn.isRemote) {
 			ModCriteriaTriggers.ELDER_CATALYST.trigger((ServerPlayerEntity) player);
 			
 			player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ELDER_CATALYST_INTERACT, player.getDisplayName()));
 			
-			player.addPotionEffect(new EffectInstance(ModEffects.STONETOUCHER, 10 * 1200, 0, false, true));
+			player.addPotionEffect(new EffectInstance(ModEffects.STONETOUCHER, 20 * Config.stonetoucherDuration, 0, false, true));
 		}
 		
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 }

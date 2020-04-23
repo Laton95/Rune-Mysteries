@@ -4,6 +4,7 @@ import com.laton95.runemysteries.RuneMysteries;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference;
 import com.laton95.runemysteries.util.TeleportHelper;
+import com.laton95.runemysteries.util.WorldHelper;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.IWaterLoggable;
@@ -17,6 +18,7 @@ import net.minecraft.particles.IParticleData;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.BlockRayTraceResult;
@@ -25,11 +27,12 @@ import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
+import net.minecraft.world.server.ServerChunkProvider;
 import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
+public class AltarEntranceBlock extends Block implements IWaterLoggable {
 	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	
@@ -38,7 +41,7 @@ public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
 	private final EnumRuneType runeType;
 	
 	public AltarEntranceBlock(EnumRuneType runeType) {
-		super(Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F), false);
+		super(Properties.create(Material.ROCK).hardnessAndResistance(-1.0F, 3600000.0F));
 		this.runeType = runeType;
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}
@@ -49,17 +52,28 @@ public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(!world.isRemote) {
 			if(player.getHeldItemMainhand().getItem() == runeType.getTalisman() || player.getHeldItemOffhand().getItem() == runeType.getTalisman()) {
+				BlockPos ruinPos;
+				if(player.dimension.isVanilla()) {
+					ruinPos = RuneMysteries.ruinManager.getRuinPosition(runeType, ((ServerChunkProvider) (world.getChunkProvider())).getChunkGenerator());
+				}
+				else {
+					ruinPos = RuneMysteries.ruinManager.getRuinPosition(runeType, (ServerWorld) world);
+				}
+				if(ruinPos != null && !WorldHelper.isNearby(player.getPosition(), ruinPos, 5) && !player.isCreative()) {
+					return ActionResultType.SUCCESS;
+				}
+				
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_ENTER));
 				
 				BlockPos pos1 = RuneMysteries.ruinManager.getRuinPosition(runeType, (ServerWorld) world);
 				BlockPos pos2 = runeType.getAltarNorthWestPoint();
 				
-				double x = pos1.getX() - player.posX;
-				double y = pos.getY() - player.posY;
-				double z = pos1.getZ() - player.posZ;
+				double x = pos1.getX() - player.getPosX();
+				double y = pos.getY() - player.getPosY();
+				double z = pos1.getZ() - player.getPosZ();
 				
 				TeleportHelper.teleportPlayer((ServerPlayerEntity) player, runeType.getTempleDimension(), pos2.getX() - x, Math.max(pos2.getY(), pos2.getY() - y), pos2.getZ() - z);
 			}
@@ -67,7 +81,7 @@ public class AltarEntranceBlock extends ModBlock implements IWaterLoggable {
 				player.sendMessage(new TranslationTextComponent(StringReference.BlockInteraction.ALTAR_INTERACT));
 			}
 		}
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 	
 	@Override

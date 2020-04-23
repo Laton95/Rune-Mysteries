@@ -1,5 +1,6 @@
 package com.laton95.runemysteries.world;
 
+import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.util.MathsHelper;
 import com.laton95.runemysteries.util.ModLog;
@@ -8,6 +9,7 @@ import net.minecraft.nbt.CompressedStreamTools;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.biome.Biome;
 import net.minecraft.world.dimension.DimensionType;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.EndChunkGenerator;
@@ -35,7 +37,7 @@ public class RuinManager extends WorldSavedData {
 	
 	private Map<DimensionType, Boolean> generatedDimension = new HashMap<>();
 	
-	private String dataFolder = "data/runemysteries.dat";
+	private final String dataFolder = "data/runemysteries.dat";
 	
 	public RuinManager() {
 		super("ruin_manager");
@@ -49,7 +51,6 @@ public class RuinManager extends WorldSavedData {
 			this.save(new File(world.getSaveHandler().getWorldDirectory(), dataFolder));
 		}
 	}
-	
 	
 	public boolean isRuinInChunk(EnumRuneType rune, ChunkGenerator generator, ChunkPos pos) {
 		BlockPos ruinBlockPos = getRuinPosition(rune, generator);
@@ -99,6 +100,7 @@ public class RuinManager extends WorldSavedData {
 		}
 		catch(IOException e) {
 			ModLog.error("Failed to load ruin positions: " + e.getMessage());
+			e.printStackTrace();
 		}
 		ModLog.info(String.format("Ruin positions loaded, took %d milliseconds", System.currentTimeMillis() - timer));
 	}
@@ -109,12 +111,14 @@ public class RuinManager extends WorldSavedData {
 	}
 	
 	public void calculateRuinPositions(ChunkGenerator<?> generator) {
+		if(!Config.generateRuins) {
+			return;
+		}
+		
 		ModLog.info("Calculating ruin positions");
 		long timer = System.currentTimeMillis();
 		
 		Random rand = new Random(generator.getSeed());
-		int minRange = 500;
-		int maxRange = 10000;
 		
 		long ruinTimeTotal = 0;
 		
@@ -122,16 +126,16 @@ public class RuinManager extends WorldSavedData {
 			for(EnumRuneType rune : EnumRuneType.values()) {
 				if(rune != EnumRuneType.CHAOS && rune != EnumRuneType.COSMIC) {
 					long timer2 = System.currentTimeMillis();
-					calculateRuinPosition(generator, rand, rune, minRange, maxRange);
+					calculateRuinPosition(generator, rand, rune);
 					ruinTimeTotal += System.currentTimeMillis() - timer2;
 				}
 			}
 		}
 		else if(generator instanceof NetherChunkGenerator) {
-			calculateRuinPosition(generator, rand, EnumRuneType.CHAOS, minRange, maxRange);
+			calculateRuinPosition(generator, rand, EnumRuneType.CHAOS);
 		}
 		else if(generator instanceof EndChunkGenerator) {
-			calculateRuinPosition(generator, rand, EnumRuneType.COSMIC, minRange, maxRange);
+			calculateRuinPosition(generator, rand, EnumRuneType.COSMIC);
 		}
 		
 		this.setDirty(true);
@@ -139,9 +143,11 @@ public class RuinManager extends WorldSavedData {
 		ModLog.info(String.format("Average ruin time: %d milliseconds", ruinTimeTotal / EnumRuneType.values().length));
 	}
 	
-	private void calculateRuinPosition(ChunkGenerator<?> generator, Random rand, EnumRuneType rune, int minRange, int maxRange) {
-		int maxTries = 15;
+	private void calculateRuinPosition(ChunkGenerator<?> generator, Random rand, EnumRuneType rune) {
+		int maxTries = Config.ruinTries;
 		int biomeSearchRange = 200;
+		int minRange = Config.ruinMinRange + biomeSearchRange / 2;
+		int maxRange = Config.ruinMaxRange - biomeSearchRange / 2;
 		
 		BlockPos pos = null;
 		
@@ -154,9 +160,13 @@ public class RuinManager extends WorldSavedData {
 			}
 			
 			int x = MathsHelper.randomInRangeRandomSign(rand, minRange, maxRange);
+			int y = 60;
 			int z = MathsHelper.randomInRangeRandomSign(rand, minRange, maxRange);
 			
-			pos = generator.getBiomeProvider().findBiomePosition(x, z, biomeSearchRange, RuinBiomeManager.getBiomes(rune), rand);
+			//Prohibit biome search center from being in an ocean, to reduce occurrences of island ruins
+			if(generator.world.getBiome(new BlockPos(x, y, z)).getCategory() != Biome.Category.OCEAN) {
+				pos = generator.getBiomeProvider().func_225531_a_(x, y, z, biomeSearchRange, RuinBiomeManager.getBiomes(rune), rand);
+			}
 			
 			tries++;
 		}
@@ -168,8 +178,9 @@ public class RuinManager extends WorldSavedData {
 			}
 			
 			int x = MathsHelper.randomInRangeRandomSign(rand, minRange, maxRange);
+			int y = 60;
 			int z = MathsHelper.randomInRangeRandomSign(rand, minRange, maxRange);
-			pos = generator.getBiomeProvider().findBiomePosition(x, z, biomeSearchRange, RuinBiomeManager.ouraniaRuinBiomes, rand);
+			pos = generator.getBiomeProvider().func_225531_a_(x, y, z, biomeSearchRange, RuinBiomeManager.ouraniaRuinBiomes, rand);
 			
 			tries++;
 		}
@@ -191,7 +202,7 @@ public class RuinManager extends WorldSavedData {
 		}
 		
 		ruinPositions.put(rune, pos);
-		ModLog.info(String.format("%s at x:%d z:%d", rune.name(), pos.getX(), pos.getZ()));
+		ModLog.info(String.format("%s at x:%d z:%d", rune.name().toLowerCase(), pos.getX(), pos.getZ()));
 	}
 	
 	@Override

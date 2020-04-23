@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.world.gen.feature.structure.obelisk;
 
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.ResourceLocation;
@@ -14,7 +15,17 @@ public class FireObeliskStructure extends ObeliskStructure {
 	public static final ResourceLocation FIRE_OBELISK = new ResourceLocation(RuneMysteries.MOD_ID, "obelisk/fire_obelisk");
 	
 	public FireObeliskStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
-		super(function, 32, 1, 73596167, EnumRuneType.FIRE, FIRE_OBELISK);
+		super(function, 73596167, EnumRuneType.FIRE, FIRE_OBELISK);
+	}
+	
+	@Override
+	public int getDistance() {
+		return Config.fireObeliskDistance;
+	}
+	
+	@Override
+	public int getSeparation() {
+		return Config.fireObeliskSeparation;
 	}
 	
 	@Override

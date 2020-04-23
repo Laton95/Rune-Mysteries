@@ -5,6 +5,7 @@ import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.reference.StringReference.BlockInteraction;
 import com.laton95.runemysteries.util.TeleportHelper;
 import com.laton95.runemysteries.world.dimension.RuneTempleDimension;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.Entity;
@@ -17,10 +18,10 @@ import net.minecraft.world.server.ServerWorld;
 
 import java.util.Random;
 
-public class AltarPortalBlock extends ModBlock {
+public class AltarPortalBlock extends Block {
 	
 	public AltarPortalBlock() {
-		super(Properties.create(Material.BARRIER).lightValue(14).hardnessAndResistance(-1.0F, 3600000.0F), false);
+		super(Properties.create(Material.BARRIER).lightValue(14).hardnessAndResistance(-1.0F, 3600000.0F));
 	}
 	
 	@Override
@@ -48,7 +49,7 @@ public class AltarPortalBlock extends ModBlock {
 	
 	@Override
 	public void onEntityWalk(World world, BlockPos pos, Entity entity) {
-
+		
 		if(!world.isRemote() && entity instanceof ServerPlayerEntity && world.getDimension() instanceof RuneTempleDimension) {
 			entity.sendMessage(new TranslationTextComponent(BlockInteraction.ALTAR_TELEPORT));
 			

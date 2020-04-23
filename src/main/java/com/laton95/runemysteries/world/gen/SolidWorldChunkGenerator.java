@@ -8,8 +8,8 @@ import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.provider.BiomeProvider;
 import net.minecraft.world.chunk.IChunk;
 import net.minecraft.world.gen.ChunkGenerator;
-import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.Heightmap;
+import net.minecraft.world.gen.WorldGenRegion;
 import net.minecraft.world.gen.feature.IFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
 
@@ -20,18 +20,13 @@ public class SolidWorldChunkGenerator extends ChunkGenerator<SolidGenerationSett
 	}
 	
 	@Override
+	public void func_225551_a_(WorldGenRegion p_225551_1_, IChunk p_225551_2_) {
+	
+	}
+	
+	@Override
 	public boolean hasStructure(Biome biomeIn, Structure<? extends IFeatureConfig> structureIn) {
 		return structureIn instanceof RuneTempleStructure;
-	}
-	
-	@Override
-	public void carve(IChunk p_222538_1_, GenerationStage.Carving p_222538_2_) {
-
-	}
-	
-	@Override
-	public void generateSurface(IChunk iChunk) {
-
 	}
 	
 	@Override
@@ -41,10 +36,10 @@ public class SolidWorldChunkGenerator extends ChunkGenerator<SolidGenerationSett
 	
 	@Override
 	public void makeBase(IWorld world, IChunk chunk) {
-		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		BlockPos.Mutable pos = new BlockPos.Mutable();
 		BlockState state = this.settings.getDefaultBlock();
-		Heightmap oceanHeightmap = chunk.func_217303_b(Heightmap.Type.OCEAN_FLOOR_WG);
-		Heightmap surfaceHeightmap = chunk.func_217303_b(Heightmap.Type.WORLD_SURFACE_WG);
+		Heightmap oceanHeightmap = chunk.getHeightmap(Heightmap.Type.OCEAN_FLOOR_WG);
+		Heightmap surfaceHeightmap = chunk.getHeightmap(Heightmap.Type.WORLD_SURFACE_WG);
 		
 		for(int y = 0; y <= this.settings.getHeight(); ++y) {
 			for(int x = 0; x < 16; ++x) {

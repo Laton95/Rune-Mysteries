@@ -11,7 +11,7 @@ public class WorldHelper {
 	}
 	
 	public static BlockPos getTopSolidBlock(IWorld world, int x, int z) {
-		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos(x, world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z), z);
+		BlockPos.Mutable pos = new BlockPos.Mutable(x, world.getHeight(Heightmap.Type.WORLD_SURFACE, x, z), z);
 		
 		while(!world.getBlockState(pos).isSolid()) {
 			pos.move(net.minecraft.util.Direction.DOWN);

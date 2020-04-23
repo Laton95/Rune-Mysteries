@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FourWayBlock;
 import net.minecraft.fluid.Fluids;
@@ -10,7 +11,6 @@ import net.minecraft.pathfinding.PathType;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.shapes.ISelectionContext;
@@ -73,12 +73,12 @@ public class RailingBlock extends FourWayBlock {
 		BlockState eastState = world.getBlockState(eastPos);
 		BlockState southState = world.getBlockState(southPos);
 		BlockState westState = world.getBlockState(westPos);
-		boolean connectNorth = connectsTo(northState, northState.func_224755_d(world, northPos, Direction.SOUTH), Direction.SOUTH);
-		boolean connectEast = connectsTo(eastState, eastState.func_224755_d(world, eastPos, Direction.WEST), Direction.WEST);
-		boolean connectSouth = connectsTo(southState, southState.func_224755_d(world, southPos, Direction.NORTH), Direction.NORTH);
-		boolean connectWest = connectsTo(westState, westState.func_224755_d(world, westPos, Direction.EAST), Direction.EAST);
+		boolean connectNorth = connectsTo(northState, northState.isSolidSide(world, northPos, Direction.SOUTH), Direction.SOUTH);
+		boolean connectEast = connectsTo(eastState, eastState.isSolidSide(world, eastPos, Direction.WEST), Direction.WEST);
+		boolean connectSouth = connectsTo(southState, southState.isSolidSide(world, southPos, Direction.NORTH), Direction.NORTH);
+		boolean connectWest = connectsTo(westState, westState.isSolidSide(world, westPos, Direction.EAST), Direction.EAST);
 		boolean hasUp = (!connectNorth || connectEast || !connectSouth || connectWest) && (connectNorth || !connectEast || connectSouth || !connectWest);
-
+		
 		return this.getDefaultState().with(UP, hasUp || !world.isAirBlock(pos.up())).with(NORTH, connectNorth).with(EAST, connectEast).with(SOUTH, connectSouth).with(WEST, connectWest).with(WATERLOGGED, fluid.getFluid() == Fluids.WATER);
 	}
 	
@@ -93,10 +93,10 @@ public class RailingBlock extends FourWayBlock {
 		}
 		else {
 			Direction opposite = facing.getOpposite();
-			boolean connectsNorth = facing == Direction.NORTH ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(NORTH);
-			boolean connectsEast = facing == Direction.EAST ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(EAST);
-			boolean connectsSouth = facing == Direction.SOUTH ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(SOUTH);
-			boolean connectsWest = facing == Direction.WEST ? connectsTo(facingState, facingState.func_224755_d(world, facingPos, opposite), opposite) : state.get(WEST);
+			boolean connectsNorth = facing == Direction.NORTH ? connectsTo(facingState, facingState.isSolidSide(world, facingPos, opposite), opposite) : state.get(NORTH);
+			boolean connectsEast = facing == Direction.EAST ? connectsTo(facingState, facingState.isSolidSide(world, facingPos, opposite), opposite) : state.get(EAST);
+			boolean connectsSouth = facing == Direction.SOUTH ? connectsTo(facingState, facingState.isSolidSide(world, facingPos, opposite), opposite) : state.get(SOUTH);
+			boolean connectsWest = facing == Direction.WEST ? connectsTo(facingState, facingState.isSolidSide(world, facingPos, opposite), opposite) : state.get(WEST);
 			boolean hasUp = (!connectsNorth || connectsEast || !connectsSouth || connectsWest) && (connectsNorth || !connectsEast || connectsSouth || !connectsWest);
 			return state.with(UP, hasUp || !world.isAirBlock(currentPos.up())).with(NORTH, connectsNorth).with(EAST, connectsEast).with(SOUTH, connectsSouth).with(WEST, connectsWest);
 		}
@@ -107,7 +107,8 @@ public class RailingBlock extends FourWayBlock {
 		builder.add(UP, NORTH, EAST, WEST, SOUTH, WATERLOGGED);
 	}
 	
-	public BlockRenderLayer getRenderLayer() {
-		return isTranslucent ? BlockRenderLayer.TRANSLUCENT : super.getRenderLayer();
+	@Override
+	public BlockRenderType getRenderType(BlockState state) {
+		return isTranslucent ? BlockRenderType.INVISIBLE : super.getRenderType(state);
 	}
 }

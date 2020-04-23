@@ -12,14 +12,8 @@ import java.util.function.Function;
 
 public abstract class ModifiableRarityStructure extends ScatteredStructure<NoFeatureConfig> {
 	
-	private final int distance;
-	
-	private final int separation;
-	
-	public ModifiableRarityStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function, int distance, int separation) {
+	public ModifiableRarityStructure(Function<Dynamic<?>, ? extends NoFeatureConfig> function) {
 		super(function);
-		this.distance = distance;
-		this.separation = separation;
 	}
 	
 	@Override
@@ -41,11 +35,7 @@ public abstract class ModifiableRarityStructure extends ScatteredStructure<NoFea
 		return new ChunkPos(x3, z3);
 	}
 	
-	public int getDistance() {
-		return distance;
-	}
+	public abstract int getDistance();
 	
-	public int getSeparation() {
-		return separation;
-	}
+	public abstract int getSeparation();
 }

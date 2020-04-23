@@ -30,7 +30,7 @@ import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraft.world.server.ServerWorld;
 
-public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
+public class BlackMonolithBlock extends Block implements IWaterLoggable {
 	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	
@@ -57,13 +57,13 @@ public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(!world.isRemote) {
 			ModCriteriaTriggers.TOUCH_MONOLITH.trigger((ServerPlayerEntity) player);
 			
 			if(player.getHeldItem(hand).getItem() == ModItems.EX_PARROT) {
 				
-				LightningBoltEntity lightningboltentity = new LightningBoltEntity(world, (double) pos.getX() + 0.5D, (double) pos.getY(), (double) pos.getZ() + 0.5D, true);
+				LightningBoltEntity lightningboltentity = new LightningBoltEntity(world, (double) pos.getX() + 0.5D, pos.getY(), (double) pos.getZ() + 0.5D, true);
 				((ServerWorld) world).addLightningBolt(lightningboltentity);
 				
 				ModCriteriaTriggers.EX_PARROT.trigger((ServerPlayerEntity) player);
@@ -82,7 +82,7 @@ public class BlackMonolithBlock extends ModBlock implements IWaterLoggable {
 			}
 		}
 		
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 	
 	@Override

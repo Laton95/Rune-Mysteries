@@ -1,7 +1,6 @@
 package com.laton95.runemysteries.init;
 
 import com.laton95.runemysteries.RuneMysteries;
-import com.laton95.runemysteries.block.ModBlock;
 import com.laton95.runemysteries.enums.EnumRuneType;
 import com.laton95.runemysteries.item.*;
 import com.laton95.runemysteries.util.ModLog;
@@ -22,7 +21,7 @@ import java.util.ArrayList;
 @ObjectHolder(RuneMysteries.MOD_ID)
 public class ModItems {
 	
-	public static final ModItem RUNE_ESSENCE = null;
+	public static final Item RUNE_ESSENCE = null;
 	
 	public static final RuneItem AIR_RUNE = null;
 	
@@ -52,7 +51,7 @@ public class ModItems {
 	
 	public static final RuneItem WATER_RUNE = null;
 	
-	public static final ModItem BLANK_TALISMAN = null;
+	public static final Item BLANK_TALISMAN = null;
 	
 	public static final TalismanItem AIR_TALISMAN = null;
 	
@@ -82,33 +81,33 @@ public class ModItems {
 	
 	public static final TalismanItem WATER_TALISMAN = null;
 	
-	public static final ModItem GLASS_ORB = null;
+	public static final Item GLASS_ORB = null;
 	
-	public static final ModItem AIR_ORB = null;
+	public static final Item AIR_ORB = null;
 	
-	public static final ModItem EARTH_ORB = null;
+	public static final Item EARTH_ORB = null;
 	
-	public static final ModItem FIRE_ORB = null;
+	public static final Item FIRE_ORB = null;
 	
-	public static final ModItem WATER_ORB = null;
+	public static final Item WATER_ORB = null;
 	
-	public static final ModItem BATTLESTAFF = null;
+	public static final Item BATTLESTAFF = null;
 	
-	public static final ModItem AIR_BATTLESTAFF = null;
+	public static final Item AIR_BATTLESTAFF = null;
 	
-	public static final ModItem EARTH_BATTLESTAFF = null;
+	public static final Item EARTH_BATTLESTAFF = null;
 	
-	public static final ModItem FIRE_BATTLESTAFF = null;
+	public static final Item FIRE_BATTLESTAFF = null;
 	
-	public static final ModItem WATER_BATTLESTAFF = null;
+	public static final Item WATER_BATTLESTAFF = null;
 	
-	public static final ModItem AIR_SHARD = null;
+	public static final Item AIR_SHARD = null;
 	
-	public static final ModItem EARTH_SHARD = null;
+	public static final Item EARTH_SHARD = null;
 	
-	public static final ModItem FIRE_SHARD = null;
+	public static final Item FIRE_SHARD = null;
 	
-	public static final ModItem WATER_SHARD = null;
+	public static final Item WATER_SHARD = null;
 	
 	public static final DebugItem DEBUG = null;
 	
@@ -116,19 +115,19 @@ public class ModItems {
 	
 	public static final RuneBagItem RUNE_BAG = null;
 	
-	public static final ModItem EX_PARROT = null;
+	public static final Item EX_PARROT = null;
 	
 	public static final ScrollItem MINE_SCROLL = null;
 	
-	public static final ModItem BANANA = null;
+	public static final Item BANANA = null;
 	
-	private static ArrayList<Block> blocks = new ArrayList<>();
+	private static final ArrayList<Block> blocks = new ArrayList<>();
 	
 	@SubscribeEvent
 	public static void registerItems(final RegistryEvent.Register<Item> event) {
 		ModLog.info("Registering items");
 		
-		register(event, new ModItem(), "rune_essence");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "rune_essence");
 		register(event, new RuneItem(EnumRuneType.AIR), "air_rune");
 		register(event, new RuneItem(EnumRuneType.ASTRAL), "astral_rune");
 		register(event, new RuneItem(EnumRuneType.BLOOD), "blood_rune");
@@ -144,7 +143,7 @@ public class ModItems {
 		register(event, new RuneItem(EnumRuneType.SOUL), "soul_rune");
 		register(event, new RuneItem(EnumRuneType.WATER), "water_rune");
 		
-		register(event, new ModItem(new Properties().maxStackSize(1)), "blank_talisman");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "blank_talisman");
 		register(event, new TalismanItem(EnumRuneType.AIR), "air_talisman");
 		register(event, new TalismanItem(EnumRuneType.ASTRAL), "astral_talisman");
 		register(event, new TalismanItem(EnumRuneType.BLOOD), "blood_talisman");
@@ -160,39 +159,33 @@ public class ModItems {
 		register(event, new TalismanItem(EnumRuneType.SOUL), "soul_talisman");
 		register(event, new TalismanItem(EnumRuneType.WATER), "water_talisman");
 		
-		register(event, new ModItem(new Properties().maxStackSize(1)), "glass_orb");
-		register(event, new ModItem(new Properties().maxStackSize(1)), "air_orb");
-		register(event, new ModItem(new Properties().maxStackSize(1)), "earth_orb");
-		register(event, new ModItem(new Properties().maxStackSize(1)), "fire_orb");
-		register(event, new ModItem(new Properties().maxStackSize(1)), "water_orb");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "glass_orb");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "air_orb");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "earth_orb");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "fire_orb");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "water_orb");
 		
-		register(event, new ModItem(new Properties().maxStackSize(1)), "battlestaff");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP).maxStackSize(1)), "battlestaff");
 		register(event, new BattlestaffItem(EnumRuneType.AIR), "air_battlestaff");
 		register(event, new BattlestaffItem(EnumRuneType.EARTH), "earth_battlestaff");
 		register(event, new BattlestaffItem(EnumRuneType.FIRE), "fire_battlestaff");
 		register(event, new BattlestaffItem(EnumRuneType.WATER), "water_battlestaff");
 		
-		register(event, new ModItem(), "air_shard");
-		register(event, new ModItem(), "earth_shard");
-		register(event, new ModItem(), "fire_shard");
-		register(event, new ModItem(), "water_shard");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "air_shard");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "earth_shard");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "fire_shard");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "water_shard");
 		
 		register(event, new DebugItem(), "debug");
 		register(event, new SpellbookItem(), "spellbook");
 		register(event, new RuneBagItem(), "rune_bag");
-		register(event, new ModItem(), "ex_parrot");
+		register(event, new Item(new Properties().group(RuneMysteries.RUNE_GROUP)), "ex_parrot");
 		register(event, new ScrollItem(1), "mine_scroll");
-		register(event, new ModItem(new Properties().group(ItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(4).build())), "banana");
+		register(event, new Item(new Properties().group(ItemGroup.FOOD).food(new Food.Builder().hunger(4).saturation(4).build())), "banana");
 		
 		for(Block block : blocks) {
 			Properties builder = new Properties();
-			
-			if(block instanceof ModBlock && ((ModBlock) block).showInCreative) {
-				builder.group(RuneMysteries.RUNE_GROUP);
-			}
-			else {
-				builder.group(RuneMysteries.RUNE_GROUP);
-			}
+			builder.group(RuneMysteries.RUNE_GROUP);
 			
 			BlockItem itemBlock = new BlockItem(block, builder);
 			itemBlock.setRegistryName(block.getRegistryName());

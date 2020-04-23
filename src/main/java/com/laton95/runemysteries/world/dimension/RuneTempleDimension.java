@@ -10,7 +10,7 @@ public abstract class RuneTempleDimension extends Dimension {
 	public final EnumRuneType runeType;
 	
 	public RuneTempleDimension(World world, DimensionType type, EnumRuneType runeType) {
-		super(world, type);
+		super(world, type, 1);
 		this.runeType = runeType;
 	}
 }

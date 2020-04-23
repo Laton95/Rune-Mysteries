@@ -9,6 +9,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
@@ -93,16 +94,16 @@ public class SoulRuinPieces {
 		 * second Part of Structure generating, this for example places Spiderwebs, Mob Spawners, it closes Mineshafts at
 		 * the end, it adds Fences...
 		 */
-		public boolean addComponentParts(IWorld worldIn, Random randomIn, MutableBoundingBox structureBoundingBoxIn, ChunkPos p_74875_4_) {
+		public boolean func_225577_a_(IWorld world, ChunkGenerator<?> chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 			PlacementSettings placementsettings = (new PlacementSettings()).addProcessor(BlockIgnoreStructureProcessor.STRUCTURE_BLOCK);
 			BlockPos pos = this.templatePosition.add(Template.transformedBlockPos(placementsettings, new BlockPos(3 - offset.getX(), 0, 0 - offset.getZ())));
-			int height = worldIn.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
+			int height = world.getHeight(Heightmap.Type.WORLD_SURFACE_WG, pos.getX(), pos.getZ());
 			this.templatePosition = this.templatePosition.add(0, height - 90 - 1, 0);
 			
 			if(structure.equals(CIRCLE_LITE)) {
 				RuneMysteries.ruinManager.setRuinPosition(EnumRuneType.SOUL, templatePosition.add(4, 0, 4));
 			}
-			return super.addComponentParts(worldIn, randomIn, structureBoundingBoxIn, p_74875_4_);
+			return super.func_225577_a_(world, chunkGenerator, random, boundingBox, chunkPos);
 		}
 	}
 }

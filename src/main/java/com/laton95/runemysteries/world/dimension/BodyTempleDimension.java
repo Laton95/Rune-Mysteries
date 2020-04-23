@@ -1,10 +1,12 @@
 package com.laton95.runemysteries.world.dimension;
 
 import com.laton95.runemysteries.enums.EnumRuneType;
-import com.laton95.runemysteries.init.ModBiomeProviders;
+import com.laton95.runemysteries.init.ModBiomes;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModChunkGenerators;
+import com.laton95.runemysteries.world.biome.provider.RuneTempleBiomeProvider;
 import com.laton95.runemysteries.world.gen.SolidGenerationSettings;
+import com.laton95.runemysteries.world.gen.SolidWorldChunkGenerator;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MathHelper;
@@ -30,7 +32,7 @@ public class BodyTempleDimension extends RuneTempleDimension {
 	public ChunkGenerator<?> createChunkGenerator() {
 		SolidGenerationSettings settings = ModChunkGenerators.SOLID_WORLD.createSettings();
 		settings.setDefaultBlock(ModBlocks.FLESH_BLOCK.getDefaultState());
-		return ModChunkGenerators.SOLID_WORLD.create(world, ModBiomeProviders.BODY_TEMPLE.create(ModBiomeProviders.BODY_TEMPLE.createSettings()), settings);
+		return new SolidWorldChunkGenerator(world, new RuneTempleBiomeProvider(world.getWorldInfo(), ModBiomes.BODY_TEMPLE), settings);
 	}
 	
 	@Nullable
@@ -65,7 +67,7 @@ public class BodyTempleDimension extends RuneTempleDimension {
 		f1 = f1 * (f * 0.94F + 0.06F);
 		f2 = f2 * (f * 0.94F + 0.06F);
 		f3 = f3 * (f * 0.91F + 0.09F);
-		return new Vec3d((double) f1, (double) f2, (double) f3);
+		return new Vec3d(f1, f2, f3);
 	}
 	
 	@Override

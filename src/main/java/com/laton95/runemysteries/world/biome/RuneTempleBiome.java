@@ -1,5 +1,8 @@
 package com.laton95.runemysteries.world.biome;
 
+import com.laton95.runemysteries.init.ModFeatures;
+import com.laton95.runemysteries.world.gen.feature.structure.temple.RuneTempleStructure;
+import net.minecraft.entity.EntityClassification;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.gen.GenerationStage;
 import net.minecraft.world.gen.carver.ConfiguredCarver;
@@ -14,26 +17,28 @@ public abstract class RuneTempleBiome extends Biome {
 		super(biomeBuilder);
 	}
 	
-	public void actuallyAddFeature(GenerationStage.Decoration state, ConfiguredFeature<?> feature) {
-		super.addFeature(state, feature);
-	}
-	
-	public <C extends IFeatureConfig> void actuallyAddStructure(Structure<C> structure, C config) {
-		super.addStructure(structure, config);
-	}
-	
 	@Override
 	public <C extends ICarverConfig> void addCarver(GenerationStage.Carving stage, ConfiguredCarver<C> carver) {
-		//Stops any carvers being added that I don't want to be
 	}
 	
 	@Override
-	public void addFeature(GenerationStage.Decoration state, ConfiguredFeature<?> feature) {
-		//Stops any features being added that I don't want to be
+	protected void addSpawn(EntityClassification type, SpawnListEntry spawnListEntry) {
+		if(type.getPeacefulCreature()) {
+			super.addSpawn(type, spawnListEntry);
+		}
 	}
 	
 	@Override
-	public <C extends IFeatureConfig> void addStructure(Structure<C> structure, C config) {
-		//Stops any structures being added that I don't want to be
+	public void addFeature(GenerationStage.Decoration stage, ConfiguredFeature<?, ?> feature) {
+		if(ModFeatures.isVanillaFeature(feature.feature) || feature.feature instanceof RuneTempleStructure) {
+			super.addFeature(stage, feature);
+		}
+	}
+	
+	@Override
+	public <C extends IFeatureConfig> void addStructure(ConfiguredFeature<C, ? extends Structure<C>> structure) {
+		if(structure.feature instanceof RuneTempleStructure) {
+			super.addStructure(structure);
+		}
 	}
 }

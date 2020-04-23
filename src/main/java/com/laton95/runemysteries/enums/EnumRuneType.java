@@ -1,9 +1,12 @@
 package com.laton95.runemysteries.enums;
 
+import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.init.ModDimensions;
 import com.laton95.runemysteries.init.ModItems;
 import com.laton95.runemysteries.item.RuneItem;
 import com.laton95.runemysteries.item.TalismanItem;
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.dimension.DimensionType;
@@ -231,6 +234,40 @@ public enum EnumRuneType {
 				return new BlockPos(0, 100, 0);
 			default:
 				return null;
+		}
+	}
+	
+	public Block getTempleEntranceBlock() {
+		switch(this) {
+			case AIR:
+				return ModBlocks.AIR_ALTAR_ENTRANCE;
+			case BLOOD:
+				return ModBlocks.BLOOD_ALTAR_ENTRANCE;
+			case BODY:
+				return ModBlocks.BODY_ALTAR_ENTRANCE;
+			case CHAOS:
+				return ModBlocks.CHAOS_ALTAR_ENTRANCE;
+			case COSMIC:
+				return ModBlocks.COSMIC_ALTAR_ENTRANCE;
+			case DEATH:
+				return ModBlocks.DEATH_ALTAR_ENTRANCE;
+			case EARTH:
+				return ModBlocks.EARTH_ALTAR_ENTRANCE;
+			case FIRE:
+				return ModBlocks.FIRE_ALTAR_ENTRANCE;
+			case LAW:
+				return ModBlocks.LAW_ALTAR_ENTRANCE;
+			case MIND:
+				return ModBlocks.MIND_ALTAR_ENTRANCE;
+			case NATURE:
+				return ModBlocks.NATURE_ALTAR_ENTRANCE;
+			case SOUL:
+				return ModBlocks.SOUL_ALTAR_ENTRANCE;
+			case WATER:
+				return ModBlocks.WATER_ALTAR_ENTRANCE;
+			default:
+				return Blocks.AIR;
+			
 		}
 	}
 }

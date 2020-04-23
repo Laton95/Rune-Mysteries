@@ -5,6 +5,7 @@ import com.mojang.datafixers.Dynamic;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeManager;
 import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.NoFeatureConfig;
 import net.minecraft.world.gen.feature.structure.Structure;
@@ -27,11 +28,6 @@ public abstract class RuneTempleStructure extends Structure<NoFeatureConfig> {
 	}
 	
 	@Override
-	public boolean hasStartAt(ChunkGenerator<?> chunkGen, Random rand, int chunkPosX, int chunkPosZ) {
-		return chunkPosX == 0 && chunkPosZ == 0;
-	}
-	
-	@Override
 	public IStartFactory getStartFactory() {
 		return Start::new;
 	}
@@ -46,10 +42,15 @@ public abstract class RuneTempleStructure extends Structure<NoFeatureConfig> {
 		return 4;
 	}
 	
+	@Override
+	public boolean func_225558_a_(BiomeManager biomeManager, ChunkGenerator<?> chunkGenerator, Random random, int chunkPosX, int chunkPosZ, Biome biome) {
+		return chunkPosX == 0 && chunkPosZ == 0;
+	}
+	
 	public class Start extends StructureStart {
 		
-		public Start(Structure<?> structure, int chunkX, int chunkZ, Biome biome, MutableBoundingBox boundingBox, int reference, long seed) {
-			super(structure, chunkX, chunkZ, biome, boundingBox, reference, seed);
+		public Start(Structure<?> structure, int chunkX, int chunkZ, MutableBoundingBox boundingBox, int reference, long seed) {
+			super(structure, chunkX, chunkZ, boundingBox, reference, seed);
 		}
 		
 		@Override

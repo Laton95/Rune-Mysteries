@@ -7,6 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.Heightmap;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
@@ -61,11 +62,11 @@ public class ObeliskPieces {
 		protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb) {
 		}
 		
-		public boolean addComponentParts(IWorld world, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
+		public boolean func_225577_a_(IWorld world, ChunkGenerator<?> chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 			BlockPos pos = this.templatePosition;
 			int y = yLevel > 0 ? yLevel : world.getHeight(Heightmap.Type.OCEAN_FLOOR_WG, pos.getX(), pos.getZ());
 			this.templatePosition = this.templatePosition.add(0, y - 90, 0);
-			return super.addComponentParts(world, random, boundingBox, chunkPos);
+			return super.func_225577_a_(world, chunkGenerator, random, boundingBox, chunkPos);
 		}
 	}
 }

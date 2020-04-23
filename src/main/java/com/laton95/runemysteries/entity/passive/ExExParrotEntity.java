@@ -9,9 +9,11 @@ import net.minecraft.entity.passive.AnimalEntity;
 import net.minecraft.entity.passive.ParrotEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.SpawnEggItem;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.pathfinding.FlyingPathNavigator;
 import net.minecraft.pathfinding.PathNavigator;
+import net.minecraft.pathfinding.PathNodeType;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.MathHelper;
@@ -35,20 +37,29 @@ public class ExExParrotEntity extends ParrotEntity {
 	
 	public float oFlap;
 	
-	public float flapping = 1.0F;
+	private float flapping = 1.0F;
 	
 	private boolean partyParrot;
 	
 	private BlockPos jukeboxPosition;
 	
-	public ExExParrotEntity(EntityType<? extends ExExParrotEntity> type, World world) {
-		super(type, world);
-		this.moveController = new FlyingMovementController(this);
+	public ExExParrotEntity(EntityType<? extends ParrotEntity> type, World worldIn) {
+		super(type, worldIn);
+		this.moveController = new FlyingMovementController(this, 10, false);
+		this.setPathPriority(PathNodeType.DANGER_FIRE, -1.0F);
+		this.setPathPriority(PathNodeType.DAMAGE_FIRE, -1.0F);
+		this.setPathPriority(PathNodeType.COCOA, -1.0F);
 	}
 	
 	@Nullable
-	public ILivingEntityData onInitialSpawn(IWorld world, DifficultyInstance difficulty, SpawnReason reason, @Nullable ILivingEntityData data, @Nullable CompoundNBT dataTag) {
-		return super.onInitialSpawn(world, difficulty, reason, data, dataTag);
+	public ILivingEntityData onInitialSpawn(IWorld worldIn, DifficultyInstance difficultyIn, SpawnReason reason, @Nullable ILivingEntityData spawnDataIn, @Nullable CompoundNBT dataTag) {
+		this.setVariant(this.rand.nextInt(5));
+		if(spawnDataIn == null) {
+			spawnDataIn = new AgeableEntity.AgeableData();
+			((AgeableEntity.AgeableData) spawnDataIn).func_226259_a_(false);
+		}
+		
+		return super.onInitialSpawn(worldIn, difficultyIn, reason, spawnDataIn, dataTag);
 	}
 	
 	protected void registerGoals() {
@@ -57,23 +68,21 @@ public class ExExParrotEntity extends ParrotEntity {
 		this.goalSelector.addGoal(0, new SwimGoal(this));
 		this.goalSelector.addGoal(1, new LookAtGoal(this, PlayerEntity.class, 8.0F));
 		this.goalSelector.addGoal(2, this.sitGoal);
-		this.goalSelector.addGoal(2, new FollowOwnerFlyingGoal(this, 1.0D, 5.0F, 1.0F));
+		this.goalSelector.addGoal(2, new FollowOwnerGoal(this, 1.0D, 5.0F, 1.0F, true));
 		this.goalSelector.addGoal(2, new WaterAvoidingRandomFlyingGoal(this, 1.0D));
+		//this.goalSelector.addGoal(3, new LandOnOwnersShoulderGoal(this));
 		this.goalSelector.addGoal(3, new FollowMobGoal(this, 1.0D, 3.0F, 7.0F));
 	}
 	
 	protected void registerAttributes() {
 		super.registerAttributes();
-		this.getAttribute(SharedMonsterAttributes.MAX_HEALTH).setBaseValue(6.0D);
-		this.getAttribute(SharedMonsterAttributes.FLYING_SPEED).setBaseValue((double) 0.4F);
-		this.getAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue((double) 0.2F);
 	}
 	
 	/**
 	 * Returns new PathNavigateGround instance
 	 */
-	protected PathNavigator createNavigator(World world) {
-		FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, world);
+	protected PathNavigator createNavigator(World worldIn) {
+		FlyingPathNavigator flyingpathnavigator = new FlyingPathNavigator(this, worldIn);
 		flyingpathnavigator.setCanOpenDoors(false);
 		flyingpathnavigator.setCanSwim(true);
 		flyingpathnavigator.setCanEnterDoors(true);
@@ -131,30 +140,29 @@ public class ExExParrotEntity extends ParrotEntity {
 	}
 	
 	public boolean processInteract(PlayerEntity player, Hand hand) {
-		if(!this.isTamed()) {
-			if(!this.isSilent()) {
-				this.world.playSound(null, this.posX, this.posY, this.posZ, SoundEvents.ENTITY_PARROT_EAT, this.getSoundCategory(), 1.0F, 1.0F + (this.rand.nextFloat() - this.rand.nextFloat()) * 0.2F);
+		ItemStack itemstack = player.getHeldItem(hand);
+		if(itemstack.getItem() instanceof SpawnEggItem) {
+			return super.processInteract(player, hand);
+		}
+		else if(!this.world.isRemote && !this.isTamed()) {
+			if(!net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
+				this.setTamedBy(player);
+				this.world.setEntityState(this, (byte) 7);
+			}
+			else {
+				this.world.setEntityState(this, (byte) 6);
 			}
 			
+			return true;
+		}
+		else if(!this.isFlying() && this.isTamed() && this.isOwner(player)) {
 			if(!this.world.isRemote) {
-				if(this.rand.nextInt(10) == 0 && !net.minecraftforge.event.ForgeEventFactory.onAnimalTame(this, player)) {
-					this.setTamedBy(player);
-					this.playTameEffect(true);
-					this.world.setEntityState(this, (byte) 7);
-				}
-				else {
-					this.playTameEffect(false);
-					this.world.setEntityState(this, (byte) 6);
-				}
+				this.sitGoal.setSitting(!this.isSitting());
 			}
 			
 			return true;
 		}
 		else {
-			if(!this.world.isRemote && !this.isFlying() && this.isTamed() && this.isOwner(player)) {
-				this.sitGoal.setSitting(!this.isSitting());
-			}
-			
 			return super.processInteract(player, hand);
 		}
 	}
@@ -167,7 +175,8 @@ public class ExExParrotEntity extends ParrotEntity {
 		return false;
 	}
 	
-	public void fall(float distance, float damageMultiplier) {
+	public boolean onLivingFall(float distance, float damageMultiplier) {
+		return false;
 	}
 	
 	protected void updateFallState(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
@@ -181,12 +190,12 @@ public class ExExParrotEntity extends ParrotEntity {
 	}
 	
 	@Nullable
-	public AgeableEntity createChild(AgeableEntity entity) {
+	public AgeableEntity createChild(AgeableEntity ageable) {
 		return null;
 	}
 	
-	public boolean attackEntityAsMob(Entity entity) {
-		return entity.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
+	public boolean attackEntityAsMob(Entity entityIn) {
+		return entityIn.attackEntityFrom(DamageSource.causeMobDamage(this), 3.0F);
 	}
 	
 	@Nullable
@@ -202,7 +211,7 @@ public class ExExParrotEntity extends ParrotEntity {
 		return SoundEvents.ENTITY_ZOMBIE_DEATH;
 	}
 	
-	protected void playStepSound(BlockPos pos, BlockState block) {
+	protected void playStepSound(BlockPos pos, BlockState blockIn) {
 		this.playSound(SoundEvents.ENTITY_PARROT_STEP, 0.15F, 1.0F);
 	}
 	
@@ -237,9 +246,9 @@ public class ExExParrotEntity extends ParrotEntity {
 		return true;
 	}
 	
-	protected void collideWithEntity(Entity entity) {
-		if(!(entity instanceof PlayerEntity)) {
-			super.collideWithEntity(entity);
+	protected void collideWithEntity(Entity entityIn) {
+		if(!(entityIn instanceof PlayerEntity)) {
+			super.collideWithEntity(entityIn);
 		}
 	}
 	

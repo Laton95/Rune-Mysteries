@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class RuneEssenceBlock extends ModBlock {
+public class RuneEssenceBlock extends Block {
 	
 	public static final BooleanProperty INFINITE = BooleanProperty.create("infinite");
 	

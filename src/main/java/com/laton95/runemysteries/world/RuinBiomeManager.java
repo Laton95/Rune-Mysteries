@@ -17,37 +17,37 @@ import static net.minecraft.world.biome.Biome.Category.*;
 
 @Mod.EventBusSubscriber(modid = MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RuinBiomeManager {
-
+	
 	private static boolean ranBiomeCheck = false;
 	
 	public static List<Biome> airRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> astralRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> bloodRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> bodyRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> chaosRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> cosmicRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> deathRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> earthRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> fireRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> lawRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> mindRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> natureRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> soulRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> waterRuinBiomes = new LinkedList<>();
-
+	
 	public static List<Biome> ouraniaRuinBiomes = new LinkedList<>();
 	
 	public static List<Biome> getBiomes(EnumRuneType rune) {

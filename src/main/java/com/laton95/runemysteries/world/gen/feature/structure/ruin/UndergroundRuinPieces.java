@@ -10,6 +10,7 @@ import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.MutableBoundingBox;
 import net.minecraft.world.IWorld;
 import net.minecraft.world.dimension.DimensionType;
+import net.minecraft.world.gen.ChunkGenerator;
 import net.minecraft.world.gen.feature.structure.StructurePiece;
 import net.minecraft.world.gen.feature.structure.TemplateStructurePiece;
 import net.minecraft.world.gen.feature.template.BlockIgnoreStructureProcessor;
@@ -68,14 +69,14 @@ public class UndergroundRuinPieces {
 		protected void handleDataMarker(String function, BlockPos pos, IWorld worldIn, Random rand, MutableBoundingBox sbb) {
 		}
 		
-		public boolean addComponentParts(IWorld world, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
+		public boolean func_225577_a_(IWorld world, ChunkGenerator<?> chunkGenerator, Random random, MutableBoundingBox boundingBox, ChunkPos chunkPos) {
 			if(world.getDimension().getType() == DimensionType.OVERWORLD || world.getDimension().getType() == DimensionType.THE_NETHER || world.getDimension().getType() == DimensionType.THE_END) {
 				
 				if(structure.equals(SurfaceRuinPieces.STONE_CIRCLE)) {
 					RuneMysteries.ruinManager.setRuinPosition(rune, templatePosition.add(4, 0, 4));
 				}
 				
-				return super.addComponentParts(world, random, boundingBox, chunkPos);
+				return super.func_225577_a_(world, chunkGenerator, random, boundingBox, chunkPos);
 			}
 			return false;
 		}

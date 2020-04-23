@@ -1,6 +1,7 @@
 package com.laton95.runemysteries.world.gen.feature;
 
 import com.laton95.runemysteries.block.BlackMonolithBlock;
+import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.init.ModBlocks;
 import com.laton95.runemysteries.util.WorldHelper;
 import com.mojang.datafixers.Dynamic;
@@ -25,10 +26,13 @@ public class MonolithFeature extends Feature<NoFeatureConfig> {
 	
 	@Override
 	public boolean place(IWorld world, ChunkGenerator<? extends GenerationSettings> chunkGenerator, Random rand, BlockPos pos, NoFeatureConfig config) {
-		pos = WorldHelper.getTopSolidBlock(world, pos).up();
-		IFluidState ifluidstate = world.getFluidState(pos);
-		Direction facing = Direction.values()[rand.nextInt(4) + 2];
-		world.setBlockState(pos, ModBlocks.BLACK_MONOLITH.getDefaultState().with(BlackMonolithBlock.FACING, facing).with(BlackMonolithBlock.WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER), 16);
-		return true;
+		if(Config.generateMonoliths) {
+			pos = WorldHelper.getTopSolidBlock(world, pos).up();
+			IFluidState ifluidstate = world.getFluidState(pos);
+			Direction facing = Direction.values()[rand.nextInt(4) + 2];
+			world.setBlockState(pos, ModBlocks.BLACK_MONOLITH.getDefaultState().with(BlackMonolithBlock.FACING, facing).with(BlackMonolithBlock.WATERLOGGED, ifluidstate.getFluid() == Fluids.WATER), 16);
+			return true;
+		}
+		return false;
 	}
 }

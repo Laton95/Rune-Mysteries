@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "runemysteries:block/gravestone"
+    },
+    "facing=south": {
+      "model": "runemysteries:block/gravestone",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "runemysteries:block/gravestone",
+      "y": 270
+    },
+    "facing=east": {
+      "model": "runemysteries:block/gravestone",
+      "y": 90
+    }
+  }
+}

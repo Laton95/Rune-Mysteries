@@ -17,6 +17,7 @@ import net.minecraft.particles.RedstoneParticleData;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.state.properties.BlockStateProperties;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -30,7 +31,7 @@ import net.minecraft.world.World;
 import javax.annotation.Nullable;
 import java.util.Random;
 
-public class ParticleLightBlock extends ModBlock implements IWaterLoggable {
+public class ParticleLightBlock extends Block implements IWaterLoggable {
 	
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 	
@@ -39,7 +40,7 @@ public class ParticleLightBlock extends ModBlock implements IWaterLoggable {
 	private final EnumColour colour;
 	
 	public ParticleLightBlock(EnumColour colour) {
-		super(Properties.create(Material.GLASS).lightValue(15).doesNotBlockMovement(), false);
+		super(Properties.create(Material.GLASS).lightValue(15).doesNotBlockMovement());
 		this.colour = colour;
 		this.setDefaultState(stateContainer.getBaseState().with(WATERLOGGED, false));
 	}
@@ -69,7 +70,7 @@ public class ParticleLightBlock extends ModBlock implements IWaterLoggable {
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(hand == Hand.MAIN_HAND && player.getHeldItem(hand) == ItemStack.EMPTY) {
 			if(!world.isRemote) {
 				ParticleLightBlock newLight;
@@ -82,7 +83,7 @@ public class ParticleLightBlock extends ModBlock implements IWaterLoggable {
 				else {
 					int oldColourOrdinal = colour.ordinal();
 					
-					if(!player.isSneaking()) {
+					if(!player.isCrouching()) {
 						if(oldColourOrdinal == 15) { oldColourOrdinal = -1; }
 						
 						newLight = EnumColour.values()[oldColourOrdinal + 1].getLight();
@@ -97,10 +98,10 @@ public class ParticleLightBlock extends ModBlock implements IWaterLoggable {
 				world.setBlockState(pos, newLight.getDefaultState().with(WATERLOGGED, state.get(WATERLOGGED)));
 			}
 			
-			return true;
+			return ActionResultType.SUCCESS;
 		}
 		
-		return false;
+		return ActionResultType.FAIL;
 	}
 	
 	@Nullable

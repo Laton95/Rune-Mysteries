@@ -24,15 +24,15 @@ public class TeleportHelper {
 		player.dimension = destination;
 		ServerWorld serverworld1 = player.server.getWorld(destination);
 		WorldInfo worldinfo = player.world.getWorldInfo();
-		player.connection.sendPacket(new SRespawnPacket(destination, worldinfo.getGenerator(), player.interactionManager.getGameType()));
+		player.connection.sendPacket(new SRespawnPacket(destination, WorldInfo.byHashing(worldinfo.getSeed()), worldinfo.getGenerator(), player.interactionManager.getGameType()));
 		player.connection.sendPacket(new SServerDifficultyPacket(worldinfo.getDifficulty(), worldinfo.isDifficultyLocked()));
 		PlayerList playerlist = player.server.getPlayerList();
 		playerlist.updatePermissionLevel(player);
 		serverworld.removeEntity(player, true); //Forge: the player entity is moved to the new world, NOT cloned. So keep the data alive with no matching invalidate call.
 		player.revive();
-		double d0 = player.posX;
-		double d1 = player.posY;
-		double d2 = player.posZ;
+		double d0 = player.getPosX();
+		double d1 = player.getPosY();
+		double d2 = player.getPosZ();
 		float f = player.rotationPitch;
 		float f1 = player.rotationYaw;
 		serverworld.getProfiler().startSection("moving");
@@ -52,7 +52,7 @@ public class TeleportHelper {
 		player.setWorld(serverworld1);
 		serverworld1.func_217447_b(player);
 		//player.func_213846_b(serverworld);
-		player.connection.setPlayerLocation(player.posX, player.posY, player.posZ, f1, f);
+		player.connection.setPlayerLocation(player.getPosX(), player.getPosY(), player.getPosZ(), f1, f);
 		player.interactionManager.setWorld(serverworld1);
 		player.connection.sendPacket(new SPlayerAbilitiesPacket(player.abilities));
 		playerlist.sendWorldInfo(player, serverworld1);

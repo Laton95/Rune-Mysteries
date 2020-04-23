@@ -1,24 +1,24 @@
 package com.laton95.runemysteries.block;
 
 import net.minecraft.block.Block;
+import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.entity.EntityType;
-import net.minecraft.util.BlockRenderLayer;
 import net.minecraft.util.Direction;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockReader;
 
-public class CloudBlock extends ModBlock {
+public class CloudBlock extends Block {
 	
 	public CloudBlock() {
-		super(Block.Properties.create(Material.WEB).hardnessAndResistance(0.5F).sound(SoundType.CLOTH).variableOpacity(), true);
+		super(Block.Properties.create(Material.WEB).hardnessAndResistance(0.5F).sound(SoundType.CLOTH).variableOpacity());
 	}
 	
 	@Override
-	public BlockRenderLayer getRenderLayer() {
-		return BlockRenderLayer.TRANSLUCENT;
+	public BlockRenderType getRenderType(BlockState state) {
+		return BlockRenderType.INVISIBLE;
 	}
 	
 	@Override

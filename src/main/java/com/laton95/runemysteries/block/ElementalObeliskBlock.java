@@ -12,10 +12,10 @@ import net.minecraft.block.material.Material;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
 import net.minecraft.item.BlockItemUseContext;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.state.BooleanProperty;
 import net.minecraft.state.StateContainer;
+import net.minecraft.util.ActionResultType;
 import net.minecraft.util.Direction;
 import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
@@ -26,17 +26,14 @@ import net.minecraft.world.World;
 
 import java.util.Optional;
 
-public class ElementalObeliskBlock extends ModBlock {
+public class ElementalObeliskBlock extends Block {
 	
 	public static final BooleanProperty TOP = BooleanProperty.create("top");
 	
-	private final Item shardDrop;
-	
 	private final EnumRuneType runeType;
 	
-	public ElementalObeliskBlock(Item shardDrop, EnumRuneType runeType) {
+	public ElementalObeliskBlock(EnumRuneType runeType) {
 		super(Properties.create(Material.ROCK).hardnessAndResistance(1.5f, 6.0f).lightValue(15));
-		this.shardDrop = shardDrop;
 		this.runeType = runeType;
 	}
 	
@@ -47,9 +44,9 @@ public class ElementalObeliskBlock extends ModBlock {
 	}
 	
 	@Override
-	public boolean onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
+	public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockRayTraceResult hit) {
 		if(getBlockFromItem(player.getHeldItem(hand).getItem()) == this) {
-			return false;
+			return ActionResultType.SUCCESS;
 		}
 		
 		if(!world.isRemote) {
@@ -74,7 +71,7 @@ public class ElementalObeliskBlock extends ModBlock {
 			}
 		}
 		
-		return true;
+		return ActionResultType.SUCCESS;
 	}
 	
 	private ObeliskRecipe getRecipe(World world, ItemStack input, EnumRuneType runeType) {

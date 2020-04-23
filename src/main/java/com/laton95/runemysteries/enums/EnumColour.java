@@ -119,11 +119,11 @@ public enum EnumColour {
 	
 	public class Colour {
 		
-		private float red;
+		private final float red;
 		
-		private float green;
+		private final float green;
 		
-		private float blue;
+		private final float blue;
 		
 		Colour(float red, float green, float blue) {
 			this.red = red;

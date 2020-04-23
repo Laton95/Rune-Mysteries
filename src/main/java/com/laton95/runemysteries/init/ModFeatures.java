@@ -1,11 +1,14 @@
 package com.laton95.runemysteries.init;
 
+import com.google.common.collect.ImmutableList;
 import com.laton95.runemysteries.RuneMysteries;
+import com.laton95.runemysteries.config.Config;
 import com.laton95.runemysteries.util.ModLog;
-import com.laton95.runemysteries.world.biome.RuneTempleBiome;
 import com.laton95.runemysteries.world.gen.feature.MonolithFeature;
-import com.laton95.runemysteries.world.gen.feature.structure.altar.*;
+import com.laton95.runemysteries.world.gen.feature.ToggleableOreFeature;
+import com.laton95.runemysteries.world.gen.feature.ToggleableOreFeatureConfig;
 import com.laton95.runemysteries.world.gen.feature.structure.obelisk.*;
+import com.laton95.runemysteries.world.gen.feature.structure.ruin.*;
 import com.laton95.runemysteries.world.gen.feature.structure.temple.*;
 import net.minecraft.util.registry.Registry;
 import net.minecraft.world.biome.Biome;
@@ -26,6 +29,8 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.ObjectHolder;
+
+import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 @ObjectHolder(RuneMysteries.MOD_ID)
@@ -73,6 +78,8 @@ public class ModFeatures {
 	
 	public static final Structure<NoFeatureConfig> COSMIC_TEMPLE = null;
 	
+	public static final Structure<NoFeatureConfig> DEATH_TEMPLE = null;
+	
 	public static final Structure<NoFeatureConfig> MIND_TEMPLE = null;
 	
 	public static final Structure<NoFeatureConfig> NATURE_TEMPLE = null;
@@ -80,6 +87,8 @@ public class ModFeatures {
 	public static final Structure<NoFeatureConfig> WATER_TEMPLE = null;
 	
 	public static final Feature<NoFeatureConfig> MONOLITH = null;
+	
+	public static final Feature<OreFeatureConfig> TOGGLEABLE_ORE = null;
 	
 	public static IStructurePieceType OBELISK;
 	
@@ -106,6 +115,8 @@ public class ModFeatures {
 		
 		registerFeature(event, new MonolithFeature(NoFeatureConfig::deserialize), "monolith");
 		
+		registerFeature(event, new ToggleableOreFeature(ToggleableOreFeatureConfig::deserialize), "toggleable_ore");
+		
 		registerFeature(event, new AirObeliskStructure(NoFeatureConfig::deserialize), "air_obelisk");
 		registerFeature(event, new EarthObeliskStructure(NoFeatureConfig::deserialize), "earth_obelisk");
 		registerFeature(event, new FireObeliskStructure(NoFeatureConfig::deserialize), "fire_obelisk");
@@ -129,6 +140,7 @@ public class ModFeatures {
 		
 		registerFeature(event, new BloodTempleStructure(NoFeatureConfig::deserialize), "blood_temple");
 		registerFeature(event, new CosmicTempleStructure(NoFeatureConfig::deserialize), "cosmic_temple");
+		registerFeature(event, new DeathTempleStructure(NoFeatureConfig::deserialize), "death_temple");
 		registerFeature(event, new MindTempleStructure(NoFeatureConfig::deserialize), "mind_temple");
 		registerFeature(event, new NatureTempleStructure(NoFeatureConfig::deserialize), "nature_temple");
 		registerFeature(event, new WaterTempleStructure(NoFeatureConfig::deserialize), "water_temple");
@@ -153,7 +165,7 @@ public class ModFeatures {
 					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_OBELISK);
 					break;
 				case JUNGLE:
-					biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, Biome.createDecoratedFeature(ModFeatures.MONOLITH, IFeatureConfig.NO_FEATURE_CONFIG, Placement.CHANCE_HEIGHTMAP, new ChanceConfig(100)));
+					biome.addFeature(GenerationStage.Decoration.SURFACE_STRUCTURES, ModFeatures.MONOLITH.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.CHANCE_HEIGHTMAP.configure(new ChanceConfig(100))));
 					break;
 				case MESA:
 					addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_OBELISK);
@@ -190,7 +202,7 @@ public class ModFeatures {
 					break;
 			}
 			
-			if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND && biome.getCategory() != Biome.Category.NONE) {
+			if(biome.getCategory() != Biome.Category.NETHER && biome.getCategory() != Biome.Category.THEEND) {
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, AIR_RUIN);
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, ASTRAL_RUIN);
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, BLOOD_RUIN);
@@ -205,7 +217,7 @@ public class ModFeatures {
 				addStructure(biome, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_RUIN);
 				addStructure(biome, GenerationStage.Decoration.UNDERGROUND_STRUCTURES, OURANIA_RUIN);
 				
-				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, Biome.createDecoratedFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUNE_ESSENCE_BLOCK.getDefaultState(), 5), Placement.COUNT_RANGE, new CountRangeConfig(20, 0, 0, 64)));
+				biome.addFeature(GenerationStage.Decoration.UNDERGROUND_ORES, TOGGLEABLE_ORE.withConfiguration(new ToggleableOreFeatureConfig(OreFeatureConfig.FillerBlockType.NATURAL_STONE, ModBlocks.RUNE_ESSENCE_BLOCK.getDefaultState(), 5, () -> Config.generateEssence)).withPlacement(Placement.COUNT_RANGE.configure(new CountRangeConfig(20, 0, 0, 64))));
 			}
 			
 			if(biome.getCategory() != Biome.Category.THEEND && biome.getCategory() != Biome.Category.NONE) {
@@ -217,20 +229,71 @@ public class ModFeatures {
 			}
 		}
 		
-		addTempleStructure((RuneTempleBiome) ModBiomes.BLOOD_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, BLOOD_TEMPLE);
-		addTempleStructure((RuneTempleBiome) ModBiomes.COSMIC_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, COSMIC_TEMPLE);
-		addTempleStructure((RuneTempleBiome) ModBiomes.MIND_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, MIND_TEMPLE);
-		addTempleStructure((RuneTempleBiome) ModBiomes.NATURE_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, NATURE_TEMPLE);
-		addTempleStructure((RuneTempleBiome) ModBiomes.WATER_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_TEMPLE);
+		addStructure(ModBiomes.BLOOD_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, BLOOD_TEMPLE);
+		addStructure(ModBiomes.COSMIC_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, COSMIC_TEMPLE);
+		addStructure(ModBiomes.DEATH_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, DEATH_TEMPLE);
+		addStructure(ModBiomes.MIND_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, MIND_TEMPLE);
+		addStructure(ModBiomes.NATURE_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, NATURE_TEMPLE);
+		addStructure(ModBiomes.WATER_TEMPLE, GenerationStage.Decoration.SURFACE_STRUCTURES, WATER_TEMPLE);
 	}
 	
 	private static void addStructure(Biome biome, GenerationStage.Decoration stage, Structure structure) {
-		biome.addFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.addStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
+		biome.addStructure(structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG));
+		biome.addFeature(stage, structure.withConfiguration(IFeatureConfig.NO_FEATURE_CONFIG).withPlacement(Placement.NOPE.configure(IPlacementConfig.NO_PLACEMENT_CONFIG)));
 	}
 	
-	private static void addTempleStructure(RuneTempleBiome biome, GenerationStage.Decoration stage, Structure structure) {
-		biome.actuallyAddFeature(stage, Biome.createDecoratedFeature(structure, IFeatureConfig.NO_FEATURE_CONFIG, Placement.NOPE, IPlacementConfig.NO_PLACEMENT_CONFIG));
-		biome.actuallyAddStructure(structure, IFeatureConfig.NO_FEATURE_CONFIG);
+	private static final List<Feature> vanillaFeatures = ImmutableList.of(
+			Feature.NORMAL_TREE,
+			Feature.ACACIA_TREE,
+			Feature.FANCY_TREE,
+			Feature.JUNGLE_GROUND_BUSH,
+			Feature.DARK_OAK_TREE,
+			Feature.MEGA_JUNGLE_TREE,
+			Feature.MEGA_SPRUCE_TREE,
+			Feature.FLOWER,
+			Feature.RANDOM_PATCH,
+			Feature.BLOCK_PILE,
+			Feature.SPRING_FEATURE,
+			Feature.CHORUS_PLANT,
+			Feature.EMERALD_ORE,
+			Feature.VOID_START_PLATFORM,
+			Feature.DESERT_WELL,
+			Feature.FOSSIL,
+			Feature.HUGE_RED_MUSHROOM,
+			Feature.HUGE_BROWN_MUSHROOM,
+			Feature.ICE_SPIKE,
+			Feature.GLOWSTONE_BLOB,
+			Feature.FREEZE_TOP_LAYER,
+			Feature.VINES,
+			Feature.MONSTER_ROOM,
+			Feature.BLUE_ICE,
+			Feature.ICEBERG,
+			Feature.FOREST_ROCK,
+			Feature.DISK,
+			Feature.ICE_PATCH,
+			Feature.LAKE,
+			Feature.ORE,
+			Feature.END_SPIKE,
+			Feature.END_ISLAND,
+			Feature.END_GATEWAY,
+			Feature.SEAGRASS,
+			Feature.KELP,
+			Feature.CORAL_TREE,
+			Feature.CORAL_MUSHROOM,
+			Feature.CORAL_CLAW,
+			Feature.SEA_PICKLE,
+			Feature.SIMPLE_BLOCK,
+			Feature.BAMBOO,
+			Feature.FILL_LAYER,
+			Feature.BONUS_CHEST,
+			Feature.RANDOM_RANDOM_SELECTOR,
+			Feature.SIMPLE_RANDOM_SELECTOR,
+			Feature.RANDOM_BOOLEAN_SELECTOR,
+			Feature.DECORATED,
+			Feature.DECORATED_FLOWER
+																		 );
+	
+	public static boolean isVanillaFeature(Feature feature) {
+		return vanillaFeatures.contains(feature);
 	}
 }

@@ -12,6 +12,10 @@ public class ModLog {
 	
 	private static final String prefix = "RuneMysteries: ";
 	
+	public static void info(Object message) {
+		logger.info(prefix + message);
+	}
+	
 	public static void info(String message, Object... params) {
 		logger.info(prefix + message, params, params);
 	}

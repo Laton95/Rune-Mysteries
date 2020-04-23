@@ -11,6 +11,7 @@ import com.laton95.runemysteries.util.PlayerInventoryHelper;
 import net.minecraft.client.util.ITooltipFlag;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.ServerPlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
 import net.minecraft.nbt.INBT;
@@ -20,6 +21,8 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.TextFormatting;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.World;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
@@ -34,12 +37,12 @@ import net.minecraftforge.items.IItemHandler;
 import java.util.List;
 
 @Mod.EventBusSubscriber(modid = RuneMysteries.MOD_ID)
-public class RuneBagItem extends ModItem {
+public class RuneBagItem extends Item {
 	
 	public static final String AUTO_PICKUP_NBT = "autoPickup";
 	
 	public RuneBagItem() {
-		super(new Properties().maxStackSize(1));
+		super(new Properties().maxStackSize(1).group(RuneMysteries.RUNE_GROUP));
 	}
 	
 	@SubscribeEvent
@@ -48,12 +51,12 @@ public class RuneBagItem extends ModItem {
 		
 		if(!originalStack.isEmpty() && originalStack.getItem() instanceof RuneItem) {
 			ItemStack tempStack = originalStack;
-			List<Integer> bagSlots = PlayerInventoryHelper.getSlotsWithItem(event.getEntityPlayer(), ModItems.RUNE_BAG);
+			List<Integer> bagSlots = PlayerInventoryHelper.getSlotsWithItem(event.getPlayer(), ModItems.RUNE_BAG);
 			for(int slot : bagSlots) {
 				if(tempStack.getCount() == 0) {
 					break;
 				}
-				ItemStack bagStack = event.getEntityPlayer().inventory.getStackInSlot(slot);
+				ItemStack bagStack = event.getPlayer().inventory.getStackInSlot(slot);
 				if(ItemNBTHelper.getBoolean(bagStack, AUTO_PICKUP_NBT, true)) {
 					boolean bagChanged = false;
 					RuneBagInventory bagInventory = getInventory(bagStack);
@@ -67,7 +70,7 @@ public class RuneBagItem extends ModItem {
 					}
 					
 					if(bagChanged) {
-						RunemysteriesPacketHandler.sendTo(new SyncRuneBagPacket(bagInventory.getStacks(), slot), (ServerPlayerEntity) event.getEntityPlayer());
+						RunemysteriesPacketHandler.sendTo(new SyncRuneBagPacket(bagInventory.getStacks(), slot), (ServerPlayerEntity) event.getPlayer());
 					}
 				}
 			}
@@ -82,12 +85,12 @@ public class RuneBagItem extends ModItem {
 			if(numPickedUp > 0) {
 				event.setCanceled(true);
 				if(!event.getItem().isSilent()) {
-					event.getItem().world.playSound(null, event.getEntityPlayer().posX, event.getEntityPlayer().posY, event.getEntityPlayer().posZ, SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event.getItem().world.rand.nextFloat() - event.getItem().world.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
+					event.getItem().world.playSound(null, event.getPlayer().getPosX(), event.getPlayer().getPosY(), event.getPlayer().getPosZ(), SoundEvents.ENTITY_ITEM_PICKUP, SoundCategory.PLAYERS, 0.2F, ((event.getItem().world.rand.nextFloat() - event.getItem().world.rand.nextFloat()) * 0.7F + 1.0F) * 2.0F);
 				}
 				// Shows the pick up animation
-				((ServerPlayerEntity) event.getEntityPlayer()).connection.sendPacket(new SCollectItemPacket(event.getItem().getEntityId(), event.getEntityPlayer().getEntityId(), numPickedUp));
+				((ServerPlayerEntity) event.getPlayer()).connection.sendPacket(new SCollectItemPacket(event.getItem().getEntityId(), event.getPlayer().getEntityId(), numPickedUp));
 				// Updates the screen if the player is looking into the bag
-				event.getEntityPlayer().openContainer.detectAndSendChanges();
+				event.getPlayer().openContainer.detectAndSendChanges();
 			}
 		}
 	}
@@ -96,7 +99,7 @@ public class RuneBagItem extends ModItem {
 	public ActionResult<ItemStack> onItemRightClick(World world, PlayerEntity player, Hand hand) {
 		ItemStack stack = player.getHeldItem(hand);
 		if(!world.isRemote) {
-			if(!player.isSneaking()) {
+			if(!player.isCrouching()) {
 				RuneBagInventory bagInventory = getInventory(stack);
 				NetworkHooks.openGui((ServerPlayerEntity) player, bagInventory, buffer -> {
 					buffer.writeItemStack(stack);
@@ -116,6 +119,7 @@ public class RuneBagItem extends ModItem {
 	}
 	
 	@Override
+	@OnlyIn(Dist.CLIENT)
 	public void addInformation(ItemStack stack, World world, List<ITextComponent> tooltip, ITooltipFlag flag) {
 		TranslationTextComponent pickupTooltip = new TranslationTextComponent(ItemNBTHelper.getBoolean(stack, AUTO_PICKUP_NBT, true) ? StringReference.RuneBag.PICKUP_ON : StringReference.RuneBag.PICKUP_OFF);
 		tooltip.add(pickupTooltip.applyTextStyle(TextFormatting.GRAY));
@@ -132,7 +136,7 @@ public class RuneBagItem extends ModItem {
 	
 	private class RuneBagInventoryProvider implements ICapabilitySerializable<INBT> {
 		
-		private LazyOptional<IItemHandler> itemStackHandler;
+		private final LazyOptional<IItemHandler> itemStackHandler;
 		
 		public RuneBagInventoryProvider(ItemStack bagStack) {
 			itemStackHandler = LazyOptional.of(() -> new RuneBagInventory(bagStack));
